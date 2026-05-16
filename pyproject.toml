@@ -10,6 +10,7 @@ packages = [
     { include = "config" },
     { include = "flows" },
     { include = "interfaces" },
+    { include = "market" },
     { include = "memory" },
     { include = "orchestration" },
     { include = "telemetry" }

@@ -13,28 +13,36 @@ class ReflectiveMemorySynthesizer:
         reflections,
         validations,
         confidence_states,
-        contradiction_result
+        contradiction_result,
+        market_observations=None
     ):
+
+        market_observations = market_observations or []
 
         recurring_themes = self._recurring_themes(
             theories,
             reflections,
-            validations
+            validations,
+            market_observations
         )
         persistent_uncertainties = self._persistent_uncertainties(
             reflections,
-            contradiction_result
+            contradiction_result,
+            market_observations
         )
         strengthening_patterns = self._strengthening_patterns(
             validations,
-            confidence_states
+            confidence_states,
+            market_observations
         )
         weakening_patterns = self._weakening_patterns(
             confidence_states,
-            contradiction_result
+            contradiction_result,
+            market_observations
         )
         contradiction_hotspots = self._contradiction_hotspots(
-            contradiction_result
+            contradiction_result,
+            market_observations
         )
         trajectory_summary = self._trajectory_summary(
             recurring_themes,
@@ -54,7 +62,13 @@ class ReflectiveMemorySynthesizer:
             cognition_trajectory_summary=trajectory_summary
         )
 
-    def _recurring_themes(self, theories, reflections, validations):
+    def _recurring_themes(
+        self,
+        theories,
+        reflections,
+        validations,
+        market_observations
+    ):
 
         watched_terms = [
             "momentum",
@@ -62,12 +76,22 @@ class ReflectiveMemorySynthesizer:
             "trend",
             "persistence",
             "participation",
+            "breadth",
+            "volatility",
+            "nifty",
+            "regime",
+            "rotation",
             "confidence",
             "uncertainty",
             "contradiction",
             "market activity"
         ]
-        text = self._combined_text(theories, reflections, validations)
+        text = self._combined_text(
+            theories,
+            reflections,
+            validations,
+            market_observations
+        )
         counts = Counter()
 
         for term in watched_terms:
@@ -81,7 +105,12 @@ class ReflectiveMemorySynthesizer:
 
         return themes[:5] or ["No recurring theme is stable yet."]
 
-    def _persistent_uncertainties(self, reflections, contradiction_result):
+    def _persistent_uncertainties(
+        self,
+        reflections,
+        contradiction_result,
+        market_observations
+    ):
 
         uncertainty_terms = [
             "uncertain",
@@ -109,11 +138,32 @@ class ReflectiveMemorySynthesizer:
                 "Contradiction pressure remains present in recent cognition."
             )
 
+        if self._market_marker_count(
+            market_observations,
+            "uncertain"
+        ) >= 1:
+            uncertainties.append(
+                "Recent NIFTY observations include uncertain macro sentiment."
+            )
+
+        if self._market_marker_count(
+            market_observations,
+            "mixed"
+        ) >= 1:
+            uncertainties.append(
+                "Recent NIFTY observations include mixed breadth or sentiment."
+            )
+
         return self._unique(uncertainties)[:5] or [
             "No persistent uncertainty detected yet."
         ]
 
-    def _strengthening_patterns(self, validations, confidence_states):
+    def _strengthening_patterns(
+        self,
+        validations,
+        confidence_states,
+        market_observations
+    ):
 
         patterns = []
         validation_text = " ".join(
@@ -147,9 +197,30 @@ class ReflectiveMemorySynthesizer:
                 "Regime confidence is rising across recent states."
             )
 
+        if self._market_marker_count(
+            market_observations,
+            "broad_participation"
+        ) >= 2:
+            patterns.append(
+                "Broad NIFTY participation is recurring in recent market memory."
+            )
+
+        if self._market_marker_count(
+            market_observations,
+            "strengthened"
+        ) >= 2:
+            patterns.append(
+                "Breadth improvement has repeated across recent NIFTY observations."
+            )
+
         return patterns[:5] or ["No strengthening pattern is stable yet."]
 
-    def _weakening_patterns(self, confidence_states, contradiction_result):
+    def _weakening_patterns(
+        self,
+        confidence_states,
+        contradiction_result,
+        market_observations
+    ):
 
         patterns = []
 
@@ -174,14 +245,57 @@ class ReflectiveMemorySynthesizer:
                 "Current cognition has material contradiction pressure."
             )
 
+        if self._market_marker_count(
+            market_observations,
+            "weakened"
+        ) >= 2:
+            patterns.append(
+                "NIFTY breadth weakness is recurring in recent market memory."
+            )
+
+        if self._market_marker_count(
+            market_observations,
+            "expanded"
+        ) >= 2:
+            patterns.append(
+                "Volatility expansion is recurring across recent NIFTY observations."
+            )
+
         return patterns[:5] or ["No weakening pattern is stable yet."]
 
-    def _contradiction_hotspots(self, contradiction_result):
+    def _contradiction_hotspots(
+        self,
+        contradiction_result,
+        market_observations
+    ):
 
-        indicators = contradiction_result["indicators"]
+        indicators = list(contradiction_result["indicators"])
+
+        for observation in market_observations:
+            markers = observation.contradiction_markers
+
+            if "price_up_breadth_down" in markers:
+                indicators.append(
+                    "NIFTY price rose while breadth weakened."
+                )
+
+            if "new_high_narrow_breadth" in markers:
+                indicators.append(
+                    "NIFTY made a new high with narrowing breadth."
+                )
+
+            if "volatility_expansion_with_positive_close" in markers:
+                indicators.append(
+                    "Volatility expanded despite a positive NIFTY close."
+                )
+
+            if "high_volatility_recovery" in markers:
+                indicators.append(
+                    "NIFTY recovered while volatility stayed high."
+                )
 
         if indicators:
-            return indicators[:5]
+            return self._unique(indicators)[:5]
 
         return ["No contradiction hotspot detected in the current cycle."]
 
@@ -224,7 +338,13 @@ class ReflectiveMemorySynthesizer:
             f"at {latest_coherence}."
         )
 
-    def _combined_text(self, theories, reflections, validations):
+    def _combined_text(
+        self,
+        theories,
+        reflections,
+        validations,
+        market_observations
+    ):
 
         parts = []
 
@@ -237,8 +357,38 @@ class ReflectiveMemorySynthesizer:
             validation.validation_summary
             for validation in validations
         )
+        parts.extend(
+            observation.observation_text
+            for observation in market_observations
+        )
+        parts.extend(
+            " ".join(observation.contradiction_markers)
+            for observation in market_observations
+        )
 
         return " ".join(parts).lower()
+
+    def _market_marker_count(self, market_observations, phrase: str):
+
+        count = 0
+
+        for observation in market_observations:
+            text = " ".join(
+                [
+                    observation.observation_text,
+                    observation.trend_state,
+                    observation.volatility_state,
+                    observation.liquidity_state,
+                    observation.breadth_state,
+                    observation.macro_sentiment,
+                    " ".join(observation.contradiction_markers)
+                ]
+            ).lower()
+
+            if phrase in text:
+                count += 1
+
+        return count
 
     def _confidence_trend(self, confidence_states, field_name: str):
 

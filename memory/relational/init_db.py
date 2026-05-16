@@ -10,6 +10,7 @@ from memory.relational.models.confidence_model import ConfidenceModel
 from memory.relational.models.reflective_memory_model import (
     ReflectiveMemoryModel
 )
+from memory.market.market_observation_model import MarketObservationModel
 
 
 Base.metadata.create_all(bind=engine)
