@@ -7,6 +7,9 @@ from memory.relational.models.theory_model import TheoryModel
 from memory.relational.models.validation_model import ValidationModel
 from memory.relational.models.reflection_model import ReflectionModel
 from memory.relational.models.confidence_model import ConfidenceModel
+from memory.relational.models.reflective_memory_model import (
+    ReflectiveMemoryModel
+)
 
 
 Base.metadata.create_all(bind=engine)

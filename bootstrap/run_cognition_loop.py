@@ -14,6 +14,9 @@ from flows.reflection_flow.reflection_flow import ReflectionFlow
 from memory.lineage.historical_cognition_service import (
     HistoricalCognitionService
 )
+from memory.reflection.reflective_memory_synthesizer import (
+    ReflectiveMemorySynthesizer
+)
 
 from memory.relational.repositories.observation_repository import (
     ObservationRepository
@@ -39,6 +42,10 @@ from memory.relational.repositories.confidence_repository import (
     ConfidenceRepository
 )
 
+from memory.relational.repositories.reflective_memory_repository import (
+    ReflectiveMemoryRepository
+)
+
 
 def main():
 
@@ -54,14 +61,19 @@ def main():
 
     confidence_repository = ConfidenceRepository()
 
+    reflective_memory_repository = ReflectiveMemoryRepository()
+
     contradiction_detector = ContradictionDetector()
 
     confidence_evolution_engine = ConfidenceEvolutionEngine()
 
+    reflective_memory_synthesizer = ReflectiveMemorySynthesizer()
+
     historical_cognition_service = HistoricalCognitionService(
         theory_repository=theory_repository,
         reflection_repository=reflection_repository,
-        validation_repository=validation_repository
+        validation_repository=validation_repository,
+        reflective_memory_repository=reflective_memory_repository
     )
 
     print("\n===================================")
@@ -203,6 +215,28 @@ def main():
     print(
         "CONTRADICTION PRESSURE: "
         f"{evolved_confidence_state.contradiction_pressure}\n"
+    )
+
+    recent_confidence_states = confidence_repository.list_recent()
+
+    reflective_memory_state = reflective_memory_synthesizer.synthesize(
+        theories=recent_theories,
+        reflections=recent_reflections,
+        validations=recent_validations,
+        confidence_states=recent_confidence_states,
+        contradiction_result=contradiction_result
+    )
+
+    reflective_memory_repository.save(reflective_memory_state)
+
+    print("REFLECTIVE MEMORY SYNTHESIZED")
+    print(
+        "TRAJECTORY: "
+        f"{reflective_memory_state.cognition_trajectory_summary}"
+    )
+    print(
+        "HOTSPOTS: "
+        f"{'; '.join(reflective_memory_state.contradiction_hotspots)}\n"
     )
 
     print("===================================")
