@@ -10,6 +10,9 @@ from memory.relational.models.confidence_model import ConfidenceModel
 from memory.relational.models.reflective_memory_model import (
     ReflectiveMemoryModel
 )
+from memory.relational.models.strategic_memory_model import (
+    StrategicMemoryModel
+)
 from memory.market.market_observation_model import MarketObservationModel
 
 

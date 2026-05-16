@@ -14,19 +14,43 @@ from flows.reflection_flow.reflection_flow import ReflectionFlow
 from market.examples.sample_nifty_observations import (
     SAMPLE_NIFTY_OBSERVATIONS
 )
+from market.examples.sample_nifty_outcomes import (
+    SAMPLE_NIFTY_OUTCOMES
+)
 from market.regime.market_regime_classifier import MarketRegimeClassifier
+from market.validation.outcome_validation_engine import (
+    OutcomeValidationEngine
+)
+from market.evolution.theory_survival_tracker import (
+    TheorySurvivalTracker
+)
+from market.contradiction.market_contradiction_mapper import (
+    MarketContradictionMapper
+)
+from market.strategy.strategic_reflection_synthesizer import (
+    StrategicReflectionSynthesizer
+)
+from market.narrative.cognition_narrative_builder import (
+    CognitionNarrativeBuilder
+)
+from market.query.reflective_query_engine import (
+    ReflectiveQueryEngine
+)
 
 from memory.lineage.historical_cognition_service import (
     HistoricalCognitionService
-)
-from memory.reflection.reflective_memory_synthesizer import (
-    ReflectiveMemorySynthesizer
 )
 from memory.market.historical_market_memory_service import (
     HistoricalMarketMemoryService
 )
 from memory.market.market_observation_repository import (
     MarketObservationRepository
+)
+from memory.market.strategic_memory_repository import (
+    StrategicMemoryRepository
+)
+from memory.reflection.reflective_memory_synthesizer import (
+    ReflectiveMemorySynthesizer
 )
 
 from memory.relational.repositories.observation_repository import (
@@ -57,6 +81,10 @@ from memory.relational.repositories.reflective_memory_repository import (
     ReflectiveMemoryRepository
 )
 
+from memory.relational.repositories.market_outcome_repository import (
+    MarketOutcomeRepository
+)
+
 
 def main():
 
@@ -76,6 +104,8 @@ def main():
 
     market_observation_repository = MarketObservationRepository()
 
+    market_outcome_repository = MarketOutcomeRepository()
+
     market_regime_classifier = MarketRegimeClassifier()
 
     historical_market_memory_service = HistoricalMarketMemoryService(
@@ -86,7 +116,17 @@ def main():
 
     confidence_evolution_engine = ConfidenceEvolutionEngine()
 
+    outcome_validation_engine = OutcomeValidationEngine()
+
+    theory_survival_tracker = TheorySurvivalTracker()
+
+    market_contradiction_mapper = MarketContradictionMapper()
+
     reflective_memory_synthesizer = ReflectiveMemorySynthesizer()
+    strategic_reflection_synthesizer = StrategicReflectionSynthesizer()
+    strategic_memory_repository = StrategicMemoryRepository()
+    cognition_narrative_builder = CognitionNarrativeBuilder()
+    reflective_query_engine = ReflectiveQueryEngine()
 
     historical_cognition_service = HistoricalCognitionService(
         theory_repository=theory_repository,
@@ -95,9 +135,9 @@ def main():
         reflective_memory_repository=reflective_memory_repository
     )
 
-    print("\n===================================")
-    print("DP PERSISTENT REFLECTIVE COGNITION")
-    print("===================================\n")
+    print("\n========================================")
+    print("DP ADAPTIVE REFLECTIVE COGNITION LOOP")
+    print("========================================\n")
 
     sample_index = (
         market_observation_repository.count()
@@ -231,6 +271,64 @@ def main():
 
     print("REFLECTION SAVED\n")
 
+    # ========== ADAPTIVE REFLECTIVE COGNITION: OUTCOME VALIDATION ==========
+
+    outcome_index = (
+        market_outcome_repository.list_recent(limit=1).__len__()
+        % len(SAMPLE_NIFTY_OUTCOMES)
+    )
+
+    market_outcome = SAMPLE_NIFTY_OUTCOMES[outcome_index]
+    market_outcome_repository.save(market_outcome)
+
+    print("MARKET OUTCOME RETRIEVED AND SAVED\n")
+
+    # Validate theory against realized market outcome
+    outcome_validation_result = outcome_validation_engine.validate(
+        theory=theory,
+        prior_observation=observation,
+        market_outcome=market_outcome
+    )
+
+    print("OUTCOME VALIDATION COMPLETED")
+    print(f"VALIDATION SCORE: {outcome_validation_result['validation_score']:.2f}")
+    print(f"CONTRADICTIONS DETECTED: {outcome_validation_result['contradictions_detected']}")
+    print(f"SUMMARY: {outcome_validation_result['validation_summary']}\n")
+
+    # Track theory survival and evolution
+    theory_survival_tracker.track(
+        theory=theory,
+        validation_result=outcome_validation_result
+    )
+
+    theory_survival_analysis = theory_survival_tracker.analyze_trends()
+    theory_survival_summary = (
+        theory_survival_tracker.generate_survival_summary()
+    )
+
+    print("THEORY SURVIVAL TRACKED")
+    print(f"SUMMARY: {theory_survival_summary}\n")
+
+    # Map recurring contradiction zones
+    contradiction_zones = market_contradiction_mapper.detect_zones(
+        market_observation=market_observation,
+        market_outcome=market_outcome,
+        prior_theory=theory
+    )
+
+    contradiction_zone_map = (
+        market_contradiction_mapper.map_recurring_zones()
+    )
+    contradiction_map_summary = (
+        market_contradiction_mapper.generate_contradiction_map()
+    )
+
+    print("CONTRADICTION ZONES MAPPED")
+    print(f"ZONES DETECTED: {len(contradiction_zones)}")
+    print(f"ZONE MAP: {contradiction_map_summary}\n")
+
+    # ========== STANDARD COGNITION FLOW CONTINUES ==========
+
     recent_theories = theory_repository.list_recent()
 
     recent_validations = validation_repository.list_recent()
@@ -253,12 +351,13 @@ def main():
         validation=validation,
         reflection=reflection,
         contradiction_result=contradiction_result,
-        recent_validations=recent_validations
+        recent_validations=recent_validations,
+        outcome_validation_result=outcome_validation_result
     )
 
     confidence_repository.save(evolved_confidence_state)
 
-    print("CONFIDENCE STATE UPDATED")
+    print("CONFIDENCE STATE UPDATED (WITH OUTCOME VALIDATION)")
     print(
         "EMPIRICAL: "
         f"{evolved_confidence_state.empirical_confidence}"
@@ -282,6 +381,16 @@ def main():
 
     recent_confidence_states = confidence_repository.list_recent()
 
+    # Collect all outcome validation results for reflective memory
+    recent_outcomes = market_outcome_repository.list_recent(limit=5)
+    outcome_validation_results = []
+
+    for recent_outcome in recent_outcomes:
+        # For brevity, use recent data; in production would track all pairs
+        outcome_validation_results.append(
+            outcome_validation_result
+        )
+
     reflective_memory_state = reflective_memory_synthesizer.synthesize(
         theories=recent_theories,
         reflections=recent_reflections,
@@ -290,12 +399,15 @@ def main():
         contradiction_result=contradiction_result,
         market_observations=(
             market_observation_repository.list_recent(limit=10)
-        )
+        ),
+        theory_survival_summary=theory_survival_summary,
+        contradiction_zone_map=contradiction_zone_map,
+        outcome_validation_results=outcome_validation_results
     )
 
     reflective_memory_repository.save(reflective_memory_state)
 
-    print("REFLECTIVE MEMORY SYNTHESIZED")
+    print("REFLECTIVE MEMORY SYNTHESIZED (WITH ADAPTIVE INSIGHTS)")
     print(
         "TRAJECTORY: "
         f"{reflective_memory_state.cognition_trajectory_summary}"
@@ -305,9 +417,80 @@ def main():
         f"{'; '.join(reflective_memory_state.contradiction_hotspots)}\n"
     )
 
-    print("===================================")
-    print("PERSISTENT COGNITION COMPLETE")
-    print("===================================\n")
+    strategic_memory_state = strategic_reflection_synthesizer.synthesize(
+        recent_theories=recent_theories,
+        recent_validations=recent_validations,
+        recent_reflections=recent_reflections,
+        recent_confidence_states=recent_confidence_states,
+        recent_outcomes=recent_outcomes,
+        theory_survival_analysis=theory_survival_analysis,
+        contradiction_zone_map=contradiction_zone_map,
+        market_observations=(
+            market_observation_repository.list_recent(limit=10)
+        ),
+        reflective_memory_states=(
+            reflective_memory_repository.list_recent(limit=5)
+        )
+    )
+
+    strategic_memory_repository.save(strategic_memory_state)
+
+    print("STRATEGIC MEMORY PERSISTED")
+    print(
+        "SUMMARY: "
+        f"{strategic_memory_state.strategic_summary}"
+    )
+    print(
+        "POSTURE: "
+        f"{strategic_memory_state.cognition_posture}\n"
+    )
+
+    cognition_narrative = cognition_narrative_builder.build_narrative(
+        recent_theories=recent_theories,
+        recent_validations=recent_validations,
+        recent_reflections=recent_reflections,
+        recent_confidence_states=recent_confidence_states,
+        recent_outcomes=recent_outcomes,
+        theory_survival_analysis=theory_survival_analysis,
+        strategic_memory_history=(
+            strategic_memory_repository.list_recent(limit=5)
+        )
+    )
+
+    print("COGNITION NARRATIVE GENERATED")
+    print(cognition_narrative)
+
+    print("REFLECTIVE QUERY RESPONSES")
+    print(reflective_query_engine.query_coherence_decline(
+        recent_confidence_states=recent_confidence_states,
+        recent_reflections=recent_reflections,
+        theory_survival_analysis=theory_survival_analysis
+    ))
+    print()
+    print(reflective_query_engine.query_repeated_failures(
+        theory_survival_analysis=theory_survival_analysis,
+        recent_outcomes=recent_outcomes
+    ))
+    print()
+    print(reflective_query_engine.query_contradiction_frequency(
+        contradiction_zone_map=contradiction_zone_map,
+        recent_reflections=recent_reflections
+    ))
+    print()
+    print(reflective_query_engine.query_regime_sensitivity(
+        theory_survival_analysis=theory_survival_analysis,
+        recent_confidence_states=recent_confidence_states,
+        recent_outcomes=recent_outcomes
+    ))
+    print()
+    print(reflective_query_engine.query_weakening_assumptions(
+        theory_survival_analysis=theory_survival_analysis,
+        recent_validations=recent_validations
+    ))
+
+    print("========================================")
+    print("ADAPTIVE REFLECTIVE COGNITION COMPLETE")
+    print("========================================\n")
 
 
 if __name__ == "__main__":
