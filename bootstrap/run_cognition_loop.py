@@ -11,11 +11,22 @@ from flows.observation_flow.abstraction_flow import AbstractionFlow
 from flows.theory_flow.theory_generation_flow import TheoryGenerationFlow
 from flows.reflection_flow.reflection_flow import ReflectionFlow
 
+from market.examples.sample_nifty_observations import (
+    SAMPLE_NIFTY_OBSERVATIONS
+)
+from market.regime.market_regime_classifier import MarketRegimeClassifier
+
 from memory.lineage.historical_cognition_service import (
     HistoricalCognitionService
 )
 from memory.reflection.reflective_memory_synthesizer import (
     ReflectiveMemorySynthesizer
+)
+from memory.market.historical_market_memory_service import (
+    HistoricalMarketMemoryService
+)
+from memory.market.market_observation_repository import (
+    MarketObservationRepository
 )
 
 from memory.relational.repositories.observation_repository import (
@@ -63,6 +74,14 @@ def main():
 
     reflective_memory_repository = ReflectiveMemoryRepository()
 
+    market_observation_repository = MarketObservationRepository()
+
+    market_regime_classifier = MarketRegimeClassifier()
+
+    historical_market_memory_service = HistoricalMarketMemoryService(
+        market_observation_repository=market_observation_repository
+    )
+
     contradiction_detector = ContradictionDetector()
 
     confidence_evolution_engine = ConfidenceEvolutionEngine()
@@ -80,12 +99,40 @@ def main():
     print("DP PERSISTENT REFLECTIVE COGNITION")
     print("===================================\n")
 
+    sample_index = (
+        market_observation_repository.count()
+        % len(SAMPLE_NIFTY_OBSERVATIONS)
+    )
+
+    market_observation = SAMPLE_NIFTY_OBSERVATIONS[sample_index]
+
+    market_regime = market_regime_classifier.classify(
+        market_observation
+    )
+
+    market_observation_repository.save(market_observation)
+
+    print("MARKET OBSERVATION SAVED")
+    print(f"OBSERVATION: {market_observation.observation_text}")
+    print(f"REGIME: {market_regime}\n")
+
+    market_memory_context = historical_market_memory_service.build_context()
+
+    print("MARKET MEMORY RETRIEVED\n")
+
     observation = ObservationEvent(
-        source_type="manual",
+        source_type="market",
         raw_content=(
-            "Momentum strategies strengthen "
-            "during expanding liquidity regimes "
-            "with strong market participation."
+            f"Market: {market_observation.market_name}\n"
+            f"Observation: {market_observation.observation_text}\n"
+            f"Trend state: {market_observation.trend_state}\n"
+            f"Volatility state: {market_observation.volatility_state}\n"
+            f"Liquidity state: {market_observation.liquidity_state}\n"
+            f"Breadth state: {market_observation.breadth_state}\n"
+            f"Macro sentiment: {market_observation.macro_sentiment}\n"
+            "Contradiction markers: "
+            f"{', '.join(market_observation.contradiction_markers)}\n"
+            f"Classified regime: {market_regime}"
         )
     )
 
@@ -107,11 +154,25 @@ def main():
 
     print("HISTORICAL COGNITION RETRIEVED\n")
 
+    recent_reflective_memories = reflective_memory_repository.list_recent(
+        limit=1
+    )
+
+    reflective_memory_summary = ""
+
+    if recent_reflective_memories:
+        reflective_memory_summary = (
+            recent_reflective_memories[0].cognition_trajectory_summary
+        )
+
     theory_flow = TheoryGenerationFlow()
 
     theory = theory_flow.process(
         abstraction,
-        historical_context=historical_context
+        historical_context=historical_context,
+        market_memory_context=market_memory_context,
+        current_market_observation=observation.raw_content,
+        reflective_memory_summary=reflective_memory_summary
     )
 
     recent_confidence_states = confidence_repository.list_recent(limit=1)
@@ -143,13 +204,15 @@ def main():
     validation = ValidationEvent(
         theory_id=theory.id,
         validation_summary=(
-            "Liquidity expansion historically "
-            "showed stronger trend persistence."
+            "NIFTY grounding observation checked against current "
+            "market structure and contradiction markers."
         ),
-        observed_behavior="Momentum persistence increased.",
+        observed_behavior=(
+            market_observation.observation_text
+        ),
         expected_behavior=(
-            "Momentum should strengthen "
-            "during liquidity expansion."
+            "Market-grounded theory should account for trend, "
+            "breadth, liquidity, volatility, and contradiction markers."
         )
     )
 
@@ -224,7 +287,10 @@ def main():
         reflections=recent_reflections,
         validations=recent_validations,
         confidence_states=recent_confidence_states,
-        contradiction_result=contradiction_result
+        contradiction_result=contradiction_result,
+        market_observations=(
+            market_observation_repository.list_recent(limit=10)
+        )
     )
 
     reflective_memory_repository.save(reflective_memory_state)
