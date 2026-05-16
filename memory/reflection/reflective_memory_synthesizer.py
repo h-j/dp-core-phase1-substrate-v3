@@ -14,7 +14,10 @@ class ReflectiveMemorySynthesizer:
         validations,
         confidence_states,
         contradiction_result,
-        market_observations=None
+        market_observations=None,
+        theory_survival_summary=None,
+        contradiction_zone_map=None,
+        outcome_validation_results=None
     ):
 
         market_observations = market_observations or []
@@ -33,16 +36,19 @@ class ReflectiveMemorySynthesizer:
         strengthening_patterns = self._strengthening_patterns(
             validations,
             confidence_states,
-            market_observations
+            market_observations,
+            theory_survival_summary
         )
         weakening_patterns = self._weakening_patterns(
             confidence_states,
             contradiction_result,
-            market_observations
+            market_observations,
+            theory_survival_summary
         )
         contradiction_hotspots = self._contradiction_hotspots(
             contradiction_result,
-            market_observations
+            market_observations,
+            contradiction_zone_map
         )
         trajectory_summary = self._trajectory_summary(
             recurring_themes,
@@ -50,7 +56,10 @@ class ReflectiveMemorySynthesizer:
             weakening_patterns,
             persistent_uncertainties,
             contradiction_hotspots,
-            confidence_states
+            confidence_states,
+            theory_survival_summary,
+            contradiction_zone_map,
+            outcome_validation_results
         )
 
         return ReflectiveMemoryState(
@@ -162,7 +171,8 @@ class ReflectiveMemorySynthesizer:
         self,
         validations,
         confidence_states,
-        market_observations
+        market_observations,
+        theory_survival_summary=None
     ):
 
         patterns = []
@@ -213,13 +223,20 @@ class ReflectiveMemorySynthesizer:
                 "Breadth improvement has repeated across recent NIFTY observations."
             )
 
+        # Add theory survival insights
+        if theory_survival_summary and "Strengthening" in theory_survival_summary:
+            patterns.append(
+                "Recent market outcomes validate emerging theoretical patterns."
+            )
+
         return patterns[:5] or ["No strengthening pattern is stable yet."]
 
     def _weakening_patterns(
         self,
         confidence_states,
         contradiction_result,
-        market_observations
+        market_observations,
+        theory_survival_summary=None
     ):
 
         patterns = []
@@ -261,12 +278,19 @@ class ReflectiveMemorySynthesizer:
                 "Volatility expansion is recurring across recent NIFTY observations."
             )
 
+        # Add theory survival insights
+        if theory_survival_summary and "Weakening" in theory_survival_summary:
+            patterns.append(
+                "Market outcomes reveal deteriorating theoretical assumptions."
+            )
+
         return patterns[:5] or ["No weakening pattern is stable yet."]
 
     def _contradiction_hotspots(
         self,
         contradiction_result,
-        market_observations
+        market_observations,
+        contradiction_zone_map=None
     ):
 
         indicators = list(contradiction_result["indicators"])
@@ -294,6 +318,21 @@ class ReflectiveMemorySynthesizer:
                     "NIFTY recovered while volatility stayed high."
                 )
 
+        # Add recurring contradiction zone insights
+        if contradiction_zone_map:
+            recurring_zones = contradiction_zone_map.get(
+                "recurring_zones",
+                {}
+            )
+            if recurring_zones:
+                most_severe = contradiction_zone_map.get("most_severe")
+                if most_severe:
+                    zone_name = most_severe[0].replace("_", " ").title()
+                    indicators.append(
+                        f"Recurring zone: {zone_name} "
+                        f"({most_severe[1]['occurrences']} occurrences)."
+                    )
+
         if indicators:
             return self._unique(indicators)[:5]
 
@@ -306,7 +345,10 @@ class ReflectiveMemorySynthesizer:
         weakening_patterns,
         persistent_uncertainties,
         contradiction_hotspots,
-        confidence_states
+        confidence_states,
+        theory_survival_summary=None,
+        contradiction_zone_map=None,
+        outcome_validation_results=None
     ):
 
         latest_pressure = None
@@ -323,20 +365,38 @@ class ReflectiveMemorySynthesizer:
         uncertainty = persistent_uncertainties[0]
         hotspot = contradiction_hotspots[0]
 
-        if latest_pressure is None:
-            return (
-                f"Recent cognition is organized around {theme}. "
-                f"{strengthening} {weakening} {uncertainty} "
-                f"Primary hotspot: {hotspot}"
-            )
-
-        return (
+        trajectory = (
             f"Recent cognition is organized around {theme}. "
             f"{strengthening} {weakening} {uncertainty} "
-            f"Primary hotspot: {hotspot} "
-            f"Latest pressure is {latest_pressure} with coherence "
-            f"at {latest_coherence}."
+            f"Primary hotspot: {hotspot}"
         )
+
+        # Add adaptive market cognition trajectory elements
+        if outcome_validation_results:
+            avg_validation = sum(
+                r.get("validation_score", 0.5)
+                for r in outcome_validation_results
+            ) / max(len(outcome_validation_results), 1)
+
+            if avg_validation > 0.7:
+                trajectory += " Market outcomes strongly validate recent theories."
+            elif avg_validation > 0.4:
+                trajectory += " Market outcomes partially support recent theories."
+            else:
+                trajectory += (
+                    " Market outcomes diverge from theoretical expectations."
+                )
+
+        if theory_survival_summary:
+            trajectory += f" {theory_survival_summary}"
+
+        if latest_pressure is not None:
+            trajectory += (
+                f" Pressure: {latest_pressure:.2f}, "
+                f"Coherence: {latest_coherence:.2f}."
+            )
+
+        return trajectory
 
     def _combined_text(
         self,

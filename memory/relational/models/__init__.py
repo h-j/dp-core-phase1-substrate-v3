@@ -7,7 +7,8 @@ from memory.relational.models.reflective_memory_model import (
 )
 from memory.relational.models.theory_model import TheoryModel
 from memory.relational.models.validation_model import ValidationModel
-
+from .market_outcome_model import MarketOutcomeModel
+from .strategic_memory_model import StrategicMemoryModel
 
 __all__ = [
     "AbstractionModel",

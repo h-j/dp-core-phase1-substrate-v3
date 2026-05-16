@@ -6,7 +6,8 @@ class ConfidenceEvolutionEngine:
         validation,
         reflection,
         contradiction_result,
-        recent_validations=None
+        recent_validations=None,
+        outcome_validation_result=None
     ):
 
         recent_validations = recent_validations or []
@@ -16,6 +17,43 @@ class ConfidenceEvolutionEngine:
         reflection_delta = 0.0
         coherence_delta = 0.0
         pressure_delta = 0.0
+
+        # Reality-based outcome validation weighs MORE heavily than linguistic validation
+        if outcome_validation_result:
+            outcome_alignment = outcome_validation_result.get(
+                "validation_score",
+                0.5
+            )
+            
+            if outcome_alignment > 0.7:
+                empirical_delta += 0.1
+                regime_delta += 0.06
+                coherence_delta += 0.05
+            elif outcome_alignment > 0.4:
+                empirical_delta += 0.02
+                regime_delta += 0.01
+            else:
+                empirical_delta -= 0.12
+                coherence_delta -= 0.08
+                pressure_delta += 0.12
+
+            # Outcome contradictions add direct contradiction pressure
+            outcome_contradictions = outcome_validation_result.get(
+                "contradictions_detected",
+                []
+            )
+            if outcome_contradictions:
+                pressure_delta += len(outcome_contradictions) * 0.1
+                coherence_delta -= len(outcome_contradictions) * 0.05
+
+            # Regime mismatch affects regime confidence
+            regime_mismatch = outcome_validation_result.get(
+                "regime_mismatch",
+                0.0
+            )
+            if regime_mismatch > 0.5:
+                regime_delta -= 0.08
+                coherence_delta -= 0.05
 
         if self._validation_aligns(validation):
             empirical_delta += 0.05
