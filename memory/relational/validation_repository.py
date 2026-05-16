@@ -1,8 +1,4 @@
-class ValidationRepository:
+from memory.relational.repositories.validation_repository import ValidationRepository
 
-    def save(self, validation):
 
-        return {
-            "status": "stored",
-            "validation_id": validation.id
-        }
+__all__ = ["ValidationRepository"]

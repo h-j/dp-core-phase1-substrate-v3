@@ -11,17 +11,20 @@ class TheoryGenerationFlow:
 
         self.client = OllamaClient()
 
-    def process(self, abstraction) -> Theory:
+    def process(self, abstraction, historical_context: str = "") -> Theory:
 
         prompt = f'''
-Generate a concise market theory.
+Historical Cognition:
+{historical_context}
 
-Abstraction:
+Current Abstraction:
 {abstraction.abstraction_summary}
 
-Return:
-- coherent market theory
-- concise explanation
+Generate:
+- concise theory
+- epistemically grounded theory
+- avoid repeating prior theories blindly
+- consider prior validations/reflections
 - no markdown
 '''
 
