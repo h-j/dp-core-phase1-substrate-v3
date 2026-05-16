@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "dp-core"
+version = "0.1.0"
+description = "Reflective cognition substrate"
+authors = ["Vyan"]
+
+packages = [
+    { include = "bootstrap" },
+    { include = "cognition" },
+    { include = "config" },
+    { include = "flows" },
+    { include = "interfaces" },
+    { include = "memory" },
+    { include = "orchestration" },
+    { include = "telemetry" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pydantic = "^2.7.0"
+pydantic-settings = "^2.2.1"
+sqlalchemy = "^2.0.30"
+psycopg2-binary = "^2.9.9"
+neo4j = "^5.20.0"
+duckdb = "^1.0.0"
+ollama = "^0.2.1"
+pandas = "^2.2.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"
+black = "^24.4.0"
+isort = "^5.13.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
