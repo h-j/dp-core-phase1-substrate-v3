@@ -1,8 +1,4 @@
-class TheoryRepository:
+from memory.relational.repositories.theory_repository import TheoryRepository
 
-    def save(self, theory):
 
-        return {
-            "status": "stored",
-            "theory_id": theory.id
-        }
+__all__ = ["TheoryRepository"]

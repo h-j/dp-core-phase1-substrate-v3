@@ -1,8 +1,4 @@
-class ReflectionRepository:
+from memory.relational.repositories.reflection_repository import ReflectionRepository
 
-    def save(self, reflection):
 
-        return {
-            "status": "stored",
-            "reflection_id": reflection.id
-        }
+__all__ = ["ReflectionRepository"]
