@@ -1,5 +1,34 @@
 # Current Release
 
+## v1.0
+
+Strategic Memory Intelligence.
+
+## New Stable Behaviors
+
+- Run-local regime signature memory.
+- Prior-only regime similarity retrieval.
+- Multi-horizon cognition views: daily, weekly, monthly.
+- Theory family analytics across roots, children, mutation, revival, retirement, contradiction density, survival, and confidence.
+- Deterministic theory usefulness scoring.
+- Replay snapshots and summaries include strategic memory, horizon, family, and epistemic usefulness metrics.
+
+## Preservation Requirements
+
+- Deterministic replay remains the operating mode.
+- Regime retrieval uses only prior replay state.
+- Horizon views degrade gracefully when history is insufficient.
+- Usefulness scoring is epistemic quality, not prediction accuracy.
+- Market remains the validation domain, not the product.
+
+## Verification Note
+
+Focused deterministic component checks passed for horizon degradation, regime retrieval, recurring contradiction recall, empty epistemic aggregate handling, and root family analytics.
+
+Full replay validation still depends on local Ollama runtime latency and persistence availability.
+
+---
+
 ## v0.7
 
 Theory Lifecycle Completion.

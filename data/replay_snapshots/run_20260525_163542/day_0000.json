@@ -1,0 +1,105 @@
+{
+  "step": 0,
+  "date": "2026-04-24",
+  "observation": "NIFTY closed lower with volatility compressed.",
+  "abstraction": "Here is the concise abstraction:\n\n\"Nifty's daily momentum weakened, while weekly and monthly trends remain unclear due to limited history.\"",
+  "theory": "Weakening daily momentum persists, despite compressed volatility. The observed stability remains fragile, vulnerable to deterioration if participation wanes. This revised theory: Focuses on market structure (continuation) and uncertainty (volatility) Avoids broad macro explanations and generic financial commentary Preserves ambiguity where evidence is weak (participation's potential impact on stability) Names unresolved tension between observed stability and fragile persistence Does not produce market conclusions or mention specific actions",
+  "confidence": {
+    "empirical": 0.42,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.446,
+    "contradiction": 0.1
+  },
+  "contradiction": {
+    "score": 0,
+    "summary": "No explicit contradictions detected.",
+    "indicators": [],
+    "contradictions": []
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-04-24",
+    "trend": "closed_lower",
+    "volatility_state": "compressed",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.0,
+    "active_theory_count": 1,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [],
+  "theory_usefulness": {
+    "score": 0.464,
+    "label": "fragile"
+  },
+  "reflection": "The theory suggests that daily momentum weakening persists despite compressed volatility, with observed stability remaining fragile. This persistence is vulnerable to deterioration if participation wanes. One unresolved tension lies in the potential impact of participation on stability.",
+  "metrics": {
+    "step": 0,
+    "date": "2026-04-24",
+    "contradiction_count": 0,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.0,
+    "highest_contradiction": 0.0,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 0,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 1.0,
+    "longest_surviving_theory": 1,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.42,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.05405405405405406,
+    "avg_abstraction_length": 20.0,
+    "compression_ratio": 3.3333333333333335,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Weakening daily momentum persists, despite compressed volatility. The observed stability remains fragile, vulnerable to deterioration if participation wanes. This revised theory: Focuses on market structure (continuation) and uncertainty (volatility) Avoids broad macro explanations and generic financial commentary Preserves ambiguity where evidence is weak (participation's potential impact on stability) Names unresolved tension between observed stability and fragile persistence Does not produce market conclusions or mention specific actions",
+      "contradiction_text": "No explicit contradictions detected.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-04-24",
+        "trend": "closed_lower",
+        "volatility_state": "compressed",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.0,
+        "active_theory_count": 1,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [],
+      "theory_usefulness": {
+        "score": 0.464,
+        "label": "fragile"
+      }
+    }
+  }
+}

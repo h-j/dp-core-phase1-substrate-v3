@@ -9,9 +9,10 @@ from __future__ import annotations
 import hashlib
 import json
 import re
-from dataclasses import dataclass, asdict, field
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from statistics import mean
+from typing import Any, Dict, List, Optional
 
 
 @dataclass
@@ -453,6 +454,76 @@ class TheoryLineageEngine:
         if not self.theories:
             return None
         return max(self.theories.values(), key=lambda rec: rec.survival_steps).id
+
+    def family_analytics(self) -> Dict[str, Any]:
+        """Compute deterministic longitudinal metrics by root theory family."""
+        families: Dict[str, Dict[str, Any]] = {}
+        for rec in self.theories.values():
+            root_id = self._root_id(rec)
+            family = families.setdefault(
+                root_id,
+                {
+                    "root_id": root_id,
+                    "children": [],
+                    "mutation_count": 0,
+                    "revival_count": 0,
+                    "retirement_count": 0,
+                    "survival_length": 0,
+                    "contradiction_count": 0,
+                    "contradiction_density": 0.0,
+                    "avg_confidence": 0.0,
+                    "_confidence_values": [],
+                },
+            )
+            if rec.id != root_id:
+                family["children"].append(rec.id)
+            family["mutation_count"] += int(rec.mutation_count)
+            family["revival_count"] += int(rec.revival_count)
+            family["retirement_count"] += len(rec.retirement_ages)
+            family["survival_length"] += int(rec.survival_steps)
+            family["contradiction_count"] += int(rec.contradiction_count)
+            family["_confidence_values"].append(float(rec.confidence))
+
+        for family in families.values():
+            survival = max(1, int(family["survival_length"]))
+            family["children"] = sorted(set(family["children"]))
+            family["contradiction_density"] = round(
+                family["contradiction_count"] / survival,
+                3,
+            )
+            values = family.pop("_confidence_values")
+            family["avg_confidence"] = round(mean(values), 3) if values else 0.0
+
+        def best_by(field_name: str) -> Optional[str]:
+            if not families:
+                return None
+            return max(
+                families.values(),
+                key=lambda item: (
+                    item[field_name],
+                    item["survival_length"],
+                    item["root_id"],
+                ),
+            )["root_id"]
+
+        return {
+            "families": families,
+            "best_surviving_family": best_by("survival_length"),
+            "most_revived_family": best_by("revival_count"),
+            "highest_contradiction_family": best_by("contradiction_density"),
+            "most_mutated_family": best_by("mutation_count"),
+        }
+
+    def _root_id(self, rec: TheoryRecord) -> str:
+        current = rec
+        seen = {rec.id}
+        while current.parent_ids:
+            parent_id = sorted(current.parent_ids)[0]
+            if parent_id in seen or parent_id not in self.theories:
+                break
+            current = self.theories[parent_id]
+            seen.add(current.id)
+        return current.id
 
     def get_theory(self, tid: str) -> Optional[TheoryRecord]:
         return self.theories.get(tid)

@@ -1,0 +1,72 @@
+{
+  "b3c2056799fdb2da": {
+    "id": "b3c2056799fdb2da",
+    "theory_id": "fdc7e5dde56413fe",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 2,
+    "resolved_at_step": 10,
+    "status": "resolved",
+    "age": 8,
+    "severity": 0.6
+  },
+  "133e09acebbb597b": {
+    "id": "133e09acebbb597b",
+    "theory_id": "383d0794a8c16355",
+    "description": "trend contradiction: range_bound moved to extended_higher.",
+    "created_at_step": 7,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.6
+  },
+  "9dd28f9028c3d42f": {
+    "id": "9dd28f9028c3d42f",
+    "theory_id": "4a0d96b52a8b5d22",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 11,
+    "resolved_at_step": 12,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "29561e636a8f2e08": {
+    "id": "29561e636a8f2e08",
+    "theory_id": "4a0d96b52a8b5d22",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 11,
+    "resolved_at_step": 12,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "ef4839a52d3b0671": {
+    "id": "ef4839a52d3b0671",
+    "theory_id": "f80d40881d34b8ea",
+    "description": "trend contradiction: range_bound moved to extended_higher.",
+    "created_at_step": 13,
+    "resolved_at_step": 14,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.78
+  },
+  "fc6ca4445de8ec94": {
+    "id": "fc6ca4445de8ec94",
+    "theory_id": "f80d40881d34b8ea",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 13,
+    "resolved_at_step": 14,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.78
+  },
+  "5654a26357a3d926": {
+    "id": "5654a26357a3d926",
+    "theory_id": "f80d40881d34b8ea",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 13,
+    "resolved_at_step": 14,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.78
+  }
+}

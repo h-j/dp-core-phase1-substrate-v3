@@ -2,40 +2,99 @@
   "day_index": 10,
   "date": "2026-04-17",
   "observation_text": "NIFTY closed higher with volatility compressed with broad participation.",
-  "theory_summary": "Market structure remains resilient, characterized by sustained buying interest and decreased volatility. However, this equilibrium may be fragile, potentially vulnerable to erosion if participation rates decline. This theory is grounded in the observation of widespread buying interest and decreased volatility, which supports a narrative of market stability.",
+  "theory_summary": "Compressed Theory: NIFTY's upward momentum remains fragile under compressed volatility, where continued stability hinges on sustained participation. This theory directly grounds itself in the observation of reduced volatility and widespread market participation. It makes a narrow claim about the fragility of the current trend rather than making broad statements about the market's overall direction.",
   "confidence_state": {
-    "empirical": 0.47,
-    "regime": 0.53,
-    "reflection": 0.55,
-    "coherence": 0.4804,
-    "contradiction": 0.14
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3581,
+    "contradiction": 0.278
   },
-  "contradiction_score": 0.4,
-  "reflection_summary": "The observation of widespread buying interest and decreased volatility, which grounds this market structure theory, may not be comprehensive enough to fully support its claims. Specifically, the continuation of this trend remains insufficiently tested under conditions of expanded volatility. Note that I've aimed for brevity, identifying a potential weakness in the theory without resorting to praise or generic commentary.",
+  "contradiction_score": 0.18,
+  "reflection_summary": "The compressed theory suggests that NIFTY's upward momentum is fragile when volatility is compressed, requiring sustained participation to maintain stability. However, recent reflections contain uncertainty or caution signals, contradicting this theory. Upon validation, the replay shows strengthening context across daily, weekly, and monthly horizons, with regime memory similarities ranging from 0.80 to 0.97.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 38,
+      "word_count": 48,
       "sentence_count": 3,
-      "narrative_density": 0.0,
-      "uncertainty_presence": 0.5,
-      "contradiction_acknowledgment": 0.5,
-      "abstraction_sharpness": 0.5,
+      "narrative_density": 0.083,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.652,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.625
+      "compression_score": 0.466
     },
     "reflection": {
-      "word_count": 49,
+      "word_count": 46,
       "sentence_count": 3,
-      "narrative_density": 0.097,
+      "narrative_density": 0.056,
       "uncertainty_presence": 0.5,
-      "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 0.816,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.49,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.621
+      "compression_score": 0.613
     }
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "strengthening",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-17",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 3,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-13",
+      "similarity": 0.966,
+      "active_theories": [
+        "fa03c73a1a41bf95",
+        "885ab3fc7f95b002",
+        "8ca49b1da1573bfb"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-02",
+      "similarity": 0.86,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-15",
+      "similarity": 0.798,
+      "active_theories": [
+        "885ab3fc7f95b002",
+        "cd4235a299240326"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
   }
 }

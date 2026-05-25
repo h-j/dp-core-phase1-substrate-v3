@@ -2,40 +2,60 @@
   "day_index": 0,
   "date": "2026-04-01",
   "observation_text": "NIFTY closed lower with volatility compressed.",
-  "theory_summary": "Market coherence appears fragile, as NIFTY's decline within constrained volatility limits suggests an underlying precariousness. Stability may be threatened if participation wavers. This compressed theory makes a narrow claim about market structure, specifically the tension between market coherence and volatility.",
+  "theory_summary": "Weakening daily momentum persists, despite compressed volatility. The observed stability remains fragile, vulnerable to deterioration if participation wanes. This revised theory: Focuses on market structure (continuation) and uncertainty (volatility) Avoids broad macro explanations and generic financial commentary Preserves ambiguity where evidence is weak (participation's potential impact on stability) Names unresolved tension between observed stability and fragile persistence Does not produce market conclusions or mention specific actions",
   "confidence_state": {
-    "empirical": 0.47,
-    "regime": 0.53,
+    "empirical": 0.42,
+    "regime": 0.5,
     "reflection": 0.5,
-    "coherence": 0.45,
-    "contradiction": 0.2
+    "coherence": 0.446,
+    "contradiction": 0.1
   },
-  "contradiction_score": 0.2,
-  "reflection_summary": "The replay validation lacks concrete evidence to substantiate the claim that market coherence is fragile. The observation of NIFTY's decline within constrained volatility limits remains insufficiently tested under volatility expansion, leaving uncertainty about its generalizability.",
+  "contradiction_score": 0,
+  "reflection_summary": "The theory suggests that daily momentum weakening persists despite compressed volatility, with observed stability remaining fragile. This persistence is vulnerable to deterioration if participation wanes. One unresolved tension lies in the potential impact of participation on stability.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 35,
+      "word_count": 60,
       "sentence_count": 3,
-      "narrative_density": 0.0,
+      "narrative_density": 0.25,
       "uncertainty_presence": 0.5,
-      "contradiction_acknowledgment": 0.5,
-      "abstraction_sharpness": 0.833,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.788,
       "causal_inflation": 0.0,
-      "semantic_repetition": 0.0,
+      "semantic_repetition": 0.02,
       "generic_phrase_hits": 0,
-      "compression_score": 0.742
+      "compression_score": 0.788
     },
     "reflection": {
-      "word_count": 32,
-      "sentence_count": 2,
-      "narrative_density": 0.083,
-      "uncertainty_presence": 0.5,
-      "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 1.0,
+      "word_count": 31,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.5,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.687
+      "compression_score": 0.625
     }
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-04-01",
+    "trend": "closed_lower",
+    "volatility_state": "compressed",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.0,
+    "active_theory_count": 1,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [],
+  "theory_usefulness": {
+    "score": 0.464,
+    "label": "fragile"
   }
 }
