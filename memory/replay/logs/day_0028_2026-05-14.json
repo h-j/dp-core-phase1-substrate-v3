@@ -2,40 +2,103 @@
   "day_index": 28,
   "date": "2026-05-14",
   "observation_text": "NIFTY closed higher with volatility compressed.",
-  "theory_summary": "Compression of volatility underscores NIFTY's current stability, as continuation remains weakly supported. However, this observed stability may weaken if participation deteriorates, introducing uncertainty into market dynamics. This revised text meets the guidelines by focusing on market structure and coherence, avoiding broad macro explanations, generic financial commentary, and smooth storytelling.",
+  "theory_summary": "Continuation remains weakly supported under compressed volatility. Nifty's upward trend exhibits mixed daily performance, with weekly signs of fatigue and monthly trading within a defined range.",
   "confidence_state": {
-    "empirical": 0.42,
-    "regime": 0.53,
-    "reflection": 0.45,
-    "coherence": 0.344,
-    "contradiction": 0.3
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3197,
+    "contradiction": 0.338
   },
-  "contradiction_score": 0.4,
-  "reflection_summary": "The provided validation is a great example of how to effectively critique a theory while maintaining its original structure. By focusing on specific, measurable aspects of the theory (such as the weakness in continuation), the validation avoids general praise or flattery. This approach maintains the tension and uncertainty inherent in the original theory, rather than trying to resolve it with rhetorical flourishes.",
+  "contradiction_score": 0.78,
+  "reflection_summary": "Observed continuation remains insufficiently tested under volatility expansion. The theory, which posits that continuation is weakly supported under compressed volatility, is contradicted by recent market movements. Specifically, the trend contradiction between range-bound movement and extended highs suggests that the theory may not fully account for the current market regime.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 44,
-      "sentence_count": 3,
-      "narrative_density": 0.028,
-      "uncertainty_presence": 1.0,
-      "contradiction_acknowledgment": 0.5,
-      "abstraction_sharpness": 0.828,
+      "word_count": 24,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.836
+      "compression_score": 0.525
     },
     "reflection": {
-      "word_count": 48,
+      "word_count": 46,
       "sentence_count": 3,
-      "narrative_density": 0.083,
-      "uncertainty_presence": 0.5,
+      "narrative_density": 0.056,
+      "uncertainty_presence": 1.0,
       "contradiction_acknowledgment": 0.5,
-      "abstraction_sharpness": 0.152,
+      "abstraction_sharpness": 1.0,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.491
+      "compression_score": 0.892
     }
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "fatigue",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-05-14",
+    "trend": "extended_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.78,
+    "active_theory_count": 1,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-06",
+      "similarity": 0.838,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-10",
+      "similarity": 0.813,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "885ab3fc7f95b002"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-08",
+      "similarity": 0.789,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "24971f4c2ca5f43b"
+      ],
+      "contradictions": [
+        "Current theory strengthens a relationship that prior theory weakened.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.344,
+    "label": "failed"
   }
 }

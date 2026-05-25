@@ -2,40 +2,99 @@
   "day_index": 16,
   "date": "2026-04-27",
   "observation_text": "NIFTY closed higher with volatility compressed.",
-  "theory_summary": "Market coherence appears robust, with NIFTY trading within a narrowing range. This compressed volatility might persist as long as participation remains relatively strong; however, any deterioration in investor engagement could undermine observed stability. This theory focuses on market structure and coherence, highlighting the recent compression of price fluctuations and the importance of participant engagement for maintaining this stability.",
+  "theory_summary": "Compressed trend theory: NIFTY's upward momentum persists under compressed volatility, but continuation remains weakly supported. Observed stability may weaken if participation deteriorates.",
   "confidence_state": {
-    "empirical": 0.42,
-    "regime": 0.53,
+    "empirical": 0.37,
+    "regime": 0.5,
     "reflection": 0.5,
-    "coherence": 0.3872,
-    "contradiction": 0.22
+    "coherence": 0.3598,
+    "contradiction": 0.216
   },
-  "contradiction_score": 0.4,
-  "reflection_summary": "The critique is concise, ranging from 1 to 3 sentences. It identifies what remains weak or untested: the theory's performance under volatility expansion is insufficiently tested. The language preserves unresolved tension instead of resolving it rhetorically.",
+  "contradiction_score": 0.36,
+  "reflection_summary": "Compressed trend theory's persistence is challenged by recent failure signals in both validation and reflection. The theory suggests that NIFTY's upward momentum endures despite compressed volatility, but this notion is weakened by the observed instability. One unresolved tension remains: the theory's ability to predict regime memory, as the similarity scores are moderate at best.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 51,
-      "sentence_count": 3,
-      "narrative_density": 0.125,
+      "word_count": 21,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
       "uncertainty_presence": 1.0,
-      "contradiction_acknowledgment": 0.5,
-      "abstraction_sharpness": 0.811,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.75,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.815
+      "compression_score": 0.712
     },
     "reflection": {
-      "word_count": 27,
+      "word_count": 46,
       "sentence_count": 3,
-      "narrative_density": 0.0,
-      "uncertainty_presence": 0.5,
+      "narrative_density": 0.056,
+      "uncertainty_presence": 0.0,
       "contradiction_acknowledgment": 1.0,
-      "abstraction_sharpness": 0.5,
+      "abstraction_sharpness": 0.323,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.725
+      "compression_score": 0.555
     }
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "mixed",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-27",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.36,
+    "active_theory_count": 3,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-02",
+      "similarity": 0.86,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-21",
+      "similarity": 0.838,
+      "active_theories": [
+        "e4e825eb054b74d8",
+        "76e73c25c0b86c35"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-13",
+      "similarity": 0.826,
+      "active_theories": [
+        "fa03c73a1a41bf95",
+        "885ab3fc7f95b002",
+        "8ca49b1da1573bfb"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.392,
+    "label": "fragile"
   }
 }

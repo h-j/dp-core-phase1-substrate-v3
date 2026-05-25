@@ -2,40 +2,95 @@
   "day_index": 5,
   "date": "2026-04-09",
   "observation_text": "NIFTY closed lower with volatility compressed with broad participation.",
-  "theory_summary": "Market dynamics exhibit signs of consolidation, with indices experiencing a decline in value amidst reduced price fluctuations. This stability is fragile, however, as participation levels remain uncertain. This response meets the requirements by: Being concise and focused on specific market structure features Grounding itself in the observation and abstraction provided Making a narrow claim that can be tested against future observations Preserving ambiguity where evidence is weak (e.g., \"participation levels remain uncertain\") Naming unresolved tension (\"fragile\" stability) Focusing on relevant market metrics (consolidation, price fluctuations, participation)",
+  "theory_summary": "Continuation remains weakly supported under compressed volatility.",
   "confidence_state": {
-    "empirical": 0.47,
-    "regime": 0.53,
+    "empirical": 0.37,
+    "regime": 0.5,
     "reflection": 0.45,
-    "coherence": 0.42,
-    "contradiction": 0.2
+    "coherence": 0.3281,
+    "contradiction": 0.278
   },
-  "contradiction_score": 0.2,
-  "reflection_summary": "The replay validation is incomplete, as it only confirms the existing market dynamics. The uncertainty surrounding participation levels remains unaddressed, leaving the theory's fragility untested. Observed continuation remains insufficiently tested under volatility expansion.",
+  "contradiction_score": 0.18,
+  "reflection_summary": "Compressed volatility masks fragility under contradiction pressure.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 73,
-      "sentence_count": 3,
-      "narrative_density": 0.431,
-      "uncertainty_presence": 1.0,
-      "contradiction_acknowledgment": 1.0,
-      "abstraction_sharpness": 0.589,
-      "causal_inflation": 0.0,
-      "semantic_repetition": 0.017,
-      "generic_phrase_hits": 0,
-      "compression_score": 0.792
-    },
-    "reflection": {
-      "word_count": 30,
-      "sentence_count": 3,
+      "word_count": 7,
+      "sentence_count": 1,
       "narrative_density": 0.0,
-      "uncertainty_presence": 1.0,
+      "uncertainty_presence": 0.5,
       "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 0.833,
+      "abstraction_sharpness": 0.5,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.742
+      "compression_score": 0.525
+    },
+    "reflection": {
+      "word_count": 7,
+      "sentence_count": 1,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.25,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.438
     }
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "strengthening",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-04-09",
+    "trend": "closed_lower",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 3,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-01",
+      "similarity": 0.695,
+      "active_theories": [
+        "78535c4fd0190739"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-02",
+      "similarity": 0.668,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-06",
+      "similarity": 0.646,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.44,
+    "label": "fragile"
   }
 }

@@ -1,0 +1,191 @@
+{
+  "step": 7,
+  "date": "2026-05-06",
+  "observation": "NIFTY closed higher with volatility compressed with broad participation.",
+  "abstraction": "Here is a concise abstraction of the market observation:\n\n\"Nifty exhibits strength, with reduced volatility and widespread buying interest.\"",
+  "theory": "Compressed Theory: Continuation remains weakly supported under compressed volatility.",
+  "confidence": {
+    "empirical": 0.42,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3944,
+    "contradiction": 0.24
+  },
+  "contradiction": {
+    "score": 0.6,
+    "summary": "Trend contradiction: range_bound moved to extended_higher.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Trend contradiction: range_bound moved to extended_higher.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Trend contradiction: range_bound moved to extended_higher.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "range_bound",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-05-06",
+    "trend": "extended_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.6,
+    "active_theory_count": 2,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-05-04",
+      "similarity": 0.798,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "fdc7e5dde56413fe"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-05",
+      "similarity": 0.658,
+      "active_theories": [
+        "fa03c73a1a41bf95",
+        "fdc7e5dde56413fe",
+        "cfcd3bdca2e9a31f"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-27",
+      "similarity": 0.655,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "reflection": "The Compressed Theory, which posits that continuation remains weakly supported under compressed volatility, is only partially validated by the replay validation. The trend contradiction between range_bound moving to extended_higher and recent reflections containing uncertainty or caution signals suggests that the theory may not fully capture the complexity of market dynamics. Specifically, the unresolved tension lies in the unclear relationship between compressed volatility and continuation strength.",
+  "metrics": {
+    "step": 7,
+    "date": "2026-05-06",
+    "contradiction_count": 2,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 5,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.6,
+    "highest_contradiction": 0.6,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 3,
+    "revived_theories": 0,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 3.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 4.285714285714286,
+    "longest_surviving_theory": 7,
+    "theory_mutation_count": 2,
+    "avg_confidence": 0.41125,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.025708704751503917,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.06153846153846154,
+    "avg_abstraction_length": 19.0,
+    "compression_ratio": 2.111111111111111,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "Compressed Theory: Continuation remains weakly supported under compressed volatility.",
+      "contradiction_text": "Trend contradiction: range_bound moved to extended_higher.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "strengthening",
+        "weekly": "range_bound",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-05-06",
+        "trend": "extended_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.6,
+        "active_theory_count": 2,
+        "breadth_proxy": "strongly_participatory"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-05-04",
+          "similarity": 0.798,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95",
+            "fdc7e5dde56413fe"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-05",
+          "similarity": 0.658,
+          "active_theories": [
+            "fa03c73a1a41bf95",
+            "fdc7e5dde56413fe",
+            "cfcd3bdca2e9a31f"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-27",
+          "similarity": 0.655,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95"
+          ],
+          "contradictions": [],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.416,
+        "label": "fragile"
+      }
+    }
+  }
+}

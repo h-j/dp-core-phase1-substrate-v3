@@ -14,10 +14,10 @@ import json
 import os
 from datetime import datetime, timedelta
 from pathlib import Path
+from statistics import mean
+from typing import List
 
 import pandas as pd
-from typing import List
-from statistics import mean
 
 from market.data.dataset_validator import DatasetValidator
 
@@ -228,6 +228,9 @@ class ReplayExecutor:
         self.observer = None
         self.theory_lineage = None
         self.contradiction_registry = None
+        self.regime_memory = None
+        self.horizon_engine = None
+        self.epistemic_scoring = None
         self.run_dir = None
 
         # small in-memory history for confidence tracking
@@ -236,6 +239,7 @@ class ReplayExecutor:
         self._run_validations: List[object] = []
         self._run_reflections: List[object] = []
         self._run_market_observations: List[object] = []
+        self._regime_matches_by_step: List[list] = []
 
     def _create_snapshot_dirs(self):
         """Create replay snapshot directories if missing."""
@@ -310,6 +314,9 @@ class ReplayExecutor:
         from market.replay.market_observation_synthesizer import (
             MarketObservationSynthesizer,
         )
+        from memory.replay.epistemic_scoring import EpistemicScoringEngine
+        from memory.replay.horizon_cognition import HorizonCognitionEngine
+        from memory.replay.regime_memory import RegimeMemoryStore
 
         # Create a run-isolated snapshot directory for this replay.
         self.run_dir = (
@@ -331,10 +338,16 @@ class ReplayExecutor:
             self.contradiction_registry = ContradictionRegistry(
                 self.run_dir / "contradiction_registry.json"
             )
+            self.regime_memory = RegimeMemoryStore()
+            self.horizon_engine = HorizonCognitionEngine()
+            self.epistemic_scoring = EpistemicScoringEngine()
         except Exception:
             self.observer = None
             self.theory_lineage = None
             self.contradiction_registry = None
+            self.regime_memory = RegimeMemoryStore()
+            self.horizon_engine = HorizonCognitionEngine()
+            self.epistemic_scoring = EpistemicScoringEngine()
 
         # Load synthesizer
         synthesizer = MarketObservationSynthesizer(self.engine.data)
@@ -356,21 +369,63 @@ class ReplayExecutor:
                 # Synthesize observation
                 market_obs = synthesizer.synthesize(day_idx)
 
-                # observe
-                obs_event = ObservationEvent(
-                    source_type="replay", raw_content=market_obs.observation_text
-                )
-
-                # retrieve: only prior persisted cognition is visible to this step
+                # retrieve historical memory: only prior run-local state is visible
                 recent_theories = list(reversed(self._run_theories[-5:]))
                 recent_validations = list(reversed(self._run_validations[-5:]))
                 recent_reflections = list(reversed(self._run_reflections[-5:]))
+
+                # compute horizons using current and prior observations only
+                horizon_view = self.horizon_engine.compute(
+                    [*self._run_market_observations, market_obs]
+                )
+                horizon_context = f"Horizon Context: {horizon_view.summary()}"
+
+                prior_confidence_values = (
+                    list(self._confidence_history[-10:])
+                    if self._confidence_history
+                    else [0.5]
+                )
+                marker_severity = min(
+                    1.0, len(getattr(market_obs, "contradiction_markers", [])) * 0.2
+                )
+                active_theory_count = (
+                    self.theory_lineage.active_count() if self.theory_lineage else 0
+                )
+                preliminary_regime_signature = self.regime_memory.build_signature(
+                    date=date_str,
+                    observation=market_obs,
+                    confidence_values=prior_confidence_values,
+                    contradiction_severity=marker_severity,
+                    active_theory_count=active_theory_count,
+                )
+                regime_matches = self.regime_memory.retrieve(
+                    preliminary_regime_signature,
+                    getattr(market_obs, "contradiction_markers", []),
+                )
+                self._regime_matches_by_step.append(regime_matches)
+                regime_context = self._format_regime_context(regime_matches)
+
+                # observe
+                obs_event = ObservationEvent(
+                    source_type="replay",
+                    raw_content=(f"{market_obs.observation_text}\n{horizon_context}"),
+                )
 
                 # abstract
                 abstraction = self.abstraction_flow.process(obs_event)
 
                 # generate/mutate
-                theory = self.theory_flow.process(abstraction)
+                historical_context = self._format_historical_context(
+                    recent_validations,
+                    recent_reflections,
+                )
+                theory = self.theory_flow.process(
+                    abstraction,
+                    historical_context=historical_context,
+                    market_memory_context=regime_context,
+                    current_market_observation=market_obs.observation_text,
+                    reflective_memory_summary=horizon_context,
+                )
 
                 # Theory lineage updates happen before contradiction retirement so
                 # the current abstraction can revive or mutate existing cognition.
@@ -527,7 +582,9 @@ class ReplayExecutor:
                 # validate
                 validation = ValidationEvent(
                     theory_id=theory.id,
-                    validation_summary="Replay validation",
+                    validation_summary=(
+                        "Replay validation. " f"{horizon_context}. " f"{regime_context}"
+                    ),
                     observed_behavior=market_obs.observation_text,
                     expected_behavior="Market-grounded theory",
                 )
@@ -563,6 +620,35 @@ class ReplayExecutor:
                     )
                 except Exception:
                     pass
+
+                final_regime_signature = self.regime_memory.build_signature(
+                    date=date_str,
+                    observation=market_obs,
+                    confidence_values=self._confidence_history[-10:],
+                    contradiction_severity=float(
+                        contradiction_result.get("score", 0.0)
+                    ),
+                    active_theory_count=(
+                        self.theory_lineage.active_count()
+                        if self.theory_lineage
+                        else active_theory_count
+                    ),
+                )
+                active_lineage_records = (
+                    self.theory_lineage.active_theories() if self.theory_lineage else []
+                )
+                self.regime_memory.persist(
+                    step=day_idx,
+                    signature=final_regime_signature,
+                    active_theories=active_lineage_records,
+                    contradictions=contradiction_result.get("indicators", []),
+                    confidence=getattr(confidence_state, "empirical_confidence", 0.5),
+                )
+                theory_usefulness = {}
+                if lineage_record:
+                    theory_usefulness = self.epistemic_scoring.score_theory(
+                        lineage_record
+                    )
 
                 # persist
                 self.observation_repo.save(obs_event)
@@ -600,6 +686,10 @@ class ReplayExecutor:
                         "contradiction": contradiction_result,
                         "reflection": reflection,
                         "epistemic_quality": epistemic_quality,
+                        "horizon": horizon_view.to_dict(),
+                        "regime_signature": final_regime_signature.to_dict(),
+                        "regime_matches": [match.to_dict() for match in regime_matches],
+                        "theory_usefulness": theory_usefulness,
                     },
                 )
 
@@ -659,6 +749,12 @@ class ReplayExecutor:
                             "contradiction_text": contradiction_result.get(
                                 "summary", ""
                             ),
+                            "horizon": horizon_view.to_dict(),
+                            "regime_signature": final_regime_signature.to_dict(),
+                            "regime_matches": [
+                                match.to_dict() for match in regime_matches
+                            ],
+                            "theory_usefulness": theory_usefulness,
                         }
                         metrics = self.observer.update(
                             step=day_idx,
@@ -693,6 +789,14 @@ class ReplayExecutor:
                                             "contradiction": confidence_state.contradiction_pressure,
                                         },
                                         "contradiction": contradiction_result,
+                                        "horizon": horizon_view.to_dict(),
+                                        "regime_signature": (
+                                            final_regime_signature.to_dict()
+                                        ),
+                                        "regime_matches": [
+                                            match.to_dict() for match in regime_matches
+                                        ],
+                                        "theory_usefulness": theory_usefulness,
                                         "reflection": getattr(
                                             reflection, "reflection_summary", ""
                                         ),
@@ -716,6 +820,9 @@ class ReplayExecutor:
                     reflection,
                     confidence_state,
                     contradiction_result,
+                    horizon_view,
+                    regime_matches,
+                    theory_usefulness,
                 )
 
             except Exception as e:
@@ -836,6 +943,22 @@ class ReplayExecutor:
                 if self.theory_lineage
                 else None
             )
+            family_analytics = (
+                self.theory_lineage.family_analytics() if self.theory_lineage else {}
+            )
+            epistemic_aggregate = (
+                self.epistemic_scoring.aggregate(self.theory_lineage.theories.values())
+                if self.epistemic_scoring and self.theory_lineage
+                else {"avg_theory_usefulness": 0.0}
+            )
+            regime_recall_hit_rate = (
+                self.regime_memory.recall_hit_rate() if self.regime_memory else 0.0
+            )
+            memory_retrieval_usefulness = (
+                self.regime_memory.retrieval_usefulness(self._regime_matches_by_step)
+                if self.regime_memory
+                else 0.0
+            )
 
             print("\nReplay Summary")
             print("--------------")
@@ -861,6 +984,30 @@ class ReplayExecutor:
             print(f"Avg confidence: {avg_confidence:.2f}")
             print(f"Confidence volatility: {confidence_volatility:.3f}")
             print("")
+            print(
+                "Best surviving family: "
+                f"{family_analytics.get('best_surviving_family') or 'None'}"
+            )
+            print(
+                "Most revived family: "
+                f"{family_analytics.get('most_revived_family') or 'None'}"
+            )
+            print(
+                "Highest contradiction family: "
+                f"{family_analytics.get('highest_contradiction_family') or 'None'}"
+            )
+            print(
+                "Most mutated family: "
+                f"{family_analytics.get('most_mutated_family') or 'None'}"
+            )
+            print("")
+            print(f"Regime recall hit rate: {regime_recall_hit_rate:.2f}")
+            print(
+                "Avg theory usefulness: "
+                f"{epistemic_aggregate.get('avg_theory_usefulness', 0.0):.2f}"
+            )
+            print("Memory retrieval usefulness: " f"{memory_retrieval_usefulness:.2f}")
+            print("")
             print(f"Grounded reflection score: {grounded_reflection:.3f}")
             print(f"Meta commentary score: {meta_commentary:.3f}")
             print("")
@@ -869,6 +1016,33 @@ class ReplayExecutor:
             print("")
         except Exception:
             pass
+
+    def _format_historical_context(self, validations: list, reflections: list) -> str:
+        """Compress prior cognition into a deterministic prompt context."""
+        validation_bits = [
+            getattr(item, "validation_summary", "")[:120] for item in validations[:3]
+        ]
+        reflection_bits = [
+            getattr(item, "reflection_summary", "")[:120] for item in reflections[:3]
+        ]
+        bits = [bit for bit in validation_bits + reflection_bits if bit]
+        return " | ".join(bits)
+
+    def _format_regime_context(self, matches: list) -> str:
+        if not matches:
+            return "Regime memory: no prior match."
+        parts = []
+        for match in matches[:3]:
+            contradiction = (
+                f", recurring contradiction {match.recurring_contradiction}"
+                if match.recurring_contradiction
+                else ""
+            )
+            parts.append(
+                f"{match.date} similarity {match.similarity:.2f}"
+                f", confidence {match.confidence:.2f}{contradiction}"
+            )
+        return "Regime memory: " + " | ".join(parts)
 
     def _save_snapshot(self, day_idx: int, date_str: str, snapshot_data: dict):
         """Save replay snapshot to disk."""
@@ -887,6 +1061,10 @@ class ReplayExecutor:
             "contradiction_score": snapshot_data["contradiction"].get("score", 0),
             "reflection_summary": snapshot_data["reflection"].reflection_summary,
             "epistemic_quality": snapshot_data.get("epistemic_quality", {}),
+            "horizon": snapshot_data.get("horizon", {}),
+            "regime_signature": snapshot_data.get("regime_signature", {}),
+            "regime_matches": snapshot_data.get("regime_matches", []),
+            "theory_usefulness": snapshot_data.get("theory_usefulness", {}),
         }
 
         import json
@@ -904,6 +1082,9 @@ class ReplayExecutor:
         reflection,
         confidence,
         contradiction,
+        horizon,
+        regime_matches,
+        theory_usefulness,
     ):
         """Print formatted day log."""
         if self.quiet:
@@ -914,6 +1095,20 @@ class ReplayExecutor:
         print(f"  {observation.observation_text}")
         print(f"  Trend: {observation.trend_state}")
         print(f"  Sentiment: {observation.macro_sentiment}")
+
+        print(f"\nHorizon:")
+        print(f"  Daily: {horizon.daily}")
+        print(f"  Weekly: {horizon.weekly}")
+        print(f"  Monthly: {horizon.monthly}")
+
+        print(f"\nRegime memory:")
+        if regime_matches:
+            for match in regime_matches[:2]:
+                print(f"  {match.date} similarity {match.similarity:.2f}")
+                if match.recurring_contradiction:
+                    print(f"  recurring contradiction: {match.recurring_contradiction}")
+        else:
+            print("  No prior regime match.")
 
         print(f"\nTheory:")
         print(f"  {theory.summary[:100]}...")
@@ -928,6 +1123,14 @@ class ReplayExecutor:
         print(f"  Empirical: {confidence.empirical_confidence:.2f}")
         print(f"  Coherence: {confidence.theoretical_coherence:.2f}")
         print(f"  Contradiction: {confidence.contradiction_pressure:.2f}")
+
+        if theory_usefulness:
+            print(f"\nEpistemic:")
+            print(
+                "  Theory usefulness: "
+                f"{theory_usefulness.get('score', 0.0):.2f} "
+                f"({theory_usefulness.get('label', 'unknown')})"
+            )
 
         print(f"\nReflection:")
         print(f"  {reflection.reflection_summary[:80]}...")

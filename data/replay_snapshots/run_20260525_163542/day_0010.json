@@ -1,0 +1,187 @@
+{
+  "step": 10,
+  "date": "2026-05-11",
+  "observation": "NIFTY closed lower with volatility compressed but breadth weakened.",
+  "abstraction": "Here is the converted market observation in a concise abstraction:\n\n\"Nifty's daily trend weakens, while weekly and monthly trends remain range-bound, with compressed volatility and broadening losses.\"",
+  "theory": "Compressed Theory: Continuation remains fragile under compressed volatility, susceptible to erosion if participation wanes. This theory directly grounds in the observation of NIFTY's daily trend weakening, while weekly and monthly trends remain range-bound. It makes a narrow claim about the market structure, highlighting the potential fragility of the current trend.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3281,
+    "contradiction": 0.278
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-05-11",
+    "trend": "extended_lower",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 2,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-27",
+      "similarity": 0.668,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-07",
+      "similarity": 0.646,
+      "active_theories": [
+        "86f455ea4246b781",
+        "6c4df9724d0c6ee2"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-04",
+      "similarity": 0.621,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "fdc7e5dde56413fe"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+  "metrics": {
+    "step": 10,
+    "date": "2026-05-11",
+    "contradiction_count": 0,
+    "contradiction_half_life": 4.5,
+    "median_contradiction_half_life": 4.5,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 1.0,
+    "avg_contradiction_severity": 0.6,
+    "highest_contradiction": 0.6,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 1,
+    "revived_theories": 0,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 3.1,
+    "avg_revival_latency": 0.5,
+    "avg_theory_age": 3.7,
+    "longest_surviving_theory": 7,
+    "theory_mutation_count": 4,
+    "avg_confidence": 0.40299999999999997,
+    "confidence_delta": -0.04999999999999999,
+    "confidence_volatility": 0.028301943396169812,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 1.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.14285714285714285,
+    "avg_abstraction_length": 27.0,
+    "compression_ratio": 3.0,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "Compressed Theory: Continuation remains fragile under compressed volatility, susceptible to erosion if participation wanes. This theory directly grounds in the observation of NIFTY's daily trend weakening, while weekly and monthly trends remain range-bound. It makes a narrow claim about the market structure, highlighting the potential fragility of the current trend.",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "range_bound",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-05-11",
+        "trend": "extended_lower",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 2,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-04-27",
+          "similarity": 0.668,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95"
+          ],
+          "contradictions": [],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-07",
+          "similarity": 0.646,
+          "active_theories": [
+            "86f455ea4246b781",
+            "6c4df9724d0c6ee2"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-04",
+          "similarity": 0.621,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95",
+            "fdc7e5dde56413fe"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.416,
+        "label": "fragile"
+      }
+    }
+  }
+}

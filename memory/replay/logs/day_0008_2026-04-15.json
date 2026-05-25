@@ -2,40 +2,103 @@
   "day_index": 8,
   "date": "2026-04-15",
   "observation_text": "NIFTY traded range-bound with volatility compressed with broad participation.",
-  "theory_summary": "Compressed theory: NIFTY's limited price movement indicates a fragile equilibrium, vulnerable to disruption from declining participation. Grounded in the observation: The abstraction \"NIFTY's trading was characterized by limited price movement\" provides the foundation for this compressed theory. The phrase \"fragile equilibrium\" is a direct interpretation of this observation, suggesting that small changes could have significant effects on the market's stability.",
+  "theory_summary": "Compressed volatility masks fragility, as continuation remains insufficiently tested.",
   "confidence_state": {
-    "empirical": 0.42,
-    "regime": 0.53,
+    "empirical": 0.37,
+    "regime": 0.5,
     "reflection": 0.45,
-    "coherence": 0.3568,
-    "contradiction": 0.28
+    "coherence": 0.3281,
+    "contradiction": 0.278
   },
-  "contradiction_score": 0.2,
-  "reflection_summary": "NIFTY's trading remains vulnerable to disruption due to limited price movement. Observed continuation remains insufficiently tested under volatility expansion, leaving uncertainty around its fragility. Pressure to test the theory's resilience under stress is mounting.",
+  "contradiction_score": 0.18,
+  "reflection_summary": "The validation of this theory is intriguing. According to the replay validation, the recent reflection contains uncertainty or caution signals, which contradicts the original theory that compressed volatility masks fragility. The theory suggests that continuation remains insufficiently tested, but the validation reveals a different story.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 52,
-      "sentence_count": 3,
-      "narrative_density": 0.139,
-      "uncertainty_presence": 0.5,
+      "word_count": 8,
+      "sentence_count": 1,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.0,
       "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 0.142,
+      "abstraction_sharpness": 0.75,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.379
+      "compression_score": 0.512
     },
     "reflection": {
-      "word_count": 30,
+      "word_count": 40,
       "sentence_count": 3,
       "narrative_density": 0.0,
       "uncertainty_presence": 0.5,
       "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 0.667,
-      "causal_inflation": 0.333,
-      "semantic_repetition": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.033,
       "generic_phrase_hits": 0,
-      "compression_score": 0.55
+      "compression_score": 0.525
     }
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "strengthening",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-04-15",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 2,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-09",
+      "similarity": 0.798,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "885ab3fc7f95b002"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-13",
+      "similarity": 0.798,
+      "active_theories": [
+        "fa03c73a1a41bf95",
+        "885ab3fc7f95b002",
+        "8ca49b1da1573bfb"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-10",
+      "similarity": 0.786,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "885ab3fc7f95b002"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.392,
+    "label": "fragile"
   }
 }

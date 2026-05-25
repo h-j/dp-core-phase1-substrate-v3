@@ -2,40 +2,101 @@
   "day_index": 7,
   "date": "2026-04-13",
   "observation_text": "NIFTY closed higher with volatility compressed with broad participation.",
-  "theory_summary": "Compressed theory: Nifty's upward momentum persists, but the reduced price fluctuations might be unsustainable if participation falters. This compressed theory grounds itself in the observation of a reduced price fluctuation, which suggests that the market may not have sufficient volatility to sustain its current upward trend. The theory also acknowledges the importance of participation, implying that a decrease in buying interest could undermine the market's stability.",
+  "theory_summary": "Compressed volatility masks fragility.",
   "confidence_state": {
-    "empirical": 0.42,
-    "regime": 0.53,
-    "reflection": 0.5,
-    "coherence": 0.4,
-    "contradiction": 0.2
+    "empirical": 0.45,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.4113,
+    "contradiction": 0.198
   },
-  "contradiction_score": 0.2,
-  "reflection_summary": "Observed participation faltering, with reduced price fluctuations remaining untested under expanding volatility.",
+  "contradiction_score": 0.18,
+  "reflection_summary": "Compressed volatility masks fragility under contradiction pressure.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 57,
-      "sentence_count": 3,
-      "narrative_density": 0.208,
-      "uncertainty_presence": 1.0,
-      "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 0.463,
-      "causal_inflation": 0.0,
-      "semantic_repetition": 0.0,
-      "generic_phrase_hits": 0,
-      "compression_score": 0.581
-    },
-    "reflection": {
-      "word_count": 12,
+      "word_count": 4,
       "sentence_count": 1,
       "narrative_density": 0.0,
-      "uncertainty_presence": 0.5,
+      "uncertainty_presence": 0.0,
       "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 0.5,
+      "abstraction_sharpness": 0.25,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.525
+      "compression_score": 0.338
+    },
+    "reflection": {
+      "word_count": 7,
+      "sentence_count": 1,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.25,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.438
     }
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "strengthening",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-04-13",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 3,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-02",
+      "similarity": 0.835,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-10",
+      "similarity": 0.798,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "885ab3fc7f95b002"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-07",
+      "similarity": 0.789,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "24971f4c2ca5f43b"
+      ],
+      "contradictions": [
+        "Current theory strengthens a relationship that prior theory weakened.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.484,
+    "label": "fragile"
   }
 }

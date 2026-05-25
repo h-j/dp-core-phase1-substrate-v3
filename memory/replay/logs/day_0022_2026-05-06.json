@@ -2,40 +2,101 @@
   "day_index": 22,
   "date": "2026-05-06",
   "observation_text": "NIFTY closed higher with volatility compressed with broad participation.",
-  "theory_summary": "NIFTY's rally persists despite reduced volatility, buoyed by widespread buying interest. This continuity remains weakly supported under compressed volatility. Unresolved tension: Participation levels, while currently robust, may be unsustainable if deterioration sets in.",
+  "theory_summary": "Compressed trend persistence is challenged by recent validation, as NIFTY's upward trajectory remains supported by reduced volatility and widespread buying interest. However, observed stability may weaken if participation deteriorates.",
   "confidence_state": {
-    "empirical": 0.47,
-    "regime": 0.53,
+    "empirical": 0.37,
+    "regime": 0.5,
     "reflection": 0.5,
-    "coherence": 0.4632,
-    "contradiction": 0.12
+    "coherence": 0.3197,
+    "contradiction": 0.338
   },
-  "contradiction_score": 0.2,
-  "reflection_summary": "Observed continuation remains insufficiently tested under volatility expansion.",
+  "contradiction_score": 0.78,
+  "reflection_summary": "The observed trend persistence of NIFTY's upward trajectory, supported by reduced volatility and widespread buying interest, is challenged by the recent validation. The contradiction between the range-bound movement and the failure signal in the recent validation adds to the uncertainty. One unresolved tension remains: the theory's ability to withstand potential deterioration in participation.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 29,
-      "sentence_count": 3,
+      "word_count": 24,
+      "sentence_count": 2,
       "narrative_density": 0.0,
-      "uncertainty_presence": 1.0,
-      "contradiction_acknowledgment": 1.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.5,
       "abstraction_sharpness": 0.5,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.825
+      "compression_score": 0.625
     },
     "reflection": {
-      "word_count": 8,
-      "sentence_count": 1,
-      "narrative_density": 0.0,
-      "uncertainty_presence": 0.0,
-      "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 1.0,
+      "word_count": 45,
+      "sentence_count": 3,
+      "narrative_density": 0.042,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.326,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.6
+      "compression_score": 0.658
     }
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-05-06",
+    "trend": "extended_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.78,
+    "active_theory_count": 1,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-10",
+      "similarity": 0.953,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "885ab3fc7f95b002"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-06",
+      "similarity": 0.838,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-15",
+      "similarity": 0.798,
+      "active_theories": [
+        "885ab3fc7f95b002",
+        "cd4235a299240326"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.344,
+    "label": "failed"
   }
 }

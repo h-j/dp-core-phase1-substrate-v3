@@ -1,0 +1,189 @@
+{
+  "step": 4,
+  "date": "2026-04-30",
+  "observation": "NIFTY traded range-bound with volatility compressed.",
+  "abstraction": "The NIFTY index exhibited a range-bound trading pattern, characterized by limited price movement and reduced volatility. This behavior was observed across daily, weekly, and monthly timeframes, with the exception of the monthly timeframe which lacked sufficient historical data to draw meaningful conclusions.",
+  "theory": "Continuation remains weakly supported under compressed volatility. The range-bound trading pattern suggests limited price movement, which may be fragile if participation deteriorates. This theory directly grounds itself in the observation of NIFTY's range-bound trading pattern and compressed volatility.",
+  "confidence": {
+    "empirical": 0.45,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.4413,
+    "contradiction": 0.198
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-04-30",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 4,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-29",
+      "similarity": 0.978,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "fdc7e5dde56413fe"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-28",
+      "similarity": 0.966,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "fdc7e5dde56413fe"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-27",
+      "similarity": 0.655,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.484,
+    "label": "fragile"
+  },
+  "reflection": "The validation of this theory is tenuous at best. The replay validation shows a range-bound trading pattern on both daily and weekly horizons, but the monthly horizon lacks sufficient history to draw meaningful conclusions. Meanwhile, the recent reflection contains an uncertainty or caution signal, which contradicts the original theory's assertion that continuation remains weakly supported under compressed volatility.",
+  "metrics": {
+    "step": 4,
+    "date": "2026-04-30",
+    "contradiction_count": 1,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 2,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.18,
+    "highest_contradiction": 0.18,
+    "theory_count": 4,
+    "active_theories": 4,
+    "new_theories": 0,
+    "mutated_theories": 0,
+    "merged_theories": 1,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 3.75,
+    "longest_surviving_theory": 5,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.426,
+    "confidence_delta": 0.030000000000000027,
+    "confidence_volatility": 0.01200000000000001,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.06896551724137931,
+    "avg_abstraction_length": 42.0,
+    "compression_ratio": 7.0,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Continuation remains weakly supported under compressed volatility. The range-bound trading pattern suggests limited price movement, which may be fragile if participation deteriorates. This theory directly grounds itself in the observation of NIFTY's range-bound trading pattern and compressed volatility.",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-04-30",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 4,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-04-29",
+          "similarity": 0.978,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95",
+            "fdc7e5dde56413fe"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-28",
+          "similarity": 0.966,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95",
+            "fdc7e5dde56413fe"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-27",
+          "similarity": 0.655,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95"
+          ],
+          "contradictions": [],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.484,
+        "label": "fragile"
+      }
+    }
+  }
+}

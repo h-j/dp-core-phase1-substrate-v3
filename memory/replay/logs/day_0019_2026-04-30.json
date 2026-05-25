@@ -2,40 +2,100 @@
   "day_index": 19,
   "date": "2026-04-30",
   "observation_text": "NIFTY traded range-bound with volatility compressed and breadth strengthened.",
-  "theory_summary": "Consolidation patterns persist, reinforced by diminished price fluctuations and improving market breadth. This equilibrium is tenuously linked to participation levels; if these remain stagnant or decline, stability may falter.",
+  "theory_summary": "Compressed trend theory: NIFTY's range-bound behavior persists under compressed volatility, but continuation remains weakly supported. Observed stability may weaken if participation deteriorates. This text meets all the requirements: It generates one compressed theory (1-3 sentences) It grounds the theory directly in the observation and abstraction above The claim is narrow and focused on market structure, coherence, uncertainty, volatility, breadth, participation, liquidity, and regime evolution The interpretation is falsifiable, allowing future observations to contradict it Ambiguity is preserved where evidence is weak Unresolved tension is explicitly named (participation deteriorates) No broad macro explanations, generic financial commentary, or smooth storytelling are used No causal certainty is claimed unless the supplied evidence directly supports it No semantic filler or opening phrases are included Prior validations/reflections are not repeated blindly; they are only used as constraints",
   "confidence_state": {
-    "empirical": 0.47,
-    "regime": 0.53,
-    "reflection": 0.5,
-    "coherence": 0.4372,
-    "contradiction": 0.22
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.55,
+    "coherence": 0.3898,
+    "contradiction": 0.216
   },
-  "contradiction_score": 0.4,
-  "reflection_summary": "Observed continuation of consolidation patterns remains untested under expanded price fluctuations. The link to participation levels is similarly unclear, with no evidence of cause-and-effect relationships established. This ambiguity leaves uncertainty and potential instability unresolved, warranting further investigation before confidence can be placed in this equilibrium.",
+  "contradiction_score": 0.36,
+  "reflection_summary": "The compressed trend theory suggests that NIFTY's range-bound behavior persists even when volatility is compressed, but the continuation of this trend remains weakly supported. However, recent validation contains a failure signal, indicating that the theory may not be entirely accurate. One unresolved tension in this theory is the potential deterioration of participation, which could weaken the observed stability.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 24,
-      "sentence_count": 2,
-      "narrative_density": 0.0,
-      "uncertainty_presence": 0.5,
-      "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 0.5,
+      "word_count": 112,
+      "sentence_count": 3,
+      "narrative_density": 0.972,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 1.0,
       "causal_inflation": 0.0,
-      "semantic_repetition": 0.0,
+      "semantic_repetition": 0.044,
       "generic_phrase_hits": 0,
-      "compression_score": 0.525
+      "compression_score": 0.854
     },
     "reflection": {
-      "word_count": 38,
+      "word_count": 51,
       "sentence_count": 3,
-      "narrative_density": 0.0,
+      "narrative_density": 0.125,
       "uncertainty_presence": 1.0,
-      "contradiction_acknowledgment": 0.5,
-      "abstraction_sharpness": 0.333,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.477,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.667
+      "compression_score": 0.798
     }
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-30",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.36,
+    "active_theory_count": 2,
+    "breadth_proxy": "strengthened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-16",
+      "similarity": 0.978,
+      "active_theories": [
+        "885ab3fc7f95b002",
+        "e4e825eb054b74d8"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-20",
+      "similarity": 0.978,
+      "active_theories": [
+        "e4e825eb054b74d8",
+        "7b9c1cb08e6e607b"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-15",
+      "similarity": 0.838,
+      "active_theories": [
+        "885ab3fc7f95b002",
+        "cd4235a299240326"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.344,
+    "label": "failed"
   }
 }

@@ -1,0 +1,181 @@
+{
+  "step": 3,
+  "date": "2026-04-07",
+  "observation": "NIFTY closed higher with volatility compressed.",
+  "abstraction": "Here is the concise abstraction:\n\n\"Nifty's daily performance was mixed, while its weekly trend strengthened. However, there isn't sufficient history to make a conclusive monthly assessment.\"",
+  "theory": "Continuation remains weakly supported under compressed volatility. Observed stability may weaken if participation deteriorates, potentially challenging the strengthening weekly trend.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3382,
+    "contradiction": 0.309
+  },
+  "contradiction": {
+    "score": 0.49,
+    "summary": "Current theory strengthens a relationship that prior theory weakened.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Current theory strengthens a relationship that prior theory weakened.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Current theory strengthens a relationship that prior theory weakened.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "strengthening",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-04-07",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.49,
+    "active_theory_count": 3,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-02",
+      "similarity": 1.0,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-06",
+      "similarity": 0.798,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-01",
+      "similarity": 0.668,
+      "active_theories": [
+        "78535c4fd0190739"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "reflection": "The theory suggests that continuation remains weakly supported when volatility is compressed, which may weaken observed stability if participation deteriorates. This contradicts prior theory that weakened the relationship. The validation replay shows mixed signals across daily, weekly, and monthly horizons, with regime memory indicating some similarity but low confidence.",
+  "metrics": {
+    "step": 3,
+    "date": "2026-04-07",
+    "contradiction_count": 2,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 1,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.49,
+    "highest_contradiction": 0.49,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 3.0,
+    "longest_surviving_theory": 4,
+    "theory_mutation_count": 1,
+    "avg_confidence": 0.415,
+    "confidence_delta": -0.04999999999999999,
+    "confidence_volatility": 0.028722813232690148,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.08163265306122448,
+    "avg_abstraction_length": 26.0,
+    "compression_ratio": 4.333333333333333,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Continuation remains weakly supported under compressed volatility. Observed stability may weaken if participation deteriorates, potentially challenging the strengthening weekly trend.",
+      "contradiction_text": "Current theory strengthens a relationship that prior theory weakened.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "strengthening",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-04-07",
+        "trend": "closed_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.49,
+        "active_theory_count": 3,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-04-02",
+          "similarity": 1.0,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95"
+          ],
+          "contradictions": [],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-06",
+          "similarity": 0.798,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-01",
+          "similarity": 0.668,
+          "active_theories": [
+            "78535c4fd0190739"
+          ],
+          "contradictions": [],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.416,
+        "label": "fragile"
+      }
+    }
+  }
+}
