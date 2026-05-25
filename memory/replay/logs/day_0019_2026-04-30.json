@@ -1,0 +1,41 @@
+{
+  "day_index": 19,
+  "date": "2026-04-30",
+  "observation_text": "NIFTY traded range-bound with volatility compressed and breadth strengthened.",
+  "theory_summary": "Consolidation patterns persist, reinforced by diminished price fluctuations and improving market breadth. This equilibrium is tenuously linked to participation levels; if these remain stagnant or decline, stability may falter.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.4372,
+    "contradiction": 0.22
+  },
+  "contradiction_score": 0.4,
+  "reflection_summary": "Observed continuation of consolidation patterns remains untested under expanded price fluctuations. The link to participation levels is similarly unclear, with no evidence of cause-and-effect relationships established. This ambiguity leaves uncertainty and potential instability unresolved, warranting further investigation before confidence can be placed in this equilibrium.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 24,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.525
+    },
+    "reflection": {
+      "word_count": 38,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.333,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.667
+    }
+  }
+}

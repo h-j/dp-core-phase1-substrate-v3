@@ -1,0 +1,41 @@
+{
+  "day_index": 1,
+  "date": "2026-05-15",
+  "observation_text": "NIFTY traded range-bound with volatility compressed.",
+  "theory_summary": "Continuation remains weakly supported under compressed volatility. Participation's impact on observed stability is unclear, with potential for deterioration posing an unresolved tension.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.45,
+    "contradiction": 0.2
+  },
+  "contradiction_score": 0.2,
+  "reflection_summary": "The theory's claim about continuation being weakly supported under compressed volatility is reflected in the replay validation. However, what remains unclear is whether participation has a positive or negative impact on observed stability, leaving an unresolved tension that requires further investigation to resolve. The uncertainty surrounding this relationship adds pressure for falsifiable evidence and avoids overconfidence in the initial theory.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 19,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.75,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.812
+    },
+    "reflection": {
+      "word_count": 51,
+      "sentence_count": 3,
+      "narrative_density": 0.125,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.477,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.798
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "day_index": 0,
+  "date": "2026-05-12",
+  "observation_text": "NIFTY closed lower with volatility compressed.",
+  "theory_summary": "NIFTY's downward trend persists, accompanied by reduced price fluctuations. Continuation remains weakly supported under compressed volatility. Observed stability may weaken if participation deteriorates.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.55,
+    "coherence": 0.4804,
+    "contradiction": 0.14
+  },
+  "contradiction_score": 0.4,
+  "reflection_summary": "The observed downward trend persists, but its continuation remains weakly supported under compressed volatility. This is consistent with the original theory, which warned of potential weakness if participation deteriorates. One unresolved tension remains: the failure signal in recent validation suggests that the stability may be more fragile than initially thought.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 21,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.625
+    },
+    "reflection": {
+      "word_count": 45,
+      "sentence_count": 3,
+      "narrative_density": 0.042,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.492,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.816
+    }
+  }
+}

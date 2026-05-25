@@ -1,0 +1,41 @@
+{
+  "day_index": 23,
+  "date": "2026-05-07",
+  "observation_text": "NIFTY traded range-bound with volatility compressed and breadth strengthened.",
+  "theory_summary": "Current compression of market trend, accompanied by improving breadth, suggests a fragile equilibrium where continuation remains weakly supported. Observed stability may weaken if participation deteriorates, highlighting the need for sustained buying pressure to validate this narrow range-bound market structure.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.45,
+    "coherence": 0.42,
+    "contradiction": 0.2
+  },
+  "contradiction_score": 0.2,
+  "reflection_summary": "The replay validation is overly reliant on self-congratulation, praising the theory without scrutinizing its limitations. Uncertainty and confidence pressure are not directly evaluated, and the tone prioritizes confirmation bias over falsifiable weakness statements. The language remains vague, failing to identify specific untested or contradictory aspects of the theory.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 34,
+      "sentence_count": 2,
+      "narrative_density": 0.125,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.978,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.773
+    },
+    "reflection": {
+      "word_count": 43,
+      "sentence_count": 3,
+      "narrative_density": 0.014,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.448
+    }
+  }
+}

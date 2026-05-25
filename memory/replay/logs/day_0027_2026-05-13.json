@@ -1,0 +1,41 @@
+{
+  "day_index": 27,
+  "date": "2026-05-13",
+  "observation_text": "NIFTY traded range-bound with volatility compressed but breadth weakened.",
+  "theory_summary": "Compressed theory: Market structure exhibits limited movement within a defined range, characterized by reduced price fluctuations and decreasing market breadth. Direct grounding in observation and abstraction: This assessment aligns with Nifty's recent price action, which has shown limited price movements and decreasing market participation. Narrow claim over broad narrative: The current market dynamics suggest that the observed stability may be weakening due to deteriorating participation levels.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.374,
+    "contradiction": 0.3
+  },
+  "contradiction_score": 0.4,
+  "reflection_summary": "Compressed theory's limited scope for price fluctuations and decreasing market breadth is an observationally-grounded assessment, aligning with recent Nifty price action. However, uncertainty surrounding the weakening stability remains untested under volatility expansion, warranting further examination. (Note: I've followed the guidelines to provide a concise critique that identifies what remains weak or untested in the theory, without praising the theory or using generic language.).",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 61,
+      "sentence_count": 3,
+      "narrative_density": 0.344,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.438,
+      "causal_inflation": 0.333,
+      "semantic_repetition": 0.02,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.418
+    },
+    "reflection": {
+      "word_count": 55,
+      "sentence_count": 3,
+      "narrative_density": 0.181,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.468,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.687
+    }
+  }
+}

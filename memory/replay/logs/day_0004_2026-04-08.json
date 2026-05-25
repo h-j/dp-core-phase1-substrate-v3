@@ -1,0 +1,41 @@
+{
+  "day_index": 4,
+  "date": "2026-04-08",
+  "observation_text": "NIFTY closed higher with volatility compressed.",
+  "theory_summary": "Compressed theory: Volatility's compression constrains continuation, with stability potentially weakening if participation falters. Direct grounding in the observation and abstraction: The statement grounds itself in the observation of reduced market fluctuations and stabilized stocks, while acknowledging the potential for weakness if participation deteriorates. Narrow claim over broad narrative: The statement makes a specific claim about the relationship between volatility, continuation, and participation, rather than providing a broad narrative or making general statements.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.45,
+    "coherence": 0.42,
+    "contradiction": 0.2
+  },
+  "contradiction_score": 0.2,
+  "reflection_summary": "The validation's replay mechanism only scratches the surface, leaving unresolved tensions regarding the theory's predictive power. The notion that participation falters when stability weakens is untested and potentially contradicted by future market fluctuations. This uncertainty warrants further scrutiny rather than rhetorical resolution.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 64,
+      "sentence_count": 3,
+      "narrative_density": 0.306,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.021,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.554
+    },
+    "reflection": {
+      "word_count": 40,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.167,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.608
+    }
+  }
+}

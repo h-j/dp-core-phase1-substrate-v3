@@ -1,0 +1,41 @@
+{
+  "day_index": 7,
+  "date": "2026-04-13",
+  "observation_text": "NIFTY closed higher with volatility compressed with broad participation.",
+  "theory_summary": "Compressed theory: Nifty's upward momentum persists, but the reduced price fluctuations might be unsustainable if participation falters. This compressed theory grounds itself in the observation of a reduced price fluctuation, which suggests that the market may not have sufficient volatility to sustain its current upward trend. The theory also acknowledges the importance of participation, implying that a decrease in buying interest could undermine the market's stability.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.4,
+    "contradiction": 0.2
+  },
+  "contradiction_score": 0.2,
+  "reflection_summary": "Observed participation faltering, with reduced price fluctuations remaining untested under expanding volatility.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 57,
+      "sentence_count": 3,
+      "narrative_density": 0.208,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.463,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.581
+    },
+    "reflection": {
+      "word_count": 12,
+      "sentence_count": 1,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.525
+    }
+  }
+}

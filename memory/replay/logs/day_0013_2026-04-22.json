@@ -1,0 +1,41 @@
+{
+  "day_index": 13,
+  "date": "2026-04-22",
+  "observation_text": "NIFTY traded range-bound with volatility compressed.",
+  "theory_summary": "Continuation remains weakly supported under compressed volatility. Weak participation could erode observed stability, challenging its sustainability. This interpretation focuses on the market structure (continuation) and coherence (compressed volatility), while acknowledging unresolved tensions related to participation levels.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.45,
+    "contradiction": 0.2
+  },
+  "contradiction_score": 0.2,
+  "reflection_summary": "Observed continuation remains insufficiently tested under volatility expansion. This suggests that the theory's assumption about weak participation eroding stability, even under compressed volatility, lacks robust empirical support. The uncertainty surrounding this relationship invites further investigation to clarify its implications for sustainability.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 34,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.9
+    },
+    "reflection": {
+      "word_count": 40,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.7
+    }
+  }
+}

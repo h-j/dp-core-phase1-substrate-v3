@@ -1,0 +1,41 @@
+{
+  "day_index": 3,
+  "date": "2026-05-14",
+  "observation_text": "NIFTY closed higher with volatility compressed.",
+  "theory_summary": "NIFTY's upward trend persists, albeit with reduced price fluctuations. Continuation remains weakly supported under compressed volatility. Observed stability may weaken if participation deteriorates.",
+  "confidence_state": {
+    "empirical": 0.5,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.4828,
+    "contradiction": 0.18
+  },
+  "contradiction_score": 0.0,
+  "reflection_summary": "The replay validation of NIFTY's upward trend persistence suggests that the observed stability may weaken if participation deteriorates. This finding is consistent with the original theory, which noted that continuation remains weakly supported under compressed volatility. However, one unresolved tension remains: the theory's assumption that participation will not deteriorate further, despite the lack of explicit contradictions detected.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 22,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.625
+    },
+    "reflection": {
+      "word_count": 53,
+      "sentence_count": 3,
+      "narrative_density": 0.153,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.639,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.851
+    }
+  }
+}

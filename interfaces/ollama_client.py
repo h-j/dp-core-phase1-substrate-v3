@@ -9,12 +9,11 @@ class OllamaClient:
 
         response = ollama.chat(
             model=settings.OLLAMA_MODEL,
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ]
+            options={
+                "temperature": 0,
+                "top_p": 1,
+            },
+            messages=[{"role": "user", "content": prompt}],
         )
 
         return response["message"]["content"]

@@ -1,0 +1,41 @@
+{
+  "day_index": 21,
+  "date": "2026-05-05",
+  "observation_text": "NIFTY traded range-bound with volatility compressed and breadth strengthened. Participation was selective.",
+  "theory_summary": "NIFTY's range-bound action persists, buoyed by improved breadth amidst compressed volatility. However, the foundation for continuation remains fragile, predicated on selective participation; any erosion in this support could lead to instability. This theory is grounded in the observation of range-bound NIFTY action with compressed volatility and improved breadth, accompanied by selective participation.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.53,
+    "reflection": 0.55,
+    "coherence": 0.4172,
+    "contradiction": 0.22
+  },
+  "contradiction_score": 0.4,
+  "reflection_summary": "The replay validation lacks concrete evidence to support the theory's claims. The notion that improved breadth amidst compressed volatility is a sufficient foundation for range-bound NIFTY action remains unsubstantiated, with no clear indicators of how this dynamic will unfold under different market conditions.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 44,
+      "sentence_count": 3,
+      "narrative_density": 0.108,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.333,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.75
+    },
+    "reflection": {
+      "word_count": 38,
+      "sentence_count": 2,
+      "narrative_density": 0.208,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.713,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.468
+    }
+  }
+}

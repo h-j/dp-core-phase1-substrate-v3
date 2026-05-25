@@ -1,0 +1,41 @@
+{
+  "day_index": 1,
+  "date": "2026-04-02",
+  "observation_text": "NIFTY closed higher with volatility compressed.",
+  "theory_summary": "Market memory echoes a convergence of market volatility, as observed coherence prevails. Continuation remains weakly supported under compressed volatility, with uncertainty lingering beneath the surface. This precarious balance may unravel if participation deteriorates, threatening the stability that now holds.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.45,
+    "contradiction": 0.2
+  },
+  "contradiction_score": 0.2,
+  "reflection_summary": "Observed coherence prevails, but continuation remains weakly supported. Compressed volatility suggests an unresolved tension, as uncertainty lingers beneath the surface.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 35,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.833,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.742
+    },
+    "reflection": {
+      "word_count": 18,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.75,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.912
+    }
+  }
+}
