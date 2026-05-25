@@ -1,0 +1,41 @@
+{
+  "day_index": 11,
+  "date": "2026-04-20",
+  "observation_text": "NIFTY traded range-bound with volatility compressed and breadth strengthened.",
+  "theory_summary": "Range-bound trading persists, characterized by compressed volatility that may be masking underlying tensions. Volatility's compression suggests markets may not be fully pricing in risks, which could lead to surprises if participation and momentum deteriorate. Unresolved tension exists between the observed market stability and the potential for a sharp correction if market participants' risk tolerance falters.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.4632,
+    "contradiction": 0.12
+  },
+  "contradiction_score": 0.2,
+  "reflection_summary": "Observed market stability is not thoroughly examined when considering the possibility of a sudden correction.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 47,
+      "sentence_count": 3,
+      "narrative_density": 0.149,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.64,
+      "causal_inflation": 0.333,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.818
+    },
+    "reflection": {
+      "word_count": 12,
+      "sentence_count": 1,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.25
+    }
+  }
+}

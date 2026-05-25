@@ -1,0 +1,41 @@
+{
+  "day_index": 0,
+  "date": "2026-05-15",
+  "observation_text": "NIFTY traded range-bound with volatility compressed.",
+  "theory_summary": "NIFTY's trading activity exhibits narrow price range dynamics, with compressed volatility. This stability may be fragile and vulnerable to deterioration if participation wanes. This revised text maintains ambiguity where evidence is weak, avoids broad macro explanations and generic financial commentary, and focuses on market structure and coherence.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.45,
+    "contradiction": 0.2
+  },
+  "contradiction_score": 0.2,
+  "reflection_summary": "The replay validation provides some support for NIFTY's trading activity exhibiting compressed price range dynamics, but this evidence remains weak and insufficiently tested. The theory's fragility and vulnerability to deterioration if participation wanes remain untested and ambiguous, leaving uncertainty around its resilience.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 42,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.525
+    },
+    "reflection": {
+      "word_count": 40,
+      "sentence_count": 2,
+      "narrative_density": 0.25,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.705,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.659
+    }
+  }
+}

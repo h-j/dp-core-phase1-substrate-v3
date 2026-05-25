@@ -1,0 +1,41 @@
+{
+  "day_index": 9,
+  "date": "2026-04-16",
+  "observation_text": "NIFTY traded range-bound with volatility compressed and breadth strengthened.",
+  "theory_summary": "NIFTY's recent trading range is characterized by reduced price swings, which could be attributed to a lack of directional momentum. This stability might be vulnerable to a deterioration in participation, potentially leading to increased volatility.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.4504,
+    "contradiction": 0.14
+  },
+  "contradiction_score": 0.4,
+  "reflection_summary": "Observed stability in NIFTY's trading range, characterized by reduced price swings, is still untested under conditions of increased participation or volatility expansion. The assumption that this stability might be vulnerable to deterioration remains speculative.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 24,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.5,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.575
+    },
+    "reflection": {
+      "word_count": 27,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.75,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.712
+    }
+  }
+}

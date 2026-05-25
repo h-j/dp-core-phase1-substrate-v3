@@ -1,0 +1,41 @@
+{
+  "day_index": 6,
+  "date": "2026-05-05",
+  "observation_text": "NIFTY traded range-bound with volatility compressed and breadth strengthened.",
+  "theory_summary": "Volatility compression persists, with narrow price fluctuations sustained by improving market breadth. This stability remains weakly supported, vulnerable to deterioration if participation wanes. This theory is grounded in the observation of reduced price fluctuations and improving market breadth, and makes a specific claim about the market structure (volatility compression) that can be tested against future observations.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.4128,
+    "contradiction": 0.18
+  },
+  "contradiction_score": 0,
+  "reflection_summary": "The replay validation of this theory reveals that the observed persistence of volatility compression remains insufficiently tested under conditions of volatility expansion. This theory, which posits that narrow price fluctuations are sustained by improving market breadth, is grounded in empirical observation but lacks explicit testing against future observations.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 48,
+      "sentence_count": 3,
+      "narrative_density": 0.083,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.687
+    },
+    "reflection": {
+      "word_count": 42,
+      "sentence_count": 2,
+      "narrative_density": 0.292,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.556
+    }
+  }
+}

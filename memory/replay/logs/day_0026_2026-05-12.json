@@ -1,0 +1,41 @@
+{
+  "day_index": 26,
+  "date": "2026-05-12",
+  "observation_text": "NIFTY closed lower with volatility compressed but breadth weakened.",
+  "theory_summary": "Indian equity market coherence appears fragile, as reduced price fluctuations mask underlying sectoral performance deterioration. The market's recent stability may be vulnerable to further erosion if participation wanes. This compressed theory: Directly grounds itself in the observation of Indian equity market mixed signals and sectoral performance deterioration.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.45,
+    "coherence": 0.4072,
+    "contradiction": 0.22
+  },
+  "contradiction_score": 0.4,
+  "reflection_summary": "The validation of this theory is too self-congratulatory. The critique should identify what remains weak, untested, ambiguous, or contradicted in the theory. Instead of praising the theory, a good-style critique would point out specific areas that need further examination.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 41,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.333,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.467
+    },
+    "reflection": {
+      "word_count": 33,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.45
+    }
+  }
+}

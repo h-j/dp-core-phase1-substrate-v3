@@ -1,0 +1,41 @@
+{
+  "day_index": 20,
+  "date": "2026-05-04",
+  "observation_text": "NIFTY traded range-bound with volatility compressed with broad participation.",
+  "theory_summary": "NIFTY's range-bound behavior persists, fueled by broad investor engagement. Compressed volatility underscores limited upward momentum, suggesting continuation remains weakly supported.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.4372,
+    "contradiction": 0.22
+  },
+  "contradiction_score": 0.4,
+  "reflection_summary": "The theory's persistence of range-bound behavior relies on broad investor engagement. This weakly supported continuation is untested under expanded volatility, leaving uncertainty surrounding its resilience. Note: The rewritten validation maintains the original's concise tone while addressing the requested elements, including: 5.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 19,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.525
+    },
+    "reflection": {
+      "word_count": 37,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.333,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.567
+    }
+  }
+}

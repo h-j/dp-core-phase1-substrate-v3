@@ -7,10 +7,12 @@ class ConfidenceEvolutionEngine:
         reflection,
         contradiction_result,
         recent_validations=None,
-        outcome_validation_result=None
+        outcome_validation_result=None,
+        lineage_event=None,
     ):
 
         recent_validations = recent_validations or []
+        lineage_event = lineage_event or {}
 
         empirical_delta = 0.0
         regime_delta = 0.0
@@ -18,58 +20,51 @@ class ConfidenceEvolutionEngine:
         coherence_delta = 0.0
         pressure_delta = 0.0
 
-        # Reality-based outcome validation weighs MORE heavily than linguistic validation
+        new_contradictions = int(contradiction_result.get("new_contradictions", 0))
+        resolved_contradictions = int(contradiction_result.get("resolved_contradictions", 0))
+        active_contradictions = int(contradiction_result.get("active_contradictions", 0))
+        mutated = int(lineage_event.get("mutated", 0))
+        merged = int(lineage_event.get("merged", 0))
+
         if outcome_validation_result:
-            outcome_alignment = outcome_validation_result.get(
-                "validation_score",
-                0.5
-            )
-            
+            outcome_alignment = outcome_validation_result.get("validation_score", 0.5)
             if outcome_alignment > 0.7:
-                empirical_delta += 0.1
-                regime_delta += 0.06
+                empirical_delta += 0.12
+                regime_delta += 0.07
                 coherence_delta += 0.05
             elif outcome_alignment > 0.4:
-                empirical_delta += 0.02
-                regime_delta += 0.01
+                empirical_delta += 0.03
+                regime_delta += 0.02
             else:
-                empirical_delta -= 0.12
-                coherence_delta -= 0.08
-                pressure_delta += 0.12
+                empirical_delta -= 0.14
+                coherence_delta -= 0.09
+                pressure_delta += 0.14
 
-            # Outcome contradictions add direct contradiction pressure
-            outcome_contradictions = outcome_validation_result.get(
-                "contradictions_detected",
-                []
-            )
+            outcome_contradictions = outcome_validation_result.get("contradictions_detected", [])
             if outcome_contradictions:
-                pressure_delta += len(outcome_contradictions) * 0.1
+                pressure_delta += len(outcome_contradictions) * 0.12
                 coherence_delta -= len(outcome_contradictions) * 0.05
 
-            # Regime mismatch affects regime confidence
-            regime_mismatch = outcome_validation_result.get(
-                "regime_mismatch",
-                0.0
-            )
+            regime_mismatch = outcome_validation_result.get("regime_mismatch", 0.0)
             if regime_mismatch > 0.5:
                 regime_delta -= 0.08
                 coherence_delta -= 0.05
 
         if self._validation_aligns(validation):
-            empirical_delta += 0.05
-            regime_delta += 0.03
-            coherence_delta += 0.02
+            empirical_delta += 0.06
+            regime_delta += 0.04
+            coherence_delta += 0.03
         else:
-            empirical_delta -= 0.06
-            coherence_delta -= 0.04
-            pressure_delta += 0.08
+            empirical_delta -= 0.08
+            coherence_delta -= 0.05
+            pressure_delta += 0.10
 
         if self._repeated_support(validation, recent_validations):
-            empirical_delta += 0.03
-            regime_delta += 0.02
+            empirical_delta += 0.05
+            regime_delta += 0.03
+            coherence_delta += 0.03
 
         reflection_text = reflection.reflection_summary.lower()
-
         if self._contains_any(
             reflection_text,
             [
@@ -78,11 +73,11 @@ class ConfidenceEvolutionEngine:
                 "supported",
                 "evidence",
                 "align",
-                "consistent"
-            ]
+                "consistent",
+            ],
         ):
-            reflection_delta += 0.04
-            coherence_delta += 0.02
+            reflection_delta += 0.05
+            coherence_delta += 0.03
 
         if self._contains_any(
             reflection_text,
@@ -94,18 +89,40 @@ class ConfidenceEvolutionEngine:
                 "limited",
                 "contradict",
                 "conflict",
-                "overconfidence"
-            ]
+                "overconfidence",
+            ],
         ):
-            reflection_delta -= 0.03
-            coherence_delta -= 0.03
-            pressure_delta += 0.05
+            reflection_delta -= 0.05
+            coherence_delta -= 0.04
+            pressure_delta += 0.08
 
-        contradiction_score = contradiction_result["score"]
+        if new_contradictions > 0:
+            empirical_delta -= 0.08 * new_contradictions
+            pressure_delta += 0.14 * new_contradictions
+            coherence_delta -= 0.09 * new_contradictions
 
+        if active_contradictions > 0:
+            pressure_delta += 0.09 * active_contradictions
+            coherence_delta -= 0.06 * active_contradictions
+
+        if resolved_contradictions > 0:
+            empirical_delta += 0.08 * resolved_contradictions
+            coherence_delta += 0.05 * resolved_contradictions
+            pressure_delta -= 0.07 * resolved_contradictions
+
+        if mutated > 0:
+            empirical_delta -= 0.05 * mutated
+            coherence_delta -= 0.06 * mutated
+            pressure_delta += 0.08 * mutated
+
+        if merged > 0:
+            empirical_delta += 0.03 * merged
+            coherence_delta += 0.02 * merged
+
+        contradiction_score = contradiction_result.get("score", 0.0)
         if contradiction_score > 0:
-            pressure_delta += contradiction_score * 0.12
-            coherence_delta -= contradiction_score * 0.08
+            pressure_delta += contradiction_score * 0.10
+            coherence_delta -= contradiction_score * 0.06
 
         confidence_state.empirical_confidence = self._clamp(
             confidence_state.empirical_confidence + empirical_delta

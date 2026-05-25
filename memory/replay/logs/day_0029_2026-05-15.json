@@ -1,0 +1,41 @@
+{
+  "day_index": 29,
+  "date": "2026-05-15",
+  "observation_text": "NIFTY traded range-bound with volatility compressed.",
+  "theory_summary": "Current trading conditions exhibit range-bound dynamics, with compressed volatility. This phenomenon persists despite observed stability, which may be vulnerable to deterioration if participation wanes.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.53,
+    "reflection": 0.45,
+    "coherence": 0.344,
+    "contradiction": 0.3
+  },
+  "contradiction_score": 0.4,
+  "reflection_summary": "Observed stability might be vulnerable to deterioration if participation wanes. However, the replay validation offers limited insight into the theory's robustness against changing market conditions or unexpected events. The lack of stress-testing or counterfactual analysis leaves uncertainty surrounding the theory's applicability in various scenarios.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 21,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.625
+    },
+    "reflection": {
+      "word_count": 37,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.167,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.608
+    }
+  }
+}

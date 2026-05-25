@@ -1,0 +1,270 @@
+{
+  "c71e27bc765c94c8": {
+    "id": "c71e27bc765c94c8",
+    "created_at_step": 0,
+    "parent_ids": [],
+    "status": "revived",
+    "confidence": 0.5,
+    "abstraction": "Market stability: NIFTY's upward trend is accompanied by reduced price fluctuations.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.5,
+      "theoretical_coherence": 0.5,
+      "contradiction_pressure": 0.0
+    },
+    "contradictions": [],
+    "contradiction_count": 0,
+    "mutation_reason": "merged_duplicate",
+    "survival_steps": 10,
+    "last_seen_step": 13,
+    "mutation_count": 0,
+    "retired_at_step": null,
+    "last_retired_step": 7,
+    "revival_count": 1,
+    "retirement_ages": [
+      7
+    ],
+    "revival_latencies": [
+      6
+    ]
+  },
+  "dcb4d863da7e5f89": {
+    "id": "dcb4d863da7e5f89",
+    "created_at_step": 2,
+    "parent_ids": [],
+    "status": "revived",
+    "confidence": 0.5,
+    "abstraction": "Market is trading within a narrow range, exhibiting low volatility.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.5,
+      "theoretical_coherence": 0.5,
+      "contradiction_pressure": 0.0
+    },
+    "contradictions": [],
+    "contradiction_count": 0,
+    "mutation_reason": "merged_duplicate",
+    "survival_steps": 15,
+    "last_seen_step": 14,
+    "mutation_count": 1,
+    "retired_at_step": null,
+    "last_retired_step": 13,
+    "revival_count": 1,
+    "retirement_ages": [
+      11
+    ],
+    "revival_latencies": [
+      1
+    ]
+  },
+  "a825d49a8f774a53": {
+    "id": "a825d49a8f774a53",
+    "created_at_step": 5,
+    "parent_ids": [],
+    "status": "retired",
+    "confidence": 0.5,
+    "abstraction": "Range-bound trading with low volatility, characterized by broad market participation.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.5,
+      "theoretical_coherence": 0.5,
+      "contradiction_pressure": 0.0
+    },
+    "contradictions": [],
+    "contradiction_count": 0,
+    "mutation_reason": null,
+    "survival_steps": 7,
+    "last_seen_step": 11,
+    "mutation_count": 0,
+    "retired_at_step": 11,
+    "last_retired_step": 11,
+    "revival_count": 0,
+    "retirement_ages": [
+      6
+    ],
+    "revival_latencies": []
+  },
+  "7d1a29cb1382e6ed": {
+    "id": "7d1a29cb1382e6ed",
+    "created_at_step": 6,
+    "parent_ids": [
+      "dcb4d863da7e5f89"
+    ],
+    "status": "active",
+    "confidence": 0.5,
+    "abstraction": "Market is trading within a narrow range, with reduced price fluctuations and improving market breadth.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.5,
+      "theoretical_coherence": 0.5,
+      "contradiction_pressure": 0.0
+    },
+    "contradictions": [],
+    "contradiction_count": 0,
+    "mutation_reason": "merged_duplicate",
+    "survival_steps": 10,
+    "last_seen_step": 12,
+    "mutation_count": 1,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": []
+  },
+  "74797557f3213547": {
+    "id": "74797557f3213547",
+    "created_at_step": 7,
+    "parent_ids": [],
+    "status": "contradicted",
+    "confidence": 0.5,
+    "abstraction": "Market trend: NIFTY rises with reduced volatility and widespread buying.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.5,
+      "theoretical_coherence": 0.5,
+      "contradiction_pressure": 0.0
+    },
+    "contradictions": [
+      "Trend contradiction: range_bound moved to extended_higher."
+    ],
+    "contradiction_count": 1,
+    "mutation_reason": null,
+    "survival_steps": 8,
+    "last_seen_step": 10,
+    "mutation_count": 1,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": []
+  },
+  "3b74584ee7e4bb7b": {
+    "id": "3b74584ee7e4bb7b",
+    "created_at_step": 10,
+    "parent_ids": [
+      "74797557f3213547"
+    ],
+    "status": "retired",
+    "confidence": 0.5,
+    "abstraction": "Market trend: NIFTY declined, with reduced price fluctuations and deteriorating market breadth.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.5,
+      "theoretical_coherence": 0.5,
+      "contradiction_pressure": 0.0
+    },
+    "contradictions": [
+      "Trend contradiction: range_bound moved to extended_higher.",
+      "Recent validation contains failure signal."
+    ],
+    "contradiction_count": 2,
+    "mutation_reason": "merged_duplicate",
+    "survival_steps": 4,
+    "last_seen_step": 12,
+    "mutation_count": 0,
+    "retired_at_step": 12,
+    "last_retired_step": 12,
+    "revival_count": 0,
+    "retirement_ages": [
+      2
+    ],
+    "revival_latencies": []
+  },
+  "b435a6489ea2dc64": {
+    "id": "b435a6489ea2dc64",
+    "created_at_step": 12,
+    "parent_ids": [
+      "7d1a29cb1382e6ed"
+    ],
+    "status": "contradicted",
+    "confidence": 0.5,
+    "abstraction": "Market is trading within a narrow range, with reduced volatility and weakening breadth.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.5,
+      "theoretical_coherence": 0.5,
+      "contradiction_pressure": 0.0
+    },
+    "contradictions": [
+      "Recent validation contains failure signal."
+    ],
+    "contradiction_count": 1,
+    "mutation_reason": "semantic_similarity_0.69",
+    "survival_steps": 3,
+    "last_seen_step": 14,
+    "mutation_count": 1,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": []
+  },
+  "ca1b6c7dd49d90bf": {
+    "id": "ca1b6c7dd49d90bf",
+    "created_at_step": 13,
+    "parent_ids": [],
+    "status": "retired",
+    "confidence": 0.5,
+    "abstraction": "Market stability: NIFTY's upward trend is accompanied by reduced price fluctuations.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.5,
+      "theoretical_coherence": 0.5,
+      "contradiction_pressure": 0.0
+    },
+    "contradictions": [
+      "Trend contradiction: range_bound moved to extended_higher.",
+      "Recent validation contains failure signal."
+    ],
+    "contradiction_count": 2,
+    "mutation_reason": null,
+    "survival_steps": 2,
+    "last_seen_step": 14,
+    "mutation_count": 0,
+    "retired_at_step": 14,
+    "last_retired_step": 14,
+    "revival_count": 0,
+    "retirement_ages": [
+      1
+    ],
+    "revival_latencies": []
+  },
+  "809ed26db40294f0": {
+    "id": "809ed26db40294f0",
+    "created_at_step": 14,
+    "parent_ids": [
+      "b435a6489ea2dc64"
+    ],
+    "status": "contradicted",
+    "confidence": 0.5,
+    "abstraction": "Market is trading within a narrow range, exhibiting low volatility.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.5,
+      "theoretical_coherence": 0.5,
+      "contradiction_pressure": 0.0
+    },
+    "contradictions": [
+      "Recent validation contains failure signal."
+    ],
+    "contradiction_count": 2,
+    "mutation_reason": "semantic_similarity_0.53",
+    "survival_steps": 1,
+    "last_seen_step": 14,
+    "mutation_count": 0,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": []
+  }
+}

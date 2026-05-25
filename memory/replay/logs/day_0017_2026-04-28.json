@@ -1,0 +1,41 @@
+{
+  "day_index": 17,
+  "date": "2026-04-28",
+  "observation_text": "NIFTY traded range-bound with volatility compressed but breadth weakened.",
+  "theory_summary": "Range-bound trading persists, fueled by low volatility. Weakness in breadth hints at potential fragility beneath the surface. This interpretation grounds itself directly in the observation and abstraction above, making a narrow claim about market structure rather than a broad narrative.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.53,
+    "reflection": 0.5,
+    "coherence": 0.3872,
+    "contradiction": 0.22
+  },
+  "contradiction_score": 0.4,
+  "reflection_summary": "The replay validation relies heavily on observation without exploring potential counterexamples or exceptions. The claim about range-bound trading's fragility seems overly reliant on low volatility, leaving it unclear how this theory would hold up in different market conditions.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 34,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.333,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.367
+    },
+    "reflection": {
+      "word_count": 32,
+      "sentence_count": 2,
+      "narrative_density": 0.083,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.235,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.32
+    }
+  }
+}

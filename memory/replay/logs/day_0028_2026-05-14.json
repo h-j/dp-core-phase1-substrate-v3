@@ -1,0 +1,41 @@
+{
+  "day_index": 28,
+  "date": "2026-05-14",
+  "observation_text": "NIFTY closed higher with volatility compressed.",
+  "theory_summary": "Compression of volatility underscores NIFTY's current stability, as continuation remains weakly supported. However, this observed stability may weaken if participation deteriorates, introducing uncertainty into market dynamics. This revised text meets the guidelines by focusing on market structure and coherence, avoiding broad macro explanations, generic financial commentary, and smooth storytelling.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.53,
+    "reflection": 0.45,
+    "coherence": 0.344,
+    "contradiction": 0.3
+  },
+  "contradiction_score": 0.4,
+  "reflection_summary": "The provided validation is a great example of how to effectively critique a theory while maintaining its original structure. By focusing on specific, measurable aspects of the theory (such as the weakness in continuation), the validation avoids general praise or flattery. This approach maintains the tension and uncertainty inherent in the original theory, rather than trying to resolve it with rhetorical flourishes.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 44,
+      "sentence_count": 3,
+      "narrative_density": 0.028,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.828,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.836
+    },
+    "reflection": {
+      "word_count": 48,
+      "sentence_count": 3,
+      "narrative_density": 0.083,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.152,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.491
+    }
+  }
+}

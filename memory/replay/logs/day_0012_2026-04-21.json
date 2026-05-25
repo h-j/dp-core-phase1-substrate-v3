@@ -1,0 +1,41 @@
+{
+  "day_index": 12,
+  "date": "2026-04-21",
+  "observation_text": "NIFTY closed higher with volatility compressed and breadth strengthened.",
+  "theory_summary": "NIFTY's upward momentum hinges on sustained breadth expansion, which relies on continued improvement in participation levels; a decrease in participant engagement could undermine this stability. This theory is grounded in the observation of NIFTY's rise and subsiding volatility, as well as the widening market breadth. It makes a narrow claim about the relationship between breadth expansion and participation levels, leaving room for future observations to contradict or validate it.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.45,
+    "coherence": 0.42,
+    "contradiction": 0.2
+  },
+  "contradiction_score": 0.2,
+  "reflection_summary": "Observed continuation of NIFTY's upward momentum hinges on sustained breadth expansion, which relies on continued improvement in participation levels. A decrease in participant engagement could undermine this stability, but such claims remain insufficiently tested under volatility expansion. This theory's validation should be further scrutinized to account for potential exceptions and uncertainties.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 54,
+      "sentence_count": 3,
+      "narrative_density": 0.167,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.023,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.775
+    },
+    "reflection": {
+      "word_count": 43,
+      "sentence_count": 3,
+      "narrative_density": 0.014,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.698
+    }
+  }
+}

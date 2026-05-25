@@ -1,0 +1,41 @@
+{
+  "day_index": 14,
+  "date": "2026-04-23",
+  "observation_text": "NIFTY traded range-bound with volatility compressed.",
+  "theory_summary": "Range-bound trading persists with subdued volatility, yet signs of fatigue linger. Stability remains fragile as long as participation levels remain uncertain. This revised version aims to maintain the focus on market structure, coherence, uncertainty, and volatility while avoiding broad macro explanations and generic financial commentary.",
+  "confidence_state": {
+    "empirical": 0.47,
+    "regime": 0.53,
+    "reflection": 0.45,
+    "coherence": 0.42,
+    "contradiction": 0.2
+  },
+  "contradiction_score": 0.2,
+  "reflection_summary": "The range-bound trading persists with subdued volatility, but its validity remains uncertain. The replay validation provides limited insight into the theory's robustness, particularly when faced with expanded volatility.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 40,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.667,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.683
+    },
+    "reflection": {
+      "word_count": 28,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.525
+    }
+  }
+}

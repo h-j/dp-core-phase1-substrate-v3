@@ -1,0 +1,41 @@
+{
+  "day_index": 8,
+  "date": "2026-04-15",
+  "observation_text": "NIFTY traded range-bound with volatility compressed with broad participation.",
+  "theory_summary": "Compressed theory: NIFTY's limited price movement indicates a fragile equilibrium, vulnerable to disruption from declining participation. Grounded in the observation: The abstraction \"NIFTY's trading was characterized by limited price movement\" provides the foundation for this compressed theory. The phrase \"fragile equilibrium\" is a direct interpretation of this observation, suggesting that small changes could have significant effects on the market's stability.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.53,
+    "reflection": 0.45,
+    "coherence": 0.3568,
+    "contradiction": 0.28
+  },
+  "contradiction_score": 0.2,
+  "reflection_summary": "NIFTY's trading remains vulnerable to disruption due to limited price movement. Observed continuation remains insufficiently tested under volatility expansion, leaving uncertainty around its fragility. Pressure to test the theory's resilience under stress is mounting.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 52,
+      "sentence_count": 3,
+      "narrative_density": 0.139,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.142,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.379
+    },
+    "reflection": {
+      "word_count": 30,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.667,
+      "causal_inflation": 0.333,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.55
+    }
+  }
+}
