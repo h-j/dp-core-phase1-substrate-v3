@@ -1,0 +1,116 @@
+{
+  "day_index": 61,
+  "date": "2026-04-02",
+  "observation_text": "NIFTY traded range-bound with volatility compressed.",
+  "theory_summary": "Compressed theory: NIFTY's daily momentum remains fragile under compressed volatility, susceptible to reversal if participation weakens. This theory is grounded in the observation of range-bound trading with reduced volatility, as well as the abstraction highlighting mixed weekly and monthly trends. The theory makes a narrow claim about the fragility of daily momentum, which can be falsified if future observations show otherwise.",
+  "confidence_state": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3466,
+    "contradiction": 0.296
+  },
+  "contradiction_score": 0.36,
+  "reflection_summary": "The validation of NIFTY's daily momentum theory reveals a fragile state, susceptible to reversal if participation weakens. The theory, which suggests that compressed volatility makes daily momentum vulnerable to reversal, is supported by the replay validation showing mixed weekly and monthly trends. However, one unresolved tension remains: the trend contradiction between closed_lower moving to range_bound, accompanied by uncertainty or caution signals.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 50,
+      "sentence_count": 3,
+      "narrative_density": 0.111,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.647,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.46
+    },
+    "reflection": {
+      "word_count": 53,
+      "sentence_count": 3,
+      "narrative_density": 0.153,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.639,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.751
+    }
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "mixed",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2026-04-02",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.36,
+    "active_theory_count": 2,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-25",
+      "similarity": 0.978,
+      "active_theories": [
+        "884aba25effb307f",
+        "bfa6e34ce946272b"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-26",
+      "similarity": 0.978,
+      "active_theories": [
+        "bcbcaf5d406eca81",
+        "f4b57845a5546fa9"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-09",
+      "similarity": 0.966,
+      "active_theories": [
+        "bcbcaf5d406eca81",
+        "1ecb76988833c6ea",
+        "0a3cd9240724d751"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.392,
+    "label": "fragile"
+  },
+  "prediction": {
+    "direction": "range_bound",
+    "confidence": 0.26,
+    "tension": " closed_lower moved to range_bound. vs Recent reflection contains uncertainty or caution signal.",
+    "invalidation": "Trend contradiction: closed_lower moved to range_bound."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "lower",
+    "actual_direction": "range_bound",
+    "direction_score": 0.0,
+    "invalidation_triggered": true,
+    "confidence": 0.38,
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  }
+}

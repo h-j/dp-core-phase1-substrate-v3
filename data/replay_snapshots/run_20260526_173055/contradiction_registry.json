@@ -1,0 +1,12 @@
+{
+  "8b3d40a5a9b3aff4": {
+    "id": "8b3d40a5a9b3aff4",
+    "theory_id": "275500409fc758d7",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 1,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.18
+  }
+}

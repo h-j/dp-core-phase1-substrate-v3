@@ -1,0 +1,197 @@
+{
+  "step": 45,
+  "date": "2026-04-24",
+  "observation": "NIFTY closed lower with volatility compressed but breadth weakened.",
+  "abstraction": "Here is the concise abstraction:\n\n\"Nifty's daily trend weakens, while weekly and monthly trends remain range-bound and strengthening respectively, with volatility compressed but breadth weakened.\"",
+  "theory": "Compressed theory: Nifty's upward trend relies on maintaining participation levels, as compressed volatility constrains its validation.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3281,
+    "contradiction": 0.278
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "range_bound",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-24",
+    "trend": "extended_lower",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 3,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-27",
+      "similarity": 0.966,
+      "active_theories": [
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306",
+        "deb466f89c39fd2e"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-03-13",
+      "similarity": 0.895,
+      "active_theories": [
+        "deb466f89c39fd2e",
+        "78917d63175caa51"
+      ],
+      "contradictions": [
+        "Current theory weakens a relationship that prior theory strengthened.",
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-24",
+      "similarity": 0.838,
+      "active_theories": [
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306",
+        "1b32f99a5b2cb018"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "reflection": "The compressed theory's reliance on maintaining participation levels to validate Nifty's upward trend is challenged by recent reflections containing uncertainty or caution signals. The actual contradiction lies in the fact that these signals are present, which undermines the theory's assumption of a stable trend. One unresolved tension remains: how will the theory adapt to potential volatility expansion, which could further erode its validation?",
+  "metrics": {
+    "step": 45,
+    "date": "2026-04-24",
+    "contradiction_count": 1,
+    "contradiction_half_life": 1.4242424242424243,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 4,
+    "contradiction_resolution_rate": 0.9705882352941176,
+    "avg_contradiction_severity": 0.5441176470588235,
+    "highest_contradiction": 1.0,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 2,
+    "revived_theories": 1,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 5.116666666666666,
+    "avg_revival_latency": 6.863636363636363,
+    "avg_theory_age": 3.5238095238095237,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 23,
+    "avg_confidence": 0.396,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.033226495451672305,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.047619047619047616,
+    "avg_abstraction_length": 25.0,
+    "compression_ratio": 2.7777777777777777,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "Compressed theory: Nifty's upward trend relies on maintaining participation levels, as compressed volatility constrains its validation.",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "range_bound",
+        "monthly": "strengthening"
+      },
+      "regime_signature": {
+        "date": "2026-04-24",
+        "trend": "extended_lower",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 3,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-27",
+          "similarity": 0.966,
+          "active_theories": [
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306",
+            "deb466f89c39fd2e"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-03-13",
+          "similarity": 0.895,
+          "active_theories": [
+            "deb466f89c39fd2e",
+            "78917d63175caa51"
+          ],
+          "contradictions": [
+            "Current theory weakens a relationship that prior theory strengthened.",
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-24",
+          "similarity": 0.838,
+          "active_theories": [
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306",
+            "1b32f99a5b2cb018"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.416,
+        "label": "fragile"
+      }
+    }
+  }
+}

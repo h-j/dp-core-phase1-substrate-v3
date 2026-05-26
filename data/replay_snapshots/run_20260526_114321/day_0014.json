@@ -1,0 +1,191 @@
+{
+  "step": 14,
+  "date": "2026-01-21",
+  "observation": "NIFTY traded range-bound with volatility compressed.",
+  "abstraction": "Here is the concise abstraction:\n\n\"NIFTY exhibits range-bound behavior across daily, weekly, and monthly horizons, characterized by compressed volatility.\"",
+  "theory": "Compressed Theory: NIFTY's range-bound behavior under compressed volatility remains tenuously supported, vulnerable to potential weakening if participation deteriorates. This theory directly grounds in the observation of range-bound behavior across daily, weekly, and monthly horizons, as well as the compressed volatility. It makes a narrow claim about the market structure rather than a broad narrative, and is falsifiable by future observations that contradict it.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3466,
+    "contradiction": 0.296
+  },
+  "contradiction": {
+    "score": 0.36,
+    "summary": "Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-01-21",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.36,
+    "active_theory_count": 2,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-01-14",
+      "similarity": 0.944,
+      "active_theories": [
+        "ee907acc052cc825"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-16",
+      "similarity": 0.944,
+      "active_theories": [
+        "ee907acc052cc825"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-19",
+      "similarity": 0.944,
+      "active_theories": [
+        "ee907acc052cc825"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.368,
+    "label": "failed"
+  },
+  "reflection": "The Compressed Theory's range-bound behavior under compressed volatility remains tenuously supported, but its vulnerability to potential weakening if participation deteriorates is a concern. The recent validation contains a failure signal, which contradicts the original theory. One unresolved tension is that the theory's narrow claim about market structure doesn't account for potential regime shifts or changes in participation patterns.",
+  "metrics": {
+    "step": 14,
+    "date": "2026-01-21",
+    "contradiction_count": 2,
+    "contradiction_half_life": 2.8333333333333335,
+    "median_contradiction_half_life": 1.5,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.75,
+    "avg_contradiction_severity": 0.4275,
+    "highest_contradiction": 0.54,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 2,
+    "revived_theories": 1,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 3.7142857142857144,
+    "avg_revival_latency": 1.6,
+    "avg_theory_age": 4.454545454545454,
+    "longest_surviving_theory": 8,
+    "theory_mutation_count": 6,
+    "avg_confidence": 0.404,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.03555277766926236,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.034482758620689655,
+    "avg_abstraction_length": 19.0,
+    "compression_ratio": 3.1666666666666665,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Compressed Theory: NIFTY's range-bound behavior under compressed volatility remains tenuously supported, vulnerable to potential weakening if participation deteriorates. This theory directly grounds in the observation of range-bound behavior across daily, weekly, and monthly horizons, as well as the compressed volatility. It makes a narrow claim about the market structure rather than a broad narrative, and is falsifiable by future observations that contradict it.",
+      "contradiction_text": "Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-01-21",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.36,
+        "active_theory_count": 2,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-01-14",
+          "similarity": 0.944,
+          "active_theories": [
+            "ee907acc052cc825"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-01-16",
+          "similarity": 0.944,
+          "active_theories": [
+            "ee907acc052cc825"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-01-19",
+          "similarity": 0.944,
+          "active_theories": [
+            "ee907acc052cc825"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.368,
+        "label": "failed"
+      }
+    }
+  }
+}

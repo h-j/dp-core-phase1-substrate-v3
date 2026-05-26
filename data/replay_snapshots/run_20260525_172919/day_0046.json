@@ -1,0 +1,197 @@
+{
+  "step": 46,
+  "date": "2026-04-27",
+  "observation": "NIFTY closed higher with volatility compressed.",
+  "abstraction": "Here is the concise abstraction:\n\nMarket trend: NIFTY closed higher, with volatility compressed. Overall direction: strengthening (monthly), mixed (daily and weekly).",
+  "theory": "Compressed theory: NIFTY's upward trend relies on maintaining participation levels, as compressed volatility masks fragility under contradiction pressure. This theory is grounded in the observation that NIFTY closed higher with compressed volatility. The abstraction suggests a strengthening trend at the monthly horizon, but mixed signals at the daily and weekly horizons.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3267,
+    "contradiction": 0.327
+  },
+  "contradiction": {
+    "score": 0.67,
+    "summary": "Current theory strengthens a relationship that prior theory weakened.; Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Current theory strengthens a relationship that prior theory weakened.",
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Current theory strengthens a relationship that prior theory weakened.",
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "mixed",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-27",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.67,
+    "active_theory_count": 3,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-20",
+      "similarity": 0.838,
+      "active_theories": [
+        "da7b5df5d003b115",
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-13",
+      "similarity": 0.838,
+      "active_theories": [
+        "117f80466ec41929",
+        "217fc61980eb2574",
+        "1862d7b94a1e03ea"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-16",
+      "similarity": 0.826,
+      "active_theories": [
+        "4e6b59474730952a",
+        "da7b5df5d003b115"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.344,
+    "label": "failed"
+  },
+  "reflection": "The observed continuation of NIFTY's upward trend relies on maintaining participation levels, as compressed volatility masks fragility under contradiction pressure (actual theory). However, this strengthening relationship is contradicted by recent failure signals and uncertainty/cutionary reflections. One unresolved tension remains: the mixed signals at daily and weekly horizons, which may indicate a lack of robustness in the trend.",
+  "metrics": {
+    "step": 46,
+    "date": "2026-04-27",
+    "contradiction_count": 3,
+    "contradiction_half_life": 1.4242424242424243,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 5,
+    "contradiction_resolution_rate": 0.9166666666666666,
+    "avg_contradiction_severity": 0.5561111111111111,
+    "highest_contradiction": 1.0,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 2,
+    "revived_theories": 1,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 5.403225806451613,
+    "avg_revival_latency": 7.304347826086956,
+    "avg_theory_age": 3.5348837209302326,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 24,
+    "avg_confidence": 0.396,
+    "confidence_delta": -0.08000000000000002,
+    "confidence_volatility": 0.033226495451672305,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.05263157894736842,
+    "avg_abstraction_length": 21.0,
+    "compression_ratio": 3.5,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Compressed theory: NIFTY's upward trend relies on maintaining participation levels, as compressed volatility masks fragility under contradiction pressure. This theory is grounded in the observation that NIFTY closed higher with compressed volatility. The abstraction suggests a strengthening trend at the monthly horizon, but mixed signals at the daily and weekly horizons.",
+      "contradiction_text": "Current theory strengthens a relationship that prior theory weakened.; Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "mixed",
+        "monthly": "strengthening"
+      },
+      "regime_signature": {
+        "date": "2026-04-27",
+        "trend": "closed_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.67,
+        "active_theory_count": 3,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-20",
+          "similarity": 0.838,
+          "active_theories": [
+            "da7b5df5d003b115",
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-13",
+          "similarity": 0.838,
+          "active_theories": [
+            "117f80466ec41929",
+            "217fc61980eb2574",
+            "1862d7b94a1e03ea"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-16",
+          "similarity": 0.826,
+          "active_theories": [
+            "4e6b59474730952a",
+            "da7b5df5d003b115"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.344,
+        "label": "failed"
+      }
+    }
+  }
+}

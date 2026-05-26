@@ -1,0 +1,193 @@
+from __future__ import annotations
+
+from dataclasses import asdict, dataclass
+from enum import Enum
+from statistics import mean
+from typing import Iterable, List, Optional
+
+
+class PredictionDirection(str, Enum):
+    higher = "higher"
+    lower = "lower"
+    range_bound = "range_bound"
+    uncertain = "uncertain"
+
+
+@dataclass(frozen=True)
+class PredictionProbe:
+    direction: PredictionDirection
+    confidence: float
+    tension: str
+    invalidation: str
+
+    def to_dict(self) -> dict:
+        return {
+            "direction": self.direction.value,
+            "confidence": round(self.confidence, 3),
+            "tension": self.tension,
+            "invalidation": self.invalidation,
+        }
+
+
+@dataclass(frozen=True)
+class PredictionEvaluation:
+    prior_direction: str
+    actual_direction: str
+    direction_score: float
+    invalidation_triggered: bool
+    confidence: float
+    invalidation: str
+
+    def to_dict(self) -> dict:
+        return {
+            "prior_direction": self.prior_direction,
+            "actual_direction": self.actual_direction,
+            "direction_score": round(self.direction_score, 3),
+            "invalidation_triggered": self.invalidation_triggered,
+            "confidence": round(self.confidence, 3),
+            "invalidation": self.invalidation,
+        }
+
+
+class PredictionProbeGenerator:
+    """Deterministic prediction probe generator for replay."""
+
+    def generate_prediction(
+        self,
+        observation: object,
+        horizons: object,
+        regime_matches: Iterable[object],
+        theory: object,
+        contradictions: dict,
+        reflection: object,
+    ) -> PredictionProbe:
+        direction = self._infer_direction(observation, theory, reflection)
+        confidence = self._infer_confidence(direction, contradictions, theory, reflection)
+        tension = self._compose_tension(theory, reflection, contradictions, horizons)
+        invalidation = self._compose_invalidation(theory, reflection, contradictions)
+        return PredictionProbe(
+            direction=direction,
+            confidence=confidence,
+            tension=tension,
+            invalidation=invalidation,
+        )
+
+    def score_actual(
+        self, prior_prediction: PredictionProbe, actual_observation: object
+    ) -> PredictionEvaluation:
+        actual_direction = self._actual_direction(actual_observation)
+        direction_score = self._score_direction(prior_prediction.direction, actual_direction)
+        invalidation_triggered = bool(
+            prior_prediction.invalidation
+            and actual_direction != prior_prediction.direction
+            and prior_prediction.direction != PredictionDirection.uncertain
+        )
+        return PredictionEvaluation(
+            prior_direction=prior_prediction.direction.value,
+            actual_direction=actual_direction.value,
+            direction_score=direction_score,
+            invalidation_triggered=invalidation_triggered,
+            confidence=prior_prediction.confidence,
+            invalidation=prior_prediction.invalidation,
+        )
+
+    def _infer_direction(self, observation: object, theory: object, reflection: object) -> PredictionDirection:
+        trend = getattr(observation, "trend_state", "").lower()
+        breadth = getattr(observation, "breadth_state", "").lower()
+        sentiment = getattr(observation, "macro_sentiment", "").lower()
+        theory_text = getattr(theory, "summary", "").lower()
+        reflection_text = getattr(reflection, "reflection_summary", "").lower()
+
+        if "range_bound" in trend or "range_bound" in theory_text:
+            return PredictionDirection.range_bound
+        if any(word in trend for word in ["higher", "up", "extended_higher", "recovered_intraday"]):
+            if "weak" in breadth or "deteriorat" in breadth or "risk_off" in sentiment:
+                return PredictionDirection.uncertain
+            return PredictionDirection.higher
+        if any(word in trend for word in ["lower", "down", "closed_lower"]):
+            if "strong" in breadth or "support" in reflection_text:
+                return PredictionDirection.uncertain
+            return PredictionDirection.lower
+        if "uncertain" in sentiment or "uncertain" in reflection_text:
+            return PredictionDirection.uncertain
+        return PredictionDirection.range_bound
+
+    def _infer_confidence(
+        self,
+        direction: PredictionDirection,
+        contradictions: dict,
+        theory: object,
+        reflection: object,
+    ) -> float:
+        base = 0.42 if direction == PredictionDirection.uncertain else 0.56
+        if contradictions.get("score", 0) > 0.35:
+            base -= 0.12
+        text = (getattr(theory, "summary", "") + " " + getattr(reflection, "reflection_summary", "")).lower()
+        if "uncertain" in text or "caution" in text or "fragile" in text:
+            base -= 0.1
+        if "strength" in text and direction in {PredictionDirection.higher, PredictionDirection.lower}:
+            base += 0.08
+        if "invalid" in text or "contradict" in text:
+            base -= 0.08
+        return float(max(0.05, min(0.95, round(base, 3))))
+
+    def _compose_tension(
+        self,
+        theory: object,
+        reflection: object,
+        contradictions: dict,
+        horizons: object,
+    ) -> str:
+        text = (getattr(theory, "summary", "") + " " + getattr(reflection, "reflection_summary", "")).lower()
+        if "breadth" in text and "strength" in text:
+            return "strength vs weakening breadth"
+        if "volatility" in text and "expans" in text:
+            return "volatility expansion vs structural support"
+        if "liquidity" in text and "pressure" in text:
+            return "liquidity support vs pressure"
+        if "continuation" in text and "uncertain" in text:
+            return "continuation strength vs uncertainty"
+        if contradictions.get("contradictions"):
+            return " vs ".join(
+                str(item).replace("Trend contradiction:", "")
+                for item in contradictions.get("contradictions", [])[:2]
+            )
+        return "observation coherence vs residual uncertainty"
+
+    def _compose_invalidation(self, theory: object, reflection: object, contradictions: dict) -> str:
+        reflection_text = getattr(reflection, "reflection_summary", "").lower()
+        if contradictions.get("contradictions"):
+            return str(contradictions.get("contradictions", [""])[0])
+        if "volatility" in reflection_text:
+            return "volatility expansion"
+        if "uncertain" in reflection_text:
+            return "uncertainty persistence"
+        if "contradict" in reflection_text:
+            return "contradiction signal"
+        return "structural mismatch"
+
+    def _actual_direction(self, observation: object) -> PredictionDirection:
+        trend = getattr(observation, "trend_state", "").lower()
+        if "range_bound" in trend:
+            return PredictionDirection.range_bound
+        if any(word in trend for word in ["higher", "up", "extended_higher", "recovered_intraday"]):
+            return PredictionDirection.higher
+        if any(word in trend for word in ["lower", "down", "closed_lower"]):
+            return PredictionDirection.lower
+        return PredictionDirection.uncertain
+
+    def _score_direction(
+        self,
+        predicted: PredictionDirection,
+        actual: PredictionDirection,
+    ) -> float:
+        if predicted == PredictionDirection.uncertain:
+            return 0.0
+        if predicted == actual:
+            return 1.0
+        if predicted == PredictionDirection.range_bound and actual in {
+            PredictionDirection.higher,
+            PredictionDirection.lower,
+        }:
+            return 0.5
+        return 0.0

@@ -97,5 +97,19 @@
   "theory_usefulness": {
     "score": 0.44,
     "label": "fragile"
+  },
+  "prediction": {
+    "direction": "lower",
+    "confidence": 0.38,
+    "tension": "Recent reflection contains uncertainty or caution signal.",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "range_bound",
+    "actual_direction": "lower",
+    "direction_score": 0.5,
+    "invalidation_triggered": true,
+    "confidence": 0.48,
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
   }
 }

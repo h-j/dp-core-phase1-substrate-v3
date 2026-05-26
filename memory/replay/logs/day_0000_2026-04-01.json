@@ -57,5 +57,12 @@
   "theory_usefulness": {
     "score": 0.464,
     "label": "fragile"
-  }
+  },
+  "prediction": {
+    "direction": "lower",
+    "confidence": 0.46,
+    "tension": "continuation strength vs uncertainty",
+    "invalidation": "volatility expansion"
+  },
+  "prior_prediction_result": null
 }

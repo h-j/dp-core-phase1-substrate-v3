@@ -1,0 +1,142 @@
+{
+  "8b3d40a5a9b3aff4": {
+    "id": "8b3d40a5a9b3aff4",
+    "theory_id": "275500409fc758d7",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 1,
+    "resolved_at_step": 10,
+    "status": "resolved",
+    "age": 9,
+    "severity": 0.54
+  },
+  "4e03b9f0122cfbbe": {
+    "id": "4e03b9f0122cfbbe",
+    "theory_id": "e0bd4dbefbbfefe5",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 6,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "ea6968d41acbddb5": {
+    "id": "ea6968d41acbddb5",
+    "theory_id": "49cddf2f229f17bf",
+    "description": "trend contradiction: closed_lower moved to range_bound.",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.54
+  },
+  "8ef44da5fba78970": {
+    "id": "8ef44da5fba78970",
+    "theory_id": "49cddf2f229f17bf",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.54
+  },
+  "458a54a81fd0cad6": {
+    "id": "458a54a81fd0cad6",
+    "theory_id": "ee907acc052cc825",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 10,
+    "resolved_at_step": 13,
+    "status": "resolved",
+    "age": 3,
+    "severity": 0.36
+  },
+  "adc82ec1df0c090b": {
+    "id": "adc82ec1df0c090b",
+    "theory_id": "ee907acc052cc825",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 11,
+    "resolved_at_step": 13,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.36
+  },
+  "238761f2ad45b480": {
+    "id": "238761f2ad45b480",
+    "theory_id": "ae1c3a8f0db00b58",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 14,
+    "resolved_at_step": 16,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.36
+  },
+  "e81608681366130f": {
+    "id": "e81608681366130f",
+    "theory_id": "ae1c3a8f0db00b58",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 14,
+    "resolved_at_step": 16,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.36
+  },
+  "b18be6474939d0af": {
+    "id": "b18be6474939d0af",
+    "theory_id": "bcbcaf5d406eca81",
+    "description": "trend contradiction: closed_lower moved to range_bound.",
+    "created_at_step": 17,
+    "resolved_at_step": 18,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.54
+  },
+  "dafaac37a6b255af": {
+    "id": "dafaac37a6b255af",
+    "theory_id": "bcbcaf5d406eca81",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 17,
+    "resolved_at_step": 18,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "612266c78661ac45": {
+    "id": "612266c78661ac45",
+    "theory_id": "bcbcaf5d406eca81",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 17,
+    "resolved_at_step": 18,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "0962d87f04822cd3": {
+    "id": "0962d87f04822cd3",
+    "theory_id": "5a888fdd219c32f1",
+    "description": "current theory strengthens a relationship that prior theory weakened.",
+    "created_at_step": 18,
+    "resolved_at_step": 19,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "b07b5d89e1609639": {
+    "id": "b07b5d89e1609639",
+    "theory_id": "5a888fdd219c32f1",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 19,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.36
+  },
+  "9f95df996570ec31": {
+    "id": "9f95df996570ec31",
+    "theory_id": "5a888fdd219c32f1",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 19,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.36
+  }
+}

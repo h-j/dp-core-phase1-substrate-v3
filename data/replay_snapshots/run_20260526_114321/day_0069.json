@@ -1,0 +1,195 @@
+{
+  "step": 69,
+  "date": "2026-04-16",
+  "observation": "NIFTY traded range-bound with volatility compressed and breadth strengthened.",
+  "abstraction": "Here is a concise abstraction of the market observation:\n\n\"NIFTY exhibits range-bound behavior with decreasing volatility, accompanied by improving breadth, indicating a strengthening trend across multiple time horizons.\"",
+  "theory": "NIFTY's range-bound behavior persists, albeit with decreasing volatility. This regime remains fragile, as continuation relies on improving breadth and participation. This theory directly grounds in the observation and abstraction above, focusing on market structure and coherence.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3281,
+    "contradiction": 0.278
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "strengthening",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-16",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 2,
+    "breadth_proxy": "strengthened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-05",
+      "similarity": 0.978,
+      "active_theories": [
+        "5a888fdd219c32f1",
+        "1ecb76988833c6ea",
+        "d36c50eb6a3eae0c"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-06",
+      "similarity": 0.978,
+      "active_theories": [
+        "5a888fdd219c32f1",
+        "1ecb76988833c6ea",
+        "0e7e36d66069d05d"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-10",
+      "similarity": 0.966,
+      "active_theories": [
+        "1ecb76988833c6ea",
+        "0e7e36d66069d05d",
+        "0a3cd9240724d751"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.392,
+    "label": "fragile"
+  },
+  "reflection": "The validation of NIFTY's range-bound behavior persists, albeit with decreasing volatility. This regime remains fragile, as continuation relies on improving breadth and participation. The recent reflection contains uncertainty or caution signal, which contradicts the original theory.",
+  "metrics": {
+    "step": 69,
+    "date": "2026-04-16",
+    "contradiction_count": 1,
+    "contradiction_half_life": 1.3620689655172413,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9830508474576272,
+    "avg_contradiction_severity": 0.4847457627118644,
+    "highest_contradiction": 0.78,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 2,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 7.346938775510204,
+    "avg_revival_latency": 7.666666666666667,
+    "avg_theory_age": 3.6779661016949152,
+    "longest_surviving_theory": 16,
+    "theory_mutation_count": 35,
+    "avg_confidence": 0.396,
+    "confidence_delta": -0.08000000000000002,
+    "confidence_volatility": 0.033226495451672305,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.1111111111111111,
+    "avg_abstraction_length": 28.0,
+    "compression_ratio": 3.111111111111111,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "NIFTY's range-bound behavior persists, albeit with decreasing volatility. This regime remains fragile, as continuation relies on improving breadth and participation. This theory directly grounds in the observation and abstraction above, focusing on market structure and coherence.",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "strengthening",
+        "monthly": "strengthening"
+      },
+      "regime_signature": {
+        "date": "2026-04-16",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 2,
+        "breadth_proxy": "strengthened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-05",
+          "similarity": 0.978,
+          "active_theories": [
+            "5a888fdd219c32f1",
+            "1ecb76988833c6ea",
+            "d36c50eb6a3eae0c"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-06",
+          "similarity": 0.978,
+          "active_theories": [
+            "5a888fdd219c32f1",
+            "1ecb76988833c6ea",
+            "0e7e36d66069d05d"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-10",
+          "similarity": 0.966,
+          "active_theories": [
+            "1ecb76988833c6ea",
+            "0e7e36d66069d05d",
+            "0a3cd9240724d751"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.392,
+        "label": "fragile"
+      }
+    }
+  }
+}

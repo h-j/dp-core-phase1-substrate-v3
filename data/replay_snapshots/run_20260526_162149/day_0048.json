@@ -1,0 +1,197 @@
+{
+  "step": 48,
+  "date": "2026-03-12",
+  "observation": "NIFTY traded range-bound with volatility compressed but breadth weakened.",
+  "abstraction": "Here is a concise abstraction of the market observation:\n\n\"Nifty's price action was characterized by a range-bound pattern, with compressed volatility and weakening breadth.\"",
+  "theory": "Weakening breadth suggests fragility beneath compressed volatility, potentially threatening continuation. This theory directly grounds in the observation of NIFTY's range-bound pattern with compressed volatility and weakening breadth. It makes a narrow claim about the market structure, highlighting the tension between stability and potential fragility.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3082,
+    "contradiction": 0.309
+  },
+  "contradiction": {
+    "score": 0.49,
+    "summary": "Current theory weakens a relationship that prior theory strengthened.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Current theory weakens a relationship that prior theory strengthened.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Current theory weakens a relationship that prior theory strengthened.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "mixed",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-03-12",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.49,
+    "active_theory_count": 3,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-13",
+      "similarity": 0.966,
+      "active_theories": [
+        "ae1c3a8f0db00b58",
+        "0a3cd9240724d751",
+        "bfe9a7a8e13173c7"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-13",
+      "similarity": 0.957,
+      "active_theories": [
+        "06fb56bda4a5a1d6",
+        "ee907acc052cc825"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-22",
+      "similarity": 0.957,
+      "active_theories": [
+        "ee907acc052cc825",
+        "ae1c3a8f0db00b58"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.344,
+    "label": "failed"
+  },
+  "reflection": "The theory that weakening breadth suggests fragility beneath compressed volatility, potentially threatening continuation, is challenged by the validation results. The replay validation reveals a mixed picture across different time horizons, with regime memory showing moderate similarity to past events but low confidence. This uncertainty and caution signal undermine the original theory's claim about market structure.",
+  "metrics": {
+    "step": 48,
+    "date": "2026-03-12",
+    "contradiction_count": 2,
+    "contradiction_half_life": 1.3414634146341464,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9534883720930233,
+    "avg_contradiction_severity": 0.4753488372093024,
+    "highest_contradiction": 0.78,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 1,
+    "revived_theories": 1,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 5.876923076923077,
+    "avg_revival_latency": 6.25,
+    "avg_theory_age": 3.75,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 24,
+    "avg_confidence": 0.39,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.024494897427831775,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.05454545454545454,
+    "avg_abstraction_length": 24.0,
+    "compression_ratio": 2.6666666666666665,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "Weakening breadth suggests fragility beneath compressed volatility, potentially threatening continuation. This theory directly grounds in the observation of NIFTY's range-bound pattern with compressed volatility and weakening breadth. It makes a narrow claim about the market structure, highlighting the tension between stability and potential fragility.",
+      "contradiction_text": "Current theory weakens a relationship that prior theory strengthened.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "mixed",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-03-12",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.49,
+        "active_theory_count": 3,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-13",
+          "similarity": 0.966,
+          "active_theories": [
+            "ae1c3a8f0db00b58",
+            "0a3cd9240724d751",
+            "bfe9a7a8e13173c7"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-01-13",
+          "similarity": 0.957,
+          "active_theories": [
+            "06fb56bda4a5a1d6",
+            "ee907acc052cc825"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-01-22",
+          "similarity": 0.957,
+          "active_theories": [
+            "ee907acc052cc825",
+            "ae1c3a8f0db00b58"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.344,
+        "label": "failed"
+      }
+    }
+  }
+}

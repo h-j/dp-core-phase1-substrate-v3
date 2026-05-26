@@ -1,0 +1,117 @@
+{
+  "day_index": 25,
+  "date": "2026-02-06",
+  "observation_text": "NIFTY traded range-bound with volatility compressed and breadth strengthened.",
+  "theory_summary": "Continuation remains weakly supported under compressed volatility.",
+  "confidence_state": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3281,
+    "contradiction": 0.278
+  },
+  "contradiction_score": 0.18,
+  "reflection_summary": "Compressed volatility masks fragility under contradiction pressure.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 7,
+      "sentence_count": 1,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.525
+    },
+    "reflection": {
+      "word_count": 7,
+      "sentence_count": 1,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.25,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.438
+    }
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-02-06",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 3,
+    "breadth_proxy": "strengthened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-05",
+      "similarity": 0.978,
+      "active_theories": [
+        "5a888fdd219c32f1",
+        "1ecb76988833c6ea",
+        "d36c50eb6a3eae0c"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-29",
+      "similarity": 0.932,
+      "active_theories": [
+        "5a888fdd219c32f1"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-28",
+      "similarity": 0.895,
+      "active_theories": [
+        "5a888fdd219c32f1"
+      ],
+      "contradictions": [
+        "Current theory strengthens a relationship that prior theory weakened.",
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.344,
+    "label": "failed"
+  },
+  "prediction": {
+    "direction": "range_bound",
+    "confidence": 0.48,
+    "tension": "Recent reflection contains uncertainty or caution signal.",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "range_bound",
+    "actual_direction": "range_bound",
+    "direction_score": 1.0,
+    "invalidation_triggered": false,
+    "confidence": 0.38,
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  }
+}

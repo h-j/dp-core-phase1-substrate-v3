@@ -1,0 +1,115 @@
+{
+  "day_index": 66,
+  "date": "2026-04-10",
+  "observation_text": "NIFTY closed higher with volatility compressed with broad participation.",
+  "theory_summary": "Compressed theory: NIFTY's upward trend persists, driven by broad market participation and reduced volatility. Continuation remains weakly supported under compressed volatility. The claim is narrow and focused on market structure, coherence, uncertainty, volatility, breadth, participation, liquidity, and regime evolution.",
+  "confidence_state": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3581,
+    "contradiction": 0.278
+  },
+  "contradiction_score": 0.18,
+  "reflection_summary": "The compressed theory's persistence of NIFTY's upward trend is only weakly supported by recent validation. The replay validation shows mixed signals across daily, weekly, and monthly horizons, with regime memory similarities ranging from 0.37 to 0.98. One unresolved tension remains: the uncertainty or caution signal in recent reflections contradicts the theory's claim of broad market participation and reduced volatility.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 36,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.333,
+      "semantic_repetition": 0.034,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.767
+    },
+    "reflection": {
+      "word_count": 50,
+      "sentence_count": 3,
+      "narrative_density": 0.111,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.48,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.801
+    }
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "strengthening",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2026-04-10",
+    "trend": "extended_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 4,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-08",
+      "similarity": 0.978,
+      "active_theories": [
+        "da090643588d7d7a",
+        "f61304370f440c73"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-03",
+      "similarity": 0.798,
+      "active_theories": [
+        "234d40bdd5ec9b17",
+        "1ecb76988833c6ea"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-09",
+      "similarity": 0.798,
+      "active_theories": [
+        "1ecb76988833c6ea",
+        "09903b43073a6b1a"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "prediction": {
+    "direction": "higher",
+    "confidence": 0.38,
+    "tension": "continuation strength vs uncertainty",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "uncertain",
+    "actual_direction": "higher",
+    "direction_score": 0.0,
+    "invalidation_triggered": false,
+    "confidence": 0.24,
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  }
+}

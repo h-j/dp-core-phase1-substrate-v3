@@ -95,5 +95,19 @@
   "theory_usefulness": {
     "score": 0.436,
     "label": "failed"
+  },
+  "prediction": {
+    "direction": "lower",
+    "confidence": 0.26,
+    "tension": "continuation strength vs uncertainty",
+    "invalidation": "Recent validation contains failure signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "uncertain",
+    "actual_direction": "lower",
+    "direction_score": 0.0,
+    "invalidation_triggered": false,
+    "confidence": 0.24,
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
   }
 }

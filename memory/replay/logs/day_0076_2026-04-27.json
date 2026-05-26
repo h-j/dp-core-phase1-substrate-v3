@@ -1,0 +1,113 @@
+{
+  "day_index": 76,
+  "date": "2026-04-27",
+  "observation_text": "NIFTY closed higher with volatility compressed.",
+  "theory_summary": "Continuation of NIFTY's strengthening trend remains weakly supported under compressed volatility. Observed stability may weaken if participation deteriorates, highlighting the need for caution in interpreting this regime. This theory is grounded in the observation and abstraction provided, focusing on market structure and coherence rather than making broad macro explanations or generic financial commentary.",
+  "confidence_state": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3267,
+    "contradiction": 0.327
+  },
+  "contradiction_score": 0.67,
+  "reflection_summary": "The observed continuation of NIFTY's strengthening trend remains weakly supported under compressed volatility. This theory, grounded in market structure and coherence, is not yet robustly validated. The recent validation contains a failure signal, highlighting the need for caution in interpreting this regime.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 46,
+      "sentence_count": 3,
+      "narrative_density": 0.056,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.823,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.73
+    },
+    "reflection": {
+      "word_count": 37,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.667,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.683
+    }
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "mixed",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-27",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.67,
+    "active_theory_count": 2,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-16",
+      "similarity": 0.957,
+      "active_theories": [
+        "bfe9a7a8e13173c7",
+        "f7b0f8cbbc14bfc2"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2025-12-31",
+      "similarity": 0.848,
+      "active_theories": [
+        "5e7d40de03b213e1"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-07",
+      "similarity": 0.838,
+      "active_theories": [
+        "21e934a05b146ca9",
+        "f309fea2478912ad"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.344,
+    "label": "failed"
+  },
+  "prediction": {
+    "direction": "higher",
+    "confidence": 0.42,
+    "tension": "Current theory strengthens a relationship that prior theory weakened. vs Recent validation contains failure signal.",
+    "invalidation": "Current theory strengthens a relationship that prior theory weakened."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "lower",
+    "actual_direction": "higher",
+    "direction_score": 0.0,
+    "invalidation_triggered": true,
+    "confidence": 0.42,
+    "invalidation": "Current theory strengthens a relationship that prior theory weakened."
+  }
+}

@@ -98,5 +98,19 @@
   "theory_usefulness": {
     "score": 0.344,
     "label": "failed"
+  },
+  "prediction": {
+    "direction": "higher",
+    "confidence": 0.26,
+    "tension": " range_bound moved to extended_higher. vs Recent validation contains failure signal.",
+    "invalidation": "Trend contradiction: range_bound moved to extended_higher."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "range_bound",
+    "actual_direction": "higher",
+    "direction_score": 0.5,
+    "invalidation_triggered": true,
+    "confidence": 0.34,
+    "invalidation": "Recent validation contains failure signal."
   }
 }

@@ -1,0 +1,187 @@
+{
+  "step": 8,
+  "date": "2026-02-25",
+  "observation": "NIFTY traded range-bound with volatility compressed.",
+  "abstraction": "Here is the concise abstraction:\n\n\"NIFTY's price action was characterized by a range-bound trading pattern, with compressed volatility.\"",
+  "theory": "NIFTY's price action exhibits range-bound trading, potentially vulnerable to erosion if participation wanes under compressed volatility.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3281,
+    "contradiction": 0.278
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "mixed",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-02-25",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 5,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-17",
+      "similarity": 0.826,
+      "active_theories": [
+        "4e6b59474730952a",
+        "da7b5df5d003b115",
+        "3d01b91c18875156"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-18",
+      "similarity": 0.826,
+      "active_theories": [
+        "4e6b59474730952a",
+        "da7b5df5d003b115",
+        "3d01b91c18875156"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-13",
+      "similarity": 0.823,
+      "active_theories": [
+        "4e6b59474730952a"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "reflection": "The recent reflection contains uncertainty or caution signals, which contradicts NIFTY's price action exhibiting range-bound trading. The validation suggests that the regime memory is strong, with similarities in price action to previous instances (2026-02-17, 2026-02-18, and 2026-02-13). However, this observed continuation remains insufficiently tested under volatility expansion, leaving unresolved tension regarding its potential erosion if participation wanes.",
+  "metrics": {
+    "step": 8,
+    "date": "2026-02-25",
+    "contradiction_count": 1,
+    "contradiction_half_life": 6.0,
+    "median_contradiction_half_life": 6.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.5,
+    "avg_contradiction_severity": 0.18,
+    "highest_contradiction": 0.18,
+    "theory_count": 5,
+    "active_theories": 5,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 1,
+    "revived_theories": 1,
+    "contradicted_theories": 4,
+    "avg_retirement_age": 4.0,
+    "avg_revival_latency": 1.0,
+    "avg_theory_age": 3.875,
+    "longest_surviving_theory": 7,
+    "theory_mutation_count": 4,
+    "avg_confidence": 0.4011111111111111,
+    "confidence_delta": -0.04999999999999999,
+    "confidence_volatility": 0.029228769862146457,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.05263157894736842,
+    "avg_abstraction_length": 18.0,
+    "compression_ratio": 3.0,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "NIFTY's price action exhibits range-bound trading, potentially vulnerable to erosion if participation wanes under compressed volatility.",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "mixed",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-02-25",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 5,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-17",
+          "similarity": 0.826,
+          "active_theories": [
+            "4e6b59474730952a",
+            "da7b5df5d003b115",
+            "3d01b91c18875156"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-18",
+          "similarity": 0.826,
+          "active_theories": [
+            "4e6b59474730952a",
+            "da7b5df5d003b115",
+            "3d01b91c18875156"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-13",
+          "similarity": 0.823,
+          "active_theories": [
+            "4e6b59474730952a"
+          ],
+          "contradictions": [],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.416,
+        "label": "fragile"
+      }
+    }
+  }
+}

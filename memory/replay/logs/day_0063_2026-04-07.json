@@ -1,0 +1,113 @@
+{
+  "day_index": 63,
+  "date": "2026-04-07",
+  "observation_text": "NIFTY closed higher with volatility compressed and breadth strengthened.",
+  "theory_summary": "NIFTY's upward momentum appears fragile, sustained by reduced volatility. The compressed theory suggests that this trend may weaken if participation deteriorates.",
+  "confidence_state": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3581,
+    "contradiction": 0.278
+  },
+  "contradiction_score": 0.18,
+  "reflection_summary": "The observed upward momentum in NIFTY's trend seems fragile, sustained by reduced volatility. This is consistent with the original theory that warned of potential weakness if participation deteriorates. However, recent reflections contain uncertainty or caution signals, which contradicts this notion.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 19,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.525
+    },
+    "reflection": {
+      "word_count": 34,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.333,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.567
+    }
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "mixed",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2026-04-07",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 2,
+    "breadth_proxy": "strengthened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-03-18",
+      "similarity": 0.92,
+      "active_theories": [
+        "21e934a05b146ca9"
+      ],
+      "contradictions": [
+        "Current theory weakens a relationship that prior theory strengthened.",
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2025-12-31",
+      "similarity": 0.86,
+      "active_theories": [
+        "5e7d40de03b213e1"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-02",
+      "similarity": 0.817,
+      "active_theories": [
+        "da090643588d7d7a"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.392,
+    "label": "fragile"
+  },
+  "prediction": {
+    "direction": "higher",
+    "confidence": 0.38,
+    "tension": "Recent reflection contains uncertainty or caution signal.",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "higher",
+    "actual_direction": "higher",
+    "direction_score": 1.0,
+    "invalidation_triggered": false,
+    "confidence": 0.26,
+    "invalidation": "Trend contradiction: range_bound moved to extended_higher."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "c6fc3ada7d3b1eec": {
+    "id": "c6fc3ada7d3b1eec",
+    "theory_id": "da7b5df5d003b115",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 1,
+    "resolved_at_step": null,
+    "status": "carried_forward",
+    "age": 1,
+    "severity": 0.18
+  }
+}

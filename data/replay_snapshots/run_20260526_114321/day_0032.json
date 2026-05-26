@@ -1,0 +1,197 @@
+{
+  "step": 32,
+  "date": "2026-02-17",
+  "observation": "NIFTY traded range-bound with volatility compressed. Participation was selective.",
+  "abstraction": "Here is a concise abstraction of the market observation:\n\n\"NIFTY exhibited range-bound behavior, characterized by limited price movement and low volatility. Market participation was selective, with few stocks driving the overall trend.\"",
+  "theory": "Compressed volatility masks fragility, which may be exposed by deterioration in participation.",
+  "confidence": {
+    "empirical": 0.45,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3998,
+    "contradiction": 0.216
+  },
+  "contradiction": {
+    "score": 0.36,
+    "summary": "Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-02-17",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.36,
+    "active_theory_count": 1,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-09",
+      "similarity": 0.966,
+      "active_theories": [
+        "bcbcaf5d406eca81",
+        "1ecb76988833c6ea",
+        "0a3cd9240724d751"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-11",
+      "similarity": 0.966,
+      "active_theories": [
+        "1ecb76988833c6ea",
+        "0a3cd9240724d751",
+        "bfe9a7a8e13173c7"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-12",
+      "similarity": 0.966,
+      "active_theories": [
+        "bcbcaf5d406eca81",
+        "0a3cd9240724d751",
+        "bfe9a7a8e13173c7"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.562,
+    "label": "coherent"
+  },
+  "reflection": "The replay validation of the compressed volatility theory reveals a mixed bag. The recent failure signal in the validation contradicts the original theory, which posits that compressed volatility masks fragility. This tension is unresolved, as the uncertainty or caution signal in the reflection also persists.",
+  "metrics": {
+    "step": 32,
+    "date": "2026-02-17",
+    "contradiction_count": 1,
+    "contradiction_half_life": 1.6363636363636365,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9565217391304348,
+    "avg_contradiction_severity": 0.41608695652173916,
+    "highest_contradiction": 0.67,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 0,
+    "mutated_theories": 0,
+    "merged_theories": 1,
+    "retired_theories": 1,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 4.475,
+    "avg_revival_latency": 2.7058823529411766,
+    "avg_theory_age": 4.541666666666667,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 14,
+    "avg_confidence": 0.404,
+    "confidence_delta": 0.08000000000000002,
+    "confidence_volatility": 0.03555277766926236,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.06666666666666667,
+    "avg_abstraction_length": 32.0,
+    "compression_ratio": 3.5555555555555554,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "Compressed volatility masks fragility, which may be exposed by deterioration in participation.",
+      "contradiction_text": "Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-02-17",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.36,
+        "active_theory_count": 1,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-09",
+          "similarity": 0.966,
+          "active_theories": [
+            "bcbcaf5d406eca81",
+            "1ecb76988833c6ea",
+            "0a3cd9240724d751"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-11",
+          "similarity": 0.966,
+          "active_theories": [
+            "1ecb76988833c6ea",
+            "0a3cd9240724d751",
+            "bfe9a7a8e13173c7"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-12",
+          "similarity": 0.966,
+          "active_theories": [
+            "bcbcaf5d406eca81",
+            "0a3cd9240724d751",
+            "bfe9a7a8e13173c7"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.562,
+        "label": "coherent"
+      }
+    }
+  }
+}

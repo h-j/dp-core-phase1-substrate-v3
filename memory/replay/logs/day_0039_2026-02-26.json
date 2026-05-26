@@ -1,0 +1,117 @@
+{
+  "day_index": 39,
+  "date": "2026-02-26",
+  "observation_text": "NIFTY traded range-bound with volatility compressed.",
+  "theory_summary": "Compressed regime memory reinforces range-bound behavior, but fragility persists under contradiction pressure.",
+  "confidence_state": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3281,
+    "contradiction": 0.278
+  },
+  "contradiction_score": 0.18,
+  "reflection_summary": "The validation of this theory suggests that it may be reinforced by compressed regime memory, leading to range-bound behavior. However, the presence of uncertainty or caution signals in recent reflections indicates that fragility persists under contradiction pressure. One unresolved tension remains: the theory's ability to withstand volatility expansion is still insufficiently tested.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 12,
+      "sentence_count": 1,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.25,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.438
+    },
+    "reflection": {
+      "word_count": 42,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.667,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.883
+    }
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-02-26",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 2,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-25",
+      "similarity": 0.978,
+      "active_theories": [
+        "884aba25effb307f",
+        "bfa6e34ce946272b"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-09",
+      "similarity": 0.966,
+      "active_theories": [
+        "bcbcaf5d406eca81",
+        "1ecb76988833c6ea",
+        "0a3cd9240724d751"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-11",
+      "similarity": 0.966,
+      "active_theories": [
+        "1ecb76988833c6ea",
+        "0a3cd9240724d751",
+        "bfe9a7a8e13173c7"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "prediction": {
+    "direction": "range_bound",
+    "confidence": 0.38,
+    "tension": "volatility expansion vs structural support",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "range_bound",
+    "actual_direction": "range_bound",
+    "direction_score": 1.0,
+    "invalidation_triggered": false,
+    "confidence": 0.38,
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  }
+}

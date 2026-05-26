@@ -1,0 +1,118 @@
+{
+  "day_index": 51,
+  "date": "2026-03-17",
+  "observation_text": "NIFTY traded range-bound with volatility compressed.",
+  "theory_summary": "Weakening daily momentum persists, potentially threatening continuation. Compressed volatility constrains potential for meaningful moves.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3899,
+    "contradiction": 0.247
+  },
+  "contradiction_score": 0.67,
+  "reflection_summary": "The theory that weakening daily momentum persists, potentially threatening continuation, is challenged by recent validation. The contradiction between this theory and prior strengthening of the relationship highlights a failure signal. Moreover, the replay validation reveals mixed signals across different horizons, with regime memory indicating only moderate confidence.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 14,
+      "sentence_count": 2,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.425
+    },
+    "reflection": {
+      "word_count": 43,
+      "sentence_count": 3,
+      "narrative_density": 0.014,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.331,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.464
+    }
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "fatigue",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2026-03-17",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.67,
+    "active_theory_count": 2,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-09",
+      "similarity": 0.978,
+      "active_theories": [
+        "bcbcaf5d406eca81",
+        "1ecb76988833c6ea",
+        "0a3cd9240724d751"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-11",
+      "similarity": 0.978,
+      "active_theories": [
+        "1ecb76988833c6ea",
+        "0a3cd9240724d751",
+        "bfe9a7a8e13173c7"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-12",
+      "similarity": 0.978,
+      "active_theories": [
+        "bcbcaf5d406eca81",
+        "0a3cd9240724d751",
+        "bfe9a7a8e13173c7"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.392,
+    "label": "fragile"
+  },
+  "prediction": {
+    "direction": "range_bound",
+    "confidence": 0.36,
+    "tension": "Current theory weakens a relationship that prior theory strengthened. vs Recent validation contains failure signal.",
+    "invalidation": "Current theory weakens a relationship that prior theory strengthened."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "uncertain",
+    "actual_direction": "range_bound",
+    "direction_score": 0.0,
+    "invalidation_triggered": false,
+    "confidence": 0.22,
+    "invalidation": "Current theory weakens a relationship that prior theory strengthened."
+  }
+}

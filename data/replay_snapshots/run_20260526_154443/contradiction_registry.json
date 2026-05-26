@@ -1,0 +1,32 @@
+{
+  "3e1804d5b378b58a": {
+    "id": "3e1804d5b378b58a",
+    "theory_id": "fa03c73a1a41bf95",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 2,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 6,
+    "severity": 0.49
+  },
+  "b38f095c177e3b3e": {
+    "id": "b38f095c177e3b3e",
+    "theory_id": "24971f4c2ca5f43b",
+    "description": "current theory strengthens a relationship that prior theory weakened.",
+    "created_at_step": 3,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.49
+  },
+  "ed3ebf8756337edc": {
+    "id": "ed3ebf8756337edc",
+    "theory_id": "e4e825eb054b74d8",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 9,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.18
+  }
+}

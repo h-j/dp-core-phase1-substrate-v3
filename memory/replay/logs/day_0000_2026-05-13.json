@@ -1,0 +1,68 @@
+{
+  "day_index": 0,
+  "date": "2026-05-13",
+  "observation_text": "NIFTY traded range-bound with volatility compressed.",
+  "theory_summary": "NIFTY's trading range constrains price action, while compressed volatility limits potential for significant moves. The narrow scope of recent fluctuations may persist unless participation improves. This revised theory: Is grounded in the observation and abstraction provided Makes a specific claim about market structure (trading range) and volatility Is falsifiable, as future observations could contradict it Preserves ambiguity where evidence is weak (participation) Names an unresolved tension (deteriorating participation) Focuses on market structure, coherence, uncertainty, volatility, breadth, participation, liquidity, and regime evolution",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.4328,
+    "contradiction": 0.18
+  },
+  "contradiction_score": 0,
+  "reflection_summary": "The replay validation provides limited insight into the theory's validity. The daily range-bound context suggests some support for the theory, but the weekly and monthly contexts reveal insufficient history to confirm or contradict it. One unresolved tension remains: deteriorating participation, which may persist unless addressed.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 71,
+      "sentence_count": 3,
+      "narrative_density": 0.403,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.051,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.94
+    },
+    "reflection": {
+      "word_count": 42,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.333,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.767
+    }
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-05-13",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.0,
+    "active_theory_count": 1,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [],
+  "theory_usefulness": {
+    "score": 0.464,
+    "label": "fragile"
+  },
+  "prediction": {
+    "direction": "range_bound",
+    "confidence": 0.38,
+    "tension": "observation coherence vs residual uncertainty",
+    "invalidation": "contradiction signal"
+  },
+  "prior_prediction_result": null
+}

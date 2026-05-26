@@ -1,0 +1,191 @@
+{
+  "step": 60,
+  "date": "2026-04-01",
+  "observation": "NIFTY closed lower with volatility compressed.",
+  "abstraction": "Here is the concise abstraction:\n\n\"Nifty's daily momentum weakened, while weekly and monthly trends remained mixed, accompanied by reduced market volatility.\"",
+  "theory": "Compressed theory: NIFTY's daily momentum remains fragile under compressed volatility, susceptible to reversal.",
+  "confidence": {
+    "empirical": 0.45,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.4113,
+    "contradiction": 0.198
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "mixed",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2026-04-01",
+    "trend": "closed_lower",
+    "volatility_state": "compressed",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 2,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-03",
+      "similarity": 0.698,
+      "active_theories": [
+        "234d40bdd5ec9b17",
+        "1ecb76988833c6ea"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-23",
+      "similarity": 0.677,
+      "active_theories": [
+        "234d40bdd5ec9b17",
+        "7c53a9df804d8d68"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-25",
+      "similarity": 0.658,
+      "active_theories": [
+        "884aba25effb307f",
+        "bfa6e34ce946272b"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.46,
+    "label": "fragile"
+  },
+  "reflection": "The compressed theory suggests that NIFTY's daily momentum is fragile when volatility is compressed, making it susceptible to reversal. However, the recent reflection contains an uncertainty or caution signal, which contradicts this theory. The replay validation shows a weakening trend in the daily horizon, mixed signals in the weekly and monthly horizons, and regime memory similarities with lower confidence levels.",
+  "metrics": {
+    "step": 60,
+    "date": "2026-04-01",
+    "contradiction_count": 1,
+    "contradiction_half_life": 1.2641509433962264,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 4,
+    "contradiction_resolution_rate": 0.9814814814814815,
+    "avg_contradiction_severity": 0.5018518518518519,
+    "highest_contradiction": 0.78,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 0,
+    "merged_theories": 1,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 6.916666666666667,
+    "avg_revival_latency": 6.714285714285714,
+    "avg_theory_age": 3.6862745098039214,
+    "longest_surviving_theory": 12,
+    "theory_mutation_count": 29,
+    "avg_confidence": 0.398,
+    "confidence_delta": 0.030000000000000027,
+    "confidence_volatility": 0.029257477676655586,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.5,
+    "memory_reference_count": 0,
+    "critique_density": 0.08333333333333333,
+    "avg_abstraction_length": 21.0,
+    "compression_ratio": 3.5,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Compressed theory: NIFTY's daily momentum remains fragile under compressed volatility, susceptible to reversal.",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "mixed",
+        "monthly": "mixed"
+      },
+      "regime_signature": {
+        "date": "2026-04-01",
+        "trend": "closed_lower",
+        "volatility_state": "compressed",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 2,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-03",
+          "similarity": 0.698,
+          "active_theories": [
+            "234d40bdd5ec9b17",
+            "1ecb76988833c6ea"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-01-23",
+          "similarity": 0.677,
+          "active_theories": [
+            "234d40bdd5ec9b17",
+            "7c53a9df804d8d68"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-25",
+          "similarity": 0.658,
+          "active_theories": [
+            "884aba25effb307f",
+            "bfa6e34ce946272b"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.46,
+        "label": "fragile"
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "step": 1,
+  "date": "2026-02-16",
+  "observation": "NIFTY closed higher with volatility compressed.",
+  "abstraction": "The Indian equity market exhibited a calm tone, with NIFTY closing higher amidst reduced volatility.",
+  "theory": "Compressed Theory: NIFTY's upward momentum remains fragile under compressed volatility, with continuation supported by limited participation. This theory directly grounds itself in the observation of reduced volatility and abstraction of a calm market tone. It makes a narrow claim about the fragility of the market's upward momentum rather than making broad statements.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3581,
+    "contradiction": 0.278
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-02-16",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 2,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-13",
+      "similarity": 0.68,
+      "active_theories": [
+        "4e6b59474730952a"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.44,
+    "label": "fragile"
+  },
+  "reflection": "The Compressed Theory's claim about the fragility of NIFTY's upward momentum remains untested under expanded volatility. This is evident from the recent reflection containing uncertainty or caution signals, which contradicts the theory's narrow prediction. One unresolved tension persists: the theory's reliance on limited participation to support continuation, which may not be sufficient to overcome potential market shifts.",
+  "metrics": {
+    "step": 1,
+    "date": "2026-02-16",
+    "contradiction_count": 1,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.18,
+    "highest_contradiction": 0.18,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 1.5,
+    "longest_surviving_theory": 2,
+    "theory_mutation_count": 1,
+    "avg_confidence": 0.395,
+    "confidence_delta": -0.04999999999999999,
+    "confidence_volatility": 0.024999999999999994,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.07017543859649122,
+    "avg_abstraction_length": 15.0,
+    "compression_ratio": 2.5,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Compressed Theory: NIFTY's upward momentum remains fragile under compressed volatility, with continuation supported by limited participation. This theory directly grounds itself in the observation of reduced volatility and abstraction of a calm market tone. It makes a narrow claim about the fragility of the market's upward momentum rather than making broad statements.",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-02-16",
+        "trend": "closed_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 2,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-13",
+          "similarity": 0.68,
+          "active_theories": [
+            "4e6b59474730952a"
+          ],
+          "contradictions": [],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.44,
+        "label": "fragile"
+      }
+    }
+  }
+}

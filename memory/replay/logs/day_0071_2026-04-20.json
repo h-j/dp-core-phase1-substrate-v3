@@ -1,0 +1,116 @@
+{
+  "day_index": 71,
+  "date": "2026-04-20",
+  "observation_text": "NIFTY traded range-bound with volatility compressed and breadth strengthened. Participation was selective.",
+  "theory_summary": "NIFTY's range-bound behavior persists, albeit with fragile support under compressed volatility. Continuation remains weakly supported unless participation improves. This theory directly grounds itself in the observation and abstraction above, focusing on market structure and coherence.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.4213,
+    "contradiction": 0.198
+  },
+  "contradiction_score": 0.18,
+  "reflection_summary": "The observed range-bound behavior of NIFTY persists, but its continuation remains fragile and weakly supported. This is reflected in the recent uncertainty or caution signal, which contradicts the original theory. One unresolved tension lies in the fact that participation needs to improve for the theory to remain valid.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 33,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.833,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.642
+    },
+    "reflection": {
+      "word_count": 41,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.333,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.767
+    }
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-20",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 1,
+    "breadth_proxy": "strengthened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-03-24",
+      "similarity": 0.978,
+      "active_theories": [
+        "299ef767eea5a538",
+        "ad925485c35a41e0"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-16",
+      "similarity": 0.978,
+      "active_theories": [
+        "1ecb76988833c6ea",
+        "414c2743afd4892c"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-05",
+      "similarity": 0.966,
+      "active_theories": [
+        "5a888fdd219c32f1",
+        "1ecb76988833c6ea",
+        "d36c50eb6a3eae0c"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.44,
+    "label": "fragile"
+  },
+  "prediction": {
+    "direction": "range_bound",
+    "confidence": 0.38,
+    "tension": "continuation strength vs uncertainty",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "higher",
+    "actual_direction": "range_bound",
+    "direction_score": 0.0,
+    "invalidation_triggered": true,
+    "confidence": 0.42,
+    "invalidation": "Current theory strengthens a relationship that prior theory weakened."
+  }
+}

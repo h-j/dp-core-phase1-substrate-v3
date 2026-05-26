@@ -1,0 +1,86 @@
+{
+  "day_index": 1,
+  "date": "2026-01-01",
+  "observation_text": "NIFTY traded range-bound with volatility compressed.",
+  "theory_summary": "Compressed theory: NIFTY's upward momentum relies on continued participation, which remains tenuous under compressed volatility.",
+  "confidence_state": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3281,
+    "contradiction": 0.278
+  },
+  "contradiction_score": 0.18,
+  "reflection_summary": "The compressed theory suggests that NIFTY's upward momentum relies on continued participation, which remains tenuous under compressed volatility. However, recent reflections contain uncertainty or caution signals, contradicting this theory (Recent reflection contains uncertainty or caution signal). One unresolved tension is the lack of sufficient testing of observed continuation under volatility expansion.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 14,
+      "sentence_count": 1,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.5,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.425
+    },
+    "reflection": {
+      "word_count": 45,
+      "sentence_count": 3,
+      "narrative_density": 0.042,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.826,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.933
+    }
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-01-01",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 2,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2025-12-31",
+      "similarity": 0.68,
+      "active_theories": [
+        "5e7d40de03b213e1"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.44,
+    "label": "fragile"
+  },
+  "prediction": {
+    "direction": "range_bound",
+    "confidence": 0.38,
+    "tension": "volatility expansion vs structural support",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "higher",
+    "actual_direction": "range_bound",
+    "direction_score": 0.0,
+    "invalidation_triggered": true,
+    "confidence": 0.56,
+    "invalidation": "volatility expansion"
+  }
+}

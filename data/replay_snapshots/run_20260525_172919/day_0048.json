@@ -1,0 +1,199 @@
+{
+  "step": 48,
+  "date": "2026-04-29",
+  "observation": "NIFTY traded range-bound with volatility compressed.",
+  "abstraction": "Here is a concise abstraction of the market observation:\n\n\"NIFTY exhibits range-bound behavior, with compressed volatility, and shows signs of strengthening over longer horizons.\"",
+  "theory": "Compressed theory: NIFTY's upward trend relies on maintaining compressed volatility, which remains fragile under unresolved breadth weakness. This theory directly grounds in the observation of range-bound behavior with compressed volatility and signs of strengthening over longer horizons. The narrow claim focuses on market structure and coherence, highlighting the tension between the observed stability and the unresolved breadth weakness.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.55,
+    "coherence": 0.3699,
+    "contradiction": 0.247
+  },
+  "contradiction": {
+    "score": 0.67,
+    "summary": "Current theory strengthens a relationship that prior theory weakened.; Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Current theory strengthens a relationship that prior theory weakened.",
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Current theory strengthens a relationship that prior theory weakened.",
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-29",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.67,
+    "active_theory_count": 2,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-03-04",
+      "similarity": 0.957,
+      "active_theories": [
+        "4bc783e4de348c86",
+        "e9ccbd23d335961a"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-02",
+      "similarity": 0.957,
+      "active_theories": [
+        "df3030852e7f0902",
+        "a3dbc68d7ed3bdae"
+      ],
+      "contradictions": [
+        "Trend contradiction: closed_lower moved to range_bound.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-26",
+      "similarity": 0.953,
+      "active_theories": [
+        "4e6b59474730952a",
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.344,
+    "label": "failed"
+  },
+  "reflection": "The compressed theory's upward trend relies on maintaining compressed volatility, which remains fragile under unresolved breadth weakness. This observation is supported by recent validation, showing range-bound behavior with compressed volatility and signs of strengthening over longer horizons. However, the theory's strength is tempered by the fact that it has not been thoroughly tested under conditions of volatility expansion.",
+  "metrics": {
+    "step": 48,
+    "date": "2026-04-29",
+    "contradiction_count": 3,
+    "contradiction_half_life": 1.5135135135135136,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.925,
+    "avg_contradiction_severity": 0.5675,
+    "highest_contradiction": 1.0,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 2,
+    "revived_theories": 1,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 5.9411764705882355,
+    "avg_revival_latency": 8.04,
+    "avg_theory_age": 3.533333333333333,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 25,
+    "avg_confidence": 0.393,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.02934280150224242,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.034482758620689655,
+    "avg_abstraction_length": 24.0,
+    "compression_ratio": 4.0,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Compressed theory: NIFTY's upward trend relies on maintaining compressed volatility, which remains fragile under unresolved breadth weakness. This theory directly grounds in the observation of range-bound behavior with compressed volatility and signs of strengthening over longer horizons. The narrow claim focuses on market structure and coherence, highlighting the tension between the observed stability and the unresolved breadth weakness.",
+      "contradiction_text": "Current theory strengthens a relationship that prior theory weakened.; Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "strengthening"
+      },
+      "regime_signature": {
+        "date": "2026-04-29",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.67,
+        "active_theory_count": 2,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-03-04",
+          "similarity": 0.957,
+          "active_theories": [
+            "4bc783e4de348c86",
+            "e9ccbd23d335961a"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-02",
+          "similarity": 0.957,
+          "active_theories": [
+            "df3030852e7f0902",
+            "a3dbc68d7ed3bdae"
+          ],
+          "contradictions": [
+            "Trend contradiction: closed_lower moved to range_bound.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-26",
+          "similarity": 0.953,
+          "active_theories": [
+            "4e6b59474730952a",
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.344,
+        "label": "failed"
+      }
+    }
+  }
+}

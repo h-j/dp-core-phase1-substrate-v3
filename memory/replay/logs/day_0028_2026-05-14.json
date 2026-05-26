@@ -100,5 +100,19 @@
   "theory_usefulness": {
     "score": 0.344,
     "label": "failed"
+  },
+  "prediction": {
+    "direction": "higher",
+    "confidence": 0.36,
+    "tension": "volatility expansion vs structural support",
+    "invalidation": "Trend contradiction: range_bound moved to extended_higher."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "range_bound",
+    "actual_direction": "higher",
+    "direction_score": 0.5,
+    "invalidation_triggered": true,
+    "confidence": 0.44,
+    "invalidation": "Recent validation contains failure signal."
   }
 }

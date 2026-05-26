@@ -92,5 +92,19 @@
   "theory_usefulness": {
     "score": 0.44,
     "label": "fragile"
+  },
+  "prediction": {
+    "direction": "uncertain",
+    "confidence": 0.34,
+    "tension": "Recent reflection contains uncertainty or caution signal.",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "higher",
+    "actual_direction": "lower",
+    "direction_score": 0.0,
+    "invalidation_triggered": true,
+    "confidence": 0.34,
+    "invalidation": "Current theory strengthens a relationship that prior theory weakened."
   }
 }

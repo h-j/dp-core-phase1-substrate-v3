@@ -1,0 +1,189 @@
+{
+  "step": 35,
+  "date": "2026-02-20",
+  "observation": "NIFTY closed higher with volatility compressed with broad participation. Participation was selective.",
+  "abstraction": "Here is a concise abstraction of the market observation:\n\n\"Nifty closes higher with reduced volatility, driven by selective broad participation, and exhibits strengthening trends across daily, weekly, and monthly horizons.\"",
+  "theory": "Compressed volatility persists, but its underlying strength remains uncertain. The recent replay validation of this regime yields mixed results, with daily, weekly, and monthly trends strengthening, yet fragile participation dynamics may undermine this stability. This theory is grounded in the observation and abstraction provided, focusing on market structure, coherence, uncertainty, and volatility.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3267,
+    "contradiction": 0.327
+  },
+  "contradiction": {
+    "score": 0.67,
+    "summary": "Current theory strengthens a relationship that prior theory weakened.; Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Current theory strengthens a relationship that prior theory weakened.",
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Current theory strengthens a relationship that prior theory weakened.",
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "strengthening",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-02-20",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.67,
+    "active_theory_count": 2,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-02",
+      "similarity": 0.957,
+      "active_theories": [
+        "da090643588d7d7a"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2025-12-31",
+      "similarity": 0.86,
+      "active_theories": [
+        "5e7d40de03b213e1"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-02",
+      "similarity": 0.813,
+      "active_theories": [
+        "5e7d40de03b213e1",
+        "275500409fc758d7",
+        "d0f8b31888296201"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.344,
+    "label": "failed"
+  },
+  "reflection": "The observed persistence of compressed volatility is intriguing, but its underlying strength remains uncertain. The recent replay validation yields mixed results, with daily, weekly, and monthly trends strengthening, yet fragile participation dynamics may undermine this stability. As the theory suggests, the relationship between market structure, coherence, uncertainty, and volatility remains unclear.",
+  "metrics": {
+    "step": 35,
+    "date": "2026-02-20",
+    "contradiction_count": 2,
+    "contradiction_half_life": 1.56,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9259259259259259,
+    "avg_contradiction_severity": 0.4422222222222222,
+    "highest_contradiction": 0.67,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 1,
+    "revived_theories": 1,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 4.454545454545454,
+    "avg_revival_latency": 3.4210526315789473,
+    "avg_theory_age": 4.2592592592592595,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 16,
+    "avg_confidence": 0.409,
+    "confidence_delta": -0.04999999999999999,
+    "confidence_volatility": 0.03389690251335659,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.5,
+    "memory_reference_count": 0,
+    "critique_density": 0.058823529411764705,
+    "avg_abstraction_length": 30.0,
+    "compression_ratio": 2.5,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 12,
+      "theory_text": "Compressed volatility persists, but its underlying strength remains uncertain. The recent replay validation of this regime yields mixed results, with daily, weekly, and monthly trends strengthening, yet fragile participation dynamics may undermine this stability. This theory is grounded in the observation and abstraction provided, focusing on market structure, coherence, uncertainty, and volatility.",
+      "contradiction_text": "Current theory strengthens a relationship that prior theory weakened.; Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "strengthening",
+        "weekly": "strengthening",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-02-20",
+        "trend": "closed_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.67,
+        "active_theory_count": 2,
+        "breadth_proxy": "strongly_participatory"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-02",
+          "similarity": 0.957,
+          "active_theories": [
+            "da090643588d7d7a"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2025-12-31",
+          "similarity": 0.86,
+          "active_theories": [
+            "5e7d40de03b213e1"
+          ],
+          "contradictions": [],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-01-02",
+          "similarity": 0.813,
+          "active_theories": [
+            "5e7d40de03b213e1",
+            "275500409fc758d7",
+            "d0f8b31888296201"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.344,
+        "label": "failed"
+      }
+    }
+  }
+}

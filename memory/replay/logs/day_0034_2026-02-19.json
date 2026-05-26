@@ -1,0 +1,119 @@
+{
+  "day_index": 34,
+  "date": "2026-02-19",
+  "observation_text": "NIFTY closed lower with volatility compressed and breadth strengthened. Liquidity remained concentrated in large-caps.",
+  "theory_summary": "Compressed volatility supports continuation, but recent failure signals suggest this regime may be fragile.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.4098,
+    "contradiction": 0.216
+  },
+  "contradiction_score": 0.36,
+  "reflection_summary": "The recent replay validation of compressed volatility supporting continuation is fragile. The theory's prediction of continuation is contradicted by the presence of failure signals in both the recent validation and reflection. One unresolved tension arises from the conflicting regime memory, where the similarity to past events is high but confidence is low.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 13,
+      "sentence_count": 1,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.75,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.612
+    },
+    "reflection": {
+      "word_count": 42,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.667,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.683
+    }
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-02-19",
+    "trend": "extended_lower",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.36,
+    "active_theory_count": 1,
+    "breadth_proxy": "strengthened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-01-20",
+      "similarity": 0.817,
+      "active_theories": [
+        "e0bd4dbefbbfefe5",
+        "234d40bdd5ec9b17"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-08",
+      "similarity": 0.792,
+      "active_theories": [
+        "5e7d40de03b213e1",
+        "275500409fc758d7",
+        "d0f8b31888296201"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-05",
+      "similarity": 0.786,
+      "active_theories": [
+        "5a888fdd219c32f1",
+        "1ecb76988833c6ea",
+        "d36c50eb6a3eae0c"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "prediction": {
+    "direction": "uncertain",
+    "confidence": 0.12,
+    "tension": "Recent validation contains failure signal. vs Recent reflection contains uncertainty or caution signal.",
+    "invalidation": "Recent validation contains failure signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "range_bound",
+    "actual_direction": "lower",
+    "direction_score": 0.5,
+    "invalidation_triggered": true,
+    "confidence": 0.26,
+    "invalidation": "Recent validation contains failure signal."
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "step": 37,
+  "date": "2026-04-13",
+  "observation": "NIFTY closed higher with volatility compressed with broad participation.",
+  "abstraction": "Here is the concise abstraction:\n\n\"Nifty's upward trend persists, driven by broad market participation and reduced volatility.\"",
+  "theory": "Continuation remains weakly supported under compressed volatility. Unresolved breadth weakness persists, potentially threatening the upward trend if participation deteriorates.",
+  "confidence": {
+    "empirical": 0.45,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.4413,
+    "contradiction": 0.198
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "strengthening",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2026-04-13",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 3,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-20",
+      "similarity": 0.978,
+      "active_theories": [
+        "da7b5df5d003b115",
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-03-09",
+      "similarity": 0.944,
+      "active_theories": [
+        "65921e5975ea3306",
+        "ed2df6adb205cbe6"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-16",
+      "similarity": 0.826,
+      "active_theories": [
+        "4e6b59474730952a",
+        "da7b5df5d003b115"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.46,
+    "label": "fragile"
+  },
+  "reflection": "Observed continuation remains insufficiently tested under volatility expansion. The theory suggests that continuation is weakly supported when volatility is compressed, which is corroborated by the recent reflection containing an uncertainty or caution signal. One unresolved tension persists: the potential threat to the upward trend if participation deteriorates, as breadth weakness remains unresolved.",
+  "metrics": {
+    "step": 37,
+    "date": "2026-04-13",
+    "contradiction_count": 1,
+    "contradiction_half_life": 1.4137931034482758,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 1,
+    "contradiction_resolution_rate": 0.9666666666666667,
+    "avg_contradiction_severity": 0.5616666666666668,
+    "highest_contradiction": 1.0,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 0,
+    "merged_theories": 1,
+    "retired_theories": 1,
+    "revived_theories": 1,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 4.795918367346939,
+    "avg_revival_latency": 6.0588235294117645,
+    "avg_theory_age": 3.4285714285714284,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 18,
+    "avg_confidence": 0.396,
+    "confidence_delta": 0.08000000000000002,
+    "confidence_volatility": 0.033226495451672305,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.07692307692307693,
+    "avg_abstraction_length": 17.0,
+    "compression_ratio": 1.8888888888888888,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "Continuation remains weakly supported under compressed volatility. Unresolved breadth weakness persists, potentially threatening the upward trend if participation deteriorates.",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "strengthening",
+        "weekly": "strengthening",
+        "monthly": "mixed"
+      },
+      "regime_signature": {
+        "date": "2026-04-13",
+        "trend": "closed_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 3,
+        "breadth_proxy": "strongly_participatory"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-20",
+          "similarity": 0.978,
+          "active_theories": [
+            "da7b5df5d003b115",
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-03-09",
+          "similarity": 0.944,
+          "active_theories": [
+            "65921e5975ea3306",
+            "ed2df6adb205cbe6"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-16",
+          "similarity": 0.826,
+          "active_theories": [
+            "4e6b59474730952a",
+            "da7b5df5d003b115"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.46,
+        "label": "fragile"
+      }
+    }
+  }
+}
