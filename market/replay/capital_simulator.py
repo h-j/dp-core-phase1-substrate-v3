@@ -112,8 +112,8 @@ class CapitalSimulator:
             "annualized_return": annualized_return,
             "win_rate": win_rate,
             "max_drawdown": self.max_drawdown_pct,
-            "best_day": best_day,
-            "worst_day": worst_day,
+            "best_day": best_day / 100.0,
+            "worst_day": worst_day / 100.0,
             "alpha_vs_cash": alpha_vs_cash,
             "total_days": self.total_days,
         }

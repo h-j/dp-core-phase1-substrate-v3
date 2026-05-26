@@ -376,6 +376,8 @@ class ReplayValidationRunner:
         execution_hash = engine.finalize_execution()
         capital_summary = self.capital_simulator.get_summary()
         analysis.set_capital_simulation_summary(capital_summary)
+        # WIRING FIX: Transfer daily logs to enable CSV export and analysis
+        analysis.set_capital_simulation_logs(self.capital_simulator.get_daily_logs())
         analysis.analyze()
 
         return {

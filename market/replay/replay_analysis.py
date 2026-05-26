@@ -14,6 +14,7 @@ from collections import defaultdict
 from datetime import datetime
 
 from statistics import mean, median, correlation
+import statistics
 from market.replay.prediction_probe import PredictionDirection
 class ReplayAnalysisEngine:
     """
@@ -574,7 +575,7 @@ class ReplayAnalysisEngine:
         correct = sum(1 for r in scored if is_correct(r))
         partial = sum(1 for r in scored if is_partial(r))
         mean_conf = (
-            statistics.mean([r["prediction"].get("confidence", 0) for r in scored])
+            mean([r["prediction"].get("confidence", 0) for r in scored])
             if scored
             else 0.0
         )
@@ -701,7 +702,7 @@ class ReplayAnalysisEngine:
         scores = [r["prior_prediction_result"].get("direction_score", 0) for r in scored]
         if len(confidences) > 1 and len(scores) > 1:
             try:
-                correlation_coeff = correlation(confidences, scores)
+                correlation_val = correlation(confidences, scores)
             except Exception:
                 correlation_coeff = 0.0
 
