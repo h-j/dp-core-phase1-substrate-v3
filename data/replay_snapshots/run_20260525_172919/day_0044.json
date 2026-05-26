@@ -1,0 +1,199 @@
+{
+  "step": 44,
+  "date": "2026-04-23",
+  "observation": "NIFTY traded range-bound with volatility compressed.",
+  "abstraction": "Here is a concise abstraction of the market observation:\n\n\"NIFTY exhibits range-bound behavior, with compressed volatility, and shows signs of strengthening over longer horizons.\"",
+  "theory": "Compressed Theory: NIFTY's strengthening trend remains fragile under compressed volatility, where continuation depends on maintaining participation levels. This theory directly grounds in the observation of range-bound behavior with compressed volatility and the abstraction of strengthening over longer horizons. It makes a narrow claim about the market structure and coherence, highlighting the uncertainty surrounding the upward trend.",
+  "confidence": {
+    "empirical": 0.45,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.4214,
+    "contradiction": 0.229
+  },
+  "contradiction": {
+    "score": 0.49,
+    "summary": "Current theory strengthens a relationship that prior theory weakened.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Current theory strengthens a relationship that prior theory weakened.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Current theory strengthens a relationship that prior theory weakened.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-23",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.49,
+    "active_theory_count": 4,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-26",
+      "similarity": 0.978,
+      "active_theories": [
+        "4e6b59474730952a",
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-25",
+      "similarity": 0.966,
+      "active_theories": [
+        "4e6b59474730952a",
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-22",
+      "similarity": 0.941,
+      "active_theories": [
+        "c82a12f2f0caaa00",
+        "52209da24f9a38ba",
+        "c70b66956364e997"
+      ],
+      "contradictions": [
+        "Current theory strengthens a relationship that prior theory weakened.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.412,
+    "label": "failed"
+  },
+  "reflection": "The Compressed Theory's validation reveals a fragile strengthening trend that relies on maintaining participation levels. The recent reflection contains uncertainty, as the theory strengthens a relationship that prior theory weakened. This tension is unresolved, with the return indicating a compressed critique.",
+  "metrics": {
+    "step": 44,
+    "date": "2026-04-23",
+    "contradiction_count": 2,
+    "contradiction_half_life": 1.40625,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 3,
+    "contradiction_resolution_rate": 0.9411764705882353,
+    "avg_contradiction_severity": 0.5441176470588235,
+    "highest_contradiction": 1.0,
+    "theory_count": 4,
+    "active_theories": 4,
+    "new_theories": 0,
+    "mutated_theories": 0,
+    "merged_theories": 1,
+    "retired_theories": 1,
+    "revived_theories": 1,
+    "contradicted_theories": 3,
+    "avg_retirement_age": 5.137931034482759,
+    "avg_revival_latency": 6.0,
+    "avg_theory_age": 3.5121951219512195,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 22,
+    "avg_confidence": 0.401,
+    "confidence_delta": 0.030000000000000027,
+    "confidence_volatility": 0.032695565448543636,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.07317073170731707,
+    "avg_abstraction_length": 24.0,
+    "compression_ratio": 4.0,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Compressed Theory: NIFTY's strengthening trend remains fragile under compressed volatility, where continuation depends on maintaining participation levels. This theory directly grounds in the observation of range-bound behavior with compressed volatility and the abstraction of strengthening over longer horizons. It makes a narrow claim about the market structure and coherence, highlighting the uncertainty surrounding the upward trend.",
+      "contradiction_text": "Current theory strengthens a relationship that prior theory weakened.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "strengthening"
+      },
+      "regime_signature": {
+        "date": "2026-04-23",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.49,
+        "active_theory_count": 4,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-26",
+          "similarity": 0.978,
+          "active_theories": [
+            "4e6b59474730952a",
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-25",
+          "similarity": 0.966,
+          "active_theories": [
+            "4e6b59474730952a",
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-22",
+          "similarity": 0.941,
+          "active_theories": [
+            "c82a12f2f0caaa00",
+            "52209da24f9a38ba",
+            "c70b66956364e997"
+          ],
+          "contradictions": [
+            "Current theory strengthens a relationship that prior theory weakened.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.412,
+        "label": "failed"
+      }
+    }
+  }
+}

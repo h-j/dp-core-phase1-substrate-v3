@@ -1,0 +1,117 @@
+{
+  "day_index": 64,
+  "date": "2026-04-08",
+  "observation_text": "NIFTY closed higher with volatility compressed with broad participation.",
+  "theory_summary": "NIFTY's upward trend persists, driven by broad market participation and reduced volatility. Continuation remains weakly supported under compressed volatility. This theory directly grounds itself in the observation and abstraction provided, focusing on the market structure and coherence.",
+  "confidence_state": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3581,
+    "contradiction": 0.278
+  },
+  "contradiction_score": 0.18,
+  "reflection_summary": "The validation of NIFTY's upward trend persistence is only partially supported by the replay validation, with a strengthening daily horizon context but mixed monthly regime memory. The recent reflection contains uncertainty or caution signals, which contradicts the original theory. One unresolved tension remains: the theory's assumption that broad market participation and reduced volatility drive the trend, while the validation suggests that this relationship may not be as clear-cut.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 34,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.833,
+      "causal_inflation": 0.333,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.608
+    },
+    "reflection": {
+      "word_count": 61,
+      "sentence_count": 3,
+      "narrative_density": 0.264,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.453,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.02,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.769
+    }
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "strengthening",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2026-04-08",
+    "trend": "extended_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 2,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-03",
+      "similarity": 0.798,
+      "active_theories": [
+        "234d40bdd5ec9b17",
+        "1ecb76988833c6ea"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-30",
+      "similarity": 0.777,
+      "active_theories": [
+        "bcbcaf5d406eca81",
+        "3faf01c616ad5d29"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-03-09",
+      "similarity": 0.777,
+      "active_theories": [
+        "38e66190fc6de8d4",
+        "f2d681099faabae5"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.368,
+    "label": "failed"
+  },
+  "prediction": {
+    "direction": "higher",
+    "confidence": 0.46,
+    "tension": "continuation strength vs uncertainty",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "higher",
+    "actual_direction": "higher",
+    "direction_score": 1.0,
+    "invalidation_triggered": false,
+    "confidence": 0.38,
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  }
+}

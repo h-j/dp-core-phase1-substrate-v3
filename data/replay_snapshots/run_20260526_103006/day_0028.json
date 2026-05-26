@@ -1,0 +1,199 @@
+{
+  "step": 28,
+  "date": "2026-05-14",
+  "observation": "NIFTY closed higher with volatility compressed.",
+  "abstraction": "Here is a concise abstraction of the market observation:\n\n\"Nifty's upward trend is characterized by reduced volatility, with daily performance being mixed, weekly showing signs of fatigue, and monthly trading within a defined range.\"",
+  "theory": "Continuation remains weakly supported under compressed volatility. Nifty's upward trend exhibits mixed daily performance, with weekly signs of fatigue and monthly trading within a defined range.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3197,
+    "contradiction": 0.338
+  },
+  "contradiction": {
+    "score": 0.78,
+    "summary": "Trend contradiction: range_bound moved to extended_higher.; Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Trend contradiction: range_bound moved to extended_higher.",
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Trend contradiction: range_bound moved to extended_higher.",
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "fatigue",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-05-14",
+    "trend": "extended_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.78,
+    "active_theory_count": 1,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-06",
+      "similarity": 0.838,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-10",
+      "similarity": 0.813,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "885ab3fc7f95b002"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-08",
+      "similarity": 0.789,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95",
+        "24971f4c2ca5f43b"
+      ],
+      "contradictions": [
+        "Current theory strengthens a relationship that prior theory weakened.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.344,
+    "label": "failed"
+  },
+  "reflection": "Observed continuation remains insufficiently tested under volatility expansion. The theory, which posits that continuation is weakly supported under compressed volatility, is contradicted by recent market movements. Specifically, the trend contradiction between range-bound movement and extended highs suggests that the theory may not fully account for the current market regime.",
+  "metrics": {
+    "step": 28,
+    "date": "2026-05-14",
+    "contradiction_count": 3,
+    "contradiction_half_life": 1.5625,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.8421052631578947,
+    "avg_contradiction_severity": 0.47789473684210526,
+    "highest_contradiction": 0.78,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 2,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 4.787878787878788,
+    "avg_revival_latency": 3.5,
+    "avg_theory_age": 3.7083333333333335,
+    "longest_surviving_theory": 9,
+    "theory_mutation_count": 16,
+    "avg_confidence": 0.388,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.028565713714171402,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.061224489795918366,
+    "avg_abstraction_length": 34.0,
+    "compression_ratio": 5.666666666666667,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Continuation remains weakly supported under compressed volatility. Nifty's upward trend exhibits mixed daily performance, with weekly signs of fatigue and monthly trading within a defined range.",
+      "contradiction_text": "Trend contradiction: range_bound moved to extended_higher.; Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "fatigue",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-05-14",
+        "trend": "extended_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.78,
+        "active_theory_count": 1,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-04-06",
+          "similarity": 0.838,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-10",
+          "similarity": 0.813,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95",
+            "885ab3fc7f95b002"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-08",
+          "similarity": 0.789,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95",
+            "24971f4c2ca5f43b"
+          ],
+          "contradictions": [
+            "Current theory strengthens a relationship that prior theory weakened.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.344,
+        "label": "failed"
+      }
+    }
+  }
+}

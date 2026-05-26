@@ -1,0 +1,197 @@
+{
+  "step": 30,
+  "date": "2026-04-01",
+  "observation": "NIFTY closed lower with volatility compressed.",
+  "abstraction": "Here is the concise abstraction:\n\n\"Nifty's daily momentum weakened, while weekly and monthly trends remained mixed, accompanied by reduced market volatility.\"",
+  "theory": "Weakening daily momentum persists, while weekly and monthly trends remain mixed. Compressed volatility supports continuation, but unresolved tension between breadth strength and participation remains. This theory is grounded in the observation of NIFTY's daily momentum weakening, while weekly and monthly trends remained mixed, accompanied by reduced market volatility.",
+  "confidence": {
+    "empirical": 0.45,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.4214,
+    "contradiction": 0.229
+  },
+  "contradiction": {
+    "score": 0.49,
+    "summary": "Current theory weakens a relationship that prior theory strengthened.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Current theory weakens a relationship that prior theory strengthened.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Current theory weakens a relationship that prior theory strengthened.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "mixed",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2026-04-01",
+    "trend": "closed_lower",
+    "volatility_state": "compressed",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.49,
+    "active_theory_count": 2,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-03-04",
+      "similarity": 0.637,
+      "active_theories": [
+        "4bc783e4de348c86",
+        "e9ccbd23d335961a"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-26",
+      "similarity": 0.633,
+      "active_theories": [
+        "4e6b59474730952a",
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-25",
+      "similarity": 0.621,
+      "active_theories": [
+        "4e6b59474730952a",
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.412,
+    "label": "failed"
+  },
+  "reflection": "The theory that daily momentum weakens while weekly and monthly trends remain mixed, with compressed volatility supporting continuation but unresolved tension between breadth strength and participation remaining, is only partially validated. The replay validation shows a weakening relationship between the current theory and prior theories, accompanied by uncertainty and caution signals. One unresolved tension remains: the persistence of compressed volatility, which continues to support market continuation despite the unclear trend direction.",
+  "metrics": {
+    "step": 30,
+    "date": "2026-04-01",
+    "contradiction_count": 2,
+    "contradiction_half_life": 1.2083333333333333,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 4,
+    "contradiction_resolution_rate": 0.9230769230769231,
+    "avg_contradiction_severity": 0.5973076923076923,
+    "highest_contradiction": 1.0,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 0,
+    "merged_theories": 1,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 4.512820512820513,
+    "avg_revival_latency": 6.416666666666667,
+    "avg_theory_age": 3.4827586206896552,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 14,
+    "avg_confidence": 0.398,
+    "confidence_delta": 0.030000000000000027,
+    "confidence_volatility": 0.029257477676655586,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.056338028169014086,
+    "avg_abstraction_length": 21.0,
+    "compression_ratio": 3.5,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Weakening daily momentum persists, while weekly and monthly trends remain mixed. Compressed volatility supports continuation, but unresolved tension between breadth strength and participation remains. This theory is grounded in the observation of NIFTY's daily momentum weakening, while weekly and monthly trends remained mixed, accompanied by reduced market volatility.",
+      "contradiction_text": "Current theory weakens a relationship that prior theory strengthened.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "mixed",
+        "monthly": "mixed"
+      },
+      "regime_signature": {
+        "date": "2026-04-01",
+        "trend": "closed_lower",
+        "volatility_state": "compressed",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.49,
+        "active_theory_count": 2,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-03-04",
+          "similarity": 0.637,
+          "active_theories": [
+            "4bc783e4de348c86",
+            "e9ccbd23d335961a"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-26",
+          "similarity": 0.633,
+          "active_theories": [
+            "4e6b59474730952a",
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-25",
+          "similarity": 0.621,
+          "active_theories": [
+            "4e6b59474730952a",
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.412,
+        "label": "failed"
+      }
+    }
+  }
+}

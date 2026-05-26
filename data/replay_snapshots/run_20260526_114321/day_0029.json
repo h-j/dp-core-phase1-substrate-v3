@@ -1,0 +1,195 @@
+{
+  "step": 29,
+  "date": "2026-02-12",
+  "observation": "NIFTY traded range-bound with volatility compressed.",
+  "abstraction": "Here is the concise abstraction:\n\n\"NIFTY exhibits range-bound behavior across daily, weekly, and monthly horizons, characterized by compressed volatility.\"",
+  "theory": "Continuation remains weakly supported under compressed volatility.",
+  "confidence": {
+    "empirical": 0.45,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.4113,
+    "contradiction": 0.198
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-02-12",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 3,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-09",
+      "similarity": 0.978,
+      "active_theories": [
+        "bcbcaf5d406eca81",
+        "1ecb76988833c6ea",
+        "0a3cd9240724d751"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-11",
+      "similarity": 0.978,
+      "active_theories": [
+        "1ecb76988833c6ea",
+        "0a3cd9240724d751",
+        "bfe9a7a8e13173c7"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-21",
+      "similarity": 0.944,
+      "active_theories": [
+        "ee907acc052cc825",
+        "ae1c3a8f0db00b58"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.552,
+    "label": "coherent"
+  },
+  "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+  "metrics": {
+    "step": 29,
+    "date": "2026-02-12",
+    "contradiction_count": 1,
+    "contradiction_half_life": 1.65,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9523809523809523,
+    "avg_contradiction_severity": 0.41285714285714287,
+    "highest_contradiction": 0.67,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 0,
+    "merged_theories": 1,
+    "retired_theories": 1,
+    "revived_theories": 1,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 3.9722222222222223,
+    "avg_revival_latency": 2.0,
+    "avg_theory_age": 4.260869565217392,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 13,
+    "avg_confidence": 0.398,
+    "confidence_delta": 0.030000000000000027,
+    "confidence_volatility": 0.029257477676655586,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 1.0,
+    "grounded_reflection_score": 0.75,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.14285714285714285,
+    "avg_abstraction_length": 19.0,
+    "compression_ratio": 3.1666666666666665,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "Continuation remains weakly supported under compressed volatility.",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-02-12",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 3,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-09",
+          "similarity": 0.978,
+          "active_theories": [
+            "bcbcaf5d406eca81",
+            "1ecb76988833c6ea",
+            "0a3cd9240724d751"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-11",
+          "similarity": 0.978,
+          "active_theories": [
+            "1ecb76988833c6ea",
+            "0a3cd9240724d751",
+            "bfe9a7a8e13173c7"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-01-21",
+          "similarity": 0.944,
+          "active_theories": [
+            "ee907acc052cc825",
+            "ae1c3a8f0db00b58"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.552,
+        "label": "coherent"
+      }
+    }
+  }
+}

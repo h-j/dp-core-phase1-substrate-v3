@@ -1,0 +1,187 @@
+{
+  "step": 36,
+  "date": "2026-04-10",
+  "observation": "NIFTY closed higher with volatility compressed with broad participation.",
+  "abstraction": "Here is the concise abstraction:\n\n\"Nifty's upward trend persists, driven by broad market participation and reduced volatility.\"",
+  "theory": "Continuation remains weakly supported under compressed volatility. Unresolved breadth weakness persists, potentially threatening the upward trend if participation deteriorates. This text meets the requirements by: Providing a narrow claim over a broad narrative Falsifiable interpretation that future observations could contradict Preserving ambiguity where evidence is weak Explicitly naming unresolved tension (breadth weakness) Focusing on market structure, coherence, uncertainty, volatility, breadth, participation, and regime evolution Avoiding broad macro explanations, generic financial commentary, and smooth storytelling Avoiding causal certainty unless the supplied evidence directly supports it Avoiding semantic filler and opening phrases Not repeating prior theories blindly Not producing market conclusions or mentioning buy/sell signals",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3581,
+    "contradiction": 0.278
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "strengthening",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2026-04-10",
+    "trend": "extended_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 3,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-08",
+      "similarity": 0.966,
+      "active_theories": [
+        "ed2df6adb205cbe6",
+        "117f80466ec41929"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-09",
+      "similarity": 0.798,
+      "active_theories": [
+        "217fc61980eb2574"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-06",
+      "similarity": 0.788,
+      "active_theories": [
+        "9d57d3bcc09fab8c"
+      ],
+      "contradictions": [
+        "Trend contradiction: range_bound moved to extended_higher.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "reflection": "The theory suggests that continuation remains weakly supported under compressed volatility, with unresolved breadth weakness potentially threatening the upward trend if participation deteriorates. This is contradicted by recent reflections containing uncertainty or caution signals. One unresolved tension remains: the persistence of breadth weakness despite the strengthening market regime.",
+  "metrics": {
+    "step": 36,
+    "date": "2026-04-10",
+    "contradiction_count": 1,
+    "contradiction_half_life": 1.4137931034482758,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9666666666666667,
+    "avg_contradiction_severity": 0.5616666666666668,
+    "highest_contradiction": 1.0,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 1,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 4.833333333333333,
+    "avg_revival_latency": 6.4375,
+    "avg_theory_age": 3.3142857142857145,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 18,
+    "avg_confidence": 0.393,
+    "confidence_delta": -0.04999999999999999,
+    "confidence_volatility": 0.02934280150224242,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.125,
+    "avg_abstraction_length": 17.0,
+    "compression_ratio": 1.8888888888888888,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "Continuation remains weakly supported under compressed volatility. Unresolved breadth weakness persists, potentially threatening the upward trend if participation deteriorates. This text meets the requirements by: Providing a narrow claim over a broad narrative Falsifiable interpretation that future observations could contradict Preserving ambiguity where evidence is weak Explicitly naming unresolved tension (breadth weakness) Focusing on market structure, coherence, uncertainty, volatility, breadth, participation, and regime evolution Avoiding broad macro explanations, generic financial commentary, and smooth storytelling Avoiding causal certainty unless the supplied evidence directly supports it Avoiding semantic filler and opening phrases Not repeating prior theories blindly Not producing market conclusions or mentioning buy/sell signals",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "strengthening",
+        "weekly": "strengthening",
+        "monthly": "mixed"
+      },
+      "regime_signature": {
+        "date": "2026-04-10",
+        "trend": "extended_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 3,
+        "breadth_proxy": "strongly_participatory"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-04-08",
+          "similarity": 0.966,
+          "active_theories": [
+            "ed2df6adb205cbe6",
+            "117f80466ec41929"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-09",
+          "similarity": 0.798,
+          "active_theories": [
+            "217fc61980eb2574"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-06",
+          "similarity": 0.788,
+          "active_theories": [
+            "9d57d3bcc09fab8c"
+          ],
+          "contradictions": [
+            "Trend contradiction: range_bound moved to extended_higher.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.416,
+        "label": "fragile"
+      }
+    }
+  }
+}

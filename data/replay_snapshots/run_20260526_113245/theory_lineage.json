@@ -1,0 +1,28 @@
+{
+  "4e6b59474730952a": {
+    "id": "4e6b59474730952a",
+    "created_at_step": 0,
+    "parent_ids": [],
+    "status": "active",
+    "confidence": 0.5,
+    "abstraction": "Here is the concise abstraction:\n\n\"NIFTY's price action was characterized by a narrow trading range, accompanied by reduced market volatility.\"",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.5,
+      "theoretical_coherence": 0.5,
+      "contradiction_pressure": 0.0
+    },
+    "contradictions": [],
+    "contradiction_count": 0,
+    "mutation_reason": null,
+    "survival_steps": 1,
+    "last_seen_step": 0,
+    "mutation_count": 0,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": []
+  }
+}

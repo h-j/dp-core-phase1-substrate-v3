@@ -1,0 +1,187 @@
+{
+  "step": 26,
+  "date": "2026-05-12",
+  "observation": "NIFTY closed lower with volatility compressed but breadth weakened.",
+  "abstraction": "Here is the converted market observation in a concise abstraction:\n\n\"Nifty's daily trend weakens, while weekly and monthly trends remain mixed and range-bound respectively, with compressed volatility and weakened breadth.\"",
+  "theory": "Continuation remains fragile, as Nifty's daily trend weakens under compressed volatility. Weakened breadth may further erode support. This theory directly grounds in the observation and abstraction above, focusing on market structure and coherence.",
+  "confidence": {
+    "empirical": 0.45,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3998,
+    "contradiction": 0.216
+  },
+  "contradiction": {
+    "score": 0.36,
+    "summary": "Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "mixed",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-05-12",
+    "trend": "extended_lower",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.36,
+    "active_theory_count": 2,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-24",
+      "similarity": 0.978,
+      "active_theories": [
+        "76e73c25c0b86c35",
+        "e8e28f7e700fde4f"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-11",
+      "similarity": 0.978,
+      "active_theories": [
+        "e8e28f7e700fde4f",
+        "0031fc62c4e21370"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-02",
+      "similarity": 0.68,
+      "active_theories": [
+        "78535c4fd0190739",
+        "fa03c73a1a41bf95"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.436,
+    "label": "failed"
+  },
+  "reflection": "The theory that Nifty's daily trend is weakening under compressed volatility remains fragile, as recent validation reveals. The replay validation shows a mixed weekly horizon context, with regime memory similarities to previous instances of uncertainty (2026-04-24 and 2026-05-11). One unresolved tension persists: the failure signal in recent validation contradicts the theory's expectation of uncertainty or caution.",
+  "metrics": {
+    "step": 26,
+    "date": "2026-05-12",
+    "contradiction_count": 2,
+    "contradiction_half_life": 1.6428571428571428,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.875,
+    "avg_contradiction_severity": 0.42125,
+    "highest_contradiction": 0.78,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 0,
+    "merged_theories": 1,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 4.357142857142857,
+    "avg_revival_latency": 3.111111111111111,
+    "avg_theory_age": 3.772727272727273,
+    "longest_surviving_theory": 9,
+    "theory_mutation_count": 14,
+    "avg_confidence": 0.388,
+    "confidence_delta": 0.08000000000000002,
+    "confidence_volatility": 0.028565713714171402,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.10714285714285714,
+    "avg_abstraction_length": 30.0,
+    "compression_ratio": 3.3333333333333335,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "Continuation remains fragile, as Nifty's daily trend weakens under compressed volatility. Weakened breadth may further erode support. This theory directly grounds in the observation and abstraction above, focusing on market structure and coherence.",
+      "contradiction_text": "Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "mixed",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-05-12",
+        "trend": "extended_lower",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.36,
+        "active_theory_count": 2,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-04-24",
+          "similarity": 0.978,
+          "active_theories": [
+            "76e73c25c0b86c35",
+            "e8e28f7e700fde4f"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-11",
+          "similarity": 0.978,
+          "active_theories": [
+            "e8e28f7e700fde4f",
+            "0031fc62c4e21370"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-02",
+          "similarity": 0.68,
+          "active_theories": [
+            "78535c4fd0190739",
+            "fa03c73a1a41bf95"
+          ],
+          "contradictions": [],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.436,
+        "label": "failed"
+      }
+    }
+  }
+}

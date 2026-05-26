@@ -1,0 +1,189 @@
+{
+  "step": 18,
+  "date": "2026-03-12",
+  "observation": "NIFTY traded range-bound with volatility compressed but breadth weakened.",
+  "abstraction": "Here is a concise abstraction of the market observation:\n\n\"Nifty's price action was characterized by a range-bound pattern, with compressed volatility and weakening breadth.\"",
+  "theory": "NIFTY's range-bound pattern persists, with compressed volatility providing tenuous support. Weakening breadth may undermine this stability if participation deteriorates. This theory directly grounds itself in the observation (\"range-bound pattern\") and abstraction (\"compressed volatility and weakening breadth\").",
+  "confidence": {
+    "empirical": 0.42,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3714,
+    "contradiction": 0.229
+  },
+  "contradiction": {
+    "score": 0.49,
+    "summary": "Current theory weakens a relationship that prior theory strengthened.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Current theory weakens a relationship that prior theory strengthened.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Current theory weakens a relationship that prior theory strengthened.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "mixed",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-03-12",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.49,
+    "active_theory_count": 3,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-13",
+      "similarity": 0.708,
+      "active_theories": [
+        "4e6b59474730952a"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-17",
+      "similarity": 0.686,
+      "active_theories": [
+        "4e6b59474730952a",
+        "da7b5df5d003b115",
+        "3d01b91c18875156"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-18",
+      "similarity": 0.686,
+      "active_theories": [
+        "4e6b59474730952a",
+        "da7b5df5d003b115",
+        "3d01b91c18875156"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "reflection": "Breadth weakness remains unresolved under contradiction pressure.",
+  "metrics": {
+    "step": 18,
+    "date": "2026-03-12",
+    "contradiction_count": 1,
+    "contradiction_half_life": 1.4166666666666667,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9230769230769231,
+    "avg_contradiction_severity": 0.5592307692307692,
+    "highest_contradiction": 1.0,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 1,
+    "revived_theories": 1,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 3.1052631578947367,
+    "avg_revival_latency": 4.0,
+    "avg_theory_age": 3.5,
+    "longest_surviving_theory": 10,
+    "theory_mutation_count": 8,
+    "avg_confidence": 0.39999999999999997,
+    "confidence_delta": 0.04999999999999999,
+    "confidence_volatility": 0.024494897427831775,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 1.0,
+    "grounded_reflection_score": 0.25,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.2857142857142857,
+    "avg_abstraction_length": 24.0,
+    "compression_ratio": 2.6666666666666665,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "NIFTY's range-bound pattern persists, with compressed volatility providing tenuous support. Weakening breadth may undermine this stability if participation deteriorates. This theory directly grounds itself in the observation (\"range-bound pattern\") and abstraction (\"compressed volatility and weakening breadth\").",
+      "contradiction_text": "Current theory weakens a relationship that prior theory strengthened.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "mixed",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-03-12",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.49,
+        "active_theory_count": 3,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-13",
+          "similarity": 0.708,
+          "active_theories": [
+            "4e6b59474730952a"
+          ],
+          "contradictions": [],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-17",
+          "similarity": 0.686,
+          "active_theories": [
+            "4e6b59474730952a",
+            "da7b5df5d003b115",
+            "3d01b91c18875156"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-18",
+          "similarity": 0.686,
+          "active_theories": [
+            "4e6b59474730952a",
+            "da7b5df5d003b115",
+            "3d01b91c18875156"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.416,
+        "label": "fragile"
+      }
+    }
+  }
+}

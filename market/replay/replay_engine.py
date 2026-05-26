@@ -20,6 +20,9 @@ from typing import List
 import pandas as pd
 
 from market.data.dataset_validator import DatasetValidator
+from market.replay.prediction_probe import PredictionProbeGenerator
+from market.replay.capital_simulator import CapitalSimulator
+from market.replay.transition_pressure import TransitionPressureEngine
 
 
 class ReplayEngine:
@@ -239,7 +242,10 @@ class ReplayExecutor:
         self._run_validations: List[object] = []
         self._run_reflections: List[object] = []
         self._run_market_observations: List[object] = []
+        self._prior_prediction = None
         self._regime_matches_by_step: List[list] = []
+        self.transition_pressure_engine = TransitionPressureEngine()
+        self.replay_analysis_engine = None # Will be initialized in execute
 
     def _create_snapshot_dirs(self):
         """Create replay snapshot directories if missing."""
@@ -341,6 +347,8 @@ class ReplayExecutor:
             self.regime_memory = RegimeMemoryStore()
             self.horizon_engine = HorizonCognitionEngine()
             self.epistemic_scoring = EpistemicScoringEngine()
+            self.prediction_generator = PredictionProbeGenerator()
+            self.capital_simulator = CapitalSimulator()
         except Exception:
             self.observer = None
             self.theory_lineage = None
@@ -348,6 +356,11 @@ class ReplayExecutor:
             self.regime_memory = RegimeMemoryStore()
             self.horizon_engine = HorizonCognitionEngine()
             self.epistemic_scoring = EpistemicScoringEngine()
+            self.prediction_generator = PredictionProbeGenerator()
+            self.capital_simulator = CapitalSimulator()
+
+        from market.replay.replay_analysis import ReplayAnalysisEngine
+        self.replay_analysis_engine = ReplayAnalysisEngine()
 
         # Load synthesizer
         synthesizer = MarketObservationSynthesizer(self.engine.data)
@@ -602,6 +615,51 @@ class ReplayExecutor:
                     ),
                 }
 
+                # Initialize theory_usefulness (will be computed later if lineage available)
+                theory_usefulness = {}
+
+                # infer transition pressure (deterministic, observer-only)
+                transition_pressure = self.transition_pressure_engine.infer(
+                    observation=market_obs,
+                    horizons=horizon_view,
+                    regime_matches=regime_matches,
+                    confidence_state=theory.confidence_state,
+                    contradiction_result=contradiction_result,
+                    reflection=reflection,
+                    theory_usefulness=theory_usefulness,
+                    prior_observations=self._run_market_observations[-10:],
+                )
+
+                # prediction probe
+                prediction_probe = self.prediction_generator.generate_prediction(
+                    observation=market_obs,
+                    horizons=horizon_view,
+                    regime_matches=regime_matches,
+                    theory=theory,
+                    contradictions=contradiction_result,
+                    reflection=reflection,
+                )
+                prior_prediction_result = None
+                if self._prior_prediction is not None:
+                    prior_prediction_result = self.prediction_generator.score_actual(
+                        self._prior_prediction, market_obs
+                    )
+
+                # Task B: Capital Simulation (observer-only)
+                derived = obs_data.get("derived")
+                actual_ret = derived["daily_return_pct"] if derived else 0.0
+                if self._prior_prediction and derived:
+                    self.capital_simulator.record_day_result(
+                        date=date_str,
+                        prediction_direction=self._prior_prediction.direction.value,
+                        prediction_confidence=self._prior_prediction.confidence,
+                        actual_daily_return_pct=actual_ret,
+                        market_daily_return_pct=actual_ret,
+                    )
+                elif derived:
+                    self.capital_simulator.record_day_result(
+                        date_str, "uncertain", 0.0, actual_ret, actual_ret)
+                
                 # Confidence evolution
                 confidence_state = self.confidence_engine.evolve(
                     confidence_state=theory.confidence_state,
@@ -675,23 +733,46 @@ class ReplayExecutor:
                     day_idx, date_str, obs_hash, theory_hash, conf_hash
                 )
 
-                # Save snapshot
-                self._save_snapshot(
-                    day_idx,
-                    date_str,
-                    {
-                        "observation": market_obs,
-                        "theory": theory,
-                        "confidence": confidence_state,
-                        "contradiction": contradiction_result,
-                        "reflection": reflection,
-                        "epistemic_quality": epistemic_quality,
-                        "horizon": horizon_view.to_dict(),
-                        "regime_signature": final_regime_signature.to_dict(),
-                        "regime_matches": [match.to_dict() for match in regime_matches],
-                        "theory_usefulness": theory_usefulness,
+                # Record day for longitudinal analysis
+                self.replay_analysis_engine.record_day(
+                    day_index=day_idx,
+                    date=date_str,
+                    confidence_state={
+                        "empirical_confidence": confidence_state.empirical_confidence,
+                        "regime_confidence": confidence_state.regime_confidence,
+                        "reflection_confidence": confidence_state.reflection_confidence,
+                        "theoretical_coherence": confidence_state.theoretical_coherence,
+                        "contradiction_pressure": confidence_state.contradiction_pressure,
                     },
+                    contradiction_result=contradiction_result,
+                    theory_summary=theory.summary,
+                    reflection_summary=reflection.reflection_summary,
+                    market_regime=market_obs.macro_sentiment,
+                    epistemic_quality=epistemic_quality,
+                    prediction=prediction_probe.to_dict(),
+                    prior_prediction_result=prior_prediction_result.to_dict() if prior_prediction_result else None,
+                    regime_matches=regime_matches,
+                    theory_usefulness=theory_usefulness,
+                    transition_pressure=transition_pressure.to_dict()
                 )
+
+                snapshot_data = {
+                    "observation": market_obs,
+                    "theory": theory,
+                    "confidence": confidence_state,
+                    "contradiction": contradiction_result,
+                    "reflection": reflection,
+                    "epistemic_quality": epistemic_quality,
+                    "horizon": horizon_view.to_dict(),
+                    "regime_signature": final_regime_signature.to_dict(),
+                    "regime_matches": [match.to_dict() for match in regime_matches],
+                    "theory_usefulness": theory_usefulness,
+                    "transition_pressure": transition_pressure.to_dict(),
+                    "prediction": prediction_probe,
+                    "prior_prediction_result": prior_prediction_result,
+                }
+                # Save snapshot
+                self._save_snapshot(day_idx, date_str, snapshot_data)
 
                 # Update observability metrics
                 try:
@@ -823,7 +904,13 @@ class ReplayExecutor:
                     horizon_view,
                     regime_matches,
                     theory_usefulness,
+                    transition_pressure,
+                    prediction_probe,
+                    prior_prediction_result,
                 )
+
+                # WIRING FIX 1: Update prior prediction for next day's scoring
+                self._prior_prediction = prediction_probe
 
             except Exception as e:
                 self._log(f"✗ Day {day_idx} ({date_str}) failed: {e}")
@@ -831,6 +918,21 @@ class ReplayExecutor:
 
         # Finalize
         execution_hash = self.engine.finalize_execution()
+
+        # Finalize capital simulation and analysis
+        capital_summary = self.capital_simulator.get_summary()
+        self.replay_analysis_engine.set_capital_simulation_summary(capital_summary)
+        # WIRING FIX 2: Transfer capital simulator daily logs to analysis engine
+        self.replay_analysis_engine.set_capital_simulation_logs(
+            self.capital_simulator.get_daily_logs()
+        )
+
+        # Print summary and export CSV
+        self.replay_analysis_engine.print_summary()
+        self.replay_analysis_engine.export_prediction_analysis_csv(
+            Path(__file__).parent.parent.parent / "market" / "replay" / "output" / "prediction_analysis.csv"
+        )
+
         self._log(f"\n✓ Replay complete")
         self._log(f"  Execution hash: {execution_hash[:16]}...")
         self._log("=" * 70 + "\n")
@@ -1046,6 +1148,8 @@ class ReplayExecutor:
 
     def _save_snapshot(self, day_idx: int, date_str: str, snapshot_data: dict):
         """Save replay snapshot to disk."""
+        prediction = snapshot_data.get("prediction")
+        prior_prediction_result = snapshot_data.get("prior_prediction_result")
         snapshot = {
             "day_index": day_idx,
             "date": date_str,
@@ -1065,6 +1169,12 @@ class ReplayExecutor:
             "regime_signature": snapshot_data.get("regime_signature", {}),
             "regime_matches": snapshot_data.get("regime_matches", []),
             "theory_usefulness": snapshot_data.get("theory_usefulness", {}),
+            "prediction": prediction.to_dict() if hasattr(prediction, "to_dict") else prediction,
+            "prior_prediction_result": (
+                prior_prediction_result.to_dict()
+                if hasattr(prior_prediction_result, "to_dict")
+                else prior_prediction_result
+            ),
         }
 
         import json
@@ -1085,6 +1195,9 @@ class ReplayExecutor:
         horizon,
         regime_matches,
         theory_usefulness,
+        transition_pressure=None,
+        prediction=None,
+        prior_prediction_result=None,
     ):
         """Print formatted day log."""
         if self.quiet:
@@ -1131,6 +1244,31 @@ class ReplayExecutor:
                 f"{theory_usefulness.get('score', 0.0):.2f} "
                 f"({theory_usefulness.get('label', 'unknown')})"
             )
+
+        if transition_pressure:
+            print(f"\nTransition Pressure:")
+            print(f"  Direction bias: {transition_pressure.direction_bias}")
+            print(f"  Pressure: {transition_pressure.pressure_score:.3f}")
+            print(f"  Stability: {transition_pressure.stability_score:.3f}")
+            print(f"  Breakout risk: {transition_pressure.breakout_risk}")
+            if transition_pressure.drivers:
+                print(f"  Drivers: {', '.join(transition_pressure.drivers[:4])}")
+
+        if prediction:
+            print(f"\nPrediction Probe:")
+            print(f"  Direction: {prediction.direction.value}")
+            print(f"  Confidence: {prediction.confidence:.3f}")
+            print(f"  Tension: {prediction.tension}")
+            print(f"  Invalidation: {prediction.invalidation}")
+
+        if prior_prediction_result:
+            print(f"\nPrior Prediction Result:")
+            print(
+                f"  Prior: {prior_prediction_result.prior_direction}, "
+                f"Actual: {prior_prediction_result.actual_direction}, "
+                f"Score: {prior_prediction_result.direction_score:.3f}"
+            )
+            print(f"  Invalidation triggered: {prior_prediction_result.invalidation_triggered}")
 
         print(f"\nReflection:")
         print(f"  {reflection.reflection_summary[:80]}...")

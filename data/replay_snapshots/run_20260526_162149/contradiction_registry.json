@@ -1,0 +1,802 @@
+{
+  "8b3d40a5a9b3aff4": {
+    "id": "8b3d40a5a9b3aff4",
+    "theory_id": "275500409fc758d7",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 1,
+    "resolved_at_step": 10,
+    "status": "resolved",
+    "age": 9,
+    "severity": 0.54
+  },
+  "4e03b9f0122cfbbe": {
+    "id": "4e03b9f0122cfbbe",
+    "theory_id": "e0bd4dbefbbfefe5",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 6,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "ea6968d41acbddb5": {
+    "id": "ea6968d41acbddb5",
+    "theory_id": "49cddf2f229f17bf",
+    "description": "trend contradiction: closed_lower moved to range_bound.",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.54
+  },
+  "8ef44da5fba78970": {
+    "id": "8ef44da5fba78970",
+    "theory_id": "49cddf2f229f17bf",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.54
+  },
+  "458a54a81fd0cad6": {
+    "id": "458a54a81fd0cad6",
+    "theory_id": "ee907acc052cc825",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 10,
+    "resolved_at_step": 13,
+    "status": "resolved",
+    "age": 3,
+    "severity": 0.36
+  },
+  "adc82ec1df0c090b": {
+    "id": "adc82ec1df0c090b",
+    "theory_id": "ee907acc052cc825",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 11,
+    "resolved_at_step": 13,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.36
+  },
+  "238761f2ad45b480": {
+    "id": "238761f2ad45b480",
+    "theory_id": "ae1c3a8f0db00b58",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 14,
+    "resolved_at_step": 16,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.36
+  },
+  "e81608681366130f": {
+    "id": "e81608681366130f",
+    "theory_id": "ae1c3a8f0db00b58",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 14,
+    "resolved_at_step": 16,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.36
+  },
+  "b18be6474939d0af": {
+    "id": "b18be6474939d0af",
+    "theory_id": "bcbcaf5d406eca81",
+    "description": "trend contradiction: closed_lower moved to range_bound.",
+    "created_at_step": 17,
+    "resolved_at_step": 18,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.54
+  },
+  "dafaac37a6b255af": {
+    "id": "dafaac37a6b255af",
+    "theory_id": "bcbcaf5d406eca81",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 17,
+    "resolved_at_step": 18,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "612266c78661ac45": {
+    "id": "612266c78661ac45",
+    "theory_id": "bcbcaf5d406eca81",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 17,
+    "resolved_at_step": 18,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "0962d87f04822cd3": {
+    "id": "0962d87f04822cd3",
+    "theory_id": "5a888fdd219c32f1",
+    "description": "current theory strengthens a relationship that prior theory weakened.",
+    "created_at_step": 18,
+    "resolved_at_step": 19,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "b07b5d89e1609639": {
+    "id": "b07b5d89e1609639",
+    "theory_id": "5a888fdd219c32f1",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 19,
+    "resolved_at_step": 20,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "9f95df996570ec31": {
+    "id": "9f95df996570ec31",
+    "theory_id": "5a888fdd219c32f1",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 19,
+    "resolved_at_step": 20,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "54faedc5dd0ab4d0": {
+    "id": "54faedc5dd0ab4d0",
+    "theory_id": "da090643588d7d7a",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 21,
+    "resolved_at_step": 22,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "66fd80b7062524ad": {
+    "id": "66fd80b7062524ad",
+    "theory_id": "da090643588d7d7a",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 21,
+    "resolved_at_step": 22,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "98f672783031de3c": {
+    "id": "98f672783031de3c",
+    "theory_id": "4645a52521381712",
+    "description": "trend contradiction: closed_lower moved to range_bound.",
+    "created_at_step": 23,
+    "resolved_at_step": 24,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "bb5d6ec919c16243": {
+    "id": "bb5d6ec919c16243",
+    "theory_id": "4645a52521381712",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 23,
+    "resolved_at_step": 24,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "763023a4685e853c": {
+    "id": "763023a4685e853c",
+    "theory_id": "0e7e36d66069d05d",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 25,
+    "resolved_at_step": 26,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.18
+  },
+  "1f186d2cf58f23b0": {
+    "id": "1f186d2cf58f23b0",
+    "theory_id": "16017cf04d1816d6",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 27,
+    "resolved_at_step": 28,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.18
+  },
+  "81ff12dec3478e22": {
+    "id": "81ff12dec3478e22",
+    "theory_id": "0a3cd9240724d751",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 29,
+    "resolved_at_step": 31,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.36
+  },
+  "e74e026c19ca359c": {
+    "id": "e74e026c19ca359c",
+    "theory_id": "f7b0f8cbbc14bfc2",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 31,
+    "resolved_at_step": 32,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "0e69ca4bd3a48384": {
+    "id": "0e69ca4bd3a48384",
+    "theory_id": "bfe9a7a8e13173c7",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 32,
+    "resolved_at_step": 33,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "b334ff484908e5a9": {
+    "id": "b334ff484908e5a9",
+    "theory_id": "a6183218d6f0689a",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 33,
+    "resolved_at_step": 34,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "886a51748ef0d5ed": {
+    "id": "886a51748ef0d5ed",
+    "theory_id": "b46b76f19f79f1f2",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 34,
+    "resolved_at_step": 35,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "234a022b220d8b00": {
+    "id": "234a022b220d8b00",
+    "theory_id": "38e66190fc6de8d4",
+    "description": "current theory strengthens a relationship that prior theory weakened.",
+    "created_at_step": 35,
+    "resolved_at_step": 36,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "8f78379c159d4114": {
+    "id": "8f78379c159d4114",
+    "theory_id": "38e66190fc6de8d4",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 35,
+    "resolved_at_step": 36,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "abdfeb5b0c7f00f5": {
+    "id": "abdfeb5b0c7f00f5",
+    "theory_id": "5f051e97160de9fe",
+    "description": "current theory weakens a relationship that prior theory strengthened.",
+    "created_at_step": 36,
+    "resolved_at_step": 37,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.49
+  },
+  "db6ddd8753f43bc0": {
+    "id": "db6ddd8753f43bc0",
+    "theory_id": "5f051e97160de9fe",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 36,
+    "resolved_at_step": 37,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.49
+  },
+  "3397457f159890c5": {
+    "id": "3397457f159890c5",
+    "theory_id": "bfa6e34ce946272b",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 38,
+    "resolved_at_step": 39,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.18
+  },
+  "00d7dc8489715cc2": {
+    "id": "00d7dc8489715cc2",
+    "theory_id": "63c2de6a171e97ca",
+    "description": "current theory weakens a relationship that prior theory strengthened.",
+    "created_at_step": 40,
+    "resolved_at_step": 41,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.49
+  },
+  "f65d4fd63f257f66": {
+    "id": "f65d4fd63f257f66",
+    "theory_id": "63c2de6a171e97ca",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 40,
+    "resolved_at_step": 41,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.49
+  },
+  "0a077b6c84c3dd26": {
+    "id": "0a077b6c84c3dd26",
+    "theory_id": "e6d7efe511c1d413",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 41,
+    "resolved_at_step": 42,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "890e420ec5a5f583": {
+    "id": "890e420ec5a5f583",
+    "theory_id": "8c0e2e9067538f30",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 42,
+    "resolved_at_step": 43,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.78
+  },
+  "5856ddc7a417be31": {
+    "id": "5856ddc7a417be31",
+    "theory_id": "490aaaa293cafd4f",
+    "description": "trend contradiction: range_bound moved to extended_higher.",
+    "created_at_step": 43,
+    "resolved_at_step": 44,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.78
+  },
+  "c376c044d732654d": {
+    "id": "c376c044d732654d",
+    "theory_id": "490aaaa293cafd4f",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 43,
+    "resolved_at_step": 44,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.78
+  },
+  "31f4c434d7c90a8e": {
+    "id": "31f4c434d7c90a8e",
+    "theory_id": "222c6f75bc417140",
+    "description": "current theory strengthens a relationship that prior theory weakened.",
+    "created_at_step": 44,
+    "resolved_at_step": 45,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "42aa076d31507cde": {
+    "id": "42aa076d31507cde",
+    "theory_id": "222c6f75bc417140",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 44,
+    "resolved_at_step": 45,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "f5361ced91a29725": {
+    "id": "f5361ced91a29725",
+    "theory_id": "f2d681099faabae5",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 45,
+    "resolved_at_step": 46,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "567e92fa4a39a72e": {
+    "id": "567e92fa4a39a72e",
+    "theory_id": "919b46b4654d8828",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 46,
+    "resolved_at_step": 47,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.49
+  },
+  "eb7a629b65adc96f": {
+    "id": "eb7a629b65adc96f",
+    "theory_id": "01239c98bcb21451",
+    "description": "current theory strengthens a relationship that prior theory weakened.",
+    "created_at_step": 47,
+    "resolved_at_step": 48,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.49
+  },
+  "2786e8648bf78d8a": {
+    "id": "2786e8648bf78d8a",
+    "theory_id": "e6c2b1ca8f9b16fd",
+    "description": "current theory weakens a relationship that prior theory strengthened.",
+    "created_at_step": 48,
+    "resolved_at_step": 49,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "667a2bae28b0073a": {
+    "id": "667a2bae28b0073a",
+    "theory_id": "e6c2b1ca8f9b16fd",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 48,
+    "resolved_at_step": 49,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "7b30ca54f57a6639": {
+    "id": "7b30ca54f57a6639",
+    "theory_id": "fd3a1017ae795466",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 49,
+    "resolved_at_step": 50,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "bee225b403acaa44": {
+    "id": "bee225b403acaa44",
+    "theory_id": "6f44c884dfd066f7",
+    "description": "current theory weakens a relationship that prior theory strengthened.",
+    "created_at_step": 50,
+    "resolved_at_step": 51,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "68494b9699fc043c": {
+    "id": "68494b9699fc043c",
+    "theory_id": "6f44c884dfd066f7",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 50,
+    "resolved_at_step": 51,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "a3683f16c2f5a3a5": {
+    "id": "a3683f16c2f5a3a5",
+    "theory_id": "299ef767eea5a538",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 51,
+    "resolved_at_step": 52,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "b51f808ebe634248": {
+    "id": "b51f808ebe634248",
+    "theory_id": "21e934a05b146ca9",
+    "description": "current theory weakens a relationship that prior theory strengthened.",
+    "created_at_step": 52,
+    "resolved_at_step": 53,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "ab2ef5834f5d319a": {
+    "id": "ab2ef5834f5d319a",
+    "theory_id": "21e934a05b146ca9",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 52,
+    "resolved_at_step": 53,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "d4d92d48f0d9201c": {
+    "id": "d4d92d48f0d9201c",
+    "theory_id": "398e82cb31a4efee",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 53,
+    "resolved_at_step": 54,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "ae5b78b6511b345b": {
+    "id": "ae5b78b6511b345b",
+    "theory_id": "3b52ef764cd389cd",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 54,
+    "resolved_at_step": 55,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "cfce37e40efdfd28": {
+    "id": "cfce37e40efdfd28",
+    "theory_id": "6abcff984b5a6e8a",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 55,
+    "resolved_at_step": 56,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "83ac2ebc7c31b199": {
+    "id": "83ac2ebc7c31b199",
+    "theory_id": "ad925485c35a41e0",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 56,
+    "resolved_at_step": 63,
+    "status": "resolved",
+    "age": 7,
+    "severity": 0.6
+  },
+  "f5cfc37c99ed234e": {
+    "id": "f5cfc37c99ed234e",
+    "theory_id": "08e199e698fac3a0",
+    "description": "trend contradiction: range_bound moved to extended_higher.",
+    "created_at_step": 57,
+    "resolved_at_step": 58,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.6
+  },
+  "d2738ea5d5e2e79b": {
+    "id": "d2738ea5d5e2e79b",
+    "theory_id": "398c21cdf66406ee",
+    "description": "trend contradiction: closed_lower moved to range_bound.",
+    "created_at_step": 61,
+    "resolved_at_step": 62,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.36
+  },
+  "323fd36e3a3fb33e": {
+    "id": "323fd36e3a3fb33e",
+    "theory_id": "6ce1cc3427f6f6b0",
+    "description": "trend contradiction: range_bound moved to extended_higher.",
+    "created_at_step": 62,
+    "resolved_at_step": 63,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.6
+  },
+  "b6c81d2b31079574": {
+    "id": "b6c81d2b31079574",
+    "theory_id": "f61304370f440c73",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 64,
+    "resolved_at_step": 65,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.18
+  },
+  "2decf013c1d375fe": {
+    "id": "2decf013c1d375fe",
+    "theory_id": "449d640c0356ca11",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 66,
+    "resolved_at_step": 68,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.18
+  },
+  "3821d506e65ff8bd": {
+    "id": "3821d506e65ff8bd",
+    "theory_id": "414c2743afd4892c",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 69,
+    "resolved_at_step": 70,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.49
+  },
+  "5474d208728d6a9b": {
+    "id": "5474d208728d6a9b",
+    "theory_id": "30761b2bd493c18d",
+    "description": "current theory strengthens a relationship that prior theory weakened.",
+    "created_at_step": 70,
+    "resolved_at_step": 71,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.49
+  },
+  "dfb85d57679fef4b": {
+    "id": "dfb85d57679fef4b",
+    "theory_id": "5e62ad7aaa9a26d5",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 71,
+    "resolved_at_step": 75,
+    "status": "resolved",
+    "age": 4,
+    "severity": 0.49
+  },
+  "39a07e1ab09f8fc6": {
+    "id": "39a07e1ab09f8fc6",
+    "theory_id": "af88a4f5f44d18a8",
+    "description": "current theory weakens a relationship that prior theory strengthened.",
+    "created_at_step": 73,
+    "resolved_at_step": 75,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.49
+  },
+  "1719d853bf8611d7": {
+    "id": "1719d853bf8611d7",
+    "theory_id": "a45fdb73489ba8a5",
+    "description": "current theory strengthens a relationship that prior theory weakened.",
+    "created_at_step": 75,
+    "resolved_at_step": 76,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "f199f7db61e10c13": {
+    "id": "f199f7db61e10c13",
+    "theory_id": "7ef352fc3e7867e1",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 76,
+    "resolved_at_step": 77,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "603783be6815cc4f": {
+    "id": "603783be6815cc4f",
+    "theory_id": "7ef352fc3e7867e1",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 76,
+    "resolved_at_step": 77,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "40809e083d3dbde9": {
+    "id": "40809e083d3dbde9",
+    "theory_id": "6a85115d1374eb86",
+    "description": "current theory strengthens a relationship that prior theory weakened.",
+    "created_at_step": 77,
+    "resolved_at_step": 78,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "8b072de8dbffb5fd": {
+    "id": "8b072de8dbffb5fd",
+    "theory_id": "8dc0ce14c01f015a",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 78,
+    "resolved_at_step": 79,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "0de034698322b650": {
+    "id": "0de034698322b650",
+    "theory_id": "8dc0ce14c01f015a",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 78,
+    "resolved_at_step": 79,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "4574f2b6cb11165e": {
+    "id": "4574f2b6cb11165e",
+    "theory_id": "3ced6a668f146048",
+    "description": "current theory strengthens a relationship that prior theory weakened.",
+    "created_at_step": 79,
+    "resolved_at_step": 80,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "70d47edd0578f04e": {
+    "id": "70d47edd0578f04e",
+    "theory_id": "3ced6a668f146048",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 80,
+    "resolved_at_step": 81,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "7cb3e84529539587": {
+    "id": "7cb3e84529539587",
+    "theory_id": "3ced6a668f146048",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 80,
+    "resolved_at_step": 81,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "cd97b5b604becbea": {
+    "id": "cd97b5b604becbea",
+    "theory_id": "3e1ebe2e40502b82",
+    "description": "current theory strengthens a relationship that prior theory weakened.",
+    "created_at_step": 81,
+    "resolved_at_step": 82,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "31ec9201a2ad0102": {
+    "id": "31ec9201a2ad0102",
+    "theory_id": "3b7e44058fc6d5fc",
+    "description": "trend contradiction: range_bound moved to extended_higher.",
+    "created_at_step": 82,
+    "resolved_at_step": 83,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.78
+  },
+  "4db777bc39aa156d": {
+    "id": "4db777bc39aa156d",
+    "theory_id": "3b7e44058fc6d5fc",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 82,
+    "resolved_at_step": 83,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.78
+  },
+  "e359ca4cb3802749": {
+    "id": "e359ca4cb3802749",
+    "theory_id": "3b7e44058fc6d5fc",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 82,
+    "resolved_at_step": 83,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.78
+  },
+  "868c601347bd068f": {
+    "id": "868c601347bd068f",
+    "theory_id": "06ec1bb9ae7fc724",
+    "description": "recent reflection contains uncertainty or caution signal.",
+    "created_at_step": 84,
+    "resolved_at_step": null,
+    "status": "carried_forward",
+    "age": 5,
+    "severity": 0.78
+  },
+  "8e2cee596bb615e8": {
+    "id": "8e2cee596bb615e8",
+    "theory_id": "20e74aeb43247ccb",
+    "description": "current theory weakens a relationship that prior theory strengthened.",
+    "created_at_step": 85,
+    "resolved_at_step": 87,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.67
+  },
+  "b43abc8c517dc05a": {
+    "id": "b43abc8c517dc05a",
+    "theory_id": "20e74aeb43247ccb",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 86,
+    "resolved_at_step": 87,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.67
+  },
+  "6c1729fc6cc0bf84": {
+    "id": "6c1729fc6cc0bf84",
+    "theory_id": "9eca725f4507f8c5",
+    "description": "trend contradiction: range_bound moved to extended_higher.",
+    "created_at_step": 88,
+    "resolved_at_step": 89,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.78
+  },
+  "658b6dab6e2826fc": {
+    "id": "658b6dab6e2826fc",
+    "theory_id": "9eca725f4507f8c5",
+    "description": "recent validation contains failure signal.",
+    "created_at_step": 88,
+    "resolved_at_step": 89,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.78
+  }
+}

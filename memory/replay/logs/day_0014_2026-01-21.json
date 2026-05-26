@@ -1,0 +1,115 @@
+{
+  "day_index": 14,
+  "date": "2026-01-21",
+  "observation_text": "NIFTY traded range-bound with volatility compressed.",
+  "theory_summary": "Compressed Theory: NIFTY's range-bound behavior under compressed volatility remains tenuously supported, vulnerable to potential weakening if participation deteriorates. This theory directly grounds in the observation of range-bound behavior across daily, weekly, and monthly horizons, as well as the compressed volatility. It makes a narrow claim about the market structure rather than a broad narrative, and is falsifiable by future observations that contradict it.",
+  "confidence_state": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3466,
+    "contradiction": 0.296
+  },
+  "contradiction_score": 0.36,
+  "reflection_summary": "The Compressed Theory's range-bound behavior under compressed volatility remains tenuously supported, but its vulnerability to potential weakening if participation deteriorates is a concern. The recent validation contains a failure signal, which contradicts the original theory. One unresolved tension is that the theory's narrow claim about market structure doesn't account for potential regime shifts or changes in participation patterns.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 51,
+      "sentence_count": 3,
+      "narrative_density": 0.125,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.477,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.024,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.498
+    },
+    "reflection": {
+      "word_count": 50,
+      "sentence_count": 3,
+      "narrative_density": 0.111,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.647,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.66
+    }
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-01-21",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.36,
+    "active_theory_count": 2,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-01-14",
+      "similarity": 0.944,
+      "active_theories": [
+        "ee907acc052cc825"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-16",
+      "similarity": 0.944,
+      "active_theories": [
+        "ee907acc052cc825"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-19",
+      "similarity": 0.944,
+      "active_theories": [
+        "ee907acc052cc825"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.368,
+    "label": "failed"
+  },
+  "prediction": {
+    "direction": "range_bound",
+    "confidence": 0.36,
+    "tension": "Recent validation contains failure signal. vs Recent reflection contains uncertainty or caution signal.",
+    "invalidation": "Recent validation contains failure signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "uncertain",
+    "actual_direction": "range_bound",
+    "direction_score": 0.0,
+    "invalidation_triggered": false,
+    "confidence": 0.3,
+    "invalidation": "Recent validation contains failure signal."
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "step": 10,
+  "date": "2026-02-27",
+  "observation": "NIFTY closed lower with volatility compressed but breadth weakened.",
+  "abstraction": "Here is the converted market observation in a concise abstraction:\n\n\"Nifty's daily trend weakens, while weekly and monthly trends remain range-bound, with compressed volatility and broadening losses.\"",
+  "theory": "Weakening daily momentum persists, potentially vulnerable to further erosion if participation wanes under compressed volatility.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3281,
+    "contradiction": 0.278
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-02-27",
+    "trend": "extended_lower",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 3,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-24",
+      "similarity": 0.838,
+      "active_theories": [
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306",
+        "1b32f99a5b2cb018"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-19",
+      "similarity": 0.826,
+      "active_theories": [
+        "4e6b59474730952a",
+        "da7b5df5d003b115",
+        "7a4d4e3e5997bb88"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-02-23",
+      "similarity": 0.658,
+      "active_theories": [
+        "da7b5df5d003b115",
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "reflection": "The validation of this theory is tenuous at best. The recent reflection contains an uncertainty signal, which contradicts the original theory's assertion that daily momentum will continue to weaken. One unresolved tension remains: the theory's reliance on regime memory, which may not be a reliable indicator of future market behavior.",
+  "metrics": {
+    "step": 10,
+    "date": "2026-02-27",
+    "contradiction_count": 1,
+    "contradiction_half_life": 3.5,
+    "median_contradiction_half_life": 3.5,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.6666666666666666,
+    "avg_contradiction_severity": 0.18000000000000002,
+    "highest_contradiction": 0.18,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 2,
+    "revived_theories": 1,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 4.0,
+    "avg_revival_latency": 1.0,
+    "avg_theory_age": 4.0,
+    "longest_surviving_theory": 7,
+    "theory_mutation_count": 6,
+    "avg_confidence": 0.393,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.02934280150224242,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.06,
+    "avg_abstraction_length": 27.0,
+    "compression_ratio": 3.0,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "Weakening daily momentum persists, potentially vulnerable to further erosion if participation wanes under compressed volatility.",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "range_bound",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-02-27",
+        "trend": "extended_lower",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 3,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-24",
+          "similarity": 0.838,
+          "active_theories": [
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306",
+            "1b32f99a5b2cb018"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-19",
+          "similarity": 0.826,
+          "active_theories": [
+            "4e6b59474730952a",
+            "da7b5df5d003b115",
+            "7a4d4e3e5997bb88"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-02-23",
+          "similarity": 0.658,
+          "active_theories": [
+            "da7b5df5d003b115",
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.416,
+        "label": "fragile"
+      }
+    }
+  }
+}

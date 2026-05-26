@@ -1,0 +1,105 @@
+{
+  "step": 0,
+  "date": "2026-05-13",
+  "observation": "NIFTY traded range-bound with volatility compressed.",
+  "abstraction": "Here is the concise abstraction:\n\n\"NIFTY's price action was characterized by a narrow trading range, accompanied by reduced market volatility.\"",
+  "theory": "NIFTY's trading range constrains price action, while compressed volatility limits potential for significant moves. The narrow scope of recent fluctuations may persist unless participation improves. This revised theory: Is grounded in the observation and abstraction provided Makes a specific claim about market structure (trading range) and volatility Is falsifiable, as future observations could contradict it Preserves ambiguity where evidence is weak (participation) Names an unresolved tension (deteriorating participation) Focuses on market structure, coherence, uncertainty, volatility, breadth, participation, liquidity, and regime evolution",
+  "confidence": {
+    "empirical": 0.42,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.4328,
+    "contradiction": 0.18
+  },
+  "contradiction": {
+    "score": 0,
+    "summary": "No explicit contradictions detected.",
+    "indicators": [],
+    "contradictions": []
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-05-13",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.0,
+    "active_theory_count": 1,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [],
+  "theory_usefulness": {
+    "score": 0.464,
+    "label": "fragile"
+  },
+  "reflection": "The replay validation provides limited insight into the theory's validity. The daily range-bound context suggests some support for the theory, but the weekly and monthly contexts reveal insufficient history to confirm or contradict it. One unresolved tension remains: deteriorating participation, which may persist unless addressed.",
+  "metrics": {
+    "step": 0,
+    "date": "2026-05-13",
+    "contradiction_count": 0,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.0,
+    "highest_contradiction": 0.0,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 0,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 1.0,
+    "longest_surviving_theory": 1,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.42,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.044444444444444446,
+    "avg_abstraction_length": 20.0,
+    "compression_ratio": 3.3333333333333335,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 6,
+      "theory_text": "NIFTY's trading range constrains price action, while compressed volatility limits potential for significant moves. The narrow scope of recent fluctuations may persist unless participation improves. This revised theory: Is grounded in the observation and abstraction provided Makes a specific claim about market structure (trading range) and volatility Is falsifiable, as future observations could contradict it Preserves ambiguity where evidence is weak (participation) Names an unresolved tension (deteriorating participation) Focuses on market structure, coherence, uncertainty, volatility, breadth, participation, liquidity, and regime evolution",
+      "contradiction_text": "No explicit contradictions detected.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-05-13",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.0,
+        "active_theory_count": 1,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [],
+      "theory_usefulness": {
+        "score": 0.464,
+        "label": "fragile"
+      }
+    }
+  }
+}

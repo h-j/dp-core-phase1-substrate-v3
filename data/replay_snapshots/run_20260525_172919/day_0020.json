@@ -1,0 +1,201 @@
+{
+  "step": 20,
+  "date": "2026-03-16",
+  "observation": "NIFTY closed higher with volatility compressed but breadth weakened.",
+  "abstraction": "Here is a concise abstraction of the market observation:\n\n\"Nifty's upward move was accompanied by reduced volatility, but broad market participation weakened. Short-term momentum appears fatigued, while medium-term trends are mixed.\"",
+  "theory": "Weakening momentum persists, as NIFTY's upward move remains tenuously supported by compressed volatility. Unresolved breadth weakness continues to pressure the market. This theory directly grounds itself in the observation and abstraction provided, focusing on market structure and coherence rather than making broad macro explanations or generic financial commentary.",
+  "confidence": {
+    "empirical": 0.42,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3899,
+    "contradiction": 0.247
+  },
+  "contradiction": {
+    "score": 0.67,
+    "summary": "Current theory weakens a relationship that prior theory strengthened.; Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Current theory weakens a relationship that prior theory strengthened.",
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Current theory weakens a relationship that prior theory strengthened.",
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "fatigue",
+    "weekly": "fatigue",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2026-03-16",
+    "trend": "extended_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.67,
+    "active_theory_count": 2,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-27",
+      "similarity": 0.805,
+      "active_theories": [
+        "7a4d4e3e5997bb88",
+        "65921e5975ea3306",
+        "deb466f89c39fd2e"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-03-02",
+      "similarity": 0.801,
+      "active_theories": [
+        "7a4d4e3e5997bb88",
+        "d61389bf28e36549"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-03-13",
+      "similarity": 0.764,
+      "active_theories": [
+        "deb466f89c39fd2e",
+        "78917d63175caa51"
+      ],
+      "contradictions": [
+        "Current theory weakens a relationship that prior theory strengthened.",
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.392,
+    "label": "fragile"
+  },
+  "reflection": "The observed persistence of weakening momentum remains insufficiently tested under volatility expansion, as the current theory weakens a relationship that prior theory strengthened. This recent validation contains a failure signal, with regime memory indicating mixed signals across daily, weekly, and monthly horizons.",
+  "metrics": {
+    "step": 20,
+    "date": "2026-03-16",
+    "contradiction_count": 1,
+    "contradiction_half_life": 1.3333333333333333,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9375,
+    "avg_contradiction_severity": 0.59125,
+    "highest_contradiction": 1.0,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 2,
+    "revived_theories": 1,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 4.0,
+    "avg_revival_latency": 5.333333333333333,
+    "avg_theory_age": 3.5,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 9,
+    "avg_confidence": 0.40499999999999997,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.022912878474779196,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 2.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.5,
+    "memory_reference_count": 0,
+    "critique_density": 0.047619047619047616,
+    "avg_abstraction_length": 31.0,
+    "compression_ratio": 3.4444444444444446,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "Weakening momentum persists, as NIFTY's upward move remains tenuously supported by compressed volatility. Unresolved breadth weakness continues to pressure the market. This theory directly grounds itself in the observation and abstraction provided, focusing on market structure and coherence rather than making broad macro explanations or generic financial commentary.",
+      "contradiction_text": "Current theory weakens a relationship that prior theory strengthened.; Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "fatigue",
+        "weekly": "fatigue",
+        "monthly": "mixed"
+      },
+      "regime_signature": {
+        "date": "2026-03-16",
+        "trend": "extended_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.67,
+        "active_theory_count": 2,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-02-27",
+          "similarity": 0.805,
+          "active_theories": [
+            "7a4d4e3e5997bb88",
+            "65921e5975ea3306",
+            "deb466f89c39fd2e"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-03-02",
+          "similarity": 0.801,
+          "active_theories": [
+            "7a4d4e3e5997bb88",
+            "d61389bf28e36549"
+          ],
+          "contradictions": [
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-03-13",
+          "similarity": 0.764,
+          "active_theories": [
+            "deb466f89c39fd2e",
+            "78917d63175caa51"
+          ],
+          "contradictions": [
+            "Current theory weakens a relationship that prior theory strengthened.",
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.392,
+        "label": "fragile"
+      }
+    }
+  }
+}

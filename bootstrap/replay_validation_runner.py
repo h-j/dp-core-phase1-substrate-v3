@@ -13,6 +13,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from cognition.schemas.confidence.confidence_state import ConfidenceState
 from cognition.confidence.confidence_evolution_engine import ConfidenceEvolutionEngine
 from cognition.contradiction.contradiction_detector import ContradictionDetector
 from cognition.evaluation.epistemic_quality import evaluate_epistemic_quality
@@ -24,8 +25,13 @@ from flows.theory_flow.theory_generation_flow import TheoryGenerationFlow
 from market.data.dataset_validator import DatasetValidator
 from market.data.download_nifty_history import NIFTYHistoryDownloader
 from market.replay.market_observation_synthesizer import MarketObservationSynthesizer
+from market.replay.prediction_probe import PredictionProbeGenerator
+from market.replay.capital_simulator import CapitalSimulator
+from market.replay.transition_pressure import TransitionPressureEngine
 from market.replay.replay_analysis import ReplayAnalysisEngine
 from market.replay.replay_engine import ReplayEngine
+from memory.replay.horizon_cognition import HorizonCognitionEngine
+from memory.replay.regime_memory import RegimeMemoryStore
 from memory.relational.repositories.abstraction_repository import AbstractionRepository
 from memory.relational.repositories.confidence_repository import ConfidenceRepository
 from memory.relational.repositories.observation_repository import ObservationRepository
@@ -59,6 +65,13 @@ class ReplayValidationRunner:
         # Initialize engines
         self.contradiction_detector = ContradictionDetector()
         self.confidence_engine = ConfidenceEvolutionEngine()
+        self.prediction_generator = PredictionProbeGenerator()
+        self.transition_pressure_engine = TransitionPressureEngine()
+        self.horizon_engine = HorizonCognitionEngine()
+        self.regime_memory = RegimeMemoryStore()
+        self._run_market_observations = []
+        self.capital_simulator = CapitalSimulator()
+        self._prior_prediction = None
 
     def run_full_validation(self, skip_download: bool = False):
         """Run complete validation suite."""
@@ -165,6 +178,9 @@ class ReplayValidationRunner:
         execution_log = []
         day_outputs = []
 
+        # Initialize confidence_state for the first day's signature building
+        confidence_state = ConfidenceState()
+
         for day_idx in range(len(engine)):
             try:
                 obs_data = engine.get_observation_for_day(day_idx)
@@ -218,6 +234,75 @@ class ReplayValidationRunner:
                     reflections=recent_reflections,
                 )
 
+                # Horizon and regime context for prediction probe
+                horizon_view = self.horizon_engine.compute(
+                    [*self._run_market_observations, market_obs]
+                )
+                regime_signature = self.regime_memory.build_signature(
+                    date=date_str,
+                    observation=market_obs,
+                    confidence_values=[confidence_state.empirical_confidence],
+                    contradiction_severity=contradiction_result.get("score", 0.0),
+                    active_theory_count=0,
+                )
+                regime_matches = self.regime_memory.retrieve(
+                    regime_signature,
+                    contradiction_result.get("contradictions", []),
+                )
+
+                # Infer transition pressure (deterministic, observer-only)
+                transition_pressure = self.transition_pressure_engine.infer(
+                    observation=market_obs,
+                    horizons=horizon_view,
+                    regime_matches=regime_matches,
+                    confidence_state=theory.confidence_state,
+                    contradiction_result=contradiction_result,
+                    reflection=reflection,
+                    theory_usefulness={},
+                    prior_observations=self._run_market_observations[-10:],
+                )
+
+                prediction_probe = self.prediction_generator.generate_prediction(
+                    observation=market_obs,
+                    horizons=horizon_view,
+                    regime_matches=regime_matches,
+                    theory=theory,
+                    contradictions=contradiction_result,
+                    reflection=reflection,
+                )
+                prior_prediction_result = None
+                if self._prior_prediction is not None:
+                    prior_prediction_result = self.prediction_generator.score_actual(
+                        self._prior_prediction, market_obs
+                    )
+
+                # Task B: Capital Simulation (observer-only)
+                derived = obs_data.get("derived")
+                actual_ret = derived["daily_return_pct"] if derived else 0.0
+                if self._prior_prediction and derived:
+                    self.capital_simulator.record_day_result(
+                        date=date_str,
+                        prediction_direction=self._prior_prediction.direction.value,
+                        prediction_confidence=self._prior_prediction.confidence,
+                        actual_daily_return_pct=actual_ret,
+                        market_daily_return_pct=actual_ret,
+                    )
+                elif derived:
+                    self.capital_simulator.record_day_result(
+                        date_str, "uncertain", 0.0, actual_ret, actual_ret
+                    )
+
+                # Update prior prediction for tomorrow's trade
+                self._prior_prediction = prediction_probe
+
+                self.regime_memory.persist(
+                    step=day_idx,
+                    signature=regime_signature,
+                    active_theories=[],
+                    contradictions=contradiction_result.get("contradictions", []),
+                    confidence=confidence_state.empirical_confidence,
+                )
+
                 # Confidence evolution
                 confidence_state = self.confidence_engine.evolve(
                     confidence_state=theory.confidence_state,
@@ -242,15 +327,24 @@ class ReplayValidationRunner:
                     },
                     {
                         "score": contradiction_result.get("score", 0),
-                        "contradictions": contradiction_result.get(
-                            "contradictions", []
-                        ),
+                        "contradictions": contradiction_result.get("indicators", []),
                     },
                     theory.summary,
                     reflection.reflection_summary,
                     market_obs.macro_sentiment,
                     epistemic_quality,
+                    prediction_probe.to_dict(),
+                    prior_prediction_result.to_dict()
+                    if prior_prediction_result is not None
+                    else None,
+                    regime_matches,
+                    {"score": epistemic_quality.get("theory", {}).get("compression_score", 0), "label": "validation"},
+                    transition_pressure.to_dict() if hasattr(transition_pressure, "to_dict") else transition_pressure,
                 )
+
+                # Record daily capital simulation logs for analysis
+                if self.capital_simulator.get_daily_logs():
+                    analysis.record_capital_simulation_day(self.capital_simulator.get_daily_logs()[-1])
 
                 # Compute hash for determinism
                 obs_hash = hashlib.sha256(
@@ -280,6 +374,8 @@ class ReplayValidationRunner:
 
         # Finalize
         execution_hash = engine.finalize_execution()
+        capital_summary = self.capital_simulator.get_summary()
+        analysis.set_capital_simulation_summary(capital_summary)
         analysis.analyze()
 
         return {
@@ -341,11 +437,40 @@ class ReplayValidationRunner:
                 # Print analysis summary
                 result["analysis"].print_summary()
 
+                prediction_summary = result["analysis"].analyze().get("prediction_analysis", {})
+                if prediction_summary:
+                    print("    Prediction probe performance:")
+                    print(
+                        f"      Accuracy: {prediction_summary['accuracy']:.1%} "
+                        f"| Partial: {prediction_summary['partial_accuracy']:.1%} "
+                        f"| Uncertain: {prediction_summary['uncertain_rate']:.1%}"
+                    )
+                    print(
+                        f"      Invalidation rate: {prediction_summary['invalidation_rate']:.1%} "
+                        f"| Mean confidence: {prediction_summary['mean_confidence']:.3f}"
+                    )
+
+                capital_summary = result["analysis"].analyze().get("capital_simulation_analysis", {})
+                if capital_summary:
+                    print("    Capital Simulation Summary:")
+                    print(
+                        f"      Ending Capital: ₹{capital_summary.get('ending_capital', 0):,.2f} "
+                        f"| Return: {capital_summary.get('return_pct', 0.0):.2%} "
+                        f"| Annualized: {capital_summary.get('annualized_return', 0.0):.2%}"
+                    )
+                    print(
+                        f"      Win Rate: {capital_summary.get('win_rate', 0.0):.2%} | Max Drawdown: {capital_summary.get('max_drawdown', 0.0):.2%}"
+                    )
+
         if hasattr(self, "determinism_verified"):
             status = "✓ PASS" if self.determinism_verified else "✗ FAIL"
             print(f"Determinism Check: {status}")
 
         print("\n" + "=" * 70 + "\n")
+
+        # Export CSV for the last replay (e.g., 1-year)
+        if "1-year" in self.replay_results:
+            self.replay_results["1-year"]["analysis"].export_prediction_analysis_csv(Path("market/replay/output/prediction_analysis.csv"))
 
 
 def main():

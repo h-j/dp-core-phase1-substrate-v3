@@ -1,0 +1,195 @@
+{
+  "step": 17,
+  "date": "2026-04-28",
+  "observation": "NIFTY traded range-bound with volatility compressed but breadth weakened.",
+  "abstraction": "Here is the converted market observation in a concise abstraction:\n\n\"Nifty's price action was characterized by a range-bound pattern, with compressed volatility and weakening breadth. The horizon context suggests this trend may persist in the short-term (daily) and medium-term (weekly), but there are signs of strengthening momentum in the long-term (monthly).\"",
+  "theory": "Compressed trend theory: Nifty's range-bound pattern persists under compressed volatility, but continuation remains weakly supported. Observed stability may weaken if participation deteriorates.",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.3166,
+    "contradiction": 0.296
+  },
+  "contradiction": {
+    "score": 0.36,
+    "summary": "Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent validation contains failure signal.",
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-28",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.36,
+    "active_theory_count": 2,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-22",
+      "similarity": 0.698,
+      "active_theories": [
+        "7b9c1cb08e6e607b",
+        "76e73c25c0b86c35",
+        "a410d0442574aa07"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-23",
+      "similarity": 0.698,
+      "active_theories": [
+        "7b9c1cb08e6e607b",
+        "76e73c25c0b86c35",
+        "a410d0442574aa07"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-15",
+      "similarity": 0.686,
+      "active_theories": [
+        "885ab3fc7f95b002",
+        "cd4235a299240326"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.392,
+    "label": "fragile"
+  },
+  "reflection": "Compressed trend theory's persistence in a range-bound pattern is challenged by recent failure signals. The observed stability may weaken if participation deteriorates, as seen in the contradiction between validation and reflection. One unresolved tension lies in the theory's inability to account for the uncertainty surrounding its own predictions.",
+  "metrics": {
+    "step": 17,
+    "date": "2026-04-28",
+    "contradiction_count": 0,
+    "contradiction_half_life": 2.5,
+    "median_contradiction_half_life": 1.5,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 1.0,
+    "avg_contradiction_severity": 0.3433333333333333,
+    "highest_contradiction": 0.49,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 1,
+    "revived_theories": 0,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 3.1538461538461537,
+    "avg_revival_latency": 0.5,
+    "avg_theory_age": 4.142857142857143,
+    "longest_surviving_theory": 9,
+    "theory_mutation_count": 8,
+    "avg_confidence": 0.393,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.02934280150224242,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.0625,
+    "avg_abstraction_length": 51.0,
+    "compression_ratio": 5.666666666666667,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "Compressed trend theory: Nifty's range-bound pattern persists under compressed volatility, but continuation remains weakly supported. Observed stability may weaken if participation deteriorates.",
+      "contradiction_text": "Recent validation contains failure signal.; Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "strengthening"
+      },
+      "regime_signature": {
+        "date": "2026-04-28",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.36,
+        "active_theory_count": 2,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-04-22",
+          "similarity": 0.698,
+          "active_theories": [
+            "7b9c1cb08e6e607b",
+            "76e73c25c0b86c35",
+            "a410d0442574aa07"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-23",
+          "similarity": 0.698,
+          "active_theories": [
+            "7b9c1cb08e6e607b",
+            "76e73c25c0b86c35",
+            "a410d0442574aa07"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.45,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-15",
+          "similarity": 0.686,
+          "active_theories": [
+            "885ab3fc7f95b002",
+            "cd4235a299240326"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.392,
+        "label": "fragile"
+      }
+    }
+  }
+}

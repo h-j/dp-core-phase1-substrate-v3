@@ -98,5 +98,19 @@
   "theory_usefulness": {
     "score": 0.44,
     "label": "fragile"
+  },
+  "prediction": {
+    "direction": "range_bound",
+    "confidence": 0.38,
+    "tension": "volatility expansion vs structural support",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "higher",
+    "actual_direction": "range_bound",
+    "direction_score": 0.0,
+    "invalidation_triggered": true,
+    "confidence": 0.26,
+    "invalidation": "Trend contradiction: range_bound moved to extended_higher."
   }
 }

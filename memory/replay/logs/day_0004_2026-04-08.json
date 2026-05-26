@@ -97,5 +97,19 @@
   "theory_usefulness": {
     "score": 0.436,
     "label": "failed"
+  },
+  "prediction": {
+    "direction": "higher",
+    "confidence": 0.34,
+    "tension": "volatility expansion vs structural support",
+    "invalidation": "Current theory strengthens a relationship that prior theory weakened."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "higher",
+    "actual_direction": "higher",
+    "direction_score": 1.0,
+    "invalidation_triggered": false,
+    "confidence": 0.44,
+    "invalidation": "Current theory strengthens a relationship that prior theory weakened."
   }
 }

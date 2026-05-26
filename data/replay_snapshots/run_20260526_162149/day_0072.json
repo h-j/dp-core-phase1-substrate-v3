@@ -1,0 +1,185 @@
+{
+  "step": 72,
+  "date": "2026-04-21",
+  "observation": "NIFTY closed higher with volatility compressed and breadth strengthened.",
+  "abstraction": "Here is the converted market observation in a concise abstraction:\n\n\"Nifty's upward trend persists, with reduced volatility and broadening participation.\"",
+  "theory": "NIFTY's upward trend persists, with reduced volatility and broadening participation. Continuation remains weakly supported under compressed volatility. This theory directly grounds in the observation and abstraction above, focusing on market structure (volatility) and coherence (participation).",
+  "confidence": {
+    "empirical": 0.37,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.3581,
+    "contradiction": 0.278
+  },
+  "contradiction": {
+    "score": 0.18,
+    "summary": "Recent reflection contains uncertainty or caution signal.",
+    "indicators": [
+      "Recent reflection contains uncertainty or caution signal."
+    ],
+    "contradictions": [
+      "Recent reflection contains uncertainty or caution signal."
+    ]
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "range_bound",
+    "monthly": "strengthening"
+  },
+  "regime_signature": {
+    "date": "2026-04-21",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 3,
+    "breadth_proxy": "strengthened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-07",
+      "similarity": 0.966,
+      "active_theories": [
+        "21e934a05b146ca9",
+        "f309fea2478912ad"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-03-18",
+      "similarity": 0.92,
+      "active_theories": [
+        "21e934a05b146ca9"
+      ],
+      "contradictions": [
+        "Current theory weakens a relationship that prior theory strengthened.",
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2025-12-31",
+      "similarity": 0.86,
+      "active_theories": [
+        "5e7d40de03b213e1"
+      ],
+      "contradictions": [],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.416,
+    "label": "fragile"
+  },
+  "reflection": "The observed continuation of NIFTY's upward trend remains insufficiently tested under compressed volatility. This persistence is only weakly supported, as noted in the original theory. The recent reflection contains an uncertainty or caution signal, which further underscores the need for more rigorous testing.",
+  "metrics": {
+    "step": 72,
+    "date": "2026-04-21",
+    "contradiction_count": 1,
+    "contradiction_half_life": 1.35,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 1,
+    "contradiction_resolution_rate": 0.9836065573770492,
+    "avg_contradiction_severity": 0.4849180327868853,
+    "highest_contradiction": 0.78,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 1,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 7.87378640776699,
+    "avg_revival_latency": 7.954545454545454,
+    "avg_theory_age": 3.629032258064516,
+    "longest_surviving_theory": 17,
+    "theory_mutation_count": 36,
+    "avg_confidence": 0.393,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.02934280150224242,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 3.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.06976744186046512,
+    "avg_abstraction_length": 20.0,
+    "compression_ratio": 2.2222222222222223,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 9,
+      "theory_text": "NIFTY's upward trend persists, with reduced volatility and broadening participation. Continuation remains weakly supported under compressed volatility. This theory directly grounds in the observation and abstraction above, focusing on market structure (volatility) and coherence (participation).",
+      "contradiction_text": "Recent reflection contains uncertainty or caution signal.",
+      "horizon": {
+        "daily": "strengthening",
+        "weekly": "range_bound",
+        "monthly": "strengthening"
+      },
+      "regime_signature": {
+        "date": "2026-04-21",
+        "trend": "closed_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.18,
+        "active_theory_count": 3,
+        "breadth_proxy": "strengthened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-04-07",
+          "similarity": 0.966,
+          "active_theories": [
+            "21e934a05b146ca9",
+            "f309fea2478912ad"
+          ],
+          "contradictions": [
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-03-18",
+          "similarity": 0.92,
+          "active_theories": [
+            "21e934a05b146ca9"
+          ],
+          "contradictions": [
+            "Current theory weakens a relationship that prior theory strengthened.",
+            "Recent validation contains failure signal.",
+            "Recent reflection contains uncertainty or caution signal."
+          ],
+          "confidence": 0.37,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2025-12-31",
+          "similarity": 0.86,
+          "active_theories": [
+            "5e7d40de03b213e1"
+          ],
+          "contradictions": [],
+          "confidence": 0.42,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.416,
+        "label": "fragile"
+      }
+    }
+  }
+}

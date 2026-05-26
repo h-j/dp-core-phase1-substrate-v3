@@ -1,0 +1,68 @@
+{
+  "day_index": 0,
+  "date": "2025-12-31",
+  "observation_text": "NIFTY closed higher with volatility compressed.",
+  "theory_summary": "Compressed theory: NIFTY's upward momentum remains tenuous under compressed volatility, reliant on continued participation. This theory directly grounds itself in the observation of reduced volatility and the abstraction that the market exhibited a calm tone. The narrow claim focuses on the market structure, specifically the relationship between volatility and participation.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.5,
+    "reflection": 0.45,
+    "coherence": 0.4028,
+    "contradiction": 0.18
+  },
+  "contradiction_score": 0,
+  "reflection_summary": "The compressed theory suggests that NIFTY's upward momentum relies on continued participation, which is tenuous under reduced volatility. This claim focuses on the market structure, specifically the relationship between volatility and participation. However, the replay validation reveals mixed results at the daily horizon, with insufficient history for weekly and monthly horizons.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 45,
+      "sentence_count": 3,
+      "narrative_density": 0.042,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.826,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.03,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.533
+    },
+    "reflection": {
+      "word_count": 47,
+      "sentence_count": 3,
+      "narrative_density": 0.069,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.654,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.669
+    }
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2025-12-31",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.0,
+    "active_theory_count": 1,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [],
+  "theory_usefulness": {
+    "score": 0.464,
+    "label": "fragile"
+  },
+  "prediction": {
+    "direction": "higher",
+    "confidence": 0.56,
+    "tension": "observation coherence vs residual uncertainty",
+    "invalidation": "volatility expansion"
+  },
+  "prior_prediction_result": null
+}

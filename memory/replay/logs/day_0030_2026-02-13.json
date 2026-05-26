@@ -1,0 +1,118 @@
+{
+  "day_index": 30,
+  "date": "2026-02-13",
+  "observation_text": "NIFTY traded range-bound with volatility compressed but breadth weakened.",
+  "theory_summary": "Compressed Theory: Continuation remains weakly supported under compressed volatility. Observed stability may weaken if participation deteriorates. This theory directly grounds itself in the observation of NIFTY's range-bound behavior, compressed volatility, and weakening breadth.",
+  "confidence_state": {
+    "empirical": 0.45,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.4413,
+    "contradiction": 0.198
+  },
+  "contradiction_score": 0.18,
+  "reflection_summary": "The compressed theory's claim of weakly supported continuation under compressed volatility is validated by the replay validation, which shows a range-bound behavior across different time horizons. However, this validation does not resolve the contradiction posed by recent reflections containing uncertainty or caution signals. One unresolved tension remains: the theory's assumption that observed stability may weaken if participation deteriorates, but it does not specify how or when this might occur.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 30,
+      "sentence_count": 3,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 0.833,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.038,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.742
+    },
+    "reflection": {
+      "word_count": 60,
+      "sentence_count": 3,
+      "narrative_density": 0.25,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.455,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.772
+    }
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-02-13",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 3,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-01-07",
+      "similarity": 0.966,
+      "active_theories": [
+        "5e7d40de03b213e1",
+        "275500409fc758d7",
+        "d0f8b31888296201"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-13",
+      "similarity": 0.944,
+      "active_theories": [
+        "06fb56bda4a5a1d6",
+        "ee907acc052cc825"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-22",
+      "similarity": 0.944,
+      "active_theories": [
+        "ee907acc052cc825",
+        "ae1c3a8f0db00b58"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.45,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.596,
+    "label": "coherent"
+  },
+  "prediction": {
+    "direction": "range_bound",
+    "confidence": 0.38,
+    "tension": "continuation strength vs uncertainty",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "range_bound",
+    "actual_direction": "range_bound",
+    "direction_score": 1.0,
+    "invalidation_triggered": false,
+    "confidence": 0.48,
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  }
+}

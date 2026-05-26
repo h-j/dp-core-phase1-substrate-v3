@@ -1,0 +1,116 @@
+{
+  "day_index": 65,
+  "date": "2026-04-09",
+  "observation_text": "NIFTY closed lower with volatility compressed with broad participation.",
+  "theory_summary": "Compressed Theory: NIFTY's daily weakness persists under compressed volatility, with observed stability potentially weakening if participation deteriorates. This theory directly grounds in the observation \"NIFTY closed lower with volatility compressed with broad participation\" and abstraction \"Nifty's daily weakness contrasts with weekly and monthly trends, indicating compression in volatility amidst broad market participation.\" The theory makes a narrow claim about the persistence of NIFTY's daily weakness under compressed volatility, which is falsifiable by future observations that contradict it. The theory also preserves ambiguity where evidence is weak, acknowledging the potential for observed stability to weaken if participation deteriorates.",
+  "confidence_state": {
+    "empirical": 0.42,
+    "regime": 0.5,
+    "reflection": 0.5,
+    "coherence": 0.4213,
+    "contradiction": 0.198
+  },
+  "contradiction_score": 0.18,
+  "reflection_summary": "The compressed theory suggests that NIFTY's daily weakness persists under compressed volatility, with observed stability potentially weakening if participation deteriorates. This theory is directly grounded in the observation \"NIFTY closed lower with volatility compressed with broad participation\" and abstraction \"Nifty's daily weakness contrasts with weekly and monthly trends, indicating compression in volatility amidst broad market participation.\" The recent reflection contains uncertainty or caution signal. The validation replay shows a weakening trend on the daily horizon, strengthening trend on the weekly horizon, and mixed trend on the monthly horizon.",
+  "epistemic_quality": {
+    "theory": {
+      "word_count": 86,
+      "sentence_count": 3,
+      "narrative_density": 0.611,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.185,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.608
+    },
+    "reflection": {
+      "word_count": 79,
+      "sentence_count": 3,
+      "narrative_density": 0.514,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.0,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.146,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.623
+    }
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "strengthening",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2026-04-09",
+    "trend": "closed_lower",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.18,
+    "active_theory_count": 2,
+    "breadth_proxy": "strongly_participatory"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-02-03",
+      "similarity": 0.978,
+      "active_theories": [
+        "234d40bdd5ec9b17",
+        "1ecb76988833c6ea"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-08",
+      "similarity": 0.798,
+      "active_theories": [
+        "da090643588d7d7a",
+        "f61304370f440c73"
+      ],
+      "contradictions": [
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.37,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-30",
+      "similarity": 0.777,
+      "active_theories": [
+        "bcbcaf5d406eca81",
+        "3faf01c616ad5d29"
+      ],
+      "contradictions": [
+        "Recent validation contains failure signal.",
+        "Recent reflection contains uncertainty or caution signal."
+      ],
+      "confidence": 0.42,
+      "recurring_contradiction": null
+    }
+  ],
+  "theory_usefulness": {
+    "score": 0.44,
+    "label": "fragile"
+  },
+  "prediction": {
+    "direction": "uncertain",
+    "confidence": 0.24,
+    "tension": "Recent reflection contains uncertainty or caution signal.",
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "higher",
+    "actual_direction": "lower",
+    "direction_score": 0.0,
+    "invalidation_triggered": true,
+    "confidence": 0.46,
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
+  }
+}

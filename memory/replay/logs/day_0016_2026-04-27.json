@@ -96,5 +96,19 @@
   "theory_usefulness": {
     "score": 0.392,
     "label": "fragile"
+  },
+  "prediction": {
+    "direction": "higher",
+    "confidence": 0.44,
+    "tension": "Recent validation contains failure signal. vs Recent reflection contains uncertainty or caution signal.",
+    "invalidation": "Recent validation contains failure signal."
+  },
+  "prior_prediction_result": {
+    "prior_direction": "lower",
+    "actual_direction": "higher",
+    "direction_score": 0.0,
+    "invalidation_triggered": true,
+    "confidence": 0.38,
+    "invalidation": "Recent reflection contains uncertainty or caution signal."
   }
 }
