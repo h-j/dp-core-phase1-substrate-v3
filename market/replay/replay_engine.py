@@ -243,9 +243,17 @@ class ReplayExecutor:
         self._run_reflections: List[object] = []
         self._run_market_observations: List[object] = []
         self._prior_prediction = None
+        self._prior_prediction_db_id = None
         self._regime_matches_by_step: List[list] = []
         self.transition_pressure_engine = TransitionPressureEngine()
         self.replay_analysis_engine = None # Will be initialized in execute
+        self.prediction_repo = None
+        self.prediction_result_repo = None
+        self.transition_pressure_repo = None
+        self.market_outcome_repo = None
+        
+        # Track IDs for relational linking
+        self._prior_prediction_db_id = None
 
     def _create_snapshot_dirs(self):
         """Create replay snapshot directories if missing."""
@@ -289,6 +297,10 @@ class ReplayExecutor:
         from memory.relational.repositories.validation_repository import (
             ValidationRepository,
         )
+        from memory.relational.repositories.prediction_repository import PredictionRepository
+        from memory.relational.repositories.prediction_result_repository import PredictionResultRepository
+        from memory.relational.repositories.transition_pressure_repository import TransitionPressureRepository
+        from memory.relational.repositories.market_outcome_repository import MarketOutcomeRepository
 
         self.abstraction_flow = AbstractionFlow()
         self.theory_flow = TheoryGenerationFlow()
@@ -302,6 +314,18 @@ class ReplayExecutor:
         self.validation_repo = ValidationRepository()
         self.reflection_repo = ReflectionRepository()
         self.confidence_repo = ConfidenceRepository()
+        
+        # v1.4 Repositories
+        self.prediction_repo = PredictionRepository()
+        self.prediction_result_repo = PredictionResultRepository()
+        self.transition_pressure_repo = TransitionPressureRepository()
+        
+        try:
+            from memory.relational.repositories.market_outcome_repository import MarketOutcomeRepository
+            self.market_outcome_repo = MarketOutcomeRepository()
+        except (ImportError, ModuleNotFoundError):
+            self._log("WARNING: MarketOutcomeRepository missing; optional persistence disabled.")
+            self.market_outcome_repo = None
 
         self.flows_initialized = True
 
@@ -715,6 +739,46 @@ class ReplayExecutor:
                 self.validation_repo.save(validation)
                 self.reflection_repo.save(reflection)
                 self.confidence_repo.save(confidence_state)
+
+                # v1.4 Analytics Persistence (PostgreSQL) - Defensive Observer Pattern
+                try:
+                    if self.market_outcome_repo:
+                        self.market_outcome_repo.save(market_obs)
+                except Exception as e:
+                    self._log(f"WARNING: Optional MarketOutcome save failed: {e}")
+
+                try:
+                    self.transition_pressure_repo.save(transition_pressure, date=date_str, day_index=day_idx)
+                except Exception as e:
+                    self._log(f"WARNING: TransitionPressure save failed: {e}")
+                
+                saved_prediction = None
+                try:
+                    # Store logical refs/hashes as per v1.4 adjustments
+                    theory_ref = str(getattr(theory, 'id', ''))
+                    reflection_ref = str(getattr(reflection, 'id', ''))
+                    
+                    saved_prediction = self.prediction_repo.save(
+                        prediction_probe,
+                        date=date_str,
+                        day_index=day_idx,
+                        theory_ref=theory_ref,
+                        reflection_ref=reflection_ref
+                    )
+                except Exception as e:
+                    self._log(f"WARNING: PredictionProbe save failed: {e}")
+
+                try:
+                    if prior_prediction_result and self._prior_prediction_db_id:
+                        self.prediction_result_repo.save(
+                            prior_prediction_result,
+                            date=date_str,
+                            day_index=day_idx,
+                            prediction_id=self._prior_prediction_db_id
+                        )
+                except Exception as e:
+                    self._log(f"WARNING: PredictionResult save failed: {e}")
+
                 self._run_theories.append(theory)
                 self._run_validations.append(validation)
                 self._run_reflections.append(reflection)
@@ -911,6 +975,11 @@ class ReplayExecutor:
 
                 # WIRING FIX 1: Update prior prediction for next day's scoring
                 self._prior_prediction = prediction_probe
+                # Track DB ID for result linkage
+                if saved_prediction and hasattr(saved_prediction, 'id'):
+                    self._prior_prediction_db_id = saved_prediction.id
+                else:
+                    self._prior_prediction_db_id = None
 
             except Exception as e:
                 self._log(f"✗ Day {day_idx} ({date_str}) failed: {e}")

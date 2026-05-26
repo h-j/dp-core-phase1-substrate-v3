@@ -81,9 +81,12 @@ from memory.relational.repositories.reflective_memory_repository import (
     ReflectiveMemoryRepository
 )
 
-from memory.relational.repositories.market_outcome_repository import (
-    MarketOutcomeRepository
-)
+try:
+    from memory.relational.repositories.market_outcome_repository import (
+        MarketOutcomeRepository
+    )
+except ImportError:
+    MarketOutcomeRepository = None
 
 
 def main():
@@ -104,7 +107,10 @@ def main():
 
     market_observation_repository = MarketObservationRepository()
 
-    market_outcome_repository = MarketOutcomeRepository()
+    if MarketOutcomeRepository:
+        market_outcome_repository = MarketOutcomeRepository()
+    else:
+        market_outcome_repository = None
 
     market_regime_classifier = MarketRegimeClassifier()
 
