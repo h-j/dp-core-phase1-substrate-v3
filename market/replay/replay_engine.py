@@ -692,6 +692,7 @@ class ReplayExecutor:
                     theory,
                     validation,
                     contradiction_result=contradiction_result,
+                    market_observation=market_obs,
                 )
                 epistemic_quality = {
                     "theory": evaluate_epistemic_quality(theory.summary),
@@ -776,6 +777,7 @@ class ReplayExecutor:
                     validation=validation,
                     reflection=reflection,
                     contradiction_result=contradiction_result,
+                    market_observation=market_obs,
                     recent_validations=recent_validations,
                     outcome_validation_result={},
                     lineage_event=theory_step_info,
@@ -928,6 +930,9 @@ class ReplayExecutor:
                     theory_usefulness=theory_usefulness,
                     transition_pressure=transition_pressure.to_dict(),
                     decisions={k: v.to_dict() for k, v in decisions.items()},
+                    candle_type=market_obs.candle_type,
+                    participation_strength=market_obs.participation_strength,
+                    participation_confirmation=market_obs.participation_confirmation,
                     # v2.0 dimensions
                     volume_state=obs_data["derived"].get("volume_state"),
                     volatility_regime=vol_regime,
@@ -1378,6 +1383,9 @@ class ReplayExecutor:
             "regime_signature": snapshot_data.get("regime_signature", {}),
             "regime_matches": snapshot_data.get("regime_matches", []),
             "theory_usefulness": snapshot_data.get("theory_usefulness", {}),
+            "candle_type": snapshot_data["observation"].candle_type,
+            "participation_strength": snapshot_data["observation"].participation_strength,
+            "participation_confirmation": snapshot_data["observation"].participation_confirmation,
             "prediction": prediction.to_dict() if hasattr(prediction, "to_dict") else prediction,
             "prior_prediction_result": (
                 prior_prediction_result.to_dict()
@@ -1416,6 +1424,8 @@ class ReplayExecutor:
         print(f"\nObservation:")
         print(f"  {observation.observation_text}")
         print(f"  Trend: {observation.trend_state}")
+        print(f"  Candle: {observation.candle_type}")
+        print(f"  Participation: {observation.participation_strength}, {observation.participation_confirmation}")
         print(f"  Sentiment: {observation.macro_sentiment}")
 
         print(f"\nHorizon:")

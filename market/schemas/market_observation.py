@@ -20,3 +20,12 @@ class MarketObservation(CognitionBase):
     outcome_confidence: float = 0.5
     contradiction_markers: list[str] = []
     outcome_contradictions: list[str] = []
+    descriptors: list[str] = []
+    body_pct: float = 0.0
+    upper_wick_pct: float = 0.0
+    lower_wick_pct: float = 0.0
+    close_position_pct: float = 0.0
+    open_position_pct: float = 0.0
+    candle_type: str = "neutral"
+    participation_strength: str = "normal"
+    participation_confirmation: str = "normal"

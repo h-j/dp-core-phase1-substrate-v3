@@ -10,19 +10,35 @@ class ReflectionFlow:
 
         self.client = OllamaClient()
 
-    def process(self, theory, validation, contradiction_result=None) -> ReflectionEvent:
+    def process(
+        self,
+        theory,
+        validation,
+        contradiction_result=None,
+        market_observation=None,
+    ) -> ReflectionEvent:
         contradiction_result = contradiction_result or {}
         contradiction_summary = contradiction_result.get(
             "summary", "No explicit contradiction detected."
         )
         contradiction_indicators = contradiction_result.get("indicators", [])
 
+        observation_section = ""
+        if market_observation is not None:
+            observation_section = (
+                f"Observation: {market_observation.observation_text}\n"
+                f"Candle: {getattr(market_observation, 'candle_type', 'neutral')}\n"
+                f"Participation: {getattr(market_observation, 'participation_strength', 'normal')}, {getattr(market_observation, 'participation_confirmation', 'normal')}\n"
+                f"Volatility: {getattr(market_observation, 'volatility_state', 'unknown')}\n"
+            )
+
         prompt = f"""
-Reflect on the following theory validation.
+Reflect on the following theory validation using structured market observation dimensions.
 
 Theory:
 {theory.summary}
 
+{observation_section}
 Contradiction:
 {contradiction_summary}
 {'; '.join(contradiction_indicators)}
@@ -32,6 +48,7 @@ Validation:
 
 Return:
 - compressed critique, 1-3 sentences
+- explicitly weight price action, volatility, participation, candle structure, and contradiction markers
 - reference the actual theory
 - reference the actual contradiction
 - identify one unresolved tension

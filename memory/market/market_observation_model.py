@@ -1,4 +1,4 @@
-from sqlalchemy import Column, DateTime, String
+from sqlalchemy import Column, DateTime, Float, String
 from sqlalchemy.sql import func
 
 from memory.relational.base import Base
@@ -30,5 +30,23 @@ class MarketObservationModel(Base):
     macro_sentiment = Column(String)
 
     contradiction_markers = Column(String)
+
+    descriptors = Column(String)
+
+    body_pct = Column(Float)
+
+    upper_wick_pct = Column(Float)
+
+    lower_wick_pct = Column(Float)
+
+    close_position_pct = Column(Float)
+
+    open_position_pct = Column(Float)
+
+    candle_type = Column(String)
+
+    participation_strength = Column(String)
+
+    participation_confirmation = Column(String)
 
     observation_source = Column(String)

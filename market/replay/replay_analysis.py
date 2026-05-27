@@ -54,6 +54,9 @@ class ReplayAnalysisEngine:
         theory_usefulness: dict | None = None,
         transition_pressure: dict | None = None,
         decisions: dict | None = None,
+        candle_type: str | None = None,
+        participation_strength: str | None = None,
+        participation_confirmation: str | None = None,
         # v2.0 enriched dimensions
         volume_state: str | None = None,
         volatility_regime: str | None = None,
@@ -77,6 +80,9 @@ class ReplayAnalysisEngine:
                 "theory_usefulness": theory_usefulness or {},
                 "transition_pressure": transition_pressure or {},
                 "decisions": decisions or {},
+                "candle_type": candle_type,
+                "participation_strength": participation_strength,
+                "participation_confirmation": participation_confirmation,
                 # v2.0 dimensions
                 "volume_state": volume_state,
                 "volatility_regime": volatility_regime,

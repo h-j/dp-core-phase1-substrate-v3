@@ -53,6 +53,8 @@ class MarketObservationSynthesizer:
 
         # v2.0 Enriched descriptors
         descriptors = self._derive_enriched_descriptors(row)
+        candle_structure = self._derive_candle_structure(row)
+        participation_signals = self._derive_participation_signals(row)
 
         # Derive observation components
         trend_state = self._derive_trend_state(day_index)
@@ -60,10 +62,19 @@ class MarketObservationSynthesizer:
         liquidity_state = self._derive_liquidity_state(day_index)
         breadth_state = self._derive_breadth_state(day_index)
         macro_sentiment = self._derive_macro_sentiment(
-            trend_state, volatility_state, breadth_state, descriptors
+            trend_state,
+            volatility_state,
+            breadth_state,
+            descriptors,
+            participation_signals,
         )
         contradiction_markers = self._detect_contradiction_markers(
-            trend_state, volatility_state, breadth_state, liquidity_state
+            trend_state,
+            volatility_state,
+            breadth_state,
+            liquidity_state,
+            candle_structure,
+            participation_signals,
         )
 
         observation_text = self._synthesize_text(
@@ -72,7 +83,9 @@ class MarketObservationSynthesizer:
             liquidity_state,
             breadth_state,
             macro_sentiment,
-            descriptors
+            descriptors,
+            candle_structure,
+            participation_signals,
         )
 
         return MarketObservation(
@@ -99,6 +112,14 @@ class MarketObservationSynthesizer:
             volatility_regime=volatility_state,
             momentum_regime="strengthening" if float(row.get("return_3d", 0.0)) > 0.5 else "weakening" if float(row.get("return_3d", 0.0)) < -0.5 else "flat",
             descriptors=descriptors,
+            body_pct=candle_structure["body_pct"],
+            upper_wick_pct=candle_structure["upper_wick_pct"],
+            lower_wick_pct=candle_structure["lower_wick_pct"],
+            close_position_pct=candle_structure["close_position_pct"],
+            open_position_pct=candle_structure["open_position_pct"],
+            candle_type=candle_structure["candle_type"],
+            participation_strength=participation_signals["participation_strength"],
+            participation_confirmation=participation_signals["participation_confirmation"],
             observation_source=f"replay_engine_{date_str}"
         )
 
@@ -244,21 +265,22 @@ class MarketObservationSynthesizer:
         trend_state: str,
         volatility_state: str,
         breadth_state: str,
-        descriptors: list = None
+        descriptors: list = None,
+        participation_signals: dict | None = None,
     ) -> str:
         """Synthesize macro sentiment from components."""
         # Positive indicators
         positive_list = [
             "higher" in trend_state or "extended" in trend_state,
             volatility_state in ["compressed", "stable"],
-            breadth_state in ["strengthened", "strongly_participatory"]
+            breadth_state in ["strengthened", "strongly_participatory"],
         ]
 
         # Negative indicators
         negative = sum([
             "lower" in trend_state or "deteriorated" in trend_state,
             volatility_state in ["expanded", "high"],
-            breadth_state in ["weakened", "deteriorated"]
+            breadth_state in ["weakened", "deteriorated"],
         ])
 
         # v2.0 momentum influence
@@ -266,6 +288,14 @@ class MarketObservationSynthesizer:
             if "short-term momentum strengthening" in descriptors:
                 positive_list.append(True)
             if "short-term momentum weakening" in descriptors:
+                negative += 1
+
+        if participation_signals:
+            if participation_signals.get("participation_confirmation") == "bullish_confirmed":
+                positive_list.append(True)
+            if participation_signals.get("participation_confirmation") == "bearish_confirmed":
+                negative += 1
+            if participation_signals.get("participation_confirmation") == "divergence":
                 negative += 1
 
         positive = sum(positive_list)
@@ -286,7 +316,9 @@ class MarketObservationSynthesizer:
         trend_state: str,
         volatility_state: str,
         breadth_state: str,
-        liquidity_state: str
+        liquidity_state: str,
+        candle_structure: dict,
+        participation_signals: dict,
     ) -> list:
         """Detect contradiction markers in market state."""
         markers = []
@@ -315,6 +347,12 @@ class MarketObservationSynthesizer:
         ):
             markers.append("range_bound_volatility_expansion")
 
+        if candle_structure.get("candle_type") == "indecision":
+            markers.append("indecision_candle")
+
+        if participation_signals.get("participation_confirmation") == "divergence":
+            markers.append("price_participation_divergence")
+
         return markers
 
     def _synthesize_text(
@@ -324,7 +362,9 @@ class MarketObservationSynthesizer:
         liquidity_state: str,
         breadth_state: str,
         macro_sentiment: str,
-        descriptors: list = None
+        descriptors: list = None,
+        candle_structure: dict | None = None,
+        participation_signals: dict | None = None,
     ) -> str:
         """Generate human-readable observation text."""
         components = []
@@ -332,6 +372,15 @@ class MarketObservationSynthesizer:
         # v2.0 Enriched descriptors prefix
         if descriptors:
             components.append(f"[{', '.join(descriptors)}]")
+
+        if candle_structure:
+            candle_label = candle_structure.get("candle_type", "neutral").replace("_", " ")
+            components.append(f"candle {candle_label}")
+
+        if participation_signals:
+            participation_label = participation_signals.get("participation_strength", "normal")
+            confirmation_label = participation_signals.get("participation_confirmation", "normal").replace("_", " ")
+            components.append(f"participation {participation_label} ({confirmation_label})")
 
         # Trend
         if "higher" in trend_state:
@@ -410,3 +459,76 @@ class MarketObservationSynthesizer:
             descriptors.append("short-term momentum weakening")
             
         return descriptors
+
+    def _derive_candle_structure(self, row: pd.Series) -> dict:
+        """Derive structured candle metrics from OHLC."""
+        open_price = float(row["open"])
+        high_price = float(row["high"])
+        low_price = float(row["low"])
+        close_price = float(row["close"])
+        range_value = max(high_price - low_price, 1e-9)
+
+        body_pct = abs(close_price - open_price) / range_value
+        upper_wick_pct = max(high_price - max(open_price, close_price), 0.0) / range_value
+        lower_wick_pct = max(min(open_price, close_price) - low_price, 0.0) / range_value
+        close_position_pct = (close_price - low_price) / range_value
+        open_position_pct = (open_price - low_price) / range_value
+        daily_return_pct = (close_price - open_price) / open_price * 100
+
+        candle_type = "neutral"
+        if body_pct >= 0.65 and close_position_pct >= 0.7 and daily_return_pct > 0:
+            candle_type = "strong_bull"
+        elif body_pct >= 0.65 and close_position_pct <= 0.3 and daily_return_pct < 0:
+            candle_type = "strong_bear"
+        elif upper_wick_pct >= 0.5 and body_pct < 0.4:
+            candle_type = "rejection_upper"
+        elif lower_wick_pct >= 0.5 and body_pct < 0.4:
+            candle_type = "rejection_lower"
+        elif body_pct < 0.25 and max(upper_wick_pct, lower_wick_pct) < 0.35:
+            candle_type = "indecision"
+        elif body_pct < 0.3 and range_value / max(open_price, 1e-9) < 0.008:
+            candle_type = "compression"
+        elif body_pct > 0.5 and range_value / max(open_price, 1e-9) > 0.012:
+            candle_type = "expansion"
+
+        return {
+            "body_pct": round(body_pct, 4),
+            "upper_wick_pct": round(upper_wick_pct, 4),
+            "lower_wick_pct": round(lower_wick_pct, 4),
+            "close_position_pct": round(close_position_pct, 4),
+            "open_position_pct": round(open_position_pct, 4),
+            "candle_type": candle_type,
+        }
+
+    def _derive_participation_signals(self, row: pd.Series) -> dict:
+        """Derive participation strength and confirmation from volume ratios."""
+        volume_ratio_5d = float(row.get("volume_ratio_5d", 1.0))
+        volume_ratio_20d = float(row.get("volume_ratio_20d", 1.0))
+        open_price = float(row["open"])
+        close_price = float(row["close"])
+        daily_return_pct = (close_price - open_price) / open_price * 100
+
+        if volume_ratio_5d > 1.15 and volume_ratio_20d > 1.1:
+            participation_strength = "strong"
+        elif volume_ratio_5d < 0.9 and volume_ratio_20d < 0.95:
+            participation_strength = "weak"
+        else:
+            participation_strength = "normal"
+
+        if daily_return_pct > 0.8 and volume_ratio_5d > 1.1 and volume_ratio_20d > 1.0:
+            participation_confirmation = "bullish_confirmed"
+        elif daily_return_pct < -0.8 and volume_ratio_5d > 1.1 and volume_ratio_20d > 1.0:
+            participation_confirmation = "bearish_confirmed"
+        elif abs(daily_return_pct) > 0.8 and (
+            volume_ratio_5d < 0.95 or volume_ratio_20d < 0.95
+        ):
+            participation_confirmation = "divergence"
+        elif abs(daily_return_pct) > 0.4 and volume_ratio_5d < 0.9:
+            participation_confirmation = "weak_move"
+        else:
+            participation_confirmation = "normal"
+
+        return {
+            "participation_strength": participation_strength,
+            "participation_confirmation": participation_confirmation,
+        }
