@@ -7,6 +7,7 @@ Deterministic, replayable, offline-first storage.
 """
 
 import os
+import numpy as np
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -115,10 +116,14 @@ class NIFTYHistoryDownloader:
         # Normalize column names to lowercase
         data.columns = data.columns.str.lower()
 
+        # Add metadata
+        data["source"] = f"yfinance:{self.TICKER}"
+        data["downloaded_at"] = datetime.now().isoformat()
+
         # Rename yfinance columns to standard names
         column_mapping = {
-            "adj close": "close",
-            "adjusted close": "close"
+            "adj close": "adjusted_close",
+            "adjusted close": "adjusted_close"
         }
 
         for old_col, new_col in column_mapping.items():
@@ -126,7 +131,7 @@ class NIFTYHistoryDownloader:
                 data = data.rename(columns={old_col: new_col})
 
         # Select required columns
-        required_cols = ["date", "open", "high", "low", "close", "volume"]
+        required_cols = ["date", "open", "high", "low", "close", "adjusted_close", "volume", "source", "downloaded_at"]
 
         available_cols = [col for col in required_cols if col in data.columns]
         if not available_cols:
@@ -185,25 +190,63 @@ class NIFTYHistoryDownloader:
             return
 
         data = pd.read_csv(self.CSV_PATH)
+        # Ensure date is datetime for gap calculations if re-reading
+        data["date"] = pd.to_datetime(data["date"])
+        data = data.sort_values("date")
 
-        # Daily return percentage
-        data["daily_return_pct"] = (
-            (data["close"] - data["open"]) / data["open"] * 100
-        ).round(4)
+        # 1. Momentum Metrics
+        data["daily_return_pct"] = ((data["close"] - data["open"]) / data["open"] * 100).round(4)
+        data["return_3d"] = ((data["close"] - data["close"].shift(3)) / data["close"].shift(3) * 100).round(4)
+        data["return_5d"] = ((data["close"] - data["close"].shift(5)) / data["close"].shift(5) * 100).round(4)
+        data["return_10d"] = ((data["close"] - data["close"].shift(10)) / data["close"].shift(10) * 100).round(4)
 
-        # Rolling volatility (standard deviation of daily returns)
+        # 2. Volume Metrics
+        data["avg_5d_volume"] = data["volume"].rolling(window=5, min_periods=1).mean().round(0)
+        data["avg_20d_volume"] = data["volume"].rolling(window=20, min_periods=1).mean().round(0)
+        data["volume_ratio_5d"] = (data["volume"] / data["avg_5d_volume"]).round(4)
+        data["volume_ratio_20d"] = (data["volume"] / data["avg_20d_volume"]).round(4)
+        
+        # Add volume_state label
+        conditions = [
+            data["volume_ratio_5d"] > 1.5,  # Spike
+            data["volume_ratio_5d"] > 1.1,  # Elevated
+            data["volume_ratio_5d"] < 0.9   # Dry
+        ]
+        choices = ["spike", "elevated", "dry"]
+        data["volume_state"] = np.select(conditions, choices, default="normal")
+
+
+        # 3. Volatility & Range Metrics
+        data["range_points"] = (data["high"] - data["low"]).round(2)
+        data["range_pct"] = ((data["high"] - data["low"]) / data["close"] * 100).round(4)
+        
+        prior_close = data["close"].shift(1)
+        data["gap_points"] = (data["open"] - prior_close).round(2)
+        data["gap_pct"] = ((data["open"] - prior_close) / prior_close * 100).round(4)
+
+        # ATR Calculation (True Range)
+        tr = pd.concat([
+            data["high"] - data["low"],
+            (data["high"] - prior_close).abs(),
+            (data["low"] - prior_close).abs()
+        ], axis=1).max(axis=1)
+        data["atr_5"] = tr.rolling(window=5).mean().round(2)
+        data["atr_14"] = tr.rolling(window=14).mean().round(2)
+
+        # Legacy Volatility Metrics (Backward Compatibility)
         data["rolling_volatility_10d"] = (
             data["daily_return_pct"]
             .rolling(window=10, min_periods=1)
             .std()
         ).round(4)
-
         data["rolling_volatility_30d"] = (
             data["daily_return_pct"]
             .rolling(window=30, min_periods=1)
             .std()
         ).round(4)
 
+        # Re-format date to string for CSV
+        data["date"] = data["date"].dt.strftime("%Y-%m-%d")
         data.to_csv(self.CSV_PATH, index=False)
         print(f"Added derived fields. Updated: {self.CSV_PATH}")
 

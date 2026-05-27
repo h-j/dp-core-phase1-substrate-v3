@@ -4,7 +4,7 @@ Does not affect cognition.
 """
 
 from typing import List, Dict
-from datetime import datetime
+from typing import Any
 
 
 class CapitalSimulator:
@@ -15,14 +15,27 @@ class CapitalSimulator:
 
     def __init__(self, starting_capital: float = 10000.0):
         self.starting_capital = starting_capital
-        self.current_capital = starting_capital
         self.daily_logs: List[Dict] = []
-        self.max_capital = starting_capital
-        self.min_capital = starting_capital
-        self.max_drawdown_pct = 0.0
-        self.win_count = 0
-        self.loss_count = 0
         self.total_days = 0
+        
+        # v1.7 Policy Tracking
+        self.policy_stats = {
+            "baseline": self._init_stats(),
+            "high_conviction": self._init_stats(),
+            "breakout": self._init_stats()
+        }
+
+    def _init_stats(self) -> Dict:
+        return {
+            "current_capital": self.starting_capital,
+            "max_capital": self.starting_capital,
+            "max_drawdown_pct": 0.0,
+            "win_count": 0,
+            "loss_count": 0,
+            "trade_count": 0,
+            "skipped_days": 0,
+            "total_conviction": 0.0
+        }
 
     def record_day_result(
         self,
@@ -31,92 +44,102 @@ class CapitalSimulator:
         prediction_confidence: float,
         actual_daily_return_pct: float,
         market_daily_return_pct: float, # For alpha calculation
+        decisions: Dict[str, Any] = None
     ):
         """
         Records daily prediction and actual market return to simulate capital.
-
-        Args:
-            date: Current day's date.
-            prediction_direction: Predicted direction ("higher", "lower", "range_bound", "uncertain").
-            prediction_confidence: Confidence of the prediction.
-            actual_daily_return_pct: The actual daily return percentage of the market.
-            market_daily_return_pct: The actual daily return percentage of the market (for alpha).
         """
         self.total_days += 1
-        capital_before = self.current_capital
-        daily_return_pct = 0.0
-        deployed_capital_pct = 0.0
+        policy_updates = {}
 
-        if prediction_direction == "higher":
-            deployed_capital_pct = 1.0 # 100% long
-            daily_return_pct = actual_daily_return_pct
-        elif prediction_direction == "lower":
-            deployed_capital_pct = 0.0 # Cash
-            daily_return_pct = 0.0
-        elif prediction_direction == "range_bound":
-            deployed_capital_pct = 0.5 # 50% deployed
-            daily_return_pct = actual_daily_return_pct * 0.5
-        elif prediction_direction == "uncertain":
-            deployed_capital_pct = 0.0 # Cash
-            daily_return_pct = 0.0
+        for name, stats in self.policy_stats.items():
+            cap_before = stats["current_capital"]
+            
+            # Determine action and conviction
+            action = "cash"
+            conviction = 0.0
+            
+            if decisions and name in decisions:
+                d = decisions[name]
+                # Handle both object and dict types defensively
+                action = getattr(d, "action", "cash") if not isinstance(d, dict) else d.get("action", "cash")
+                conviction = getattr(d, "conviction", 0.0) if not isinstance(d, dict) else d.get("conviction", 0.0)
+            else:
+                # Fallback to legacy direction mapping if decisions missing (e.g. Day 0)
+                if prediction_direction == "higher": action = "buy"
+                elif prediction_direction == "lower": action = "sell"
+                elif prediction_direction == "range_bound": action = "hold"
+                else: action = "cash"
+                conviction = prediction_confidence
 
-        # Update capital
-        self.current_capital *= (1 + daily_return_pct / 100)
-        capital_after = self.current_capital
+            # Return logic
+            daily_ret = 0.0
+            deployed = 0.0
+            if action == "buy":
+                daily_ret = actual_daily_return_pct
+                deployed = 1.0
+                stats["trade_count"] += 1
+            elif action == "sell":
+                daily_ret = 0.0  # Cash exit for sell in this implementation
+                deployed = 0.0
+                stats["trade_count"] += 1
+            elif action == "hold":
+                daily_ret = actual_daily_return_pct * 0.5
+                deployed = 0.5
+            else:
+                daily_ret = 0.0
+                deployed = 0.0
+                stats["skipped_days"] += 1
 
-        # Track win/loss
-        if daily_return_pct > 0:
-            self.win_count += 1
-        elif daily_return_pct < 0:
-            self.loss_count += 1
+            # Apply return
+            stats["current_capital"] *= (1 + daily_ret / 100)
+            stats["total_conviction"] += conviction
+            
+            if daily_ret > 0: stats["win_count"] += 1
+            elif daily_ret < 0: stats["loss_count"] += 1
 
-        # Track max drawdown
-        self.max_capital = max(self.max_capital, self.current_capital)
-        drawdown = (self.max_capital - self.current_capital) / self.max_capital
-        self.max_drawdown_pct = max(self.max_drawdown_pct, drawdown)
+            # Max Drawdown
+            stats["max_capital"] = max(stats["max_capital"], stats["current_capital"])
+            drawdown = (stats["max_capital"] - stats["current_capital"]) / stats["max_capital"]
+            stats["max_drawdown_pct"] = max(stats["max_drawdown_pct"], drawdown)
+
+            policy_updates[name] = {
+                "capital_before": cap_before,
+                "capital_after": stats["current_capital"],
+                "daily_return_pct": daily_ret,
+                "deployed_capital_pct": deployed,
+                "action": action,
+                "conviction": conviction
+            }
 
         self.daily_logs.append({
             "date": date,
             "prediction_direction": prediction_direction,
-            "prediction_confidence": prediction_confidence,
             "actual_daily_return_pct": actual_daily_return_pct,
             "market_daily_return_pct": market_daily_return_pct,
-            "capital_before": capital_before,
-            "capital_after": capital_after,
-            "daily_return_pct": daily_return_pct,
-            "deployed_capital_pct": deployed_capital_pct,
+            "policies": policy_updates
         })
 
     def get_summary(self) -> Dict:
-        """Returns a summary of the capital simulation."""
-        ending_capital = self.current_capital
-        return_pct = (ending_capital - self.starting_capital) / self.starting_capital if self.starting_capital else 0.0
-
-        # Annualized return (assuming 252 trading days in a year)
-        annualized_return = (1 + return_pct) ** (252 / self.total_days) - 1 if self.total_days > 0 else 0.0
-
-        win_rate = self.win_count / (self.win_count + self.loss_count) if (self.win_count + self.loss_count) > 0 else 0.0
-
-        # Alpha vs Cash (assuming cash earns 0%)
-        alpha_vs_cash = return_pct
-
-        # Best/Worst day
-        daily_returns = [log["daily_return_pct"] for log in self.daily_logs]
-        best_day = max(daily_returns) if daily_returns else 0.0
-        worst_day = min(daily_returns) if daily_returns else 0.0
-
-        return {
-            "starting_capital": self.starting_capital,
-            "ending_capital": ending_capital,
-            "return_pct": return_pct,
-            "annualized_return": annualized_return,
-            "win_rate": win_rate,
-            "max_drawdown": self.max_drawdown_pct,
-            "best_day": best_day / 100.0,
-            "worst_day": worst_day / 100.0,
-            "alpha_vs_cash": alpha_vs_cash,
-            "total_days": self.total_days,
-        }
+        summary = {}
+        for name, stats in self.policy_stats.items():
+            ret = (stats["current_capital"] - self.starting_capital) / self.starting_capital
+            wins_losses = stats["win_count"] + stats["loss_count"]
+            
+            summary[name] = {
+                "ending_capital": stats["current_capital"],
+                "return_pct": ret,
+                "win_rate": stats["win_count"] / wins_losses if wins_losses > 0 else 0.0,
+                "max_drawdown": stats["max_drawdown_pct"],
+                "trade_count": stats["trade_count"],
+                "skipped_days": stats["skipped_days"],
+                "avg_conviction": stats["total_conviction"] / self.total_days if self.total_days > 0 else 0.0
+            }
+        
+        # Best performer
+        best = max([n for n in summary.keys()], key=lambda k: summary[k]["return_pct"])
+        summary["best_performer"] = best
+        return summary
 
     def get_daily_logs(self) -> List[Dict]:
         """Returns the list of daily capital simulation logs."""
