@@ -4,6 +4,7 @@ from dataclasses import asdict, dataclass
 from enum import Enum
 from statistics import mean
 from typing import Iterable, List, Optional
+from market.replay.transition_memory import TransitionExample
 
 
 class PredictionDirection(str, Enum):
@@ -19,6 +20,7 @@ class PredictionProbe:
     confidence: float
     tension: str
     invalidation: str
+    transition_examples: List[TransitionExample] = None
 
     def to_dict(self) -> dict:
         return {
@@ -26,6 +28,7 @@ class PredictionProbe:
             "confidence": round(self.confidence, 3),
             "tension": self.tension,
             "invalidation": self.invalidation,
+            "transition_examples": [ex.date for ex in self.transition_examples] if self.transition_examples else []
         }
 
 
@@ -60,9 +63,13 @@ class PredictionProbeGenerator:
         theory: object,
         contradictions: dict,
         reflection: object,
+        transition_examples: List[TransitionExample] = None,
+        volume_state: str = "normal",
+        momentum_regime: str = "flat",
+        volatility_regime: str = "normal"
     ) -> PredictionProbe:
         direction = self._infer_direction(observation, theory, reflection)
-        confidence = self._infer_confidence(direction, contradictions, theory, reflection)
+        confidence = self._infer_confidence(direction, contradictions, theory, reflection, transition_examples, volume_state, momentum_regime, volatility_regime, regime_matches)
         tension = self._compose_tension(theory, reflection, contradictions, horizons)
         invalidation = self._compose_invalidation(theory, reflection, contradictions)
         return PredictionProbe(
@@ -70,6 +77,7 @@ class PredictionProbeGenerator:
             confidence=confidence,
             tension=tension,
             invalidation=invalidation,
+            transition_examples=transition_examples or []
         )
 
     def score_actual(
@@ -118,17 +126,47 @@ class PredictionProbeGenerator:
         contradictions: dict,
         theory: object,
         reflection: object,
+        transition_examples: List[TransitionExample] = None,
+        volume_state: str = "normal",
+        momentum_regime: str = "flat",
+        volatility_regime: str = "normal",
+        regime_matches: Iterable[object] = None
     ) -> float:
+        # v2.1 CALIBRATION: Improve confidence separation
         base = 0.42 if direction == PredictionDirection.uncertain else 0.56
-        if contradictions.get("score", 0) > 0.35:
-            base -= 0.12
+        
+        # 1. Contradiction Penalties (v2.1 stricter)
+        contra_score = contradictions.get("score", 0)
+        if contra_score > 0.5:
+            base -= 0.18
+        elif contra_score > 0.3:
+            base -= 0.08
+            
+        # 2. Volume and Momentum Calibration
+        if volume_state == "dry":
+            base -= 0.12 # Punish lack of participation
+        elif volume_state == "elevated":
+            base += 0.05 # Reward confirmation
+            
+        if (direction == PredictionDirection.higher and momentum_regime == "strengthening") or \
+           (direction == PredictionDirection.lower and momentum_regime == "weakening"):
+            base += 0.05 # Momentum alignment
+
+        # 3. Regime Match Quality
+        matches = list(regime_matches) if regime_matches else []
+        if matches and any(getattr(m, 'similarity', 0) > 0.85 for m in matches):
+            base += 0.07 # High similarity boost
+
+        # 4. Text-based adjustments
         text = (getattr(theory, "summary", "") + " " + getattr(reflection, "reflection_summary", "")).lower()
         if "uncertain" in text or "caution" in text or "fragile" in text:
-            base -= 0.1
-        if "strength" in text and direction in {PredictionDirection.higher, PredictionDirection.lower}:
-            base += 0.08
-        if "invalid" in text or "contradict" in text:
             base -= 0.08
+        if "strength" in text and direction in {PredictionDirection.higher, PredictionDirection.lower}:
+            base += 0.04
+            
+        if transition_examples and len(transition_examples) > 0:
+            base += 0.04
+            
         return float(max(0.05, min(0.95, round(base, 3))))
 
     def _compose_tension(

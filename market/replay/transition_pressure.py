@@ -46,6 +46,8 @@ class TransitionPressureEngine:
         reflection: object,
         theory_usefulness: dict,
         prior_observations: List[object],
+        volume_state: str = "normal",
+        atr_expansion: bool = False,
     ) -> TransitionPressure:
         """
         Infer transition pressure from current replay state.
@@ -59,6 +61,8 @@ class TransitionPressureEngine:
             reflection: Current reflection output
             theory_usefulness: Theory epistemic scoring
             prior_observations: Recent observations for trend analysis
+            volume_state: Current volume regime (v2.1)
+            atr_expansion: Whether ATR is expanding (v2.1)
 
         Returns:
             TransitionPressure signal
@@ -90,26 +94,38 @@ class TransitionPressureEngine:
         )
         contradiction_score = float(contradiction_result.get("score", 0.0))
         
-        # TUNED: Enhanced contradiction handling with severity tiers
-        if contradiction_score >= 0.6:
-            # Tier 1: High contradiction (>=0.6) - strong pressure signal
-            drivers.append(f"contradiction_severe_{contradiction_score:.2f}")
-            # TUNED v2: Proportional scaling based on severity (0.6→0.70, 1.0→1.0)
-            severity_weight = min(1.0, 0.70 + (contradiction_score - 0.6) * 0.5)
-            pressure_components.append(severity_weight)
-            stability_components.append(0.10)  # TUNED: was 0.3, now 0.15 (faster decay)
-        elif contradiction_score > 0.5:
-            # Tier 2: High contradiction (0.5-0.6)
-            drivers.append(f"contradiction_high_{contradiction_score:.2f}")
-            pressure_components.append(0.50)  # TUNED: 0.45 → 0.50
-            stability_components.append(0.20)  # TUNED: 0.3 → 0.25 → 0.20
-        elif contradiction_rising:
-            drivers.append("contradiction_rising")
-            pressure_components.append(0.40)
-        elif contradiction_score > 0.2:
-            stability_components.append(0.5)
+        # v2.1 CALIBRATION: Reduce contradiction weight contribution by ~25%
+        if contradiction_score > 0.2:
+            if contradiction_score >= 0.6:
+                drivers.append(f"contradiction_severe_{contradiction_score:.2f}")
+                # TUNED v2.1: 0.70 -> 0.55 base weight
+                severity_weight = min(0.85, 0.55 + (contradiction_score - 0.6) * 0.4)
+                pressure_components.append(severity_weight)
+                stability_components.append(0.15)
+            elif contradiction_score > 0.5:
+                drivers.append(f"contradiction_high_{contradiction_score:.2f}")
+                pressure_components.append(0.40) # TUNED: 0.50 -> 0.40
+                stability_components.append(0.25)
+            elif contradiction_rising:
+                drivers.append("contradiction_rising")
+                pressure_components.append(0.30) # TUNED: 0.40 -> 0.30
+            
+            if contradiction_score < 0.5:
+                stability_components.append(0.5)
         else:
             stability_components.append(0.75)
+
+        # v2.1 ATR and Volume Calibration
+        if atr_expansion:
+            drivers.append("atr_expansion_confirmed")
+            pressure_components.append(0.65) # Strong structural driver
+        
+        if volume_state == "elevated":
+            drivers.append("volume_elevated_confirmation")
+            pressure_components.append(0.50)
+        elif volume_state == "dry":
+            drivers.append("volume_dry_divergence")
+            stability_components.append(0.30) # Dry volume reduces stability
 
         # 4. Breadth signals (strengthening/weakening in range-bound)
         trend = getattr(observation, "trend_state", "").lower()
@@ -145,13 +161,13 @@ class TransitionPressureEngine:
         usefulness_score = float(theory_usefulness.get("score", 0.5))
         if usefulness_score < 0.4:
             drivers.append(f"theory_usefulness_low_{usefulness_score:.2f}")
-            pressure_components.append(0.18)  # TUNED: 0.15 → 0.18
+            pressure_components.append(0.12)  # v2.1 TUNED: 0.18 -> 0.12
 
         # 7. Reflection uncertainty
         reflection_text = getattr(reflection, "reflection_summary", "").lower()
         if "uncertain" in reflection_text or "fragile" in reflection_text:
             drivers.append("reflection_uncertainty")
-            pressure_components.append(0.18)  # TUNED: 0.15 → 0.18
+            pressure_components.append(0.12)  # v2.1 TUNED: 0.18 -> 0.12
 
         # Infer direction bias
         direction_bias = self._infer_direction_bias(
@@ -182,27 +198,29 @@ class TransitionPressureEngine:
         driver_count = len(drivers)
         breakout_risk = False
         
+        # v2.1 Tighten breakout risk thresholds to ensure higher signal quality
         if driver_count >= 4:
-            # TUNED v2: Very aggressive threshold when 4+ drivers align
             breakout_risk = (
-                pressure_score > 0.40  # TUNED v2: 0.45 → 0.40 when 4+ drivers
-                and stability_score < 0.70  # TUNED v2: 0.65 → 0.70
-                and (regime_weakening or contradiction_rising or contradiction_score >= 0.6)
+                pressure_score > 0.52  # v2.1: 0.40 -> 0.52
+                and stability_score < 0.65 
+                and (regime_weakening or contradiction_rising or atr_expansion)
             )
         elif driver_count >= 3:
-            # TUNED: Lower threshold when 3 drivers align
             breakout_risk = (
-                pressure_score > 0.42  # TUNED v2: 0.45 → 0.42 when 3 drivers
-                and stability_score < 0.65  # TUNED: 0.60 → 0.65
-                and (regime_weakening or contradiction_rising or contradiction_score >= 0.6)
+                pressure_score > 0.58  # v2.1: 0.42 -> 0.58
+                and stability_score < 0.60 
+                and (atr_expansion or (contradiction_score >= 0.6 and volume_state != "dry"))
             )
         else:
-            # Standard threshold for <3 drivers
             breakout_risk = (
-                pressure_score > 0.60  # TUNED: 0.55 → 0.60 (slightly higher for few drivers)
-                and stability_score < 0.55  # TUNED: 0.60 → 0.55
-                and (regime_weakening or contradiction_rising or contradiction_score >= 0.6)
+                pressure_score > 0.70  # v2.1: 0.60 -> 0.70
+                and stability_score < 0.45 
+                and atr_expansion
             )
+
+        # v2.1 Requirement: breakout risk requires volume validation
+        if volume_state == "dry":
+            breakout_risk = False
 
         return TransitionPressure(
             direction_bias=direction_bias,

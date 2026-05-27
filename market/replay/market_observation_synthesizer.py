@@ -51,13 +51,16 @@ class MarketObservationSynthesizer:
         row = self.data.iloc[day_index]
         date_str = row["date"]
 
+        # v2.0 Enriched descriptors
+        descriptors = self._derive_enriched_descriptors(row)
+
         # Derive observation components
         trend_state = self._derive_trend_state(day_index)
         volatility_state = self._derive_volatility_state(day_index)
         liquidity_state = self._derive_liquidity_state(day_index)
         breadth_state = self._derive_breadth_state(day_index)
         macro_sentiment = self._derive_macro_sentiment(
-            trend_state, volatility_state, breadth_state
+            trend_state, volatility_state, breadth_state, descriptors
         )
         contradiction_markers = self._detect_contradiction_markers(
             trend_state, volatility_state, breadth_state, liquidity_state
@@ -68,7 +71,8 @@ class MarketObservationSynthesizer:
             volatility_state,
             liquidity_state,
             breadth_state,
-            macro_sentiment
+            macro_sentiment,
+            descriptors
         )
 
         return MarketObservation(
@@ -80,6 +84,21 @@ class MarketObservationSynthesizer:
             breadth_state=breadth_state,
             macro_sentiment=macro_sentiment,
             contradiction_markers=contradiction_markers,
+            # v2.0 Enriched fields
+            volume_state=row.get("volume_state", "normal"),
+            volume_ratio_5d=float(row.get("volume_ratio_5d", 1.0)),
+            volume_ratio_20d=float(row.get("volume_ratio_20d", 1.0)),
+            range_pct=float(row.get("range_pct", 0.0)),
+            gap_pct=float(row.get("gap_pct", 0.0)),
+            atr_14=float(row.get("atr_14", 0.0)),
+            rolling_volatility_10d=float(row.get("rolling_volatility_10d", 0.0)),
+            rolling_volatility_30d=float(row.get("rolling_volatility_30d", 0.0)),
+            return_3d=float(row.get("return_3d", 0.0)),
+            return_5d=float(row.get("return_5d", 0.0)),
+            # v2.0 Enriched dimensions
+            volatility_regime=volatility_state,
+            momentum_regime="strengthening" if float(row.get("return_3d", 0.0)) > 0.5 else "weakening" if float(row.get("return_3d", 0.0)) < -0.5 else "flat",
+            descriptors=descriptors,
             observation_source=f"replay_engine_{date_str}"
         )
 
@@ -224,15 +243,16 @@ class MarketObservationSynthesizer:
         self,
         trend_state: str,
         volatility_state: str,
-        breadth_state: str
+        breadth_state: str,
+        descriptors: list = None
     ) -> str:
         """Synthesize macro sentiment from components."""
         # Positive indicators
-        positive = sum([
+        positive_list = [
             "higher" in trend_state or "extended" in trend_state,
             volatility_state in ["compressed", "stable"],
             breadth_state in ["strengthened", "strongly_participatory"]
-        ])
+        ]
 
         # Negative indicators
         negative = sum([
@@ -240,6 +260,15 @@ class MarketObservationSynthesizer:
             volatility_state in ["expanded", "high"],
             breadth_state in ["weakened", "deteriorated"]
         ])
+
+        # v2.0 momentum influence
+        if descriptors:
+            if "short-term momentum strengthening" in descriptors:
+                positive_list.append(True)
+            if "short-term momentum weakening" in descriptors:
+                negative += 1
+
+        positive = sum(positive_list)
 
         if positive >= 2:
             return "positive"
@@ -294,10 +323,15 @@ class MarketObservationSynthesizer:
         volatility_state: str,
         liquidity_state: str,
         breadth_state: str,
-        macro_sentiment: str
+        macro_sentiment: str,
+        descriptors: list = None
     ) -> str:
         """Generate human-readable observation text."""
         components = []
+
+        # v2.0 Enriched descriptors prefix
+        if descriptors:
+            components.append(f"[{', '.join(descriptors)}]")
 
         # Trend
         if "higher" in trend_state:
@@ -337,3 +371,42 @@ class MarketObservationSynthesizer:
             text += " Participation was selective."
 
         return text
+
+    def _derive_enriched_descriptors(self, row: pd.Series) -> list:
+        """Structured market descriptors for v2.0."""
+        descriptors = []
+        
+        # 1. Volume State
+        vol_state = row.get("volume_state", "normal")
+        if vol_state != "normal":
+            descriptors.append(f"volume {vol_state}")
+        
+        # 2. Price Range Action
+        range_pct = float(row.get("range_pct", 0.0))
+        if range_pct > 1.3:
+            descriptors.append("range expanding")
+        elif range_pct < 0.7:
+            descriptors.append("range narrow")
+            
+        # 3. Gaps
+        gap_pct = float(row.get("gap_pct", 0.0))
+        if gap_pct > 0.2:
+            descriptors.append("gap up")
+        elif gap_pct < -0.2:
+            descriptors.append("gap down")
+            
+        # 4. Volatility Regimes
+        vol_30d = float(row.get("rolling_volatility_30d", 0.0))
+        if vol_30d < 0.8:
+            descriptors.append("volatility compressed")
+        elif vol_30d > 1.5:
+            descriptors.append("volatility expanding")
+            
+        # 5. Momentum Regimes
+        ret_3d = float(row.get("return_3d", 0.0))
+        if ret_3d > 0.7:
+            descriptors.append("short-term momentum strengthening")
+        elif ret_3d < -0.7:
+            descriptors.append("short-term momentum weakening")
+            
+        return descriptors

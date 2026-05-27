@@ -23,6 +23,8 @@ from market.data.dataset_validator import DatasetValidator
 from market.replay.prediction_probe import PredictionProbeGenerator
 from market.replay.capital_simulator import CapitalSimulator
 from market.replay.transition_pressure import TransitionPressureEngine
+from market.replay.decision_policy import DecisionPolicyEngine
+from market.replay.transition_memory import TransitionMemoryStore, TransitionExample
 
 
 class ReplayEngine:
@@ -124,6 +126,15 @@ class ReplayEngine:
                     ),
                     "volatility_10d": float(row.get("rolling_volatility_10d", 0.0)),
                     "volatility_30d": float(row.get("rolling_volatility_30d", 0.0)),
+                    # v2.0 Enriched Metrics
+                    "volume_state": row.get("volume_state", "normal"),
+                    "volume_ratio_5d": float(row.get("volume_ratio_5d", 1.0)),
+                    "volume_ratio_20d": float(row.get("volume_ratio_20d", 1.0)),
+                    "range_pct": float(row.get("range_pct", 0.0)),
+                    "gap_pct": float(row.get("gap_pct", 0.0)),
+                    "atr_14": float(row.get("atr_14", 0.0)),
+                    "return_3d": float(row.get("return_3d", 0.0)),
+                    "return_5d": float(row.get("return_5d", 0.0)),
                 }
                 if "rolling_volatility_10d" in row
                 else None
@@ -244,10 +255,15 @@ class ReplayExecutor:
         self._run_market_observations: List[object] = []
         self._prior_prediction = None
         self._prior_prediction_db_id = None
+        self.decision_engine = DecisionPolicyEngine()
         self._regime_matches_by_step: List[list] = []
         self.transition_pressure_engine = TransitionPressureEngine()
         self.replay_analysis_engine = None # Will be initialized in execute
         self.prediction_repo = None
+        self.transition_memory = TransitionMemoryStore()
+        
+        # Context for transition recording
+        self._prior_transition_context = None
         self.prediction_result_repo = None
         self.transition_pressure_repo = None
         self.market_outcome_repo = None
@@ -341,6 +357,7 @@ class ReplayExecutor:
         from cognition.evaluation.epistemic_quality import evaluate_epistemic_quality
         from cognition.schemas.observation.observation_event import ObservationEvent
         from cognition.schemas.validation.validation_event import ValidationEvent
+        from cognition.schemas.confidence.confidence_state import ConfidenceState
         from market.replay.market_observation_synthesizer import (
             MarketObservationSynthesizer,
         )
@@ -389,6 +406,9 @@ class ReplayExecutor:
         # Load synthesizer
         synthesizer = MarketObservationSynthesizer(self.engine.data)
 
+        # Initialize confidence_state for Day 0 execution
+        confidence_state = ConfidenceState()
+
         self._log("\n" + "=" * 70)
         self._log("REPLAY EXECUTION")
         self._log("=" * 70)
@@ -405,6 +425,40 @@ class ReplayExecutor:
 
                 # Synthesize observation
                 market_obs = synthesizer.synthesize(day_idx)
+
+                # v1.9 Transition Detection and Recording
+                if day_idx > 0 and self._prior_transition_context:
+                    prev_obs = self._run_market_observations[-1]
+                    ctx = self._prior_transition_context
+                    
+                    # Detect transitions (e.g., range_bound -> higher)
+                    if prev_obs.trend_state != market_obs.trend_state:
+                        example = TransitionExample(
+                            date=prev_obs.observation_source.replace("replay_engine_", ""),
+                            day_index=day_idx - 1,
+                            from_regime=prev_obs.trend_state,
+                            to_regime=market_obs.trend_state,
+                            confidence=ctx['confidence'],
+                            theory_usefulness=ctx['usefulness'],
+                            contradiction_score=ctx['contradiction'],
+                            pressure_score=ctx['pressure'],
+                            breakout_risk=ctx['breakout'],
+                            direction_bias=ctx['bias'],
+                            horizon_daily=ctx['horizon'].daily,
+                            horizon_weekly=ctx['horizon'].weekly,
+                            horizon_monthly=ctx['horizon'].monthly,
+                            theory_summary=ctx['theory_summary']
+                        )
+                        
+                        # Identify meaningful transitions
+                        meaningful = (
+                            (example.from_regime == "range_bound" and example.to_regime in ["closed_higher", "extended_higher", "closed_lower", "extended_lower"]) or
+                            (example.from_regime.startswith("closed_higher") and "lower" in example.to_regime) or
+                            (example.from_regime.startswith("closed_lower") and "higher" in example.to_regime)
+                        )
+                        
+                        if meaningful:
+                            self.transition_memory.record_transition(example)
 
                 # retrieve historical memory: only prior run-local state is visible
                 recent_theories = list(reversed(self._run_theories[-5:]))
@@ -425,6 +479,13 @@ class ReplayExecutor:
                 marker_severity = min(
                     1.0, len(getattr(market_obs, "contradiction_markers", [])) * 0.2
                 )
+
+                # v2.0 Regime Calculation for Memory and Analysis
+                vol_30d = float(obs_data["derived"].get("volatility_30d", 0.0))
+                vol_regime = "compressed" if vol_30d < 0.8 else "expanded" if vol_30d > 1.5 else "normal"
+                ret_3d = float(obs_data["derived"].get("return_3d", 0.0))
+                mom_regime = "strengthening" if ret_3d > 0.5 else "weakening" if ret_3d < -0.5 else "flat"
+
                 active_theory_count = (
                     self.theory_lineage.active_count() if self.theory_lineage else 0
                 )
@@ -433,7 +494,7 @@ class ReplayExecutor:
                     observation=market_obs,
                     confidence_values=prior_confidence_values,
                     contradiction_severity=marker_severity,
-                    active_theory_count=active_theory_count,
+                    active_theory_count=active_theory_count
                 )
                 regime_matches = self.regime_memory.retrieve(
                     preliminary_regime_signature,
@@ -652,6 +713,16 @@ class ReplayExecutor:
                     reflection=reflection,
                     theory_usefulness=theory_usefulness,
                     prior_observations=self._run_market_observations[-10:],
+                    volume_state=obs_data["derived"].get("volume_state", "normal"),
+                    atr_expansion=(float(obs_data["derived"].get("atr_14", 0.0)) > 200)
+                )
+
+                # v1.9 Transition Retrieval
+                similar_transitions = self.transition_memory.retrieve_similar(
+                    from_regime=market_obs.trend_state,
+                    direction_bias=transition_pressure.direction_bias,
+                    pressure_score=transition_pressure.pressure_score,
+                    horizon_daily=horizon_view.daily
                 )
 
                 # prediction probe
@@ -662,7 +733,21 @@ class ReplayExecutor:
                     theory=theory,
                     contradictions=contradiction_result,
                     reflection=reflection,
+                    transition_examples=similar_transitions
                 )
+
+                # Step 4: Decision Policy Layer
+                decisions = self.decision_engine.evaluate(
+                    prediction_probe=prediction_probe,
+                    transition_pressure=transition_pressure,
+                    contradiction_score=float(contradiction_result.get("score", 0.0)),
+                    theory_usefulness=theory_usefulness.get("score", 0.0) if theory_usefulness else 0.0,
+                    confidence_state=confidence_state,
+                    date=date_str,
+                    volume_state=obs_data["derived"].get("volume_state", "normal"),
+                    atr_expansion=(float(obs_data["derived"].get("atr_14", 0.0)) > 200)
+                )
+
                 prior_prediction_result = None
                 if self._prior_prediction is not None:
                     prior_prediction_result = self.prediction_generator.score_actual(
@@ -679,6 +764,7 @@ class ReplayExecutor:
                         prediction_confidence=self._prior_prediction.confidence,
                         actual_daily_return_pct=actual_ret,
                         market_daily_return_pct=actual_ret,
+                        decisions=decisions
                     )
                 elif derived:
                     self.capital_simulator.record_day_result(
@@ -703,6 +789,18 @@ class ReplayExecutor:
                 except Exception:
                     pass
 
+                # v1.9: Save context for tomorrow's transition recording
+                self._prior_transition_context = {
+                    "pressure": transition_pressure.pressure_score,
+                    "breakout": transition_pressure.breakout_risk,
+                    "bias": transition_pressure.direction_bias,
+                    "confidence": theory.confidence_state.empirical_confidence,
+                    "usefulness": theory_usefulness.get("score", 0.0),
+                    "contradiction": float(contradiction_result.get("score", 0.0)),
+                    "horizon": horizon_view,
+                    "theory_summary": theory.summary
+                }
+
                 final_regime_signature = self.regime_memory.build_signature(
                     date=date_str,
                     observation=market_obs,
@@ -726,12 +824,6 @@ class ReplayExecutor:
                     contradictions=contradiction_result.get("indicators", []),
                     confidence=getattr(confidence_state, "empirical_confidence", 0.5),
                 )
-                theory_usefulness = {}
-                if lineage_record:
-                    theory_usefulness = self.epistemic_scoring.score_theory(
-                        lineage_record
-                    )
-
                 # persist
                 self.observation_repo.save(obs_event)
                 self.abstraction_repo.save(abstraction)
@@ -743,6 +835,23 @@ class ReplayExecutor:
                 # v1.4 Analytics Persistence (PostgreSQL) - Defensive Observer Pattern
                 try:
                     if self.market_outcome_repo:
+                        # Thoroughly map current state to outcome fields for persistence
+                        market_obs.outcome_summary = market_obs.observation_text
+                        market_obs.realized_trend = market_obs.trend_state
+                        market_obs.realized_volatility = market_obs.volatility_state
+                        market_obs.realized_breadth = market_obs.breadth_state
+                        market_obs.realized_liquidity = market_obs.liquidity_state
+                        
+                        if prior_prediction_result:
+                            market_obs.outcome_confidence = prior_prediction_result.confidence
+
+                        # Provide contradictions for outcome persistence
+                        market_obs.outcome_contradictions = contradiction_result.get("indicators", [])
+                        
+                        # Link to the generic observation event for relational analytics
+                        if hasattr(obs_event, 'id') and obs_event.id:
+                            market_obs.related_observation_id = str(obs_event.id)
+
                         self.market_outcome_repo.save(market_obs)
                 except Exception as e:
                     self._log(f"WARNING: Optional MarketOutcome save failed: {e}")
@@ -817,7 +926,12 @@ class ReplayExecutor:
                     prior_prediction_result=prior_prediction_result.to_dict() if prior_prediction_result else None,
                     regime_matches=regime_matches,
                     theory_usefulness=theory_usefulness,
-                    transition_pressure=transition_pressure.to_dict()
+                    transition_pressure=transition_pressure.to_dict(),
+                    decisions={k: v.to_dict() for k, v in decisions.items()},
+                    # v2.0 dimensions
+                    volume_state=obs_data["derived"].get("volume_state"),
+                    volatility_regime=vol_regime,
+                    momentum_regime=mom_regime
                 )
 
                 snapshot_data = {
@@ -825,6 +939,7 @@ class ReplayExecutor:
                     "theory": theory,
                     "confidence": confidence_state,
                     "contradiction": contradiction_result,
+                    "decisions": {k: v.to_dict() for k, v in decisions.items()},
                     "reflection": reflection,
                     "epistemic_quality": epistemic_quality,
                     "horizon": horizon_view.to_dict(),
@@ -834,6 +949,10 @@ class ReplayExecutor:
                     "transition_pressure": transition_pressure.to_dict(),
                     "prediction": prediction_probe,
                     "prior_prediction_result": prior_prediction_result,
+                    # v2.0 metadata
+                    "volume_state": obs_data["derived"].get("volume_state"),
+                    "volatility_regime": vol_regime,
+                    "momentum_regime": mom_regime
                 }
                 # Save snapshot
                 self._save_snapshot(day_idx, date_str, snapshot_data)
@@ -941,6 +1060,7 @@ class ReplayExecutor:
                                         "regime_matches": [
                                             match.to_dict() for match in regime_matches
                                         ],
+                                        "decisions": {k: v.to_dict() for k, v in decisions.items()},
                                         "theory_usefulness": theory_usefulness,
                                         "reflection": getattr(
                                             reflection, "reflection_summary", ""
@@ -1001,6 +1121,26 @@ class ReplayExecutor:
         self.replay_analysis_engine.export_prediction_analysis_csv(
             Path(__file__).parent.parent.parent / "market" / "replay" / "output" / "prediction_analysis.csv"
         )
+
+        # v1.6 Visualization Layer Integration
+        try:
+            from market.replay.visualization import generate_visualizations
+            output_dir = Path(__file__).parent.parent.parent / "market" / "replay" / "output"
+            generate_visualizations(
+                analysis=self.replay_analysis_engine.analyze(),
+                logs=self.capital_simulator.get_daily_logs(),
+                tp_history=self.replay_analysis_engine.transition_pressure_history,
+                output_dir=output_dir
+            )
+            self._log(f"Generated:")
+            self._log(f"  - actual_vs_predicted_curve.png")
+            self._log(f"  - policy_capital_comparison.png")
+            self._log(f"  - policy_trade_frequency.png")
+            self._log(f"  - confidence_calibration.png")
+            self._log(f"  - transition_pressure_timeline.png")
+            self._log(f"  - combined_dashboard.png")
+        except Exception as e:
+            self._log(f"WARNING: Optional Visualization generation failed: {e}")
 
         self._log(f"\n✓ Replay complete")
         self._log(f"  Execution hash: {execution_hash[:16]}...")
