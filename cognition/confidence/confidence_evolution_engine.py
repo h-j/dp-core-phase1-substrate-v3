@@ -6,6 +6,7 @@ class ConfidenceEvolutionEngine:
         validation,
         reflection,
         contradiction_result,
+        market_observation=None,
         recent_validations=None,
         outcome_validation_result=None,
         lineage_event=None,
@@ -109,6 +110,38 @@ class ConfidenceEvolutionEngine:
             empirical_delta += 0.08 * resolved_contradictions
             coherence_delta += 0.05 * resolved_contradictions
             pressure_delta -= 0.07 * resolved_contradictions
+
+        if market_observation is not None:
+            candle_type = getattr(market_observation, "candle_type", "")
+            participation_confirmation = getattr(
+                market_observation, "participation_confirmation", ""
+            )
+            participation_strength = getattr(
+                market_observation, "participation_strength", ""
+            )
+            contradiction_markers = getattr(
+                market_observation, "contradiction_markers", []
+            )
+
+            if candle_type in ["strong_bull", "strong_bear"] and participation_confirmation in ["bullish_confirmed", "bearish_confirmed"]:
+                empirical_delta += 0.04
+                regime_delta += 0.02
+
+            if participation_confirmation == "divergence":
+                empirical_delta -= 0.05
+                coherence_delta -= 0.03
+                pressure_delta += 0.06
+
+            if candle_type == "indecision":
+                reflection_delta -= 0.04
+                pressure_delta += 0.05
+
+            if participation_strength == "weak":
+                pressure_delta += 0.03
+
+            if "price_participation_divergence" in contradiction_markers:
+                pressure_delta += 0.04
+                coherence_delta -= 0.03
 
         if mutated > 0:
             empirical_delta -= 0.05 * mutated

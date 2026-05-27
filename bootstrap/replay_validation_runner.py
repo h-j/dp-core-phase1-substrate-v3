@@ -213,7 +213,11 @@ class ReplayValidationRunner:
                 self.validation_repo.save(validation)
 
                 # Reflection flow
-                reflection = self.reflection_flow.process(theory, validation)
+                reflection = self.reflection_flow.process(
+                    theory,
+                    validation,
+                    market_observation=market_obs,
+                )
                 self.reflection_repo.save(reflection)
                 epistemic_quality = {
                     "theory": evaluate_epistemic_quality(theory.summary),
@@ -309,6 +313,7 @@ class ReplayValidationRunner:
                     validation=validation,
                     reflection=reflection,
                     contradiction_result=contradiction_result,
+                    market_observation=market_obs,
                     recent_validations=recent_validations,
                     outcome_validation_result={},
                 )
