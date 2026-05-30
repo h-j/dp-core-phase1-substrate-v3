@@ -34,16 +34,27 @@ class DecisionPolicyEngine:
         confidence_state: Any,
         date: str,
         volume_state: str = "normal",
-        atr_expansion: bool = False
+        atr_expansion: bool = False,
+        participation_confirmation: str = "normal",
     ) -> Dict[str, DecisionSignal]:
         """Evaluate all active policies for the current day."""
         return {
             "baseline": self._policy_baseline(prediction_probe, date),
             "high_conviction": self._policy_high_conviction(
-                prediction_probe, contradiction_score, theory_usefulness, date, volume_state
+                prediction_probe,
+                contradiction_score,
+                theory_usefulness,
+                transition_pressure,
+                date,
+                volume_state,
             ),
             "breakout": self._policy_breakout(
-                prediction_probe, transition_pressure, date, volume_state, atr_expansion
+                prediction_probe,
+                transition_pressure,
+                date,
+                volume_state,
+                atr_expansion,
+                participation_confirmation,
             )
         }
 
@@ -70,32 +81,39 @@ class DecisionPolicyEngine:
         )
 
     def _policy_high_conviction(
-        self, prediction, contradiction_score: float, theory_usefulness: float, date: str, volume_state: str
+        self,
+        prediction,
+        contradiction_score: float,
+        theory_usefulness: float,
+        transition_pressure,
+        date: str,
+        volume_state: str,
     ) -> DecisionSignal:
         conf = getattr(prediction, 'confidence', 0.0)
         direction = getattr(prediction, 'direction', None)
         if hasattr(direction, 'value'):
             direction = direction.value
 
-        # v2.1 CALIBRATION: require confidence >= 0.50 AND usefulness >= 0.50 AND contradiction <= 0.30 AND healthy volume
+        pressure_score = getattr(transition_pressure, 'pressure_score', 0.0) if transition_pressure else 0.0
+
+        # v2.4 Tuning for actual participation
         meets_criteria = (
-            conf >= 0.50 and 
-            theory_usefulness >= 0.50 and 
-            contradiction_score <= 0.30 and
-            volume_state != "dry"
+            conf >= 0.42 and
+            theory_usefulness >= 0.35 and
+            contradiction_score <= 0.55
         )
 
         if not meets_criteria:
-            reason = "Cognition requirements not met" if conf >= 0.5 else "Skipped low confidence"
-            if volume_state == "dry": reason = "Skipped weak volume"
-
+            reason = "Cognition requirements not met"
+            if conf < 0.42:
+                reason = "Skipped low confidence"
             return DecisionSignal(
                 date=date,
                 policy_name="High Conviction",
                 action="cash",
                 conviction=conf,
                 reason=reason,
-                allowed=False
+                allowed=False,
             )
 
         action = "cash"
@@ -114,31 +132,47 @@ class DecisionPolicyEngine:
         )
 
     def _policy_breakout(
-        self, prediction, transition_pressure, date: str, volume_state: str, atr_expansion: bool
+        self,
+        prediction,
+        transition_pressure,
+        date: str,
+        volume_state: str,
+        atr_expansion: bool,
+        participation_confirmation: str = "normal",
     ) -> DecisionSignal:
         pressure_score = getattr(transition_pressure, 'pressure_score', 0.0)
         breakout_risk = getattr(transition_pressure, 'breakout_risk', False)
         conf = getattr(prediction, 'confidence', 0.0)
         bias = getattr(transition_pressure, 'direction_bias', 'neutral')
 
-        # v2.1 CALIBRATION: pressure >= 0.60 AND breakout_risk AND ATR expansion AND valid volume
+        # v2.4 Tuning for actual participation
         meets_criteria = (
-            pressure_score >= 0.60 and 
-            breakout_risk is True and 
-            atr_expansion is True and
-            volume_state in ["elevated", "normal"]
+            pressure_score >= 0.45 and
+            breakout_risk is True and
+            conf >= 0.36
         )
 
         if not meets_criteria:
-            reason = "Skipped pressure not confirmed" if pressure_score < 0.60 else "Insufficient breakout risk or structural confirmation"
+            reason = "Skipped pressure not confirmed"
+            if pressure_score < 0.45:
+                reason = "Skipped pressure threshold"
+            elif not breakout_risk:
+                reason = "Skipped breakout risk absent"
             return DecisionSignal(
                 date=date,
                 policy_name="Breakout Discipline",
                 action="cash",
                 conviction=conf,
                 reason=reason,
-                allowed=False
+                allowed=False,
             )
+
+        if bias == "neutral" and getattr(prediction, 'direction', None) is not None:
+            direction = getattr(prediction, 'direction', None)
+            if hasattr(direction, 'value'):
+                direction = direction.value
+            if direction in {"higher", "lower"}:
+                bias = direction
 
         action = "cash"
         if bias == "higher":

@@ -1,7 +1,7 @@
 """
 Replay engine for deterministic historical cognition execution.
 
-Replays cognition loop over historical NIFTY dataset.
+Replays cognition loop over historical market dataset.
 Ensures:
 - deterministic execution
 - temporal integrity
@@ -24,22 +24,28 @@ from market.replay.prediction_probe import PredictionProbeGenerator
 from market.replay.capital_simulator import CapitalSimulator
 from market.replay.transition_pressure import TransitionPressureEngine
 from market.replay.decision_policy import DecisionPolicyEngine
+from flows.theory_flow.regime_continuity_memory import RegimeContinuityMemory
 from market.replay.transition_memory import TransitionMemoryStore, TransitionExample
 
 
 class ReplayEngine:
     """
-    Deterministic replay of cognition loop over historical NIFTY data.
+    Deterministic replay of cognition loop over historical market data.
     """
 
     def __init__(
-        self, dataset_path: str = None, validate: bool = True, max_days: int = None
+        self,
+        dataset_path: str = None,
+        market_name: str = "RELIANCE",
+        validate: bool = True,
+        max_days: int = None,
     ):
         """
         Initialize replay engine.
 
         Args:
-            dataset_path: Path to NIFTY CSV (default: data/nifty_daily_3y.csv)
+            dataset_path: Path to market CSV (default: data/reliance_daily_3y.csv)
+            market_name: Label for the market or asset being replayed
             validate: Run validation on load
             max_days: Limit replay to N days (for testing)
         """
@@ -48,9 +54,10 @@ class ReplayEngine:
         else:
             # Default path: data/ directory at project root
             self.dataset_path = (
-                Path(__file__).parent.parent.parent / "data" / "nifty_daily_3y.csv"
+                Path(__file__).parent.parent.parent / "data" / "reliance_daily_3y.csv"
             )
 
+        self.market_name = market_name
         self.validate_on_init = validate
         self.max_days = max_days
         self.data = None
@@ -212,18 +219,46 @@ class ReplayExecutor:
     Executes deterministic replay with full cognition loop integration.
     """
 
-    def __init__(self, max_days: int = None, quiet: bool = False):
-        """Initialize executor."""
+    def __init__(
+        self,
+        max_days: int = None,
+        quiet: bool = False,
+        dataset_path: str = None,
+        market_name: str = "RELIANCE",
+        compare_secondary: bool = False,
+        generate_visualizations: bool = False,
+        lineage_debug: bool = False,
+    ):
+        """Initialize executor.
+
+        Args:
+            compare_secondary: If True and the primary market is RELIANCE, run
+                an optional NIFTY cross-asset comparison after the main replay.
+            generate_visualizations: If True, generate chart images for replay
+                outputs and optional cross-asset analysis.
+        """
         self.max_days = max_days
         self.quiet = quiet
+        self.dataset_path = dataset_path
+        self.market_name = market_name
+        self.compare_secondary = compare_secondary
+        self.lineage_debug = lineage_debug
         self.replay_dir = Path(__file__).parent.parent.parent / "memory" / "replay"
         self.base_data_snap_dir = (
             Path(__file__).parent.parent.parent / "data" / "replay_snapshots"
         )
+        self.base_output_dir = Path(__file__).parent.parent.parent / "market" / "replay" / "output"
         self._create_snapshot_dirs()
 
         # Initialize replay engine
-        self.engine = ReplayEngine(max_days=max_days, validate=True)
+        self.engine = ReplayEngine(
+            dataset_path=self.dataset_path,
+            market_name=self.market_name,
+            validate=True,
+            max_days=self.max_days,
+        )
+        self.output_dir = self.base_output_dir / self.engine.market_name.lower().replace(" ", "_")
+        self.output_dir.mkdir(parents=True, exist_ok=True)
 
         # Initialize flows and repositories (lazy loaded on first use)
         self.flows_initialized = False
@@ -261,6 +296,7 @@ class ReplayExecutor:
         self.replay_analysis_engine = None # Will be initialized in execute
         self.prediction_repo = None
         self.transition_memory = TransitionMemoryStore()
+        self.generate_visualizations = generate_visualizations
         
         # Context for transition recording
         self._prior_transition_context = None
@@ -280,6 +316,7 @@ class ReplayExecutor:
             self.replay_dir / "confidence",
             self.replay_dir / "logs",
             self.base_data_snap_dir,
+            self.base_output_dir,
         ]
 
         for d in dirs:
@@ -350,7 +387,7 @@ class ReplayExecutor:
         if not self.quiet:
             print(message)
 
-    def execute(self):
+    def execute(self, emit_summary: bool = True):
         """Execute full replay with cognition loop."""
         self._initialize_flows()
 
@@ -382,10 +419,12 @@ class ReplayExecutor:
             self.theory_lineage = TheoryLineageEngine(
                 self.run_dir / "theory_lineage.json"
             )
+            self.theory_lineage.debug = self.lineage_debug
             self.contradiction_registry = ContradictionRegistry(
                 self.run_dir / "contradiction_registry.json"
             )
-            self.regime_memory = RegimeMemoryStore()
+            self.regime_memory = RegimeMemoryStore() # Already exists
+            self.regime_continuity_memory = RegimeContinuityMemory()
             self.horizon_engine = HorizonCognitionEngine()
             self.epistemic_scoring = EpistemicScoringEngine()
             self.prediction_generator = PredictionProbeGenerator()
@@ -394,17 +433,19 @@ class ReplayExecutor:
             self.observer = None
             self.theory_lineage = None
             self.contradiction_registry = None
-            self.regime_memory = RegimeMemoryStore()
+            # self.regime_memory = RegimeMemoryStore() # Redundant initialization, already exists
             self.horizon_engine = HorizonCognitionEngine()
             self.epistemic_scoring = EpistemicScoringEngine()
             self.prediction_generator = PredictionProbeGenerator()
             self.capital_simulator = CapitalSimulator()
 
         from market.replay.replay_analysis import ReplayAnalysisEngine
-        self.replay_analysis_engine = ReplayAnalysisEngine()
+        self.replay_analysis_engine = ReplayAnalysisEngine(market_name=self.engine.market_name)
 
         # Load synthesizer
-        synthesizer = MarketObservationSynthesizer(self.engine.data)
+        synthesizer = MarketObservationSynthesizer(
+            self.engine.data, market_name=self.engine.market_name
+        )
 
         # Initialize confidence_state for Day 0 execution
         confidence_state = ConfidenceState()
@@ -503,6 +544,24 @@ class ReplayExecutor:
                 self._regime_matches_by_step.append(regime_matches)
                 regime_context = self._format_regime_context(regime_matches)
 
+                # v3.0 WIRING: Update analog divergence if similarity threshold met
+                if regime_matches and regime_matches[0].similarity > 0.8:
+                    analog = regime_matches[0]
+                    # v3.0 FIX: Safely retrieve signature from RegimeMatch object
+                    analog_sig = analog.to_dict().get('signature', {}) if hasattr(analog, 'to_dict') else {}
+                    diffs = []
+                    
+                    if getattr(market_obs, 'participation_strength', 'normal') != analog_sig.get('participation_strength', 'normal'):
+                        diffs.append(f"participation is {market_obs.participation_strength} (prior was {analog_sig.get('participation_strength', 'normal')})")
+                        
+                    if getattr(market_obs, 'liquidity_state', 'normal') != analog_sig.get('liquidity_state', 'normal'):
+                        diffs.append(f"liquidity is {market_obs.liquidity_state} (prior was {analog_sig.get('liquidity_state', 'normal')})")
+
+                    if getattr(market_obs, 'volatility_state', 'normal') != analog_sig.get('volatility_state', 'normal'):
+                        diffs.append(f"volatility is {market_obs.volatility_state} (prior was {analog_sig.get('volatility_state', 'normal')})")
+
+                    market_obs.analog_divergence_claim = f"Analog to {analog.date}: " + ", ".join(diffs) if diffs else "Analog continuity"
+
                 # observe
                 obs_event = ObservationEvent(
                     source_type="replay",
@@ -517,13 +576,38 @@ class ReplayExecutor:
                     recent_validations,
                     recent_reflections,
                 )
+                # v3.0 Extract regime subtype and falsifiability conditions
+                regime_subtype = getattr(market_obs, "regime_subtype", "neutral")
+                falsifiability_conditions = getattr(market_obs, "falsifiability_conditions", [])
+
+                # v3.1 Regime Continuity Retrieval
+                regime_history = self.regime_continuity_memory.summary(regime_subtype)
+
+                # v3.0 Consistency debug
+                print(
+                    "[Theory Input]",
+                    {
+                        "date": date_str,
+                        "regime_subtype": regime_subtype,
+                        "falsifiability_conditions": falsifiability_conditions,
+                        "analog_divergence_claim": getattr(market_obs, "analog_divergence_claim", ""),
+                    },
+                )
+                
                 theory = self.theory_flow.process(
                     abstraction,
                     historical_context=historical_context,
                     market_memory_context=regime_context,
                     current_market_observation=market_obs.observation_text,
                     reflective_memory_summary=horizon_context,
+                    regime_subtype=regime_subtype,
+                    falsifiability_conditions=falsifiability_conditions,
+                    analog_divergence_claim=getattr(market_obs, "analog_divergence_claim", ""),
+                    regime_history=regime_history,
                 )
+
+                # v3.0 Consistency debug
+                print("[Theory Output]", theory.summary[:250])
 
                 # Theory lineage updates happen before contradiction retirement so
                 # the current abstraction can revive or mutate existing cognition.
@@ -571,6 +655,20 @@ class ReplayExecutor:
                         theory_step_info["created"] = int(lineage_result["created"])
                         theory_step_info["mutated"] = int(lineage_result["mutated"])
                         theory_step_info["merged"] = int(lineage_result["merged"])
+
+                        if self.lineage_debug and lineage_record:
+                            action = (
+                                'continued' if lineage_result.get('continued') else
+                                'merged' if lineage_result['merged'] else
+                                'mutated' if lineage_result['mutated'] else
+                                'created'
+                            )
+                            self._log(
+                                f"[Lineage] day={day_idx} action={action} "
+                                f"record_id={lineage_record.id} parent_id={lineage_result.get('parent_id')} "
+                                f"survival_steps={lineage_record.survival_steps} "
+                                f"confidence={lineage_record.confidence:.3f}"
+                            )
 
                         if lineage_record and lineage_record.confidence_state:
                             theory.confidence_state.empirical_confidence = (
@@ -652,6 +750,10 @@ class ReplayExecutor:
                             ),
                         )
                         theory_step_info["retired"] = len(retired_records)
+                        if self.lineage_debug and retired_records:
+                            self._log(
+                                f"[Lineage] day={day_idx} retired={','.join([r.id for r in retired_records])}"
+                            )
                         if self.contradiction_registry:
                             for retired_record in retired_records:
                                 contradiction_step_info[
@@ -674,6 +776,10 @@ class ReplayExecutor:
                             step=day_idx,
                         )
                         theory_step_info["revived"] = len(revived_records)
+                        if self.lineage_debug and revived_records:
+                            self._log(
+                                f"[Lineage] day={day_idx} revived={','.join([r.id for r in revived_records])}"
+                            )
                 except Exception:
                     pass
 
@@ -687,13 +793,34 @@ class ReplayExecutor:
                     expected_behavior="Market-grounded theory",
                 )
 
+                # v3.1 Continuity debug
+                print(
+                    "[Reflection Input]",
+                    {
+                        "date": date_str,
+                        "regime_subtype": regime_subtype,
+                        "analog": getattr(market_obs, "analog_divergence_claim", ""),
+                        "history": regime_history,
+                        "falsifiability": falsifiability_conditions,
+                    },
+                )
+
                 # reflect
                 reflection = self.reflection_flow.process(
                     theory,
                     validation,
                     contradiction_result=contradiction_result,
                     market_observation=market_obs,
+                    # Explicitly pass finalized fields to ensure reflection consistency
+                    regime_subtype=regime_subtype,
+                    falsifiability_conditions=falsifiability_conditions,
+                    analog_divergence_claim=getattr(market_obs, "analog_divergence_claim", ""),
+                    theory_regime_subtype=getattr(theory, "regime_subtype", "neutral"),
+                    theory_falsifiability_conditions=getattr(theory, "falsifiability_conditions", []),
+                    regime_history=regime_history,
                 )
+                print("[Reflection Output]", reflection.reflection_summary)
+
                 epistemic_quality = {
                     "theory": evaluate_epistemic_quality(theory.summary),
                     "reflection": evaluate_epistemic_quality(
@@ -702,7 +829,34 @@ class ReplayExecutor:
                 }
 
                 # Initialize theory_usefulness (will be computed later if lineage available)
-                theory_usefulness = {}
+                # v2.4 Default structure for persistence
+                theory_usefulness = {
+                    "score": 0.0,
+                    "label": "unknown",
+                }
+                try:
+                    if self.epistemic_scoring and lineage_record:
+                        theory_usefulness = self.epistemic_scoring.score_theory(
+                            lineage_record=lineage_record,
+                            regime_matches=regime_matches,
+                            prior_prediction_result=(
+                                prior_prediction_result.to_dict()
+                                if prior_prediction_result
+                                else {}
+                            ),
+                            contradiction_score=float(contradiction_result.get("score", 0.0)),
+                            reflection_summary=reflection.reflection_summary,
+                        )
+                except Exception:
+                    theory_usefulness = {
+                        "score": 0.0,
+                        "label": "unknown",
+                    }
+                # Sanity validation
+                assert "score" in theory_usefulness, "theory_usefulness missing 'score' key"
+                assert "label" in theory_usefulness, "theory_usefulness missing 'label' key"
+                if theory_usefulness["score"] > 0.8 and contradiction_result.get("score", 0.0) > 0.7:
+                    self._log("WARNING: High theory usefulness with high contradiction detected.")
 
                 # infer transition pressure (deterministic, observer-only)
                 transition_pressure = self.transition_pressure_engine.infer(
@@ -715,7 +869,9 @@ class ReplayExecutor:
                     theory_usefulness=theory_usefulness,
                     prior_observations=self._run_market_observations[-10:],
                     volume_state=obs_data["derived"].get("volume_state", "normal"),
-                    atr_expansion=(float(obs_data["derived"].get("atr_14", 0.0)) > 200)
+                    atr_expansion=(float(obs_data["derived"].get("atr_14", 0.0)) > 200),
+                    volume_ratio_5d=float(obs_data["derived"].get("volume_ratio_5d", 1.0)),
+                    range_pct=float(obs_data["derived"].get("range_pct", 0.0)),
                 )
 
                 # v1.9 Transition Retrieval
@@ -734,7 +890,16 @@ class ReplayExecutor:
                     theory=theory,
                     contradictions=contradiction_result,
                     reflection=reflection,
-                    transition_examples=similar_transitions
+                    transition_examples=similar_transitions,
+                    volume_state=obs_data["derived"].get("volume_state", "normal"),
+                    momentum_regime=mom_regime,
+                    volatility_regime=vol_regime,
+                    volume_ratio_5d=float(obs_data["derived"].get("volume_ratio_5d", 1.0)),
+                    return_3d=float(obs_data["derived"].get("return_3d", 0.0)),
+                    return_5d=float(obs_data["derived"].get("return_5d", 0.0)),
+                    close_position_pct=getattr(market_obs, "close_position_pct", 0.5),
+                    participation_confirmation=getattr(market_obs, "participation_confirmation", "normal"),
+                    theory_usefulness=theory_usefulness,
                 )
 
                 # Step 4: Decision Policy Layer
@@ -746,7 +911,8 @@ class ReplayExecutor:
                     confidence_state=confidence_state,
                     date=date_str,
                     volume_state=obs_data["derived"].get("volume_state", "normal"),
-                    atr_expansion=(float(obs_data["derived"].get("atr_14", 0.0)) > 200)
+                    atr_expansion=(float(obs_data["derived"].get("atr_14", 0.0)) > 200),
+                    participation_confirmation=getattr(market_obs, "participation_confirmation", "normal"),
                 )
 
                 prior_prediction_result = None
@@ -779,8 +945,10 @@ class ReplayExecutor:
                     contradiction_result=contradiction_result,
                     market_observation=market_obs,
                     recent_validations=recent_validations,
-                    outcome_validation_result={},
+                    outcome_validation_result=prior_prediction_result.to_dict() if prior_prediction_result else {},
                     lineage_event=theory_step_info,
+                    theory_usefulness=theory_usefulness,
+                    regime_matches=regime_matches,
                 )
 
                 # Update in-memory confidence history
@@ -890,6 +1058,19 @@ class ReplayExecutor:
                 except Exception as e:
                     self._log(f"WARNING: PredictionResult save failed: {e}")
 
+                # v3.1 Regime Memory Update
+                actual_dir = getattr(prior_prediction_result, "actual_direction", None)
+                self.regime_continuity_memory.update(
+                    date=date_str,
+                    subtype=regime_subtype,
+                    usefulness=theory_usefulness.get("score", 0.0),
+                    actual_direction=actual_dir,
+                    falsified=getattr(prior_prediction_result, "invalidation_triggered", False),
+                )
+                regime_history_final = self.regime_continuity_memory.summary(regime_subtype)
+                
+                print("[Regime Memory]", {"date": date_str, "subtype": regime_subtype, "history": regime_history_final})
+
                 self._run_theories.append(theory)
                 self._run_validations.append(validation)
                 self._run_reflections.append(reflection)
@@ -933,10 +1114,16 @@ class ReplayExecutor:
                     candle_type=market_obs.candle_type,
                     participation_strength=market_obs.participation_strength,
                     participation_confirmation=market_obs.participation_confirmation,
+                    market_name=self.engine.market_name,
                     # v2.0 dimensions
                     volume_state=obs_data["derived"].get("volume_state"),
                     volatility_regime=vol_regime,
-                    momentum_regime=mom_regime
+                    momentum_regime=mom_regime,
+                    # v3.0 dimensions
+                    regime_subtype=getattr(market_obs, "regime_subtype", "neutral"),
+                    falsifiability_conditions=getattr(market_obs, "falsifiability_conditions", []),
+                    analog_divergence_claim=getattr(market_obs, "analog_divergence_claim", ""),
+                    regime_history=regime_history_final,
                 )
 
                 snapshot_data = {
@@ -957,7 +1144,14 @@ class ReplayExecutor:
                     # v2.0 metadata
                     "volume_state": obs_data["derived"].get("volume_state"),
                     "volatility_regime": vol_regime,
-                    "momentum_regime": mom_regime
+                    "momentum_regime": mom_regime,
+                    # v3.0 Regime-based theory continuity
+                    "regime_subtype": getattr(market_obs, "regime_subtype", "neutral"),
+                    "falsifiability_conditions": getattr(market_obs, "falsifiability_conditions", []),
+                    "analog_divergence_claim": getattr(market_obs, "analog_divergence_claim", ""),
+                    "theory_regime_subtype": getattr(theory, "regime_subtype", "neutral"),
+                    "theory_falsifiability_conditions": getattr(theory, "falsifiability_conditions", []),
+                    "regime_history": regime_history_final,
                 }
                 # Save snapshot
                 self._save_snapshot(day_idx, date_str, snapshot_data)
@@ -1070,6 +1264,13 @@ class ReplayExecutor:
                                         "reflection": getattr(
                                             reflection, "reflection_summary", ""
                                         ),
+                                        # v3.0 Regime Surface Persistence
+                                        "regime_subtype": market_obs.regime_subtype,
+                                        "falsifiability_conditions": market_obs.falsifiability_conditions,
+                                        "analog_divergence_claim": market_obs.analog_divergence_claim,
+                                        "theory_regime_subtype": getattr(theory, "regime_subtype", "neutral"),
+                                        "theory_falsifiability": getattr(theory, "falsifiability_conditions", []),
+                                        "regime_history": regime_history_final,
                                         "metrics": metrics.__dict__,
                                     },
                                     _f,
@@ -1121,31 +1322,169 @@ class ReplayExecutor:
             self.capital_simulator.get_daily_logs()
         )
 
-        # Print summary and export CSV
-        self.replay_analysis_engine.print_summary()
+        # Prepare external metrics (from runtime objects) for richer summary
+        try:
+            external_metrics = {}
+            external_metrics["total_steps"] = len(self.engine)
+            external_metrics["execution_hash"] = execution_hash
+            if self.theory_lineage:
+                external_metrics.update(
+                    {
+                        "active_theories": self.theory_lineage.active_count(),
+                        "contradicted_theories": self.theory_lineage.contradicted_count(),
+                        "retired_theories": self.theory_lineage.retired_count(),
+                        "revived_theories": self.theory_lineage.revived_count(),
+                        "avg_retirement_age": self.theory_lineage.average_retirement_age(),
+                        "avg_revival_latency": self.theory_lineage.average_revival_latency(),
+                        "longest_surviving": self.theory_lineage.longest_surviving_theory(),
+                        "mutation_count": self.theory_lineage.total_mutation_count(),
+                        "family_analytics": self.theory_lineage.family_analytics(),
+                    }
+                )
+
+            if self.observer:
+                # derive aggregate observer metrics
+                external_metrics.update(
+                    {
+                        "avg_confidence": float(
+                            mean([m.avg_confidence for m in self.observer.metrics])
+                        )
+                        if self.observer and self.observer.metrics
+                        else 0.0,
+                        "confidence_volatility": float(
+                            mean([m.confidence_volatility for m in self.observer.metrics])
+                        )
+                        if self.observer and self.observer.metrics
+                        else 0.0,
+                        "grounded_reflection": float(
+                            mean([m.grounded_reflection_score for m in self.observer.metrics])
+                        )
+                        if self.observer and self.observer.metrics
+                        else 0.0,
+                        "meta_commentary": float(
+                            mean([m.meta_commentary_score for m in self.observer.metrics])
+                        )
+                        if self.observer and self.observer.metrics
+                        else 0.0,
+                        "narrative_inflation": float(
+                            mean([m.inflation_relapse_score for m in self.observer.metrics])
+                        )
+                        if self.observer and self.observer.metrics
+                        else 0.0,
+                    }
+                )
+
+            # regime memory metrics if available on executor
+            try:
+                external_metrics["regime_recall_hit_rate"] = (
+                    self.regime_memory.recall_hit_rate()
+                    if self.regime_memory
+                    else 0.0
+                )
+                external_metrics["memory_retrieval_usefulness"] = (
+                    self.regime_memory.retrieval_usefulness(self._regime_matches_by_step)
+                    if self.regime_memory
+                    else 0.0
+                )
+            except Exception:
+                external_metrics["regime_recall_hit_rate"] = 0.0
+                external_metrics["memory_retrieval_usefulness"] = 0.0
+
+            # Output paths
+            external_metrics["outputs"] = {
+                "prediction_csv": str(self.base_output_dir / "prediction_analysis.csv"),
+                **(
+                    {
+                        "charts_dir": str(self.output_dir),
+                        "cross_asset_summary": str(self.base_output_dir / "cross_asset_failure_summary.json"),
+                    }
+                    if self.generate_visualizations
+                    else {}
+                ),
+            }
+
+            # Attach to analysis engine for richer printing
+            self.replay_analysis_engine.external_metrics = external_metrics
+        except Exception:
+            pass
+
         self.replay_analysis_engine.export_prediction_analysis_csv(
-            Path(__file__).parent.parent.parent / "market" / "replay" / "output" / "prediction_analysis.csv"
+            self.base_output_dir / "prediction_analysis.csv"
         )
 
         # v1.6 Visualization Layer Integration
-        try:
-            from market.replay.visualization import generate_visualizations
-            output_dir = Path(__file__).parent.parent.parent / "market" / "replay" / "output"
-            generate_visualizations(
-                analysis=self.replay_analysis_engine.analyze(),
-                logs=self.capital_simulator.get_daily_logs(),
-                tp_history=self.replay_analysis_engine.transition_pressure_history,
-                output_dir=output_dir
-            )
-            self._log(f"Generated:")
-            self._log(f"  - actual_vs_predicted_curve.png")
-            self._log(f"  - policy_capital_comparison.png")
-            self._log(f"  - policy_trade_frequency.png")
-            self._log(f"  - confidence_calibration.png")
-            self._log(f"  - transition_pressure_timeline.png")
-            self._log(f"  - combined_dashboard.png")
-        except Exception as e:
-            self._log(f"WARNING: Optional Visualization generation failed: {e}")
+        if self.generate_visualizations:
+            try:
+                from market.replay.visualization import (
+                    generate_visualizations,
+                )
+
+                generate_visualizations(
+                    analysis=self.replay_analysis_engine.analyze(),
+                    logs=self.capital_simulator.get_daily_logs(),
+                    tp_history=self.replay_analysis_engine.transition_pressure_history,
+                    output_dir=self.output_dir,
+                )
+                self._log(f"Generated:")
+                self._log(f"  - {self.output_dir / 'actual_vs_predicted_curve.png'}")
+                self._log(f"  - {self.output_dir / 'policy_capital_comparison.png'}")
+                self._log(f"  - {self.output_dir / 'policy_trade_frequency.png'}")
+                self._log(f"  - {self.output_dir / 'confidence_calibration.png'}")
+                self._log(f"  - {self.output_dir / 'transition_pressure_timeline.png'}")
+                self._log(f"  - {self.output_dir / 'combined_dashboard.png'}")
+            except Exception as e:
+                self._log(f"WARNING: Optional Visualization generation failed: {e}")
+
+        if self.compare_secondary and self.engine.market_name == "RELIANCE":
+            nifty_path = Path(__file__).parent.parent.parent / "data" / "nifty_daily_3y.csv"
+            if nifty_path.exists():
+                self._log("\nCross-asset comparison: detected NIFTY dataset.")
+                self._log("Starting NIFTY replay for cross-asset comparison...")
+                try:
+                    comparison_executor = ReplayExecutor(
+                        max_days=self.max_days,
+                        quiet=True,
+                        dataset_path=str(nifty_path),
+                        market_name="NIFTY 50",
+                        compare_secondary=False,
+                        generate_visualizations=self.generate_visualizations,
+                    )
+                    comparison_executor.execute(emit_summary=False)
+
+                    if self.generate_visualizations:
+                        from market.replay.visualization import (
+                            generate_cross_asset_visualizations,
+                        )
+                        generate_cross_asset_visualizations(
+                            base_output_dir=self.base_output_dir,
+                            primary_analysis=self.replay_analysis_engine.analyze(),
+                            secondary_analysis=comparison_executor.replay_analysis_engine.analyze(),
+                        )
+                        self._log(f"  - {self.base_output_dir / 'reliance_vs_nifty_comparison.png'}")
+                        self._log(f"  - {self.base_output_dir / 'prediction_failure_heatmap.png'}")
+                        self._log(f"  - {self.base_output_dir / 'cross_asset_divergence_timeline.png'}")
+                        self._log(f"  - {self.base_output_dir / 'cross_asset_failure_summary.json'}")
+                except Exception as e:
+                    self._log(f"WARNING: Cross-asset comparison failed: {e}")
+
+        if emit_summary:
+            try:
+                # refresh outputs path in external metrics (cross-asset JSON may now exist)
+                if hasattr(self.replay_analysis_engine, "external_metrics"):
+                    self.replay_analysis_engine.external_metrics["outputs"] = {
+                        "prediction_csv": str(self.base_output_dir / "prediction_analysis.csv"),
+                        **(
+                            {
+                                "charts_dir": str(self.output_dir),
+                                "cross_asset_summary": str(self.base_output_dir / "cross_asset_failure_summary.json"),
+                            }
+                            if self.generate_visualizations
+                            else {}
+                        ),
+                    }
+                self.replay_analysis_engine.print_summary()
+            except Exception:
+                pass
 
         self._log(f"\n✓ Replay complete")
         self._log(f"  Execution hash: {execution_hash[:16]}...")
@@ -1276,60 +1615,9 @@ class ReplayExecutor:
                 else 0.0
             )
 
-            print("\nReplay Summary")
-            print("--------------")
-            print(f"Total steps: {total_steps}")
-            print(f"Active theories: {active_theories}")
-            print(f"New theories: {new_theories}")
-            print(f"Mutated theories: {mutated_theories}")
-            print(f"Contradicted theories: {contradicted_theories}")
-            print(f"Retired theories: {retired_theories}")
-            print(f"Revived theories: {revived_theories}")
-            print("")
-            print(f"Longest surviving theory: {longest_survival} steps")
-            print(f"Avg retirement age: {avg_retirement_age:.2f}")
-            print(f"Avg revival latency: {avg_revival_latency:.2f}")
-            print("")
-            print(f"Avg contradiction half-life: {avg_contradiction_half_life:.2f}")
-            print(
-                f"Median contradiction half-life: {median_contradiction_half_life:.2f}"
-            )
-            print(f"Avg contradiction severity: {avg_contradiction_severity:.2f}")
-            print(f"Oldest unresolved contradiction: {oldest_unresolved} steps")
-            print("")
-            print(f"Avg confidence: {avg_confidence:.2f}")
-            print(f"Confidence volatility: {confidence_volatility:.3f}")
-            print("")
-            print(
-                "Best surviving family: "
-                f"{family_analytics.get('best_surviving_family') or 'None'}"
-            )
-            print(
-                "Most revived family: "
-                f"{family_analytics.get('most_revived_family') or 'None'}"
-            )
-            print(
-                "Highest contradiction family: "
-                f"{family_analytics.get('highest_contradiction_family') or 'None'}"
-            )
-            print(
-                "Most mutated family: "
-                f"{family_analytics.get('most_mutated_family') or 'None'}"
-            )
-            print("")
-            print(f"Regime recall hit rate: {regime_recall_hit_rate:.2f}")
-            print(
-                "Avg theory usefulness: "
-                f"{epistemic_aggregate.get('avg_theory_usefulness', 0.0):.2f}"
-            )
-            print("Memory retrieval usefulness: " f"{memory_retrieval_usefulness:.2f}")
-            print("")
-            print(f"Grounded reflection score: {grounded_reflection:.3f}")
-            print(f"Meta commentary score: {meta_commentary:.3f}")
-            print("")
-            print(f"Narrative inflation relapse: {narrative_inflation:.3f}")
-            print(f"Top recurring theory: {top_recurring or 'None'}")
-            print("")
+            # Legacy concise replay summary removed - replaced by
+            # ReplayAnalysisEngine.print_summary() which now emits
+            # the structured v2.3+ summary.
         except Exception:
             pass
 
@@ -1392,6 +1680,13 @@ class ReplayExecutor:
                 if hasattr(prior_prediction_result, "to_dict")
                 else prior_prediction_result
             ),
+            # v3.0 Regime Persistence
+            "regime_subtype": snapshot_data.get("regime_subtype"),
+            "falsifiability_conditions": snapshot_data.get("falsifiability_conditions"),
+            "analog_divergence_claim": snapshot_data.get("analog_divergence_claim"),
+            "theory_regime_subtype": snapshot_data.get("theory_regime_subtype"),
+            "theory_falsifiability_conditions": snapshot_data.get("theory_falsifiability_conditions"),
+            "regime_history": snapshot_data.get("regime_history"),
         }
 
         import json
@@ -1427,6 +1722,30 @@ class ReplayExecutor:
         print(f"  Candle: {observation.candle_type}")
         print(f"  Participation: {observation.participation_strength}, {observation.participation_confirmation}")
         print(f"  Sentiment: {observation.macro_sentiment}")
+
+        # v3.0 Regime Surfacing
+        regime_subtype = getattr(observation, 'regime_subtype', 'neutral')
+        falsifiability_conditions = getattr(theory, 'falsifiability_conditions', [])
+
+        print(f"\nRegime subtype: {regime_subtype}")
+
+        if falsifiability_conditions:
+            print(f"\nFalsifiability:")
+            for condition in falsifiability_conditions:
+                print(f"- {condition}")
+
+        from market.regime.regime_subtype_classifier import RegimeSubtypeClassifier
+        falsified, triggered = RegimeSubtypeClassifier.evaluate_falsifiability(
+            observation, 
+            getattr(theory, 'regime_subtype', 'neutral'),
+            falsifiability_conditions
+        )
+
+        status = "contradicted" if falsified else "supported" if regime_subtype != "neutral" else "unresolved"
+        print(f"\nStatus:\n{status}")
+
+        if getattr(observation, 'analog_divergence_claim', None):
+            print(f"\nAnalog divergence:\n{observation.analog_divergence_claim}")
 
         print(f"\nHorizon:")
         print(f"  Daily: {horizon.daily}")
@@ -1498,13 +1817,18 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Deterministic NIFTY replay engine with cognition loop"
+        description="Deterministic replay engine for RELIANCE (or NIFTY) with cognition loop"
     )
     parser.add_argument(
         "--days",
         type=int,
         default=30,
         help="Number of trading days to replay (default: 30)",
+    )
+    parser.add_argument(
+        "--nifty",
+        action="store_true",
+        help="Override to replay NIFTY 50 instead of RELIANCE (default)",
     )
     parser.add_argument(
         "--restart", action="store_true", help="Restart replay (clear prior state)"
@@ -1519,12 +1843,43 @@ def main():
     parser.add_argument(
         "--end-date", type=str, help="End date (YYYY-MM-DD) - not yet implemented"
     )
+    parser.add_argument(
+        "--cross-asset",
+        action="store_true",
+        help="Run optional cross-asset comparison (NIFTY vs RELIANCE)",
+    )
+    parser.add_argument(
+        "--visualize",
+        action="store_true",
+        help="Generate replay visualization images on demand",
+    )
+    parser.add_argument(
+        "--lineage-debug",
+        action="store_true",
+        help="Enable verbose lineage carry-forward tracing",
+    )
 
     args = parser.parse_args()
 
     try:
+        # Determine dataset and market name based on CLI flags
+        if args.nifty:
+            dataset_path = str(Path(__file__).parent.parent.parent / "data" / "nifty_daily_3y.csv")
+            market_name = "NIFTY 50"
+        else:
+            dataset_path = str(Path(__file__).parent.parent.parent / "data" / "reliance_daily_3y.csv")
+            market_name = "RELIANCE"
+
         # Initialize executor
-        executor = ReplayExecutor(max_days=args.days, quiet=args.quiet)
+        executor = ReplayExecutor(
+            max_days=args.days,
+            quiet=args.quiet,
+            dataset_path=dataset_path,
+            market_name=market_name,
+            compare_secondary=args.cross_asset,
+            generate_visualizations=args.visualize,
+            lineage_debug=args.lineage_debug,
+        )
 
         # Reset if requested
         if args.reset:

@@ -1,41 +1,41 @@
 {
   "day_index": 0,
   "date": "2025-12-31",
-  "observation_text": "NIFTY closed higher with volatility compressed.",
-  "theory_summary": "Compressed theory: NIFTY's upward momentum remains tenuous under compressed volatility, reliant on continued participation. This theory directly grounds itself in the observation of reduced volatility and the abstraction that the market exhibited a calm tone. The narrow claim focuses on the market structure, specifically the relationship between volatility and participation.",
+  "observation_text": "[range expanding, volatility compressed, short-term momentum strengthening, RELIANCE focus, asset rally] candle strong bull participation normal (divergence) RELIANCE closed higher with volatility compressed.",
+  "theory_summary": "Neutral regime: compressed volatility, strengthening short-term momentum. Continuation remains weakly supported under compressed volatility; would falsify if volume normalizes. This theory directly grounds itself in the observation and abstraction provided, focusing on market structure, coherence, uncertainty, and volatility. It makes a narrow claim about the current regime subtype and is falsifiable based on future observations that contradict it.",
   "confidence_state": {
-    "empirical": 0.42,
+    "empirical": 0.25,
     "regime": 0.5,
-    "reflection": 0.45,
-    "coherence": 0.4028,
-    "contradiction": 0.18
+    "reflection": 0.49,
+    "coherence": 0.3388,
+    "contradiction": 0.28
   },
   "contradiction_score": 0,
-  "reflection_summary": "The compressed theory suggests that NIFTY's upward momentum relies on continued participation, which is tenuous under reduced volatility. This claim focuses on the market structure, specifically the relationship between volatility and participation. However, the replay validation reveals mixed results at the daily horizon, with insufficient history for weekly and monthly horizons.",
+  "reflection_summary": "Neutral regime: The observed market structure supports the neutral regime subtype, characterized by compressed volatility, strengthening short-term momentum, and weak continuation. However, this regime remains supported only if additional confirmation signals emerge, as it is currently insufficiently tested under volatility expansion. The theory's falsifiability condition is met, as normalization of volume would falsify the current regime subtype. No explicit contradictions were detected, but the observed continuation remains untested and contradicts prior participation strength assumptions.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 45,
-      "sentence_count": 3,
-      "narrative_density": 0.042,
-      "uncertainty_presence": 0.0,
-      "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 0.826,
+      "word_count": 50,
+      "sentence_count": 4,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.875,
       "causal_inflation": 0.0,
-      "semantic_repetition": 0.03,
+      "semantic_repetition": 0.023,
       "generic_phrase_hits": 0,
-      "compression_score": 0.533
+      "compression_score": 0.856
     },
     "reflection": {
-      "word_count": 47,
-      "sentence_count": 3,
-      "narrative_density": 0.069,
+      "word_count": 65,
+      "sentence_count": 4,
+      "narrative_density": 0.094,
       "uncertainty_presence": 0.5,
       "contradiction_acknowledgment": 0.5,
-      "abstraction_sharpness": 0.654,
+      "abstraction_sharpness": 1.0,
       "causal_inflation": 0.0,
-      "semantic_repetition": 0.0,
+      "semantic_repetition": 0.039,
       "generic_phrase_hits": 0,
-      "compression_score": 0.669
+      "compression_score": 0.786
     }
   },
   "horizon": {
@@ -55,14 +55,40 @@
   },
   "regime_matches": [],
   "theory_usefulness": {
-    "score": 0.464,
-    "label": "fragile"
+    "score": 0.0,
+    "label": "unknown"
   },
+  "candle_type": "strong_bull",
+  "participation_strength": "normal",
+  "participation_confirmation": "divergence",
   "prediction": {
     "direction": "higher",
-    "confidence": 0.56,
-    "tension": "observation coherence vs residual uncertainty",
-    "invalidation": "volatility expansion"
+    "confidence": 0.55,
+    "tension": "volatility expansion vs structural support",
+    "invalidation": "volatility expansion",
+    "transition_examples": []
   },
-  "prior_prediction_result": null
+  "prior_prediction_result": null,
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 1,
+    "avg_usefulness": 0.0,
+    "last_seen": "2025-12-31",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 0,
+      "uncertain": 0
+    },
+    "falsified_count": 0
+  }
 }

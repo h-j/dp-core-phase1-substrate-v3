@@ -1,113 +1,136 @@
 {
   "day_index": 3,
   "date": "2026-01-05",
-  "observation_text": "NIFTY traded range-bound with volatility compressed.",
-  "theory_summary": "Compressed Theory: NIFTY's upward momentum relies on continued participation, which remains tenuous under compressed volatility.",
+  "observation_text": "[volume elevated, range expanding, volatility compressed, RELIANCE focus] candle neutral participation strong (bearish confirmed) RELIANCE closed lower with volatility compressed.",
+  "theory_summary": "Neutral regime: Compressed volatility constrains continuation, which remains weakly supported. The observed market structure suggests RELIANCE's participation may be stabilizing, but this stability could weaken if volume normalizes or range expansion falters. This theory is falsifiable by future observations that contradict the following conditions: Volume normalizes Range expansion falters The theory focuses on market structure, coherence, and uncertainty, and avoids broad macro explanations, generic financial commentary, and smooth storytelling.",
   "confidence_state": {
-    "empirical": 0.42,
-    "regime": 0.5,
-    "reflection": 0.45,
-    "coherence": 0.3913,
-    "contradiction": 0.198
+    "empirical": 0.39,
+    "regime": 0.51,
+    "reflection": 0.47,
+    "coherence": 0.4384,
+    "contradiction": 0.291
   },
-  "contradiction_score": 0.18,
-  "reflection_summary": "The compressed critique of NIFTY's upward momentum is that its continued participation relies on tenuous participation, which remains uncertain under compressed volatility. This theory is contradicted by recent reflections containing uncertainty or caution signals. One unresolved tension is the lack of sufficient testing of this theory under expanded volatility.",
+  "contradiction_score": 0.31,
+  "reflection_summary": "Compressed volatility masks fragility under contradiction pressure.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 14,
+      "word_count": 63,
+      "sentence_count": 3,
+      "narrative_density": 0.292,
+      "uncertainty_presence": 1.0,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 1.0,
+      "causal_inflation": 0.0,
+      "semantic_repetition": 0.0,
+      "generic_phrase_hits": 0,
+      "compression_score": 0.856
+    },
+    "reflection": {
+      "word_count": 7,
       "sentence_count": 1,
       "narrative_density": 0.0,
       "uncertainty_presence": 0.0,
-      "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 0.5,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 0.25,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.425
-    },
-    "reflection": {
-      "word_count": 40,
-      "sentence_count": 3,
-      "narrative_density": 0.0,
-      "uncertainty_presence": 1.0,
-      "contradiction_acknowledgment": 1.0,
-      "abstraction_sharpness": 0.667,
-      "causal_inflation": 0.0,
-      "semantic_repetition": 0.0,
-      "generic_phrase_hits": 0,
-      "compression_score": 0.883
+      "compression_score": 0.438
     }
   },
   "horizon": {
-    "daily": "range_bound",
-    "weekly": "range_bound",
+    "daily": "weakening",
+    "weekly": "mixed",
     "monthly": "insufficient_history"
   },
   "regime_signature": {
     "date": "2026-01-05",
-    "trend": "range_bound",
+    "trend": "closed_lower",
     "volatility_state": "compressed",
-    "sentiment": "cautiously_positive",
+    "sentiment": "risk_off",
     "confidence_profile": "pressured",
-    "contradiction_severity": 0.18,
-    "active_theory_count": 4,
+    "contradiction_severity": 0.31,
+    "active_theory_count": 2,
     "breadth_proxy": "nascent"
   },
   "regime_matches": [
     {
       "date": "2026-01-01",
-      "similarity": 0.966,
+      "similarity": 0.68,
       "active_theories": [
-        "5e7d40de03b213e1",
-        "275500409fc758d7"
+        "9980ec838b639189",
+        "695b670adafbd2ef"
       ],
-      "contradictions": [
-        "Recent reflection contains uncertainty or caution signal."
-      ],
-      "confidence": 0.37,
-      "recurring_contradiction": null
-    },
-    {
-      "date": "2026-01-02",
-      "similarity": 0.658,
-      "active_theories": [
-        "5e7d40de03b213e1",
-        "275500409fc758d7",
-        "d0f8b31888296201"
-      ],
-      "contradictions": [
-        "Recent reflection contains uncertainty or caution signal."
-      ],
-      "confidence": 0.42,
+      "contradictions": [],
+      "confidence": 0.27,
       "recurring_contradiction": null
     },
     {
       "date": "2025-12-31",
-      "similarity": 0.655,
+      "similarity": 0.668,
       "active_theories": [
-        "5e7d40de03b213e1"
+        "9980ec838b639189"
       ],
       "contradictions": [],
-      "confidence": 0.42,
+      "confidence": 0.25,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-01-02",
+      "similarity": 0.63,
+      "active_theories": [
+        "9980ec838b639189",
+        "695b670adafbd2ef"
+      ],
+      "contradictions": [
+        "Trend contradiction: range_bound moved to extended_higher."
+      ],
+      "confidence": 0.32,
       "recurring_contradiction": null
     }
   ],
   "theory_usefulness": {
-    "score": 0.44,
-    "label": "fragile"
+    "score": 0.4783,
+    "label": "useful"
   },
+  "candle_type": "neutral",
+  "participation_strength": "strong",
+  "participation_confirmation": "bearish_confirmed",
   "prediction": {
-    "direction": "range_bound",
-    "confidence": 0.38,
-    "tension": "Recent reflection contains uncertainty or caution signal.",
-    "invalidation": "Recent reflection contains uncertainty or caution signal."
+    "direction": "lower",
+    "confidence": 0.616,
+    "tension": "volatility expansion vs structural support",
+    "invalidation": "Current theory weakens a relationship that prior theory strengthened.",
+    "transition_examples": []
   },
   "prior_prediction_result": {
     "prior_direction": "higher",
-    "actual_direction": "range_bound",
+    "actual_direction": "lower",
     "direction_score": 0.0,
     "invalidation_triggered": true,
-    "confidence": 0.38,
-    "invalidation": "Recent reflection contains uncertainty or caution signal."
+    "confidence": 0.5,
+    "invalidation": "Trend contradiction: range_bound moved to extended_higher."
+  },
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 4,
+    "avg_usefulness": 0.228,
+    "last_seen": "2026-01-05",
+    "historical_resolution": {
+      "higher": 1,
+      "lower": 1,
+      "range_bound": 1,
+      "uncertain": 0
+    },
+    "falsified_count": 2
   }
 }

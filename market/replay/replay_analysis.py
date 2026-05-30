@@ -13,17 +13,28 @@ Analyzes:
 from collections import defaultdict
 from datetime import datetime
 
-from statistics import mean, median, correlation
+from statistics import mean, median
 import statistics
 from market.replay.prediction_probe import PredictionDirection
 from pathlib import Path
+from typing import List, Dict, Union
+
+def extract_usefulness_score(value):
+    """Normalizes theory_usefulness to a float score. Supports dict or numeric."""
+    if isinstance(value, dict):
+        return float(value.get("score", 0.0))
+    if isinstance(value, (int, float)):
+        return float(value)
+    return 0.0
+
 class ReplayAnalysisEngine:
     """
     Analyzes cognition behavior over replay execution.
     """
 
-    def __init__(self):
+    def __init__(self, market_name: str = "UNKNOWN"):
         """Initialize analysis state."""
+        self.market_name = market_name
         self.days = []
         self.confidence_history = []
         self.contradiction_history = []
@@ -47,23 +58,33 @@ class ReplayAnalysisEngine:
         theory_summary: str,
         reflection_summary: str,
         market_regime: str,
-        epistemic_quality: dict | None = None,
-        prediction: dict | None = None,
-        prior_prediction_result: dict | None = None,
-        regime_matches: list | None = None,
-        theory_usefulness: dict | None = None,
-        transition_pressure: dict | None = None,
-        decisions: dict | None = None,
-        candle_type: str | None = None,
-        participation_strength: str | None = None,
-        participation_confirmation: str | None = None,
+        epistemic_quality: Union[dict, None] = None,
+        prediction: Union[dict, None] = None,
+        prior_prediction_result: Union[dict, None] = None,
+        regime_matches: Union[list, None] = None,
+        theory_usefulness: Union[dict, None] = None,
+        transition_pressure: Union[dict, None] = None,
+        decisions: Union[dict, None] = None,
+        candle_type: Union[str, None] = None,
+        participation_strength: Union[str, None] = None,
+        participation_confirmation: Union[str, None] = None,
+        market_name: Union[str, None] = None,
         # v2.0 enriched dimensions
-        volume_state: str | None = None,
-        volatility_regime: str | None = None,
-        momentum_regime: str | None = None,
+        volume_state: Union[str, None] = None,
+        volatility_regime: Union[str, None] = None,
+        momentum_regime: Union[str, None] = None,
+        # v3.0 Regime Fields
+        regime_subtype: Union[str, None] = "neutral",
+        falsifiability_conditions: Union[list, None] = None,
+        analog_divergence_claim: Union[str, None] = "",
+        regime_history: Union[dict, None] = None,
         transition_memory_hit: bool = False,
     ):
         """Record cognition state for a day."""
+        # v2.4 Persistence fallback
+        if not theory_usefulness:
+            theory_usefulness = {"score": 0.0, "label": "unknown"}
+
         self.days.append(
             {
                 "day_index": day_index,
@@ -77,7 +98,7 @@ class ReplayAnalysisEngine:
                 "prediction": prediction or {},
                 "prior_prediction_result": prior_prediction_result or {},
                 "regime_matches": regime_matches or [],
-                "theory_usefulness": theory_usefulness or {},
+                "theory_usefulness": theory_usefulness,
                 "transition_pressure": transition_pressure or {},
                 "decisions": decisions or {},
                 "candle_type": candle_type,
@@ -86,7 +107,12 @@ class ReplayAnalysisEngine:
                 # v2.0 dimensions
                 "volume_state": volume_state,
                 "volatility_regime": volatility_regime,
-                "momentum_regime": momentum_regime
+                "momentum_regime": momentum_regime,
+                # v3.0 dimensions
+                "regime_subtype": regime_subtype,
+                "falsifiability_conditions": falsifiability_conditions or [],
+                "analog_divergence_claim": analog_divergence_claim,
+                "regime_history": regime_history,
             }
         )
         
@@ -141,27 +167,26 @@ class ReplayAnalysisEngine:
                     regime_sim = 0.0
 
             theory_usefulness_score = 0.0
-            if theory_usefulness:
-                try:
-                    theory_usefulness_score = float(theory_usefulness.get("score", 0))
-                except Exception:
-                    theory_usefulness_score = 0.0
+            if theory_usefulness and isinstance(theory_usefulness, dict):
+                theory_usefulness_score = theory_usefulness.get("score", 0.0)
 
             self.prediction_history.append(
                 {
                     "date": date,
+                    "market_name": market_name or self.market_name,
                     "prediction": prediction or {},
                     "prior_prediction_result": prior_prediction_result or {},
                     "contradiction_score": float(contradiction_result.get("score", 0)),
                     "regime_similarity": float(regime_sim),
-                    "theory_usefulness": float(theory_usefulness_score),
+                    "theory_usefulness": theory_usefulness, # Store the full dict
                     "theory_summary": theory_summary,
                     "transition_pressure_score": float(transition_pressure.get("pressure_score", 0.0)) if transition_pressure else 0.0,
                     "transition_breakout_risk": bool(transition_pressure.get("breakout_risk", False)) if transition_pressure else False,
+                    "participation_confirmation": participation_confirmation,
                     # v2.0 dimensions
                     "volume_state": volume_state,
                     "volatility_regime": volatility_regime,
-                    "momentum_regime": momentum_regime
+                    "momentum_regime": momentum_regime,
                 }
             )
 
@@ -227,12 +252,13 @@ class ReplayAnalysisEngine:
             if pattern in lower_text:
                 self.reflection_patterns[pattern] += 1
 
-    def analyze(self) -> dict:
+    def analyze(self) -> Dict:
         """Run comprehensive analysis."""
         if not self.days:
             return {"status": "no_data", "message": "No replay days recorded"}
 
         analysis = {
+            "market_name": self.market_name,
             "total_days": len(self.days),
             "date_range": (self.days[0]["date"], self.days[-1]["date"]),
             "confidence_analysis": self._analyze_confidence(),
@@ -244,12 +270,14 @@ class ReplayAnalysisEngine:
             "capital_simulation_analysis": self._analyze_capital_simulation(),
             "prediction_analysis": self._analyze_predictions(),
             "transition_memory_analysis": self._analyze_transition_memory(),
+            "prediction_history": self.prediction_history,
+            "transition_pressure_history": self.transition_pressure_history,
             "risks": self._detect_cognition_risks(),
         }
 
         return analysis
 
-    def _analyze_confidence(self) -> dict:
+    def _analyze_confidence(self) -> Dict:
         """Analyze confidence evolution."""
         if not self.confidence_history:
             return {}
@@ -307,7 +335,7 @@ class ReplayAnalysisEngine:
             },
         }
 
-    def _analyze_contradictions(self) -> dict:
+    def _analyze_contradictions(self) -> Dict:
         """Analyze contradiction dynamics."""
         if not self.contradiction_history:
             return {}
@@ -343,7 +371,7 @@ class ReplayAnalysisEngine:
             ],
         }
 
-    def _analyze_theories(self) -> dict:
+    def _analyze_theories(self) -> Dict:
         """Analyze theory evolution patterns."""
         return {
             "top_themes": sorted(
@@ -357,7 +385,7 @@ class ReplayAnalysisEngine:
             ),
         }
 
-    def _analyze_coherence(self) -> dict:
+    def _analyze_coherence(self) -> Dict:
         """Analyze theoretical coherence dynamics."""
         coherence_vals = [c["coherence"] for c in self.confidence_history]
 
@@ -395,7 +423,7 @@ class ReplayAnalysisEngine:
             ),
         }
 
-    def _analyze_epistemic_quality(self) -> dict:
+    def _analyze_epistemic_quality(self) -> Dict:
         """Analyze compression and epistemic posture metrics."""
         if not self.epistemic_quality_history:
             return {}
@@ -416,7 +444,7 @@ class ReplayAnalysisEngine:
             "reflection": self._mean_quality_metrics(reflection_metrics),
         }
 
-    def _mean_quality_metrics(self, metric_rows: list[dict]) -> dict:
+    def _mean_quality_metrics(self, metric_rows: List[dict]) -> Dict:
         if not metric_rows:
             return {}
 
@@ -437,7 +465,7 @@ class ReplayAnalysisEngine:
             for name in metric_names
         }
 
-    def _analyze_transition_pressure(self) -> dict:
+    def _analyze_transition_pressure(self) -> Dict:
         """Analyze transition pressure patterns with detailed calibration metrics."""
         if not self.transition_pressure_history:
             return {
@@ -588,7 +616,7 @@ class ReplayAnalysisEngine:
             "top_drivers": sorted(driver_frequency.items(), key=lambda x: x[1], reverse=True)[:10],
         }
 
-    def _analyze_predictions(self) -> dict:
+    def _analyze_predictions(self) -> Dict:
         """Analyze prediction probe performance."""
         if not self.prediction_history:
             return {}
@@ -692,7 +720,7 @@ class ReplayAnalysisEngine:
         # Usefulness Bands
         useful_buckets = {"0-0.3": [], "0.3-0.5": [], "0.5-0.7": [], "0.7+": []}
         for r in scored:
-            v = r.get("theory_usefulness", 0.0)
+            v = extract_usefulness_score(r.get("theory_usefulness", 0.0))
             if v < 0.3: useful_buckets["0-0.3"].append(r)
             elif v < 0.5: useful_buckets["0.3-0.5"].append(r)
             elif v < 0.7: useful_buckets["0.5-0.7"].append(r)
@@ -715,6 +743,30 @@ class ReplayAnalysisEngine:
             b: {"count": len(rs), "accuracy": sum(1 for r in rs if is_correct(r))/len(rs) if rs else 0.0}
             for b, rs in contra_buckets.items()
         }
+
+        # Theory Usefulness Analysis
+        usefulness_scores = []
+        missing_usefulness_count = 0
+        for r in self.prediction_history:
+            tu = r.get("theory_usefulness")
+            # Ensure it's a dict and has 'score' and 'label'
+            if tu and isinstance(tu, dict) and "score" in tu and "label" in tu:
+                usefulness_scores.append(tu["score"])
+            else:
+                missing_usefulness_count += 1
+
+        avg_theory_usefulness = mean(usefulness_scores) if usefulness_scores else 0.0
+        high_usefulness_days = sum(1 for s in usefulness_scores if s > 0.7)
+
+        # Accuracy when usefulness > 0.7
+        high_usefulness_predictions = [
+            r for r in scored
+            if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
+        ]
+        accuracy_when_high_usefulness = (
+            sum(1 for r in high_usefulness_predictions if is_correct(r)) / len(high_usefulness_predictions)
+            if high_usefulness_predictions else 0.0
+        )
 
         # Prediction Drift
         change_count = 0
@@ -741,7 +793,7 @@ class ReplayAnalysisEngine:
         regime_acc = sum(1 for r in high_regime if is_correct(r)) / len(high_regime) if high_regime else 0.0
 
         # Theory usefulness > 0.5
-        useful = [r for r in scored if r.get("theory_usefulness", 0.0) > 0.5]
+        useful = [r for r in scored if extract_usefulness_score(r.get("theory_usefulness", 0.0)) > 0.5]
         useful_acc = sum(1 for r in useful if is_correct(r)) / len(useful) if useful else 0.0
 
         # Task 2.4: Prediction slices by pressure
@@ -793,7 +845,7 @@ class ReplayAnalysisEngine:
         scores = [r["prior_prediction_result"].get("direction_score", 0) for r in scored]
         if len(confidences) > 1 and len(scores) > 1:
             try:
-                correlation_val = correlation(confidences, scores)
+                correlation_val = statistics.correlation(confidences, scores)
             except Exception:
                 correlation_coeff = 0.0
 
@@ -823,9 +875,13 @@ class ReplayAnalysisEngine:
             "missed_range_to_lower": {"count": len(missed_range_to_lower), "samples": sample_top(missed_range_to_lower)},
             "false_breakouts": {"count": len(false_breakouts), "samples": sample_top(false_breakouts)},
             "best_breakout_captures": {"count": len(best_breakout_captures), "samples": sample_top(best_breakout_captures)},
+            "avg_theory_usefulness": avg_theory_usefulness,
+            "high_usefulness_days": high_usefulness_days,
+            "accuracy_when_high_usefulness": accuracy_when_high_usefulness,
+            "missing_usefulness_values": missing_usefulness_count,
         }
 
-    def _detect_cognition_risks(self) -> list:
+    def _detect_cognition_risks(self) -> List:
         """Detect potential cognition dysfunctions."""
         risks = []
 
@@ -900,190 +956,208 @@ class ReplayAnalysisEngine:
             print("No replay data to analyze")
             return
 
-        print("\n" + "=" * 40)
-        print("REPLAY ANALYSIS SUMMARY")
-        print("=" * 40)
+        em = getattr(self, "external_metrics", {}) or {}
 
+        print("\n" + "=" * 60)
+        print("COGNITIVE REPLAY SUMMARY (v3.1+)")
+        print("=" * 60)
+
+        # Header
         print(
-            f"\nReplay Period: {analysis['date_range'][0]} to "
-            f"{analysis['date_range'][1]} ({analysis['total_days']} days)"
+            f"\nReplay Period: {analysis['date_range'][0]} to {analysis['date_range'][1]} ({analysis['total_days']} days)"
         )
 
-        if "confidence_analysis" in analysis:
-            conf = analysis["confidence_analysis"]
-            print("\nConfidence Dynamics:")
+        # 1. Cognitive Core
+        print("\nCOGNITIVE CORE")
+        print("--------------")
+        active = em.get("active_theories", "N/A")
+        print(f"Active theories: {active}")
+        family = em.get("family_analytics", {})
+        print("Active theory lifecycle: New/Mutated/Retired/Revived")
+        if em.get("family_analytics"):
             print(
-                f"  Empirical: {conf['empirical_confidence']['initial']:.2f} → "
-                f"{conf['empirical_confidence']['final']:.2f} "
-                f"({conf['empirical_confidence']['trajectory']})"
+                f"  Best surviving family: {family.get('best_surviving_family') or 'None'}"
             )
             print(
-                f"  Coherence: {conf['theoretical_coherence']['initial']:.2f} → "
-                f"{conf['theoretical_coherence']['final']:.2f} "
-                f"({conf['theoretical_coherence']['trend']})"
+                f"  Most revived family: {family.get('most_revived_family') or 'None'}"
             )
+        else:
+            print("  Best surviving family: N/A")
+            print("  Most revived family: N/A")
 
-        if "contradiction_analysis" in analysis:
-            cont = analysis["contradiction_analysis"]
-            print("\nContradiction Dynamics:")
-            print(
-                f"  Days with contradictions: {cont['total_days_with_contradictions']} "
-                f"({cont['persistence_ratio']:.1%})"
-            )
-            print(f"  Trend: {cont['score_trend']}")
+        # regime & memory
+        regime_recall = em.get("regime_recall_hit_rate", analysis.get("transition_memory_analysis", {}).get("hit_rate", 0.0))
+        mem_use = em.get("memory_retrieval_usefulness", 0.0)
+        
+        # Read actual theory usefulness from prediction analysis
+        pred_analysis = analysis.get("prediction_analysis", {})
+        avg_usefulness = pred_analysis.get("avg_theory_usefulness", 0.0)
 
-        if "theory_analysis" in analysis:
-            theory = analysis["theory_analysis"]
-            print("\nTheory Patterns:")
-            print(
-                f"  Theme diversity: {theory['theme_diversity']} themes, "
-                f"risk: {theory['theme_repetition_risk']}"
-            )
-            print(f"  Top themes: {', '.join([t[0] for t in theory['top_themes']])}")
+        print(f"Regime recall hit rate: {regime_recall:.2f}")
+        print(f"Memory retrieval usefulness: {mem_use:.2f}")
+        print(f"Avg theory usefulness: {avg_usefulness:.2f}")
 
-        if analysis.get("epistemic_quality_analysis"):
-            quality = analysis["epistemic_quality_analysis"].get("theory", {})
-            if quality:
-                print("\nEpistemic Quality:")
-                print(
-                    f"  Compression: {quality['compression_score']:.2f}, "
-                    f"narrative density: {quality['narrative_density']:.2f}, "
-                    f"causal inflation: {quality['causal_inflation']:.2f}"
-                )
+        grounded = em.get("grounded_reflection", 0.0)
+        narrative = em.get("narrative_inflation", 0.0)
+        meta = em.get("meta_commentary", 0.0)
+        print(f"Grounded reflection: {grounded:.3f}")
+        print(f"Narrative inflation: {narrative:.3f}")
+        print(f"Meta commentary: {meta:.3f}")
 
-        if analysis.get("prediction_analysis"):
-            p = analysis["prediction_analysis"]
-            # Task 5: Summary output formatting
-            print("\nPrediction Analysis")
-            print("------------------")
-            print(f"  Total predictions: {p['total_predictions']}")
-            print(f"  Accuracy: {p['accuracy']:.1%}")
-            print(f"  Partial: {p['partial_accuracy']:.1%}")
-            print(f"  Uncertain: {p['uncertain_rate']:.1%}")
-            print(f"\n  Mean confidence: {p['mean_confidence']:.3f}")
-            print(f"  Median confidence: {p['median_confidence']:.3f}")
-            print(f"  Confidence correlation: {p['confidence_accuracy_correlation']:.3f}")
+        print("\nPurpose: Is thinker improving? (see Confidence & Prediction sections)")
 
-            print(f"\n  Accuracy @ Pressure > 0.5: {p.get('accuracy_when_pressure_gt_0_5', 0.0):.1%}")
-            print(f"  Accuracy @ Pressure > 0.7: {p.get('accuracy_when_pressure_gt_0_7', 0.0):.1%}")
+        # 2. Confidence & coherence
+        conf = analysis.get("confidence_analysis", {})
+        print("\nCONFIDENCE DYNAMICS")
+        print("-------------------")
+        if conf:
+            emp = conf.get("empirical_confidence", {})
+            coh = conf.get("theoretical_coherence", {})
+            print(f"Empirical: {emp.get('initial',0):.2f} → {emp.get('final',0):.2f} ({emp.get('trajectory','N/A')})")
+            print(f"Coherence: {coh.get('initial',0):.2f} → {coh.get('final',0):.2f} ({coh.get('trend','N/A')})")
+        else:
+            print("No confidence data")
 
-            print("\nv1.5 Calibration Summary")
-            print("-----------------------")
-            print(f"  Overall Calibration Score (MAE): {p.get('calibration_score', 0.0):.3f}")
-            print(f"  Prediction Direction Drift: {p.get('prediction_drift', 0.0):.1%}")
-            print(f"  Rolling Confidence: 7d={p['rolling_drift']['7d']:.2f}, 15d={p['rolling_drift']['15d']:.2f}")
+        # 3. Prediction performance
+        p = analysis.get("prediction_analysis", {})
+        print("\nPREDICTION PERFORMANCE")
+        print("----------------------")
+        if p:
+            print(f"Total predictions: {p.get('total_predictions',0)}")
+            print(f"Accuracy: {p.get('accuracy',0.0):.1%}")
+            print(f"Partial accuracy: {p.get('partial_accuracy',0.0):.1%}")
+            print(f"Uncertain rate: {p.get('uncertain_rate',0.0):.1%}")
+            print(f"Mean confidence: {p.get('mean_confidence',0.0):.3f} | Median: {p.get('median_confidence',0.0):.3f} | Corr: {p.get('confidence_accuracy_correlation',0.0):.3f}")
+            print(f"Avg theory usefulness: {p.get('avg_theory_usefulness', 0.0):.3f}")
+            print(f"High usefulness days (>0.7): {p.get('high_usefulness_days', 0)}")
+            print(f"Accuracy when usefulness >0.7: {p.get('accuracy_when_high_usefulness', 0.0):.1%}")
+            print(f"Missing usefulness values: {p.get('missing_usefulness_values', 0)}")
 
-            print("\nAccuracy by Direction (Regime)")
-            print("---------------------")
-            for d, info in p.get("accuracy_by_direction", {}).items():
-                print(f"    {d:<12}: {info['accuracy']:.1%} (n={info['count']}) | Avg Conf: {info['avg_confidence']:.2f}")
+            print("\nBy direction:")
+            for d, info in p.get('accuracy_by_direction', {}).items():
+                print(f"  {d:<12}: Acc={info['accuracy']:.1%} | Partial={info['partial_accuracy']:.1%} | n={info['count']} | AvgConf={info['avg_confidence']:.2f}")
 
-            print("\nAccuracy by Usefulness")
-            print("---------------------")
-            for b, info in p.get("accuracy_by_usefulness", {}).items():
-                print(f"    {b:<12}: {info['accuracy']:.1%} (n={info['count']})")
+            # Top misses
+            # reuse existing samples if present in missed lists
+            top_misses = []
+            for key in ['missed_range_to_higher','missed_range_to_lower','false_breakouts']:
+                entry = p.get(key, {})
+                if entry and entry.get('count'):
+                    top_misses.append((key, entry.get('count')))
+            if top_misses:
+                print("\nTop misses:")
+                for k, c in top_misses:
+                    print(f"  {k}: {c}")
+        else:
+            print("No prediction data")
 
-            print("\nAccuracy by Contradiction Severity")
-            print("---------------------------------")
-            for b, info in p.get("accuracy_by_contradiction_severity", {}).items():
-                print(f"    {b:<12}: {info['accuracy']:.1%} (n={info['count']})")
+        # 4. Cross-asset intelligence
+        print("\nCROSS-ASSET ANALYSIS")
+        print("--------------------")
+        # Cross-asset details are printed by ReplayExecutor when available; show placeholder or external summary
+        cross = em.get('outputs', {}).get('cross_asset_summary') if em else None
+        if cross and Path(cross).exists():
+            try:
+                import json
 
-            print("\nConfidence Calibration Buckets")
-            print("-----------------------------")
-            for b, info in p.get("accuracy_by_confidence_bucket", {}).items():
-                print(f"    {b}: Acc={info['actual_accuracy']:.1%}, AvgConf={info['avg_confidence']:.2f}, Gap={info['gap']:.3f}")
+                with open(cross, 'r') as f:
+                    cs = json.load(f)
+                print(f"Primary market: {cs.get('primary_market')}")
+                print(f"Secondary market: {cs.get('secondary_market')}")
+                print(f"Primary accuracy: {cs.get('primary_accuracy',0.0):.1%}")
+                print(f"Secondary accuracy: {cs.get('secondary_accuracy',0.0):.1%}")
+                print(f"Divergence hit rates: primary={cs.get('primary_divergence_hit_rate',0.0):.1%}, secondary={cs.get('secondary_divergence_hit_rate',0.0):.1%}")
+            except Exception:
+                print("Cross-asset summary present but failed to read")
+        else:
+            print("Cross-asset analysis: not available (run with RELIANCE dataset present)")
 
+        # 5. Transition pressure
+        tp = analysis.get('transition_pressure_analysis', {})
+        print("\nTRANSITION PRESSURE")
+        print("-------------------")
+        if tp and tp.get('status') != 'no_data':
+            print(f"Avg pressure: {tp.get('avg_pressure',0.0):.3f} | Avg stability: {tp.get('avg_stability',0.0):.3f}")
+            print(f"High pressure days (>0.5): {tp.get('pressure_distribution', {}).get('gt_0_5',0)}")
+            print(f"Breakout flags: {tp.get('breakout_risk_count',0)} | Accuracy when breakout: {tp.get('accuracy_when_breakout_risk',0.0):.1%}")
+        else:
+            print("No transition pressure data")
 
-            print(f"\n  Accuracy when regime similarity > 0.9: {p.get('accuracy_regime_similarity_gt_0_9', 0.0):.1%}")
-            print(f"  Accuracy when theory usefulness > 0.5: {p.get('accuracy_theory_usefulness_gt_0_5', 0.0):.1%}")
-
-            print("\n  Missed transition samples (range_bound → higher):")
-            print(f"    Count: {p.get('missed_range_to_higher', {}).get('count', 0)}")
-            for s in p.get('missed_range_to_higher', {}).get('samples', []):
-                print(f"      - {s['date']}: conf={s.get('confidence')} | {s.get('theory_summary','')[:80]}")
-
-            print("\n  Missed transition samples (range_bound → lower):")
-            print(f"    Count: {p.get('missed_range_to_lower', {}).get('count', 0)}")
-            for s in p.get('missed_range_to_lower', {}).get('samples', []):
-                print(f"      - {s['date']}: conf={s.get('confidence')} | {s.get('theory_summary','')[:80]}")
-
-            print("\n  False Breakouts:")
-            print(f"    Count: {p.get('false_breakouts', {}).get('count', 0)}")
-            for s in p.get('false_breakouts', {}).get('samples', []):
-                print(f"      - {s['date']}: conf={s.get('confidence')} | {s.get('theory_summary','')[:80]}")
-
-            print("\n  Best Breakout Captures:")
-            print(f"    Count: {p.get('best_breakout_captures', {}).get('count', 0)}")
-            for s in p.get('best_breakout_captures', {}).get('samples', []):
-                print(f"      - {s['date']}: conf={s.get('confidence')} | {s.get('theory_summary','')[:80]}")
-
-
-        if analysis.get("transition_pressure_analysis"):
-            tp = analysis["transition_pressure_analysis"]
-            if tp.get("status") != "no_data":
-                print("\nTransition Pressure Analysis (Calibration Audit):")
-                print(f"  Avg pressure: {tp.get('avg_pressure', 0.0):.3f} | Avg stability: {tp.get('avg_stability', 0.7):.3f}")
-                
-                # Pressure distribution with multiple thresholds
-                dist = tp.get('pressure_distribution', {})
-                print(f"\n  Pressure Distribution:")
-                print(f"    >0.5: {dist.get('gt_0_5', 0)} days ({tp.get('high_pressure_rate_0_5', 0.0):.1%})")
-                print(f"    >0.6: {dist.get('gt_0_6', 0)} days")
-                print(f"    >0.7: {dist.get('gt_0_7', 0)} days ({tp.get('high_pressure_rate_0_7', 0.0):.1%})")
-                
-                # Accuracy metrics at different thresholds
-                print(f"\n  Accuracy by Pressure Threshold:")
-                print(f"    @>0.5: {tp.get('accuracy_when_pressure_gt_0_5', 0.0):.1%}")
-                print(f"    @>0.6: {tp.get('accuracy_when_pressure_gt_0_6', 0.0):.1%}")
-                print(f"    @>0.7: {tp.get('accuracy_when_pressure_gt_0_7', 0.0):.1%}")
-                
-                print(f"\n  Breakout Risk:")
-                print(f"    Count: {tp.get('breakout_risk_count', 0)} ({tp.get('breakout_risk_rate', 0.0):.1%})")
-                print(f"    Accuracy when flagged: {tp.get('accuracy_when_breakout_risk', 0.0):.1%}")
-                
-                print(f"\n  Transition Capture:")
-                print(f"    Overall hit rate: {tp.get('transition_hit_rate', 0.0):.1%}")
-                print(f"    Under high pressure (>0.5): {tp.get('transition_capture_under_high_pressure', 0.0):.1%}")
-                
-                print(f"\n  Misses & False Signals:")
-                print(f"    False positives: {tp.get('false_positives', 0)}")
-                print(f"    False negatives: {tp.get('false_negatives', 0)}")
-                print(f"    Missed high-pressure (>0.5): {tp.get('missed_high_pressure_count', 0)} (avg score: {tp.get('missed_high_pressure_avg_score', 0.0):.3f})")
-                
-                print(f"\n  Direction distribution: {tp.get('direction_bias_distribution', {})}")
-                print(f"  Top drivers: {', '.join([d[0] for d in tp.get('top_drivers', [])])}")
-        if "risks" in analysis and analysis["risks"]:
-            print("\n⚠  Detected Risks:")
-            for risk in analysis["risks"]:
-                print(
-                    f"  [{risk['severity'].upper()}] {risk['type']}: "
-                    f"{risk['description']}"
-                )
-
-        if "capital_simulation_analysis" in analysis:
-            print("\nDecision Policy Results")
-            print("-----------------------")
-            cap = analysis["capital_simulation_analysis"]
-            
-            for policy_key in ["baseline", "high_conviction", "breakout"]:
+        # 6. Decision policies (capital simulation)
+        cap = analysis.get('capital_simulation_analysis', {})
+        print("\nDECISION POLICY RESULTS")
+        print("-----------------------")
+        if cap:
+            for policy_key in ['baseline','high_conviction','breakout']:
                 p = cap.get(policy_key, {})
                 if not p: continue
-                
-                name = policy_key.replace("_", " ").title()
-                print(f"\n{name}:")
-                print(f"  Capital: ₹{p.get('ending_capital', 0):,.2f}")
-                print(f"  Return:  {p.get('return_pct', 0.0):+.2%}")
-                print(f"  Trades:  {p.get('trade_count', 0)}")
-                print(f"  Win Rate: {p.get('win_rate', 0.0):.1%}")
-                print(f"  Max DD:   {p.get('max_drawdown', 0.0):.1%}")
-                print(f"  Avg Conv: {p.get('avg_conviction', 0.0):.3f}")
+                name = policy_key.replace('_',' ').title()
+                print(f"\n{name}: Return={p.get('return_pct',0.0):+.2%} | Trades={p.get('trade_count',0)} | WinRate={p.get('win_rate',0.0):.1%} | MaxDD={p.get('max_drawdown',0.0):.1%}")
+            best = cap.get('best_performer','N/A')
+            print(f"\nBest performer: {best}")
+        else:
+            print('No capital simulation data')
 
-            best = cap.get('best_performer', 'N/A')
-            print(f"\nBest Performer: {best.replace('_', ' ').title()}")
+        # 7. Key insights (auto-generated)
+        print("\nKEY INSIGHTS")
+        print("------------")
+        insights = []
+        if conf:
+            traj = conf.get('empirical_confidence',{}).get('trajectory')
+            if traj == 'rising':
+                insights.append('✓ Empirical confidence rising over replay')
+            elif traj == 'declining':
+                insights.append('⚠ Empirical confidence declining')
+        if p and p.get('calibration_score',0) > 0.15:
+            insights.append('⚠ Calibration gap detected (consider recalibration)')
+        if tp and tp.get('false_positives',0) > max(3, int(tp.get('total_days',0)*0.1)):
+            insights.append('⚠ Transition pressure over-triggering (many false positives)')
 
-        print("\n" + "=" * 70 + "\n")
+        if not insights:
+            print('  No critical insights detected')
+        else:
+            for i in insights:
+                print(f'  {i}')
 
-    def _analyze_capital_simulation(self) -> dict:
+        if p and p.get('scored_predictions', 0) >= 5:
+            if p.get('accuracy', 0.0) > 0.55:
+                print('  ✓ prediction quality improving')
+            if tp and tp.get('breakout_risk_count', 0) >= 3 and tp.get('accuracy_when_breakout_risk', 0.0) > p.get('accuracy', 0.0):
+                print('  ✓ breakout signal outperforming baseline')
+            if cap and cap.get('high_conviction', {}).get('trade_count', 0) > 0 and cap.get('high_conviction', {}).get('return_pct', 0.0) > cap.get('baseline', {}).get('return_pct', 0.0):
+                print('  ✓ selective execution improving returns')
+            if p.get('confidence_accuracy_correlation', 0.0) > 0.25:
+                print('  ✓ confidence calibration strengthening')
+
+        if analysis.get('contradiction_analysis', {}).get('persistence_ratio', 0.0) > 0.70 and len(self.days) >= 5:
+            print('  ⚠ contradiction elevated')
+
+        if p:
+            if p.get('accuracy', 0.0) < 0.45:
+                print('  ⚠ prediction accuracy below baseline')
+            if p.get('mean_confidence', 0.0) > 0.6 and p.get('accuracy', 0.0) > 0.5:
+                print('  ✓ confidence well-calibrated with moderate accuracy')
+        if conf:
+            coh_drop = conf.get('theoretical_coherence', {}).get('initial', 0.0) - conf.get('theoretical_coherence', {}).get('final', 0.0)
+            if coh_drop > 0.08:
+                print('  ⚠ coherence degrading significantly')
+        if cross_asset:
+            if cross_asset.get('primary_divergence_hit_rate', 0.0) > 0.25:
+                print('  ✓ cross-asset divergence adding signal')
+            elif cross_asset.get('secondary_divergence_hit_rate', 0.0) > 0.25:
+                print('  ✓ specialist asset divergence hit rate strong')
+
+        # 8. Outputs
+        print("\nOUTPUTS")
+        print("-------")
+        out = em.get('outputs', {})
+        print(f"  CSV: {out.get('prediction_csv','N/A')}")
+        print(f"  Charts: {out.get('charts_dir','N/A')}")
+        print(f"  Cross-asset JSON: {out.get('cross_asset_summary','N/A')}")
+
+        print('\n' + '=' * 60 + '\n')
+
+    def _analyze_capital_simulation(self) -> Dict:
         """Analyze capital simulation results."""
         return getattr(self, "capital_simulation_summary", {})
 
@@ -1091,7 +1165,7 @@ class ReplayAnalysisEngine:
         """Set the summary of capital simulation."""
         self.capital_simulation_summary = summary
 
-    def _analyze_transition_memory(self) -> dict:
+    def _analyze_transition_memory(self) -> Dict:
         """Analyze transition memory performance."""
         return {
             "total_transition_memory_hits": self.transition_memory_hits,
@@ -1129,7 +1203,8 @@ class ReplayAnalysisEngine:
                 "actual_direction": pred_rec["prior_prediction_result"].get("actual_direction"),
                 "transition_pressure_score": pred_rec.get("transition_pressure_score"),
                 "transition_breakout_risk": pred_rec.get("transition_breakout_risk"),
-                "theory_usefulness_score": pred_rec.get("theory_usefulness"),
+                "theory_usefulness_score": extract_usefulness_score(pred_rec.get("theory_usefulness")),
+                "theory_usefulness_label": pred_rec.get("theory_usefulness", {}).get("label", "unknown") if isinstance(pred_rec.get("theory_usefulness"), dict) else "unknown",
                 "regime_similarity": pred_rec.get("regime_similarity"),
                 "capital_before": baseline.get("capital_before") or cap_rec.get("capital_before"),
                 "capital_after": baseline.get("capital_after") or cap_rec.get("capital_after"),
@@ -1138,6 +1213,10 @@ class ReplayAnalysisEngine:
                 "volume_state": pred_rec.get("volume_state"),
                 "volatility_regime": pred_rec.get("volatility_regime"),
                 "momentum_regime": pred_rec.get("momentum_regime"),
+                # v3.0 Dimensions
+                "regime_subtype": pred_rec.get("regime_subtype"),
+                "analog_divergence_claim": pred_rec.get("analog_divergence_claim"),
+                "regime_history": pred_rec.get("regime_history"),
             })
 
         df = pd.DataFrame(combined_data)

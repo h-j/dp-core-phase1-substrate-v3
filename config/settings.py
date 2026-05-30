@@ -1,4 +1,14 @@
-from pydantic_settings import BaseSettings
+try:
+    from pydantic_settings import BaseSettings
+except Exception:
+    try:
+        from pydantic import BaseSettings
+    except Exception:
+        from pydantic import BaseModel
+
+        class BaseSettings(BaseModel):
+            class Config:
+                env_file = ".env"
 
 
 class Settings(BaseSettings):

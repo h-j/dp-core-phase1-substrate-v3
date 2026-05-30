@@ -1,3 +1,5 @@
+from typing import List
+
 from cognition.schemas.base import CognitionBase
 
 
@@ -15,9 +17,9 @@ class StrategicMemoryState(CognitionBase):
 
     strategic_summary: str
     cognition_posture: str
-    major_contradictions: list[str] = []
-    weakening_assumptions: list[str] = []
-    strengthening_patterns: list[str] = []
+    major_contradictions: List[str] = []
+    weakening_assumptions: List[str] = []
+    strengthening_patterns: List[str] = []
     regime_interpretation: str
     uncertainty_summary: str
     coherence_trajectory: str

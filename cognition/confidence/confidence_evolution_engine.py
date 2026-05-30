@@ -1,3 +1,6 @@
+from typing import List, Dict, Any, Optional
+from statistics import mean
+
 class ConfidenceEvolutionEngine:
 
     def evolve(
@@ -10,6 +13,8 @@ class ConfidenceEvolutionEngine:
         recent_validations=None,
         outcome_validation_result=None,
         lineage_event=None,
+        theory_usefulness: Optional[Dict[str, Any]] = None,
+        regime_matches: Optional[List[Any]] = None,
     ):
 
         recent_validations = recent_validations or []
@@ -30,31 +35,51 @@ class ConfidenceEvolutionEngine:
         if outcome_validation_result:
             outcome_alignment = outcome_validation_result.get("validation_score", 0.5)
             if outcome_alignment > 0.7:
-                empirical_delta += 0.12
-                regime_delta += 0.07
-                coherence_delta += 0.05
+                empirical_delta += 0.08
+                regime_delta += 0.04
+                coherence_delta += 0.03
             elif outcome_alignment > 0.4:
-                empirical_delta += 0.03
-                regime_delta += 0.02
+                empirical_delta += 0.02
+                regime_delta += 0.01
             else:
-                empirical_delta -= 0.14
-                coherence_delta -= 0.09
-                pressure_delta += 0.14
+                empirical_delta -= 0.09
+                coherence_delta -= 0.06
+                pressure_delta += 0.08
 
             outcome_contradictions = outcome_validation_result.get("contradictions_detected", [])
             if outcome_contradictions:
-                pressure_delta += len(outcome_contradictions) * 0.12
-                coherence_delta -= len(outcome_contradictions) * 0.05
+                pressure_delta += len(outcome_contradictions) * 0.06
+                coherence_delta -= len(outcome_contradictions) * 0.03
 
             regime_mismatch = outcome_validation_result.get("regime_mismatch", 0.0)
             if regime_mismatch > 0.5:
-                regime_delta -= 0.08
-                coherence_delta -= 0.05
+                regime_delta -= 0.04
+                coherence_delta -= 0.03
+
+        # v2.7: Weighting Theory Usefulness and Regime Stability (Target: corr > 0.2)
+        if theory_usefulness:
+            use_score = theory_usefulness.get("score", 0.0)
+            if use_score > 0.6:
+                empirical_delta += 0.08
+                coherence_delta += 0.05
+            elif use_score < 0.3:
+                empirical_delta -= 0.12
+                coherence_delta -= 0.10
+
+        if regime_matches:
+            try:
+                sims = [m.similarity if hasattr(m, 'similarity') else m.get('similarity', 0) for m in regime_matches]
+                avg_sim = mean(sims) if sims else 0.0
+                if avg_sim > 0.75:
+                    regime_delta += 0.06
+                elif avg_sim < 0.4:
+                    regime_delta -= 0.04
+            except Exception:
+                pass
 
         if self._validation_aligns(validation):
-            empirical_delta += 0.06
-            regime_delta += 0.04
-            coherence_delta += 0.03
+            # v2.7: Dampened narrative-only validation (0.06 -> 0.03)
+            empirical_delta += 0.03
         else:
             empirical_delta -= 0.08
             coherence_delta -= 0.05
@@ -63,7 +88,6 @@ class ConfidenceEvolutionEngine:
         if self._repeated_support(validation, recent_validations):
             empirical_delta += 0.05
             regime_delta += 0.03
-            coherence_delta += 0.03
 
         reflection_text = reflection.reflection_summary.lower()
         if self._contains_any(
@@ -77,8 +101,8 @@ class ConfidenceEvolutionEngine:
                 "consistent",
             ],
         ):
-            reflection_delta += 0.05
-            coherence_delta += 0.03
+            # v2.7: Dampened reflection keyword weight (0.05 -> 0.02)
+            reflection_delta += 0.02
 
         if self._contains_any(
             reflection_text,
@@ -93,22 +117,17 @@ class ConfidenceEvolutionEngine:
                 "overconfidence",
             ],
         ):
-            reflection_delta -= 0.05
-            coherence_delta -= 0.04
+            reflection_delta -= 0.03
             pressure_delta += 0.08
 
         if new_contradictions > 0:
-            empirical_delta -= 0.08 * new_contradictions
             pressure_delta += 0.14 * new_contradictions
-            coherence_delta -= 0.09 * new_contradictions
 
         if active_contradictions > 0:
             pressure_delta += 0.09 * active_contradictions
-            coherence_delta -= 0.06 * active_contradictions
 
         if resolved_contradictions > 0:
             empirical_delta += 0.08 * resolved_contradictions
-            coherence_delta += 0.05 * resolved_contradictions
             pressure_delta -= 0.07 * resolved_contradictions
 
         if market_observation is not None:
@@ -129,7 +148,6 @@ class ConfidenceEvolutionEngine:
 
             if participation_confirmation == "divergence":
                 empirical_delta -= 0.05
-                coherence_delta -= 0.03
                 pressure_delta += 0.06
 
             if candle_type == "indecision":
@@ -141,21 +159,17 @@ class ConfidenceEvolutionEngine:
 
             if "price_participation_divergence" in contradiction_markers:
                 pressure_delta += 0.04
-                coherence_delta -= 0.03
 
         if mutated > 0:
             empirical_delta -= 0.05 * mutated
-            coherence_delta -= 0.06 * mutated
             pressure_delta += 0.08 * mutated
 
         if merged > 0:
             empirical_delta += 0.03 * merged
-            coherence_delta += 0.02 * merged
 
         contradiction_score = contradiction_result.get("score", 0.0)
         if contradiction_score > 0:
             pressure_delta += contradiction_score * 0.10
-            coherence_delta -= contradiction_score * 0.06
 
         confidence_state.empirical_confidence = self._clamp(
             confidence_state.empirical_confidence + empirical_delta
@@ -223,7 +237,7 @@ class ConfidenceEvolutionEngine:
 
         return support_count >= 1
 
-    def _contains_any(self, text: str, phrases: list[str]) -> bool:
+    def _contains_any(self, text: str, phrases: List[str]) -> bool:
 
         return any(phrase in text for phrase in phrases)
 

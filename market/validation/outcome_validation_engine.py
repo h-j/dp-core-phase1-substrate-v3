@@ -1,3 +1,5 @@
+from typing import List
+
 class OutcomeValidationEngine:
     """
     Validates theories against actual market outcomes.
@@ -287,7 +289,7 @@ class OutcomeValidationEngine:
         assumptions,
         market_outcome,
         observation_text
-    ) -> list[str]:
+    ) -> List[str]:
         """Detect contradictions between assumptions and outcome."""
 
         contradictions = []
@@ -392,7 +394,7 @@ class OutcomeValidationEngine:
         contradictions,
         regime_mismatch,
         average_alignment
-    ) -> list[str]:
+    ) -> List[str]:
         """Generate adaptation recommendations."""
 
         recommendations = []

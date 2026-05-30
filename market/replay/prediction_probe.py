@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from enum import Enum
 from statistics import mean
 from typing import Iterable, List, Optional
@@ -66,10 +66,41 @@ class PredictionProbeGenerator:
         transition_examples: List[TransitionExample] = None,
         volume_state: str = "normal",
         momentum_regime: str = "flat",
-        volatility_regime: str = "normal"
+        volatility_regime: str = "normal",
+        volume_ratio_5d: float = 1.0,
+        return_3d: float = 0.0,
+        return_5d: float = 0.0,
+        close_position_pct: float = 0.5,
+        participation_confirmation: str = "normal",
+        theory_usefulness: dict = None
     ) -> PredictionProbe:
-        direction = self._infer_direction(observation, theory, reflection)
-        confidence = self._infer_confidence(direction, contradictions, theory, reflection, transition_examples, volume_state, momentum_regime, volatility_regime, regime_matches)
+        direction = self._infer_direction(
+            observation,
+            theory,
+            reflection,
+            volume_ratio_5d=volume_ratio_5d,
+            return_3d=return_3d,
+            return_5d=return_5d,
+            close_position_pct=close_position_pct,
+            participation_confirmation=participation_confirmation,
+        )
+        confidence = self._infer_confidence(
+            direction,
+            contradictions,
+            theory,
+            reflection,
+            transition_examples,
+            volume_state,
+            momentum_regime,
+            volatility_regime,
+            regime_matches,
+            volume_ratio_5d,
+            return_3d,
+            return_5d,
+            close_position_pct,
+            participation_confirmation,
+            theory_usefulness=theory_usefulness,
+        )
         tension = self._compose_tension(theory, reflection, contradictions, horizons)
         invalidation = self._compose_invalidation(theory, reflection, contradictions)
         return PredictionProbe(
@@ -99,23 +130,106 @@ class PredictionProbeGenerator:
             invalidation=prior_prediction.invalidation,
         )
 
-    def _infer_direction(self, observation: object, theory: object, reflection: object) -> PredictionDirection:
+    def _infer_direction(
+        self,
+        observation: object,
+        theory: object,
+        reflection: object,
+        volume_ratio_5d: float = 1.0,
+        return_3d: float = 0.0,
+        return_5d: float = 0.0,
+        close_position_pct: float = 0.5,
+        participation_confirmation: str = "normal",
+    ) -> PredictionDirection:
         trend = getattr(observation, "trend_state", "").lower()
         breadth = getattr(observation, "breadth_state", "").lower()
         sentiment = getattr(observation, "macro_sentiment", "").lower()
         theory_text = getattr(theory, "summary", "").lower()
         reflection_text = getattr(reflection, "reflection_summary", "").lower()
+        candle_type = getattr(observation, "candle_type", "").lower()
+        gap_pct = getattr(observation, "gap_pct", 0.0)
+        descriptors = [str(item).lower() for item in getattr(observation, "descriptors", []) or []]
 
-        if "range_bound" in trend or "range_bound" in theory_text:
-            return PredictionDirection.range_bound
+        strong_up = (
+            return_3d > 0.3
+            and return_5d > 0.5
+            and (
+                volume_ratio_5d > 1.0
+                or gap_pct > 0.35
+                or "asset participation surge" in descriptors
+            )
+        )
+        strong_down = (
+            return_3d < -0.3
+            and return_5d < -0.5
+            and (
+                volume_ratio_5d > 1.0
+                or gap_pct < -0.35
+            )
+        )
+        close_high = close_position_pct >= 0.80 or candle_type == "strong_bull"
+        close_low = close_position_pct <= 0.20 or candle_type == "strong_bear"
+
+        if "uncertain" in sentiment or "uncertain" in reflection_text or "fragile" in reflection_text:
+            return PredictionDirection.uncertain
+
+        if strong_up and (
+            close_high
+            or "bullish_confirmed" in participation_confirmation
+            or volume_ratio_5d > 1.25
+            or "asset participation surge" in descriptors
+        ):
+            return PredictionDirection.higher
+        if strong_down and (
+            close_low
+            or "bearish_confirmed" in participation_confirmation
+            or volume_ratio_5d > 1.25
+        ):
+            return PredictionDirection.lower
+
         if any(word in trend for word in ["higher", "up", "extended_higher", "recovered_intraday"]):
             if "weak" in breadth or "deteriorat" in breadth or "risk_off" in sentiment:
-                return PredictionDirection.uncertain
+                if not (
+                    strong_up
+                    or "asset participation surge" in descriptors
+                    or gap_pct > 0.35
+                ):
+                    return PredictionDirection.uncertain
             return PredictionDirection.higher
         if any(word in trend for word in ["lower", "down", "closed_lower"]):
             if "strong" in breadth or "support" in reflection_text:
                 return PredictionDirection.uncertain
             return PredictionDirection.lower
+
+        if "range_bound" in trend or "range_bound" in theory_text:
+            if strong_up and (
+                close_high
+                or volume_ratio_5d > 1.15
+                or "asset participation surge" in descriptors
+                or candle_type == "strong_bull"
+            ):
+                return PredictionDirection.higher
+            if strong_down and (
+                close_low
+                or volume_ratio_5d > 1.15
+                or candle_type == "strong_bear"
+            ):
+                return PredictionDirection.lower
+            if abs(return_3d) < 0.25 and abs(return_5d) < 0.35 and volume_ratio_5d <= 1.05 and not close_high and not close_low:
+                return PredictionDirection.range_bound
+            if "uncertain" in sentiment or "uncertain" in reflection_text:
+                return PredictionDirection.uncertain
+            if strong_up and (volume_ratio_5d > 1.05 or gap_pct > 0.25):
+                return PredictionDirection.higher
+            if strong_down and (volume_ratio_5d > 1.05 or gap_pct < -0.25):
+                return PredictionDirection.lower
+            return PredictionDirection.range_bound
+
+        if strong_up:
+            return PredictionDirection.higher
+        if strong_down:
+            return PredictionDirection.lower
+
         if "uncertain" in sentiment or "uncertain" in reflection_text:
             return PredictionDirection.uncertain
         return PredictionDirection.range_bound
@@ -130,43 +244,84 @@ class PredictionProbeGenerator:
         volume_state: str = "normal",
         momentum_regime: str = "flat",
         volatility_regime: str = "normal",
-        regime_matches: Iterable[object] = None
+        regime_matches: Iterable[object] = None,
+        volume_ratio_5d: float = 1.0,
+        return_3d: float = 0.0,
+        return_5d: float = 0.0,
+        close_position_pct: float = 0.5,
+        participation_confirmation: str = "normal",
+        theory_usefulness: dict = None,
     ) -> float:
-        # v2.1 CALIBRATION: Improve confidence separation
-        base = 0.42 if direction == PredictionDirection.uncertain else 0.56
-        
-        # 1. Contradiction Penalties (v2.1 stricter)
+        # v2.4 CALIBRATION: align confidence to stronger signal clusters
+        if direction == PredictionDirection.uncertain:
+            base = 0.42
+        elif direction == PredictionDirection.range_bound:
+            base = 0.48
+        else:
+            base = 0.62
+
         contra_score = contradictions.get("score", 0)
-        if contra_score > 0.5:
-            base -= 0.18
-        elif contra_score > 0.3:
-            base -= 0.08
-            
-        # 2. Volume and Momentum Calibration
-        if volume_state == "dry":
-            base -= 0.12 # Punish lack of participation
-        elif volume_state == "elevated":
-            base += 0.05 # Reward confirmation
-            
-        if (direction == PredictionDirection.higher and momentum_regime == "strengthening") or \
-           (direction == PredictionDirection.lower and momentum_regime == "weakening"):
-            base += 0.05 # Momentum alignment
-
-        # 3. Regime Match Quality
-        matches = list(regime_matches) if regime_matches else []
-        if matches and any(getattr(m, 'similarity', 0) > 0.85 for m in matches):
-            base += 0.07 # High similarity boost
-
-        # 4. Text-based adjustments
-        text = (getattr(theory, "summary", "") + " " + getattr(reflection, "reflection_summary", "")).lower()
-        if "uncertain" in text or "caution" in text or "fragile" in text:
-            base -= 0.08
-        if "strength" in text and direction in {PredictionDirection.higher, PredictionDirection.lower}:
+        if contra_score > 0.55:
+            base -= 0.20
+        elif contra_score > 0.35:
+            base -= 0.10
+        elif contra_score < 0.25:
             base += 0.04
-            
+
+        if volume_state == "dry":
+            base -= 0.12
+        elif volume_state == "elevated":
+            base += 0.05
+
+        if volume_ratio_5d > 1.1:
+            base += 0.06
+        if close_position_pct >= 0.80 or close_position_pct <= 0.20:
+            base += 0.05
+
+        if (direction == PredictionDirection.higher and momentum_regime == "strengthening") or (
+            direction == PredictionDirection.lower and momentum_regime == "weakening"
+        ):
+            base += 0.05
+
+        if volume_state == "normal" and momentum_regime == "flat" and volatility_regime == "normal":
+            base -= 0.06
+
+        matches = list(regime_matches) if regime_matches else []
+        if matches and any(getattr(m, 'similarity', 0) > 0.9 for m in matches):
+            base += 0.08
+
+        text = (getattr(theory, "summary", "") + " " + getattr(reflection, "reflection_summary", "")).lower()
+        if "uncertain" in text or "fragile" in text or "caution" in text:
+            base -= 0.08
+        if "weak" in text and direction in {PredictionDirection.higher, PredictionDirection.lower}:
+            base -= 0.04
+        if "strength" in text and direction in {PredictionDirection.higher, PredictionDirection.lower}:
+            base += 0.03
+
         if transition_examples and len(transition_examples) > 0:
             base += 0.04
-            
+
+        if "bullish_confirmed" in participation_confirmation or "bearish_confirmed" in participation_confirmation:
+            base += 0.04
+
+        if contra_score > 0.55 and direction in {PredictionDirection.higher, PredictionDirection.lower}:
+            base -= 0.05
+
+        # v2.6 Calibration Logic
+        raw_confidence = base
+        if raw_confidence >= 0.75:
+            base *= 0.82
+        elif raw_confidence >= 0.60:
+            base *= 0.88
+        elif raw_confidence <= 0.25:
+            base *= 1.05
+
+        usefulness_score = theory_usefulness.get("score", 0.0) if theory_usefulness else 0.0
+        if direction != PredictionDirection.uncertain and usefulness_score < 0.15:
+            base = min(base, 0.55)
+
+        print(f"[Probe v2.6] Raw: {raw_confidence:.3f} | Calibrated: {base:.3f} | Usefulness: {usefulness_score:.3f}")
+
         return float(max(0.05, min(0.95, round(base, 3))))
 
     def _compose_tension(

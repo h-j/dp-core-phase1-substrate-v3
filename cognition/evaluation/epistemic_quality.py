@@ -7,6 +7,7 @@ visible without replacing human inspection or LLM generation.
 
 import re
 from collections import Counter
+from typing import List, Dict
 
 GENERIC_PHRASES = [
     "the market is characterized by",
@@ -72,7 +73,7 @@ SHARP_TERMS = [
 ]
 
 
-def evaluate_epistemic_quality(text: str) -> dict:
+def evaluate_epistemic_quality(text: str) -> Dict:
     """Return simple heuristic scores for epistemic compression."""
     normalized = _normalize(text)
     words = _words(normalized)
@@ -132,7 +133,7 @@ def _normalize(text: str) -> str:
     return re.sub(r"\s+", " ", text.lower()).strip()
 
 
-def _sentences(text: str) -> list[str]:
+def _sentences(text: str) -> List[str]:
     return [
         sentence.strip()
         for sentence in re.split(r"(?<=[.!?])\s+", text)
@@ -140,19 +141,19 @@ def _sentences(text: str) -> list[str]:
     ]
 
 
-def _words(text: str) -> list[str]:
+def _words(text: str) -> List[str]:
     return re.findall(r"[a-z][a-z-]{2,}", text.lower())
 
 
-def _phrase_hits(text: str, phrases: list[str]) -> int:
+def _phrase_hits(text: str, phrases: List[str]) -> int:
     return sum(1 for phrase in phrases if phrase in text)
 
 
-def _term_hits(text: str, terms: list[str]) -> int:
+def _term_hits(text: str, terms: List[str]) -> int:
     return sum(len(re.findall(rf"\b{re.escape(term)}\b", text)) for term in terms)
 
 
-def _semantic_repetition(words: list[str]) -> int:
+def _semantic_repetition(words: List[str]) -> int:
     stop_words = {
         "the",
         "and",

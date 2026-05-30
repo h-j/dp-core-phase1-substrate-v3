@@ -31,6 +31,7 @@ from market.replay.transition_pressure import TransitionPressureEngine
 from market.replay.replay_analysis import ReplayAnalysisEngine
 from market.replay.replay_engine import ReplayEngine
 from memory.replay.horizon_cognition import HorizonCognitionEngine
+from memory.replay.epistemic_scoring import EpistemicScoringEngine
 from memory.replay.regime_memory import RegimeMemoryStore
 from memory.relational.repositories.abstraction_repository import AbstractionRepository
 from memory.relational.repositories.confidence_repository import ConfidenceRepository
@@ -69,6 +70,7 @@ class ReplayValidationRunner:
         self.transition_pressure_engine = TransitionPressureEngine()
         self.horizon_engine = HorizonCognitionEngine()
         self.regime_memory = RegimeMemoryStore()
+        self.epistemic_scoring = EpistemicScoringEngine()
         self._run_market_observations = []
         self.capital_simulator = CapitalSimulator()
         self._prior_prediction = None
@@ -262,7 +264,7 @@ class ReplayValidationRunner:
                     confidence_state=theory.confidence_state,
                     contradiction_result=contradiction_result,
                     reflection=reflection,
-                    theory_usefulness={},
+                    theory_usefulness=theory.usefulness,
                     prior_observations=self._run_market_observations[-10:],
                 )
 
@@ -343,8 +345,22 @@ class ReplayValidationRunner:
                     if prior_prediction_result is not None
                     else None,
                     regime_matches,
-                    {"score": epistemic_quality.get("theory", {}).get("compression_score", 0), "label": "validation"},
-                    transition_pressure.to_dict() if hasattr(transition_pressure, "to_dict") else transition_pressure,
+                    theory_usefulness=self.epistemic_scoring.score_theory(
+                        lineage_record=None,
+                        regime_matches=regime_matches,
+                        prior_prediction_result=(
+                            prior_prediction_result.to_dict()
+                            if prior_prediction_result
+                            else {}
+                        ),
+                        contradiction_score=float(
+                            contradiction_result.get("score", 0.0)
+                        ),
+                        reflection_summary=reflection.reflection_summary,
+                    ),
+                    transition_pressure=transition_pressure.to_dict()
+                    if hasattr(transition_pressure, "to_dict")
+                    else transition_pressure,
                 )
 
                 # Record daily capital simulation logs for analysis

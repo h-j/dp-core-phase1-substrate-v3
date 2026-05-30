@@ -1,6 +1,7 @@
 from market.schemas.market_observation import MarketObservation
 from memory.market.market_observation_model import MarketObservationModel
 from memory.relational.postgres_client import SessionLocal
+from typing import List, Union
 
 
 class MarketObservationRepository:
@@ -92,11 +93,11 @@ class MarketObservationRepository:
             observation_source=model.observation_source
         )
 
-    def _serialize(self, values: list[str]) -> str:
+    def _serialize(self, values: List[str]) -> str:
 
         return "\n".join(values)
 
-    def _deserialize(self, value: str | None) -> list[str]:
+    def _deserialize(self, value: Union[str, None]) -> List[str]:
 
         if not value:
             return []

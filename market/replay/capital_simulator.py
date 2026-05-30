@@ -2,7 +2,6 @@
 Observer-only capital simulator for replay analysis.
 Does not affect cognition.
 """
-
 from typing import List, Dict
 from typing import Any
 
