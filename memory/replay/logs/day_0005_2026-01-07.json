@@ -1,117 +1,126 @@
 {
   "day_index": 5,
   "date": "2026-01-07",
-  "observation_text": "NIFTY traded range-bound with volatility compressed but breadth weakened.",
-  "theory_summary": "\"NIFTY's upward momentum relies on continued participation, which remains tenuous under compressed volatility.\" This theory directly grounds in the observation \"NIFTY traded range-bound with volatility compressed but breadth weakened\" and abstraction \"Nifty's price action was characterized by a range-bound pattern, with volatility compressed and breadth weakening.\" The theory is narrow, focusing on market structure and regime evolution, rather than making broad macro claims. It also preserves ambiguity where evidence is weak, acknowledging the uncertainty surrounding NIFTY's continued upward momentum.",
+  "observation_text": "[range expanding, short-term momentum weakening, RELIANCE focus] candle neutral participation normal (normal) RELIANCE traded range-bound amid moderate volatility.",
+  "theory_summary": "Neutral regime: The current neutral regime subtype persists, characterized by range-bound behavior and compressed volatility. Weakening short-term momentum and moderate participation suggest fragility under contradiction pressure. This theory is grounded in the observation and abstraction provided, focusing on market structure, coherence, uncertainty, and volatility. It makes a narrow claim about the current regime subtype and its characteristics, while leaving room for future observations to contradict or refine it.",
   "confidence_state": {
-    "empirical": 0.37,
-    "regime": 0.5,
-    "reflection": 0.5,
-    "coherence": 0.3581,
-    "contradiction": 0.278
+    "empirical": 0.44,
+    "regime": 0.51,
+    "reflection": 0.47,
+    "coherence": 0.4416,
+    "contradiction": 0.211
   },
-  "contradiction_score": 0.18,
-  "reflection_summary": "The replay validation of NIFTY's upward momentum theory reveals a mixed picture. The recent reflection contains uncertainty or caution signals, which is consistent with the original theory's acknowledgment of ambiguity where evidence is weak. However, the regime memory suggests some similarity to past events, but the confidence levels are relatively low.",
+  "contradiction_score": 0.31,
+  "reflection_summary": "Neutral regime: The current neutral regime subtype persists, characterized by range-bound behavior and compressed volatility. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This validation does not falsify the theory, but rather highlights an unresolved tension that requires further observation to confirm or refute.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 71,
-      "sentence_count": 2,
-      "narrative_density": 0.896,
+      "word_count": 59,
+      "sentence_count": 4,
+      "narrative_density": 0.031,
       "uncertainty_presence": 0.5,
-      "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 1.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 0.869,
       "causal_inflation": 0.0,
-      "semantic_repetition": 0.075,
+      "semantic_repetition": 0.021,
       "generic_phrase_hits": 0,
-      "compression_score": 0.566
+      "compression_score": 0.85
     },
     "reflection": {
-      "word_count": 44,
+      "word_count": 47,
       "sentence_count": 3,
-      "narrative_density": 0.028,
-      "uncertainty_presence": 0.5,
-      "contradiction_acknowledgment": 0.5,
-      "abstraction_sharpness": 0.162,
+      "narrative_density": 0.069,
+      "uncertainty_presence": 0.0,
+      "contradiction_acknowledgment": 1.0,
+      "abstraction_sharpness": 1.0,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.502
+      "compression_score": 0.79
     }
   },
   "horizon": {
     "daily": "range_bound",
-    "weekly": "range_bound",
+    "weekly": "mixed",
     "monthly": "insufficient_history"
   },
   "regime_signature": {
     "date": "2026-01-07",
     "trend": "range_bound",
-    "volatility_state": "compressed",
-    "sentiment": "neutral",
+    "volatility_state": "moderate",
+    "sentiment": "uncertain",
     "confidence_profile": "pressured",
-    "contradiction_severity": 0.18,
-    "active_theory_count": 4,
-    "breadth_proxy": "weakened"
+    "contradiction_severity": 0.31,
+    "active_theory_count": 2,
+    "breadth_proxy": "mixed"
   },
   "regime_matches": [
     {
-      "date": "2026-01-05",
-      "similarity": 0.698,
+      "date": "2026-01-01",
+      "similarity": 0.54,
       "active_theories": [
-        "5e7d40de03b213e1",
-        "275500409fc758d7",
-        "d0f8b31888296201"
+        "9980ec838b639189",
+        "695b670adafbd2ef"
       ],
-      "contradictions": [
-        "Recent reflection contains uncertainty or caution signal."
-      ],
-      "confidence": 0.42,
+      "contradictions": [],
+      "confidence": 0.27,
       "recurring_contradiction": null
     },
     {
       "date": "2026-01-06",
-      "similarity": 0.698,
+      "similarity": 0.503,
       "active_theories": [
-        "5e7d40de03b213e1",
-        "275500409fc758d7",
-        "d0f8b31888296201"
+        "695b670adafbd2ef",
+        "806fb92e2498d760"
       ],
       "contradictions": [
-        "Recent reflection contains uncertainty or caution signal."
+        "Current theory weakens a relationship that prior theory strengthened."
       ],
-      "confidence": 0.45,
-      "recurring_contradiction": null
-    },
-    {
-      "date": "2026-01-01",
-      "similarity": 0.673,
-      "active_theories": [
-        "5e7d40de03b213e1",
-        "275500409fc758d7"
-      ],
-      "contradictions": [
-        "Recent reflection contains uncertainty or caution signal."
-      ],
-      "confidence": 0.37,
+      "confidence": 0.36,
       "recurring_contradiction": null
     }
   ],
   "theory_usefulness": {
-    "score": 0.416,
-    "label": "fragile"
+    "score": 0.484675,
+    "label": "useful"
   },
+  "candle_type": "neutral",
+  "participation_strength": "normal",
+  "participation_confirmation": "normal",
   "prediction": {
-    "direction": "range_bound",
-    "confidence": 0.46,
-    "tension": "Recent reflection contains uncertainty or caution signal.",
-    "invalidation": "Recent reflection contains uncertainty or caution signal."
+    "direction": "uncertain",
+    "confidence": 0.34,
+    "tension": "volatility expansion vs structural support",
+    "invalidation": "Current theory weakens a relationship that prior theory strengthened.",
+    "transition_examples": []
   },
   "prior_prediction_result": {
-    "prior_direction": "range_bound",
+    "prior_direction": "uncertain",
     "actual_direction": "range_bound",
-    "direction_score": 1.0,
+    "direction_score": 0.0,
     "invalidation_triggered": false,
-    "confidence": 0.38,
-    "invalidation": "Recent reflection contains uncertainty or caution signal."
+    "confidence": 0.49,
+    "invalidation": "Current theory weakens a relationship that prior theory strengthened."
+  },
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 6,
+    "avg_usefulness": 0.249,
+    "last_seen": "2026-01-07",
+    "historical_resolution": {
+      "higher": 1,
+      "lower": 2,
+      "range_bound": 2,
+      "uncertain": 0
+    },
+    "falsified_count": 2
   }
 }

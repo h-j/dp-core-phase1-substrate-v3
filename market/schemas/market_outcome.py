@@ -1,3 +1,5 @@
+from typing import List
+
 from cognition.schemas.base import CognitionBase
 
 
@@ -17,6 +19,6 @@ class MarketOutcome(CognitionBase):
     realized_volatility: str
     realized_breadth: str
     realized_liquidity: str
-    
-    outcome_contradictions: list[str] = []
+
+    outcome_contradictions: List[str] = []
     outcome_confidence: float = 0.5

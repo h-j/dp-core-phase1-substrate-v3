@@ -1,5 +1,6 @@
 from collections import defaultdict
 from datetime import datetime, UTC
+from typing import List, Dict
 
 
 class TheorySurvivalTracker:
@@ -42,7 +43,7 @@ class TheorySurvivalTracker:
         if validation_result["validation_score"] < 0.4:
             entry["failures"] += 1
 
-    def analyze_trends(self) -> dict:
+    def analyze_trends(self) -> Dict:
         """Analyze recurring patterns in theory survival."""
 
         strengthening = []
@@ -140,7 +141,7 @@ class TheorySurvivalTracker:
 
         return summary
 
-    def identify_unstable_assumptions(self) -> list[str]:
+    def identify_unstable_assumptions(self) -> List[str]:
         """Identify assumptions that appear in failing theories."""
 
         trends = self.analyze_trends()

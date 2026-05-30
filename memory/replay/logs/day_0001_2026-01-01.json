@@ -1,41 +1,41 @@
 {
   "day_index": 1,
   "date": "2026-01-01",
-  "observation_text": "NIFTY traded range-bound with volatility compressed.",
-  "theory_summary": "Compressed theory: NIFTY's upward momentum relies on continued participation, which remains tenuous under compressed volatility.",
+  "observation_text": "[range expanding, gap up, volatility compressed, short-term momentum strengthening, RELIANCE focus] candle rejection upper participation normal (normal) RELIANCE traded range-bound with volatility compressed.",
+  "theory_summary": "Neutral regime: Compressed volatility constrains continuation, which remains weakly supported.",
   "confidence_state": {
-    "empirical": 0.37,
-    "regime": 0.5,
-    "reflection": 0.45,
-    "coherence": 0.3281,
-    "contradiction": 0.278
+    "empirical": 0.27,
+    "regime": 0.57,
+    "reflection": 0.52,
+    "coherence": 0.3428,
+    "contradiction": 0.18
   },
-  "contradiction_score": 0.18,
-  "reflection_summary": "The compressed theory suggests that NIFTY's upward momentum relies on continued participation, which remains tenuous under compressed volatility. However, recent reflections contain uncertainty or caution signals, contradicting this theory (Recent reflection contains uncertainty or caution signal). One unresolved tension is the lack of sufficient testing of observed continuation under volatility expansion.",
+  "contradiction_score": 0,
+  "reflection_summary": "Neutral regime: Compressed volatility constrains continuation, which remains weakly supported. The current regime subtype is neutral, with compressed volatility constraining continuation. The regime remains supported based on the boundary conditions. Analog divergence is present, as liquidity has shifted from normal to even_flow, while volatility remains compressed.",
   "epistemic_quality": {
     "theory": {
-      "word_count": 14,
+      "word_count": 10,
       "sentence_count": 1,
       "narrative_density": 0.0,
-      "uncertainty_presence": 0.0,
+      "uncertainty_presence": 0.5,
       "contradiction_acknowledgment": 0.0,
-      "abstraction_sharpness": 0.5,
+      "abstraction_sharpness": 0.75,
       "causal_inflation": 0.0,
       "semantic_repetition": 0.0,
       "generic_phrase_hits": 0,
-      "compression_score": 0.425
+      "compression_score": 0.612
     },
     "reflection": {
-      "word_count": 45,
-      "sentence_count": 3,
-      "narrative_density": 0.042,
-      "uncertainty_presence": 1.0,
-      "contradiction_acknowledgment": 1.0,
-      "abstraction_sharpness": 0.826,
+      "word_count": 42,
+      "sentence_count": 4,
+      "narrative_density": 0.0,
+      "uncertainty_presence": 0.5,
+      "contradiction_acknowledgment": 0.5,
+      "abstraction_sharpness": 1.0,
       "causal_inflation": 0.0,
-      "semantic_repetition": 0.0,
+      "semantic_repetition": 0.138,
       "generic_phrase_hits": 0,
-      "compression_score": 0.933
+      "compression_score": 0.8
     }
   },
   "horizon": {
@@ -47,40 +47,66 @@
     "date": "2026-01-01",
     "trend": "range_bound",
     "volatility_state": "compressed",
-    "sentiment": "cautiously_positive",
+    "sentiment": "positive",
     "confidence_profile": "pressured",
-    "contradiction_severity": 0.18,
+    "contradiction_severity": 0.0,
     "active_theory_count": 2,
     "breadth_proxy": "nascent"
   },
   "regime_matches": [
     {
       "date": "2025-12-31",
-      "similarity": 0.68,
+      "similarity": 0.82,
       "active_theories": [
-        "5e7d40de03b213e1"
+        "9980ec838b639189"
       ],
       "contradictions": [],
-      "confidence": 0.42,
+      "confidence": 0.25,
       "recurring_contradiction": null
     }
   ],
   "theory_usefulness": {
-    "score": 0.44,
-    "label": "fragile"
+    "score": 0.24583333333333332,
+    "label": "weak"
   },
+  "candle_type": "rejection_upper",
+  "participation_strength": "normal",
+  "participation_confirmation": "normal",
   "prediction": {
-    "direction": "range_bound",
-    "confidence": 0.38,
-    "tension": "volatility expansion vs structural support",
-    "invalidation": "Recent reflection contains uncertainty or caution signal."
+    "direction": "higher",
+    "confidence": 0.59,
+    "tension": "observation coherence vs residual uncertainty",
+    "invalidation": "volatility expansion",
+    "transition_examples": []
   },
   "prior_prediction_result": {
     "prior_direction": "higher",
     "actual_direction": "range_bound",
     "direction_score": 0.0,
     "invalidation_triggered": true,
-    "confidence": 0.56,
+    "confidence": 0.55,
     "invalidation": "volatility expansion"
+  },
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "Analog to 2025-12-31: liquidity is even_flow (prior was normal), volatility is compressed (prior was normal)",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 2,
+    "avg_usefulness": 0.123,
+    "last_seen": "2026-01-01",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 1,
+      "uncertain": 0
+    },
+    "falsified_count": 1
   }
 }

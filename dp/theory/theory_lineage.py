@@ -12,7 +12,7 @@ import re
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from statistics import mean
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Set
 
 
 @dataclass
@@ -52,6 +52,7 @@ class TheoryLineageEngine:
         self.storage_path = storage_path
         self.storage_path.parent.mkdir(parents=True, exist_ok=True)
         self.theories: Dict[str, TheoryRecord] = {}
+        self.debug = False
         if self.storage_path.exists():
             try:
                 raw = json.loads(self.storage_path.read_text())
@@ -69,7 +70,7 @@ class TheoryLineageEngine:
                 default=str,
             )
 
-    def _token_set(self, text: str) -> set[str]:
+    def _token_set(self, text: str) -> Set[str]:
         return set(re.findall(r"[a-z0-9]+", text.lower()))
 
     def _similarity(self, a: str, b: str) -> float:
@@ -141,7 +142,34 @@ class TheoryLineageEngine:
         rec.confidence = float(rec.confidence_state["empirical_confidence"])
         rec.mutation_reason = "merged_duplicate"
         rec.last_seen_step = step
-        rec.survival_steps += 1
+        self._persist()
+        return rec
+
+    def continue_theory(
+        self,
+        tid: str,
+        new_abstraction: str,
+        step: int,
+        confidence_state: Dict[str, float],
+    ) -> TheoryRecord:
+        rec = self.theories.get(tid)
+        if not rec:
+            return self.create_theory(
+                tid, step, new_abstraction, confidence_state=confidence_state
+            )
+
+        rec.abstraction = new_abstraction
+        rec.confidence_state = {
+            **rec.confidence_state,
+            **confidence_state,
+            "empirical_confidence": max(
+                rec.confidence_state.get("empirical_confidence", 0.5),
+                confidence_state.get("empirical_confidence", 0.5),
+            ),
+        }
+        rec.confidence = float(rec.confidence_state["empirical_confidence"])
+        rec.last_seen_step = step
+        rec.mutation_reason = "continued"
         self._persist()
         return rec
 
@@ -176,7 +204,7 @@ class TheoryLineageEngine:
             contradictions=list(parent.contradictions),
             contradiction_count=parent.contradiction_count,
             mutation_reason=reason,
-            survival_steps=0,
+            survival_steps=parent.survival_steps,
             last_seen_step=step,
             mutation_count=0,
         )
@@ -211,20 +239,91 @@ class TheoryLineageEngine:
             else False
         )
 
-        if best_match and best_score >= 0.70 and not structural_shift:
-            rec = self.merge_theory(
+        if self.debug:
+            print(
+                f"[Lineage] step={step} abstraction={abstraction!r} "
+                f"best_match_id={getattr(best_match, 'id', None)} "
+                f"best_score={best_score:.3f} "
+                f"status={getattr(best_match, 'status', None)} "
+                f"parents={getattr(best_match, 'parent_ids', None)} "
+                f"structural_shift={structural_shift}"
+            )
+
+        if (
+            best_match
+            and best_score >= 0.30
+            and not structural_shift
+            and best_match.status == "active"
+        ):
+            rec = self.continue_theory(
                 best_match.id,
                 new_abstraction=abstraction,
-                confidence_state=confidence_state,
                 step=step,
+                confidence_state=confidence_state,
             )
+            if self.debug:
+                print(
+                    f"[Lineage] CONTINUE -> existing={best_match.id} "
+                    f"confidence={rec.confidence:.3f} "
+                    f"survival_steps={rec.survival_steps}"
+                )
             self.update_survival(step)
             return {
                 "record": rec,
                 "created": False,
                 "mutated": False,
-                "merged": True,
+                "merged": False,
+                "continued": True,
                 "parent_id": best_match.id,
+            }
+
+        if best_match and best_score >= 0.45 and structural_shift:
+            rec = self.mutate_theory(
+                best_match.id,
+                new_abstraction=abstraction,
+                reason=f"semantic_similarity_{best_score:.2f}",
+                step=step,
+                confidence_state=confidence_state,
+            )
+            if self.debug:
+                print(
+                    f"[Lineage] MUTATE -> parent={best_match.id} "
+                    f"child={rec.id} reason=semantic_similarity_{best_score:.2f} "
+                    f"confidence={rec.confidence:.3f} "
+                    f"survival_steps={rec.survival_steps}"
+                )
+            self.update_survival(step)
+            return {
+                "record": rec,
+                "created": False,
+                "mutated": True,
+                "merged": False,
+                "continued": False,
+                "parent_id": best_match.id,
+            }
+
+        if best_score < 0.30:
+            new_id = self._record_id(abstraction, step)
+            rec = self.create_theory(
+                new_id,
+                step,
+                abstraction,
+                confidence_state=confidence_state,
+                parent_ids=[],
+            )
+            if self.debug:
+                print(
+                    f"[Lineage] NEW -> id={rec.id} abstraction={abstraction!r} "
+                    f"confidence={rec.confidence:.3f}"
+                )
+            self.update_survival(step)
+            return {
+                "record": rec,
+                "created": True,
+                "mutated": False,
+                "merged": False,
+                "continued": False,
+                "parent_id": None,
             }
 
         if (
@@ -239,12 +338,20 @@ class TheoryLineageEngine:
                 step=step,
                 confidence_state=confidence_state,
             )
+            if self.debug:
+                print(
+                    f"[Lineage] MUTATE -> parent={best_match.id} "
+                    f"child={rec.id} reason=semantic_similarity_{best_score:.2f} "
+                    f"confidence={rec.confidence:.3f} "
+                    f"survival_steps={rec.survival_steps}"
+                )
             self.update_survival(step)
             return {
                 "record": rec,
                 "created": False,
                 "mutated": True,
                 "merged": False,
+                "continued": False,
                 "parent_id": best_match.id,
             }
 
@@ -256,6 +363,11 @@ class TheoryLineageEngine:
             confidence_state=confidence_state,
             parent_ids=[],
         )
+        if self.debug:
+            print(
+                f"[Lineage] CREATE -> id={rec.id} abstraction={abstraction!r} "
+                f"confidence={rec.confidence:.3f}"
+            )
         self.update_survival(step)
         return {
             "record": rec,

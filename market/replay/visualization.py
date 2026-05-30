@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import os
 from pathlib import Path
 import pandas as pd
+from market.replay.replay_analysis import extract_usefulness_score
 
 def generate_visualizations(analysis, logs, tp_history, output_dir):
     """v1.6 Visualization Layer - Generates calibration and capital charts."""
@@ -198,3 +199,202 @@ def generate_visualizations(analysis, logs, tp_history, output_dir):
     plot_transition_pressure()
     plot_policy_trade_frequency()
     generate_dashboard()
+
+
+def _prediction_dataframe(analysis: dict) -> pd.DataFrame:
+    rows = analysis.get("prediction_history", [])
+    if not rows:
+        return pd.DataFrame()
+
+    df = pd.DataFrame(rows)
+    if "prior_prediction_result" in df.columns:
+        df["actual_direction"] = df["prior_prediction_result"].apply(
+            lambda x: x.get("actual_direction") if isinstance(x, dict) else None
+        )
+    else:
+        df["actual_direction"] = None
+
+    df["prediction_direction"] = df["prediction"].apply(
+        lambda x: x.get("direction") if isinstance(x, dict) else None
+    )
+    df["direction_score"] = df["prior_prediction_result"].apply(
+        lambda x: x.get("direction_score") if isinstance(x, dict) else None
+    )
+    if "theory_usefulness" in df.columns:
+        df["theory_usefulness"] = df["theory_usefulness"].apply(extract_usefulness_score)
+    df["confidence"] = df["prediction"].apply(
+        lambda x: x.get("confidence", 0.0) if isinstance(x, dict) else 0.0
+    )
+    return df
+
+
+def _market_summary(analysis: dict) -> dict:
+    pa = analysis.get("prediction_analysis", {})
+    return {
+        "market_name": analysis.get("market_name", "UNKNOWN"),
+        "accuracy": pa.get("accuracy", 0.0),
+        "partial_accuracy": pa.get("partial_accuracy", 0.0),
+        "mean_confidence": pa.get("mean_confidence", 0.0),
+        "uncertain_rate": pa.get("uncertain_rate", 0.0),
+    }
+
+
+def _top_missed_signal(df: pd.DataFrame) -> str:
+    if df.empty:
+        return "none"
+    missed = df[df["direction_score"] != 1.0]
+    if missed.empty:
+        return "none"
+    signal_counts = missed["participation_confirmation"].fillna("unknown").value_counts()
+    return signal_counts.index[0] if not signal_counts.empty else "unknown"
+
+
+def _generate_failure_json(base_output_dir: Path, primary_metrics: dict, secondary_metrics: dict, primary_df: pd.DataFrame, secondary_df: pd.DataFrame):
+    summary = {
+        "primary_market": primary_metrics["market_name"],
+        "secondary_market": secondary_metrics["market_name"],
+        "primary_accuracy": primary_metrics["accuracy"],
+        "secondary_accuracy": secondary_metrics["accuracy"],
+        "primary_divergence_hit_rate": 0.0,
+        "secondary_divergence_hit_rate": 0.0,
+        "primary_top_missed_signal": _top_missed_signal(primary_df),
+        "secondary_top_missed_signal": _top_missed_signal(secondary_df),
+        "top_high_confidence_misses": [],
+    }
+
+    def divergence_rate(df: pd.DataFrame) -> float:
+        if df.empty:
+            return 0.0
+        divergence = df[df["participation_confirmation"] == "divergence"]
+        if divergence.empty:
+            return 0.0
+        hits = divergence[divergence["direction_score"] == 1.0]
+        return float(len(hits) / len(divergence))
+
+    summary["primary_divergence_hit_rate"] = divergence_rate(primary_df)
+    summary["secondary_divergence_hit_rate"] = divergence_rate(secondary_df)
+
+    combined_misses = pd.concat([primary_df, secondary_df], ignore_index=True)
+    combined_misses = combined_misses[combined_misses["direction_score"] != 1.0]
+    combined_misses = combined_misses.sort_values("confidence", ascending=False).head(10)
+    for _, row in combined_misses.iterrows():
+        summary["top_high_confidence_misses"].append(
+            {
+                "date": row.get("date"),
+                "market": row.get("market_name"),
+                "confidence": float(row.get("confidence", 0.0)),
+                "prediction_direction": row.get("prediction_direction"),
+                "actual_direction": row.get("actual_direction"),
+                "participation_confirmation": row.get("participation_confirmation"),
+                "direction_score": row.get("direction_score"),
+            }
+        )
+
+    file_path = base_output_dir / "cross_asset_failure_summary.json"
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(file_path, "w") as f:
+        import json
+
+        json.dump(summary, f, indent=2)
+
+    return summary
+
+
+def generate_cross_asset_visualizations(base_output_dir, primary_analysis: dict, secondary_analysis: dict):
+    os.makedirs(base_output_dir, exist_ok=True)
+
+    primary_df = _prediction_dataframe(primary_analysis)
+    secondary_df = _prediction_dataframe(secondary_analysis)
+    primary_metrics = _market_summary(primary_analysis)
+    secondary_metrics = _market_summary(secondary_analysis)
+
+    labels = ["accuracy", "partial_accuracy", "mean_confidence", "uncertain_rate"]
+    x = range(len(labels))
+    primary_vals = [primary_metrics[label] for label in labels]
+    secondary_vals = [secondary_metrics[label] for label in labels]
+
+    plt.figure(figsize=(10, 6))
+    width = 0.35
+    plt.bar([i - width / 2 for i in x], primary_vals, width, label=primary_metrics["market_name"], color="steelblue")
+    plt.bar([i + width / 2 for i in x], secondary_vals, width, label=secondary_metrics["market_name"], color="darkorange")
+    plt.ylim(0, 1)
+    plt.xticks(x, [l.replace("_", " ").title() for l in labels])
+    plt.ylabel("Normalized Value")
+    plt.title("Normalized NIFTY vs RELIANCE Comparison")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(base_output_dir / "nifty_vs_reliance_comparison.png")
+    plt.close()
+
+    def _plot_market_confusion(ax, df: pd.DataFrame, market_name: str):
+        directions = ["higher", "lower", "range_bound", "uncertain"]
+        matrix = pd.DataFrame(0, index=directions, columns=directions)
+        scored = df[df["direction_score"].notnull() & df["actual_direction"].notnull()]
+        for _, row in scored.iterrows():
+            actual = row["actual_direction"] or "uncertain"
+            predicted = row["prediction_direction"] or "uncertain"
+            if actual not in matrix.index:
+                actual = "uncertain"
+            if predicted not in matrix.columns:
+                predicted = "uncertain"
+            matrix.at[actual, predicted] += 1
+
+        im = ax.imshow(matrix, cmap="Reds", interpolation="nearest")
+        ax.set_xticks(range(len(directions)))
+        ax.set_yticks(range(len(directions)))
+        ax.set_xticklabels([d.title() for d in directions], rotation=45)
+        ax.set_yticklabels([d.title() for d in directions])
+        ax.set_title(f"{market_name} Actual vs Predicted")
+        for i in range(len(directions)):
+            for j in range(len(directions)):
+                ax.text(j, i, int(matrix.iat[i, j]), ha="center", va="center", color="black")
+        return im
+
+    plt.figure(figsize=(14, 6))
+    ax1 = plt.subplot(1, 2, 1)
+    ax2 = plt.subplot(1, 2, 2)
+    if not primary_df.empty:
+        _plot_market_confusion(ax1, primary_df, primary_metrics["market_name"])
+    if not secondary_df.empty:
+        _plot_market_confusion(ax2, secondary_df, secondary_metrics["market_name"])
+    plt.suptitle("Prediction Failure Heatmap")
+    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+    plt.savefig(base_output_dir / "prediction_failure_heatmap.png")
+    plt.close()
+
+    if primary_df.empty and secondary_df.empty:
+        _generate_failure_json(base_output_dir, primary_metrics, secondary_metrics, primary_df, secondary_df)
+        return
+
+    combined = pd.concat([primary_df, secondary_df], ignore_index=True)
+    divergence = combined[combined["participation_confirmation"] == "divergence"].copy()
+    if not divergence.empty:
+        divergence["hit"] = divergence["direction_score"] == 1.0
+        divergence["date"] = pd.to_datetime(divergence["date"], errors="coerce")
+        divergence = divergence.sort_values("date")
+        mark_map = {True: "green", False: "red"}
+        market_positions = {
+            primary_metrics["market_name"]: 1,
+            secondary_metrics["market_name"]: 0,
+        }
+        plt.figure(figsize=(12, 5))
+        for market_name, group in divergence.groupby("market_name"):
+            y = market_positions.get(market_name, 0)
+            plt.scatter(
+                group["date"],
+                [y] * len(group),
+                c=[mark_map[hit] for hit in group["hit"]],
+                s=80,
+                label=f"{market_name} divergence",
+                edgecolor="black",
+                alpha=0.7,
+            )
+        plt.yticks([0, 1], [secondary_metrics["market_name"], primary_metrics["market_name"]])
+        plt.xlabel("Date")
+        plt.title("Cross-Asset Divergence Timeline")
+        plt.legend()
+        plt.tight_layout()
+        plt.savefig(base_output_dir / "cross_asset_divergence_timeline.png")
+        plt.close()
+
+    _generate_failure_json(base_output_dir, primary_metrics, secondary_metrics, primary_df, secondary_df)

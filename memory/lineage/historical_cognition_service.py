@@ -1,5 +1,6 @@
 from memory.relational.repositories.reflection_repository import ReflectionRepository
 from memory.relational.repositories.reflective_memory_repository import (
+from typing import List
     ReflectiveMemoryRepository
 )
 from memory.relational.repositories.theory_repository import TheoryRepository
@@ -86,7 +87,7 @@ class HistoricalCognitionService:
 
         return "\n".join(lines)
 
-    def _format_section(self, title: str, values: list[str]) -> str:
+    def _format_section(self, title: str, values: List[str]) -> str:
 
         if not values:
             return f"{title}:\n\n* None recorded yet."

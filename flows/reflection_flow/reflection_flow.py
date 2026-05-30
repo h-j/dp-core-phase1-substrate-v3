@@ -1,4 +1,5 @@
 import re
+from typing import Set
 
 from cognition.schemas.reflection.reflection_event import ReflectionEvent
 from interfaces.ollama_client import OllamaClient
@@ -16,12 +17,28 @@ class ReflectionFlow:
         validation,
         contradiction_result=None,
         market_observation=None,
+        # v3.0 explicit overrides
+        regime_subtype: str = None,
+        falsifiability_conditions: list = None,
+        analog_divergence_claim: str = None,
+        theory_regime_subtype: str = None,
+        theory_falsifiability_conditions: list = None,
+        regime_history: dict = None,
     ) -> ReflectionEvent:
         contradiction_result = contradiction_result or {}
         contradiction_summary = contradiction_result.get(
             "summary", "No explicit contradiction detected."
         )
         contradiction_indicators = contradiction_result.get("indicators", [])
+
+        # Resolve finalized v3.0 fields with explicit fallbacks
+        final_regime_subtype = regime_subtype if regime_subtype is not None else getattr(market_observation, 'regime_subtype', 'neutral')
+        if not final_regime_subtype:
+            final_regime_subtype = "neutral"
+            
+        final_analog_claim = analog_divergence_claim if analog_divergence_claim is not None else getattr(market_observation, 'analog_divergence_claim', 'None')
+        if not final_analog_claim:
+            final_analog_claim = "None"
 
         observation_section = ""
         if market_observation is not None:
@@ -30,7 +47,35 @@ class ReflectionFlow:
                 f"Candle: {getattr(market_observation, 'candle_type', 'neutral')}\n"
                 f"Participation: {getattr(market_observation, 'participation_strength', 'normal')}, {getattr(market_observation, 'participation_confirmation', 'normal')}\n"
                 f"Volatility: {getattr(market_observation, 'volatility_state', 'unknown')}\n"
+                f"Regime Subtype: {final_regime_subtype}\n"
+                f"Analog Divergence: {final_analog_claim}\n"
             )
+
+        # v3.1 Tuning Correction: Reduced history burden
+        seen_count = regime_history.get("seen_count", 0) if regime_history else 0
+        if seen_count < 2:
+            history_context_for_prompt = "No prior subtype history."
+        else:
+            res = regime_history.get("historical_resolution", {})
+            dominant_res = max(res, key=res.get) if res else "uncertain"
+            history_context_for_prompt = f"""
+Historical Subtype Memory:
+Subtype: {regime_history.get('subtype', 'neutral')}
+Seen: {seen_count}
+Dominant resolution: {dominant_res}
+Avg usefulness: {regime_history.get('avg_usefulness', 0.0):.2f}
+
+Use subtype history only if materially relevant. Primary focus remains: 1 observation, 2 subtype, 3 falsifiability. History is secondary context. Do not force reflection to explain history.
+"""
+        print(f"[Reflection History Debug] seen_count: {seen_count}, context: {history_context_for_prompt}")
+
+        # v3.0 Regime and falsifiability context
+        t_subtype = theory_regime_subtype if theory_regime_subtype is not None else getattr(theory, 'regime_subtype', 'neutral')
+        if not t_subtype: t_subtype = "neutral"
+        t_falsifiability = theory_falsifiability_conditions if theory_falsifiability_conditions is not None else getattr(theory, 'falsifiability_conditions', [])
+        regime_context = f"\nTheory Regime Subtype: {t_subtype}"
+        if t_falsifiability:
+            regime_context += f"\nTheory is falsified if: " + "; ".join(t_falsifiability)
 
         prompt = f"""
 Reflect on the following theory validation using structured market observation dimensions.
@@ -42,29 +87,32 @@ Theory:
 Contradiction:
 {contradiction_summary}
 {'; '.join(contradiction_indicators)}
+{regime_context} # This already includes theory's falsifiability
+{history_context_for_prompt}
 
 Validation:
 {validation.validation_summary}
 
 Return:
-- compressed critique, 1-3 sentences
-- explicitly weight price action, volatility, participation, candle structure, and contradiction markers
-- reference the actual theory
-- reference the actual contradiction
+- compressed critique, 2-4 sentences.
+- strictly name the current regime subtype at the start.
+- state whether the regime remains supported or is falsified based on boundary conditions
+- evaluate analog divergence if present
+- reference specific theory and contradiction indicators
 - identify one unresolved tension
 - identify what remains weak, untested, ambiguous, or contradicted
 - preserve unresolved tension instead of resolving it rhetorically
 - evaluate uncertainty and confidence pressure directly
 - avoid overconfidence, reinforcement bias, and self-congratulation
 - avoid generic philosophical language or broad market commentary
-- prefer falsifiable weakness statements over praise
-- maximum 3 sentences
+- prefer falsifiable weakness statements over praise.
+- maximum 4 sentences.
 - do not praise the theory, prompt, or validation process
 - do not use headings or numbered sections
 - no markdown
 
 Good style:
-Observed continuation remains insufficiently tested under volatility expansion.
+Observed continuation remains insufficiently tested under volatility expansion; contradicts prior participation strength assumption.
 
 Bad style:
 This theory appears insightful and coherent.
@@ -152,10 +200,10 @@ This theory appears insightful and coherent.
             if sentence.strip()
         ]
 
-        if not sentences:
+        if not sentences: # This fallback should be more specific to the issue
             return self._fallback_reflection(theory_text, contradiction_summary)
 
-        compressed = " ".join(sentences[:3])
+        compressed = " ".join(sentences[:4])
         if compressed[-1:] not in [".", "!", "?"]:
             compressed = compressed + "."
         if not self._is_grounded_reflection(
@@ -177,7 +225,7 @@ This theory appears insightful and coherent.
             for sentence in re.split(r"(?<=[.!?])\s+", reflection)
             if sentence.strip()
         ]
-        if not 1 <= len(sentences) <= 3:
+        if not 2 <= len(sentences) <= 4: # Reflection should be at least 2 sentences
             return False
 
         lower_reflection = reflection.lower()
@@ -232,7 +280,7 @@ This theory appears insightful and coherent.
             return "Liquidity support remains weakly tested against contradiction pressure."
         return "Theory contradiction remains unresolved."
 
-    def _salient_terms(self, text: str) -> set[str]:
+    def _salient_terms(self, text: str) -> Set[str]:
         blocked_terms = {
             "the",
             "and",

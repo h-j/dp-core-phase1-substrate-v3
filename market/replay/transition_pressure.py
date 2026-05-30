@@ -3,7 +3,7 @@ Deterministic transition pressure inference for replay.
 
 Infers market transition readiness without modifying theory generation.
 Derived from: horizon state, regime similarity, contradiction dynamics,
-confidence trends, breadth signals, theory usefulness.
+confidence trends, breadth signals, theory usefulness, and enriched observation dimensions.
 """
 
 from __future__ import annotations
@@ -24,13 +24,11 @@ class TransitionPressure:
     breakout_risk: bool  # True if probability of directional move elevated
 
     def to_dict(self) -> dict:
-        return {
-            "direction_bias": self.direction_bias,
-            "pressure_score": round(self.pressure_score, 3),
-            "stability_score": round(self.stability_score, 3),
-            "drivers": self.drivers,
-            "breakout_risk": self.breakout_risk,
-        }
+        # Using asdict for a more complete representation, then rounding floats
+        d = asdict(self)
+        d["pressure_score"] = round(d["pressure_score"], 3)
+        d["stability_score"] = round(d["stability_score"], 3)
+        return d
 
 
 class TransitionPressureEngine:
@@ -40,7 +38,7 @@ class TransitionPressureEngine:
         self,
         observation: object,
         horizons: object,
-        regime_matches: Iterable[object],
+        regime_matches: List[object], # Changed to List for type hint consistency
         confidence_state: object,
         contradiction_result: dict,
         reflection: object,
@@ -48,6 +46,8 @@ class TransitionPressureEngine:
         prior_observations: List[object],
         volume_state: str = "normal",
         atr_expansion: bool = False,
+        volume_ratio_5d: float = 1.0,
+        range_pct: float = 0.0,
     ) -> TransitionPressure:
         """
         Infer transition pressure from current replay state.
@@ -98,34 +98,53 @@ class TransitionPressureEngine:
         if contradiction_score > 0.2:
             if contradiction_score >= 0.6:
                 drivers.append(f"contradiction_severe_{contradiction_score:.2f}")
-                # TUNED v2.1: 0.70 -> 0.55 base weight
-                severity_weight = min(0.85, 0.55 + (contradiction_score - 0.6) * 0.4)
+                # TUNED v2.5: Reduced weight by 15% (0.55 -> 0.468, 0.4 -> 0.34)
+                severity_weight = min(0.723, 0.468 + (contradiction_score - 0.6) * 0.34)
                 pressure_components.append(severity_weight)
                 stability_components.append(0.15)
             elif contradiction_score > 0.5:
                 drivers.append(f"contradiction_high_{contradiction_score:.2f}")
-                pressure_components.append(0.40) # TUNED: 0.50 -> 0.40
+                pressure_components.append(0.34) # TUNED v2.5: 0.40 -> 0.34
                 stability_components.append(0.25)
             elif contradiction_rising:
                 drivers.append("contradiction_rising")
-                pressure_components.append(0.30) # TUNED: 0.40 -> 0.30
-            
-            if contradiction_score < 0.5:
-                stability_components.append(0.5)
+                pressure_components.append(0.255) # TUNED v2.5: 0.30 -> 0.255
+
+        if contradiction_score < 0.35 and not regime_weakening:
+            stability_components.append(0.85)
+        elif contradiction_score < 0.5:
+            stability_components.append(0.5)
         else:
             stability_components.append(0.75)
 
         # v2.1 ATR and Volume Calibration
         if atr_expansion:
             drivers.append("atr_expansion_confirmed")
-            pressure_components.append(0.65) # Strong structural driver
-        
+            pressure_components.append(0.60)
+
+        if volume_ratio_5d > 1.15:
+            drivers.append("volume_ratio_5d_elevated")
+            pressure_components.append(0.45)
+        elif volume_state == "normal":
+            stability_components.append(0.80)
+
+        if volume_state == "normal" and range_pct < 0.9:
+            drivers.append("compressed_range")
+            stability_components.append(0.88)
+
         if volume_state == "elevated":
             drivers.append("volume_elevated_confirmation")
-            pressure_components.append(0.50)
+            pressure_components.append(0.65) # TUNED v2.5: 0.50 -> 0.65
         elif volume_state == "dry":
             drivers.append("volume_dry_divergence")
             stability_components.append(0.30) # Dry volume reduces stability
+
+        if range_pct < 0.75 and volume_ratio_5d > 1.15:
+            drivers.append("compressed_range_pressure")
+            pressure_components.append(0.65) # TUNED v2.5: 0.50 -> 0.65
+        elif range_pct < 0.9 and volume_ratio_5d > 1.05:
+            drivers.append("range_narrow_volume_pressure")
+            pressure_components.append(0.35)
 
         # 4. Breadth signals (strengthening/weakening in range-bound)
         trend = getattr(observation, "trend_state", "").lower()
@@ -145,7 +164,7 @@ class TransitionPressureEngine:
         # TUNED: Amplify pressure when range-bound + breadth signal + high contradiction align
         if breadth_signal and contradiction_score >= 0.5:
             drivers.append("range_bound_contradiction_alignment")
-            pressure_components.append(0.35)  # TUNED: 0.25 → 0.35 (higher synergy bonus)
+            pressure_components.append(0.298)  # TUNED v2.5: 0.35 -> 0.298 (15% reduction)
 
         # 5. Confidence weakening
         empirical_conf = getattr(confidence_state, "empirical_confidence", 0.5)
@@ -194,33 +213,23 @@ class TransitionPressureEngine:
         if regime_weakening and contradiction_score >= 0.5:
             stability_score = max(0.0, stability_score - 0.15)  # ADDED: accelerated decay
 
-        # Breakout risk: TUNED thresholds and driver-count sensitivity
-        driver_count = len(drivers)
-        breakout_risk = False
+        # v2.6 Breakout Risk Tuning: Stricter signal requirement and suppression
+        bo_signals = 0
+        descriptors = [str(item).lower() for item in getattr(observation, "descriptors", []) or []]
         
-        # v2.1 Tighten breakout risk thresholds to ensure higher signal quality
-        if driver_count >= 4:
-            breakout_risk = (
-                pressure_score > 0.52  # v2.1: 0.40 -> 0.52
-                and stability_score < 0.65 
-                and (regime_weakening or contradiction_rising or atr_expansion)
-            )
-        elif driver_count >= 3:
-            breakout_risk = (
-                pressure_score > 0.58  # v2.1: 0.42 -> 0.58
-                and stability_score < 0.60 
-                and (atr_expansion or (contradiction_score >= 0.6 and volume_state != "dry"))
-            )
-        else:
-            breakout_risk = (
-                pressure_score > 0.70  # v2.1: 0.60 -> 0.70
-                and stability_score < 0.45 
-                and atr_expansion
-            )
+        if "range expanding" in descriptors: bo_signals += 1
+        if "short-term momentum strengthening" in descriptors: bo_signals += 1
+        if "volume_elevated_confirmation" in drivers: bo_signals += 1
+        if "gap up" in descriptors: bo_signals += 1
 
-        # v2.1 Requirement: breakout risk requires volume validation
-        if volume_state == "dry":
-            breakout_risk = False
+        breakout_risk = bo_signals >= 3 and contradiction_score < 0.5 and usefulness_score >= 0.3
+        if breakout_risk:
+            pressure_score += 0.10
+        else:
+            pressure_score -= 0.05
+
+        # Log inference result for validation
+        print(f"[TP v2.6] Score: {pressure_score:.3f} | Breakout: {breakout_risk} | Drivers: {drivers[:5]}")
 
         return TransitionPressure(
             direction_bias=direction_bias,
@@ -253,13 +262,13 @@ class TransitionPressureEngine:
         """Extract max similarity from regime matches."""
         matches = list(regime_matches)
         if not matches:
-            return 0.0
+            return 0.0 # No matches, no similarity
         try:
             sims = [
                 m.get("similarity") if isinstance(m, dict) else getattr(m, "similarity", 0)
                 for m in matches
             ]
-            return max(sims) if sims else 0.0
+            return max(sims) if sims else 0.0 # Return max similarity
         except Exception:
             return 0.0
 
@@ -292,6 +301,10 @@ class TransitionPressureEngine:
     ) -> str:
         """Infer directional bias from breadth + drivers."""
         trend = getattr(observation, "trend_state", "").lower()
+        sentiment = getattr(observation, "macro_sentiment", "").lower()
+        strength = getattr(observation, "participation_strength", "").lower()
+        candle_type = getattr(observation, "candle_type", "").lower()
+        descriptors = [str(item).lower() for item in getattr(observation, "descriptors", []) or []]
 
         # Check drivers for directional hints
         has_upside_hint = any("strength" in d.lower() for d in drivers)
@@ -303,6 +316,19 @@ class TransitionPressureEngine:
             return "higher"
         if has_downside_hint and not has_upside_hint:
             return "lower"
+
+        # Range-bound breakout bias from participation / sentiment
+        if trend and "range_bound" in trend:
+            if strength == "strong" and "positive" in sentiment:
+                return "higher"
+            if "asset participation surge" in descriptors and "positive" in sentiment:
+                return "higher"
+            if candle_type == "rejection_upper" and "positive" in sentiment:
+                return "higher"
+            if "gap up" in descriptors and "positive" in sentiment:
+                return "higher"
+            if "gap down" in descriptors or "risk_off" in sentiment:
+                return "lower"
 
         # Fallback to breadth
         if "strengthened" in breadth or "strong" in breadth:

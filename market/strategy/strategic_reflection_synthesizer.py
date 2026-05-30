@@ -1,3 +1,5 @@
+from typing import List
+
 from market.schemas.strategic_memory_state import StrategicMemoryState
 from collections import Counter
 
@@ -217,7 +219,7 @@ class StrategicReflectionSynthesizer:
         theory_survival_analysis,
         contradiction_zone_map,
         recent_reflections
-    ) -> list[str]:
+    ) -> List[str]:
         """Extract major recurring contradictions."""
 
         contradictions = []
@@ -266,7 +268,7 @@ class StrategicReflectionSynthesizer:
         theory_survival_analysis,
         recent_validations,
         recent_theories
-    ) -> list[str]:
+    ) -> List[str]:
         """Identify assumptions showing weakness."""
 
         weakening = []
@@ -304,7 +306,7 @@ class StrategicReflectionSynthesizer:
         theory_survival_analysis,
         recent_validations,
         recent_reflections
-    ) -> list[str]:
+    ) -> List[str]:
         """Identify patterns showing strength."""
 
         strengthening = []

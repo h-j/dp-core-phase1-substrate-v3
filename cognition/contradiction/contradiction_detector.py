@@ -1,3 +1,4 @@
+from typing import List
 class ContradictionDetector:
 
     def detect(
@@ -222,6 +223,6 @@ class ContradictionDetector:
             ]
         ).lower()
 
-    def _contains_any(self, text: str, phrases: list[str]) -> bool:
+    def _contains_any(self, text: str, phrases: List[str]) -> bool:
 
         return any(phrase in text for phrase in phrases)

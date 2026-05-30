@@ -1,3 +1,4 @@
+from typing import List, Union
 from cognition.schemas.reflection.reflective_memory_state import (
     ReflectiveMemoryState
 )
@@ -79,11 +80,11 @@ class ReflectiveMemoryRepository:
             )
         )
 
-    def _serialize(self, values: list[str]) -> str:
+    def _serialize(self, values: List[str]) -> str:
 
         return "\n".join(values)
 
-    def _deserialize(self, value: str | None) -> list[str]:
+    def _deserialize(self, value: Union[str, None]) -> List[str]:
 
         if not value:
             return []
