@@ -34,6 +34,29 @@ class TransitionPressure:
 class TransitionPressureEngine:
     """Deterministic transition pressure inference from replay state."""
 
+    TP_CONFIG = {
+        "regime_weakening_weight": 0.40,
+        "low_regime_sim_stability": 0.25,
+        "high_regime_sim_stability": 0.80,
+        "contra_severe_base": 0.468,
+        "contra_severe_slope": 0.34,
+        "contra_max_weight": 0.723,
+        "contra_high_weight": 0.34,
+        "contra_rising_weight": 0.255,
+        "atr_expansion_weight": 0.60,
+        "volume_elevated_weight": 0.65,
+        "range_compressed_stability": 0.88,
+        "confidence_weakening_weight": 0.28,
+        "coherence_degrading_weight": 0.22,
+        "utility_low_weight": 0.12,
+        "reflection_uncertain_weight": 0.12,
+        "contra_breadth_multiplier": 1.3,
+        "contra_solo_multiplier": 1.15,
+        "stability_decay_step": 0.15,
+        "breakout_signal_threshold": 3,
+        "breakout_pressure_bonus": 0.10
+    }
+
     def infer(
         self,
         observation: object,
@@ -82,11 +105,11 @@ class TransitionPressureEngine:
         regime_weakening = self._detect_regime_weakening(prior_observations)
         if regime_weakening:
             drivers.append("regime_similarity_weakening")
-            pressure_components.append(0.40)  # TUNED: 0.35 → 0.40
+            pressure_components.append(self.TP_CONFIG["regime_weakening_weight"])
         if regime_sim < 0.50:
-            stability_components.append(0.25)  # TUNED: 0.4 → 0.25 (decay faster)
+            stability_components.append(self.TP_CONFIG["low_regime_sim_stability"])
         else:
-            stability_components.append(0.8)
+            stability_components.append(self.TP_CONFIG["high_regime_sim_stability"])
 
         # 3. Contradiction dynamics (rising, stacking, persistent)
         contradiction_rising = self._detect_contradiction_rising(
@@ -99,16 +122,19 @@ class TransitionPressureEngine:
             if contradiction_score >= 0.6:
                 drivers.append(f"contradiction_severe_{contradiction_score:.2f}")
                 # TUNED v2.5: Reduced weight by 15% (0.55 -> 0.468, 0.4 -> 0.34)
-                severity_weight = min(0.723, 0.468 + (contradiction_score - 0.6) * 0.34)
+                severity_weight = min(
+                    self.TP_CONFIG["contra_max_weight"], 
+                    self.TP_CONFIG["contra_severe_base"] + (contradiction_score - 0.6) * self.TP_CONFIG["contra_severe_slope"]
+                )
                 pressure_components.append(severity_weight)
                 stability_components.append(0.15)
             elif contradiction_score > 0.5:
                 drivers.append(f"contradiction_high_{contradiction_score:.2f}")
-                pressure_components.append(0.34) # TUNED v2.5: 0.40 -> 0.34
+                pressure_components.append(self.TP_CONFIG["contra_high_weight"])
                 stability_components.append(0.25)
             elif contradiction_rising:
                 drivers.append("contradiction_rising")
-                pressure_components.append(0.255) # TUNED v2.5: 0.30 -> 0.255
+                pressure_components.append(self.TP_CONFIG["contra_rising_weight"])
 
         if contradiction_score < 0.35 and not regime_weakening:
             stability_components.append(0.85)
@@ -120,7 +146,7 @@ class TransitionPressureEngine:
         # v2.1 ATR and Volume Calibration
         if atr_expansion:
             drivers.append("atr_expansion_confirmed")
-            pressure_components.append(0.60)
+            pressure_components.append(self.TP_CONFIG["atr_expansion_weight"])
 
         if volume_ratio_5d > 1.15:
             drivers.append("volume_ratio_5d_elevated")
@@ -130,11 +156,11 @@ class TransitionPressureEngine:
 
         if volume_state == "normal" and range_pct < 0.9:
             drivers.append("compressed_range")
-            stability_components.append(0.88)
+            stability_components.append(self.TP_CONFIG["range_compressed_stability"])
 
         if volume_state == "elevated":
             drivers.append("volume_elevated_confirmation")
-            pressure_components.append(0.65) # TUNED v2.5: 0.50 -> 0.65
+            pressure_components.append(self.TP_CONFIG["volume_elevated_weight"])
         elif volume_state == "dry":
             drivers.append("volume_dry_divergence")
             stability_components.append(0.30) # Dry volume reduces stability
@@ -171,22 +197,22 @@ class TransitionPressureEngine:
         coherence = getattr(confidence_state, "theoretical_coherence", 0.5)
         if empirical_conf < 0.45:
             drivers.append(f"confidence_weakening_{empirical_conf:.2f}")
-            pressure_components.append(0.28)  # TUNED: 0.25 → 0.28
+            pressure_components.append(self.TP_CONFIG["confidence_weakening_weight"])
         if coherence < 0.40:
             drivers.append(f"coherence_degrading_{coherence:.2f}")
-            pressure_components.append(0.22)  # TUNED: 0.20 → 0.22
+            pressure_components.append(self.TP_CONFIG["coherence_degrading_weight"])
 
         # 6. Theory usefulness deteriorating
         usefulness_score = float(theory_usefulness.get("score", 0.5))
         if usefulness_score < 0.4:
             drivers.append(f"theory_usefulness_low_{usefulness_score:.2f}")
-            pressure_components.append(0.12)  # v2.1 TUNED: 0.18 -> 0.12
+            pressure_components.append(self.TP_CONFIG["utility_low_weight"])
 
         # 7. Reflection uncertainty
         reflection_text = getattr(reflection, "reflection_summary", "").lower()
         if "uncertain" in reflection_text or "fragile" in reflection_text:
             drivers.append("reflection_uncertainty")
-            pressure_components.append(0.12)  # v2.1 TUNED: 0.18 -> 0.12
+            pressure_components.append(self.TP_CONFIG["reflection_uncertain_weight"])
 
         # Infer direction bias
         direction_bias = self._infer_direction_bias(
@@ -204,14 +230,14 @@ class TransitionPressureEngine:
         # TUNED v2: Apply pressure multiplier when high contradiction + breadth signals align
         if contradiction_score >= 0.6 and breadth_signal:
             # Strong amplification for confirmed contradiction + breadth signal
-            pressure_score = min(1.0, pressure_score * 1.3)  # 30% multiplier
+            pressure_score = min(1.0, pressure_score * self.TP_CONFIG["contra_breadth_multiplier"])
         elif contradiction_score >= 0.6:
             # Moderate amplification for high contradiction alone
-            pressure_score = min(1.0, pressure_score * 1.15)  # 15% multiplier
+            pressure_score = min(1.0, pressure_score * self.TP_CONFIG["contra_solo_multiplier"])
 
         # TUNED: Dynamic stability decay when regime + contradiction align
         if regime_weakening and contradiction_score >= 0.5:
-            stability_score = max(0.0, stability_score - 0.15)  # ADDED: accelerated decay
+            stability_score = max(0.0, stability_score - self.TP_CONFIG["stability_decay_step"])
 
         # v2.6 Breakout Risk Tuning: Stricter signal requirement and suppression
         bo_signals = 0
@@ -222,9 +248,9 @@ class TransitionPressureEngine:
         if "volume_elevated_confirmation" in drivers: bo_signals += 1
         if "gap up" in descriptors: bo_signals += 1
 
-        breakout_risk = bo_signals >= 3 and contradiction_score < 0.5 and usefulness_score >= 0.3
+        breakout_risk = bo_signals >= self.TP_CONFIG["breakout_signal_threshold"] and contradiction_score < 0.5 and usefulness_score >= 0.3
         if breakout_risk:
-            pressure_score += 0.10
+            pressure_score += self.TP_CONFIG["breakout_pressure_bonus"]
         else:
             pressure_score -= 0.05
 

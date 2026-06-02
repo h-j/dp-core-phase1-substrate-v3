@@ -1,4 +1,5 @@
 from collections import Counter
+import json
 
 from cognition.schemas.reflection.reflective_memory_state import (
     ReflectiveMemoryState
@@ -408,7 +409,14 @@ class ReflectiveMemorySynthesizer:
 
         parts = []
 
-        parts.extend(theory.summary for theory in theories)
+        # Prefer structured claim when available
+        for theory in theories:
+            s = getattr(theory, "summary_structured", None)
+            if isinstance(s, dict):
+                parts.append(s.get("claim") or json.dumps(s))
+            else:
+                parts.append(getattr(theory, "summary", ""))
+
         parts.extend(
             reflection.reflection_summary
             for reflection in reflections

@@ -91,8 +91,6 @@ def test_outcome_validation():
     print(f"Validation Score: {result5['validation_score']:.2f}")
     print(f"Summary: {result5['validation_summary']}\n")
 
-    return result1, result5
-
 
 def test_theory_survival_tracking():
     """Test theory survival tracker."""
@@ -143,8 +141,6 @@ def test_theory_survival_tracking():
     print(f"Recurring Failures: {len(trends['recurring_failures'])}")
     print(f"Survival Summary:\n{summary}\n")
 
-    return tracker
-
 
 def test_contradiction_mapper():
     """Test market contradiction mapper."""
@@ -193,8 +189,6 @@ def test_contradiction_mapper():
     print(f"Hotspot Count: {zone_map['hotspot_count']}")
     print(f"Recurring Zones: {list(zone_map['recurring_zones'].keys())[:3]}")
     print(f"Zone Summary:\n{zone_summary}\n")
-
-    return mapper
 
 
 def test_confidence_evolution_with_outcomes():

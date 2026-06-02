@@ -1,6 +1,16 @@
 from memory.relational.models.confidence_model import ConfidenceModel
 from memory.relational.models.theory_model import TheoryModel
 from memory.relational.postgres_client import SessionLocal
+from telemetry.structured_cognition_tracer import get_tracer
+import json
+
+
+def _is_json(s: str) -> bool:
+    try:
+        json.loads(s)
+        return True
+    except Exception:
+        return False
 
 
 class TheoryRepository:
@@ -10,12 +20,22 @@ class TheoryRepository:
         confidence = theory.confidence_state
 
         with SessionLocal() as session:
+            # Ensure DB schema has the `summary_structured` column.
+            # Use Postgres-compatible ALTER TABLE with IF NOT EXISTS.
+            try:
+                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS summary_structured TEXT;")
+                session.commit()
+            except Exception:
+                # If ALTER fails (e.g., locked DB), ignore and proceed
+                pass
+
             theory_model = TheoryModel(
                 id=theory.id,
                 created_at=theory.created_at,
                 lineage_id=theory.lineage_id,
                 thesis=theory.thesis,
-                summary=theory.summary
+                summary=theory.summary,
+                summary_structured=(json.dumps(json.loads(theory.summary)) if isinstance(getattr(theory, 'summary', None), str) and _is_json(getattr(theory, 'summary')) else None)
             )
 
             confidence_model = ConfidenceModel(
@@ -30,6 +50,7 @@ class TheoryRepository:
 
             session.merge(theory_model)
             session.merge(confidence_model)
+
             session.commit()
 
         return {
@@ -41,9 +62,11 @@ class TheoryRepository:
     def list_recent(self, limit: int = 5):
 
         with SessionLocal() as session:
-            return (
+            results = (
                 session.query(TheoryModel)
                 .order_by(TheoryModel.created_at.desc())
                 .limit(limit)
                 .all()
             )
+
+            return results

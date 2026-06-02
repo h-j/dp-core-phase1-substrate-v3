@@ -157,13 +157,16 @@ class MarketContradictionMapper:
     ) -> bool:
         """Detect price strength vs weak breadth contradiction."""
 
+        trend_text = self._get_outcome_text(market_outcome, "realized_trend")
+        breadth_text = self._get_outcome_text(market_outcome, "realized_breadth")
+
         trend_strong = any(
-            word in market_outcome.realized_trend.lower()
+            word in trend_text
             for word in ["higher", "strong", "up"]
         )
 
         breadth_weak = any(
-            word in market_outcome.realized_breadth.lower()
+            word in breadth_text
             for word in ["weak", "narrow", "divergence", "limited"]
         )
 
@@ -176,12 +179,37 @@ class MarketContradictionMapper:
     ) -> float:
         """Calculate severity of price-breadth divergence."""
 
-        if "divergence" in market_outcome.realized_breadth.lower():
+        breadth_text = self._get_outcome_text(market_outcome, "realized_breadth")
+
+        if "divergence" in breadth_text:
             return 0.9
-        elif "weak" in market_outcome.realized_breadth.lower():
+        elif "weak" in breadth_text:
             return 0.7
         else:
             return 0.5
+
+    def _normalize_text(self, value) -> str:
+        if value is None:
+            return ""
+        if isinstance(value, str):
+            return value.lower()
+        return str(value).lower()
+
+    def _get_observation_text(self, market_observation) -> str:
+        if not market_observation:
+            return ""
+
+        return self._normalize_text(
+            getattr(market_observation, "observation_text", None)
+            or getattr(market_observation, "raw_content", "")
+            or ""
+        )
+
+    def _get_outcome_text(self, market_outcome, field: str) -> str:
+        if not market_outcome:
+            return ""
+
+        return self._normalize_text(getattr(market_outcome, field, "") or "")
 
     def _detect_momentum_volatility_mismatch(
         self,
@@ -191,12 +219,12 @@ class MarketContradictionMapper:
         """Detect momentum persistence vs volatility expansion."""
 
         momentum_expected = any(
-            word in market_observation.observation_text.lower()
+            word in self._get_observation_text(market_observation)
             for word in ["momentum", "continuation", "persistent"]
         )
 
         volatility_expanded = any(
-            word in market_outcome.realized_volatility.lower()
+            word in self._get_outcome_text(market_outcome, "realized_volatility")
             for word in ["expanded", "elevated", "high"]
         )
 
@@ -208,9 +236,11 @@ class MarketContradictionMapper:
     ) -> float:
         """Calculate severity of momentum-volatility mismatch."""
 
-        if "expanded" in market_outcome.realized_volatility.lower():
+        volatility_text = self._get_outcome_text(market_outcome, "realized_volatility")
+
+        if "expanded" in volatility_text:
             return 0.85
-        elif "elevated" in market_outcome.realized_volatility.lower():
+        elif "elevated" in volatility_text:
             return 0.7
         else:
             return 0.5
@@ -222,13 +252,16 @@ class MarketContradictionMapper:
     ) -> bool:
         """Detect liquidity concentration vs participation weakness."""
 
+        liquidity_text = self._get_outcome_text(market_outcome, "realized_liquidity")
+        breadth_text = self._get_outcome_text(market_outcome, "realized_breadth")
+
         liquidity_strong = any(
-            word in market_outcome.realized_liquidity.lower()
+            word in liquidity_text
             for word in ["ample", "strong", "concentrated"]
         )
 
         participation_weak = any(
-            word in market_outcome.realized_breadth.lower()
+            word in breadth_text
             for word in ["weak", "narrow", "selective"]
         )
 
@@ -240,9 +273,11 @@ class MarketContradictionMapper:
     ) -> float:
         """Calculate severity of liquidity-participation gap."""
 
-        if "fragmented" in market_outcome.realized_liquidity.lower():
+        liquidity_text = self._get_outcome_text(market_outcome, "realized_liquidity")
+
+        if "fragmented" in liquidity_text:
             return 0.75
-        elif "concentrated" in market_outcome.realized_liquidity.lower():
+        elif "concentrated" in liquidity_text:
             return 0.65
         else:
             return 0.5
@@ -258,13 +293,15 @@ class MarketContradictionMapper:
         if not prior_theory:
             return False
 
+        theory_text = getattr(prior_theory, "thesis", "")
         theory_predicts_continuation = any(
-            word in prior_theory.thesis.lower()
+            word in self._normalize_text(theory_text)
             for word in ["continuation", "persistent", "momentum"]
         )
 
+        reversal_text = self._get_outcome_text(market_outcome, "realized_trend")
         outcome_shows_reversal = any(
-            word in market_outcome.realized_trend.lower()
+            word in reversal_text
             for word in ["reversal", "correction", "reversed"]
         )
 

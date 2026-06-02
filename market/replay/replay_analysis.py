@@ -46,8 +46,13 @@ class ReplayAnalysisEngine:
         self.transition_pressure_history = []
         self.capital_simulation_logs = []
         self.decisions_history = []
+        self.config_snapshot = {}
         self.transition_memory_hits = 0
         self.miss_analysis = [] # v2.1 Miss Audit
+
+    def set_config_snapshot(self, config: dict):
+        """Record the configuration used for this replay."""
+        self.config_snapshot = config
 
     def record_day(
         self,
@@ -79,6 +84,8 @@ class ReplayAnalysisEngine:
         analog_divergence_claim: Union[str, None] = "",
         regime_history: Union[dict, None] = None,
         transition_memory_hit: bool = False,
+        branches_generated: int = 0,
+        branch_stats: dict = None,
     ):
         """Record cognition state for a day."""
         # v2.4 Persistence fallback
@@ -113,6 +120,8 @@ class ReplayAnalysisEngine:
                 "falsifiability_conditions": falsifiability_conditions or [],
                 "analog_divergence_claim": analog_divergence_claim,
                 "regime_history": regime_history,
+                "branches_generated": branches_generated,
+                "branch_stats": branch_stats or {}, # Store branch stats
             }
         )
         
@@ -272,6 +281,7 @@ class ReplayAnalysisEngine:
             "transition_memory_analysis": self._analyze_transition_memory(),
             "prediction_history": self.prediction_history,
             "transition_pressure_history": self.transition_pressure_history,
+            "config": self.config_snapshot,
             "risks": self._detect_cognition_risks(),
         }
 
@@ -967,6 +977,14 @@ class ReplayAnalysisEngine:
             f"\nReplay Period: {analysis['date_range'][0]} to {analysis['date_range'][1]} ({analysis['total_days']} days)"
         )
 
+        if analysis.get("config"):
+            print("\nCONFIG SNAPSHOT")
+            print("---------------")
+            for domain, params in analysis["config"].items():
+                print(f"{domain.upper()}:")
+                for k, v in params.items():
+                    print(f"  {k}={v}")
+
         # 1. Cognitive Core
         print("\nCOGNITIVE CORE")
         print("--------------")
@@ -1003,6 +1021,16 @@ class ReplayAnalysisEngine:
         print(f"Grounded reflection: {grounded:.3f}")
         print(f"Narrative inflation: {narrative:.3f}")
         print(f"Meta commentary: {meta:.3f}")
+
+        # v3.7 Branch metrics
+        ba = analysis.get("branch_execution_analysis", {})
+        if ba:
+            print("\nBRANCH EXECUTION")
+            print("----------------")
+            print(f"Branch coverage: {ba.get('coverage', 0.0):.1%}")
+            print(f"Branch-trigger hit: {ba.get('hit_rate', 0.0):.1%}")
+            print(f"Branches: gen={ba.get('total_generated')}, retained={ba.get('total_retained')}")
+            print(f"Reflection awareness: {ba.get('reflection_awareness')} days")
 
         print("\nPurpose: Is thinker improving? (see Confidence & Prediction sections)")
 
@@ -1056,17 +1084,18 @@ class ReplayAnalysisEngine:
         print("--------------------")
         # Cross-asset details are printed by ReplayExecutor when available; show placeholder or external summary
         cross = em.get('outputs', {}).get('cross_asset_summary') if em else None
+        cross_asset = {}
         if cross and Path(cross).exists():
             try:
                 import json
 
                 with open(cross, 'r') as f:
-                    cs = json.load(f)
-                print(f"Primary market: {cs.get('primary_market')}")
-                print(f"Secondary market: {cs.get('secondary_market')}")
-                print(f"Primary accuracy: {cs.get('primary_accuracy',0.0):.1%}")
-                print(f"Secondary accuracy: {cs.get('secondary_accuracy',0.0):.1%}")
-                print(f"Divergence hit rates: primary={cs.get('primary_divergence_hit_rate',0.0):.1%}, secondary={cs.get('secondary_divergence_hit_rate',0.0):.1%}")
+                    cross_asset = json.load(f)
+                print(f"Primary market: {cross_asset.get('primary_market')}")
+                print(f"Secondary market: {cross_asset.get('secondary_market')}")
+                print(f"Primary accuracy: {cross_asset.get('primary_accuracy',0.0):.1%}")
+                print(f"Secondary accuracy: {cross_asset.get('secondary_accuracy',0.0):.1%}")
+                print(f"Divergence hit rates: primary={cross_asset.get('primary_divergence_hit_rate',0.0):.1%}, secondary={cross_asset.get('secondary_divergence_hit_rate',0.0):.1%}")
             except Exception:
                 print("Cross-asset summary present but failed to read")
         else:
@@ -1113,6 +1142,15 @@ class ReplayAnalysisEngine:
         if tp and tp.get('false_positives',0) > max(3, int(tp.get('total_days',0)*0.1)):
             insights.append('⚠ Transition pressure over-triggering (many false positives)')
 
+        # v3.7 longitudinal stability insights
+        total_days = analysis.get('total_days', 0)
+        if total_days > 0:
+            synthesis_ratio = em.get('total_synthesis_triggered', 0) / total_days
+            if synthesis_ratio > 0.8:
+                insights.append(f'⚠ high cognitive churn detected ({synthesis_ratio:.1%} synthesis rate)')
+            if em.get('grounded_reflection', 1.0) < 0.85:
+                insights.append(f'⚠ grounding crisis: reflection grounding at {em.get("grounded_reflection", 0.0):.3f}')
+
         if not insights:
             print('  No critical insights detected')
         else:
@@ -1132,11 +1170,20 @@ class ReplayAnalysisEngine:
         if analysis.get('contradiction_analysis', {}).get('persistence_ratio', 0.0) > 0.70 and len(self.days) >= 5:
             print('  ⚠ contradiction elevated')
 
+        # v3.5 Resolution Check
+        rb_acc = p.get('accuracy_by_direction', {}).get('range_bound', {}).get('accuracy', 1.0)
+        if rb_acc < 0.40 and p.get('accuracy_by_direction', {}).get('range_bound', {}).get('count', 0) >= 3:
+            print('  ⚠ range resolution misidentified (accuracy below 40%)')
+
         if p:
             if p.get('accuracy', 0.0) < 0.45:
                 print('  ⚠ prediction accuracy below baseline')
             if p.get('mean_confidence', 0.0) > 0.6 and p.get('accuracy', 0.0) > 0.5:
                 print('  ✓ confidence well-calibrated with moderate accuracy')
+            
+            # v3.7: Stagnation Detection
+            if p.get('avg_theory_usefulness', 0.0) < 0.30 and em.get('grounded_reflection', 0.0) > 0.90:
+                print('  ⚠ theoretical stagnation: grounded but low-utility (passive observations)')
         if conf:
             coh_drop = conf.get('theoretical_coherence', {}).get('initial', 0.0) - conf.get('theoretical_coherence', {}).get('final', 0.0)
             if coh_drop > 0.08:
@@ -1191,16 +1238,36 @@ class ReplayAnalysisEngine:
         # Combine prediction history and capital simulation logs
         # Assuming both lists are ordered by date/day_index and have the same length
         combined_data = []
-        for i in range(len(self.prediction_history)):
-            pred_rec = self.prediction_history[i]
-            cap_rec = self.capital_simulation_logs[i]
-            baseline = cap_rec.get("policies", {}).get("baseline", {})
+        rows = min(len(self.prediction_history), len(self.capital_simulation_logs))
+        if rows == 0:
+            print("No data to export for prediction analysis CSV.")
+            return
+
+        for i in range(rows):
+            pred_rec = self.prediction_history[i] or {}
+            cap_rec = self.capital_simulation_logs[i] or {}
+            prediction = pred_rec.get("prediction") or {}
+            prior_prediction_result = pred_rec.get("prior_prediction_result") or {}
+
+            if hasattr(prediction, "to_dict"):
+                prediction = prediction.to_dict()
+            if hasattr(prior_prediction_result, "to_dict"):
+                prior_prediction_result = prior_prediction_result.to_dict()
+
+            if not isinstance(prediction, dict):
+                prediction = {}
+            if not isinstance(prior_prediction_result, dict):
+                prior_prediction_result = {}
+            if not isinstance(cap_rec, dict):
+                cap_rec = {}
+
+            baseline = cap_rec.get("policies", {}).get("baseline", {}) if isinstance(cap_rec, dict) else {}
 
             combined_data.append({
-                "date": pred_rec["date"],
-                "prediction_direction": pred_rec["prediction"].get("direction"),
-                "prediction_confidence": pred_rec["prediction"].get("confidence") or baseline.get("conviction"),
-                "actual_direction": pred_rec["prior_prediction_result"].get("actual_direction"),
+                "date": pred_rec.get("date"),
+                "prediction_direction": prediction.get("direction"),
+                "prediction_confidence": prediction.get("confidence") or baseline.get("conviction"),
+                "actual_direction": prior_prediction_result.get("actual_direction"),
                 "transition_pressure_score": pred_rec.get("transition_pressure_score"),
                 "transition_breakout_risk": pred_rec.get("transition_breakout_risk"),
                 "theory_usefulness_score": extract_usefulness_score(pred_rec.get("theory_usefulness")),
@@ -1222,3 +1289,22 @@ class ReplayAnalysisEngine:
         df = pd.DataFrame(combined_data)
         df.to_csv(file_path, index=False)
         print(f"Exported prediction analysis to {file_path}")
+
+    def _count_branches(self, text: str) -> int:
+        """Lightweight count of If/Else logic branches."""
+        if not text: return 0
+        count = 0
+        patterns = [r"^\s*if\b", r"^\s*else\s+if\b", r"^\s*else\b"]
+        
+        for line in text.splitlines():
+            cleaned = line.strip().strip("*").strip("#").strip().lower()
+            if any(re.search(p, cleaned) for p in patterns):
+                count += 1
+        
+        if count == 0:
+            sentences = re.split(r"(?<=[.!?])\s+", text)
+            for s in sentences:
+                cleaned = s.strip().lower()
+                if any(re.search(p, cleaned) for p in patterns):
+                    count += 1
+        return count

@@ -37,12 +37,27 @@ class HistoricalCognitionService:
             self.reflective_memory_repository.list_recent(limit=limit)
         )
 
+        # Prefer structured theory claim text when available
+        theory_texts = []
+        for t in theories:
+            s = getattr(t, "summary_structured", None)
+            if isinstance(s, dict):
+                claim = s.get("claim")
+                if claim:
+                    theory_texts.append(claim)
+                else:
+                    try:
+                        import json
+
+                        theory_texts.append(json.dumps(s))
+                    except Exception:
+                        theory_texts.append(getattr(t, "summary", ""))
+            else:
+                theory_texts.append(getattr(t, "summary", ""))
+
         sections = [
             self._format_reflective_memory_section(reflective_memories),
-            self._format_section(
-                "PREVIOUS THEORIES",
-                [theory.summary for theory in theories]
-            ),
+            self._format_section("PREVIOUS THEORIES", theory_texts),
             self._format_section(
                 "PREVIOUS REFLECTIONS",
                 [
@@ -56,7 +71,7 @@ class HistoricalCognitionService:
                     validation.validation_summary
                     for validation in validations
                 ]
-            )
+            ),
         ]
 
         return "\n\n".join(sections)

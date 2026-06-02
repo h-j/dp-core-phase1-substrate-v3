@@ -1,15 +1,16 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from memory.relational.models.base import Base
+"""Relational database shim — delegate to Postgres client.
 
-# Local SQLite configuration for development
-SQLALCHEMY_DATABASE_URL = "sqlite:///./dp_cognition.db"
-
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
-)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+This module previously created a local SQLite engine for development.
+All runtime code should use PostgreSQL. Importing this module will
+raise if the Postgres client is unavailable.
+"""
+try:
+    from memory.relational.postgres_client import SessionLocal, engine, Base
+except Exception as exc:
+    raise RuntimeError(
+        "Postgres relational client unavailable. Ensure PostgreSQL is configured and running."
+    ) from exc
 
 def init_db():
-    """Initialize database tables."""
+    """Initialize database tables using the Postgres engine."""
     Base.metadata.create_all(bind=engine)
