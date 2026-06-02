@@ -16,13 +16,21 @@ DATABASE_URL = (
 
 try:
     engine = create_engine(DATABASE_URL, echo=False)
-except (ImportError, ModuleNotFoundError, NoSuchModuleError):
-    fallback_url = "sqlite:///market_memory.db"
-    engine = create_engine(fallback_url, echo=False)
+    # Verify the database connection early; raise if unavailable
+    with engine.connect() as _:
+        pass
+except (ImportError, ModuleNotFoundError, NoSuchModuleError, Exception) as exc:
+    raise RuntimeError(
+        f"PostgreSQL unavailable or misconfigured: {exc}. Ensure Postgres is running and settings are correct."
+    ) from exc
 
 from memory.relational.base import Base
 import memory.relational.models  # noqa: F401
 Base.metadata.create_all(engine)
+
+# PHASE 4: Fail-fast schema validation (startup check)
+from memory.relational.schema_validator import validate_schema_startup
+validate_schema_startup(engine)
 
 class SessionContext:
     def __init__(self, session):

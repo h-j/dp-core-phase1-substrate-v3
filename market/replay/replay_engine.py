@@ -250,6 +250,7 @@ class ReplayExecutor:
         self.base_output_dir = Path(__file__).parent.parent.parent / "market" / "replay" / "output"
         self._create_snapshot_dirs()
 
+        self.total_synthesis_triggered = 0
         # Initialize replay engine
         self.engine = ReplayEngine(
             dataset_path=self.dataset_path,
@@ -265,6 +266,7 @@ class ReplayExecutor:
         self.abstraction_flow = None
         self.theory_flow = None
         self.reflection_flow = None
+        self.dialectical_synthesizer = None
         self.contradiction_detector = None
         self.confidence_engine = None
         self.observation_repo = None
@@ -289,6 +291,8 @@ class ReplayExecutor:
         self._run_reflections: List[object] = []
         self._run_market_observations: List[object] = []
         self._prior_prediction = None
+        self._prior_dialectical_synthesis = None
+        self._prior_dialectical_subtype = None
         self._prior_prediction_db_id = None
         self.decision_engine = DecisionPolicyEngine()
         self._regime_matches_by_step: List[list] = []
@@ -334,6 +338,7 @@ class ReplayExecutor:
         from flows.observation_flow.abstraction_flow import AbstractionFlow
         from flows.reflection_flow.reflection_flow import ReflectionFlow
         from flows.theory_flow.theory_generation_flow import TheoryGenerationFlow
+        from flows.theory_flow.dialectical_synthesizer import DialecticalTheorySynthesizer
         from memory.relational.repositories.abstraction_repository import (
             AbstractionRepository,
         )
@@ -358,6 +363,7 @@ class ReplayExecutor:
         self.abstraction_flow = AbstractionFlow()
         self.theory_flow = TheoryGenerationFlow()
         self.reflection_flow = ReflectionFlow()
+        self.dialectical_synthesizer = DialecticalTheorySynthesizer()
         self.contradiction_detector = ContradictionDetector()
         self.confidence_engine = ConfidenceEvolutionEngine()
 
@@ -458,11 +464,35 @@ class ReplayExecutor:
             f"Range: {self.engine.get_date_range()[0]} to {self.engine.get_date_range()[1]}\n"
         )
 
+        # v3.3: Config Snapshot for auditability (Run A vs Run B comparison)
+        self._log("[CONFIG SNAPSHOT]")
+        config_summary = {}
+        
+        if self.contradiction_detector:
+            self._log("\nCONTRADICTION:")
+            config_summary["contradiction"] = self.contradiction_detector.CONFIG
+            for k, v in config_summary["contradiction"].items():
+                self._log(f"  {k}={v}")
+        
+        if self.transition_pressure_engine:
+            self._log("\nTRANSITION:")
+            config_summary["transition_pressure"] = self.transition_pressure_engine.TP_CONFIG
+            for k, v in config_summary["transition_pressure"].items():
+                self._log(f"  {k}={v}")
+        
+        # Persist snapshot for cross-run audit
+        with open(self.run_dir / "config_snapshot.json", "w") as f:
+            json.dump(config_summary, f, indent=2)
+        self.replay_analysis_engine.set_config_snapshot(config_summary)
+        self._log("\n" + "-" * 70)
+
         # Execute replay
         for day_idx in range(len(self.engine)):
             try:
                 obs_data = self.engine.get_observation_for_day(day_idx)
                 date_str = obs_data["date"]
+                current_dialectical_data = None
+                dialectical_data = None
 
                 # Synthesize observation
                 market_obs = synthesizer.synthesize(day_idx)
@@ -593,8 +623,19 @@ class ReplayExecutor:
                         "analog_divergence_claim": getattr(market_obs, "analog_divergence_claim", ""),
                     },
                 )
+
+                # v3.3 Relevance Gate for Dialectical Synthesis
+                active_synthesis = None
+                if self._prior_dialectical_synthesis:
+                    max_sim = max([
+                        (m.get("similarity") if isinstance(m, dict) else getattr(m, "similarity", 0.0))
+                        for m in regime_matches
+                    ] + [0.0]) if regime_matches else 0.0
+                    
+                    if regime_subtype == self._prior_dialectical_subtype or max_sim > 0.8:
+                        active_synthesis = self._prior_dialectical_synthesis
                 
-                theory = self.theory_flow.process(
+                theory, branch_stats = self.theory_flow.process(
                     abstraction,
                     historical_context=historical_context,
                     market_memory_context=regime_context,
@@ -604,10 +645,16 @@ class ReplayExecutor:
                     falsifiability_conditions=falsifiability_conditions,
                     analog_divergence_claim=getattr(market_obs, "analog_divergence_claim", ""),
                     regime_history=regime_history,
+                    dialectical_synthesis=active_synthesis,
                 )
 
-                # v3.0 Consistency debug
-                print("[Theory Output]", theory.summary[:250])
+                # v3.0 Consistency debug - prefer structured claim if available
+                t_struct = getattr(theory, 'summary_structured', None)
+                if isinstance(t_struct, dict):
+                    theory_text = t_struct.get('claim') or json.dumps(t_struct)
+                else:
+                    theory_text = getattr(theory, 'summary', '')
+                print("[Theory Output]", theory_text[:250])
 
                 # Theory lineage updates happen before contradiction retirement so
                 # the current abstraction can revive or mutate existing cognition.
@@ -737,6 +784,37 @@ class ReplayExecutor:
                 except Exception:
                     pass
 
+                # v3.2 Dialectical Synthesis Layer - Triggered after final contradiction state but before retirement
+                contradiction_score = float(contradiction_result.get("score", 0.0))
+                print(f"\n[CONTRADICTION DEBUG]")
+                print(f"raw contradiction score={contradiction_score:.3f}")
+                print(f"source field=contradiction_result['score']")
+
+                active_lineage_records = self.theory_lineage.active_theories() if self.theory_lineage else []
+                active_theory_count = len(active_lineage_records)
+                will_trigger = active_theory_count >= 2 and contradiction_score >= self.contradiction_detector.CONFIG.get("threshold_synthesis", 0.35)
+
+                print(f"\n[SYNTHESIS CHECK]")
+                print(f"active_theories={active_theory_count}")
+                print(f"contradiction_score={contradiction_score:.3f}")
+                print(f"will_trigger={will_trigger}")
+
+                if will_trigger:
+                    self.total_synthesis_triggered += 1
+                    dialectical_data = self.dialectical_synthesizer.synthesize(
+                        observation_text=market_obs.observation_text,
+                        active_theories=active_lineage_records,
+                        contradiction_indicators=contradiction_result.get("indicators", []),
+                        regime_subtype=regime_subtype,
+                        falsifiability_conditions=falsifiability_conditions
+                    )
+                    if dialectical_data:
+                        current_dialectical_data = dialectical_data
+                        print("\n[SYNTHESIS]")
+                        print(f"Shared:\n{dialectical_data.get('shared_premise')}\n")
+                        print(f"Conflict:\n{dialectical_data.get('conflict')}\n")
+                        print(f"Synthesis:\n{dialectical_data.get('synthesis_summary')}")
+
                 # retire stale theories
                 try:
                     if self.theory_lineage:
@@ -818,11 +896,20 @@ class ReplayExecutor:
                     theory_regime_subtype=getattr(theory, "regime_subtype", "neutral"),
                     theory_falsifiability_conditions=getattr(theory, "falsifiability_conditions", []),
                     regime_history=regime_history,
+                    dialectical_synthesis=self.dialectical_synthesizer.format_for_reflection(dialectical_data) 
+                    if dialectical_data else None,
                 )
                 print("[Reflection Output]", reflection.reflection_summary)
 
+                # Prefer structured claim when available for downstream consumers
+                t_struct = getattr(theory, 'summary_structured', None)
+                if isinstance(t_struct, dict):
+                    theory_text = t_struct.get('claim') or json.dumps(t_struct)
+                else:
+                    theory_text = getattr(theory, 'summary', '')
+
                 epistemic_quality = {
-                    "theory": evaluate_epistemic_quality(theory.summary),
+                    "theory": evaluate_epistemic_quality(theory_text),
                     "reflection": evaluate_epistemic_quality(
                         reflection.reflection_summary
                     ),
@@ -1101,7 +1188,7 @@ class ReplayExecutor:
                         "contradiction_pressure": confidence_state.contradiction_pressure,
                     },
                     contradiction_result=contradiction_result,
-                    theory_summary=theory.summary,
+                    theory_summary=theory_text,
                     reflection_summary=reflection.reflection_summary,
                     market_regime=market_obs.macro_sentiment,
                     epistemic_quality=epistemic_quality,
@@ -1124,6 +1211,8 @@ class ReplayExecutor:
                     falsifiability_conditions=getattr(market_obs, "falsifiability_conditions", []),
                     analog_divergence_claim=getattr(market_obs, "analog_divergence_claim", ""),
                     regime_history=regime_history_final,
+                    branch_stats=branch_stats, # Pass branch_stats
+                    branches_generated=branch_stats.get("generated", 0),
                 )
 
                 snapshot_data = {
@@ -1152,6 +1241,9 @@ class ReplayExecutor:
                     "theory_regime_subtype": getattr(theory, "regime_subtype", "neutral"),
                     "theory_falsifiability_conditions": getattr(theory, "falsifiability_conditions", []),
                     "regime_history": regime_history_final,
+                    "branch_stats": branch_stats, # Store branch_stats in snapshot
+                    "dialectical_triggered": dialectical_data is not None,
+                    "dialectical_synthesis": dialectical_data if dialectical_data else None,
                 }
                 # Save snapshot
                 self._save_snapshot(day_idx, date_str, snapshot_data)
@@ -1243,7 +1335,12 @@ class ReplayExecutor:
                                         "abstraction": getattr(
                                             abstraction, "abstraction_summary", ""
                                         ),
-                                        "theory": theory.summary,
+                                        "theory": theory_text,
+                                        "theory_summary_structured": (
+                                            getattr(theory, "summary_structured", None)
+                                            if isinstance(getattr(theory, "summary_structured", None), dict)
+                                            else None
+                                        ),
                                         "confidence": {
                                             "empirical": confidence_state.empirical_confidence,
                                             "regime": confidence_state.regime_confidence,
@@ -1271,6 +1368,8 @@ class ReplayExecutor:
                                         "theory_regime_subtype": getattr(theory, "regime_subtype", "neutral"),
                                         "theory_falsifiability": getattr(theory, "falsifiability_conditions", []),
                                         "regime_history": regime_history_final,
+                                        "dialectical_triggered": dialectical_data is not None,
+                                        "dialectical_synthesis": dialectical_data if dialectical_data else None,
                                         "metrics": metrics.__dict__,
                                     },
                                     _f,
@@ -1307,6 +1406,14 @@ class ReplayExecutor:
                 else:
                     self._prior_prediction_db_id = None
 
+                # Update prior synthesis for tomorrow's theory anchor
+                if current_dialectical_data:
+                    self._prior_dialectical_synthesis = self.dialectical_synthesizer.format_for_theory(current_dialectical_data)
+                    self._prior_dialectical_subtype = regime_subtype
+                else:
+                    self._prior_dialectical_synthesis = None
+                    self._prior_dialectical_subtype = None
+
             except Exception as e:
                 self._log(f"✗ Day {day_idx} ({date_str}) failed: {e}")
                 raise
@@ -1327,6 +1434,7 @@ class ReplayExecutor:
             external_metrics = {}
             external_metrics["total_steps"] = len(self.engine)
             external_metrics["execution_hash"] = execution_hash
+            external_metrics["total_synthesis_triggered"] = self.total_synthesis_triggered
             if self.theory_lineage:
                 external_metrics.update(
                     {
@@ -1488,6 +1596,7 @@ class ReplayExecutor:
 
         self._log(f"\n✓ Replay complete")
         self._log(f"  Execution hash: {execution_hash[:16]}...")
+        self._log(f"  Total synthesis triggered: {self.total_synthesis_triggered}")
         self._log("=" * 70 + "\n")
 
         # Console summary (concise)
@@ -1687,7 +1796,23 @@ class ReplayExecutor:
             "theory_regime_subtype": snapshot_data.get("theory_regime_subtype"),
             "theory_falsifiability_conditions": snapshot_data.get("theory_falsifiability_conditions"),
             "regime_history": snapshot_data.get("regime_history"),
+            "dialectical_triggered": snapshot_data.get("dialectical_triggered", False),
+            "dialectical_synthesis": snapshot_data.get("dialectical_synthesis"),
         }
+
+        # Attempt to preserve structured theory JSON when available.
+        theory_summary_structured = None
+        try:
+            import json as _json
+
+            raw = snapshot.get("theory_summary", "")
+            parsed = _json.loads(raw) if raw else None
+            if isinstance(parsed, dict):
+                theory_summary_structured = parsed
+        except Exception:
+            theory_summary_structured = None
+
+        snapshot["theory_summary_structured"] = theory_summary_structured
 
         import json
 

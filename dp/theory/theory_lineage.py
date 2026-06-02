@@ -189,8 +189,8 @@ class TheoryLineageEngine:
 
         parent.last_seen_step = step
         parent.mutation_count += 1
-        if parent.mutation_count >= 2:
-            parent.status = "dormant"
+        # v3.2 Fix: Do not set dormant immediately. 
+        # Allow retire_stale_theories to handle it via superseded logic (stale_age >= 2).
 
         child_id = self._record_id(tid + new_abstraction, step)
         child = TheoryRecord(
