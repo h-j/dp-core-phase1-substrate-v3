@@ -331,6 +331,11 @@ class ReplayExecutor:
         if self.flows_initialized:
             return
 
+        # v3.7 Logic: Ensure schema is valid before starting execution
+        from memory.relational.postgres_client import engine
+        # Note: postgres_client triggers create_all and validation on import.
+        # No explicit call needed here to avoid redundant I/O.
+
         from cognition.confidence.confidence_evolution_engine import (
             ConfidenceEvolutionEngine,
         )
@@ -649,11 +654,7 @@ class ReplayExecutor:
                 )
 
                 # v3.0 Consistency debug - prefer structured claim if available
-                t_struct = getattr(theory, 'summary_structured', None)
-                if isinstance(t_struct, dict):
-                    theory_text = t_struct.get('claim') or json.dumps(t_struct)
-                else:
-                    theory_text = getattr(theory, 'summary', '')
+                theory_text = theory.summary_structured.claim if theory.summary_structured else theory.summary # Canonical access with fallback
                 print("[Theory Output]", theory_text[:250])
 
                 # Theory lineage updates happen before contradiction retirement so
@@ -902,11 +903,7 @@ class ReplayExecutor:
                 print("[Reflection Output]", reflection.reflection_summary)
 
                 # Prefer structured claim when available for downstream consumers
-                t_struct = getattr(theory, 'summary_structured', None)
-                if isinstance(t_struct, dict):
-                    theory_text = t_struct.get('claim') or json.dumps(t_struct)
-                else:
-                    theory_text = getattr(theory, 'summary', '')
+                theory_text = theory.summary_structured.claim # Canonical access
 
                 epistemic_quality = {
                     "theory": evaluate_epistemic_quality(theory_text),
@@ -1336,11 +1333,7 @@ class ReplayExecutor:
                                             abstraction, "abstraction_summary", ""
                                         ),
                                         "theory": theory_text,
-                                        "theory_summary_structured": (
-                                            getattr(theory, "summary_structured", None)
-                                            if isinstance(getattr(theory, "summary_structured", None), dict)
-                                            else None
-                                        ),
+                                        "theory_summary_structured": theory.summary_structured.model_dump() if theory.summary_structured else None,  # Canonical access
                                         "confidence": {
                                             "empirical": confidence_state.empirical_confidence,
                                             "regime": confidence_state.regime_confidence,
@@ -1764,15 +1757,10 @@ class ReplayExecutor:
         snapshot = {
             "day_index": day_idx,
             "date": date_str,
-            "observation_text": snapshot_data["observation"].observation_text,
-            "theory_summary": snapshot_data["theory"].summary,
-            "confidence_state": {
-                "empirical": snapshot_data["confidence"].empirical_confidence,
-                "regime": snapshot_data["confidence"].regime_confidence,
-                "reflection": snapshot_data["confidence"].reflection_confidence,
-                "coherence": snapshot_data["confidence"].theoretical_coherence,
-                "contradiction": snapshot_data["confidence"].contradiction_pressure,
-            },
+            "observation_text": snapshot_data["observation"].observation_text, # Keep for direct access
+            "theory_summary": snapshot_data["theory"].summary,  # Legacy summary
+            "theory_summary_structured": snapshot_data["theory"].summary_structured.model_dump() if snapshot_data["theory"].summary_structured else None,  # Canonical access
+            "confidence_state": snapshot_data["confidence"].model_dump(), # Use model_dump for Pydantic objects
             "contradiction_score": snapshot_data["contradiction"].get("score", 0),
             "reflection_summary": snapshot_data["reflection"].reflection_summary,
             "epistemic_quality": snapshot_data.get("epistemic_quality", {}),
@@ -1887,7 +1875,7 @@ class ReplayExecutor:
             print("  No prior regime match.")
 
         print(f"\nTheory:")
-        print(f"  {theory.summary[:100]}...")
+        print(f"  {(theory.summary_structured.claim if theory.summary_structured else theory.summary)[:100]}...") # Canonical access with fallback
 
         print(f"\nContradictions:")
         print(f"  Score: {contradiction.get('score', 0):.2f}")

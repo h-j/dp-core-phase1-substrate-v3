@@ -2,10 +2,11 @@ import json
 import re
 from typing import Dict, Optional, Tuple
 from uuid import uuid4
-
+from cognition.schemas.theory.theory import Branch, TheoryStructured # Import new schemas
 from cognition.schemas.confidence.confidence_state import ConfidenceState
 from cognition.schemas.theory.theory import Theory
 from interfaces.ollama_client import OllamaClient
+from cognition.evaluation.llm_theory_evaluator import LLMTheoryEvaluator
 
 
 class TheoryGenerationFlow:
@@ -13,6 +14,7 @@ class TheoryGenerationFlow:
     def __init__(self):
 
         self.client = OllamaClient()
+        self.evaluator = LLMTheoryEvaluator()
 
     def process(
         self,
@@ -94,50 +96,39 @@ MANDATORY COGNITIVE TASK:
 1. Identify the hidden causal MECHANISM (e.g., Absorption, Exhaustion, Front-running).
 2. Define what the market is FORBIDDEN to do if your mechanism is correct.
 
-Generate:
-- one compressed theory, 2-4 sentences
-- Start with the hidden causal mechanism (e.g., "Regime is driven by [Mechanism]...")
-- direct grounding in the observation and abstraction above
-- Define a FORBIDDEN STATE: a specific market behavior that would instantly invalidate your mechanism.
-- Falsification must be an event that proves your mechanism (the 'Why') is wrong, not just that the price moved.
-- explicitly name unresolved tension if the evidence contains tension
-- The provided Dialectical Synthesis is a MANDATORY cognitive anchor.
-- Prioritize the reconciliation logic found in the synthesis over generic observation.
-- avoid causal certainty; emphasize the conditional nature of the trend.
-- ensure logic branches explicitly reference the provided falsifiability boundary conditions.
-- focus on market structure, coherence, uncertainty, volatility, breadth, participation, liquidity, and regime evolution
-- if generating theory for same regime subtype as prior theories, explicitly reference continuity or divergence
-- anchor claims to the specific falsifiability conditions above
-- start the theory by explicitly stating the current regime subtype, unless it is 'neutral'
-- avoid broad macro explanations, generic financial commentary, and smooth storytelling
-- avoid semantic filler and opening phrases
-- avoid repeating prior theories blindly; use prior validations/reflections only as constraints
-- do not produce trading recommendations
-- do not mention buy, sell, returns, profit, trading signals, or investment advice
-- avoid generic "additional confirmation needed" or "requires additional confirmation" phrasing
-- do not use headings
-- no markdown
+Return exactly a JSON object conforming to this schema:
+{{
+  "claim": "string",
+  "if_branch": {{"condition": "string", "action": "string"}},
+  "else_branch": {{"condition": "string", "action": "string"}},
+  "unless": "string",
+  "falsified_if": "string"
+}}
 
-Good style:
-Continuation remains weakly supported under compressed volatility; would falsify if volume normalizes.
-Observed stability may weaken if participation deteriorates; consistent with prior liquidity-constrained patterns.
+Constraint Checklist:
+- Start claim with the causal mechanism (e.g., "Regime is driven by [Mechanism]...")
+- Define a FORBIDDEN STATE in 'falsified_if'.
+- Logic branches must be conditional ('if... then...') and specific.
+- Prioritize Dialectical Synthesis logic if provided.
+- Start the claim by stating the regime subtype (unless 'neutral').
+- explicitly name unresolved tension if the evidence contains tension.
+- focus on market structure, coherence, uncertainty, volatility, breadth, participation, liquidity, and regime evolution.
+- do not produce trading recommendations or advice.
+- No macro filler, no headings, no markdown.
 
-Decision Branch Style (Preferred):
-If price closes above rejection high with stable volume:
-favor continuation higher (confidence medium)
-Else if participation weakens below average:
-favor range persistence
-Else:
-remain uncertain
-
-Bad style:
-The market demonstrates stable growth due to investor confidence.
-Participants are optimistic and stability is likely to continue.
+Example:
+{{
+  "claim": "Compression regime is driven by passive absorption; price remains range-bound despite volume expansion.",
+  "if_branch": {{"condition": "participation widens above average", "action": "favor breakout higher"}},
+  "else_branch": {{"condition": "volatility remains compressed", "action": "favor range persistence"}},
+  "unless": "liquidity evaporates entirely",
+  "falsified_if": "decisive close below the prior support floor"
+}}
 """
 
         # Strongly prefer a JSON-only response. Add an explicit output format
         # requirement to the prompt to reduce free-text responses.
-        prompt = prompt + "\n\nOUTPUT FORMAT (REQUIRED): Respond ONLY with a single JSON object with the following keys: \"claim\", \"if_branch\", \"else_branch\", \"unless\", \"falsified_if\". Do not include any additional text, explanation, or markdown."
+        # The prompt above already includes the detailed output format.
 
         result = self.client.generate(prompt)
 
@@ -146,9 +137,14 @@ Participants are optimistic and stability is likely to continue.
         # First, allow a few normal regenerations with the strict prompt
         for attempt in range(3):
             try:
-                parsed_theory_data = json.loads(result)
+                # Extract JSON using a more targeted approach to avoid greedy capture of multiple blocks
+                # We search for the first '{' and the last '}' in the string
+                start = result.find('{')
+                end = result.rfind('}') + 1
+                json_text = result[start:end] if start != -1 and end > start else result
+                parsed_theory_data = json.loads(json_text)
                 break
-            except json.JSONDecodeError:
+            except (json.JSONDecodeError, AttributeError):
                 print(f"[Theory JSON Parse Error] Attempt {attempt+1}/3. Retrying generation (strict JSON prompt)...")
                 result = self.client.generate(prompt)
 
@@ -162,12 +158,35 @@ Participants are optimistic and stability is likely to continue.
             )
             try:
                 repair_result = self.client.generate(repair_prompt)
-                parsed_theory_data = json.loads(repair_result)
+                # Extract JSON from repair result
+                start = repair_result.find('{')
+                end = repair_result.rfind('}') + 1
+                json_text = repair_result[start:end] if start != -1 and end > start else repair_result
+                parsed_theory_data = json.loads(json_text)
                 result = repair_result
             except Exception:
                 # Leave parsed_theory_data as None and fall back to text cleaning below
                 parsed_theory_data = None
-        
+
+        # v3.7 Logic: Convert dict to Pydantic object to support attribute access in downstream logic
+        if parsed_theory_data and isinstance(parsed_theory_data, dict):
+            # Pre-sanitize to prevent validation noise
+            if "if_branch" in parsed_theory_data and isinstance(parsed_theory_data["if_branch"], str):
+                parsed_theory_data["if_branch"] = {"condition": parsed_theory_data["if_branch"], "action": "behavior continues"}
+            if "else_branch" in parsed_theory_data and isinstance(parsed_theory_data["else_branch"], str):
+                parsed_theory_data["else_branch"] = {"condition": parsed_theory_data["else_branch"], "action": "behavior persists"}
+            if parsed_theory_data.get("unless") is None:
+                parsed_theory_data["unless"] = "no contrary evidence emerges"
+            
+            try:
+                parsed_theory_data = TheoryStructured(**parsed_theory_data)
+            except Exception as e:
+                print(f"[Theory Structure Validation Error] {e}")
+                parsed_theory_data = None
+
+        # Phase 1: Attach structured data to object for the evaluator
+        # This ensures the evaluator has access to the clean JSON even if persistence hasn't happened yet
+
         theory_text, branches_generated, branches_retained = self._clean_theory(result, parsed_theory_data, regime_subtype=regime_subtype, dialectical_synthesis=dialectical_synthesis)
 
         print("[Theory Summary Debug]", theory_text)
@@ -177,15 +196,19 @@ Participants are optimistic and stability is likely to continue.
             thesis=theory_text,
             summary=theory_text,
             assumptions=[],
+            summary_structured=parsed_theory_data,
             confidence_state=ConfidenceState(),
             # v3.0 Regime-based continuity
             regime_subtype=regime_subtype,
             falsifiability_conditions=falsifiability_conditions,
         )
+
+        object.__setattr__(theory, 'llm_evaluation', self.evaluator.evaluate(theory))
+
         branch_stats = {"generated": branches_generated, "retained": branches_retained}
         return theory, branch_stats
 
-    def _clean_theory(self, raw_llm_output: str, parsed_theory_data: Optional[Dict[str, str]], regime_subtype: str = "neutral", dialectical_synthesis: str = None) -> Tuple[str, int, int]:
+    def _clean_theory(self, raw_llm_output: str, parsed_theory_data: Optional[TheoryStructured], regime_subtype: str = "neutral", dialectical_synthesis: str = None) -> Tuple[str, int, int]:
 
         replacements = {
             "I've generated the requested outputs:": "",
@@ -228,31 +251,21 @@ Participants are optimistic and stability is likely to continue.
         ]
         lines = []
         
-        # v3.7 Structured Theory Output: Prioritize JSON parsing
         if parsed_theory_data:
-            # Validate schema
-            required_fields = ["claim", "if_branch", "else_branch", "unless", "falsified_if"]
-            if all(field in parsed_theory_data for field in required_fields):
-                # Perform field normalization, safely stripping only string values
-                cleaned_theory = {k: v.strip() if isinstance(v, str) else v for k, v in parsed_theory_data.items()}
-                
-                # Count branches from the structured data
-                branches_generated = self._count_branches_from_dict(cleaned_theory)
-                branches_retained = branches_generated # All generated branches are retained in structured output
-                
-                # Store as JSON string in summary
-                return json.dumps(cleaned_theory), branches_generated, branches_retained
-            else:
-                print(f"[Theory JSON Schema Error] Invalid schema, falling back: {parsed_theory_data}")
-                # Fallback to text cleaning if schema is invalid
-                theory_text = raw_llm_output
+            # v3.7 Structured Theory Output: Prioritize JSON parsing
+            # With the new TheoryStructured Pydantic model, parsed_theory_data is guaranteed to be valid.
+            # We will now generate the 'summary' (legacy text) from the structured data.
+            
+            # Generate a concise text summary from the structured data for legacy 'summary' field
+            # This is a temporary step to maintain compatibility with existing print statements
+            # and logging that might still rely on theory.summary as a string.
+            theory_text = f"{parsed_theory_data.claim}. If {parsed_theory_data.if_branch.condition}: {parsed_theory_data.if_branch.action}. Else {parsed_theory_data.else_branch.condition}: {parsed_theory_data.else_branch.action}."
+            if parsed_theory_data.unless:
+                theory_text += f" Unless {parsed_theory_data.unless}."
+            theory_text += f" Falsified if: {parsed_theory_data.falsified_if}."
         else:
-            # If JSON parsing failed, use raw LLM output for text cleaning
             theory_text = raw_llm_output
 
-        # Fallback to old text-based cleaning if JSON is invalid or not produced
-        # This path should ideally be removed once LLM reliably produces JSON
-        
         for line in theory_text.splitlines():
             cleaned_line = line.strip().strip("*").strip("#").strip()
 
@@ -382,11 +395,15 @@ Participants are optimistic and stability is likely to continue.
 
             grounded_sentences.append(sentence)
         
-        branches_generated = self._count_branches(raw_llm_output) # Count from raw output
-        branches_retained = self._count_branches("\n".join(grounded_sentences).strip()) # Count from cleaned text
-        
+        if parsed_theory_data:
+            branches_generated = self._count_branches_from_structured(parsed_theory_data)
+            branches_retained = branches_generated
+        else:
+            branches_generated = self._count_branches(raw_llm_output)
+            branches_retained = self._count_branches(theory_text)
+
         if grounded_sentences:
-            return " ".join(grounded_sentences).strip(), branches_generated, branches_retained
+            return theory_text, branches_generated, branches_retained
 
         # If no grounded sentences, try a more minimal cleaning
         compressed = self._remove_generic_phrases(cleaned).strip()
@@ -395,7 +412,7 @@ Participants are optimistic and stability is likely to continue.
         
         branches_generated = self._count_branches(raw_llm_output)
         branches_retained = self._count_branches(compressed)
-        return compressed, branches_generated, branches_retained
+        return theory_text, branches_generated, branches_retained # Return the generated theory_text
 
     def _remove_generic_phrases(self, text: str) -> str:
         """Minimally remove known filler openings without rewriting claims."""
@@ -436,10 +453,10 @@ Participants are optimistic and stability is likely to continue.
                     count += 1
         return count
 
-    def _count_branches_from_dict(self, theory_dict: Dict[str, str]) -> int:
+    def _count_branches_from_structured(self, theory_structured: TheoryStructured) -> int:
         """Count branches from a structured theory dictionary."""
         count = 0
-        if theory_dict.get("if_branch"): count += 1
-        if theory_dict.get("else_branch"): count += 1
-        if theory_dict.get("unless"): count += 1
+        if theory_structured.if_branch: count += 1
+        if theory_structured.else_branch: count += 1
+        if theory_structured.unless: count += 1
         return count

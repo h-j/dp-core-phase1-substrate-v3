@@ -3,17 +3,10 @@ from memory.relational.postgres_client import engine
 
 from memory.relational.models.observation_model import ObservationModel
 from memory.relational.models.abstraction_model import AbstractionModel
-from memory.relational.models.theory_model import TheoryModel
-from memory.relational.models.validation_model import ValidationModel
-from memory.relational.models.reflection_model import ReflectionModel
-from memory.relational.models.confidence_model import ConfidenceModel
-from memory.relational.models.reflective_memory_model import (
-    ReflectiveMemoryModel
-)
-from memory.relational.models.strategic_memory_model import (
-    StrategicMemoryModel
-)
-from memory.market.market_observation_model import MarketObservationModel
+# Import the package to register everything defined in the models folder
+import memory.relational.models # noqa: F401
+from memory.relational.models.prediction_probe_model import PredictionProbeModel # noqa: F401
+from memory.market.market_observation_model import MarketObservationModel # noqa: F401
 
 
 Base.metadata.create_all(bind=engine)

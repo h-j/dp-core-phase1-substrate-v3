@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Boolean, func
-from memory.relational.models.base import Base
+from memory.relational.base import Base
 
 class PredictionResultModel(Base):
     """SQLAlchemy model for tracking realized prediction performance."""

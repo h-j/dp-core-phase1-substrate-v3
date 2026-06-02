@@ -20,7 +20,6 @@ class ReflectionFlow:
         "however", "despite", "unless", "otherwise", "challenges", "reinforces", "supports", "falsifies", "validates", "remains", "persists",
         "continuation", "persistence", "price", "high", "low", "close", "level", "scenario", "branch",
         "reconciles", "suggests", "indicates", "implies", "however", "despite", "unless", "otherwise",
-        "challenges", "reinforces", "supports", "falsifies", "validates", "remains", "persists"
     }
 
     def __init__(self):
@@ -108,12 +107,9 @@ Use subtype history only if materially relevant. Primary focus remains: 1 observ
         if dialectical_synthesis:
             synthesis_context = f"\nDialectical Synthesis:\n{dialectical_synthesis}\n"
 
-        # Derive a usable theory text, preferring structured claim when present
+        # Canonical access to theory claim
         t_struct = getattr(theory, "summary_structured", None)
-        if isinstance(t_struct, dict):
-            theory_text = t_struct.get("claim") or json.dumps(t_struct)
-        else:
-            theory_text = getattr(theory, "summary", "")
+        theory_text = t_struct.claim if (t_struct and hasattr(t_struct, 'claim')) else theory.summary
 
         prompt = f"""
 Reflect on the following theory validation using structured market observation dimensions.

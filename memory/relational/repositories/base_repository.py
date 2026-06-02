@@ -25,35 +25,34 @@ class BaseRepository:
     def _get_session(self) -> Session:
         """
         Retrieves a new database session.
+        Returns a SQLAlchemy Session object.
         """
         if SessionLocal:
-            return SessionLocal()
+            return SessionLocal() # SessionLocal() returns a session object
         raise RuntimeError("SessionLocal is not configured. Cannot get database session.")
 
     def _save(self, model_instance):
         """
         Saves a model instance to the database.
         """
-        session = self._get_session()
-        try:
+        with self._get_session() as session:
             session.add(model_instance)
-            session.commit()
-            session.refresh(model_instance)
-            return model_instance
-        except SQLAlchemyError as e:
-            session.rollback()
-            self.logger.error(f"Error saving {type(model_instance).__name__}: {e}")
-            raise # Re-raise to ensure calling code knows about the failure
-        finally:
-            session.close() # Close the session after use
+            try:
+                session.commit()
+                session.refresh(model_instance)
+                return model_instance
+            except SQLAlchemyError as e:
+                session.rollback()
+                self.logger.error(f"Error saving {type(model_instance).__name__}: {e}")
+                raise
 
     def get_by_id(self, model_class, item_id: int):
         """Retrieves an item by its ID."""
-        session = self._get_session()
-        try:
-            return session.query(model_class).filter(model_class.id == item_id).first()
-        except SQLAlchemyError as e:
-            self.logger.error(f"Error getting {model_class.__name__} by ID {item_id}: {e}")
-            raise
-        finally:
-            session.close()
+        with self._get_session() as session:
+            try:
+                return session.query(model_class).filter(model_class.id == item_id).first()
+            except SQLAlchemyError as e:
+                # For read operations, rollback might not be strictly necessary, but it's harmless.
+                session.rollback() 
+                self.logger.error(f"Error getting {model_class.__name__} by ID {item_id}: {e}")
+                raise

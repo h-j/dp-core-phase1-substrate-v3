@@ -1,4 +1,4 @@
 date,prediction_direction,prediction_confidence,actual_direction,transition_pressure_score,transition_breakout_risk,theory_usefulness_score,theory_usefulness_label,regime_similarity,capital_before,capital_after,daily_return_pct,volume_state,volatility_regime,momentum_regime,regime_subtype,analog_divergence_claim,regime_history
 2026-05-25,range_bound,0.4,,0.07,False,0.0,unknown,0.0,10000.0,10000.0,,dry,expanded,strengthening,,,
-2026-05-26,higher,0.44,range_bound,0.455,False,0.14179573934837092,failed,1.0,10000.0,9972.061415881024,-0.2793858411897606,elevated,expanded,flat,,,
-2026-05-27,range_bound,0.44,range_bound,0.427,False,0.38246366459627334,weak,0.668,9972.061415881024,9962.848498830135,-0.09238728750923873,elevated,expanded,flat,,,
+2026-05-26,higher,0.722,range_bound,0.357,False,0.2741903333333333,weak,1.0,10000.0,9972.061415881024,-0.2793858411897606,elevated,expanded,flat,,,
+2026-05-27,range_bound,0.598,range_bound,0.6,False,0.5104120000000001,useful,0.669,9972.061415881024,9962.848498830135,-0.09238728750923873,elevated,expanded,flat,,,
