@@ -1,6 +1,7 @@
 from memory.relational.models.confidence_model import ConfidenceModel
 from memory.relational.models.theory_model import TheoryModel
 from memory.relational.postgres_client import SessionLocal
+from cognition.schemas.theory.theory import Theory, TheoryStructured, Branch # Import Theory Pydantic model
 from telemetry.structured_cognition_tracer import get_tracer
 import json
 
@@ -18,24 +19,34 @@ class TheoryRepository:
     def save(self, theory):
 
         confidence = theory.confidence_state
+        tracer = get_tracer()
 
         with SessionLocal() as session:
-            # Ensure DB schema has the `summary_structured` column.
-            # Use Postgres-compatible ALTER TABLE with IF NOT EXISTS.
             try:
                 session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS summary_structured TEXT;")
+                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS llm_evaluation JSONB;") # Changed to JSONB
+                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS survival_days FLOAT DEFAULT 0;")
+                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS confidence_state_id VARCHAR;") # Added this line
+                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS falsified_at_index INTEGER;")
+                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS falsification_precision FLOAT;")
                 session.commit()
             except Exception:
                 # If ALTER fails (e.g., locked DB), ignore and proceed
                 pass
-
             theory_model = TheoryModel(
                 id=theory.id,
                 created_at=theory.created_at,
                 lineage_id=theory.lineage_id,
                 thesis=theory.thesis,
-                summary=theory.summary,
-                summary_structured=(json.dumps(json.loads(theory.summary)) if isinstance(getattr(theory, 'summary', None), str) and _is_json(getattr(theory, 'summary')) else None)
+                summary=theory.summary, # Keep text for legacy/search
+                # v4.0 Canonical Semantic Storage: Store TheoryStructured as JSON string
+                summary_structured=theory.summary_structured.model_dump_json() if theory.summary_structured else None,
+                confidence_state_id=theory.confidence_state.id, # Populate this field
+                # Phase 1: Store LLM-based semantic assessment
+                llm_evaluation=getattr(theory, 'llm_evaluation', None),
+                survival_days=getattr(theory, 'survival_days', 0),
+                falsified_at_index=getattr(theory, 'falsified_at_index', None),
+                falsification_precision=getattr(theory, 'falsification_precision', None)
             )
 
             confidence_model = ConfidenceModel(
@@ -53,20 +64,57 @@ class TheoryRepository:
 
             session.commit()
 
+            # Trace persistence event
+            tracer.trace_persisted(theory.id, theory_model)
+
         return {
             "status": "stored",
             "theory_id": theory.id,
             "confidence_state_id": confidence.id
         }
 
-    def list_recent(self, limit: int = 5):
+    def list_recent(self, limit: int = 5) -> List[Theory]:
 
+        tracer = get_tracer()
         with SessionLocal() as session:
-            results = (
+            theory_models = (
                 session.query(TheoryModel)
                 .order_by(TheoryModel.created_at.desc())
                 .limit(limit)
                 .all()
             )
 
-            return results
+            theories = []
+            for model in theory_models:
+                # Reconstruct TheoryStructured from JSON string
+                structured_data = None
+                if model.summary_structured:
+                    try:
+                        structured_data = TheoryStructured(**json.loads(model.summary_structured))
+                    except Exception:
+                        # Fallback if structured data is malformed
+                        structured_data = TheoryStructured(
+                            claim="Malformed structured theory.",
+                            if_branch=Branch(condition="unknown", action="unknown"),
+                            else_branch=Branch(condition="unknown", action="unknown"),
+                            falsified_if="unknown",
+                            forbidden_state="unknown"
+                        )
+
+                theory = Theory(
+                    id=model.id,
+                    created_at=model.created_at,
+                    lineage_id=model.lineage_id,
+                    thesis=model.thesis,
+                    summary=model.summary,
+                    summary_structured=structured_data,
+                    confidence_state=model.confidence_state, # Assuming ConfidenceModel can be converted or is already loaded
+                    llm_evaluation=model.llm_evaluation,
+                    survival_days=model.survival_days,
+                    falsified_at_index=model.falsified_at_index,
+                    falsification_precision=model.falsification_precision
+                )
+                theories.append(theory)
+                tracer.trace_retrieved(theory.id, theory)
+
+            return theories

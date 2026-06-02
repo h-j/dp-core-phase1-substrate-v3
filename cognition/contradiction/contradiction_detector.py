@@ -1,7 +1,9 @@
 import re
 import json
 from typing import List, Dict, Any, Optional, Set, Tuple
+from cognition.schemas.theory.theory import Theory, TheoryStructured, Branch # Import Theory Pydantic model
 from flows.reflection_flow.reflection_flow import ReflectionFlow
+from cognition.contradiction.llm_contradiction_auditor import LLMContradictionAuditor
 
 class ContradictionDetector:
     """
@@ -23,7 +25,7 @@ class ContradictionDetector:
     }
 
     def __init__(self):
-        pass
+        self.llm_auditor = LLMContradictionAuditor()
 
     def detect(
         self,
@@ -38,15 +40,16 @@ class ContradictionDetector:
         Detects contradictions and assigns a score.
         """
         contradictions = []
+        llm_audits = []
         total_score = 0.0
         pair_scores = []
         
-        curr_data = self._parse_theory_summary(current_theory)
+        curr_data = self._extract_structured_theory_fields(current_theory)
         curr_regime = getattr(current_theory, 'regime_subtype', 'neutral').lower()
 
         # Compare current theory with historical theories
         for hist_theory in historical_theories:
-            hist_data = self._parse_theory_summary(hist_theory)
+            hist_data = self._extract_structured_theory_fields(hist_theory)
             hist_regime_subtype = getattr(hist_theory, 'regime_subtype', 'neutral').lower()
 
             lexical_conflict_score = 0.0
@@ -54,24 +57,24 @@ class ContradictionDetector:
             structural_indicators = []
             
             # A. Claim vs Claim (High Weight: 0.6)
-            claim_score, claim_ind = self._compare_fields(curr_data["claim"], hist_data["claim"], weight=0.6)
+            claim_score, claim_ind = self._compare_fields(curr_data["claim"], hist_data["claim"], weight=0.6 * self.CONFIG["lexical_weight_base"])
             structural_conflict_score += claim_score
             structural_indicators.extend(claim_ind)
 
             # B. Falsified_if vs Falsified_if (High Weight: 0.6)
-            fals_score, fals_ind = self._compare_fields(curr_data["falsified_if"], hist_data["falsified_if"], weight=0.6)
+            fals_score, fals_ind = self._compare_fields(curr_data.get("falsified_if", ""), hist_data.get("falsified_if", ""), weight=0.6 * self.CONFIG["lexical_weight_base"])
             structural_conflict_score += fals_score
             structural_indicators.extend(fals_ind)
 
             # C. Claim vs Branch (Medium Weight: 0.4)
             # Check if current claim contradicts historical branch scenarios
-            cb_score, cb_ind = self._compare_fields(curr_data["claim"], hist_data["if_branch"], weight=0.4)
+            cb_score, cb_ind = self._compare_fields(curr_data.get("claim", ""), hist_data.get("if_branch", ""), weight=0.4)
             structural_conflict_score += cb_score
             structural_indicators.extend(cb_ind)
 
             # D. Branch vs Branch (Low Weight: 0.2)
             # We mostly ignore "else" vs "else" unless they are polar opposites
-            bb_score, bb_ind = self._compare_fields(curr_data["if_branch"], hist_data["if_branch"], weight=0.2)
+            bb_score, bb_ind = self._compare_fields(curr_data.get("if_branch", ""), hist_data.get("if_branch", ""), weight=0.2)
             structural_conflict_score += bb_score
             structural_indicators.extend(bb_ind)
 
@@ -132,6 +135,13 @@ class ContradictionDetector:
             if structural_indicators:
                 contradictions.append(f"Structural: {'; '.join(structural_indicators)}")
 
+            # Phase 2: Parallel LLM Audit
+            try:
+                audit = self.llm_auditor.audit_conflict(current_theory, hist_theory)
+                llm_audits.append({"theory_id": getattr(hist_theory, 'id', 'unknown'), "audit": audit})
+            except Exception:
+                pass
+
             # Aggregate score for this pair
             pair_score = lexical_conflict_score + structural_conflict_score
             total_score += pair_score
@@ -165,49 +175,36 @@ class ContradictionDetector:
         return {
             "score": normalized_score,
             "indicators": contradictions,
+            "llm_contradiction_audit": llm_audits,
             "summary": f"Detected {len(contradictions)} contradictions with a total score of {normalized_score:.2f}.",
         }
 
-    def _parse_theory_summary(self, theory: Any) -> Dict[str, str]:
-        """Parses the theory summary (which should be JSON) into a dict."""
-        # Prefer structured summary fields when available on the object
-        # 1) If the object provides a structured summary attribute, use it
-        structured = None
-        # dict-like theory (e.g., snapshot) may contain 'theory_summary_structured'
-        # v4.0: Specifically checking for 'mechanism' and 'forbidden_state'
-        if isinstance(theory, dict):
-            structured = theory.get("theory_summary_structured") or theory.get("summary_structured") or theory
+    def _extract_structured_theory_fields(self, theory: Theory) -> Dict[str, str]:
+        """
+        Extracts relevant fields from a Theory object's summary_structured for comparison.
+        Ensures all fields are strings for consistent text processing.
+        """
+        structured = theory.summary_structured
+        if not structured:
+            return {
+                "mechanism": "unknown",
+                "claim": theory.summary,
+                "if_branch": "unknown",
+                "else_branch": "unknown",
+                "unless": "unknown",
+                "falsified_if": "unknown",
+                "forbidden_state": "unknown",
+            }
 
-        # object attribute (e.g., ORM model or Theory object)
-        if structured is None:
-            structured = getattr(theory, "summary_structured", None) or getattr(theory, "theory_summary_structured", None)
-
-        # If structured is a JSON string, attempt to parse
-        if isinstance(structured, str):
-            try:
-                parsed = json.loads(structured)
-                if isinstance(parsed, dict):
-                    # Coerce values to strings to prevent crashes in downstream text processing (e.g., if LLM returns nested dicts)
-                    return {k: v if isinstance(v, str) else json.dumps(v) for k, v in {key: parsed.get(key, "") for key in ["mechanism", "claim", "falsified_if", "if_branch", "else_branch", "forbidden_state"]}.items()}
-            except Exception:
-                structured = None
-
-        # If structured is already a dict-like object
-        if isinstance(structured, dict):
-            # Coerce values to strings
-            return {k: v if isinstance(v, str) else json.dumps(v) for k, v in {key: structured.get(key, "") for key in ["claim", "falsified_if", "if_branch", "else_branch", "unless"]}.items()}
-
-        # Otherwise, try parsing the free-text summary
-        summary_text = getattr(theory, 'summary', getattr(theory, 'abstraction', ''))
-        try:
-            parsed = json.loads(summary_text)
-            if isinstance(parsed, dict) and ("claim" in parsed or "falsified_if" in parsed):
-                return {k: v if isinstance(v, str) else json.dumps(v) for k, v in {key: parsed.get(key, "") for key in ["claim", "falsified_if", "if_branch", "else_branch", "unless"]}.items()}
-        except json.JSONDecodeError:
-            pass # Not a JSON, fallback to old behavior
-
-        # Fallback for old text-based theories or if JSON parsing fails
-        return {"claim": summary_text, "falsified_if": "", "if_branch": "", "else_branch": "", "unless": ""}
+        return {
+            "mechanism": structured.mechanism if structured.mechanism else "",
+            "claim": structured.claim,
+            "if_branch": f"{structured.if_branch.condition}: {structured.if_branch.action}",
+            "else_branch": f"{structured.else_branch.condition}: {structured.else_branch.action}",
+            "unless": structured.unless if structured.unless else "",
+            "falsified_if": structured.falsified_if,
+            "forbidden_state": structured.forbidden_state if structured.forbidden_state else "",
+        }
 
     def _compare_fields(self, field_a: str, field_b: str, weight: float) -> Tuple[float, List[str]]:
         """Compares two fields for contradiction and returns score and indicators."""
@@ -241,6 +238,7 @@ class ContradictionDetector:
             score = weight * (1.0 - similarity) # Higher conflict if explicit and low similarity
         elif similarity < 0.3: # Low similarity without explicit conflict
             score = weight * 0.1 # Small penalty for very different claims
+            indicators.append(f"Low semantic similarity: {field_a[:20]}... vs {field_b[:20]}...")
 
         return score, indicators
 

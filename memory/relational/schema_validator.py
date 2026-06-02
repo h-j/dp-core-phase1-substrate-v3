@@ -34,8 +34,16 @@ class SchemaValidator:
             # Check 1: PostgreSQL connection
             self._check_postgres_connection()
             
-            # Check 2: theories table exists
-            self._check_theories_table_exists()
+            # Check 2: All required analytics tables exist
+            required_tables = [
+                'theories', 
+                'transition_pressure_events', 
+                'prediction_probes', 
+                'prediction_results', 
+                'market_outcomes'
+            ]
+            for table_name in required_tables:
+                self._check_table_exists(table_name)
             
             # Check 3: summary_structured column exists
             self._check_summary_structured_column()
@@ -70,24 +78,19 @@ class SchemaValidator:
         except Exception as e:
             raise RuntimeError(f"PostgreSQL connection check failed: {e}")
 
-    def _check_theories_table_exists(self):
-        """Verify theories table exists."""
+    def _check_table_exists(self, table_name: str):
+        """Verify a specific table exists."""
         try:
             inspector = inspect(self.engine)
             tables = inspector.get_table_names()
             
-            if 'theories' not in tables:
+            if table_name not in tables:
                 raise RuntimeError(
-                    "theories table not found in database.\n"
+                    f"Table '{table_name}' not found in database.\n"
                     "Run Base.metadata.create_all(engine) to initialize schema."
                 )
-            
-            print("✓ theories table exists")
-            
         except Exception as e:
-            if "theories table not found" not in str(e):
-                raise RuntimeError(f"Failed to check theories table: {e}")
-            raise
+            raise RuntimeError(f"Failed to check table '{table_name}': {e}")
 
     def _check_summary_structured_column(self):
         """Verify summary_structured column exists on theories table."""

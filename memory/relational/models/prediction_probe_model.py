@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, func
-from memory.relational.models.base import Base
+from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, func
+from memory.relational.base import Base
 
 class PredictionProbeModel(Base):
     """SQLAlchemy model for longitudinal prediction tracking."""
@@ -12,11 +12,10 @@ class PredictionProbeModel(Base):
     direction = Column(String)
     confidence = Column(Float)
     
-    tension = Column(String, nullable=True)
+    tension = Column(Float, nullable=True)
     invalidation = Column(String, nullable=True)
     
-    # v1.4 Adjustment: Use logical references instead of integer FKs
-    theory_ref = Column(String, nullable=True)
-    reflection_ref = Column(String, nullable=True)
+    theory_id = Column(String, ForeignKey("theories.id"), nullable=True)
+    reflection_id = Column(Integer, ForeignKey("reflection_events.id"), nullable=True)
     
     created_at = Column(DateTime, default=func.now())

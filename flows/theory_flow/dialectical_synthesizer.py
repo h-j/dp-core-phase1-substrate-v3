@@ -1,6 +1,7 @@
 import json
 import re
 from typing import List, Dict, Optional
+from cognition.schemas.theory.theory import Theory # Import Theory Pydantic model
 from interfaces.ollama_client import OllamaClient
 
 class DialecticalTheorySynthesizer:
@@ -12,8 +13,8 @@ class DialecticalTheorySynthesizer:
 
     def synthesize(
         self,
-        observation_text: str,
-        active_theories: List[object],
+        observation_text: str, # Assuming TheoryRecord has a 'theory' attribute that holds the Theory object
+        active_theories: List[Any],
         contradiction_indicators: List[str],
         regime_subtype: str,
         falsifiability_conditions: List[str]
@@ -21,11 +22,8 @@ class DialecticalTheorySynthesizer:
         """
         Performs dialectical synthesis of conflicting theories.
         """
-        # Handle both Theory objects (.summary) and TheoryRecord objects (.abstraction)
-        theory_texts = "\n".join([
-            f"- {getattr(t, 'summary', getattr(t, 'abstraction', ''))}" 
-            for t in active_theories
-        ])
+        # Access the underlying Theory object from TheoryRecord
+        theory_texts = "\n".join([f"- {t.theory.summary_structured.claim if t.theory.summary_structured else t.theory.summary}" for t in active_theories])
         indicators = "; ".join(contradiction_indicators)
         falsifiability = "\n".join([f"- {c}" for c in falsifiability_conditions])
 
@@ -72,18 +70,66 @@ Constraints:
 """
         self._last_prompt = prompt
         result = self.client.generate(prompt)
-        return self._parse_synthesis(result)
+        synthesis = self._parse_synthesis(result)
+        
+        # Phase 3: Synthesis Validation
+        if synthesis:
+            validation = self._validate_synthesis(synthesis, theory_texts)
+            synthesis["validation"] = validation
+            if not validation.get("valid", True):
+                print(f"[Synthesis Validation Warning] {validation.get('issues')}")
+        
+        return synthesis
+
+    def _validate_synthesis(self, synthesis: Dict, original_theories: str) -> Dict:
+        """Checks synthesis for internal consistency and faithfulness."""
+        prompt = f"""
+        Original Theories:
+        {original_theories}
+
+        Proposed Synthesis:
+        {json.dumps(synthesis)}
+
+        Audit this synthesis. Is it coherent? Does it hallucinate mechanisms not present or implied by parents?
+        Return JSON: {{"valid": bool, "quality": 0.0-1.0, "issues": []}}
+        """
+        audit_raw = self.client.generate(prompt)
+        try:
+            return json.loads(audit_raw.strip().replace('```json', '').replace('```', ''))
+        except Exception:
+            return {"valid": True, "quality": 0.5, "issues": ["Validation parse failed"]}
 
     def _parse_synthesis(self, text: str) -> Optional[Dict[str, str]]:
         """Parses the structured JSON output into a dictionary, with retry."""
         parsed_data = None
-        for _ in range(2): # Retry once
+        # Clean common LLM garbage before parsing
+        # Robust JSON extraction: find first { and last }
+        json_start = text.find('{')
+        json_end = text.rfind('}')
+        
+        cleaned_text_for_parse = ""
+        if json_start != -1 and json_end != -1 and json_end > json_start:
+            cleaned_text_for_parse = text[json_start : json_end + 1]
+            # Strip markdown if present within the extracted string
+            cleaned_text_for_parse = cleaned_text_for_parse.replace('```json', '').replace('```', '').strip()
+        else:
+            print(f"[Synthesis JSON Parse Error] No valid JSON structure found in raw output: {text[:200]}...")
+
+        for _ in range(2): 
             try:
-                parsed_data = json.loads(text)
+                parsed_data = json.loads(cleaned_text_for_parse)
                 break
             except json.JSONDecodeError:
-                print(f"[Synthesis JSON Parse Error] Retrying generation for: {text[:100]}...")
-                text = self.client.generate(self._last_prompt) # Regenerate with last prompt
+                print(f"[Synthesis JSON Parse Error] Retrying generation...")
+                new_text = self.client.generate(self._last_prompt)
+                # Re-extract JSON from the new text
+                json_start = new_text.find('{')
+                json_end = new_text.rfind('}')
+                if json_start != -1 and json_end != -1 and json_end > json_start:
+                    cleaned_text_for_parse = new_text[json_start : json_end + 1]
+                    cleaned_text_for_parse = cleaned_text_for_parse.replace('```json', '').replace('```', '').strip()
+                else:
+                    cleaned_text_for_parse = "" # No JSON found in retry
         
         if not parsed_data:
             print(f"[Synthesis JSON Parse Error] Failed after retry, falling back to regex: {text[:100]}...")

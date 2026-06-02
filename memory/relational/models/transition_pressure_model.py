@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime, Text, Boolean, func
-from memory.relational.models.base import Base
+from memory.relational.base import Base
 
 class TransitionPressureModel(Base):
     """SQLAlchemy model for tracking regime transition pressure metrics."""
