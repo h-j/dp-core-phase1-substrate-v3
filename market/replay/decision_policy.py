@@ -98,9 +98,9 @@ class DecisionPolicyEngine:
 
         # v2.4 Tuning for actual participation
         meets_criteria = (
-            conf >= 0.42 and
-            theory_usefulness >= 0.35 and
-            contradiction_score <= 0.55
+            conf >= 0.50 and
+            theory_usefulness >= 0.30 and
+            contradiction_score <= 0.45
         )
 
         if not meets_criteria:

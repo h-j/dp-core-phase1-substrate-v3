@@ -22,17 +22,7 @@ class TheoryRepository:
         tracer = get_tracer()
 
         with SessionLocal() as session:
-            try:
-                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS summary_structured TEXT;")
-                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS llm_evaluation JSONB;") # Changed to JSONB
-                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS survival_days FLOAT DEFAULT 0;")
-                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS confidence_state_id VARCHAR;") # Added this line
-                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS falsified_at_index INTEGER;")
-                session.execute("ALTER TABLE theories ADD COLUMN IF NOT EXISTS falsification_precision FLOAT;")
-                session.commit()
-            except Exception:
-                # If ALTER fails (e.g., locked DB), ignore and proceed
-                pass
+            # v4.1: Schema patching removed from save() - delegated to SchemaValidator.validate_startup()
             theory_model = TheoryModel(
                 id=theory.id,
                 created_at=theory.created_at,

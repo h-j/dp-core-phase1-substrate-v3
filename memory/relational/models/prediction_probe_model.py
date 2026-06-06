@@ -12,10 +12,10 @@ class PredictionProbeModel(Base):
     direction = Column(String)
     confidence = Column(Float)
     
-    tension = Column(Float, nullable=True)
+    tension = Column(String, nullable=True)
     invalidation = Column(String, nullable=True)
     
     theory_id = Column(String, ForeignKey("theories.id"), nullable=True)
-    reflection_id = Column(Integer, ForeignKey("reflection_events.id"), nullable=True)
+    reflection_id = Column(String, ForeignKey("reflections.id"), nullable=True)
     
     created_at = Column(DateTime, default=func.now())
