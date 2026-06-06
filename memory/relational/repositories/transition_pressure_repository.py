@@ -7,7 +7,7 @@ class TransitionPressureRepository(BaseRepository):
         """Persist transition pressure state."""
         # v1.4 Adjustment: Serialize drivers to string for Text column
         drivers = pressure.get('drivers', []) if isinstance(pressure, dict) else getattr(pressure, 'drivers', [])
-        drivers_json = json.dumps(drivers)
+        drivers_json = json.dumps(drivers) if isinstance(drivers, list) else str(drivers)
         
         model = TransitionPressureModel(
             date=date,

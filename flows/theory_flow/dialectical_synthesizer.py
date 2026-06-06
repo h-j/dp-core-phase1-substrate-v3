@@ -1,6 +1,6 @@
 import json
 import re
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Any
 from cognition.schemas.theory.theory import Theory # Import Theory Pydantic model
 from interfaces.ollama_client import OllamaClient
 
@@ -22,8 +22,20 @@ class DialecticalTheorySynthesizer:
         """
         Performs dialectical synthesis of conflicting theories.
         """
-        # Access the underlying Theory object from TheoryRecord
-        theory_texts = "\n".join([f"- {t.theory.summary_structured.claim if t.theory.summary_structured else t.theory.summary}" for t in active_theories])
+        # Handle records (TheoryRecord) from lineage engine vs raw Theory objects
+        texts = []
+        for t in active_theories:
+            if hasattr(t, 'theory') and t.theory:
+                # Structured claim access from Pydantic model
+                texts.append(f"- {t.theory.summary_structured.claim if t.theory.summary_structured else t.theory.summary}")
+            elif hasattr(t, 'abstraction'):
+                # Lineage records typically store the thought as an abstraction
+                texts.append(f"- {t.abstraction}")
+            else:
+                # Fallback for other theory representations
+                texts.append(f"- {getattr(t, 'summary', str(t))}")
+        theory_texts = "\n".join(texts)
+
         indicators = "; ".join(contradiction_indicators)
         falsifiability = "\n".join([f"- {c}" for c in falsifiability_conditions])
 

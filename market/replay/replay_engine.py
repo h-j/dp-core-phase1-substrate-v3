@@ -1118,15 +1118,15 @@ class ReplayExecutor:
                 saved_prediction = None
                 try:
                     # Store logical refs/hashes as per v1.4 adjustments
-                    theory_ref = str(getattr(theory, 'id', ''))
-                    reflection_ref = str(getattr(reflection, 'id', ''))
+                    theory_id = str(getattr(theory, 'id', ''))
+                    reflection_id = str(getattr(reflection, 'id', ''))
                     
                     saved_prediction = self.prediction_repo.save(
                         prediction_probe,
                         date=date_str,
                         day_index=day_idx,
-                        theory_ref=theory_ref,
-                        reflection_ref=reflection_ref
+                        theory_id=theory_id,
+                        reflection_id=reflection_id
                     )
                 except Exception as e:
                     self._log(f"WARNING: PredictionProbe save failed: {e}")

@@ -248,7 +248,7 @@ class TransitionPressureEngine:
         if "volume_elevated_confirmation" in drivers: bo_signals += 1
         if "gap up" in descriptors: bo_signals += 1
 
-        breakout_risk = bo_signals >= self.TP_CONFIG["breakout_signal_threshold"] and contradiction_score < 0.5 and usefulness_score >= 0.3
+        breakout_risk = bo_signals >= self.TP_CONFIG["breakout_signal_threshold"] and contradiction_score < 0.45 and usefulness_score >= 0.35
         if breakout_risk:
             pressure_score += self.TP_CONFIG["breakout_pressure_bonus"]
         else:
