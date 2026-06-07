@@ -251,6 +251,8 @@ class ReplayExecutor:
         self.base_output_dir = Path(__file__).parent.parent.parent / "market" / "replay" / "output"
         self._create_snapshot_dirs()
 
+        self.transition_pressure_engine = TransitionPressureEngine()
+        self.transition_pressure_engine.debug = self.lineage_debug
         self.total_synthesis_triggered = 0
         # Initialize replay engine
         self.engine = ReplayEngine(
@@ -297,7 +299,6 @@ class ReplayExecutor:
         self._prior_prediction_db_id = None
         self.decision_engine = DecisionPolicyEngine()
         self._regime_matches_by_step: List[list] = []
-        self.transition_pressure_engine = TransitionPressureEngine()
         self.replay_analysis_engine = None # Will be initialized in execute
         self.prediction_repo = None
         self.transition_memory = TransitionMemoryStore()
@@ -371,6 +372,7 @@ class ReplayExecutor:
         self.reflection_flow = ReflectionFlow()
         self.dialectical_synthesizer = DialecticalTheorySynthesizer()
         self.contradiction_detector = ContradictionDetector()
+        self.theory_flow.debug = self.lineage_debug
         self.confidence_engine = ConfidenceEvolutionEngine()
 
         self.observation_repo = ObservationRepository()
@@ -440,6 +442,7 @@ class ReplayExecutor:
             self.horizon_engine = HorizonCognitionEngine()
             self.epistemic_scoring = EpistemicScoringEngine()
             self.prediction_generator = PredictionProbeGenerator()
+            self.prediction_generator.debug = self.lineage_debug
             self.capital_simulator = CapitalSimulator()
         except Exception:
             self.observer = None
@@ -449,6 +452,7 @@ class ReplayExecutor:
             self.horizon_engine = HorizonCognitionEngine()
             self.epistemic_scoring = EpistemicScoringEngine()
             self.prediction_generator = PredictionProbeGenerator()
+            self.prediction_generator.debug = self.lineage_debug
             self.capital_simulator = CapitalSimulator()
 
         from market.replay.replay_analysis import ReplayAnalysisEngine
@@ -623,8 +627,8 @@ class ReplayExecutor:
                 # v3.1 Regime Continuity Retrieval
                 regime_history = self.regime_continuity_memory.summary(regime_subtype)
 
-                # v3.0 Consistency debug
-                print(
+                if self.lineage_debug:
+                    print(
                     "[Theory Input]",
                     {
                         "date": date_str,
@@ -658,9 +662,10 @@ class ReplayExecutor:
                     dialectical_synthesis=active_synthesis,
                 )
 
-                # v3.0 Consistency debug - prefer structured claim if available
-                theory_text = theory.summary_structured.claim if theory.summary_structured else theory.summary # Canonical access with fallback
-                print("[Theory Output]", theory_text[:250])
+                if self.lineage_debug:
+                    # v3.0 Consistency debug - prefer structured claim if available
+                    theory_text = theory.summary_structured.claim if theory.summary_structured else theory.summary # Canonical access with fallback
+                    print("[Theory Output]", theory_text[:250])
 
                 # Theory lineage updates happen before contradiction retirement so
                 # the current abstraction can revive or mutate existing cognition.
@@ -792,18 +797,19 @@ class ReplayExecutor:
 
                 # v3.2 Dialectical Synthesis Layer - Triggered after final contradiction state but before retirement
                 contradiction_score = float(contradiction_result.get("score", 0.0))
-                print(f"\n[CONTRADICTION DEBUG]")
-                print(f"raw contradiction score={contradiction_score:.3f}")
-                print(f"source field=contradiction_result['score']")
+                if self.lineage_debug:
+                    print(f"[CONTRADICTION SCORE] score={contradiction_score:.3f}")
+                    print(f"raw contradiction score={contradiction_score:.3f}")
+                    print(f"source field=contradiction_result['score']")
 
                 active_lineage_records = self.theory_lineage.active_theories() if self.theory_lineage else []
                 active_theory_count = len(active_lineage_records)
                 will_trigger = active_theory_count >= 2 and contradiction_score >= self.contradiction_detector.CONFIG.get("threshold_synthesis", 0.35)
-
-                print(f"\n[SYNTHESIS CHECK]")
-                print(f"active_theories={active_theory_count}")
-                print(f"contradiction_score={contradiction_score:.3f}")
-                print(f"will_trigger={will_trigger}")
+                if self.lineage_debug:
+                    print(f"\n[SYNTHESIS CHECK]")
+                    print(f"active_theories={active_theory_count}")
+                    print(f"contradiction_score={contradiction_score:.3f}")
+                    print(f"will_trigger={will_trigger}")
 
                 if will_trigger:
                     self.total_synthesis_triggered += 1
@@ -816,10 +822,11 @@ class ReplayExecutor:
                     )
                     if dialectical_data:
                         current_dialectical_data = dialectical_data
-                        print("\n[SYNTHESIS]")
-                        print(f"Shared:\n{dialectical_data.get('shared_premise')}\n")
-                        print(f"Conflict:\n{dialectical_data.get('conflict')}\n")
-                        print(f"Synthesis:\n{dialectical_data.get('synthesis_summary')}")
+                        if self.lineage_debug:
+                            print("\n[SYNTHESIS]")
+                            print(f"Shared:\n{dialectical_data.get('shared_premise')}\n")
+                            print(f"Conflict:\n{dialectical_data.get('conflict')}\n")
+                            print(f"Synthesis:\n{dialectical_data.get('synthesis_summary')}")
 
                 # retire stale theories
                 try:
@@ -877,17 +884,18 @@ class ReplayExecutor:
                     expected_behavior="Market-grounded theory",
                 )
 
-                # v3.1 Continuity debug
-                print(
-                    "[Reflection Input]",
-                    {
-                        "date": date_str,
-                        "regime_subtype": regime_subtype,
-                        "analog": getattr(market_obs, "analog_divergence_claim", ""),
-                        "history": regime_history,
-                        "falsifiability": falsifiability_conditions,
-                    },
-                )
+                if self.lineage_debug:
+                    print(f"\n[SYNTHESIS CHECK] score={contradiction_score:.3f} trigger={will_trigger}")
+                    print(
+                        "[Reflection Input]",
+                        {
+                            "date": date_str,
+                            "regime_subtype": regime_subtype,
+                            "analog": getattr(market_obs, "analog_divergence_claim", ""),
+                            "history": regime_history,
+                            "falsifiability": falsifiability_conditions,
+                        },
+                    )
 
                 # reflect
                 reflection = self.reflection_flow.process(
@@ -905,8 +913,9 @@ class ReplayExecutor:
                     dialectical_synthesis=self.dialectical_synthesizer.format_for_reflection(dialectical_data) 
                     if dialectical_data else None,
                 )
-                # [Reflection Grounding Score] is not a direct print statement in replay_engine.py
-                print("[Reflection Output]", reflection.reflection_summary)
+                if self.lineage_debug:
+                    # [Reflection Grounding Score] is not a direct print statement in replay_engine.py
+                    print("[Reflection Output]", reflection.reflection_summary)
 
                 # Prefer structured claim when available for downstream consumers
                 theory_text = theory.summary_structured.claim # Canonical access
@@ -1157,9 +1166,10 @@ class ReplayExecutor:
                     actual_direction=actual_dir,
                     falsified=getattr(prior_prediction_result, "invalidation_triggered", False),
                 )
-                regime_history_final = self.regime_continuity_memory.summary(regime_subtype)
                 
-                if self.lineage_debug: # Guard for debug output
+                regime_history_final = self.regime_continuity_memory.summary(regime_subtype)
+                if self.lineage_debug:
+                    # Guard for debug output
                     print("[Regime Memory]", {"date": date_str, "subtype": regime_subtype, "history": regime_history_final})
 
                 self._run_theories.append(theory)
@@ -1705,31 +1715,39 @@ class ReplayExecutor:
 
         print(f"\n── COGNITIVE TRACE: DAY {day_idx} ── {date_str} ──────────────────")
         
-        print(f"\nObservation:")
+        print(f"Observation:")
         print(f"  {observation.observation_text[:160]}...")
 
-        print(f"\nTheory:")
+        print(f"Theory:")
         theory_claim = theory.summary_structured.claim if theory.summary_structured else theory.summary
         print(f"  {theory_claim[:120]}...")
 
-        print(f"\nContradiction:")
-        contra_summary = contradiction.get('summary', 'None') if contradiction.get('indicators') else "None"
+        print(f"Contradiction:")
+        contra_summary = contradiction.get('summary', 'None detected') if contradiction.get('indicators') else "None detected"
         print(f"  {contra_summary}")
+        tension_summary = getattr(reflection, 'tension_summary', None)
+        if contra_summary == "None detected" and tension_summary and tension_summary != "None":
+            print(f"  Tension: {tension_summary}")
 
-        print(f"\nReflection:")
+        print(f"Reflection:")
         print(f"  {reflection.reflection_summary[:400]}...")
 
-        print(f"\nLesson:")
+        print(f"Lesson:")
         lesson = "None"
         if self.replay_analysis_engine and self.replay_analysis_engine.days:
             lesson = self.replay_analysis_engine.days[-1].get("lesson", "None") or "None"
-            
+
         if lesson == "None" or not lesson:
-             print("  No lesson extracted yet.")
-             print("  Requires contradiction, mutation, synthesis,")
-             print("  falsification, revival, or validation outcome.")
+            print("  No lesson has stabilized.")
+            print("\n  Requires one of:")
+            print("  • contradiction")
+            print("  • mutation")
+            print("  • synthesis")
+            print("  • falsification")
+            print("  • revival")
+            print("  • validation outcome")
         else:
-             print(f"  {lesson}")
+            print(f"  {lesson}")
 
 
 def main():

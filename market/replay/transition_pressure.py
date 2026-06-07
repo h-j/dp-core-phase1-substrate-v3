@@ -34,6 +34,9 @@ class TransitionPressure:
 class TransitionPressureEngine:
     """Deterministic transition pressure inference from replay state."""
 
+    def __init__(self):
+        self.debug = False
+
     TP_CONFIG = {
         "regime_weakening_weight": 0.40,
         "low_regime_sim_stability": 0.25,
@@ -255,7 +258,8 @@ class TransitionPressureEngine:
             pressure_score -= 0.05
 
         # Log inference result for validation
-        print(f"[TP v2.6] Score: {pressure_score:.3f} | Breakout: {breakout_risk} | Drivers: {drivers[:5]}")
+        if self.debug: # Only show when trace/debug is enabled
+            print(f"[TP v2.6] Score: {pressure_score:.3f} | Breakout: {breakout_risk} | Drivers: {drivers[:5]}")
 
         return TransitionPressure(
             direction_bias=direction_bias,
