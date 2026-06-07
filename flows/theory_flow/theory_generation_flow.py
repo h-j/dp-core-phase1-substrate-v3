@@ -15,6 +15,7 @@ class TheoryGenerationFlow:
 
         self.client = OllamaClient()
         self.evaluator = LLMTheoryEvaluator()
+        self.debug = False
 
     def process(
         self,
@@ -36,7 +37,8 @@ class TheoryGenerationFlow:
         if falsifiability_conditions is None:
             falsifiability_conditions = []
 
-        print("[Regime History Debug]", regime_history)
+        if self.debug:
+            print("[Regime History Debug]", regime_history)
 
         falsifiability_text = ""
         if falsifiability_conditions:
@@ -58,7 +60,8 @@ Avg usefulness: {regime_history.get('avg_usefulness', 0.0):.2f}
 
 Use subtype history only if materially relevant. Primary focus remains: 1 observation, 2 subtype, 3 falsifiability. History is secondary context. Do not force theory to explain history.
 """
-        print(f"[Theory History Debug] seen_count: {seen_count}, context: {history_text_for_prompt}")
+        if self.debug:
+            print(f"[Theory History Debug] seen_count: {seen_count}, context: {history_text_for_prompt}")
 
         synthesis_context = ""
         if dialectical_synthesis:
@@ -145,7 +148,8 @@ Example:
                 parsed_theory_data = json.loads(json_text)
                 break
             except (json.JSONDecodeError, AttributeError):
-                print(f"[Theory JSON Parse Error] Attempt {attempt+1}/3. Retrying generation (strict JSON prompt)...")
+                if self.debug:
+                    print(f"[Theory JSON Parse Error] Attempt {attempt+1}/3. Retrying generation...")
                 result = self.client.generate(prompt)
 
         # If still not parsed, attempt one final targeted JSON-only repair prompt
@@ -181,7 +185,8 @@ Example:
             try:
                 parsed_theory_data = TheoryStructured(**parsed_theory_data)
             except Exception as e:
-                print(f"[Theory Structure Validation Error] {e}")
+                if self.debug:
+                    print(f"[Theory Structure Validation Error] {e}")
                 parsed_theory_data = None
 
         # Phase 1: Attach structured data to object for the evaluator
@@ -189,7 +194,8 @@ Example:
 
         theory_text, branches_generated, branches_retained = self._clean_theory(result, parsed_theory_data, regime_subtype=regime_subtype, dialectical_synthesis=dialectical_synthesis)
 
-        print("[Theory Summary Debug]", theory_text)
+        if self.debug:
+            print("[Theory Summary Debug]", theory_text)
 
         theory = Theory(
             lineage_id=str(uuid4()),

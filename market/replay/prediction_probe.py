@@ -55,6 +55,9 @@ class PredictionEvaluation:
 class PredictionProbeGenerator:
     """Deterministic prediction probe generator for replay."""
 
+    def __init__(self):
+        self.debug = False
+
     def generate_prediction(
         self,
         observation: object,
@@ -320,7 +323,8 @@ class PredictionProbeGenerator:
         if direction != PredictionDirection.uncertain and usefulness_score < 0.15:
             base = min(base, 0.55)
 
-        print(f"[Probe v2.6] Raw: {raw_confidence:.3f} | Calibrated: {base:.3f} | Usefulness: {usefulness_score:.3f}")
+        if self.debug: # Only show when trace/debug is enabled
+            print(f"[Probe v2.6] Raw: {raw_confidence:.3f} | Calibrated: {base:.3f} | Usefulness: {usefulness_score:.3f}")
 
         return float(max(0.05, min(0.95, round(base, 3))))
 
