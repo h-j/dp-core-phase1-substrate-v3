@@ -229,6 +229,7 @@ class ReplayExecutor:
         generate_visualizations: bool = False,
         lineage_debug: bool = False,
     ):
+        print(f"DEBUG: ReplayExecutor initialized from {__file__}")
         """Initialize executor.
 
         Args:
@@ -470,20 +471,24 @@ class ReplayExecutor:
         )
 
         # v3.3: Config Snapshot for auditability (Run A vs Run B comparison)
-        self._log("[CONFIG SNAPSHOT]")
+        if self.lineage_debug:
+            self._log("[CONFIG SNAPSHOT]")
+            
         config_summary = {}
         
         if self.contradiction_detector:
-            self._log("\nCONTRADICTION:")
+            if self.lineage_debug: self._log("\nCONTRADICTION:")
             config_summary["contradiction"] = self.contradiction_detector.CONFIG
-            for k, v in config_summary["contradiction"].items():
-                self._log(f"  {k}={v}")
+            if self.lineage_debug:
+                for k, v in config_summary["contradiction"].items():
+                    self._log(f"  {k}={v}")
         
         if self.transition_pressure_engine:
-            self._log("\nTRANSITION:")
+            if self.lineage_debug: self._log("\nTRANSITION:")
             config_summary["transition_pressure"] = self.transition_pressure_engine.TP_CONFIG
-            for k, v in config_summary["transition_pressure"].items():
-                self._log(f"  {k}={v}")
+            if self.lineage_debug:
+                for k, v in config_summary["transition_pressure"].items():
+                    self._log(f"  {k}={v}")
         
         # Persist snapshot for cross-run audit
         with open(self.run_dir / "config_snapshot.json", "w") as f:
@@ -900,6 +905,7 @@ class ReplayExecutor:
                     dialectical_synthesis=self.dialectical_synthesizer.format_for_reflection(dialectical_data) 
                     if dialectical_data else None,
                 )
+                # [Reflection Grounding Score] is not a direct print statement in replay_engine.py
                 print("[Reflection Output]", reflection.reflection_summary)
 
                 # Prefer structured claim when available for downstream consumers
@@ -1153,7 +1159,8 @@ class ReplayExecutor:
                 )
                 regime_history_final = self.regime_continuity_memory.summary(regime_subtype)
                 
-                print("[Regime Memory]", {"date": date_str, "subtype": regime_subtype, "history": regime_history_final})
+                if self.lineage_debug: # Guard for debug output
+                    print("[Regime Memory]", {"date": date_str, "subtype": regime_subtype, "history": regime_history_final})
 
                 self._run_theories.append(theory)
                 self._run_validations.append(validation)
@@ -1590,138 +1597,6 @@ class ReplayExecutor:
         self._log(f"\n✓ Replay complete")
         self._log(f"  Execution hash: {execution_hash[:16]}...")
         self._log(f"  Total synthesis triggered: {self.total_synthesis_triggered}")
-        self._log("=" * 70 + "\n")
-
-        # Console summary (concise)
-        try:
-            total_steps = len(self.engine)
-            active_theories = (
-                self.theory_lineage.active_count() if self.theory_lineage else 0
-            )
-            new_theories = (
-                sum(m.new_theories for m in self.observer.metrics)
-                if self.observer
-                else 0
-            )
-            mutated_theories = (
-                sum(m.mutated_theories for m in self.observer.metrics)
-                if self.observer
-                else 0
-            )
-            contradicted_theories = (
-                self.theory_lineage.contradicted_count() if self.theory_lineage else 0
-            )
-            retired_theories = (
-                sum(m.retired_theories for m in self.observer.metrics)
-                if self.observer
-                else 0
-            )
-            revived_theories = (
-                sum(m.revived_theories for m in self.observer.metrics)
-                if self.observer
-                else 0
-            )
-            longest_survival = (
-                self.theory_lineage.longest_surviving_theory()
-                if self.theory_lineage
-                else 0
-            )
-            avg_retirement_age = (
-                self.theory_lineage.average_retirement_age()
-                if self.theory_lineage
-                else 0.0
-            )
-            avg_revival_latency = (
-                self.theory_lineage.average_revival_latency()
-                if self.theory_lineage
-                else 0.0
-            )
-            avg_contradiction_half_life = (
-                float(mean([m.contradiction_half_life for m in self.observer.metrics]))
-                if self.observer and self.observer.metrics
-                else 0.0
-            )
-            median_contradiction_half_life = (
-                float(
-                    mean(
-                        [
-                            m.median_contradiction_half_life
-                            for m in self.observer.metrics
-                        ]
-                    )
-                )
-                if self.observer and self.observer.metrics
-                else 0.0
-            )
-            avg_contradiction_severity = (
-                float(
-                    mean([m.avg_contradiction_severity for m in self.observer.metrics])
-                )
-                if self.observer and self.observer.metrics
-                else 0.0
-            )
-            oldest_unresolved = (
-                max(
-                    (m.oldest_unresolved_contradiction for m in self.observer.metrics),
-                    default=0,
-                )
-                if self.observer
-                else 0
-            )
-            avg_confidence = (
-                float(mean([m.avg_confidence for m in self.observer.metrics]))
-                if self.observer and self.observer.metrics
-                else 0.0
-            )
-            confidence_volatility = (
-                float(mean([m.confidence_volatility for m in self.observer.metrics]))
-                if self.observer and self.observer.metrics
-                else 0.0
-            )
-            grounded_reflection = (
-                float(
-                    mean([m.grounded_reflection_score for m in self.observer.metrics])
-                )
-                if self.observer and self.observer.metrics
-                else 0.0
-            )
-            meta_commentary = (
-                float(mean([m.meta_commentary_score for m in self.observer.metrics]))
-                if self.observer and self.observer.metrics
-                else 0.0
-            )
-            narrative_inflation = (
-                float(mean([m.inflation_relapse_score for m in self.observer.metrics]))
-                if self.observer and self.observer.metrics
-                else 0.0
-            )
-            top_recurring = (
-                self.theory_lineage.top_recurring_theory()
-                if self.theory_lineage
-                else None
-            )
-            family_analytics = (
-                self.theory_lineage.family_analytics() if self.theory_lineage else {}
-            )
-            epistemic_aggregate = (
-                self.epistemic_scoring.aggregate(self.theory_lineage.theories.values())
-                if self.epistemic_scoring and self.theory_lineage
-                else {"avg_theory_usefulness": 0.0}
-            )
-            regime_recall_hit_rate = (
-                self.regime_memory.recall_hit_rate() if self.regime_memory else 0.0
-            )
-            memory_retrieval_usefulness = (
-                self.regime_memory.retrieval_usefulness(self._regime_matches_by_step)
-                if self.regime_memory
-                else 0.0
-            )
-
-            # Legacy concise replay summary removed - replaced by
-            # ReplayAnalysisEngine.print_summary() which now emits
-            # the structured v2.3+ summary.
-        except Exception:
-            pass
 
     def _format_historical_context(self, validations: list, reflections: list) -> str:
         """Compress prior cognition into a deterministic prompt context."""
@@ -1824,105 +1699,37 @@ class ReplayExecutor:
         prediction=None,
         prior_prediction_result=None,
     ):
-        """Print formatted day log."""
+        """Print concise COGNITIVE TRACE."""
         if self.quiet:
             return
 
-        print(f"\n## DAY {day_idx} — {date_str}")
+        print(f"\n── COGNITIVE TRACE: DAY {day_idx} ── {date_str} ──────────────────")
+        
         print(f"\nObservation:")
-        print(f"  {observation.observation_text}")
-        print(f"  Trend: {observation.trend_state}")
-        print(f"  Candle: {observation.candle_type}")
-        print(f"  Participation: {observation.participation_strength}, {observation.participation_confirmation}")
-        print(f"  Sentiment: {observation.macro_sentiment}")
-
-        # v3.0 Regime Surfacing
-        regime_subtype = getattr(observation, 'regime_subtype', 'neutral')
-        falsifiability_conditions = getattr(theory, 'falsifiability_conditions', [])
-
-        print(f"\nRegime subtype: {regime_subtype}")
-
-        if falsifiability_conditions:
-            print(f"\nFalsifiability:")
-            for condition in falsifiability_conditions:
-                print(f"- {condition}")
-
-        from market.regime.regime_subtype_classifier import RegimeSubtypeClassifier
-        falsified, triggered = RegimeSubtypeClassifier.evaluate_falsifiability(
-            observation, 
-            getattr(theory, 'regime_subtype', 'neutral'),
-            falsifiability_conditions
-        )
-
-        status = "contradicted" if falsified else "supported" if regime_subtype != "neutral" else "unresolved"
-        print(f"\nStatus:\n{status}")
-
-        if getattr(observation, 'analog_divergence_claim', None):
-            print(f"\nAnalog divergence:\n{observation.analog_divergence_claim}")
-
-        print(f"\nHorizon:")
-        print(f"  Daily: {horizon.daily}")
-        print(f"  Weekly: {horizon.weekly}")
-        print(f"  Monthly: {horizon.monthly}")
-
-        print(f"\nRegime memory:")
-        if regime_matches:
-            for match in regime_matches[:2]:
-                print(f"  {match.date} similarity {match.similarity:.2f}")
-                if match.recurring_contradiction:
-                    print(f"  recurring contradiction: {match.recurring_contradiction}")
-        else:
-            print("  No prior regime match.")
+        print(f"  {observation.observation_text[:160]}...")
 
         print(f"\nTheory:")
-        print(f"  {(theory.summary_structured.claim if theory.summary_structured else theory.summary)[:100]}...") # Canonical access with fallback
+        theory_claim = theory.summary_structured.claim if theory.summary_structured else theory.summary
+        print(f"  {theory_claim[:120]}...")
 
-        print(f"\nContradictions:")
-        print(f"  Score: {contradiction.get('score', 0):.2f}")
-        if contradiction.get("contradictions"):
-            for c in contradiction.get("contradictions", [])[:3]:
-                print(f"  - {c}")
-
-        print(f"\nConfidence:")
-        print(f"  Empirical: {confidence.empirical_confidence:.2f}")
-        print(f"  Coherence: {confidence.theoretical_coherence:.2f}")
-        print(f"  Contradiction: {confidence.contradiction_pressure:.2f}")
-
-        if theory_usefulness:
-            print(f"\nEpistemic:")
-            print(
-                "  Theory usefulness: "
-                f"{theory_usefulness.get('score', 0.0):.2f} "
-                f"({theory_usefulness.get('label', 'unknown')})"
-            )
-
-        if transition_pressure:
-            print(f"\nTransition Pressure:")
-            print(f"  Direction bias: {transition_pressure.direction_bias}")
-            print(f"  Pressure: {transition_pressure.pressure_score:.3f}")
-            print(f"  Stability: {transition_pressure.stability_score:.3f}")
-            print(f"  Breakout risk: {transition_pressure.breakout_risk}")
-            if transition_pressure.drivers:
-                print(f"  Drivers: {', '.join(transition_pressure.drivers[:4])}")
-
-        if prediction:
-            print(f"\nPrediction Probe:")
-            print(f"  Direction: {prediction.direction.value}")
-            print(f"  Confidence: {prediction.confidence:.3f}")
-            print(f"  Tension: {prediction.tension}")
-            print(f"  Invalidation: {prediction.invalidation}")
-
-        if prior_prediction_result:
-            print(f"\nPrior Prediction Result:")
-            print(
-                f"  Prior: {prior_prediction_result.prior_direction}, "
-                f"Actual: {prior_prediction_result.actual_direction}, "
-                f"Score: {prior_prediction_result.direction_score:.3f}"
-            )
-            print(f"  Invalidation triggered: {prior_prediction_result.invalidation_triggered}")
+        print(f"\nContradiction:")
+        contra_summary = contradiction.get('summary', 'None') if contradiction.get('indicators') else "None"
+        print(f"  {contra_summary}")
 
         print(f"\nReflection:")
-        print(f"  {reflection.reflection_summary[:80]}...")
+        print(f"  {reflection.reflection_summary[:400]}...")
+
+        print(f"\nLesson:")
+        lesson = "None"
+        if self.replay_analysis_engine and self.replay_analysis_engine.days:
+            lesson = self.replay_analysis_engine.days[-1].get("lesson", "None") or "None"
+            
+        if lesson == "None" or not lesson:
+             print("  No lesson extracted yet.")
+             print("  Requires contradiction, mutation, synthesis,")
+             print("  falsification, revival, or validation outcome.")
+        else:
+             print(f"  {lesson}")
 
 
 def main():
