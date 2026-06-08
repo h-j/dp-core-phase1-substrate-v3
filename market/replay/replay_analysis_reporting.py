@@ -82,8 +82,45 @@ class ReplayJournalBuilder:
         else:
             print("Theory evolution analysis: Pending sufficient lineage data.")
 
-        # 4. WHAT REMAINS UNCERTAIN?
-        print("\n4. WHAT REMAINS UNCERTAIN?")
+        # 4. EXPERIENCE SUMMARY
+        exp_stats = external_metrics.get("experience_stats", {})
+        if exp_stats:
+            print("\n4. EXPERIENCE SUMMARY")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            print()
+            print(f"Experiences Created: {exp_stats.get('created', 0)}")
+            print(f"Active: {exp_stats.get('active', 0)}")
+            print(f"Validated: {exp_stats.get('validated', 0)}")
+            print(f"Falsified: {exp_stats.get('falsified', 0)}")
+            print(f"Abandoned: {exp_stats.get('abandoned', 0)}")
+            
+            most_active = exp_stats.get("most_active")
+            if most_active:
+                print("\nMost Active Experience:")
+                print(f"Lineage: {most_active.get('lineage')}")
+                print(f"Theories: {most_active.get('theories')}")
+                print(f"Contradictions: {most_active.get('contradictions')}")
+                print(f"Mutations: {most_active.get('mutations')}")
+
+        # 4.1 EXPERIENCE HEALTH
+        exp_audit = external_metrics.get("experience_audit", {})
+        if exp_audit:
+            print("\nEXPERIENCE HEALTH")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            print(f"Average theories per experience: {exp_audit.get('avg_theories_per_experience', 0):.1f}")
+            print(f"Average mutations per experience: {exp_audit.get('avg_mutations_per_experience', 0):.1f}")
+            print(f"Average contradictions per experience: {exp_audit.get('avg_contradictions_per_experience', 0):.1f}")
+            
+            largest = exp_audit.get("largest_experience", {})
+            if largest:
+                print("\nLargest experience:")
+                print(f"  lineage: {largest.get('lineage')}")
+                print(f"  theories: {largest.get('theories')}")
+                print(f"  mutations: {largest.get('mutations')}")
+                print(f"  contradictions: {largest.get('contradictions')}")
+
+        # 5. WHAT REMAINS UNCERTAIN?
+        print("\n5. WHAT REMAINS UNCERTAIN?")
         print("━" * 40)
         uncertainties = []
         if contra_days == 0:
@@ -96,8 +133,8 @@ class ReplayJournalBuilder:
         else:
             for u in uncertainties: print(f"  {u}")
 
-        # 5. PERFORMANCE SUMMARY
-        print("\n5. PERFORMANCE SUMMARY")
+        # 6. PERFORMANCE SUMMARY
+        print("\n6. PERFORMANCE SUMMARY")
         print("━" * 40)
         if p:
             acc = p.get('accuracy', 0.0)
@@ -106,8 +143,8 @@ class ReplayJournalBuilder:
             print(f"• {'Theoretical utility is grounded in observation.' if useful > 0.4 else 'Utility remains unproven.'}")
             print(f"• {'Execution policies are engaging market structure.' if total_p > 0 else 'No validated signal has emerged.'}")
 
-        # 6. ARTIFACTS
-        print("\n6. ARTIFACTS")
+        # 7. ARTIFACTS
+        print("\n7. ARTIFACTS")
         print("━" * 40)
         out = external_metrics.get('outputs', {})
         print(f"  Analysis CSV: {out.get('prediction_csv','N/A')}")

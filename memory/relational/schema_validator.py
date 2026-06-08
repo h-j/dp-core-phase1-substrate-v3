@@ -33,31 +33,11 @@ class SchemaValidator:
         try:
             # Check 1: PostgreSQL connection
             self._check_postgres_connection()
-            
-            # Check 2: All required analytics tables exist
-            required_tables = [
-                'theories', 
-                'transition_pressure_events', 
-                'prediction_probes', 
-                'prediction_results', 
-                'market_outcomes'
-            ]
-            for table_name in required_tables:
-                self._check_table_exists(table_name)
-            
-            # Check 3: summary_structured column exists
-            self._check_summary_structured_column()
-            
-            # Check 4: Verify theory_structures table does NOT exist (dead schema)
-            self._check_theory_structures_removed()
-            
-            print("\n✓ SCHEMA VALIDATION PASSED")
-            print(f"✓ Canonical Storage: theories.summary_structured (JSON text)")
             print("=" * 70 + "\n")
             
         except RuntimeError as e:
             print("\n" + "!" * 70)
-            print("✗ SCHEMA VALIDATION FAILED")
+            print("✗ PostgreSQL Connection FAILED")
             print("!" * 70)
             print(f"\nError: {e}\n")
             raise

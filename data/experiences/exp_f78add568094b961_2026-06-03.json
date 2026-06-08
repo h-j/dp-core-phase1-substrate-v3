@@ -1,0 +1,18 @@
+{
+  "experience_id": "exp_f78add568094b961_2026-06-03",
+  "lineage_id": "f78add568094b961",
+  "originating_theory_id": "725171e7-ec77-4ab4-ae2e-060b582b7147",
+  "start_date": "2026-06-03",
+  "end_date": "2026-06-04",
+  "status": "falsified",
+  "theory_ids": [
+    "725171e7-ec77-4ab4-ae2e-060b582b7147"
+  ],
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "created_at": "2026-06-08T10:44:03.442515",
+  "updated_at": "2026-06-08T10:47:06.127806",
+  "mutation_count": 0,
+  "summary": "Theory lineage f78add568094b961 retired after 2 steps."
+}
