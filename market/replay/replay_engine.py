@@ -26,6 +26,8 @@ from market.replay.transition_pressure import TransitionPressureEngine
 from market.replay.decision_policy import DecisionPolicyEngine
 from flows.theory_flow.regime_continuity_memory import RegimeContinuityMemory
 from market.replay.transition_memory import TransitionMemoryStore, TransitionExample
+from experience.experience_engine import ExperienceEngine
+from experience.experience_repository import ExperienceRepository
 
 
 class ReplayEngine:
@@ -229,7 +231,6 @@ class ReplayExecutor:
         generate_visualizations: bool = False,
         lineage_debug: bool = False,
     ):
-        print(f"DEBUG: ReplayExecutor initialized from {__file__}")
         """Initialize executor.
 
         Args:
@@ -312,6 +313,10 @@ class ReplayExecutor:
         
         # Track IDs for relational linking
         self._prior_prediction_db_id = None
+
+        # Experience tracking
+        self.experience_repo = ExperienceRepository()
+        self.experience_engine = ExperienceEngine(self.experience_repo)
 
     def _create_snapshot_dirs(self):
         """Create replay snapshot directories if missing."""
@@ -728,6 +733,13 @@ class ReplayExecutor:
                                 f"confidence={lineage_record.confidence:.3f}"
                             )
 
+                        # Experience Integration: create or attach
+                        if lineage_record:
+                            if lineage_result.get("created"):
+                                self.experience_engine.create_experience(theory.id, lineage_record.id, date_str)
+                            elif lineage_result.get("mutated") or lineage_result.get("merged"):
+                                self.experience_engine.attach_theory(lineage_record.id, theory.id)
+
                         if lineage_record and lineage_record.confidence_state:
                             theory.confidence_state.empirical_confidence = (
                                 lineage_record.confidence_state.get(
@@ -792,6 +804,10 @@ class ReplayExecutor:
                                 descriptions=descriptions,
                                 step=day_idx,
                             )
+
+                        # Experience Integration: record contradiction
+                        if descriptions:
+                            self.experience_engine.record_contradiction(lineage_record.id)
                 except Exception:
                     pass
 
@@ -846,6 +862,14 @@ class ReplayExecutor:
                                 f"[Lineage] day={day_idx} retired={','.join([r.id for r in retired_records])}"
                             )
                         if self.contradiction_registry:
+                            # Experience Integration: close retired experiences
+                            for retired_record in retired_records:
+                                self.experience_engine.close_experience(
+                                    retired_record.id,
+                                    date_str,
+                                    f"Theory lineage {retired_record.id} retired after {retired_record.survival_steps} steps."
+                                )
+
                             for retired_record in retired_records:
                                 contradiction_step_info[
                                     "resolved_contradictions"
@@ -870,6 +894,11 @@ class ReplayExecutor:
                         if self.lineage_debug and revived_records:
                             self._log(
                                 f"[Lineage] day={day_idx} revived={','.join([r.id for r in revived_records])}"
+                            )
+                        # Experience Integration: attach revived theories if lineage is reactivated
+                        for revived_record in revived_records:
+                            self.experience_engine.attach_theory(
+                                revived_record.id, theory.id
                             )
                 except Exception:
                     pass
@@ -1019,6 +1048,13 @@ class ReplayExecutor:
                     prior_prediction_result = self.prediction_generator.score_actual(
                         self._prior_prediction, market_obs
                     )
+                    
+                    # Experience Lifecycle: Outcome Grounding
+                    if prior_prediction_result and lineage_record:
+                        if prior_prediction_result.direction_score == 1.0:
+                            self.experience_engine.record_validation(lineage_record.id)
+                        if prior_prediction_result.invalidation_triggered:
+                            self.experience_engine.record_falsification(lineage_record.id)
 
                 # Task B: Capital Simulation (observer-only)
                 derived = obs_data.get("derived")
@@ -1391,6 +1427,11 @@ class ReplayExecutor:
                 except Exception:
                     pass
 
+                # Find experience for current trace log
+                active_exp = None
+                if lineage_record:
+                    active_exp = self.experience_engine.get_active_experience_for_lineage(lineage_record.id)
+
                 # Print formatted log
                 self._print_day_log(
                     day_idx,
@@ -1406,6 +1447,7 @@ class ReplayExecutor:
                     transition_pressure,
                     prediction_probe,
                     prior_prediction_result,
+                    active_experience=active_exp
                 )
 
                 # WIRING FIX 1: Update prior prediction for next day's scoring
@@ -1438,6 +1480,9 @@ class ReplayExecutor:
         self.replay_analysis_engine.set_capital_simulation_logs(
             self.capital_simulator.get_daily_logs()
         )
+        
+        # Experience Stats for Final Journal
+        experience_stats = self.experience_engine.get_summary_stats()
 
         # Prepare external metrics (from runtime objects) for richer summary
         try:
@@ -1445,6 +1490,7 @@ class ReplayExecutor:
             external_metrics["total_steps"] = len(self.engine)
             external_metrics["execution_hash"] = execution_hash
             external_metrics["total_synthesis_triggered"] = self.total_synthesis_triggered
+            external_metrics["experience_stats"] = experience_stats
             if self.theory_lineage:
                 external_metrics.update(
                     {
@@ -1708,6 +1754,7 @@ class ReplayExecutor:
         transition_pressure=None,
         prediction=None,
         prior_prediction_result=None,
+        active_experience=None,
     ):
         """Print concise COGNITIVE TRACE."""
         if self.quiet:
@@ -1728,6 +1775,12 @@ class ReplayExecutor:
         tension_summary = getattr(reflection, 'tension_summary', None)
         if contra_summary == "None detected" and tension_summary and tension_summary != "None":
             print(f"  Tension: {tension_summary}")
+
+        if active_experience:
+            print(f"Experience:")
+            print(f"  {active_experience.experience_id}")
+            print(f"  Status: {active_experience.status.value}")
+            print(f"  Theories: {len(active_experience.theory_ids)} | Contradictions: {active_experience.contradiction_count} | Mutations: {active_experience.mutation_count}")
 
         print(f"Reflection:")
         print(f"  {reflection.reflection_summary[:400]}...")

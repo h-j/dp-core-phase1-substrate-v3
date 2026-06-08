@@ -1,0 +1,18 @@
+{
+  "experience_id": "exp_d38e306308cdde6f_2026-05-21",
+  "lineage_id": "d38e306308cdde6f",
+  "originating_theory_id": "36eb9a32-ad5a-4ca1-b732-6e77c4e2ac05",
+  "start_date": "2026-05-21",
+  "end_date": "2026-05-22",
+  "status": "falsified",
+  "theory_ids": [
+    "36eb9a32-ad5a-4ca1-b732-6e77c4e2ac05"
+  ],
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "created_at": "2026-06-08T10:26:20.850051",
+  "updated_at": "2026-06-08T10:29:08.253461",
+  "mutation_count": 0,
+  "summary": "Theory lineage d38e306308cdde6f retired after 2 steps."
+}
