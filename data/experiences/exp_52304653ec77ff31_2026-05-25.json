@@ -1,0 +1,27 @@
+{
+  "experience_id": "exp_52304653ec77ff31_2026-05-25",
+  "lineage_id": "52304653ec77ff31",
+  "originating_theory_id": "1879f47e-528e-4407-a33f-c56aea61f2b7",
+  "start_date": "2026-05-25",
+  "end_date": "2026-06-05",
+  "status": "falsified",
+  "theory_ids": [
+    "1879f47e-528e-4407-a33f-c56aea61f2b7",
+    "855463ac-1da6-480e-b08f-faf56d9434db",
+    "f549f75e-de45-4e56-8c0f-9c529781ae80",
+    "9c39925c-ed69-4be0-8e56-6be3e50eb2b3",
+    "bad611e3-ee9d-4f5d-af93-8fa7ec6da6a3",
+    "7ee94de2-48f6-46ef-bc85-e402b5494d82",
+    "fff0481c-c036-4d76-b8ef-4bda5c1b10b2",
+    "6ff9aabb-0ffa-4afe-8c08-2c42b1b67249",
+    "797bbcbb-39a3-413b-a3f6-8290ee681b80",
+    "eb71fd4a-ac5a-40e6-a183-e24880733830"
+  ],
+  "contradiction_count": 9,
+  "validation_count": 2,
+  "falsification_count": 4,
+  "created_at": "2026-06-08T19:24:02.370669",
+  "updated_at": "2026-06-08T19:40:26.984579",
+  "mutation_count": 9,
+  "summary": "Theory lineage 52304653ec77ff31 retired after 10 steps."
+}

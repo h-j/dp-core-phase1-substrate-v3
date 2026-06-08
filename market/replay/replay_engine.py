@@ -317,6 +317,7 @@ class ReplayExecutor:
         # Experience tracking
         self.experience_repo = ExperienceRepository()
         self.experience_engine = ExperienceEngine(self.experience_repo)
+        self._lineage_audit_table = []  # Instrumentation: For final audit table
 
     def _create_snapshot_dirs(self):
         """Create replay snapshot directories if missing."""
@@ -505,11 +506,25 @@ class ReplayExecutor:
         self.replay_analysis_engine.set_config_snapshot(config_summary)
         self._log("\n" + "-" * 70)
 
+        last_lineage_id = None # Instrumentation: Track lineage changes
+
         # Execute replay
         for day_idx in range(len(self.engine)):
             try:
                 obs_data = self.engine.get_observation_for_day(day_idx)
                 date_str = obs_data["date"]
+                
+                # Instrumentation: Reset daily tracking flags
+                exp_create_called = False
+                exp_attach_called = False
+                exp_close_called = False
+                lineage_id_val = "N/A"
+                audit_created = False
+                audit_mutated = False
+                audit_merged = False
+                audit_revived = False
+                audit_retired = False
+
                 current_dialectical_data = None
                 dialectical_data = None
 
@@ -715,6 +730,12 @@ class ReplayExecutor:
                             step=day_idx,
                         )
                         lineage_record = lineage_result["record"]
+                        lineage_id_val = lineage_result.get("lineage_id", "N/A") # Use the stable lineage_id from lineage_result
+                        audit_created = lineage_result.get("created", False)
+                        audit_mutated = lineage_result.get("mutated", False)
+                        audit_merged = lineage_result.get("merged", False)
+                        audit_revived = lineage_result.get("revived", False) # Note: revived logic handled separately below
+
                         theory_step_info["created"] = int(lineage_result["created"])
                         theory_step_info["mutated"] = int(lineage_result["mutated"])
                         theory_step_info["merged"] = int(lineage_result["merged"])
@@ -735,10 +756,27 @@ class ReplayExecutor:
 
                         # Experience Integration: create or attach
                         if lineage_record:
+                            # AUDIT TRACE: Capture the shift in IDs during mutation
+                            parent_id_for_log = lineage_result.get("parent_id", "N/A") # Use parent_id from result for logging
+                            if lineage_result.get("mutated"):
+                                print(f"  [LINEAGE AUDIT] MUTATION DETECTED: Old Lineage (Parent): {parent_id_for_log} -> New Lineage (Child): {lineage_record.id} (Stable Lineage: {lineage_id_val})")
+
                             if lineage_result.get("created"):
-                                self.experience_engine.create_experience(theory.id, lineage_record.id, date_str)
+                                print(f"  [AUDIT] Calling create_experience for lineage {lineage_record.id}")
+                                self.experience_engine.create_experience(theory.id, lineage_id_val, date_str) # Use stable lineage_id
+                                exp_create_called = True
                             elif lineage_result.get("mutated") or lineage_result.get("merged"):
-                                self.experience_engine.attach_theory(lineage_record.id, theory.id)
+                                # Use the stable lineage_id for attaching theories to the experience
+                                print(f"  [AUDIT] Calling attach_theory for lineage {lineage_id_val} (Theory ID: {theory.id})")
+                                self.experience_engine.attach_theory(lineage_id_val, theory.id) # Use stable lineage_id
+                                exp_attach_called = True
+
+                        # Instrumentation: Log lineage/experience changes
+                        if lineage_record and lineage_id_val != last_lineage_id: # Compare stable lineage_id
+                            print(f"!!! LINEAGE CHANGE: {last_lineage_id} -> {lineage_record.id}")
+                            last_lineage_id = lineage_record.id
+                        if exp_create_called:
+                            print(f"!!! NEW EXPERIENCE CREATED: exp_{lineage_record.id}_{date_str}")
 
                         if lineage_record and lineage_record.confidence_state:
                             theory.confidence_state.empirical_confidence = (
@@ -807,7 +845,7 @@ class ReplayExecutor:
 
                         # Experience Integration: record contradiction
                         if descriptions:
-                            self.experience_engine.record_contradiction(lineage_record.id)
+                            self.experience_engine.record_contradiction(lineage_id_val)
                 except Exception:
                     pass
 
@@ -869,6 +907,7 @@ class ReplayExecutor:
                                     date_str,
                                     f"Theory lineage {retired_record.id} retired after {retired_record.survival_steps} steps."
                                 )
+                                exp_close_called = True
 
                             for retired_record in retired_records:
                                 contradiction_step_info[
@@ -880,6 +919,7 @@ class ReplayExecutor:
                             contradiction_step_info["active_contradictions"] = (
                                 self.contradiction_registry.active_count()
                             )
+                        audit_retired = len(retired_records) > 0
                 except Exception:
                     pass
 
@@ -890,6 +930,7 @@ class ReplayExecutor:
                             abstraction=abstraction_text,
                             step=day_idx,
                         )
+                        audit_revived = len(revived_records) > 0
                         theory_step_info["revived"] = len(revived_records)
                         if self.lineage_debug and revived_records:
                             self._log(
@@ -897,11 +938,44 @@ class ReplayExecutor:
                             )
                         # Experience Integration: attach revived theories if lineage is reactivated
                         for revived_record in revived_records:
+                            print(f"  [AUDIT] Calling attach_theory (REVIVAL) for lineage {revived_record.lineage_id} (Theory ID: {theory.id})") # Use revived_record.lineage_id
                             self.experience_engine.attach_theory(
-                                revived_record.id, theory.id
+                                revived_record.lineage_id, theory.id
                             )
+                            exp_attach_called = True
                 except Exception:
                     pass
+
+                # Instrumentation: Print Daily Trace
+                print(f"\nDAY {date_str}")
+                print(f"theory_id={theory.id}")
+                print(f"lineage_id={lineage_id_val}")
+                print(f"\nlineage_result:")
+                print(f"created={audit_created}")
+                print(f"mutated={audit_mutated}")
+                print(f"merged={audit_merged}")
+                print(f"revived={audit_revived}")
+                print(f"retired={audit_retired}")
+                print(f"\nexperience actions:")
+                print(f"create_experience={exp_create_called}")
+                print(f"attach_theory={exp_attach_called}")
+                print(f"close_experience={exp_close_called}")
+
+                # Instrumentation: Accumulate audit table row
+                action = "none"
+                if exp_create_called: action = "create"
+                elif exp_attach_called: action = "attach"
+                elif exp_close_called: action = "close"
+
+                self._lineage_audit_table.append({
+                    "day": date_str,
+                    "lineage_id": lineage_id_val,
+                    "created": audit_created,
+                    "mutated": audit_mutated,
+                    "merged": audit_merged,
+                    "revived": audit_revived,
+                    "experience_action": action
+                })
 
                 # validate
                 validation = ValidationEvent(
@@ -1052,9 +1126,9 @@ class ReplayExecutor:
                     # Experience Lifecycle: Outcome Grounding
                     if prior_prediction_result and lineage_record:
                         if prior_prediction_result.direction_score == 1.0:
-                            self.experience_engine.record_validation(lineage_record.id)
+                            self.experience_engine.record_validation(lineage_id_val)
                         if prior_prediction_result.invalidation_triggered:
-                            self.experience_engine.record_falsification(lineage_record.id)
+                            self.experience_engine.record_falsification(lineage_id_val)
 
                 # Task B: Capital Simulation (observer-only)
                 derived = obs_data.get("derived")
@@ -1429,7 +1503,7 @@ class ReplayExecutor:
 
                 # Find experience for current trace log
                 active_exp = None
-                if lineage_record:
+                if lineage_record and lineage_id_val != "N/A": # Use the stable lineage_id for lookup
                     active_exp = self.experience_engine.get_active_experience_for_lineage(lineage_record.id)
 
                 # Print formatted log
@@ -1472,6 +1546,14 @@ class ReplayExecutor:
 
         # Finalize
         execution_hash = self.engine.finalize_execution()
+        
+        # Instrumentation: Print final audit table
+        print("\n" + "="*80)
+        print("LINEAGE CONTINUITY AUDIT TABLE")
+        print("="*80)
+        print(f"{'day':<12} | {'lineage_id':<33} | {'cre':<5} | {'mut':<5} | {'mer':<5} | {'rev':<5} | {'action':<10}")
+        for r in self._lineage_audit_table:
+            print(f"{r['day']:<12} | {r['lineage_id']:<33} | {str(r['created'])[0]:<5} | {str(r['mutated'])[0]:<5} | {str(r['merged'])[0]:<5} | {str(r['revived'])[0]:<5} | {r['experience_action']:<10}")
 
         # Finalize capital simulation and analysis
         capital_summary = self.capital_simulator.get_summary()
@@ -1483,6 +1565,7 @@ class ReplayExecutor:
         
         # Experience Stats for Final Journal
         experience_stats = self.experience_engine.get_summary_stats()
+        experience_audit = self.experience_engine.audit()
 
         # Prepare external metrics (from runtime objects) for richer summary
         try:
@@ -1491,6 +1574,7 @@ class ReplayExecutor:
             external_metrics["execution_hash"] = execution_hash
             external_metrics["total_synthesis_triggered"] = self.total_synthesis_triggered
             external_metrics["experience_stats"] = experience_stats
+            external_metrics["experience_audit"] = experience_audit
             if self.theory_lineage:
                 external_metrics.update(
                     {
