@@ -1,0 +1,18 @@
+{
+  "experience_id": "exp_4d815036426b1351_2026-02-11",
+  "lineage_id": "4d815036426b1351",
+  "originating_theory_id": "5bc4a76c-ea2c-4fce-86e0-5dc2807417ea",
+  "start_date": "2026-02-11",
+  "end_date": "2026-02-12",
+  "status": "validated",
+  "theory_ids": [
+    "5bc4a76c-ea2c-4fce-86e0-5dc2807417ea"
+  ],
+  "contradiction_count": 1,
+  "validation_count": 1,
+  "falsification_count": 0,
+  "created_at": "2026-06-09T15:17:24.660304",
+  "updated_at": "2026-06-09T15:20:21.010817",
+  "mutation_count": 0,
+  "summary": "Theory lineage 4d815036426b1351 retired after 2 steps."
+}

@@ -290,6 +290,7 @@ class ReplayExecutor:
 
         # small in-memory history for confidence tracking
         self._confidence_history: List[float] = []
+        self._actual_directions_val_history: List[int] = []
         self._run_theories: List[object] = []
         self._run_validations: List[object] = []
         self._run_reflections: List[object] = []
@@ -530,6 +531,15 @@ class ReplayExecutor:
 
                 # Synthesize observation
                 market_obs = synthesizer.synthesize(day_idx)
+                
+                # Track directional persistence
+                actual_dir_str = market_obs.trend_state.lower()
+                dir_val = 1 if "higher" in actual_dir_str else -1 if "lower" in actual_dir_str else 0
+                self._actual_directions_val_history.append(dir_val)
+                
+                persistence_3d = mean(self._actual_directions_val_history[-3:]) if len(self._actual_directions_val_history) >= 3 else 0.0
+                persistence_5d = mean(self._actual_directions_val_history[-5:]) if len(self._actual_directions_val_history) >= 5 else 0.0
+                persistence_10d = mean(self._actual_directions_val_history[-10:]) if len(self._actual_directions_val_history) >= 10 else 0.0
 
                 # v1.9 Transition Detection and Recording
                 if day_idx > 0 and self._prior_transition_context:
@@ -1060,6 +1070,20 @@ class ReplayExecutor:
                 if theory_usefulness["score"] > 0.8 and contradiction_result.get("score", 0.0) > 0.7:
                     self._log("WARNING: High theory usefulness with high contradiction detected.")
 
+                # Find experience early for metadata attribution
+                active_exp = None
+                if lineage_record and lineage_id_val != "N/A":
+                    active_exp = self.experience_engine.get_active_experience_for_lineage(lineage_id_val)
+
+                intelligence_metadata = {
+                    "directional_persistence": {"3d": persistence_3d, "5d": persistence_5d, "10d": persistence_10d},
+                    "mutation_count": active_exp.mutation_count if active_exp else 0,
+                    "theory_mutation_count": lineage_record.mutation_count if lineage_record else 0, # Add theory's own mutation count
+                    "contradiction_count": active_exp.contradiction_count if active_exp else 0,
+                    "lineage_id": lineage_id_val,
+                    "theory_id": theory.id
+                }
+
                 # infer transition pressure (deterministic, observer-only)
                 transition_pressure = self.transition_pressure_engine.infer(
                     observation=market_obs,
@@ -1337,6 +1361,7 @@ class ReplayExecutor:
                     regime_history=regime_history_final,
                     branch_stats=branch_stats, # Pass branch_stats
                     branches_generated=branch_stats.get("generated", 0),
+                    intelligence_data=intelligence_metadata,
                 )
 
                 snapshot_data = {
@@ -1368,6 +1393,7 @@ class ReplayExecutor:
                     "branch_stats": branch_stats, # Store branch_stats in snapshot
                     "dialectical_triggered": dialectical_data is not None,
                     "dialectical_synthesis": dialectical_data if dialectical_data else None,
+                    "intelligence": intelligence_metadata,
                 }
                 # Save snapshot
                 self._save_snapshot(day_idx, date_str, snapshot_data)
@@ -1865,6 +1891,9 @@ class ReplayExecutor:
             print(f"  {active_experience.experience_id}")
             print(f"  Status: {active_experience.status.value}")
             print(f"  Theories: {len(active_experience.theory_ids)} | Contradictions: {active_experience.contradiction_count} | Mutations: {active_experience.mutation_count}")
+        
+        if prediction:
+            print(f"Prediction: {prediction.direction.value} (Next Day)")
 
         print(f"Reflection:")
         print(f"  {reflection.reflection_summary[:400]}...")

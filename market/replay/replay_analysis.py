@@ -87,6 +87,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         transition_memory_hit: bool = False,
         branches_generated: int = 0,
         branch_stats: dict = None,
+        intelligence_data: dict = None,
     ):
         """Record cognition state for a day."""
         # v2.4 Persistence fallback
@@ -123,6 +124,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                 "regime_history": regime_history,
                 "branches_generated": branches_generated,
                 "branch_stats": branch_stats or {}, # Store branch stats
+                "intelligence": intelligence_data or {},
             }
         )
         
@@ -197,6 +199,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                     "volume_state": volume_state,
                     "volatility_regime": volatility_regime,
                     "momentum_regime": momentum_regime,
+                    "intelligence": intelligence_data or {},
                 }
             )
 
@@ -279,6 +282,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             "transition_pressure_analysis": self._analyze_transition_pressure(),
             "capital_simulation_analysis": self._analyze_capital_simulation(),
             "prediction_analysis": self._analyze_predictions(),
+            "prediction_intelligence": self._analyze_prediction_intelligence(),
             "transition_memory_analysis": self._analyze_transition_memory(),
             "prediction_history": self.prediction_history,
             "transition_pressure_history": self.transition_pressure_history,
@@ -890,6 +894,128 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             "high_usefulness_days": high_usefulness_days,
             "accuracy_when_high_usefulness": accuracy_when_high_usefulness,
             "missing_usefulness_values": missing_usefulness_count,
+        }
+
+    def _analyze_prediction_intelligence(self) -> Dict:
+        """Analyze longitudinal prediction intelligence and learning effectiveness."""
+        if not self.prediction_history:
+            return {}
+
+        # Create a temporally aligned list of predictions and their outcomes
+        # Each entry in prediction_history[i] contains:
+        #   - "prediction": The prediction made ON day_i for day_i+1
+        #   - "prior_prediction_result": The evaluation of the prediction made ON day_i-1 for day_i
+        # To correctly analyze, we need to pair prediction_history[i-1]["prediction"] with
+        # prediction_history[i]["prior_prediction_result"].
+        
+        aligned_predictions = []
+        for i in range(1, len(self.prediction_history)):
+            current_day_record = self.prediction_history[i]
+            previous_day_prediction_record = self.prediction_history[i-1]
+            
+            if current_day_record.get("prior_prediction_result") and previous_day_prediction_record.get("prediction"):
+                aligned_predictions.append({
+                    "date": current_day_record["date"],
+                    "predicted_direction": previous_day_prediction_record["prediction"].get("direction"),
+                    "actual_direction": current_day_record["prior_prediction_result"].get("actual_direction"),
+                    "direction_score": current_day_record["prior_prediction_result"].get("direction_score"),
+                    "intelligence": previous_day_prediction_record.get("intelligence", {}) # Metadata for the theory that made the prediction
+                })
+
+        scored = [r for r in self.prediction_history if r.get("prior_prediction_result", {}).get("direction_score") is not None]
+        if not scored:
+            return {}
+
+        # 1. Mutation Effectiveness
+        mutation_buckets = defaultdict(list)
+        for r in scored:
+            # Use intelligence from the day the prediction was made
+            mut_count = r.get("intelligence", {}).get("theory_id", "N/A") # Use theory_id to group mutations
+            # We need to get the mutation count for the theory_id that made the prediction.
+            # This requires a lookup or storing mutation_count in the aligned_predictions.
+            # For now, let's assume `r.get("intelligence", {}).get("mutation_count", 0)` is correct for the prediction being evaluated.
+            # This is still problematic as `r` is the current day's record, and `intelligence` is for current day's theory.
+            # The `aligned_predictions` list should carry the correct `mutation_count` for the `predicted_direction`.
+            pass
+        
+        # Re-calculate mutation_effectiveness using aligned_predictions
+        mutation_buckets_aligned = defaultdict(list)
+        for r in aligned_predictions:
+            mut_count = r["intelligence"].get("mutation_count", 0)
+            mutation_buckets_aligned[mut_count].append(r["direction_score"])
+
+        mutation_effectiveness = {
+            mut: {"accuracy": mean(scores) if scores else 0.0, "count": len(scores)}
+            for mut, scores in mutation_buckets_aligned.items()
+        }
+
+        # 2. Contradiction Intelligence
+        contra_buckets = {"0": [], "1-3": [], "3-5": [], "5+": []}
+        for r in aligned_predictions:
+            c = r["intelligence"].get("contradiction_count", 0)
+            score = r["direction_score"]
+            if c == 0: contra_buckets["0"].append(score)
+            elif c <= 3: contra_buckets["1-3"].append(score)
+            elif c <= 5: contra_buckets["3-5"].append(score)
+            else: contra_buckets["5+"].append(score)
+        
+        contradiction_intelligence = {
+            k: {"accuracy": mean(v) if v else 0.0, "count": len(v)}
+            for k, v in contra_buckets.items()
+        }
+
+        # 3. Directional Bias (Confusion Matrix)
+        directions = ["higher", "lower", "range_bound", "uncertain"]
+        matrix_aligned = {d: {act: 0 for act in directions} for d in directions}
+        for r in aligned_predictions:
+            pred = r["predicted_direction"]
+            act = r["actual_direction"]
+            if pred in matrix_aligned and act in matrix_aligned[pred]:
+                matrix_aligned[pred][act] += 1
+
+        # 4. Learning Trend (Thirds)
+        n_aligned = len(aligned_predictions)
+        thirds_aligned = {"first": aligned_predictions[:n_aligned//3], "middle": aligned_predictions[n_aligned//3:2*n_aligned//3], "final": aligned_predictions[2*n_aligned//3:]}
+        learning_trend = {
+            k: mean([r["direction_score"] for r in v]) if v else 0.0 for k, v in thirds_aligned.items()
+        }
+
+        # 5. Drift Metrics
+        pred_changes = 0
+        for i in range(1, len(self.prediction_history)):
+            if self.prediction_history[i]["prediction"].get("direction") != self.prediction_history[i-1]["prediction"].get("direction"):
+                pred_changes += 1
+        
+        prediction_drift = pred_changes / (len(self.prediction_history) - 1) if len(self.prediction_history) > 1 else 0.0
+
+        mutations = sum(1 for r in self.prediction_history if r.get("intelligence", {}).get("mutation_count", 0) > 0)
+        theory_drift = mutations / len(self.prediction_history) if self.prediction_history else 0.0
+        
+        accuracy_drift = learning_trend["final"] - learning_trend["first"]
+
+        # 6. Trend Recognition Audit (Day by Day)
+        trend_audit = []
+        for r in self.prediction_history:
+            res = r.get("prior_prediction_result", {})
+            trend_audit.append({
+                "date": r["date"],
+                "actual": res.get("actual_direction", "N/A"),
+                "predicted": r["prediction"].get("direction", "N/A"),
+                "persistence": r.get("intelligence", {}).get("directional_persistence", {}).get("10d", 0.0),
+                "result": "PASS" if res.get("direction_score", 0) == 1.0 else "FAIL" if res.get("direction_score", 0) == 0.0 else "PARTIAL"
+            })
+
+        return {
+            "mutation_effectiveness": mutation_effectiveness,
+            "contradiction_intelligence": contradiction_intelligence,
+            "directional_bias": matrix,
+            "learning_trend": learning_trend,
+            "convergence": {
+                "prediction_drift": prediction_drift,
+                "theory_drift": theory_drift,
+                "accuracy_drift": accuracy_drift
+            },
+            "trend_audit": trend_audit
         }
 
     def _detect_cognition_risks(self) -> List:
