@@ -143,8 +143,78 @@ class ReplayJournalBuilder:
             print(f"• {'Theoretical utility is grounded in observation.' if useful > 0.4 else 'Utility remains unproven.'}")
             print(f"• {'Execution policies are engaging market structure.' if total_p > 0 else 'No validated signal has emerged.'}")
 
+        # 7. PREDICTION INTELLIGENCE
+        print("\n7. PREDICTION INTELLIGENCE")
+        print("━" * 40)
+        pi = analysis.get("prediction_intelligence", {})
+        if p and pi:
+            print(f"Overall Accuracy: {p.get('accuracy', 0.0):.1%}")
+            
+            # Persistence
+            history = analysis.get("prediction_history", [])
+            last_day = history[-1] if history else {}
+            persistence = last_day.get("intelligence", {}).get("directional_persistence", {}).get("10d", 0.0)
+            p_desc = "Neutral"
+            if persistence > 0.5: p_desc = "Strong Uptrend"
+            elif persistence < -0.5: p_desc = "Strong Downtrend"
+            print(f"Directional Persistence (10-day): {persistence:.2f} ({p_desc})")
+
+            print("\n  Mutation Effectiveness:")
+            me = pi.get("mutation_effectiveness", {})
+            for mut in sorted(me.keys()):
+                stats = me[mut]
+                print(f"    • Accuracy (Mutation #{mut}): {stats['accuracy']:.1%} (n={stats['count']})")
+            if me:
+                base_acc = me.get(0, {}).get("accuracy", 0.0)
+                high_mut_acc = me.get(max(me.keys()), {}).get("accuracy", 0.0)
+                insight = "Improving" if high_mut_acc > base_acc else "Degrading" if high_mut_acc < base_acc else "Stable"
+                print(f"    → Insight: Prediction quality is {insight} as mutation depth increases.")
+            
+            print("\n  Contradiction Intelligence:")
+            ci = pi.get("contradiction_intelligence", {})
+            for bucket, stats in ci.items():
+                print(f"    • Accuracy ({bucket} Contradictions): {stats['accuracy']:.1%} (n={stats['count']})")
+            if ci.get("0", {}).get("accuracy", 0.0) > ci.get("5+", {}).get("accuracy", 0.0):
+                print(f"    → Insight: Contradiction pressure is a high-validity leading indicator of failure.")
+
+            print("\n  Directional Bias (Confusion Matrix):")
+            matrix = pi.get("directional_bias", {})
+            print(f"    Predicted \\ Actual | Higher | Lower | Range | Uncertain")
+            for pred in ["higher", "lower", "range_bound", "uncertain"]:
+                row = matrix.get(pred, {})
+                print(f"    {pred:<18} | {row.get('higher', 0):<6} | {row.get('lower', 0):<5} | {row.get('range_bound', 0):<5} | {row.get('uncertain', 0)}")
+            
+            print("\n  Learning Convergence:")
+            conv = pi.get("convergence", {})
+            p_drift = conv.get("prediction_drift", 0.0)
+            t_drift = conv.get("theory_drift", 0.0)
+            a_drift = conv.get("accuracy_drift", 0.0)
+            print(f"    • Prediction Drift: {p_drift:.1%} ({'Volatile' if p_drift > 0.3 else 'Stable'} Mind)")
+            print(f"    • Theory Drift: {t_drift:.1%} ({'High' if t_drift > 0.5 else 'Low'} Mutation Volatility)")
+            print(f"    • Accuracy Drift: {a_drift:+.1%} ({'Learning' if a_drift > 0.05 else 'Regressive' if a_drift < -0.05 else 'Stagnant'})")
+
+            print("\n  Learning Trend (Accuracy per third):")
+            lt = pi.get("learning_trend", {})
+            print(f"    First Third: {lt.get('first', 0.0):.1%}")
+            print(f"    Middle Third: {lt.get('middle', 0.0):.1%}")
+            print(f"    Final Third: {lt.get('final', 0.0):.1%}")
+
+            # Trend Audit Table
+            print("\nTREND RECOGNITION AUDIT:")
+            print(f"{'DAY':<12} | {'Actual':<12} | {'Predicted':<12} | {'Persist':<7} | {'Result'}")
+            print("-" * 65)
+            for day in pi.get("trend_audit", [])[-15:]: # Show last 15 days
+                print(f"{day['date']:<12} | {day['actual']:<12} | {day['predicted']:<12} | {day['persistence']:<7.2f} | {day['result']}")
+
+        elif p:
+            print(f"Overall Accuracy: {p.get('accuracy', 0.0):.1%}")
+            print("  Learning Intelligence metrics pending sufficient data.")
+
+        else:
+            print("  No prediction analysis data available.")
+
         # 7. ARTIFACTS
-        print("\n7. ARTIFACTS")
+        print("\n8. ARTIFACTS")
         print("━" * 40)
         out = external_metrics.get('outputs', {})
         print(f"  Analysis CSV: {out.get('prediction_csv','N/A')}")

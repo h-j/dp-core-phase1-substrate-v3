@@ -1,0 +1,29 @@
+{
+  "experience_id": "exp_a11218e2c7025b1e_2026-05-18",
+  "lineage_id": "a11218e2c7025b1e",
+  "originating_theory_id": "89341a9d-1d1c-4014-8901-73702be36e1d",
+  "start_date": "2026-05-18",
+  "end_date": "2026-05-25",
+  "status": "falsified",
+  "theory_ids": [
+    "89341a9d-1d1c-4014-8901-73702be36e1d",
+    "9732e474-5ec9-4c46-bd20-731e825fe4f1",
+    "efada19c-2463-43f0-83dd-e49ce82fb7f8",
+    "0b37c02a-3035-40be-ab25-25a30d4e16ae",
+    "a641cca0-c682-46f1-a0ef-0fb0cfde13c6",
+    "161677fb-a43e-42a2-b98d-391002bd6c14",
+    "c863995c-c489-4c3e-9dd2-2a3fdef63681",
+    "4719de86-86c1-4326-8869-9c94e7b714b2",
+    "72582475-e489-4d95-a19b-500070e41cba",
+    "0442c24f-427d-48fa-ab0b-d6ab1fd19b53",
+    "ce4fffe0-9f7b-4f32-a14c-99b9f6791ba7",
+    "41e39f0c-8d2f-45ff-abe0-6c3ecf8c224e"
+  ],
+  "contradiction_count": 10,
+  "validation_count": 3,
+  "falsification_count": 5,
+  "created_at": "2026-06-09T13:59:15.028101",
+  "updated_at": "2026-06-09T14:27:50.604773",
+  "mutation_count": 11,
+  "summary": "Theory lineage a11218e2c7025b1e retired after 6 steps."
+}
