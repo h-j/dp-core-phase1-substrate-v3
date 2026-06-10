@@ -1,0 +1,18 @@
+{
+  "experience_id": "exp_eb10106f1e4d3f6f_2026-06-05",
+  "lineage_id": "eb10106f1e4d3f6f",
+  "originating_theory_id": "df405305-135d-43ea-9b12-4eff9bde9fcd",
+  "start_date": "2026-06-05",
+  "end_date": null,
+  "status": "open",
+  "theory_ids": [
+    "df405305-135d-43ea-9b12-4eff9bde9fcd"
+  ],
+  "contradiction_count": 0,
+  "validation_count": 0,
+  "falsification_count": 0,
+  "created_at": "2026-06-09T18:24:59.432269",
+  "updated_at": "2026-06-09T18:24:59.432269",
+  "mutation_count": 0,
+  "summary": null
+}

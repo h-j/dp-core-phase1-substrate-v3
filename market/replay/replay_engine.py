@@ -24,6 +24,7 @@ from market.replay.prediction_probe import PredictionProbeGenerator
 from market.replay.capital_simulator import CapitalSimulator
 from market.replay.transition_pressure import TransitionPressureEngine
 from market.replay.decision_policy import DecisionPolicyEngine
+from memory.replay.regime_memory import RegimeMemoryStore # Import RegimeMemoryStore
 from flows.theory_flow.regime_continuity_memory import RegimeContinuityMemory
 from market.replay.transition_memory import TransitionMemoryStore, TransitionExample
 from experience.experience_engine import ExperienceEngine
@@ -296,6 +297,8 @@ class ReplayExecutor:
         self._run_reflections: List[object] = []
         self._run_market_observations: List[object] = []
         self._prior_prediction = None
+        self.regime_memory = RegimeMemoryStore() # Initialize unconditionally
+        self.regime_continuity_memory = RegimeContinuityMemory()
         self._prior_dialectical_synthesis = None
         self._prior_dialectical_subtype = None
         self._prior_prediction_db_id = None
@@ -442,10 +445,7 @@ class ReplayExecutor:
             )
             self.theory_lineage.debug = self.lineage_debug
             self.contradiction_registry = ContradictionRegistry(
-                self.run_dir / "contradiction_registry.json"
-            )
-            self.regime_memory = RegimeMemoryStore() # Already exists
-            self.regime_continuity_memory = RegimeContinuityMemory()
+                self.run_dir / "contradiction_registry.json")
             self.horizon_engine = HorizonCognitionEngine()
             self.epistemic_scoring = EpistemicScoringEngine()
             self.prediction_generator = PredictionProbeGenerator()
@@ -455,7 +455,6 @@ class ReplayExecutor:
             self.observer = None
             self.theory_lineage = None
             self.contradiction_registry = None
-            # self.regime_memory = RegimeMemoryStore() # Redundant initialization, already exists
             self.horizon_engine = HorizonCognitionEngine()
             self.epistemic_scoring = EpistemicScoringEngine()
             self.prediction_generator = PredictionProbeGenerator()
@@ -540,6 +539,16 @@ class ReplayExecutor:
                 persistence_3d = mean(self._actual_directions_val_history[-3:]) if len(self._actual_directions_val_history) >= 3 else 0.0
                 persistence_5d = mean(self._actual_directions_val_history[-5:]) if len(self._actual_directions_val_history) >= 5 else 0.0
                 persistence_10d = mean(self._actual_directions_val_history[-10:]) if len(self._actual_directions_val_history) >= 10 else 0.0
+
+                # Phase 1: Trend Persistence Classification
+                def classify_persistence(val):
+                    if val > 0.6: return "Persistent Higher"
+                    if val < -0.6: return "Persistent Lower"
+                    return "Mixed"
+                
+                reg_5d = classify_persistence(persistence_5d)
+                # Phase 2: Observation Integration (Temporal continuity context for Theory/Reflection)
+                market_obs.observation_text += f"\nTrend Persistence: 3D: {classify_persistence(persistence_3d)}, 5D: {reg_5d}, 10D: {classify_persistence(persistence_10d)}. Overall Regime: {reg_5d}."
 
                 # v1.9 Transition Detection and Recording
                 if day_idx > 0 and self._prior_transition_context:
@@ -815,7 +824,7 @@ class ReplayExecutor:
                                 )
                             )
                 except Exception:
-                    pass
+                    self._log(f"WARNING: Theory lineage evolution failed for day {date_str}: {e}")
 
                 # detect contradictions
                 contradiction_result = self.contradiction_detector.detect(
@@ -1076,13 +1085,25 @@ class ReplayExecutor:
                     active_exp = self.experience_engine.get_active_experience_for_lineage(lineage_id_val)
 
                 intelligence_metadata = {
-                    "directional_persistence": {"3d": persistence_3d, "5d": persistence_5d, "10d": persistence_10d},
+                    "directional_persistence": {
+                        "3d": persistence_3d, 
+                        "5d": persistence_5d, 
+                        "10d": persistence_10d,
+                        "regime": reg_5d
+                    },
                     "mutation_count": active_exp.mutation_count if active_exp else 0,
                     "theory_mutation_count": lineage_record.mutation_count if lineage_record else 0, # Add theory's own mutation count
                     "contradiction_count": active_exp.contradiction_count if active_exp else 0,
                     "lineage_id": lineage_id_val,
                     "theory_id": theory.id
                 }
+
+                if self.lineage_debug:
+                    print(f"\n  [PREDICTION RECORD AUDIT] Date: {date_str}")
+                    print(f"    Theory ID: {theory.id}")
+                    print(f"    lineage_record.mutation_count: {lineage_record.mutation_count if lineage_record else 'N/A'}")
+                    print(f"    intelligence_metadata['theory_mutation_count']: {intelligence_metadata['theory_mutation_count']}")
+                    # Note: prediction_history entry value will be the same as intelligence_metadata['theory_mutation_count']
 
                 # infer transition pressure (deterministic, observer-only)
                 transition_pressure = self.transition_pressure_engine.infer(
@@ -1126,6 +1147,7 @@ class ReplayExecutor:
                     close_position_pct=getattr(market_obs, "close_position_pct", 0.5),
                     participation_confirmation=getattr(market_obs, "participation_confirmation", "normal"),
                     theory_usefulness=theory_usefulness,
+                    intelligence_data=intelligence_metadata,
                 )
 
                 # Step 4: Decision Policy Layer
@@ -1547,7 +1569,8 @@ class ReplayExecutor:
                     transition_pressure,
                     prediction_probe,
                     prior_prediction_result,
-                    active_experience=active_exp
+                    active_experience=active_exp,
+                    intelligence=intelligence_metadata
                 )
 
                 # WIRING FIX 1: Update prior prediction for next day's scoring
@@ -1865,6 +1888,7 @@ class ReplayExecutor:
         prediction=None,
         prior_prediction_result=None,
         active_experience=None,
+        intelligence=None,
     ):
         """Print concise COGNITIVE TRACE."""
         if self.quiet:
@@ -1874,6 +1898,16 @@ class ReplayExecutor:
         
         print(f"Observation:")
         print(f"  {observation.observation_text[:160]}...")
+
+        if intelligence:
+            dp = intelligence.get("directional_persistence", {})
+            print(f"Trend Persistence:")
+            print(f"  3D: {dp.get('3d', 0):.2f} | 5D: {dp.get('5d', 0):.2f} | 10D: {dp.get('10d', 0):.2f}")
+            print(f"  Regime: {dp.get('regime', 'Mixed')}")
+
+        if intelligence:
+            print(f"  Theory ID: {intelligence.get('theory_id', 'N/A')[:8]}... | Lineage: {intelligence.get('lineage_id', 'N/A')[:8]}...")
+            print(f"  Theory Depth: {intelligence.get('theory_mutation_count', 0)} | Experience Mutations: {intelligence.get('mutation_count', 0)}")
 
         print(f"Theory:")
         theory_claim = theory.summary_structured.claim if theory.summary_structured else theory.summary
@@ -1904,14 +1938,14 @@ class ReplayExecutor:
             lesson = self.replay_analysis_engine.days[-1].get("lesson", "None") or "None"
 
         if lesson == "None" or not lesson:
-            print("  No lesson has stabilized.")
-            print("\n  Requires one of:")
-            print("  • contradiction")
-            print("  • mutation")
-            print("  • synthesis")
-            print("  • falsification")
-            print("  • revival")
-            print("  • validation outcome")
+            print("  No lesson has stabilized.- 01")
+            #print("\n  Requires one of:")
+            #print("  • contradiction")
+            #print("  • mutation")
+            #print("  • synthesis")
+            #print("  • falsification")
+            #print("  • revival")
+            #print("  • validation outcome")
         else:
             print(f"  {lesson}")
 

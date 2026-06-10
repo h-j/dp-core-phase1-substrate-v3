@@ -1,0 +1,19 @@
+{
+  "experience_id": "exp_63964b345a694c07_2026-05-05",
+  "lineage_id": "63964b345a694c07",
+  "originating_theory_id": "164718f1-3218-4143-a599-53f0ce626270",
+  "start_date": "2026-05-05",
+  "end_date": "2026-05-06",
+  "status": "falsified",
+  "theory_ids": [
+    "164718f1-3218-4143-a599-53f0ce626270",
+    "75f7071a-a6e3-49ae-9eac-912e13f4c6fc"
+  ],
+  "contradiction_count": 2,
+  "validation_count": 0,
+  "falsification_count": 2,
+  "created_at": "2026-06-09T16:21:42.844106",
+  "updated_at": "2026-06-09T16:25:07.292383",
+  "mutation_count": 1,
+  "summary": "Theory lineage 63964b345a694c07 retired after 2 steps."
+}

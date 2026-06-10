@@ -167,8 +167,6 @@ class TheoryLineageEngine:
             )
 
         parent.last_seen_step = step
-        parent.mutation_count += 1
-        # v3.2 Fix: Do not set dormant immediately. 
         # Allow retire_stale_theories to handle it via superseded logic (stale_age >= 2).
 
         child_id = self._record_id(tid + new_abstraction, step)
@@ -184,10 +182,13 @@ class TheoryLineageEngine:
             contradictions=list(parent.contradictions),
             contradiction_count=parent.contradiction_count,
             mutation_reason=reason,
-            survival_steps=parent.survival_steps,
+            survival_steps=0,
             last_seen_step=step,
-            mutation_count=0,
+            mutation_count=parent.mutation_count + 1,
         )
+        if self.debug:
+            print(f"  [MUTATION EVENT] Parent Theory ID: {parent.id}, Parent mutation_count: {parent.mutation_count}")
+            print(f"  [MUTATION EVENT] Child Theory ID: {child_id}, Child mutation_count: {child.mutation_count}")
         self.theories[child_id] = child
         self._persist()
         return child
@@ -220,6 +221,8 @@ class TheoryLineageEngine:
             # Cross-Lineage Synthesis: Create new lineage_id
             effective_lineage_id = self._record_id(new_abstraction + str(step) + "".join(sorted(parent_ids)), step)
 
+        child_depth = max([p.mutation_count for p in parents]) + 1 if parents else 0
+
         child_id = self._record_id(new_abstraction + str(step) + "".join(sorted(parent_ids)), step)
         child = TheoryRecord(
             id=child_id,
@@ -235,7 +238,7 @@ class TheoryLineageEngine:
             mutation_reason=reason,
             survival_steps=0,
             last_seen_step=step,
-            mutation_count=0,
+            mutation_count=child_depth,
         )
         self.theories[child_id] = child
         self._persist()
@@ -322,7 +325,7 @@ class TheoryLineageEngine:
                     f"child={rec.id} reason=semantic_similarity_{best_score:.2f} "
                     f"confidence={rec.confidence:.3f} "
                     f"survival_steps={rec.survival_steps}"
-                )
+            )
             self.update_survival(step)
             return {
                 "record": rec,
@@ -378,7 +381,7 @@ class TheoryLineageEngine:
                     f"child={rec.id} reason=semantic_similarity_{best_score:.2f} "
                     f"confidence={rec.confidence:.3f} "
                     f"survival_steps={rec.survival_steps}"
-                )
+            )
             self.update_survival(step)
             return {
                 "record": rec,
@@ -473,11 +476,18 @@ class TheoryLineageEngine:
             for rec in self.theories.values()
             if rec.status in {"active", "contradicted", "dormant", "revived"}
         ]
+
+        # v3.5 Fix: Identify all parents to determine superseded status (child exists)
+        all_parents = set()
+        for t in self.theories.values():
+            for pid in t.parent_ids:
+                all_parents.add(pid)
+
         for rec in sorted(candidates, key=lambda item: item.id):
             pressure = float(rec.confidence_state.get("contradiction_pressure", 0.0))
             empirical = float(rec.confidence_state.get("empirical_confidence", 0.5))
             stale_age = step - rec.last_seen_step
-            superseded = rec.mutation_count >= 2 and stale_age >= 2
+            superseded = rec.id in all_parents and stale_age >= 2
             should_retire = (
                 rec.id != current_record_id
                 and rec.retired_at_step is None

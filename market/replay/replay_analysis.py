@@ -12,6 +12,7 @@ Analyzes:
 
 from collections import defaultdict
 from datetime import datetime
+import re
 
 from statistics import mean, median
 import statistics
@@ -199,6 +200,10 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                     "volume_state": volume_state,
                     "volatility_regime": volatility_regime,
                     "momentum_regime": momentum_regime,
+                    "regime_subtype": regime_subtype,
+                    "analog_divergence_claim": analog_divergence_claim,
+                    "regime_history": regime_history,
+                    "branches_generated": branches_generated,
                     "intelligence": intelligence_data or {},
                 }
             )
@@ -916,71 +921,127 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             if current_day_record.get("prior_prediction_result") and previous_day_prediction_record.get("prediction"):
                 aligned_predictions.append({
                     "date": current_day_record["date"],
+                    "theory_family": previous_day_prediction_record.get("regime_subtype", "neutral"),
                     "predicted_direction": previous_day_prediction_record["prediction"].get("direction"),
                     "actual_direction": current_day_record["prior_prediction_result"].get("actual_direction"),
                     "direction_score": current_day_record["prior_prediction_result"].get("direction_score"),
-                    "intelligence": previous_day_prediction_record.get("intelligence", {}) # Metadata for the theory that made the prediction
+                    "intelligence": previous_day_prediction_record.get("intelligence", {}),
+                    "volatility_regime": previous_day_prediction_record.get("volatility_regime", "normal"),
+                    "volume_state": previous_day_prediction_record.get("volume_state", "normal")
                 })
 
-        scored = [r for r in self.prediction_history if r.get("prior_prediction_result", {}).get("direction_score") is not None]
-        if not scored:
+        if not aligned_predictions:
             return {}
 
-        # 1. Mutation Effectiveness
-        mutation_buckets = defaultdict(list)
-        for r in scored:
-            # Use intelligence from the day the prediction was made
-            mut_count = r.get("intelligence", {}).get("theory_id", "N/A") # Use theory_id to group mutations
-            # We need to get the mutation count for the theory_id that made the prediction.
-            # This requires a lookup or storing mutation_count in the aligned_predictions.
-            # For now, let's assume `r.get("intelligence", {}).get("mutation_count", 0)` is correct for the prediction being evaluated.
-            # This is still problematic as `r` is the current day's record, and `intelligence` is for current day's theory.
-            # The `aligned_predictions` list should carry the correct `mutation_count` for the `predicted_direction`.
-            pass
-        
-        # Re-calculate mutation_effectiveness using aligned_predictions
-        mutation_buckets_aligned = defaultdict(list)
+        # 1. Theory Family Accuracy
+        family_stats = defaultdict(list)
         for r in aligned_predictions:
-            mut_count = r["intelligence"].get("mutation_count", 0)
-            mutation_buckets_aligned[mut_count].append(r["direction_score"])
+            family_stats[r["theory_family"]].append(r["direction_score"])
 
-        mutation_effectiveness = {
-            mut: {"accuracy": mean(scores) if scores else 0.0, "count": len(scores)}
-            for mut, scores in mutation_buckets_aligned.items()
+        # Trend Persistence Intelligence (Phase 5)
+        persistence_stats = defaultdict(list)
+        blindness_violations = 0
+        alignment_hits = 0
+        alignment_total = 0
+
+        for r in aligned_predictions:
+            p_intel = r["intelligence"].get("directional_persistence", {})
+            p_regime = p_intel.get("regime", "Mixed")
+            p_score_5d = p_intel.get("5d", 0.0)
+            
+            persistence_stats[p_regime].append(r["direction_score"])
+            
+            # Blindness Audit: Strong trend but predicted Range
+            if p_regime in ["Persistent Higher", "Persistent Lower"] and r["predicted_direction"] == "range_bound":
+                blindness_violations += 1
+            
+            if r["predicted_direction"] != "uncertain":
+                alignment_total += 1
+                p_sign = 1 if p_score_5d > 0.3 else -1 if p_score_5d < -0.3 else 0
+                pred_sign = 1 if r["predicted_direction"] == "higher" else -1 if r["predicted_direction"] == "lower" else 0
+                if p_sign == pred_sign:
+                    alignment_hits += 1
+
+        theory_family_accuracy = {
+            fam: {"accuracy": mean(scores), "count": len(scores)}
+            for fam, scores in family_stats.items()
         }
 
-        # 2. Contradiction Intelligence
+        # 2. Mutation Effectiveness (Depth)
+        mutation_buckets = defaultdict(list)
+        for r in aligned_predictions:
+            depth = r["intelligence"].get("theory_mutation_count", 0)
+            mutation_buckets[depth].append(r["direction_score"])
+
+        mutation_effectiveness = {
+            depth: {"accuracy": mean(scores), "count": len(scores)}
+            for depth, scores in mutation_buckets.items()
+        }
+
+        # 3. Regime Accuracy
+        direction_regime = defaultdict(list)
+        volatility_regime = defaultdict(list)
+        volume_regime = defaultdict(list)
+
+        for r in aligned_predictions:
+            direction_regime[r["actual_direction"]].append(r["direction_score"])
+            volatility_regime[r["volatility_regime"]].append(r["direction_score"])
+            volume_regime[r["volume_state"]].append(r["direction_score"])
+
+        regime_accuracy = {
+            "direction": {k: {"accuracy": mean(v), "count": len(v)} for k, v in direction_regime.items()},
+            "volatility": {k: {"accuracy": mean(v), "count": len(v)} for k, v in volatility_regime.items()},
+            "volume": {k: {"accuracy": mean(v), "count": len(v)} for k, v in volume_regime.items()}
+        }
+
+        # 4. Contradiction Intelligence (Aligned)
         contra_buckets = {"0": [], "1-3": [], "3-5": [], "5+": []}
         for r in aligned_predictions:
             c = r["intelligence"].get("contradiction_count", 0)
-            score = r["direction_score"]
-            if c == 0: contra_buckets["0"].append(score)
-            elif c <= 3: contra_buckets["1-3"].append(score)
-            elif c <= 5: contra_buckets["3-5"].append(score)
-            else: contra_buckets["5+"].append(score)
+            if c == 0: contra_buckets["0"].append(r["direction_score"])
+            elif c <= 3: contra_buckets["1-3"].append(r["direction_score"])
+            elif c <= 5: contra_buckets["3-5"].append(r["direction_score"])
+            else: contra_buckets["5+"].append(r["direction_score"])
         
         contradiction_intelligence = {
             k: {"accuracy": mean(v) if v else 0.0, "count": len(v)}
             for k, v in contra_buckets.items()
         }
 
-        # 3. Directional Bias (Confusion Matrix)
-        directions = ["higher", "lower", "range_bound", "uncertain"]
-        matrix_aligned = {d: {act: 0 for act in directions} for d in directions}
+        # 5. Confusion Matrix (Aligned)
+        dirs = ["higher", "lower", "range_bound", "uncertain"]
+        matrix = {d: {act: 0 for act in dirs} for d in dirs}
         for r in aligned_predictions:
             pred = r["predicted_direction"]
             act = r["actual_direction"]
-            if pred in matrix_aligned and act in matrix_aligned[pred]:
-                matrix_aligned[pred][act] += 1
+            if pred in matrix and act in matrix[pred]:
+                matrix[pred][act] += 1
 
-        # 4. Learning Trend (Thirds)
+        # 6. Learning Trend (Thirds)
         n_aligned = len(aligned_predictions)
-        thirds_aligned = {"first": aligned_predictions[:n_aligned//3], "middle": aligned_predictions[n_aligned//3:2*n_aligned//3], "final": aligned_predictions[2*n_aligned//3:]}
+        segments = {
+            "first": aligned_predictions[:n_aligned//3], 
+            "middle": aligned_predictions[n_aligned//3:2*n_aligned//3], 
+            "final": aligned_predictions[2*n_aligned//3:]
+        }
         learning_trend = {
-            k: mean([r["direction_score"] for r in v]) if v else 0.0 for k, v in thirds_aligned.items()
+            k: mean([r["direction_score"] for r in v]) if v else 0.0 for k, v in segments.items()
         }
 
-        # 5. Drift Metrics
+        # 7. Drift and Convergence
+        # Best/Worst Family
+        sorted_fams = sorted(theory_family_accuracy.items(), key=lambda x: x[1]['accuracy'], reverse=True)
+        best_family = sorted_fams[0][0] if sorted_fams else "N/A"
+        worst_family = sorted_fams[-1][0] if sorted_fams else "N/A"
+
+        # Mutation Insight
+        depths = sorted(mutation_effectiveness.keys())
+        base_acc = mutation_effectiveness.get(0, {}).get("accuracy", 0.0)
+        max_depth = depths[-1] if depths else 0
+        final_acc = mutation_effectiveness.get(max_depth, {}).get("accuracy", 0.0)
+        mutation_trend = "Improving" if final_acc > base_acc else "Degrading" if final_acc < base_acc else "Stable"
+
+        # Drift
         pred_changes = 0
         for i in range(1, len(self.prediction_history)):
             if self.prediction_history[i]["prediction"].get("direction") != self.prediction_history[i-1]["prediction"].get("direction"):
@@ -990,14 +1051,13 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         mutations = sum(1 for r in self.prediction_history if r.get("intelligence", {}).get("mutation_count", 0) > 0)
         theory_drift = mutations / len(self.prediction_history) if self.prediction_history else 0.0
-        
         accuracy_drift = learning_trend["final"] - learning_trend["first"]
 
-        # 6. Trend Recognition Audit (Day by Day)
-        trend_audit = []
+        # Audit
+        audit = []
         for r in self.prediction_history:
             res = r.get("prior_prediction_result", {})
-            trend_audit.append({
+            audit.append({
                 "date": r["date"],
                 "actual": res.get("actual_direction", "N/A"),
                 "predicted": r["prediction"].get("direction", "N/A"),
@@ -1006,16 +1066,26 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             })
 
         return {
+            "theory_family_accuracy": theory_family_accuracy,
             "mutation_effectiveness": mutation_effectiveness,
+            "regime_accuracy": regime_accuracy,
             "contradiction_intelligence": contradiction_intelligence,
             "directional_bias": matrix,
             "learning_trend": learning_trend,
+            "best_family": best_family,
+            "worst_family": worst_family,
+            "mutation_trend_label": mutation_trend,
+            "persistence_intelligence": {
+                "accuracy_by_regime": {k: {"accuracy": mean(v), "count": len(v)} for k, v in persistence_stats.items()},
+                "blindness_violations": blindness_violations,
+                "alignment_score": alignment_hits / alignment_total if alignment_total > 0 else 0.0
+            },
             "convergence": {
                 "prediction_drift": prediction_drift,
                 "theory_drift": theory_drift,
                 "accuracy_drift": accuracy_drift
             },
-            "trend_audit": trend_audit
+            "trend_audit": audit
         }
 
     def _detect_cognition_risks(self) -> List:

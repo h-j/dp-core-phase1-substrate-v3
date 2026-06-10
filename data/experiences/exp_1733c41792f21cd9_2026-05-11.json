@@ -1,0 +1,27 @@
+{
+  "experience_id": "exp_1733c41792f21cd9_2026-05-11",
+  "lineage_id": "1733c41792f21cd9",
+  "originating_theory_id": "7a768529-77ee-49ad-b5b9-0925cf2a5899",
+  "start_date": "2026-05-11",
+  "end_date": "2026-05-22",
+  "status": "validated",
+  "theory_ids": [
+    "7a768529-77ee-49ad-b5b9-0925cf2a5899",
+    "7278ddc1-7f24-4cfe-903a-d3ee7ee61ed8",
+    "fd27da6f-e91c-42a9-9f75-b19ce47b3736",
+    "b4a7c299-1fb0-4a86-8de2-58d26b11c3f0",
+    "59c1f243-73e5-4932-995b-c6854579d61f",
+    "18ebf2a9-5e28-4038-9a4c-d936c05b1d6e",
+    "c3db6ad6-7d8a-48d0-8df3-9b6fa274cfcd",
+    "d25d55dd-e1d5-4703-a279-97bc925c4a30",
+    "0f8b738b-917f-465b-a9aa-3d7112b54848",
+    "b5cdb83a-c6a3-4a9f-b142-6c9e0473b6b9"
+  ],
+  "contradiction_count": 6,
+  "validation_count": 2,
+  "falsification_count": 2,
+  "created_at": "2026-06-09T16:30:17.057304",
+  "updated_at": "2026-06-09T17:08:26.717663",
+  "mutation_count": 9,
+  "summary": "Theory lineage 1733c41792f21cd9 retired after 3 steps."
+}

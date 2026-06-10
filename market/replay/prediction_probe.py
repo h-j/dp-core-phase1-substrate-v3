@@ -75,7 +75,8 @@ class PredictionProbeGenerator:
         return_5d: float = 0.0,
         close_position_pct: float = 0.5,
         participation_confirmation: str = "normal",
-        theory_usefulness: dict = None
+        theory_usefulness: dict = None,
+        intelligence_data: dict = None
     ) -> PredictionProbe:
         direction = self._infer_direction(
             observation,
@@ -86,6 +87,7 @@ class PredictionProbeGenerator:
             return_5d=return_5d,
             close_position_pct=close_position_pct,
             participation_confirmation=participation_confirmation,
+            intelligence_data=intelligence_data
         )
         confidence = self._infer_confidence(
             direction,
@@ -103,6 +105,7 @@ class PredictionProbeGenerator:
             close_position_pct,
             participation_confirmation,
             theory_usefulness=theory_usefulness,
+            intelligence_data=intelligence_data
         )
         tension = self._compose_tension(theory, reflection, contradictions, horizons)
         invalidation = self._compose_invalidation(theory, reflection, contradictions)
@@ -143,6 +146,7 @@ class PredictionProbeGenerator:
         return_5d: float = 0.0,
         close_position_pct: float = 0.5,
         participation_confirmation: str = "normal",
+        intelligence_data: dict = None
     ) -> PredictionDirection:
         trend = getattr(observation, "trend_state", "").lower()
         breadth = getattr(observation, "breadth_state", "").lower()
@@ -152,6 +156,15 @@ class PredictionProbeGenerator:
         candle_type = getattr(observation, "candle_type", "").lower()
         gap_pct = getattr(observation, "gap_pct", 0.0)
         descriptors = [str(item).lower() for item in getattr(observation, "descriptors", []) or []]
+
+        # v3.5 Trend Persistence Influence
+        p_intel = intelligence_data.get("directional_persistence", {}) if intelligence_data else {}
+        p_regime = p_intel.get("regime", "Mixed")
+        
+        if p_regime == "Persistent Higher" and "lower" not in trend:
+            return PredictionDirection.higher
+        if p_regime == "Persistent Lower" and "higher" not in trend:
+            return PredictionDirection.lower
 
         strong_up = (
             return_3d > 0.3
@@ -254,6 +267,7 @@ class PredictionProbeGenerator:
         close_position_pct: float = 0.5,
         participation_confirmation: str = "normal",
         theory_usefulness: dict = None,
+        intelligence_data: dict = None
     ) -> float:
         # v2.4 CALIBRATION: align confidence to stronger signal clusters
         if direction == PredictionDirection.uncertain:
@@ -292,6 +306,15 @@ class PredictionProbeGenerator:
         matches = list(regime_matches) if regime_matches else []
         if matches and any(getattr(m, 'similarity', 0) > 0.9 for m in matches):
             base += 0.08
+
+        # Persistence Alignment Bonus
+        p_intel = intelligence_data.get("directional_persistence", {}) if intelligence_data else {}
+        p_regime = p_intel.get("regime", "Mixed")
+        if (direction == PredictionDirection.higher and p_regime == "Persistent Higher") or \
+           (direction == PredictionDirection.lower and p_regime == "Persistent Lower"):
+            base += 0.07
+        elif p_regime != "Mixed" and direction == PredictionDirection.range_bound:
+            base -= 0.10 # Penalty for blindness
 
         text = (getattr(theory, "summary", "") + " " + getattr(reflection, "reflection_summary", "")).lower()
         if "uncertain" in text or "fragile" in text or "caution" in text:

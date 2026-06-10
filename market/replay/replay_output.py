@@ -109,13 +109,13 @@ class ReplayOutputMixin:
             lesson = self.replay_analysis_engine.days[-1].get("lesson", "None") or "None"
 
         if lesson == "None" or not lesson:
-            print("  No lesson has stabilized.")
-            print("\n  Requires one of:")
-            print("  • contradiction")
-            print("  • mutation")
-            print("  • synthesis")
-            print("  • falsification")
-            print("  • revival")
-            print("  • validation outcome")
+            print("  No lesson has stabilized. - 02")
+            #print("\n  Requires one of:")
+            #print("  • contradiction")
+            #print("  • mutation")
+            #print("  • synthesis")
+            #print("  • falsification")
+            #print("  • revival")
+            #print("  • validation outcome")
         else:
             print(f"  {lesson}")

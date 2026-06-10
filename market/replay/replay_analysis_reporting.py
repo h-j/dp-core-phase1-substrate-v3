@@ -213,8 +213,69 @@ class ReplayJournalBuilder:
         else:
             print("  No prediction analysis data available.")
 
-        # 7. ARTIFACTS
-        print("\n8. ARTIFACTS")
+        # 8. PREDICTION ATTRIBUTION
+        print("\n8. PREDICTION ATTRIBUTION")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        pi = analysis.get("prediction_intelligence", {})
+        if pi:
+            # Theory Family Accuracy
+            print("\nTheory Family Accuracy")
+            fam_acc = pi.get("theory_family_accuracy", {})
+            for fam, stats in fam_acc.items():
+                print(f"  {fam:<22} | Predictions: {stats['count']:<3} | Accuracy: {stats['accuracy']:.1%}")
+            
+            if fam_acc:
+                print(f"  → Insight: {pi.get('best_family')} theories are outperforming {pi.get('worst_family')} theories.")
+
+            # Mutation Effectiveness
+            print("\nMutation Effectiveness")
+            me = pi.get("mutation_effectiveness", {})
+            for depth in sorted(me.keys()):
+                stats = me[depth]
+                print(f"  Depth {depth:<16} | Predictions: {stats['count']:<3} | Accuracy: {stats['accuracy']:.1%}")
+            
+            if me:
+                print(f"  → Mutation Trend: {pi.get('mutation_trend_label')}")
+
+            # Regime Accuracy
+            print("\nRegime Accuracy")
+            ra = pi.get("regime_accuracy", {})
+            print("  Direction Regime")
+            for k, v in ra.get("direction", {}).items():
+                print(f"    {k:<18} | n={v['count']:<3} | {v['accuracy']:.1%}")
+            
+            if ra.get("direction"):
+                best_regime = max(ra["direction"].items(), key=lambda x: x[1]['accuracy'])[0]
+                print(f"  → Best Understood Regime: {best_regime}")
+
+            # TREND PERSISTENCE INTELLIGENCE
+            print("\nTREND PERSISTENCE INTELLIGENCE")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            tp_intel = pi.get("persistence_intelligence", {})
+            acc_by_p = tp_intel.get("accuracy_by_regime", {})
+            
+            print("Accuracy by Persistence Regime")
+            for p_reg, stats in acc_by_p.items():
+                print(f"  {p_reg:<22} | Predictions: {stats['count']:<3} | Accuracy: {stats['accuracy']:.1%}")
+            
+            violations = tp_intel.get("blindness_violations", 0)
+            print(f"\nPersistence Blindness Audit")
+            print(f"  Trend Persistence Violations: {violations}")
+            if violations > 0:
+                print(f"  → Insight: System ignored strong trend signals on {violations} occasions.")
+            
+            print(f"\nPersistence Alignment Score: {tp_intel.get('alignment_score', 0.0):.1%}")
+            print(f"  → Note: Measures whether cognition acknowledged the trend (not prediction accuracy).")
+
+            print("\nKey Insights")
+            print("━" * 40)
+            print(f"• System comprehension is highest in {best_regime if ra.get('direction') else 'N/A'} environments.")
+            print(f"• Trend persistence recognition is at {tp_intel.get('alignment_score', 0.0):.1%}.")
+        else:
+            print("  Prediction attribution data pending.")
+
+        # 9. ARTIFACTS
+        print("\n9. ARTIFACTS")
         print("━" * 40)
         out = external_metrics.get('outputs', {})
         print(f"  Analysis CSV: {out.get('prediction_csv','N/A')}")
