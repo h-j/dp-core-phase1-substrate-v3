@@ -297,6 +297,7 @@ class ReplayExecutor:
         self._run_reflections: List[object] = []
         self._run_market_observations: List[object] = []
         self._prior_prediction = None
+        self._prior_lineage_id = None # Track the lineage that produced the prediction
         self.regime_memory = RegimeMemoryStore() # Initialize unconditionally
         self.regime_continuity_memory = RegimeContinuityMemory()
         self._prior_dialectical_synthesis = None
@@ -314,8 +315,8 @@ class ReplayExecutor:
         self.prediction_result_repo = None
         self.transition_pressure_repo = None
         self.market_outcome_repo = None
-        
-        # Track IDs for relational linking
+
+        # Track IDs for relational linking (moved from _initialize_flows)
         self._prior_prediction_db_id = None
 
         # Experience tracking
@@ -396,10 +397,11 @@ class ReplayExecutor:
         self.prediction_repo = PredictionRepository()
         self.prediction_result_repo = PredictionResultRepository()
         self.transition_pressure_repo = TransitionPressureRepository()
-        
+
         try:
             from memory.relational.repositories.market_outcome_repository import MarketOutcomeRepository
             self.market_outcome_repo = MarketOutcomeRepository()
+            # Lesson Layer V1: JSON file persistence, not relational DB
         except (ImportError, ModuleNotFoundError):
             self._log("WARNING: MarketOutcomeRepository missing; optional persistence disabled.")
             self.market_outcome_repo = None
@@ -407,13 +409,20 @@ class ReplayExecutor:
         self.flows_initialized = True
 
     def _log(self, message: str):
-        """Print if not quiet mode."""
-        if not self.quiet:
-            print(message)
+        """Print if not quiet mode, and also to a debug log file."""
+        if not self.quiet: print(message)
+        # Optional: Add logging to a file here
+        # with open(self.run_dir / "replay_debug.log", "a") as f: f.write(message + "\n")
 
     def execute(self, emit_summary: bool = True):
         """Execute full replay with cognition loop."""
         self._initialize_flows()
+
+        # Create a run-isolated snapshot directory for this replay.
+        self.run_dir = (
+            self.base_data_snap_dir / f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        )
+        self.run_dir.mkdir(parents=True, exist_ok=True)
 
         from cognition.evaluation.epistemic_quality import evaluate_epistemic_quality
         from cognition.schemas.observation.observation_event import ObservationEvent
@@ -422,6 +431,11 @@ class ReplayExecutor:
         from market.replay.market_observation_synthesizer import (
             MarketObservationSynthesizer,
         )
+        # Lesson Layer V1: Initialize LessonRepository and LessonExtractor
+        from market.replay.lesson_repository import LessonRepository
+        from market.replay.lesson_extractor import LessonExtractor
+        self.lesson_repo = LessonRepository(self.run_dir / "lessons.json")
+        self.lesson_extractor = LessonExtractor(self.lesson_repo, self.experience_repo)
         from memory.replay.epistemic_scoring import EpistemicScoringEngine
         from memory.replay.horizon_cognition import HorizonCognitionEngine
         from memory.replay.regime_memory import RegimeMemoryStore
@@ -450,6 +464,7 @@ class ReplayExecutor:
             self.epistemic_scoring = EpistemicScoringEngine()
             self.prediction_generator = PredictionProbeGenerator()
             self.prediction_generator.debug = self.lineage_debug
+            self.experience_engine.set_lesson_extractor(self.lesson_extractor) # Pass extractor to experience engine
             self.capital_simulator = CapitalSimulator()
         except Exception:
             self.observer = None
@@ -459,6 +474,7 @@ class ReplayExecutor:
             self.epistemic_scoring = EpistemicScoringEngine()
             self.prediction_generator = PredictionProbeGenerator()
             self.prediction_generator.debug = self.lineage_debug
+            self.experience_engine.set_lesson_extractor(self.lesson_extractor)
             self.capital_simulator = CapitalSimulator()
 
         from market.replay.replay_analysis import ReplayAnalysisEngine
@@ -823,7 +839,7 @@ class ReplayExecutor:
                                     "contradiction_pressure", 0.0
                                 )
                             )
-                except Exception:
+                except Exception as e:
                     self._log(f"WARNING: Theory lineage evolution failed for day {date_str}: {e}")
 
                 # detect contradictions
@@ -923,6 +939,7 @@ class ReplayExecutor:
                             for retired_record in retired_records:
                                 self.experience_engine.close_experience(
                                     retired_record.id,
+                                    retired_record.lineage_id, # Use stable lineage ID
                                     date_str,
                                     f"Theory lineage {retired_record.id} retired after {retired_record.survival_steps} steps."
                                 )
@@ -1171,10 +1188,13 @@ class ReplayExecutor:
                     
                     # Experience Lifecycle: Outcome Grounding
                     if prior_prediction_result and lineage_record:
+                    if prior_prediction_result and self._prior_lineage_id:
                         if prior_prediction_result.direction_score == 1.0:
                             self.experience_engine.record_validation(lineage_id_val)
+                            self.experience_engine.record_validation(self._prior_lineage_id)
                         if prior_prediction_result.invalidation_triggered:
                             self.experience_engine.record_falsification(lineage_id_val)
+                            self.experience_engine.record_falsification(self._prior_lineage_id)
 
                 # Task B: Capital Simulation (observer-only)
                 derived = obs_data.get("derived")
@@ -1552,7 +1572,7 @@ class ReplayExecutor:
                 # Find experience for current trace log
                 active_exp = None
                 if lineage_record and lineage_id_val != "N/A": # Use the stable lineage_id for lookup
-                    active_exp = self.experience_engine.get_active_experience_for_lineage(lineage_record.id)
+                    active_exp = self.experience_engine.get_active_experience_for_lineage(lineage_id_val)
 
                 # Print formatted log
                 self._print_day_log(
@@ -1569,12 +1589,14 @@ class ReplayExecutor:
                     transition_pressure,
                     prediction_probe,
                     prior_prediction_result,
-                    active_experience=active_exp,
+                    active_experience=active_exp, # Pass the active experience
+                    lesson_extracted=self.experience_engine.get_last_extracted_lesson(), # Pass the last extracted lesson
                     intelligence=intelligence_metadata
                 )
 
                 # WIRING FIX 1: Update prior prediction for next day's scoring
                 self._prior_prediction = prediction_probe
+                self._prior_lineage_id = lineage_id_val
                 # Track DB ID for result linkage
                 if saved_prediction and hasattr(saved_prediction, 'id'):
                     self._prior_prediction_db_id = saved_prediction.id
@@ -1624,6 +1646,7 @@ class ReplayExecutor:
             external_metrics["total_synthesis_triggered"] = self.total_synthesis_triggered
             external_metrics["experience_stats"] = experience_stats
             external_metrics["experience_audit"] = experience_audit
+            external_metrics["lesson_stats"] = self.lesson_repo.get_lesson_stats() # Add lesson stats
             if self.theory_lineage:
                 external_metrics.update(
                     {
@@ -1888,6 +1911,7 @@ class ReplayExecutor:
         prediction=None,
         prior_prediction_result=None,
         active_experience=None,
+        lesson_extracted=None, # New parameter for lesson
         intelligence=None,
     ):
         """Print concise COGNITIVE TRACE."""
@@ -1924,30 +1948,20 @@ class ReplayExecutor:
             print(f"Experience:")
             print(f"  {active_experience.experience_id}")
             print(f"  Status: {active_experience.status.value}")
-            print(f"  Theories: {len(active_experience.theory_ids)} | Contradictions: {active_experience.contradiction_count} | Mutations: {active_experience.mutation_count}")
+            print(f"  Theories: {len(active_experience.theory_ids)} | Contradictions: {len(active_experience.contradictions)} | Mutations: {len(active_experience.mutations)}")
         
         if prediction:
             print(f"Prediction: {prediction.direction.value} (Next Day)")
 
         print(f"Reflection:")
-        print(f"  {reflection.reflection_summary[:400]}...")
+        print(f"  {reflection.reflection_summary[:250]}...") # Shorten for brevity
 
-        print(f"Lesson:")
-        lesson = "None"
-        if self.replay_analysis_engine and self.replay_analysis_engine.days:
-            lesson = self.replay_analysis_engine.days[-1].get("lesson", "None") or "None"
+        print(f"Lesson:") # New Lesson section
 
-        if lesson == "None" or not lesson:
-            print("  No lesson has stabilized.- 01")
-            #print("\n  Requires one of:")
-            #print("  • contradiction")
-            #print("  • mutation")
-            #print("  • synthesis")
-            #print("  • falsification")
-            #print("  • revival")
-            #print("  • validation outcome")
+        if lesson_extracted:
+            print(f"  Extracted: {lesson_extracted.lesson_text[:100]}... (Confidence: {lesson_extracted.confidence:.2f}, Status: {lesson_extracted.status.value})")
         else:
-            print(f"  {lesson}")
+            print("  No lesson has stabilized.")
 
 
 def main():

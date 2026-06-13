@@ -19,6 +19,89 @@ class ReplayAnalysisReportingMixin:
         em = getattr(self, "external_metrics", {}) or {}
         ReplayJournalBuilder.print_journal(self.market_name, analysis, em)
 
+    def _analyze_capital_simulation(self) -> Dict:
+        """Analyze capital simulation results."""
+        return getattr(self, "capital_simulation_summary", {})
+
+    def set_capital_simulation_summary(self, summary: dict):
+        """Set the summary of capital simulation."""
+        self.capital_simulation_summary = summary
+
+    def _analyze_transition_memory(self) -> Dict:
+        """Analyze transition memory performance."""
+        return {
+            "total_transition_memory_hits": getattr(self, "transition_memory_hits", 0),
+            "hit_rate": getattr(self, "transition_memory_hits", 0) / len(self.days) if len(self.days) > 0 else 0.0,
+        }
+
+    def set_capital_simulation_logs(self, logs: list):
+        """WIRING FIX: Set daily logs from capital simulator."""
+        self.capital_simulation_logs = logs
+
+    def export_prediction_analysis_csv(self, file_path: Path, verbose: bool = True):
+        """Export detailed prediction performance and capital metrics to CSV."""
+        if not self.prediction_history or not self.capital_simulation_logs:
+            if verbose:
+                print("No data to export for prediction analysis CSV.")
+            return
+
+        # Ensure the directory exists
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Combine prediction history and capital simulation logs
+        combined_data = []
+        rows = min(len(self.prediction_history), len(self.capital_simulation_logs))
+        if rows == 0:
+            if verbose:
+                print("No data to export for prediction analysis CSV.")
+            return
+
+        for i in range(rows):
+            pred_rec = self.prediction_history[i] or {}
+            cap_rec = self.capital_simulation_logs[i] or {}
+            prediction = pred_rec.get("prediction") or {}
+            prior_prediction_result = pred_rec.get("prior_prediction_result") or {}
+
+            if hasattr(prediction, "to_dict"):
+                prediction = prediction.to_dict()
+            if hasattr(prior_prediction_result, "to_dict"):
+                prior_prediction_result = prior_prediction_result.to_dict()
+
+            if not isinstance(prediction, dict):
+                prediction = {}
+            if not isinstance(prior_prediction_result, dict):
+                prior_prediction_result = {}
+            if not isinstance(cap_rec, dict):
+                cap_rec = {}
+
+            baseline = cap_rec.get("policies", {}).get("baseline", {}) if isinstance(cap_rec, dict) else {}
+
+            combined_data.append({
+                "date": pred_rec.get("date"),
+                "prediction_direction": prediction.get("direction"),
+                "prediction_confidence": prediction.get("confidence") or baseline.get("conviction"),
+                "actual_direction": prior_prediction_result.get("actual_direction"),
+                "transition_pressure_score": pred_rec.get("transition_pressure_score"),
+                "transition_breakout_risk": pred_rec.get("transition_breakout_risk"),
+                "theory_usefulness_score": extract_usefulness_score(pred_rec.get("theory_usefulness")),
+                "theory_usefulness_label": pred_rec.get("theory_usefulness", {}).get("label", "unknown") if isinstance(pred_rec.get("theory_usefulness"), dict) else "unknown",
+                "regime_similarity": pred_rec.get("regime_similarity"),
+                "capital_before": baseline.get("capital_before") or cap_rec.get("capital_before"),
+                "capital_after": baseline.get("capital_after") or cap_rec.get("capital_after"),
+                "daily_return_pct": baseline.get("daily_return_pct") or cap_rec.get("daily_return_pct"),
+                "volume_state": pred_rec.get("volume_state"),
+                "volatility_regime": pred_rec.get("volatility_regime"),
+                "momentum_regime": pred_rec.get("momentum_regime"),
+                "regime_subtype": pred_rec.get("regime_subtype"),
+                "analog_divergence_claim": pred_rec.get("analog_divergence_claim"),
+                "regime_history": pred_rec.get("regime_history"),
+            })
+
+        df = pd.DataFrame(combined_data)
+        df.to_csv(file_path, index=False)
+        if verbose:
+            print(f"Exported prediction analysis to {file_path}")
+
 
 class ReplayJournalBuilder:
     """Dedicated builder for the Replay Cognition Journal."""
@@ -274,185 +357,22 @@ class ReplayJournalBuilder:
         else:
             print("  Prediction attribution data pending.")
 
+        # 9. LESSONS LEARNED
+        lesson_stats = external_metrics.get("lesson_stats", {})
+        if lesson_stats:
+            print("\n9. LESSONS LEARNED")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            print(f"Total Lessons: {lesson_stats.get('total_lessons', 0)}") #
+            print(f"Candidate: {lesson_stats.get('candidate_lessons', 0)}") #
+            print(f"Active: {lesson_stats.get('active_lessons', 0)}") #
+            print(f"Retired: {lesson_stats.get('retired_lessons', 0)}")
+            print(f"Avg Lesson Confidence: {lesson_stats.get('avg_confidence', 0.0):.2f}")
+        else:
+            print("\n9. LESSONS LEARNED: No lessons extracted yet.")
+
         # 9. ARTIFACTS
         print("\n9. ARTIFACTS")
         print("━" * 40)
         out = external_metrics.get('outputs', {})
         print(f"  Analysis CSV: {out.get('prediction_csv','N/A')}")
         print("\n" + "═" * 60)
-    def _analyze_capital_simulation(self) -> Dict:
-        """Analyze capital simulation results."""
-        return getattr(self, "capital_simulation_summary", {})
-
-    def set_capital_simulation_summary(self, summary: dict):
-        """Set the summary of capital simulation."""
-        self.capital_simulation_summary = summary
-
-    def _analyze_transition_memory(self) -> Dict:
-        """Analyze transition memory performance."""
-        return {
-            "total_transition_memory_hits": getattr(self, "transition_memory_hits", 0),
-            "hit_rate": getattr(self, "transition_memory_hits", 0) / len(self.days) if len(self.days) > 0 else 0.0,
-        }
-
-    def set_capital_simulation_logs(self, logs: list):
-        """WIRING FIX: Set daily logs from capital simulator."""
-        self.capital_simulation_logs = logs
-
-    def export_prediction_analysis_csv(self, file_path: Path, verbose: bool = True):
-        """Export detailed prediction performance and capital metrics to CSV."""
-        if not self.prediction_history or not self.capital_simulation_logs:
-            if verbose:
-                print("No data to export for prediction analysis CSV.")
-            return
-
-        # Ensure the directory exists
-        file_path.parent.mkdir(parents=True, exist_ok=True)
-
-        # Combine prediction history and capital simulation logs
-        combined_data = []
-        rows = min(len(self.prediction_history), len(self.capital_simulation_logs))
-        if rows == 0:
-            if verbose:
-                print("No data to export for prediction analysis CSV.")
-            return
-
-        for i in range(rows):
-            pred_rec = self.prediction_history[i] or {}
-            cap_rec = self.capital_simulation_logs[i] or {}
-            prediction = pred_rec.get("prediction") or {}
-            prior_prediction_result = pred_rec.get("prior_prediction_result") or {}
-
-            if hasattr(prediction, "to_dict"):
-                prediction = prediction.to_dict()
-            if hasattr(prior_prediction_result, "to_dict"):
-                prior_prediction_result = prior_prediction_result.to_dict()
-
-            if not isinstance(prediction, dict):
-                prediction = {}
-            if not isinstance(prior_prediction_result, dict):
-                prior_prediction_result = {}
-            if not isinstance(cap_rec, dict):
-                cap_rec = {}
-
-            baseline = cap_rec.get("policies", {}).get("baseline", {}) if isinstance(cap_rec, dict) else {}
-
-            combined_data.append({
-                "date": pred_rec.get("date"),
-                "prediction_direction": prediction.get("direction"),
-                "prediction_confidence": prediction.get("confidence") or baseline.get("conviction"),
-                "actual_direction": prior_prediction_result.get("actual_direction"),
-                "transition_pressure_score": pred_rec.get("transition_pressure_score"),
-                "transition_breakout_risk": pred_rec.get("transition_breakout_risk"),
-                "theory_usefulness_score": extract_usefulness_score(pred_rec.get("theory_usefulness")),
-                "theory_usefulness_label": pred_rec.get("theory_usefulness", {}).get("label", "unknown") if isinstance(pred_rec.get("theory_usefulness"), dict) else "unknown",
-                "regime_similarity": pred_rec.get("regime_similarity"),
-                "capital_before": baseline.get("capital_before") or cap_rec.get("capital_before"),
-                "capital_after": baseline.get("capital_after") or cap_rec.get("capital_after"),
-                "daily_return_pct": baseline.get("daily_return_pct") or cap_rec.get("daily_return_pct"),
-                # v2.0 Dimensions
-                "volume_state": pred_rec.get("volume_state"),
-                "volatility_regime": pred_rec.get("volatility_regime"),
-                "momentum_regime": pred_rec.get("momentum_regime"),
-                # v3.0 Dimensions
-                "regime_subtype": pred_rec.get("regime_subtype"),
-                "analog_divergence_claim": pred_rec.get("analog_divergence_claim"),
-                "regime_history": pred_rec.get("regime_history"),
-            })
-
-        df = pd.DataFrame(combined_data)
-        df.to_csv(file_path, index=False)
-        if verbose:
-            print(f"Exported prediction analysis to {file_path}")
-        # 5. ARTIFACTS
-        print("\n5. ARTIFACTS")
-        print("━" * 40)
-        out = em.get('outputs', {})
-        print(f"  Analysis CSV: {out.get('prediction_csv','N/A')}")
-        print(f"  Snapshots:    {self.run_dir if hasattr(self, 'run_dir') else 'N/A'}")
-
-
-    def _analyze_capital_simulation(self) -> Dict:
-        """Analyze capital simulation results."""
-        return getattr(self, "capital_simulation_summary", {})
-
-    def set_capital_simulation_summary(self, summary: dict):
-        """Set the summary of capital simulation."""
-        self.capital_simulation_summary = summary
-
-    def _analyze_transition_memory(self) -> Dict:
-        """Analyze transition memory performance."""
-        return {
-            "total_transition_memory_hits": self.transition_memory_hits,
-            "hit_rate": self.transition_memory_hits / len(self.days) if len(self.days) > 0 else 0.0,
-        }
-
-    def set_capital_simulation_logs(self, logs: list):
-        """WIRING FIX: Set daily logs from capital simulator."""
-        self.capital_simulation_logs = logs
-
-    def export_prediction_analysis_csv(self, file_path: Path, verbose: bool = True):
-        """Export detailed prediction performance and capital metrics to CSV."""
-        if not self.prediction_history or not self.capital_simulation_logs:
-            if verbose:
-                print("No data to export for prediction analysis CSV.")
-            return
-
-        # Ensure the directory exists
-        file_path.parent.mkdir(parents=True, exist_ok=True)
-
-        # Combine prediction history and capital simulation logs
-        combined_data = []
-        rows = min(len(self.prediction_history), len(self.capital_simulation_logs))
-        if rows == 0:
-            if verbose:
-                print("No data to export for prediction analysis CSV.")
-            return
-
-        for i in range(rows):
-            pred_rec = self.prediction_history[i] or {}
-            cap_rec = self.capital_simulation_logs[i] or {}
-            prediction = pred_rec.get("prediction") or {}
-            prior_prediction_result = pred_rec.get("prior_prediction_result") or {}
-
-            if hasattr(prediction, "to_dict"):
-                prediction = prediction.to_dict()
-            if hasattr(prior_prediction_result, "to_dict"):
-                prior_prediction_result = prior_prediction_result.to_dict()
-
-            if not isinstance(prediction, dict):
-                prediction = {}
-            if not isinstance(prior_prediction_result, dict):
-                prior_prediction_result = {}
-            if not isinstance(cap_rec, dict):
-                cap_rec = {}
-
-            baseline = cap_rec.get("policies", {}).get("baseline", {}) if isinstance(cap_rec, dict) else {}
-
-            combined_data.append({
-                "date": pred_rec.get("date"),
-                "prediction_direction": prediction.get("direction"),
-                "prediction_confidence": prediction.get("confidence") or baseline.get("conviction"),
-                "actual_direction": prior_prediction_result.get("actual_direction"),
-                "transition_pressure_score": pred_rec.get("transition_pressure_score"),
-                "transition_breakout_risk": pred_rec.get("transition_breakout_risk"),
-                "theory_usefulness_score": extract_usefulness_score(pred_rec.get("theory_usefulness")),
-                "theory_usefulness_label": pred_rec.get("theory_usefulness", {}).get("label", "unknown") if isinstance(pred_rec.get("theory_usefulness"), dict) else "unknown",
-                "regime_similarity": pred_rec.get("regime_similarity"),
-                "capital_before": baseline.get("capital_before") or cap_rec.get("capital_before"),
-                "capital_after": baseline.get("capital_after") or cap_rec.get("capital_after"),
-                "daily_return_pct": baseline.get("daily_return_pct") or cap_rec.get("daily_return_pct"),
-                # v2.0 Dimensions
-                "volume_state": pred_rec.get("volume_state"),
-                "volatility_regime": pred_rec.get("volatility_regime"),
-                "momentum_regime": pred_rec.get("momentum_regime"),
-                # v3.0 Dimensions
-                "regime_subtype": pred_rec.get("regime_subtype"),
-                "analog_divergence_claim": pred_rec.get("analog_divergence_claim"),
-                "regime_history": pred_rec.get("regime_history"),
-            })
-
-        df = pd.DataFrame(combined_data)
-        df.to_csv(file_path, index=False)
-        if verbose:
-            print(f"Exported prediction analysis to {file_path}")

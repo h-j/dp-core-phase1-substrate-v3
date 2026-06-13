@@ -2,8 +2,8 @@ import json
 import os
 from pathlib import Path
 from typing import List, Dict, Any, Optional
-from dataclasses import asdict
-from experience.experience_engine import Experience, ExperienceStatus
+from dataclasses import asdict, is_dataclass
+from experience.experience_types import Experience, ExperienceStatus, ExperienceOutcome
 
 class ExperienceRepository:
     """
@@ -21,8 +21,16 @@ class ExperienceRepository:
         for file_path in self.base_path.glob("*.json"):
             with open(file_path, 'r') as f:
                 data = json.load(f)
-                # Convert status string back to Enum
-                data['status'] = ExperienceStatus(data['status'])
+                try:
+                    # Convert status string back to Enum
+                    data['status'] = ExperienceStatus(data['status'])
+                except ValueError:
+                    # Handle cases where the status in the JSON file is not a valid ExperienceStatus enum member
+                    print(f"WARNING: Invalid ExperienceStatus '{data['status']}' found in {file_path}. Defaulting to ABANDONED.")
+                    data['status'] = ExperienceStatus.ABANDONED
+                # Correctly instantiate ExperienceOutcome and Experience objects
+                if 'outcome' in data and isinstance(data['outcome'], dict):
+                    data['outcome'] = ExperienceOutcome(**data['outcome'])
                 self.storage[data['experience_id']] = Experience(**data)
 
     def save(self, experience: Any):
@@ -32,7 +40,10 @@ class ExperienceRepository:
         
         # Persist to disk
         file_path = self.base_path / f"{experience.experience_id}.json"
-        experience_data = asdict(experience)
+        experience_data = {}
+        for field_name, field_value in experience.__dict__.items():
+            experience_data[field_name] = asdict(field_value) if is_dataclass(field_value) else field_value
+
         # Serialize Enum value
         experience_data['status'] = experience.status.value
         
@@ -62,3 +73,10 @@ class ExperienceRepository:
             if exp.lineage_id == lineage_id:
                 return exp
         return None
+
+    def list_experiences(self, status: Optional[str] = None) -> List[Experience]:
+        """Returns filtered experiences from cache."""
+        experiences = list(self.storage.values())
+        if status:
+            experiences = [e for e in experiences if e.status.value == status]
+        return experiences

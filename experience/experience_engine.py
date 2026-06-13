@@ -1,182 +1,106 @@
-from enum import Enum
-from typing import Dict, List, Any, Optional
 from dataclasses import dataclass, field
-from datetime import datetime
-from typing import Dict, Any, Optional
+from enum import Enum
+from typing import Optional, List, Dict, Any, TYPE_CHECKING
+from uuid import UUID
+from experience.experience_repository import ExperienceRepository
+from experience.experience_types import Experience, ExperienceStatus, ExperienceOutcome
 
-class ExperienceStatus(Enum):
-    OPEN = "open"
-    ACTIVE = "active"
-    VALIDATED = "validated"
-    FALSIFIED = "falsified"
-    ABANDONED = "abandoned"
-
-
-@dataclass
-class Experience:
-    experience_id: str
-    lineage_id: str
-    originating_theory_id: str
-    start_date: str
-    end_date: Optional[str] = None
-    status: ExperienceStatus = ExperienceStatus.ACTIVE
-    theory_ids: List[str] = field(default_factory=list)
-    contradiction_count: int = 0
-    validation_count: int = 0
-    falsification_count: int = 0
-    created_at: str = field(default_factory=lambda: datetime.now().isoformat())
-    updated_at: str = field(default_factory=lambda: datetime.now().isoformat())
-    mutation_count: int = 0
-    summary: Optional[str] = None
+if TYPE_CHECKING:
+    from market.replay.lesson_extractor import LessonExtractor
+from market.replay.lesson_record import LessonRecord
 
 class ExperienceEngine:
-    def __init__(self, repository):
-        self.repository = repository
-        # Run-local cache of active experiences mapped by lineage_id
-        self.active_experiences: Dict[str, Experience] = {}
+    def __init__(self, experience_repo: ExperienceRepository):
+        self.experience_repo = experience_repo
+        self.lesson_extractor: Optional[LessonExtractor] = None
+        self._last_extracted_lesson: Optional[LessonRecord] = None
 
-    def _get_or_load_experience(self, lineage_id: str) -> Optional[Experience]:
-        """Ensures the experience is in the active cache, loading from repo if needed."""
-        if lineage_id in self.active_experiences:
-            return self.active_experiences[lineage_id]
-        
-        # Try to recover from repository to maintain lineage persistence
-        exp = self.repository.load_by_lineage(lineage_id)
-        if exp:
-            self.active_experiences[lineage_id] = exp
-            return exp
-        return None
-
-    def create_experience(self, theory_id: str, lineage_id: str, date_str: str):
-        """Starts a new experience tracking entry for a theory lineage."""
-        experience_id = f"exp_{lineage_id}_{date_str}"
-        now = datetime.now().isoformat()
+    def create_experience(self, theory_id: str, lineage_id: str, date: str):
+        exp_id = f"exp_{lineage_id}_{date}"
         experience = Experience(
-            experience_id=experience_id, 
-            lineage_id=lineage_id, 
-            originating_theory_id=theory_id,
-            theory_ids=[theory_id],
-            status=ExperienceStatus.OPEN,
-            start_date=date_str,
-            created_at=now,
-            updated_at=now
+            experience_id=exp_id,
+            lineage_id=lineage_id,
+            theory_family_id=lineage_id, # Simplified for V1
+            created_at=date,
+            theory_ids=[theory_id]
         )
-        self.active_experiences[lineage_id] = experience
-        self.repository.save(experience)
+        self.experience_repo.save(experience)
 
     def attach_theory(self, lineage_id: str, theory_id: str):
-        """Attaches a mutated or revived theory to an existing experience."""
-        exp = self._get_or_load_experience(lineage_id)
-        if exp and theory_id not in exp.theory_ids:
+        exp = self.get_active_experience_for_lineage(lineage_id)
+        if exp:
             exp.theory_ids.append(theory_id)
             exp.mutation_count += 1
-            if exp.status in [ExperienceStatus.OPEN, ExperienceStatus.ABANDONED]:
-                exp.status = ExperienceStatus.ACTIVE
-            exp.updated_at = datetime.now().isoformat()
-            self.repository.save(exp)
+            self.experience_repo.save(exp)
 
     def record_contradiction(self, lineage_id: str):
-        """Increments the contradiction count for an experience."""
-        exp = self._get_or_load_experience(lineage_id)
+        exp = self.get_active_experience_for_lineage(lineage_id)
         if exp:
             exp.contradiction_count += 1
-            exp.updated_at = datetime.now().isoformat()
-            self.repository.save(exp)
+            self.experience_repo.save(exp)
+
+    def close_experience(self, lineage_id: str, date: str, message: str):
+        exp = self.get_active_experience_for_lineage(lineage_id)
+        if exp:
+            exp.status = ExperienceStatus.CLOSED
+            self.experience_repo.save(exp)
+            if self.lesson_extractor:
+                self._last_extracted_lesson = self.lesson_extractor.extract_lessons_from_closed_experience(exp)
 
     def record_validation(self, lineage_id: str):
-        """Explicitly records a successful outcome validation."""
-        exp = self._get_or_load_experience(lineage_id)
+        exp = self.get_active_experience_for_lineage(lineage_id)
         if exp:
-            exp.validation_count += 1
-            exp.status = ExperienceStatus.VALIDATED
-            exp.updated_at = datetime.now().isoformat()
-            self.repository.save(exp)
+            exp.outcome.outcome_confidence = min(1.0, exp.outcome.outcome_confidence + 0.1)
+            self.experience_repo.save(exp)
 
     def record_falsification(self, lineage_id: str):
-        """Explicitly records a prediction failure or invalidation."""
-        exp = self._get_or_load_experience(lineage_id)
+        exp = self.get_active_experience_for_lineage(lineage_id)
         if exp:
-            exp.falsification_count += 1
-            exp.status = ExperienceStatus.FALSIFIED
-            exp.updated_at = datetime.now().isoformat()
-            self.repository.save(exp)
-
-    def close_experience(self, lineage_id: str, date_str: str, summary: str):
-        """Finalizes an experience when a theory lineage is retired."""
-        exp = self._get_or_load_experience(lineage_id)
-        if exp:
-            self.active_experiences.pop(lineage_id, None)
-            exp.end_date = date_str
-            exp.summary = summary
-            exp.updated_at = datetime.now().isoformat()
-            
-            if exp.status in [ExperienceStatus.OPEN, ExperienceStatus.ACTIVE]:
-                exp.status = ExperienceStatus.ABANDONED
-            self.repository.save(exp)
+            exp.outcome.outcome_confidence = max(0.0, exp.outcome.outcome_confidence - 0.2)
+            self.experience_repo.save(exp)
 
     def get_active_experience_for_lineage(self, lineage_id: str) -> Optional[Experience]:
-        """Retrieves current experience context for cognitive logging."""
-        return self._get_or_load_experience(lineage_id)
+        return self.experience_repo.load_by_lineage(lineage_id)
 
+    def set_lesson_extractor(self, lesson_extractor: "LessonExtractor"):
+        """Sets the lesson extractor for the experience engine."""
+        from market.replay.lesson_extractor import LessonExtractor
+        self.lesson_extractor = lesson_extractor
+
+    def get_last_extracted_lesson(self) -> Optional[LessonRecord]:
+        """Returns the last lesson extracted by the lesson extractor."""
+        return self._last_extracted_lesson
+
+    def get_summary_stats(self) -> Dict[str, Any]: return {} # Placeholder
+    def audit(self) -> Dict[str, Any]: return {} # Placeholder
     def get_summary_stats(self) -> Dict[str, Any]:
-        """Provides aggregate metrics for the final Replay Journal."""
-        all_exps = self.repository.get_all()
-        if not all_exps:
-            return {"created": 0}
-        
-        abandoned = sum(1 for e in all_exps if e.status == ExperienceStatus.ABANDONED)
-        
-        most_active_exp = max(all_exps, key=lambda e: e.mutation_count + e.contradiction_count + len(e.theory_ids))
-
+        """Aggregates status and activity stats for the final journal."""
+        exps = self.experience_repo.get_all()
         stats = {
-            "created": len(all_exps),
-            "active": sum(1 for e in all_exps if e.status == ExperienceStatus.ACTIVE),
-            "validated": sum(1 for e in all_exps if e.status == ExperienceStatus.VALIDATED),
-            "falsified": sum(1 for e in all_exps if e.status == ExperienceStatus.FALSIFIED),
-            "abandoned": abandoned,
+            "created": len(exps),
+            "active": sum(1 for e in exps if e.status == ExperienceStatus.ACTIVE),
+            "closed": sum(1 for e in exps if e.status == ExperienceStatus.CLOSED),
+            "validated": sum(1 for e in exps if e.outcome.outcome_confidence >= 0.7),
+            "falsified": sum(1 for e in exps if e.outcome.outcome_confidence < 0.3),
+            "abandoned": sum(1 for e in exps if e.status == ExperienceStatus.ABANDONED),
         }
-        
-        if most_active_exp:
+        if exps:
+            most_active = max(exps, key=lambda e: e.mutation_count + e.contradiction_count)
             stats["most_active"] = {
-                "lineage": most_active_exp.lineage_id,
-                "theories": len(most_active_exp.theory_ids),
-                "contradictions": most_active_exp.contradiction_count,
-                "mutations": most_active_exp.mutation_count
+                "lineage": most_active.lineage_id,
+                "theories": len(most_active.theory_ids),
+                "contradictions": most_active.contradiction_count,
+                "mutations": most_active.mutation_count
             }
-            
         return stats
 
     def audit(self) -> Dict[str, Any]:
-        """Performs a deep integrity audit of all persisted experiences."""
-        all_exps = self.repository.load()
-        if not all_exps:
-            return {"total_experiences": 0}
-
-        count = len(all_exps)
-        stats = {
-            "total_experiences": count,
-            "open": sum(1 for e in all_exps if e.status == ExperienceStatus.OPEN),
-            "active": sum(1 for e in all_exps if e.status == ExperienceStatus.ACTIVE),
-            "validated": sum(1 for e in all_exps if e.status == ExperienceStatus.VALIDATED),
-            "falsified": sum(1 for e in all_exps if e.status == ExperienceStatus.FALSIFIED),
-            "abandoned": sum(1 for e in all_exps if e.status == ExperienceStatus.ABANDONED),
-            
-            "avg_theories_per_experience": sum(len(e.theory_ids) for e in all_exps) / count,
-            "avg_mutations_per_experience": sum(e.mutation_count for e in all_exps) / count,
-            "avg_contradictions_per_experience": sum(e.contradiction_count for e in all_exps) / count,
+        """Provides a deeper health check on experience data."""
+        exps = self.experience_repo.get_all()
+        if not exps: return {}
+        return {
+            "avg_theories_per_experience": sum(len(e.theory_ids) for e in exps) / len(exps),
+            "avg_mutations_per_experience": sum(e.mutation_count for e in exps) / len(exps),
+            "avg_contradictions_per_experience": sum(e.contradiction_count for e in exps) / len(exps),
+            "largest_experience": max([{"lineage": e.lineage_id, "theories": len(e.theory_ids), "mutations": e.mutation_count, "contradictions": e.contradiction_count} for e in exps], key=lambda x: x["theories"])
         }
-
-        # Identify the largest experience by total cognitive accumulation
-        largest = max(
-            all_exps, 
-            key=lambda e: (e.mutation_count + e.contradiction_count + len(e.theory_ids))
-        )
-        stats["largest_experience"] = {
-            "lineage": largest.lineage_id,
-            "theories": len(largest.theory_ids),
-            "mutations": largest.mutation_count,
-            "contradictions": largest.contradiction_count,
-            "status": largest.status.value
-        }
-        
-        return stats

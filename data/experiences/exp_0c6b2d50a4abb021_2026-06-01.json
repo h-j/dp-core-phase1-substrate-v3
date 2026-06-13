@@ -1,22 +1,22 @@
 {
   "experience_id": "exp_0c6b2d50a4abb021_2026-06-01",
   "lineage_id": "0c6b2d50a4abb021",
-  "originating_theory_id": "03bbe87a-cc14-4501-b5bd-f5e7a8069d98",
-  "start_date": "2026-06-01",
-  "end_date": "2026-06-04",
-  "status": "validated",
+  "theory_family_id": "0c6b2d50a4abb021",
+  "created_at": "2026-06-01",
+  "status": "closed",
   "theory_ids": [
-    "03bbe87a-cc14-4501-b5bd-f5e7a8069d98",
-    "14f19f51-983f-4677-8929-4fdeb443e39a",
-    "a8a330be-cd54-418b-8281-798a59cb306a",
-    "69fef69d-f062-4dc6-b508-e62502a68378",
-    "a63e66ce-64df-48fe-9844-a3968ecf969a"
+    "b1fde5fc-dfeb-4dde-8139-ccaffb60cd4e",
+    "484fa7a6-fc59-4047-8be8-28969303c49a",
+    "566d6ff8-e271-47d6-ac2a-2195ef78d5d4",
+    "93657cee-5b46-40e0-a2f1-4871f9645878",
+    "93657cee-5b46-40e0-a2f1-4871f9645878"
   ],
-  "contradiction_count": 4,
-  "validation_count": 1,
-  "falsification_count": 0,
-  "created_at": "2026-06-10T21:08:12.842208",
-  "updated_at": "2026-06-10T21:13:52.062233",
+  "contradictions": [],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [],
   "mutation_count": 4,
-  "summary": "Theory lineage 0c6b2d50a4abb021 retired after 4 steps."
+  "contradiction_count": 3
 }

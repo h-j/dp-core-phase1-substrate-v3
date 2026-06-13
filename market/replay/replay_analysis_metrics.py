@@ -30,11 +30,16 @@ class ReplayAnalysisMetricsMixin:
             "transition_memory_analysis": self._analyze_transition_memory(),
             "prediction_history": self.prediction_history,
             "transition_pressure_history": self.transition_pressure_history,
+            "lesson_analysis": self._analyze_lessons(), # New: Lesson analysis
             "config": self.config_snapshot,
             "risks": self._detect_cognition_risks(),
         }
 
         return analysis
+
+    def _analyze_lessons(self) -> Dict:
+        """Extracts lesson stats from external metrics.""" #
+        return getattr(self, "external_metrics", {}).get("lesson_stats", {})
 
     def _analyze_confidence(self) -> Dict:
         """Analyze confidence evolution."""
@@ -417,6 +422,8 @@ class ReplayAnalysisMetricsMixin:
             return row["prior_prediction_result"].get("direction_score", 0) == 0.5
 
         scored_count_aligned = len(aligned_predictions)
+        scored_count = len(scored)
+        correct = sum(1 for r in scored if is_correct(r))
         correct_aligned = sum(1 for r in aligned_predictions if r["direction_score"] == 1.0)
         partial = sum(1 for r in scored if is_partial(r))
         mean_conf = (
