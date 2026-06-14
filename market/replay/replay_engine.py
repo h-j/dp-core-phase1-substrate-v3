@@ -1198,10 +1198,22 @@ class ReplayExecutor:
                     
                     # Experience Lifecycle: Outcome Grounding
                     if prior_prediction_result and self._prior_lineage_id:
-                        if prior_prediction_result.direction_score == 1.0:
-                            self.experience_engine.record_validation(self._prior_lineage_id)
-                        if prior_prediction_result.invalidation_triggered:
-                            self.experience_engine.record_falsification(self._prior_lineage_id)
+                        # Wiring Fix: Outcome grounding data was being lost for CLOSED experiences because 
+                        # ExperienceEngine.record_validation/falsification filtered for ACTIVE status.
+                        # We use the repository directly to ensure counts are attributed even after closure.
+                        target_exp = self.experience_repo.load_by_lineage(self._prior_lineage_id)
+                        if target_exp:
+                            attributed = False
+                            if prior_prediction_result.direction_score == 1.0:
+                                target_exp.validation_count += 1
+                                attributed = True
+                            if prior_prediction_result.invalidation_triggered:
+                                target_exp.falsification_count += 1
+                                attributed = True
+                            
+                            if attributed:
+                                print(f"  [ATTRIBUTION] lineage={self._prior_lineage_id} exp={target_exp.experience_id} status={target_exp.status.value} validation_count={target_exp.validation_count} falsification_count={target_exp.falsification_count}")
+                                self.experience_repo.save(target_exp)
 
                 # Task B: Capital Simulation (observer-only)
                 derived = obs_data.get("derived")

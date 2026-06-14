@@ -1,0 +1,41 @@
+{
+  "experience_id": "exp_58251a38555aedf2_2026-05-05",
+  "lineage_id": "58251a38555aedf2",
+  "theory_family_id": "58251a38555aedf2",
+  "created_at": "2026-05-05",
+  "status": "closed",
+  "theory_ids": [
+    "0c03fc57-df15-4188-9406-10d3e7dc775d",
+    "ca4568e9-d1a2-47e5-8b55-b19b8dbb120a"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Neutral regime is dr... vs short-term momentum ...; Low semantic similarity: volatility expands s... vs volatility contracti...",
+    "Structural: Low semantic similarity: Neutral regime is dr... vs short-term momentum ...; Low semantic similarity: volatility expands s... vs volatility expansion...",
+    "Structural: Low semantic similarity: Neutral regime is dr... vs Regime is driven by ...; Low semantic similarity: decisive close outsi... vs price fails to close...; Low semantic similarity: Neutral regime is dr... vs volume remains eleva...; Low semantic similarity: short-term momentum ... vs volume remains eleva...; Low semantic similarity: volatility expands s... vs volatility contracts...",
+    "Structural: Low semantic similarity: Neutral regime is dr... vs participation remain...; Low semantic similarity: short-term momentum ... vs participation remain...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs Neutral regime is dr...; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation widens... vs short-term momentum ...; Low semantic similarity: volatility remains c... vs volatility expands s...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs Regime is driven by ...; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation widens... vs short-term momentum ...; Low semantic similarity: volatility remains c... vs volatility contracti...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation widens... vs short-term momentum ...; Field conflict: volatility remains compressed: vs volatility expansion subsides:",
+    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation widens... vs short-term momentum ...; Low semantic similarity: volatility remains c... vs volatility contracti...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs Regime is driven by ...; Low semantic similarity: decisive close below... vs price fails to close...; Low semantic similarity: Regime is driven by ... vs volume remains eleva...; Low semantic similarity: participation widens... vs volume remains eleva...; Low semantic similarity: volatility remains c... vs volatility contracts..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:range_bound",
+    "volume:normal",
+    "volatility:moderate",
+    "liquidity:even_flow",
+    "breadth:strongly_participatory",
+    "participation:normal",
+    "momentum:strengthening",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 1,
+  "contradiction_count": 2,
+  "validation_count": 0,
+  "falsification_count": 0
+}

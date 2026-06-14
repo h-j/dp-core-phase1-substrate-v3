@@ -1,0 +1,41 @@
+{
+  "experience_id": "exp_44b9c8255e5d648f_2026-05-07",
+  "lineage_id": "44b9c8255e5d648f",
+  "theory_family_id": "44b9c8255e5d648f",
+  "created_at": "2026-05-07",
+  "status": "closed",
+  "theory_ids": [
+    "d3102d97-cdf9-4bc7-b650-5f743b89b5f9",
+    "982577e0-4e05-4713-81f4-3995688a5d20"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Regime is driven by ... vs participation widens...; Low semantic similarity: short-term momentum ... vs participation widens...; Field conflict: volatility remains compressed  vs volatility remains compressed:",
+    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: volatility remains c... vs volatility expands s...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: volatility remains c... vs volatility contracti...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Field conflict: volatility remains compressed  vs volatility expansion subsides:",
+    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: volatility expands f... vs volatility remains c...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs participation widens...; Low semantic similarity: short-term momentum ... vs participation widens...; Low semantic similarity: volatility expands f... vs volatility remains c...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Field conflict: volatility expands further: fa vs volatility expands significant",
+    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: volatility expands f... vs volatility contracti...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: volatility expands f... vs volatility expansion..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:range_bound",
+    "volume:elevated",
+    "volatility:moderate",
+    "liquidity:even_flow",
+    "breadth:mixed",
+    "participation:normal",
+    "momentum:weakening",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 1,
+  "contradiction_count": 2,
+  "validation_count": 0,
+  "falsification_count": 0
+}
