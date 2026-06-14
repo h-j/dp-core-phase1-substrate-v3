@@ -938,7 +938,6 @@ class ReplayExecutor:
                             # Experience Integration: close retired experiences
                             for retired_record in retired_records:
                                 self.experience_engine.close_experience(
-                                    retired_record.id,
                                     retired_record.lineage_id, # Use stable lineage ID
                                     date_str,
                                     f"Theory lineage {retired_record.id} retired after {retired_record.survival_steps} steps."
@@ -1096,10 +1095,10 @@ class ReplayExecutor:
                 if theory_usefulness["score"] > 0.8 and contradiction_result.get("score", 0.0) > 0.7:
                     self._log("WARNING: High theory usefulness with high contradiction detected.")
 
-                # Find experience early for metadata attribution
+                # Find lineage experience early for metadata attribution.
                 active_exp = None
                 if lineage_record and lineage_id_val != "N/A":
-                    active_exp = self.experience_engine.get_active_experience_for_lineage(lineage_id_val)
+                    active_exp = self.experience_repo.load_by_lineage(lineage_id_val)
 
                 intelligence_metadata = {
                     "directional_persistence": {
@@ -1187,13 +1186,10 @@ class ReplayExecutor:
                     )
                     
                     # Experience Lifecycle: Outcome Grounding
-                    if prior_prediction_result and lineage_record:
                     if prior_prediction_result and self._prior_lineage_id:
                         if prior_prediction_result.direction_score == 1.0:
-                            self.experience_engine.record_validation(lineage_id_val)
                             self.experience_engine.record_validation(self._prior_lineage_id)
                         if prior_prediction_result.invalidation_triggered:
-                            self.experience_engine.record_falsification(lineage_id_val)
                             self.experience_engine.record_falsification(self._prior_lineage_id)
 
                 # Task B: Capital Simulation (observer-only)
@@ -1572,7 +1568,7 @@ class ReplayExecutor:
                 # Find experience for current trace log
                 active_exp = None
                 if lineage_record and lineage_id_val != "N/A": # Use the stable lineage_id for lookup
-                    active_exp = self.experience_engine.get_active_experience_for_lineage(lineage_id_val)
+                    active_exp = self.experience_repo.load_by_lineage(lineage_id_val)
 
                 # Print formatted log
                 self._print_day_log(
@@ -1590,7 +1586,7 @@ class ReplayExecutor:
                     prediction_probe,
                     prior_prediction_result,
                     active_experience=active_exp, # Pass the active experience
-                    lesson_extracted=self.experience_engine.get_last_extracted_lesson(), # Pass the last extracted lesson
+                    lesson_info=self.experience_engine.get_last_extracted_lesson_with_reason(),
                     intelligence=intelligence_metadata
                 )
 
@@ -1911,12 +1907,14 @@ class ReplayExecutor:
         prediction=None,
         prior_prediction_result=None,
         active_experience=None,
-        lesson_extracted=None, # New parameter for lesson
+        lesson_info=None,
         intelligence=None,
     ):
         """Print concise COGNITIVE TRACE."""
         if self.quiet:
             return
+            
+        lesson_extracted, reason, evidence_count = lesson_info if lesson_info else (None, "not_processed", 0)
 
         print(f"\n── COGNITIVE TRACE: DAY {day_idx} ── {date_str} ──────────────────")
         
@@ -1948,7 +1946,7 @@ class ReplayExecutor:
             print(f"Experience:")
             print(f"  {active_experience.experience_id}")
             print(f"  Status: {active_experience.status.value}")
-            print(f"  Theories: {len(active_experience.theory_ids)} | Contradictions: {len(active_experience.contradictions)} | Mutations: {len(active_experience.mutations)}")
+            print(f"  Theories: {len(active_experience.theory_ids)} | Contradictions: {active_experience.contradiction_count} | Mutations: {active_experience.mutation_count}")
         
         if prediction:
             print(f"Prediction: {prediction.direction.value} (Next Day)")
@@ -1956,10 +1954,12 @@ class ReplayExecutor:
         print(f"Reflection:")
         print(f"  {reflection.reflection_summary[:250]}...") # Shorten for brevity
 
-        print(f"Lesson:") # New Lesson section
-
         if lesson_extracted:
             print(f"  Extracted: {lesson_extracted.lesson_text[:100]}... (Confidence: {lesson_extracted.confidence:.2f}, Status: {lesson_extracted.status.value})")
+        elif reason == "insufficient_evidence":
+            print(f"  Lesson: No lesson formed. Insufficient evidence ({evidence_count}/3 experiences)")
+        elif reason == "internal_id_rejected":
+            print(f"  Lesson: Rejected. Lesson text contained internal IDs.")
         else:
             print("  No lesson has stabilized.")
 

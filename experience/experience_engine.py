@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional, List, Dict, Any, TYPE_CHECKING
+from typing import Optional, List, Dict, Any, TYPE_CHECKING, Tuple
 from uuid import UUID
 from experience.experience_repository import ExperienceRepository
 from experience.experience_types import Experience, ExperienceStatus, ExperienceOutcome
@@ -13,7 +13,7 @@ class ExperienceEngine:
     def __init__(self, experience_repo: ExperienceRepository):
         self.experience_repo = experience_repo
         self.lesson_extractor: Optional[LessonExtractor] = None
-        self._last_extracted_lesson: Optional[LessonRecord] = None
+        self._last_extracted_lesson_info: Tuple[Optional[LessonRecord], str, int] = (None, "not_processed", 0)
 
     def create_experience(self, theory_id: str, lineage_id: str, date: str):
         exp_id = f"exp_{lineage_id}_{date}"
@@ -44,35 +44,35 @@ class ExperienceEngine:
         if exp:
             exp.status = ExperienceStatus.CLOSED
             self.experience_repo.save(exp)
-            if self.lesson_extractor:
-                self._last_extracted_lesson = self.lesson_extractor.extract_lessons_from_closed_experience(exp)
+            if self.lesson_extractor: # CHANGE 7: Capture lesson info
+                self._last_extracted_lesson_info = self.lesson_extractor.extract_lessons_from_closed_experience(exp)
 
     def record_validation(self, lineage_id: str):
         exp = self.get_active_experience_for_lineage(lineage_id)
         if exp:
+            exp.validation_count += 1
             exp.outcome.outcome_confidence = min(1.0, exp.outcome.outcome_confidence + 0.1)
             self.experience_repo.save(exp)
 
     def record_falsification(self, lineage_id: str):
         exp = self.get_active_experience_for_lineage(lineage_id)
         if exp:
+            exp.falsification_count += 1
             exp.outcome.outcome_confidence = max(0.0, exp.outcome.outcome_confidence - 0.2)
             self.experience_repo.save(exp)
 
     def get_active_experience_for_lineage(self, lineage_id: str) -> Optional[Experience]:
-        return self.experience_repo.load_by_lineage(lineage_id)
+        return self.experience_repo.load_by_lineage(lineage_id, status=ExperienceStatus.ACTIVE)
 
     def set_lesson_extractor(self, lesson_extractor: "LessonExtractor"):
         """Sets the lesson extractor for the experience engine."""
         from market.replay.lesson_extractor import LessonExtractor
         self.lesson_extractor = lesson_extractor
 
-    def get_last_extracted_lesson(self) -> Optional[LessonRecord]:
-        """Returns the last lesson extracted by the lesson extractor."""
-        return self._last_extracted_lesson
+    def get_last_extracted_lesson_with_reason(self) -> Tuple[Optional[LessonRecord], str, int]:
+        """CHANGE 7: Returns the last lesson extracted by the lesson extractor along with reason and similar experience count."""
+        return self._last_extracted_lesson_info
 
-    def get_summary_stats(self) -> Dict[str, Any]: return {} # Placeholder
-    def audit(self) -> Dict[str, Any]: return {} # Placeholder
     def get_summary_stats(self) -> Dict[str, Any]:
         """Aggregates status and activity stats for the final journal."""
         exps = self.experience_repo.get_all()

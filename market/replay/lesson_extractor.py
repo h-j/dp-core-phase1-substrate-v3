@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import List, Dict, Any, Optional, TYPE_CHECKING
 from uuid import UUID, uuid4
+import re
 from datetime import datetime
 
 from market.replay.lesson_record import LessonRecord, LessonStatus
@@ -13,56 +14,71 @@ class LessonExtractor: #
     def __init__(self, lesson_repo: LessonRepository, experience_repo: ExperienceRepository):
         self.lesson_repo = lesson_repo
         self.experience_repo = experience_repo
-        self.debug = True # For logging during development
-        self.MAX_GROUP_SIZE = 5 # Max experiences to group for pattern detection
+        self.debug = True
+        self.MAX_GROUP_SIZE = 5
+        self.MIN_EVIDENCE_THRESHOLD = 3
+        self.processed_experience_ids: set[str] = set()
 
-    def extract_lessons_from_closed_experience(self, closed_experience: Experience) -> Optional[LessonRecord]:
+    def extract_lessons_from_closed_experience(self, closed_experience: Experience) -> tuple[Optional[LessonRecord], str, int]:
+        # CHANGE 4: Prevent Duplicate Extraction
+        if closed_experience.experience_id in self.processed_experience_ids:
+            return None, "duplicate_extraction", 0
+        self.processed_experience_ids.add(closed_experience.experience_id)
+
         if self.debug: print(f"[LessonExtractor] Processing closed experience: {closed_experience.experience_id}")
 
         # 1. Group Similar Experiences
         similar_experiences = self._get_similar_closed_experiences(closed_experience)
-        if self.debug: print(f"[LessonExtractor] Found {len(similar_experiences)} similar experiences for pattern detection.")
- 
-        # 2. Pattern Detection & Candidate Lesson Generation
-        candidate_lesson_data = self._detect_patterns_and_generate_lesson(similar_experiences, closed_experience) #
-        if not candidate_lesson_data:
-            if self.debug: print("[LessonExtractor] No clear pattern detected for lesson generation. Skipping.")
-            return None
-        if self.debug: print(f"[LessonExtractor] Candidate Lesson: '{candidate_lesson_data['lesson_text']}'")
+        count = len(similar_experiences)
+        
+        # CHANGE 1: Minimum Evidence Threshold
+        if count < self.MIN_EVIDENCE_THRESHOLD:
+            if self.debug: print(f"[LessonExtractor] Insufficient evidence: {count}/{self.MIN_EVIDENCE_THRESHOLD}")
+            return None, "insufficient_evidence", count
+
+        # CHANGE 2: Internal Pattern Stage
+        pattern = self._detect_patterns_and_generate_lesson(similar_experiences, closed_experience)
+        if not pattern:
+            return None, "no_pattern", count
+
+        # CHANGE 3: Remove Internal IDs From Lesson Text
+        if self._contains_internal_id(pattern['lesson_text']):
+            if self.debug: print(f"[LessonExtractor] Rejected lesson text containing internal IDs.")
+            return None, "internal_id_rejected", count
  
         # 4. Calculate Lesson Confidence
-        confidence = self._calculate_lesson_confidence(
-            candidate_lesson_data['support_count'],
-            candidate_lesson_data['contradiction_count']
-        )
+        confidence = self._calculate_lesson_confidence(pattern['support_count'], pattern['contradiction_count'])
         if self.debug: print(f"[LessonExtractor] Confidence: {confidence:.2f}")
  
         # 5. Create/Update LessonRecord
-        existing_lesson = self._find_existing_lesson(
-            candidate_lesson_data['lesson_text']
-        )
+        existing_lesson = self._find_existing_lesson(pattern['lesson_text'])
         if existing_lesson:
             updated_lesson = self._update_lesson_record(
                 existing_lesson,
                 similar_experiences,
                 confidence,
-                candidate_lesson_data['support_count'],
-                candidate_lesson_data['contradiction_count']
+                pattern['support_count'],
+                pattern['contradiction_count']
             )
             self.lesson_repo.save(updated_lesson)
-            if self.debug: print(f"[LessonExtractor] Updated existing lesson: {updated_lesson.lesson_id} to status {updated_lesson.status.value}")
-            return updated_lesson
+            return updated_lesson, "updated", count
         else:
             new_lesson = self._create_new_lesson_record(
-                candidate_lesson_data['lesson_text'],
+                pattern['lesson_text'],
                 similar_experiences,
                 confidence,
-                candidate_lesson_data['support_count'],
-                candidate_lesson_data['contradiction_count']
+                pattern['support_count'],
+                pattern['contradiction_count']
             )
             self.lesson_repo.save(new_lesson)
-            if self.debug: print(f"[LessonExtractor] Created new lesson: {new_lesson.lesson_id} with status {new_lesson.status.value}")
-            return new_lesson
+            return new_lesson, "created", count
+
+    def _contains_internal_id(self, text: str) -> bool:
+        """CHANGE 3: Checks if the lesson text contains internal identifiers."""
+        uuid_pattern = r'[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
+        hex_id_pattern = r'\b[0-9a-fA-F]{12,}\b'
+        exp_id_pattern = r'exp_[a-zA-Z0-9_-]+'
+        return any(re.search(p, text) for p in [uuid_pattern, hex_id_pattern, exp_id_pattern])
 
     def _get_similar_closed_experiences(self, primary_experience: Experience) -> List[Experience]:
         # Retrieve other closed experiences that share similar regime context and theory family
@@ -81,21 +97,15 @@ class LessonExtractor: #
             # 3. Similar outcome (e.g., both validated or both falsified)
             # 4. Overlapping contradiction signals (at least one common element)
 
-            # Check 1: Same theory family
-            if exp.theory_family_id != primary_experience.theory_family_id:
-                continue
-
-            # Check 2: Overlapping regime context
             common_regimes = set(exp.regime_context) & set(primary_experience.regime_context)
-            if not common_regimes:
-                continue
+            if not common_regimes: continue
 
-            # Check 3: Similar outcome (simplified: both validated or both falsified)
-            primary_outcome_validated = primary_experience.outcome.outcome_confidence >= 0.7
-            exp_outcome_validated = exp.outcome.outcome_confidence >= 0.7
+            # Similarity based on grounded outcomes (validation/falsification counts)
+            primary_outcome_validated = primary_experience.validation_count >= primary_experience.falsification_count
+            exp_outcome_validated = exp.validation_count >= exp.falsification_count
             if primary_outcome_validated != exp_outcome_validated:
                 continue
-
+            
             # Check 4: Overlapping contradiction signals (if any)
             common_contradictions = set(exp.contradictions) & set(primary_experience.contradictions)
             if primary_experience.contradictions and exp.contradictions and not common_contradictions:
@@ -113,30 +123,45 @@ class LessonExtractor: #
             return None
 
         # Aggregate data from similar experiences
-        support_count = sum(1 for exp in experiences if exp.outcome.outcome_confidence >= 0.7) # High validation
-        contradiction_count = sum(1 for exp in experiences if exp.outcome.outcome_confidence < 0.3) # Low validation/falsified
+        # CHANGE: Use actual outcomes (validation_count), not outcome_confidence
+        support_count = sum(1 for exp in experiences if exp.validation_count > 0 and exp.validation_count >= exp.falsification_count)
+        contradiction_count = sum(1 for exp in experiences if exp.falsification_count > 0 and exp.falsification_count > exp.validation_count)
 
         # Determine common condition
-        # For V1, let's simplify: common regime context and theory family
         common_regimes = set.intersection(*[set(exp.regime_context) for exp in experiences])
-        condition_part = f"Under regime context: {', '.join(sorted(list(common_regimes)))}" if common_regimes else "Under various regime contexts"
-        condition_part += f" and theory family: {primary_experience.theory_family_id}"
- 
-        # Determine common implication
-        # If mostly supported, implication is positive. If mostly contradicted, implication is negative.
-        if support_count > contradiction_count * 2:
-            implication_part = "theories of this family tend to be validated."
-        elif contradiction_count > support_count * 2:
-            implication_part = "theories of this family tend to be falsified."
+
+        condition_parts = []
+        if common_regimes:
+            condition_parts.append(f"Under regime context: {', '.join(sorted(list(common_regimes)))}")
+        
+        if not condition_parts:
+            condition_part = "Under various market conditions"
         else:
-            implication_part = "theories of this family show mixed results."
- 
+            condition_part = ", ".join(condition_parts)
+
+        # Determine common implication
+        if support_count > contradiction_count * 2:
+            implication_part = "theories tend to be validated"
+        elif contradiction_count > support_count * 2:
+            implication_part = "theories tend to be falsified"
+        else:
+            implication_part = "theories show mixed results"
+
+        if "compressed" in str(common_regimes).lower() and contradiction_count > 0:
+            implication_part += " but degrade during volatility expansion"
+
         # Add more detail based on common contradiction signals if present
         all_contradictions = [c for exp in experiences for c in exp.contradictions]
         if all_contradictions:
-            common_contradiction_signals = max(set(all_contradictions), key=all_contradictions.count)
-            if all_contradictions.count(common_contradiction_signals) > len(experiences) / 2:
-                implication_part += f" Often contradicted by: '{common_contradiction_signals}'."
+            # Find most common contradiction signal
+            from collections import Counter
+            contradiction_counts = Counter(all_contradictions)
+            most_common_contradiction, count = contradiction_counts.most_common(1)[0]
+            
+            # If it's common enough, add to implication
+            if count >= 2 and count > len(experiences) / 2:
+                implication_part += f" Often contradicted by: '{most_common_contradiction}'."
+
  
         lesson_text = f"{condition_part}, {implication_part}"
  
@@ -150,7 +175,7 @@ class LessonExtractor: #
         total_count = support_count + contradiction_count
         if total_count == 0:
             return 0.0
-        return support_count / total_count #
+        return support_count / total_count
 
     def _find_existing_lesson(self, lesson_text: str) -> Optional[LessonRecord]:
         # Simple matching: look for lessons with identical lesson_text
@@ -182,14 +207,14 @@ class LessonExtractor: #
         existing_lesson.source_experience_ids = list(set(existing_lesson.source_experience_ids + new_exp_ids))
 
         # Update status based on confidence and counts
-        # Reduced lifecycle states to candidate, active, retired
-        if existing_lesson.confidence >= 0.5 and existing_lesson.support_count > existing_lesson.contradiction_count:
+        # CHANGE 5: Simplified Lesson Lifecycle
+        if existing_lesson.confidence >= 0.75:
             existing_lesson.status = LessonStatus.ACTIVE
         elif existing_lesson.confidence < 0.2:
             existing_lesson.status = LessonStatus.RETIRED
         else:
-            # If not active or retired, it remains a candidate or becomes one
             existing_lesson.status = LessonStatus.CANDIDATE
+
 
         existing_lesson.last_updated_at = datetime.utcnow()
         return existing_lesson
@@ -204,7 +229,7 @@ class LessonExtractor: #
     ) -> LessonRecord:
         lesson_id = uuid4()
         status = LessonStatus.CANDIDATE
-        if confidence >= 0.5 and support_count > contradiction_count:
+        if confidence >= 0.75:
             status = LessonStatus.ACTIVE
  
         return LessonRecord(
@@ -215,4 +240,20 @@ class LessonExtractor: #
             contradiction_count=contradiction_count,
             source_experience_ids=[exp.experience_id for exp in experiences],
             status=status,
+        )
+
+    def _contains_internal_id(self, text: str) -> bool:
+        """
+        CHANGE 3: Checks if the lesson text contains common internal identifiers.
+        This is a heuristic check and might not catch all cases, but covers common UUID/ID patterns.
+        """
+        # Regex for UUIDs (e.g., 0c6b2d50-a4ab-b021-...) or common ID patterns (e.g., 0c6b2d50a4abb021)
+        uuid_pattern = r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
+        short_id_pattern = r"\b[0-9a-fA-F]{16,32}\b" # For lineage_id, theory_id, experience_id if not full UUID format
+        exp_id_pattern = r"exp_[a-zA-Z0-9_-]+"
+        
+        return bool(
+            re.search(uuid_pattern, text)
+            or re.search(short_id_pattern, text)
+            or re.search(exp_id_pattern, text)
         )

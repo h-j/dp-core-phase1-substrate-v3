@@ -60,17 +60,21 @@ class ExperienceRepository:
         self._initial_load()
         return self.get_all()
 
-    def load_by_lineage(self, lineage_id: str) -> Optional[Experience]:
+    def load_by_lineage(
+        self,
+        lineage_id: str,
+        status: Optional[ExperienceStatus] = None,
+    ) -> Optional[Experience]:
         """Retrieves an experience by its associated lineage ID."""
         # Search memory cache first
         for exp in self.storage.values():
-            if exp.lineage_id == lineage_id:
+            if exp.lineage_id == lineage_id and (status is None or exp.status == status):
                 return exp
         
         # Fallback to reloading from disk if not found in cache
         self.load()
         for exp in self.storage.values():
-            if exp.lineage_id == lineage_id:
+            if exp.lineage_id == lineage_id and (status is None or exp.status == status):
                 return exp
         return None
 

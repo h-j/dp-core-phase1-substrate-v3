@@ -1,0 +1,20 @@
+{
+  "experience_id": "exp_f866b69aa882ea3b_2026-06-05",
+  "lineage_id": "f866b69aa882ea3b",
+  "theory_family_id": "f866b69aa882ea3b",
+  "created_at": "2026-06-05",
+  "status": "active",
+  "theory_ids": [
+    "03013531-7728-4781-9009-9256fee0a711"
+  ],
+  "contradictions": [],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [],
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 0
+}

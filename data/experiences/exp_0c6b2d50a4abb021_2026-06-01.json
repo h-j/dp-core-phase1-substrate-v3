@@ -5,11 +5,10 @@
   "created_at": "2026-06-01",
   "status": "closed",
   "theory_ids": [
-    "b1fde5fc-dfeb-4dde-8139-ccaffb60cd4e",
-    "484fa7a6-fc59-4047-8be8-28969303c49a",
-    "566d6ff8-e271-47d6-ac2a-2195ef78d5d4",
-    "93657cee-5b46-40e0-a2f1-4871f9645878",
-    "93657cee-5b46-40e0-a2f1-4871f9645878"
+    "068fe1e0-67ae-4cfa-9482-c3559d069824",
+    "e6cd335f-1e7f-4ffd-8273-b3c2a8826c0d",
+    "06b81864-072d-4224-8f53-3e6fd36ce24f",
+    "52de3cb6-3631-4458-928f-5ab7f8e286a6"
   ],
   "contradictions": [],
   "mutations": [],
@@ -17,6 +16,8 @@
     "outcome_confidence": 0.5
   },
   "regime_context": [],
-  "mutation_count": 4,
-  "contradiction_count": 3
+  "mutation_count": 3,
+  "contradiction_count": 3,
+  "validation_count": 0,
+  "falsification_count": 0
 }

@@ -1,0 +1,21 @@
+{
+  "experience_id": "exp_49e02cdb5f60800b_2026-05-29",
+  "lineage_id": "49e02cdb5f60800b",
+  "theory_family_id": "49e02cdb5f60800b",
+  "created_at": "2026-05-29",
+  "status": "closed",
+  "theory_ids": [
+    "58740e29-37fb-425c-a201-f365d51a1de0",
+    "17136f1b-5a58-4237-a51d-67e484bf111e"
+  ],
+  "contradictions": [],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [],
+  "mutation_count": 1,
+  "contradiction_count": 2,
+  "validation_count": 0,
+  "falsification_count": 0
+}

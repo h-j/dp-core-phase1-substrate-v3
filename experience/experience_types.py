@@ -27,3 +27,5 @@ class Experience:
     regime_context: List[str] = field(default_factory=list)
     mutation_count: int = 0
     contradiction_count: int = 0
+    validation_count: int = 0
+    falsification_count: int = 0
