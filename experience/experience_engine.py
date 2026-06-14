@@ -15,14 +15,16 @@ class ExperienceEngine:
         self.lesson_extractor: Optional[LessonExtractor] = None
         self._last_extracted_lesson_info: Tuple[Optional[LessonRecord], str, int] = (None, "not_processed", 0)
 
-    def create_experience(self, theory_id: str, lineage_id: str, date: str):
+    def create_experience(self, theory_id: str, lineage_id: str, date: str, regime_context: List[str] = None, theory_subtype: str = ""):
         exp_id = f"exp_{lineage_id}_{date}"
         experience = Experience(
             experience_id=exp_id,
             lineage_id=lineage_id,
             theory_family_id=lineage_id, # Simplified for V1
             created_at=date,
-            theory_ids=[theory_id]
+            theory_ids=[theory_id],
+            regime_context=regime_context or [],
+            theory_subtype=theory_subtype
         )
         self.experience_repo.save(experience)
 
@@ -33,10 +35,15 @@ class ExperienceEngine:
             exp.mutation_count += 1
             self.experience_repo.save(exp)
 
-    def record_contradiction(self, lineage_id: str):
+    def record_contradiction(self, lineage_id: str, signatures: List[str] = None):
         exp = self.get_active_experience_for_lineage(lineage_id)
         if exp:
             exp.contradiction_count += 1
+            if signatures:
+                for sig in signatures:
+                    if sig not in exp.contradictions:
+                        exp.contradictions.append(sig)
+                        print(f"[ExperienceEngine] Contradiction Signature Added: {sig}")
             self.experience_repo.save(exp)
 
     def close_experience(self, lineage_id: str, date: str, message: str):

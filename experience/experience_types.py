@@ -25,6 +25,7 @@ class Experience:
     mutations: List[str] = field(default_factory=list)
     outcome: ExperienceOutcome = field(default_factory=ExperienceOutcome)
     regime_context: List[str] = field(default_factory=list)
+    theory_subtype: str = ""
     mutation_count: int = 0
     contradiction_count: int = 0
     validation_count: int = 0

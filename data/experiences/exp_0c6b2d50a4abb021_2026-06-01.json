@@ -5,17 +5,25 @@
   "created_at": "2026-06-01",
   "status": "closed",
   "theory_ids": [
-    "068fe1e0-67ae-4cfa-9482-c3559d069824",
-    "e6cd335f-1e7f-4ffd-8273-b3c2a8826c0d",
-    "06b81864-072d-4224-8f53-3e6fd36ce24f",
-    "52de3cb6-3631-4458-928f-5ab7f8e286a6"
+    "cd472ff5-9aee-4ae4-aa15-28af5a05b981",
+    "8f3b5c84-16b6-45e5-b3ff-cb41176a1fb3",
+    "91b0efd9-9dbb-48fa-8666-ae852602da2d",
+    "a7dd8dcd-a859-4ee7-b75e-b607ff581045"
   ],
-  "contradictions": [],
+  "contradictions": [
+    "Structural: Low semantic similarity: Neutral regime is dr... vs Regime is driven by ...; Low semantic similarity: Neutral regime is dr... vs short-term momentum ...; Low semantic similarity: volume contracts bel... vs short-term momentum ...; Low semantic similarity: range expansion pers... vs volatility expands f...",
+    "Structural: Field conflict: decisive close below the recen vs decisive close above the prior; Low semantic similarity: Regime is driven by ... vs volume contracts bel...; Low semantic similarity: participation increa... vs volume contracts bel...; Low semantic similarity: volatility remains m... vs range expansion pers...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs Regime is driven by ...; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation increa... vs short-term momentum ...; Low semantic similarity: volatility remains m... vs volatility expands f...",
+    "Structural: Low semantic similarity: Neutral regime is dr... vs participation increa...",
+    "Structural: Field conflict: decisive close below the estab vs decisive close above the prior; Low semantic similarity: Neutral regime is dr... vs volume contracts bel...; Low semantic similarity: short-term momentum ... vs volume contracts bel...; Low semantic similarity: volatility expands f... vs range expansion pers...",
+    "Structural: Low semantic similarity: Neutral regime is dr... vs Regime is driven by ...; Low semantic similarity: Neutral regime is dr... vs short-term momentum ..."
+  ],
   "mutations": [],
   "outcome": {
     "outcome_confidence": 0.5
   },
   "regime_context": [],
+  "theory_subtype": "neutral",
   "mutation_count": 3,
   "contradiction_count": 3,
   "validation_count": 0,

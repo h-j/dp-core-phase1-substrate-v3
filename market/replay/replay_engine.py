@@ -798,7 +798,15 @@ class ReplayExecutor:
 
                             if lineage_result.get("created"):
                                 print(f"  [AUDIT] Calling create_experience for lineage {lineage_record.id}")
-                                self.experience_engine.create_experience(theory.id, lineage_id_val, date_str) # Use stable lineage_id
+                                # Capture descriptive regime context for the experience record
+                                regime_context_list = [f"{m.date} (sim: {m.similarity:.2f})" for m in regime_matches[:3]]
+                                self.experience_engine.create_experience(
+                                    theory_id=theory.id, 
+                                    lineage_id=lineage_id_val, 
+                                    date=date_str,
+                                    regime_context=regime_context_list,
+                                    theory_subtype=regime_subtype
+                                )
                                 exp_create_called = True
                             elif lineage_result.get("mutated") or lineage_result.get("merged"):
                                 # Use the stable lineage_id for attaching theories to the experience
@@ -880,7 +888,7 @@ class ReplayExecutor:
 
                         # Experience Integration: record contradiction
                         if descriptions:
-                            self.experience_engine.record_contradiction(lineage_id_val)
+                            self.experience_engine.record_contradiction(lineage_id_val, signatures=descriptions)
                 except Exception:
                     pass
 
