@@ -798,8 +798,11 @@ class ReplayExecutor:
 
                             if lineage_result.get("created"):
                                 print(f"  [AUDIT] Calling create_experience for lineage {lineage_record.id}")
-                                # Capture descriptive regime context for the experience record
-                                regime_context_list = [f"{m.date} (sim: {m.similarity:.2f})" for m in regime_matches[:3]]
+                                regime_context_list = self._build_experience_regime_context(
+                                    market_obs,
+                                    obs_data,
+                                    regime_subtype,
+                                )
                                 self.experience_engine.create_experience(
                                     theory_id=theory.id, 
                                     lineage_id=lineage_id_val, 
@@ -1840,6 +1843,33 @@ class ReplayExecutor:
                 f", confidence {match.confidence:.2f}{contradiction}"
             )
         return "Regime memory: " + " | ".join(parts)
+
+    def _build_experience_regime_context(
+        self,
+        market_obs: object,
+        obs_data: dict,
+        regime_subtype: str,
+    ) -> List[str]:
+        """Build comparable market-condition descriptors for Experience records."""
+        derived = obs_data.get("derived", {}) if obs_data else {}
+        fields = [
+            ("trend", getattr(market_obs, "trend_state", "unknown")),
+            (
+                "volume",
+                getattr(market_obs, "volume_state", derived.get("volume_state", "normal")),
+            ),
+            ("volatility", getattr(market_obs, "volatility_state", "unknown")),
+            ("liquidity", getattr(market_obs, "liquidity_state", "unknown")),
+            ("breadth", getattr(market_obs, "breadth_state", "unknown")),
+            ("participation", getattr(market_obs, "participation_strength", "normal")),
+            ("momentum", getattr(market_obs, "momentum_regime", "flat")),
+            ("subtype", regime_subtype or getattr(market_obs, "regime_subtype", "neutral")),
+        ]
+        return [
+            f"{name}:{str(value).strip().lower()}"
+            for name, value in fields
+            if value not in (None, "")
+        ]
 
     def _save_snapshot(self, day_idx: int, date_str: str, snapshot_data: dict):
         """Save replay snapshot to disk."""

@@ -1,0 +1,36 @@
+{
+  "experience_id": "exp_996d1df43ac6116c_2026-04-27",
+  "lineage_id": "996d1df43ac6116c",
+  "theory_family_id": "996d1df43ac6116c",
+  "created_at": "2026-04-27",
+  "status": "active",
+  "theory_ids": [
+    "19e15148-4013-4879-b914-44e495f964b9",
+    "7983b4ac-92fd-472d-8540-c973641e9a64",
+    "bfc546c2-733a-4779-b13e-fcb9fec58cd6"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Regime is driven by ... vs participation contin...; Low semantic similarity: participation remain... vs participation contin...",
+    "Structural: Low semantic similarity: price fails to close... vs decisive close below...; Low semantic similarity: Regime is driven by ... vs participation remain...; Low semantic similarity: volume remains eleva... vs participation remain...; Low semantic similarity: volatility contracts... vs volatility expands s...",
+    "Structural: Low semantic similarity: price fails to close... vs decisive close below...; Low semantic similarity: Regime is driven by ... vs participation contin...; Low semantic similarity: volume remains eleva... vs participation contin...; Low semantic similarity: volatility contracts... vs volatility contracts..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.7
+  },
+  "regime_context": [
+    "trend:closed_higher",
+    "volume:elevated",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:strong",
+    "momentum:flat",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 2,
+  "contradiction_count": 2,
+  "validation_count": 2,
+  "falsification_count": 0
+}
