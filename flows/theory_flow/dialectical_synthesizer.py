@@ -9,9 +9,7 @@ class DialecticalTheorySynthesizer:
     Synthesizes conflicting active theories into a narrow, grounded thesis.
     """
     def __init__(self):
-        # Reverting stability tuning for OllamaClient as it does not accept arguments
-        # The OllamaClient class needs to be updated to accept these parameters for full determinism.
-        self.client = OllamaClient()
+        self.client = OllamaClient(temperature=0.0, seed=42)
 
     def synthesize(
         self,

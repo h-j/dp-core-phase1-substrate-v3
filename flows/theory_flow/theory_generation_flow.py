@@ -12,9 +12,8 @@ from cognition.evaluation.llm_theory_evaluator import LLMTheoryEvaluator
 class TheoryGenerationFlow:
 
     def __init__(self):
-        # Reverting stability tuning for OllamaClient as it does not accept arguments
-        # The OllamaClient class needs to be updated to accept these parameters for full determinism.
-        self.client = OllamaClient()
+        # Stability tuning: Deterministic output for cognitive consistency
+        self.client = OllamaClient(temperature=0.0, seed=42)
         self.evaluator = LLMTheoryEvaluator()
         self.debug = False
 
@@ -108,14 +107,26 @@ Current Abstraction:
 MANDATORY COGNITIVE TASK:
 1. Identify the hidden causal MECHANISM (e.g., Absorption, Exhaustion, Front-running).
 2. Define what the market is FORBIDDEN to do if your mechanism is correct.
+3. Decompose your mechanism into independently testable sub-components.
 
 Return exactly a JSON object conforming to this schema:
 {{
   "claim": "string",
+  "mechanism": "string",
   "if_branch": {{"condition": "string", "action": "string"}},
   "else_branch": {{"condition": "string", "action": "string"}},
   "unless": "string",
-  "falsified_if": "string"
+  "falsified_if": "string",
+  "mechanism_components": [
+    {{
+      "component_id": "string",
+      "description": "string",
+      "observable": "string",
+      "expected_behavior": "string",
+      "dependency": "string or null"
+    }}
+  ],
+  "falsification_conditions": ["string"]
 }}
 
 Constraint Checklist:

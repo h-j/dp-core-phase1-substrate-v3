@@ -1,6 +1,7 @@
 import hashlib
 from market.replay.runtime.cognition_result import CognitionResult
 
+
 class ReplayStepProcessor:
     """Orchestrates per-day execution logic for the ReplayExecutor."""
     
@@ -11,7 +12,6 @@ class ReplayStepProcessor:
 
     def process_day(self, day_idx: int, date_str: str, obs_data: dict) -> CognitionResult:
         from cognition.schemas.observation.observation_event import ObservationEvent
-        from cognition.evaluation.epistemic_quality import evaluate_epistemic_quality
 
         # 1. Synthesis & Grounding
         market_obs = self.ex.synthesizer.synthesize(day_idx)

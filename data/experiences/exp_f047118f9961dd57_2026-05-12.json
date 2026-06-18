@@ -3,22 +3,15 @@
   "lineage_id": "f047118f9961dd57",
   "theory_family_id": "f047118f9961dd57",
   "created_at": "2026-05-12",
-  "status": "closed",
+  "status": "active",
   "theory_ids": [
-    "99a77e4e-a9d8-4811-9db9-3b43404249cc",
-    "9d0809f7-586d-4ac7-a6c4-85c94e6aae9b"
+    "a06e4683-8c3a-4f1b-9bdf-e4d9b67afbeb"
   ],
   "contradictions": [
-    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation surge ... vs short-term momentum ...",
-    "Structural: Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation surge ... vs short-term momentum ...; Low semantic similarity: volatility contracts... vs volatility expands f...",
-    "Structural: Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation surge ... vs short-term momentum ...; Low semantic similarity: volatility contracts... vs volatility remains c...",
-    "Structural: Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: Regime is driven by ... vs participation widens...; Low semantic similarity: participation surge ... vs participation widens...; Low semantic similarity: volatility contracts... vs volatility remains c...",
-    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation surge ... vs short-term momentum ...; Low semantic similarity: volatility contracts... vs volatility expands s...",
-    "Structural: Low semantic similarity: momentum re-accelera... vs decisive close above...; Low semantic similarity: Regime is driven by ... vs participation surge ...; Low semantic similarity: momentum re-accelera... vs participation surge ...; Low semantic similarity: short-term momentum ... vs volatility contracts...",
-    "Structural: Low semantic similarity: momentum re-accelera... vs decisive close above...; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: momentum re-accelera... vs short-term momentum ...; Low semantic similarity: short-term momentum ... vs volatility expands f...",
-    "Structural: Low semantic similarity: momentum re-accelera... vs decisive close below...; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: momentum re-accelera... vs short-term momentum ...; Low semantic similarity: short-term momentum ... vs volatility expands f...",
-    "Structural: Low semantic similarity: momentum re-accelera... vs decisive close below...; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: momentum re-accelera... vs short-term momentum ...; Low semantic similarity: short-term momentum ... vs volatility remains c...",
-    "Structural: Low semantic similarity: Regime is driven by ... vs Regime is driven by ...; Low semantic similarity: momentum re-accelera... vs decisive close below...; Low semantic similarity: Regime is driven by ... vs participation widens...; Low semantic similarity: momentum re-accelera... vs participation widens...; Low semantic similarity: short-term momentum ... vs volatility remains c..."
+    "Structural: Low semantic similarity: The current neutral ... vs short-term momentum ...; Low semantic similarity: participation surge ... vs short-term momentum ...; Low semantic similarity: volatility moderates... vs volatility contracts...",
+    "Structural: Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: The current neutral ... vs short-term momentum ...; Low semantic similarity: participation surge ... vs short-term momentum ...; Low semantic similarity: volatility moderates... vs volatility expands f...",
+    "Structural: Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: The current neutral ... vs RELIEF rally strengt...; Low semantic similarity: participation surge ... vs RELIEF rally strengt...; Low semantic similarity: volatility moderates... vs asset selloff intens...",
+    "Structural: Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: The current neutral ... vs short-term momentum ...; Low semantic similarity: participation surge ... vs short-term momentum ..."
   ],
   "mutations": [],
   "outcome": {
@@ -35,8 +28,8 @@
     "subtype:neutral"
   ],
   "theory_subtype": "neutral",
-  "mutation_count": 1,
-  "contradiction_count": 2,
+  "mutation_count": 0,
+  "contradiction_count": 1,
   "validation_count": 0,
-  "falsification_count": 0
+  "falsification_count": 1
 }

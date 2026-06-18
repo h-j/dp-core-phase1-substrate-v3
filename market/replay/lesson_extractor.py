@@ -15,20 +15,31 @@ class LessonExtractor: #
         self.lesson_repo = lesson_repo
         self.experience_repo = experience_repo
         self.debug = True
-        self.MAX_GROUP_SIZE = 5
+        self.MAX_GROUP_SIZE = 5 # Max experiences to consider for a lesson
         self.MIN_EVIDENCE_THRESHOLD = 2 # Lower threshold to allow lessons to form in volatile regimes
         self.processed_experience_ids: set[str] = set()
 
-    def extract_lessons_from_closed_experience(self, closed_experience: Experience) -> tuple[Optional[LessonRecord], str, int]:
-        # CHANGE 4: Prevent Duplicate Extraction
-        if closed_experience.experience_id in self.processed_experience_ids:
-            return None, "duplicate_extraction", 0
-        self.processed_experience_ids.add(closed_experience.experience_id)
+    def extract_lessons_from_active_experience(self, active_experience: Experience) -> tuple[Optional[LessonRecord], str, int]:
+        """v3.8: Support for continuous learning from ongoing lineages."""
+        # We pass a flag to allow looking at other active experiences for quorum
+        return self._run_extraction_logic(active_experience, allow_active=True)
 
-        if self.debug: print(f"[LessonExtractor] Processing closed experience: {closed_experience.experience_id}")
+    def extract_lessons_from_closed_experience(self, closed_experience: Experience) -> tuple[Optional[LessonRecord], str, int]:
+        return self._run_extraction_logic(closed_experience, allow_active=False)
+
+    def _run_extraction_logic(self, experience: Experience, allow_active: bool = False) -> tuple[Optional[LessonRecord], str, int]:
+        # Prevent duplicate extraction for CLOSED experiences.
+        # For ACTIVE experiences, we want to allow re-processing as their counts change,
+        # so we do NOT add them to processed_experience_ids here.
+        if not allow_active and experience.experience_id in self.processed_experience_ids:
+            return None, "duplicate_extraction", 0
+        if not allow_active: # Only add closed experiences to the processed set
+            self.processed_experience_ids.add(experience.experience_id)
+
+        if self.debug: print(f"[LessonExtractor] Processing {'active' if allow_active else 'closed'} experience: {experience.experience_id}")
 
         # 1. Group Similar Experiences
-        similar_experiences = self._get_similar_closed_experiences(closed_experience)
+        similar_experiences = self._get_similar_experiences(experience, allow_active=allow_active)
         count = len(similar_experiences)
         
         # CHANGE 1: Minimum Evidence Threshold
@@ -37,7 +48,7 @@ class LessonExtractor: #
             return None, "insufficient_evidence", count
 
         # CHANGE 2: Internal Pattern Stage
-        pattern = self._detect_patterns_and_generate_lesson(similar_experiences, closed_experience)
+        pattern = self._detect_patterns_and_generate_lesson(similar_experiences, experience)
         if not pattern:
             return None, "no_pattern", count
 
@@ -80,14 +91,15 @@ class LessonExtractor: #
         exp_id_pattern = r'exp_[a-zA-Z0-9_-]+'
         return any(re.search(p, text) for p in [uuid_pattern, hex_id_pattern, exp_id_pattern])
 
-    def _get_similar_closed_experiences(self, primary_experience: Experience) -> List[Experience]:
-        # Retrieve other closed experiences that share similar regime context and theory family
-        # Assuming ExperienceRepository.list_experiences can filter by status
-        all_closed_experiences = self.experience_repo.list_experiences(status="closed")
+    def _get_similar_experiences(self, primary_experience: Experience, allow_active: bool = False) -> List[Experience]:
+        # Retrieve other experiences that share similar regime context
+        all_experiences = self.experience_repo.get_all()
+        if not allow_active:
+            all_experiences = [e for e in all_experiences if e.status == ExperienceStatus.CLOSED]
         
         similar_experiences = [primary_experience] # Always include the primary experience
         
-        for exp in all_closed_experiences:
+        for exp in all_experiences:
             if exp.experience_id == primary_experience.experience_id:
                 continue # Skip self
 
@@ -100,7 +112,7 @@ class LessonExtractor: #
             # CHANGE: Match on Theory Subtype to allow cross-lineage learning
             # This prevents knowledge from being siloed in specific lineage IDs
             if exp.theory_subtype != primary_experience.theory_subtype:
-                continue
+                continue # Skip if subtypes don't match
 
             # Similarity based on grounded outcomes (validation/falsification counts)
             primary_outcome_validated = primary_experience.validation_count >= primary_experience.falsification_count

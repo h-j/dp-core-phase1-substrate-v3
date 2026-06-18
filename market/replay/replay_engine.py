@@ -29,6 +29,7 @@ from flows.theory_flow.regime_continuity_memory import RegimeContinuityMemory
 from market.replay.transition_memory import TransitionMemoryStore, TransitionExample
 from experience.experience_engine import ExperienceEngine
 from experience.experience_repository import ExperienceRepository
+from flows.theory_flow.attribution_engine import AttributionEngine
 
 
 class ReplayEngine:
@@ -300,6 +301,7 @@ class ReplayExecutor:
         self._prior_lineage_id = None # Track the lineage that produced the prediction
         self.regime_memory = RegimeMemoryStore() # Initialize unconditionally
         self.regime_continuity_memory = RegimeContinuityMemory()
+        self.attribution_engine = AttributionEngine()
         self._prior_dialectical_synthesis = None
         self._prior_dialectical_subtype = None
         self._prior_prediction_db_id = None
@@ -382,6 +384,8 @@ class ReplayExecutor:
         self.theory_flow = TheoryGenerationFlow()
         self.reflection_flow = ReflectionFlow()
         self.dialectical_synthesizer = DialecticalTheorySynthesizer()
+        # Inject client into attribution engine
+        self.attribution_engine.llm = self.theory_flow.client
         self.contradiction_detector = ContradictionDetector()
         self.theory_flow.debug = self.lineage_debug
         self.confidence_engine = ConfidenceEvolutionEngine()
@@ -1213,6 +1217,20 @@ class ReplayExecutor:
                     prior_prediction_result = self.prediction_generator.score_actual(
                         self._prior_prediction, market_obs
                     )
+                    
+                    # Causal Attribution Step
+                    if self._prior_lineage_id and self._run_theories:
+                        # Evaluates Day N-1 theory against Day N observation
+                        theory_to_attr = self._run_theories[-1]
+                        attribution = self.attribution_engine.attribute(
+                            theory_to_attr, 
+                            self._prior_prediction.direction.value, 
+                            market_obs
+                        )
+                        self.experience_engine.update_experience_with_attribution(
+                            self._prior_lineage_id, 
+                            attribution
+                        )
                     
                     # Experience Lifecycle: Outcome Grounding
                     if prior_prediction_result and self._prior_lineage_id:

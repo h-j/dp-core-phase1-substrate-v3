@@ -9,6 +9,9 @@ if TYPE_CHECKING:
     from market.replay.lesson_extractor import LessonExtractor
 from market.replay.lesson_record import LessonRecord
 
+if TYPE_CHECKING: # For type hinting without circular imports
+    from flows.theory_flow.attribution import AttributionResult
+
 class ExperienceEngine:
     def __init__(self, experience_repo: ExperienceRepository):
         self.experience_repo = experience_repo
@@ -38,6 +41,54 @@ class ExperienceEngine:
                 exp.mutations.append(f"Dialectical Synthesis: {synthesis_meta.get('conflict')}")
             self.experience_repo.save(exp)
 
+    def update_experience_with_attribution(self, lineage_id: str, attribution: "AttributionResult"):
+        """Update an experience record with causal attribution data."""
+        exp = self.get_active_experience_for_lineage(lineage_id)
+        if exp:
+            if not hasattr(exp, "causal_events") or exp.causal_events is None:
+                exp.causal_events = []
+            
+            event = {
+                "event_type": "validation",
+                "timestamp": attribution.timestamp,
+                "outcome": attribution.outcome,
+                "theory_claim": attribution.theory_claim,
+                "components_passed": attribution.components_passed,
+                "components_failed": attribution.components_failed,
+                "root_cause": attribution.root_cause_component,
+                "attribution_reasoning": attribution.attribution_reasoning[:500],
+            }
+            exp.causal_events.append(event)
+            
+            if not hasattr(exp, "component_failure_counts") or exp.component_failure_counts is None:
+                exp.component_failure_counts = {}
+            
+            for comp_id in attribution.components_failed:
+                exp.component_failure_counts[comp_id] = exp.component_failure_counts.get(comp_id, 0) + 1
+            
+            self.experience_repo.save(exp)
+
+            # v3.8: Continuous Learning - Extract lessons even from active experiences
+            if self.lesson_extractor and (exp.validation_count + exp.falsification_count) >= 3:
+                self._last_extracted_lesson_info = self.lesson_extractor.extract_lessons_from_active_experience(exp)
+
+    def record_mutation_event(self, lineage_id: str, parent_theory_id: str, mutated_theory_id: str, attribution: "AttributionResult"):
+        """Record a theory mutation linked to attribution."""
+        exp = self.get_active_experience_for_lineage(lineage_id)
+        if exp:
+            if not hasattr(exp, "causal_events") or exp.causal_events is None:
+                exp.causal_events = []
+                
+            event = {
+                "event_type": "mutation",
+                "timestamp": attribution.timestamp,
+                "parent_theory_id": parent_theory_id,
+                "mutated_theory_id": mutated_theory_id,
+                "triggered_by_components_failed": attribution.components_failed,
+                "mutation_guidance": attribution.get_mutation_guidance()[:500],
+            }
+            exp.causal_events.append(event)
+            self.experience_repo.save(exp)
     def record_contradiction(self, lineage_id: str, signatures: List[str] = None):
         exp = self.get_active_experience_for_lineage(lineage_id)
         if exp:
@@ -67,6 +118,11 @@ class ExperienceEngine:
             exp.validation_count += 1
             exp.outcome.outcome_confidence = min(1.0, exp.outcome.outcome_confidence + 0.1)
             self.experience_repo.save(exp)
+            
+            # Trigger lesson check on successful validation
+            if self.lesson_extractor and exp.validation_count >= 2:
+                self._last_extracted_lesson_info = self.lesson_extractor.extract_lessons_from_active_experience(exp)
+
 
     def record_falsification(self, lineage_id: str):
         exp = self.get_active_experience_for_lineage(lineage_id)
