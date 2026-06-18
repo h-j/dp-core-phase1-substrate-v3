@@ -40,11 +40,8 @@ class ExperienceRepository:
         
         # Persist to disk
         file_path = self.base_path / f"{experience.experience_id}.json"
-        experience_data = {}
-        for field_name, field_value in experience.__dict__.items():
-            experience_data[field_name] = asdict(field_value) if is_dataclass(field_value) else field_value
-
-        # Serialize Enum value
+        
+        experience_data = asdict(experience)
         experience_data['status'] = experience.status.value
         
         with open(file_path, 'w') as f:

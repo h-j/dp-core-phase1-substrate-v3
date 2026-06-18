@@ -5,15 +5,15 @@
   "created_at": "2026-05-25",
   "status": "closed",
   "theory_ids": [
-    "90b42890-a8dc-4f74-98a2-8d1282e581a0",
-    "698f23d1-e4b0-429a-8d02-8701963e1868",
-    "f28b212e-0b09-47b1-80f8-b504ebf52e6a"
+    "9e011275-e9dc-497f-a07a-ec6adee50f78",
+    "02fd071d-5c99-4b07-a49c-c755d2c87aef",
+    "d3c7c167-9f9d-4439-98f6-f36904636a58"
   ],
   "contradictions": [
     "Structural: Low semantic similarity: price closes above t... vs decisive close below...; Low semantic similarity: Regime is driven by ... vs volume rebounds abov...; Low semantic similarity: price closes above r... vs volume rebounds abov...; Low semantic similarity: volatility contracts... vs volatility expands f...",
     "Structural: Low semantic similarity: Regime is driven by ... vs price closes above r...",
-    "Structural: Low semantic similarity: decisive close below... vs price closes above t...; Low semantic similarity: Regime is driven by ... vs price closes above r...; Low semantic similarity: volume increases abo... vs price closes above r...; Low semantic similarity: short-term momentum ... vs volatility contracts...",
-    "Structural: Low semantic similarity: Regime is driven by ... vs volume rebounds abov...; Low semantic similarity: short-term momentum ... vs volatility expands f..."
+    "Structural: Low semantic similarity: decisive close below... vs price closes above t...; Low semantic similarity: Regime is driven by ... vs price closes above r...; Low semantic similarity: short-term momentum ... vs price closes above r...; Low semantic similarity: volatility contracts... vs volatility contracts...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs volume rebounds abov...; Low semantic similarity: short-term momentum ... vs volume rebounds abov...; Low semantic similarity: volatility contracts... vs volatility expands f..."
   ],
   "mutations": [],
   "outcome": {
@@ -32,6 +32,6 @@
   "theory_subtype": "neutral",
   "mutation_count": 2,
   "contradiction_count": 3,
-  "validation_count": 1,
-  "falsification_count": 5
+  "validation_count": 2,
+  "falsification_count": 4
 }

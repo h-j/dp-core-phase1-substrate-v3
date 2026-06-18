@@ -28,11 +28,14 @@ class ExperienceEngine:
         )
         self.experience_repo.save(experience)
 
-    def attach_theory(self, lineage_id: str, theory_id: str):
+    def attach_theory(self, lineage_id: str, theory_id: str, synthesis_meta: Dict = None):
         exp = self.get_active_experience_for_lineage(lineage_id)
         if exp:
             exp.theory_ids.append(theory_id)
             exp.mutation_count += 1
+            if synthesis_meta:
+                # Store the logic of the synthesis as a mutation record
+                exp.mutations.append(f"Dialectical Synthesis: {synthesis_meta.get('conflict')}")
             self.experience_repo.save(exp)
 
     def record_contradiction(self, lineage_id: str, signatures: List[str] = None):
@@ -50,6 +53,10 @@ class ExperienceEngine:
         exp = self.get_active_experience_for_lineage(lineage_id)
         if exp:
             exp.status = ExperienceStatus.CLOSED
+            # Calculate final outcome based on counts before saving
+            total_signals = exp.validation_count + exp.falsification_count
+            if total_signals > 0:
+                exp.outcome.outcome_confidence = exp.validation_count / total_signals
             self.experience_repo.save(exp)
             if self.lesson_extractor: # CHANGE 7: Capture lesson info
                 self._last_extracted_lesson_info = self.lesson_extractor.extract_lessons_from_closed_experience(exp)
@@ -65,7 +72,7 @@ class ExperienceEngine:
         exp = self.get_active_experience_for_lineage(lineage_id)
         if exp:
             exp.falsification_count += 1
-            exp.outcome.outcome_confidence = max(0.0, exp.outcome.outcome_confidence - 0.2)
+            exp.outcome.outcome_confidence = max(0.0, exp.outcome.outcome_confidence - 0.1) # Balanced penalty
             self.experience_repo.save(exp)
 
     def get_active_experience_for_lineage(self, lineage_id: str) -> Optional[Experience]:
@@ -91,10 +98,14 @@ class ExperienceEngine:
             "falsified": sum(1 for e in exps if e.outcome.outcome_confidence < 0.3),
             "abandoned": sum(1 for e in exps if e.status == ExperienceStatus.ABANDONED),
         }
-        if exps:
-            most_active = max(exps, key=lambda e: e.mutation_count + e.contradiction_count)
+        
+        closed_exps = [e for e in exps if e.status == ExperienceStatus.CLOSED]
+        if closed_exps:
+            most_active = max(closed_exps, key=lambda e: e.mutation_count + e.contradiction_count)
+            avg_conf = sum(e.outcome.outcome_confidence for e in closed_exps) / len(closed_exps)
             stats["most_active"] = {
                 "lineage": most_active.lineage_id,
+                "avg_confidence": round(avg_conf, 2),
                 "theories": len(most_active.theory_ids),
                 "contradictions": most_active.contradiction_count,
                 "mutations": most_active.mutation_count

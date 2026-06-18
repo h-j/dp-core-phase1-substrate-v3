@@ -1,0 +1,102 @@
+{
+  "primary_market": "NIFTY 50",
+  "secondary_market": "RELIANCE",
+  "primary_accuracy": 0.20689655172413793,
+  "secondary_accuracy": 0.27586206896551724,
+  "primary_divergence_hit_rate": 0.0,
+  "secondary_divergence_hit_rate": 0.125,
+  "primary_top_missed_signal": "normal",
+  "secondary_top_missed_signal": "normal",
+  "top_high_confidence_misses": [
+    {
+      "date": "2026-05-27",
+      "market": "NIFTY 50",
+      "confidence": 0.9,
+      "prediction_direction": "higher",
+      "actual_direction": "range_bound",
+      "participation_confirmation": "normal",
+      "direction_score": 0.0
+    },
+    {
+      "date": "2026-04-21",
+      "market": "NIFTY 50",
+      "confidence": 0.79,
+      "prediction_direction": "higher",
+      "actual_direction": "higher",
+      "participation_confirmation": "divergence",
+      "direction_score": 0.0
+    },
+    {
+      "date": "2026-05-11",
+      "market": "NIFTY 50",
+      "confidence": 0.79,
+      "prediction_direction": "lower",
+      "actual_direction": "lower",
+      "participation_confirmation": "normal",
+      "direction_score": 0.5
+    },
+    {
+      "date": "2026-04-17",
+      "market": "NIFTY 50",
+      "confidence": 0.72,
+      "prediction_direction": "higher",
+      "actual_direction": "higher",
+      "participation_confirmation": "normal",
+      "direction_score": 0.0
+    },
+    {
+      "date": "2026-04-27",
+      "market": "RELIANCE",
+      "confidence": 0.71,
+      "prediction_direction": "higher",
+      "actual_direction": "higher",
+      "participation_confirmation": "bullish_confirmed",
+      "direction_score": 0.0
+    },
+    {
+      "date": "2026-05-11",
+      "market": "RELIANCE",
+      "confidence": 0.69,
+      "prediction_direction": "lower",
+      "actual_direction": "lower",
+      "participation_confirmation": "divergence",
+      "direction_score": 0.0
+    },
+    {
+      "date": "2026-05-26",
+      "market": "NIFTY 50",
+      "confidence": 0.65,
+      "prediction_direction": "higher",
+      "actual_direction": "range_bound",
+      "participation_confirmation": "normal",
+      "direction_score": 0.0
+    },
+    {
+      "date": "2026-05-07",
+      "market": "NIFTY 50",
+      "confidence": 0.6,
+      "prediction_direction": "range_bound",
+      "actual_direction": "range_bound",
+      "participation_confirmation": "normal",
+      "direction_score": 0.0
+    },
+    {
+      "date": "2026-05-25",
+      "market": "NIFTY 50",
+      "confidence": 0.55,
+      "prediction_direction": "uncertain",
+      "actual_direction": "range_bound",
+      "participation_confirmation": "normal",
+      "direction_score": 0.0
+    },
+    {
+      "date": "2026-05-13",
+      "market": "NIFTY 50",
+      "confidence": 0.5,
+      "prediction_direction": "range_bound",
+      "actual_direction": "range_bound",
+      "participation_confirmation": "normal",
+      "direction_score": 0.0
+    }
+  ]
+}

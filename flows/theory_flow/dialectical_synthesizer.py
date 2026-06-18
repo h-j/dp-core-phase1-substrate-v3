@@ -9,6 +9,8 @@ class DialecticalTheorySynthesizer:
     Synthesizes conflicting active theories into a narrow, grounded thesis.
     """
     def __init__(self):
+        # Reverting stability tuning for OllamaClient as it does not accept arguments
+        # The OllamaClient class needs to be updated to accept these parameters for full determinism.
         self.client = OllamaClient()
 
     def synthesize(
@@ -17,7 +19,8 @@ class DialecticalTheorySynthesizer:
         active_theories: List[Any],
         contradiction_indicators: List[str],
         regime_subtype: str,
-        falsifiability_conditions: List[str]
+        falsifiability_conditions: List[str],
+        relevant_lessons: List[str] = None  # NEW: Inject historical lessons
     ) -> Optional[Dict[str, str]]:
         """
         Performs dialectical synthesis of conflicting theories.
@@ -38,10 +41,14 @@ class DialecticalTheorySynthesizer:
 
         indicators = "; ".join(contradiction_indicators)
         falsifiability = "\n".join([f"- {c}" for c in falsifiability_conditions])
+        lessons_text = "\n".join([f"- {l}" for l in relevant_lessons]) if relevant_lessons else "None"
 
         prompt = f"""
 Observation:
 {observation_text}
+
+Historical Lessons Learned:
+{lessons_text}
 
 Active Theories:
 {theory_texts}

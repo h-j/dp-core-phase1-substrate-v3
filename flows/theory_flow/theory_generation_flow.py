@@ -12,7 +12,8 @@ from cognition.evaluation.llm_theory_evaluator import LLMTheoryEvaluator
 class TheoryGenerationFlow:
 
     def __init__(self):
-
+        # Reverting stability tuning for OllamaClient as it does not accept arguments
+        # The OllamaClient class needs to be updated to accept these parameters for full determinism.
         self.client = OllamaClient()
         self.evaluator = LLMTheoryEvaluator()
         self.debug = False
@@ -29,6 +30,7 @@ class TheoryGenerationFlow:
         analog_divergence_claim: str = None,
         regime_history: dict = None,
         dialectical_synthesis: str = None,
+        relevant_lessons: list = None,
     ) -> tuple[Theory, dict]:
 
         if not regime_subtype:
@@ -71,6 +73,12 @@ MANDATORY Dialectical Synthesis Anchor:
 You MUST incorporate the logic of this synthesis into your new theory. If current observations contradict this synthesis, explicitly explain the divergence.
 """
 
+        lessons_context = ""
+        if relevant_lessons:
+            lessons_context = "Historical Lessons for this Regime:\n- " + "\n- ".join(relevant_lessons)
+        else:
+            lessons_context = "No validated historical lessons for this regime yet."
+
         prompt = f"""
 Market Memory:
 {market_memory_context}
@@ -85,6 +93,8 @@ Analog Divergence: {analog_divergence_claim or "None"}
 {history_text_for_prompt}
 
 {synthesis_context}
+
+{lessons_context}
 
 Reflective Memory Summary:
 {reflective_memory_summary}

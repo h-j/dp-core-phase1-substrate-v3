@@ -12,6 +12,7 @@ class OllamaClient:
             options={
                 "temperature": 0,
                 "top_p": 1,
+                "seed": 42,
             },
             messages=[{"role": "user", "content": prompt}],
         )

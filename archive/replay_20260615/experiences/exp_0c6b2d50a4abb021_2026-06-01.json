@@ -1,0 +1,40 @@
+{
+  "experience_id": "exp_0c6b2d50a4abb021_2026-06-01",
+  "lineage_id": "0c6b2d50a4abb021",
+  "theory_family_id": "0c6b2d50a4abb021",
+  "created_at": "2026-06-01",
+  "status": "closed",
+  "theory_ids": [
+    "b21df2ee-72b2-4dd1-86be-3142c511765b",
+    "0694be6f-7231-43a3-a668-58c54cb09066",
+    "c7cb6f97-d028-465f-9a42-484b46ab5082",
+    "b0b043f6-57e8-4cca-80e9-5b1384c3701b"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Neutral regime is dr... vs Regime is driven by ...; Low semantic similarity: Neutral regime is dr... vs short-term momentum ...; Low semantic similarity: volume contracts bel... vs short-term momentum ...; Low semantic similarity: range expansion pers... vs volatility expands f...",
+    "Structural: Field conflict: decisive close below the recen vs decisive close above the prior; Low semantic similarity: Regime is driven by ... vs volume contracts bel...; Low semantic similarity: participation increa... vs volume contracts bel...; Low semantic similarity: volatility remains m... vs range expansion pers...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs Regime is driven by ...; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation increa... vs short-term momentum ...; Low semantic similarity: volatility remains m... vs volatility expands f...",
+    "Structural: Low semantic similarity: Neutral regime is dr... vs participation increa...",
+    "Structural: Field conflict: decisive close below the estab vs decisive close above the prior; Low semantic similarity: Neutral regime is dr... vs volume contracts bel...; Low semantic similarity: short-term momentum ... vs volume contracts bel...; Low semantic similarity: volatility expands f... vs range expansion pers...",
+    "Structural: Low semantic similarity: Neutral regime is dr... vs Regime is driven by ...; Low semantic similarity: Neutral regime is dr... vs short-term momentum ..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:closed_lower",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:weak",
+    "momentum:weakening",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 3,
+  "contradiction_count": 3,
+  "validation_count": 0,
+  "falsification_count": 0
+}

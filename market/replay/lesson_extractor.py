@@ -16,7 +16,7 @@ class LessonExtractor: #
         self.experience_repo = experience_repo
         self.debug = True
         self.MAX_GROUP_SIZE = 5
-        self.MIN_EVIDENCE_THRESHOLD = 3
+        self.MIN_EVIDENCE_THRESHOLD = 2 # Lower threshold to allow lessons to form in volatile regimes
         self.processed_experience_ids: set[str] = set()
 
     def extract_lessons_from_closed_experience(self, closed_experience: Experience) -> tuple[Optional[LessonRecord], str, int]:
@@ -97,8 +97,10 @@ class LessonExtractor: #
             # 3. Similar outcome (e.g., both validated or both falsified)
             # 4. Overlapping contradiction signals (at least one common element)
 
-            common_regimes = set(exp.regime_context) & set(primary_experience.regime_context)
-            if not common_regimes: continue
+            # CHANGE: Match on Theory Subtype to allow cross-lineage learning
+            # This prevents knowledge from being siloed in specific lineage IDs
+            if exp.theory_subtype != primary_experience.theory_subtype:
+                continue
 
             # Similarity based on grounded outcomes (validation/falsification counts)
             primary_outcome_validated = primary_experience.validation_count >= primary_experience.falsification_count
@@ -240,20 +242,4 @@ class LessonExtractor: #
             contradiction_count=contradiction_count,
             source_experience_ids=[exp.experience_id for exp in experiences],
             status=status,
-        )
-
-    def _contains_internal_id(self, text: str) -> bool:
-        """
-        CHANGE 3: Checks if the lesson text contains common internal identifiers.
-        This is a heuristic check and might not catch all cases, but covers common UUID/ID patterns.
-        """
-        # Regex for UUIDs (e.g., 0c6b2d50-a4ab-b021-...) or common ID patterns (e.g., 0c6b2d50a4abb021)
-        uuid_pattern = r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
-        short_id_pattern = r"\b[0-9a-fA-F]{16,32}\b" # For lineage_id, theory_id, experience_id if not full UUID format
-        exp_id_pattern = r"exp_[a-zA-Z0-9_-]+"
-        
-        return bool(
-            re.search(uuid_pattern, text)
-            or re.search(short_id_pattern, text)
-            or re.search(exp_id_pattern, text)
         )

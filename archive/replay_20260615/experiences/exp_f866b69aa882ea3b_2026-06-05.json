@@ -1,0 +1,35 @@
+{
+  "experience_id": "exp_f866b69aa882ea3b_2026-06-05",
+  "lineage_id": "f866b69aa882ea3b",
+  "theory_family_id": "f866b69aa882ea3b",
+  "created_at": "2026-06-05",
+  "status": "active",
+  "theory_ids": [
+    "85ef65fa-ea96-4c3c-a739-bb15131596d8"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Regime is driven by ... vs participation normal...; Low semantic similarity: short-term momentum ... vs participation normal...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs participation surge ...; Low semantic similarity: short-term momentum ... vs participation surge ...; Low semantic similarity: volatility expands f... vs volatility expansion...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: volatility expands f... vs volatility continues...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs Market in mixed regi...; Low semantic similarity: Regime is driven by ... vs participation surges...; Low semantic similarity: short-term momentum ... vs participation surges..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:closed_lower",
+    "volume:normal",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:mixed",
+    "participation:normal",
+    "momentum:weakening",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 0
+}

@@ -187,6 +187,13 @@ class PredictionProbeGenerator:
         close_low = close_position_pct <= 0.20 or candle_type == "strong_bear"
 
         if "uncertain" in sentiment or "uncertain" in reflection_text or "fragile" in reflection_text:
+            # NEW: Break Uncertainty Deadlock
+            # If we have strong regime history for this subtype, force a probe based on the dominant resolution
+            dominant_res = intelligence_data.get("regime_history", {}).get("historical_resolution", {}) if intelligence_data else {}
+            if dominant_res:
+                top_res = max(dominant_res, key=dominant_res.get)
+                if dominant_res.get(top_res, 0) > 3: # Quorum check (found dominant res > 3 times)
+                    return PredictionDirection(top_res)
             return PredictionDirection.uncertain
 
         if strong_up and (

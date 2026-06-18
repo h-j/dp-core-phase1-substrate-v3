@@ -1,0 +1,35 @@
+{
+  "experience_id": "exp_ca65a259b0972a34_2026-06-03",
+  "lineage_id": "ca65a259b0972a34",
+  "theory_family_id": "ca65a259b0972a34",
+  "created_at": "2026-06-03",
+  "status": "active",
+  "theory_ids": [
+    "4501524b-3d36-4c46-a48e-4a4245fea250",
+    "88ccbcc1-1ebd-4a12-b93c-fde95270ac1f"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Regime is driven by ... vs participation normal...; Low semantic similarity: short-term momentum ... vs participation normal...; Field conflict: volatility expands further: fa vs volatility expands above avera",
+    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: short-term momentum ... vs volatility expands f...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs participation normal...; Low semantic similarity: RELIANCE focus stren... vs participation normal...; Low semantic similarity: short-term momentum ... vs volatility expands a..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:range_bound",
+    "volume:normal",
+    "volatility:moderate",
+    "liquidity:even_flow",
+    "breadth:nascent",
+    "participation:normal",
+    "momentum:weakening",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 1,
+  "contradiction_count": 2,
+  "validation_count": 1,
+  "falsification_count": 0
+}

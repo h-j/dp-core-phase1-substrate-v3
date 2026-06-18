@@ -23,7 +23,8 @@ class CognitionPipeline:
         recent_theories: List[Any],
         recent_validations: List[Any],
         recent_reflections: List[Any],
-        prior_market_obs: List[Any]
+        prior_market_obs: List[Any],
+        relevant_lessons: List[str] = None
     ):
         # 1. Abstraction
         abstraction = self.abstraction_flow.process(obs_event)
@@ -40,6 +41,7 @@ class CognitionPipeline:
             analog_divergence_claim=getattr(market_obs, "analog_divergence_claim", ""),
             regime_history=regime_history,
             dialectical_synthesis=active_synthesis,
+            relevant_lessons=relevant_lessons
         )
 
         # 3. Contradiction

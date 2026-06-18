@@ -20,6 +20,14 @@ class ReplayStepProcessor:
         # 2. Context Retrieval
         regime_matches = self._get_regime_matches(day_idx, date_str, market_obs)
         regime_context = self.ex._format_regime_context(regime_matches)
+        
+        # CHANGE: Retrieve Active Lessons relevant to current regime
+        lesson_repo = self.persistence.repos.get('lesson')
+        relevant_lessons = []
+        if lesson_repo:
+            all_active = [l for l in lesson_repo.list_lessons() if getattr(l, 'status', None) == "active"]
+            relevant_lessons = [l.lesson_text for l in all_active if regime_subtype.lower() in l.lesson_text.lower()]
+
         historical_context = self.ex._format_historical_context(
             list(reversed(self.ex._run_validations[-5:])),
             list(reversed(self.ex._run_reflections[-5:]))
@@ -37,11 +45,12 @@ class ReplayStepProcessor:
             list(reversed(self.ex._run_theories[-5:])),
             list(reversed(self.ex._run_validations[-5:])),
             list(reversed(self.ex._run_reflections[-5:])),
-            self.ex._run_market_observations[-5:]
+            self.ex._run_market_observations[-5:],
+            relevant_lessons=relevant_lessons
         )
 
         # 4. Lineage & Synthesis Lifecycle
-        lineage_record, synthesis_data = self._handle_evolution(day_idx, abstraction, theory, contradiction, market_obs)
+        lineage_record, synthesis_data = self._handle_evolution(day_idx, abstraction, theory, contradiction, market_obs, relevant_lessons)
 
         # 5. Reflection
         reflection = self.ex.reflection_flow.process(
@@ -118,22 +127,34 @@ class ReplayStepProcessor:
             return self.ex._prior_dialectical_synthesis
         return None
 
-    def _handle_evolution(self, day_idx, abstraction, theory, contradiction, market_obs):
+    def _handle_evolution(self, day_idx, abstraction, theory, contradiction, market_obs, relevant_lessons=None):
         lineage_record = None
         synthesis_data = None
         try:
-            lineage_res = self.ex.theory_lineage.evolve_theory(getattr(abstraction, "abstraction_summary", ""), {}, day_idx)
+            contra_score = float(contradiction.get("score", 0.0))
+            
+            # NEW: Cognitive Inertia - ignore low-level semantic jitter
+            if contra_score < 0.15:
+                # If score is very low, treat as 'continued' rather than mutation
+                lineage_res = self.ex.theory_lineage.evolve_theory(getattr(abstraction, "abstraction_summary", ""), {}, day_idx, force_continue=True)
+            else:
+                lineage_res = self.ex.theory_lineage.evolve_theory(getattr(abstraction, "abstraction_summary", ""), {}, day_idx)
+                
             lineage_record = lineage_res["record"]
             
-            contra_score = float(contradiction.get("score", 0.0))
             active_lineage = self.ex.theory_lineage.active_theories()
             if len(active_lineage) >= 2 and contra_score >= 0.35:
                 synthesis_data = self.ex.dialectical_synthesizer.synthesize(
                     market_obs.observation_text, active_lineage, contradiction.get("indicators", []),
-                    getattr(market_obs, "regime_subtype", "neutral"), []
+                    getattr(market_obs, "regime_subtype", "neutral"), [], relevant_lessons=relevant_lessons
                 )
             
-            self.ex.theory_lineage.retire_stale_theories(day_idx, contra_score, lineage_record.id if lineage_record else None)
+            # NEW: Only retire if the theory has had at least one chance to be validated
+            # This prevents "infant mortality" from immediate contradictions
+            is_new_lineage = lineage_record.created_at_step == day_idx if lineage_record else False
+            if not is_new_lineage or contra_score > 0.8: # Allow immediate death only for extreme conflicts
+                self.ex.theory_lineage.retire_stale_theories(day_idx, contra_score, lineage_record.id if lineage_record else None)
+                
         except: pass
         return lineage_record, synthesis_data
 

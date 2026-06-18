@@ -1,0 +1,42 @@
+{
+  "experience_id": "exp_bf0ea734c48ba930_2026-04-17",
+  "lineage_id": "bf0ea734c48ba930",
+  "theory_family_id": "bf0ea734c48ba930",
+  "created_at": "2026-04-17",
+  "status": "closed",
+  "theory_ids": [
+    "5777429d-4a95-447c-ab23-cd7951684148",
+    "5f420156-3061-4100-a65e-7120af8bfaef"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: decisive close below... vs decisive close above...; Low semantic similarity: Neutral regime is dr... vs asset participation ...; Low semantic similarity: short-term momentum ... vs asset participation ...; Low semantic similarity: volatility contracts... vs volatility contracts...",
+    "Structural: Low semantic similarity: Neutral regime is dr... vs participation streng...; Low semantic similarity: short-term momentum ... vs participation streng...; Low semantic similarity: volatility contracts... vs volatility expands s...",
+    "Structural: Low semantic similarity: Neutral regime is dr... vs short-term momentum ...; Low semantic similarity: volatility contracts... vs volatility expands s...",
+    "Structural: Low semantic similarity: Neutral regime is dr... vs participation widens...; Low semantic similarity: short-term momentum ... vs participation widens...; Low semantic similarity: volatility contracts... vs volatility remains c...",
+    "Structural: Low semantic similarity: Neutral regime is dr... vs short-term momentum ...; Low semantic similarity: volatility contracts... vs volatility remains m...",
+    "Structural: Low semantic similarity: Range-bound market w... vs short-term momentum ...; Low semantic similarity: participation streng... vs short-term momentum ...; Low semantic similarity: volatility expands f... vs volatility contracts...",
+    "Structural: Low semantic similarity: Range-bound market w... vs asset participation ...; Low semantic similarity: participation streng... vs asset participation ...; Low semantic similarity: volatility expands f... vs volatility contracts...",
+    "Structural: Low semantic similarity: Range-bound market w... vs participation streng...; Low semantic similarity: volatility expands f... vs volatility expands s...",
+    "Structural: Low semantic similarity: Range-bound market w... vs short-term momentum ...; Low semantic similarity: participation streng... vs short-term momentum ...; Low semantic similarity: volatility expands f... vs volatility expands s...",
+    "Structural: Low semantic similarity: Range-bound market w... vs Regime is driven by ...; Low semantic similarity: Range-bound market w... vs participation widens...; Low semantic similarity: volatility expands f... vs volatility remains c..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:extended_higher",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:strengthened",
+    "participation:weak",
+    "momentum:strengthening",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 1,
+  "contradiction_count": 2,
+  "validation_count": 2,
+  "falsification_count": 2
+}

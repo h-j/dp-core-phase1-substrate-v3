@@ -679,6 +679,12 @@ class ReplayExecutor:
                 regime_subtype = getattr(market_obs, "regime_subtype", "neutral")
                 falsifiability_conditions = getattr(market_obs, "falsifiability_conditions", [])
 
+                # CHANGE: Retrieve Active Lessons relevant to current regime
+                relevant_lessons = []
+                if self.lesson_repo:
+                    all_active = [l for l in self.lesson_repo.list_lessons() if getattr(l, 'status', None) == "active"]
+                    relevant_lessons = [l.lesson_text for l in all_active if regime_subtype.lower() in l.lesson_text.lower()]
+
                 # v3.1 Regime Continuity Retrieval
                 regime_history = self.regime_continuity_memory.summary(regime_subtype)
 
@@ -715,6 +721,7 @@ class ReplayExecutor:
                     analog_divergence_claim=getattr(market_obs, "analog_divergence_claim", ""),
                     regime_history=regime_history,
                     dialectical_synthesis=active_synthesis,
+                    relevant_lessons=relevant_lessons,
                 )
 
                 if self.lineage_debug:
@@ -918,7 +925,8 @@ class ReplayExecutor:
                         active_theories=active_lineage_records,
                         contradiction_indicators=contradiction_result.get("indicators", []),
                         regime_subtype=regime_subtype,
-                        falsifiability_conditions=falsifiability_conditions
+                        falsifiability_conditions=falsifiability_conditions,
+                        relevant_lessons=relevant_lessons
                     )
                     if dialectical_data:
                         current_dialectical_data = dialectical_data
@@ -931,15 +939,24 @@ class ReplayExecutor:
                 # retire stale theories
                 try:
                     if self.theory_lineage:
-                        retired_records = self.theory_lineage.retire_stale_theories(
-                            step=day_idx,
-                            contradiction_severity=float(
-                                contradiction_result.get("score", 0.0)
-                            ),
-                            current_record_id=(
-                                lineage_record.id if lineage_record else None
-                            ),
-                        )
+                        contra_score = float(contradiction_result.get("score", 0.0))
+                        
+                        # NEW: Only retire if the theory has had at least one chance to be validated
+                        # This prevents "infant mortality" from immediate contradictions
+                        is_new_lineage = lineage_record.created_at_step == day_idx if lineage_record else False
+                        
+                        # Only proceed with retirement if not a new lineage OR contradiction is extreme
+                        if not is_new_lineage or contra_score > 0.8:
+                            retired_records = self.theory_lineage.retire_stale_theories(
+                                step=day_idx,
+                                contradiction_severity=contra_score,
+                                current_record_id=(
+                                    lineage_record.id if lineage_record else None
+                                ),
+                            )
+                        else:
+                            retired_records = []
+                            
                         theory_step_info["retired"] = len(retired_records)
                         if self.lineage_debug and retired_records:
                             self._log(
@@ -1122,7 +1139,8 @@ class ReplayExecutor:
                     "theory_mutation_count": lineage_record.mutation_count if lineage_record else 0, # Add theory's own mutation count
                     "contradiction_count": active_exp.contradiction_count if active_exp else 0,
                     "lineage_id": lineage_id_val,
-                    "theory_id": theory.id
+                    "theory_id": theory.id,
+                    "regime_history": regime_history # Added for Breaking Uncertainty Deadlock
                 }
 
                 if self.lineage_debug:
@@ -2007,7 +2025,7 @@ class ReplayExecutor:
         if lesson_extracted:
             print(f"  Extracted: {lesson_extracted.lesson_text[:100]}... (Confidence: {lesson_extracted.confidence:.2f}, Status: {lesson_extracted.status.value})")
         elif reason == "insufficient_evidence":
-            print(f"  Lesson: No lesson formed. Insufficient evidence ({evidence_count}/3 experiences)")
+            print(f"  Lesson: No lesson formed. Insufficient evidence ({evidence_count}/{self.lesson_extractor.MIN_EVIDENCE_THRESHOLD} experiences)")
         elif reason == "internal_id_rejected":
             print(f"  Lesson: Rejected. Lesson text contained internal IDs.")
         else:
