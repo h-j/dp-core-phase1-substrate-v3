@@ -13,10 +13,18 @@ class ReplayOutputMixin:
         snapshot = {
             "day_index": day_idx,
             "date": date_str,
-            "observation_text": snapshot_data["observation"].observation_text, # Keep for direct access
+            "observation_text": snapshot_data[
+                "observation"
+            ].observation_text,  # Keep for direct access
             "theory_summary": snapshot_data["theory"].summary,  # Legacy summary
-            "theory_summary_structured": snapshot_data["theory"].summary_structured.model_dump() if snapshot_data["theory"].summary_structured else None,  # Canonical access
-            "confidence_state": snapshot_data["confidence"].model_dump(), # Use model_dump for Pydantic objects
+            "theory_summary_structured": (
+                snapshot_data["theory"].summary_structured.model_dump()
+                if snapshot_data["theory"].summary_structured
+                else None
+            ),  # Canonical access
+            "confidence_state": snapshot_data[
+                "confidence"
+            ].model_dump(),  # Use model_dump for Pydantic objects
             "contradiction_score": snapshot_data["contradiction"].get("score", 0),
             "reflection_summary": snapshot_data["reflection"].reflection_summary,
             "epistemic_quality": snapshot_data.get("epistemic_quality", {}),
@@ -25,9 +33,15 @@ class ReplayOutputMixin:
             "regime_matches": snapshot_data.get("regime_matches", []),
             "theory_usefulness": snapshot_data.get("theory_usefulness", {}),
             "candle_type": snapshot_data["observation"].candle_type,
-            "participation_strength": snapshot_data["observation"].participation_strength,
-            "participation_confirmation": snapshot_data["observation"].participation_confirmation,
-            "prediction": prediction.to_dict() if hasattr(prediction, "to_dict") else prediction,
+            "participation_strength": snapshot_data[
+                "observation"
+            ].participation_strength,
+            "participation_confirmation": snapshot_data[
+                "observation"
+            ].participation_confirmation,
+            "prediction": (
+                prediction.to_dict() if hasattr(prediction, "to_dict") else prediction
+            ),
             "prior_prediction_result": (
                 prior_prediction_result.to_dict()
                 if hasattr(prior_prediction_result, "to_dict")
@@ -38,7 +52,9 @@ class ReplayOutputMixin:
             "falsifiability_conditions": snapshot_data.get("falsifiability_conditions"),
             "analog_divergence_claim": snapshot_data.get("analog_divergence_claim"),
             "theory_regime_subtype": snapshot_data.get("theory_regime_subtype"),
-            "theory_falsifiability_conditions": snapshot_data.get("theory_falsifiability_conditions"),
+            "theory_falsifiability_conditions": snapshot_data.get(
+                "theory_falsifiability_conditions"
+            ),
             "regime_history": snapshot_data.get("regime_history"),
             "dialectical_triggered": snapshot_data.get("dialectical_triggered", False),
             "dialectical_synthesis": snapshot_data.get("dialectical_synthesis"),
@@ -85,19 +101,31 @@ class ReplayOutputMixin:
             return
 
         print(f"\n── COGNITIVE TRACE: DAY {day_idx} ── {date_str} ──────────────────")
-        
+
         print(f"Observation:")
         print(f"  {observation.observation_text[:160]}...")
 
         print(f"Theory:")
-        theory_claim = theory.summary_structured.claim if theory.summary_structured else theory.summary
+        theory_claim = (
+            theory.summary_structured.claim
+            if theory.summary_structured
+            else theory.summary
+        )
         print(f"  {theory_claim[:120]}...")
 
         print(f"Contradiction:")
-        contra_summary = contradiction.get('summary', 'None') if contradiction.get('indicators') else "None detected structurally"
+        contra_summary = (
+            contradiction.get("summary", "None")
+            if contradiction.get("indicators")
+            else "None detected structurally"
+        )
         print(f"  {contra_summary}")
-        tension_summary = getattr(reflection, 'tension_summary', None)
-        if contra_summary == "None detected structurally" and tension_summary and tension_summary != "None":
+        tension_summary = getattr(reflection, "tension_summary", None)
+        if (
+            contra_summary == "None detected structurally"
+            and tension_summary
+            and tension_summary != "None"
+        ):
             print(f"Tension: {tension_summary}")
 
         print(f"Reflection:")
@@ -105,17 +133,23 @@ class ReplayOutputMixin:
 
         print(f"\nLesson:")
         lesson = "None"
-        if hasattr(self, 'replay_analysis_engine') and self.replay_analysis_engine and self.replay_analysis_engine.days:
-            lesson = self.replay_analysis_engine.days[-1].get("lesson", "None") or "None"
+        if (
+            hasattr(self, "replay_analysis_engine")
+            and self.replay_analysis_engine
+            and self.replay_analysis_engine.days
+        ):
+            lesson = (
+                self.replay_analysis_engine.days[-1].get("lesson", "None") or "None"
+            )
 
         if lesson == "None" or not lesson:
             print("  No lesson has stabilized. - 02")
-            #print("\n  Requires one of:")
-            #print("  • contradiction")
-            #print("  • mutation")
-            #print("  • synthesis")
-            #print("  • falsification")
-            #print("  • revival")
-            #print("  • validation outcome")
+            # print("\n  Requires one of:")
+            # print("  • contradiction")
+            # print("  • mutation")
+            # print("  • synthesis")
+            # print("  • falsification")
+            # print("  • revival")
+            # print("  • validation outcome")
         else:
             print(f"  {lesson}")

@@ -11,9 +11,7 @@ class MarketOutcomeRepository:
     def save(self, market_outcome: MarketOutcome):
         """Save a market outcome to PostgreSQL."""
 
-        contradictions_json = json.dumps(
-            market_outcome.outcome_contradictions
-        )
+        contradictions_json = json.dumps(market_outcome.outcome_contradictions)
 
         with SessionLocal() as session:
             model = MarketOutcomeModel(
@@ -27,16 +25,13 @@ class MarketOutcomeRepository:
                 realized_breadth=market_outcome.realized_breadth,
                 realized_liquidity=market_outcome.realized_liquidity,
                 outcome_contradictions=contradictions_json,
-                outcome_confidence=market_outcome.outcome_confidence
+                outcome_confidence=market_outcome.outcome_confidence,
             )
 
             session.merge(model)
             session.commit()
 
-        return {
-            "status": "stored",
-            "market_outcome_id": market_outcome.id
-        }
+        return {"status": "stored", "market_outcome_id": market_outcome.id}
 
     def list_recent(self, limit: int = 20):
         """Retrieve recent market outcomes."""
@@ -51,10 +46,8 @@ class MarketOutcomeRepository:
 
             outcomes = []
             for model in models:
-                contradictions = json.loads(
-                    model.outcome_contradictions or "[]"
-                )
-                
+                contradictions = json.loads(model.outcome_contradictions or "[]")
+
                 outcome = MarketOutcome(
                     id=model.id,
                     created_at=model.created_at,
@@ -66,7 +59,7 @@ class MarketOutcomeRepository:
                     realized_breadth=model.realized_breadth,
                     realized_liquidity=model.realized_liquidity,
                     outcome_contradictions=contradictions,
-                    outcome_confidence=model.outcome_confidence
+                    outcome_confidence=model.outcome_confidence,
                 )
                 outcomes.append(outcome)
 

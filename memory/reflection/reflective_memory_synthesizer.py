@@ -1,9 +1,7 @@
 from collections import Counter
 import json
 
-from cognition.schemas.reflection.reflective_memory_state import (
-    ReflectiveMemoryState
-)
+from cognition.schemas.reflection.reflective_memory_state import ReflectiveMemoryState
 
 
 class ReflectiveMemorySynthesizer:
@@ -18,38 +16,28 @@ class ReflectiveMemorySynthesizer:
         market_observations=None,
         theory_survival_summary=None,
         contradiction_zone_map=None,
-        outcome_validation_results=None
+        outcome_validation_results=None,
     ):
 
         market_observations = market_observations or []
 
         recurring_themes = self._recurring_themes(
-            theories,
-            reflections,
-            validations,
-            market_observations
+            theories, reflections, validations, market_observations
         )
         persistent_uncertainties = self._persistent_uncertainties(
-            reflections,
-            contradiction_result,
-            market_observations
+            reflections, contradiction_result, market_observations
         )
         strengthening_patterns = self._strengthening_patterns(
-            validations,
-            confidence_states,
-            market_observations,
-            theory_survival_summary
+            validations, confidence_states, market_observations, theory_survival_summary
         )
         weakening_patterns = self._weakening_patterns(
             confidence_states,
             contradiction_result,
             market_observations,
-            theory_survival_summary
+            theory_survival_summary,
         )
         contradiction_hotspots = self._contradiction_hotspots(
-            contradiction_result,
-            market_observations,
-            contradiction_zone_map
+            contradiction_result, market_observations, contradiction_zone_map
         )
         trajectory_summary = self._trajectory_summary(
             recurring_themes,
@@ -60,7 +48,7 @@ class ReflectiveMemorySynthesizer:
             confidence_states,
             theory_survival_summary,
             contradiction_zone_map,
-            outcome_validation_results
+            outcome_validation_results,
         )
 
         return ReflectiveMemoryState(
@@ -69,15 +57,11 @@ class ReflectiveMemorySynthesizer:
             weakening_patterns=weakening_patterns,
             persistent_uncertainties=persistent_uncertainties,
             contradiction_hotspots=contradiction_hotspots,
-            cognition_trajectory_summary=trajectory_summary
+            cognition_trajectory_summary=trajectory_summary,
         )
 
     def _recurring_themes(
-        self,
-        theories,
-        reflections,
-        validations,
-        market_observations
+        self, theories, reflections, validations, market_observations
     ):
 
         watched_terms = [
@@ -94,13 +78,10 @@ class ReflectiveMemorySynthesizer:
             "confidence",
             "uncertainty",
             "contradiction",
-            "market activity"
+            "market activity",
         ]
         text = self._combined_text(
-            theories,
-            reflections,
-            validations,
-            market_observations
+            theories, reflections, validations, market_observations
         )
         counts = Counter()
 
@@ -116,10 +97,7 @@ class ReflectiveMemorySynthesizer:
         return themes[:5] or ["No recurring theme is stable yet."]
 
     def _persistent_uncertainties(
-        self,
-        reflections,
-        contradiction_result,
-        market_observations
+        self, reflections, contradiction_result, market_observations
     ):
 
         uncertainty_terms = [
@@ -129,7 +107,7 @@ class ReflectiveMemorySynthesizer:
             "mixed",
             "limited",
             "contradictory",
-            "overconfidence"
+            "overconfidence",
         ]
         uncertainties = []
 
@@ -148,18 +126,12 @@ class ReflectiveMemorySynthesizer:
                 "Contradiction pressure remains present in recent cognition."
             )
 
-        if self._market_marker_count(
-            market_observations,
-            "uncertain"
-        ) >= 1:
+        if self._market_marker_count(market_observations, "uncertain") >= 1:
             uncertainties.append(
                 "Recent NIFTY observations include uncertain macro sentiment."
             )
 
-        if self._market_marker_count(
-            market_observations,
-            "mixed"
-        ) >= 1:
+        if self._market_marker_count(market_observations, "mixed") >= 1:
             uncertainties.append(
                 "Recent NIFTY observations include mixed breadth or sentiment."
             )
@@ -173,13 +145,12 @@ class ReflectiveMemorySynthesizer:
         validations,
         confidence_states,
         market_observations,
-        theory_survival_summary=None
+        theory_survival_summary=None,
     ):
 
         patterns = []
         validation_text = " ".join(
-            validation.validation_summary.lower()
-            for validation in validations
+            validation.validation_summary.lower() for validation in validations
         )
 
         if validation_text.count("liquidity") >= 2:
@@ -188,38 +159,20 @@ class ReflectiveMemorySynthesizer:
             )
 
         if validation_text.count("trend persistence") >= 2:
-            patterns.append(
-                "Trend persistence keeps appearing as a supported pattern."
-            )
+            patterns.append("Trend persistence keeps appearing as a supported pattern.")
 
-        if self._confidence_trend(
-            confidence_states,
-            "empirical_confidence"
-        ) > 0:
-            patterns.append(
-                "Empirical confidence is rising across recent states."
-            )
+        if self._confidence_trend(confidence_states, "empirical_confidence") > 0:
+            patterns.append("Empirical confidence is rising across recent states.")
 
-        if self._confidence_trend(
-            confidence_states,
-            "regime_confidence"
-        ) > 0:
-            patterns.append(
-                "Regime confidence is rising across recent states."
-            )
+        if self._confidence_trend(confidence_states, "regime_confidence") > 0:
+            patterns.append("Regime confidence is rising across recent states.")
 
-        if self._market_marker_count(
-            market_observations,
-            "broad_participation"
-        ) >= 2:
+        if self._market_marker_count(market_observations, "broad_participation") >= 2:
             patterns.append(
                 "Broad NIFTY participation is recurring in recent market memory."
             )
 
-        if self._market_marker_count(
-            market_observations,
-            "strengthened"
-        ) >= 2:
+        if self._market_marker_count(market_observations, "strengthened") >= 2:
             patterns.append(
                 "Breadth improvement has repeated across recent NIFTY observations."
             )
@@ -237,44 +190,30 @@ class ReflectiveMemorySynthesizer:
         confidence_states,
         contradiction_result,
         market_observations,
-        theory_survival_summary=None
+        theory_survival_summary=None,
     ):
 
         patterns = []
 
-        if self._confidence_trend(
-            confidence_states,
-            "theoretical_coherence"
-        ) < 0:
+        if self._confidence_trend(confidence_states, "theoretical_coherence") < 0:
             patterns.append(
                 "Theoretical coherence is weakening as pressure accumulates."
             )
 
-        if self._confidence_trend(
-            confidence_states,
-            "contradiction_pressure"
-        ) > 0:
+        if self._confidence_trend(confidence_states, "contradiction_pressure") > 0:
             patterns.append(
                 "Contradiction pressure is increasing across recent states."
             )
 
         if contradiction_result["score"] >= 0.4:
-            patterns.append(
-                "Current cognition has material contradiction pressure."
-            )
+            patterns.append("Current cognition has material contradiction pressure.")
 
-        if self._market_marker_count(
-            market_observations,
-            "weakened"
-        ) >= 2:
+        if self._market_marker_count(market_observations, "weakened") >= 2:
             patterns.append(
                 "NIFTY breadth weakness is recurring in recent market memory."
             )
 
-        if self._market_marker_count(
-            market_observations,
-            "expanded"
-        ) >= 2:
+        if self._market_marker_count(market_observations, "expanded") >= 2:
             patterns.append(
                 "Volatility expansion is recurring across recent NIFTY observations."
             )
@@ -288,10 +227,7 @@ class ReflectiveMemorySynthesizer:
         return patterns[:5] or ["No weakening pattern is stable yet."]
 
     def _contradiction_hotspots(
-        self,
-        contradiction_result,
-        market_observations,
-        contradiction_zone_map=None
+        self, contradiction_result, market_observations, contradiction_zone_map=None
     ):
 
         indicators = list(contradiction_result["indicators"])
@@ -300,31 +236,20 @@ class ReflectiveMemorySynthesizer:
             markers = observation.contradiction_markers
 
             if "price_up_breadth_down" in markers:
-                indicators.append(
-                    "NIFTY price rose while breadth weakened."
-                )
+                indicators.append("NIFTY price rose while breadth weakened.")
 
             if "new_high_narrow_breadth" in markers:
-                indicators.append(
-                    "NIFTY made a new high with narrowing breadth."
-                )
+                indicators.append("NIFTY made a new high with narrowing breadth.")
 
             if "volatility_expansion_with_positive_close" in markers:
-                indicators.append(
-                    "Volatility expanded despite a positive NIFTY close."
-                )
+                indicators.append("Volatility expanded despite a positive NIFTY close.")
 
             if "high_volatility_recovery" in markers:
-                indicators.append(
-                    "NIFTY recovered while volatility stayed high."
-                )
+                indicators.append("NIFTY recovered while volatility stayed high.")
 
         # Add recurring contradiction zone insights
         if contradiction_zone_map:
-            recurring_zones = contradiction_zone_map.get(
-                "recurring_zones",
-                {}
-            )
+            recurring_zones = contradiction_zone_map.get("recurring_zones", {})
             if recurring_zones:
                 most_severe = contradiction_zone_map.get("most_severe")
                 if most_severe:
@@ -349,7 +274,7 @@ class ReflectiveMemorySynthesizer:
         confidence_states,
         theory_survival_summary=None,
         contradiction_zone_map=None,
-        outcome_validation_results=None
+        outcome_validation_results=None,
     ):
 
         latest_pressure = None
@@ -375,8 +300,7 @@ class ReflectiveMemorySynthesizer:
         # Add adaptive market cognition trajectory elements
         if outcome_validation_results:
             avg_validation = sum(
-                r.get("validation_score", 0.5)
-                for r in outcome_validation_results
+                r.get("validation_score", 0.5) for r in outcome_validation_results
             ) / max(len(outcome_validation_results), 1)
 
             if avg_validation > 0.7:
@@ -384,9 +308,7 @@ class ReflectiveMemorySynthesizer:
             elif avg_validation > 0.4:
                 trajectory += " Market outcomes partially support recent theories."
             else:
-                trajectory += (
-                    " Market outcomes diverge from theoretical expectations."
-                )
+                trajectory += " Market outcomes diverge from theoretical expectations."
 
         if theory_survival_summary:
             trajectory += f" {theory_survival_summary}"
@@ -399,13 +321,7 @@ class ReflectiveMemorySynthesizer:
 
         return trajectory
 
-    def _combined_text(
-        self,
-        theories,
-        reflections,
-        validations,
-        market_observations
-    ):
+    def _combined_text(self, theories, reflections, validations, market_observations):
 
         parts = []
 
@@ -417,17 +333,10 @@ class ReflectiveMemorySynthesizer:
             else:
                 parts.append(getattr(theory, "summary", ""))
 
+        parts.extend(reflection.reflection_summary for reflection in reflections)
+        parts.extend(validation.validation_summary for validation in validations)
         parts.extend(
-            reflection.reflection_summary
-            for reflection in reflections
-        )
-        parts.extend(
-            validation.validation_summary
-            for validation in validations
-        )
-        parts.extend(
-            observation.observation_text
-            for observation in market_observations
+            observation.observation_text for observation in market_observations
         )
         parts.extend(
             " ".join(observation.contradiction_markers)
@@ -449,7 +358,7 @@ class ReflectiveMemorySynthesizer:
                     observation.liquidity_state,
                     observation.breadth_state,
                     observation.macro_sentiment,
-                    " ".join(observation.contradiction_markers)
+                    " ".join(observation.contradiction_markers),
                 ]
             ).lower()
 

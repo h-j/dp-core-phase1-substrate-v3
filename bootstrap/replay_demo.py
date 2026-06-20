@@ -16,9 +16,7 @@ from pathlib import Path
 import pandas as pd
 
 from market.data.dataset_validator import DatasetValidator
-from market.replay.market_observation_synthesizer import (
-    MarketObservationSynthesizer
-)
+from market.replay.market_observation_synthesizer import MarketObservationSynthesizer
 from market.replay.replay_analysis import ReplayAnalysisEngine
 from market.replay.replay_engine import ReplayEngine
 
@@ -79,7 +77,7 @@ class SimplifiedReplayRunner:
         self.scenarios = [
             {"days": 30, "label": "30-day short-term"},
             {"days": 90, "label": "90-day medium-term"},
-            {"days": 252, "label": "1-year full cycle"}
+            {"days": 252, "label": "1-year full cycle"},
         ]
 
         print(f"✓ Loaded {len(self.scenarios)} replay scenarios")
@@ -187,6 +185,7 @@ def main():
     except Exception as e:
         print(f"\n✗ Demonstration failed: {e}")
         import traceback
+
         traceback.print_exc()
         sys.exit(1)
 

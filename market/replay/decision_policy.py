@@ -1,11 +1,12 @@
 from dataclasses import dataclass
 from typing import Dict, Any
 
+
 @dataclass
 class DecisionSignal:
     date: str
     policy_name: str
-    action: str          # buy / sell / hold / cash
+    action: str  # buy / sell / hold / cash
     conviction: float
     reason: str
     allowed: bool
@@ -17,8 +18,9 @@ class DecisionSignal:
             "action": self.action,
             "conviction": self.conviction,
             "reason": self.reason,
-            "allowed": self.allowed
+            "allowed": self.allowed,
         }
+
 
 class DecisionPolicyEngine:
     """
@@ -55,14 +57,14 @@ class DecisionPolicyEngine:
                 volume_state,
                 atr_expansion,
                 participation_confirmation,
-            )
+            ),
         }
 
     def _policy_baseline(self, prediction, date: str) -> DecisionSignal:
-        direction = getattr(prediction, 'direction', None)
-        if hasattr(direction, 'value'):
+        direction = getattr(prediction, "direction", None)
+        if hasattr(direction, "value"):
             direction = direction.value
-            
+
         action = "hold"
         if direction == "higher":
             action = "buy"
@@ -70,14 +72,14 @@ class DecisionPolicyEngine:
             action = "sell"
         elif direction in ["range_bound", "uncertain"]:
             action = "hold"
-            
+
         return DecisionSignal(
             date=date,
             policy_name="Baseline",
             action=action,
-            conviction=getattr(prediction, 'confidence', 0.5),
+            conviction=getattr(prediction, "confidence", 0.5),
             reason="Daily execution baseline",
-            allowed=True
+            allowed=True,
         )
 
     def _policy_high_conviction(
@@ -89,18 +91,20 @@ class DecisionPolicyEngine:
         date: str,
         volume_state: str,
     ) -> DecisionSignal:
-        conf = getattr(prediction, 'confidence', 0.0)
-        direction = getattr(prediction, 'direction', None)
-        if hasattr(direction, 'value'):
+        conf = getattr(prediction, "confidence", 0.0)
+        direction = getattr(prediction, "direction", None)
+        if hasattr(direction, "value"):
             direction = direction.value
 
-        pressure_score = getattr(transition_pressure, 'pressure_score', 0.0) if transition_pressure else 0.0
+        pressure_score = (
+            getattr(transition_pressure, "pressure_score", 0.0)
+            if transition_pressure
+            else 0.0
+        )
 
         # v2.4 Tuning for actual participation
         meets_criteria = (
-            conf >= 0.50 and
-            theory_usefulness >= 0.30 and
-            contradiction_score <= 0.45
+            conf >= 0.50 and theory_usefulness >= 0.30 and contradiction_score <= 0.45
         )
 
         if not meets_criteria:
@@ -128,7 +132,7 @@ class DecisionPolicyEngine:
             action=action,
             conviction=conf,
             reason="High conviction criteria met",
-            allowed=True
+            allowed=True,
         )
 
     def _policy_breakout(
@@ -140,16 +144,14 @@ class DecisionPolicyEngine:
         atr_expansion: bool,
         participation_confirmation: str = "normal",
     ) -> DecisionSignal:
-        pressure_score = getattr(transition_pressure, 'pressure_score', 0.0)
-        breakout_risk = getattr(transition_pressure, 'breakout_risk', False)
-        conf = getattr(prediction, 'confidence', 0.0)
-        bias = getattr(transition_pressure, 'direction_bias', 'neutral')
+        pressure_score = getattr(transition_pressure, "pressure_score", 0.0)
+        breakout_risk = getattr(transition_pressure, "breakout_risk", False)
+        conf = getattr(prediction, "confidence", 0.0)
+        bias = getattr(transition_pressure, "direction_bias", "neutral")
 
         # v2.4 Tuning for actual participation
         meets_criteria = (
-            pressure_score >= 0.45 and
-            breakout_risk is True and
-            conf >= 0.36
+            pressure_score >= 0.45 and breakout_risk is True and conf >= 0.36
         )
 
         if not meets_criteria:
@@ -167,9 +169,9 @@ class DecisionPolicyEngine:
                 allowed=False,
             )
 
-        if bias == "neutral" and getattr(prediction, 'direction', None) is not None:
-            direction = getattr(prediction, 'direction', None)
-            if hasattr(direction, 'value'):
+        if bias == "neutral" and getattr(prediction, "direction", None) is not None:
+            direction = getattr(prediction, "direction", None)
+            if hasattr(direction, "value"):
                 direction = direction.value
             if direction in {"higher", "lower"}:
                 bias = direction
@@ -186,5 +188,5 @@ class DecisionPolicyEngine:
             action=action,
             conviction=conf,
             reason="Breakout policy criteria met",
-            allowed=True
+            allowed=True,
         )

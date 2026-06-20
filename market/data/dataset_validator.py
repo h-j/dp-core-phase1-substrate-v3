@@ -31,12 +31,14 @@ class DatasetValidator:
             self.CSV_PATH = csv_path
         else:
             # Default path: data/ directory at project root
-            self.CSV_PATH = Path(__file__).parent.parent.parent / "data" / "nifty_daily_3y.csv"
+            self.CSV_PATH = (
+                Path(__file__).parent.parent.parent / "data" / "nifty_daily_3y.csv"
+            )
 
     def validate(self, verbose: bool = True) -> dict:
         """
         Run comprehensive validation.
-        
+
         Returns:
             dict with validation results and summary
         """
@@ -52,14 +54,12 @@ class DatasetValidator:
             "warnings": [],
             "summary": "",
             "row_count": 0,
-            "date_range": None
+            "date_range": None,
         }
 
         # Check file exists
         if not os.path.exists(self.CSV_PATH):
-            results["errors"].append(
-                f"CSV file not found: {self.CSV_PATH}"
-            )
+            results["errors"].append(f"CSV file not found: {self.CSV_PATH}")
             if verbose:
                 self._print_results(results)
             return results
@@ -77,24 +77,17 @@ class DatasetValidator:
         results["row_count"] = len(data)
 
         # Check columns
-        missing_cols = [
-            col for col in self.REQUIRED_COLUMNS
-            if col not in data.columns
-        ]
+        missing_cols = [col for col in self.REQUIRED_COLUMNS if col not in data.columns]
 
         if missing_cols:
-            results["errors"].append(
-                f"Missing required columns: {missing_cols}"
-            )
+            results["errors"].append(f"Missing required columns: {missing_cols}")
         else:
             results["columns_valid"] = True
 
         # Check for duplicates
         duplicate_count = data.duplicated(subset=["date"]).sum()
         if duplicate_count > 0:
-            results["errors"].append(
-                f"Found {duplicate_count} duplicate dates"
-            )
+            results["errors"].append(f"Found {duplicate_count} duplicate dates")
         else:
             results["no_duplicates"] = True
 
@@ -104,9 +97,7 @@ class DatasetValidator:
         future_dates = (data["date"].dt.date > today).sum()
 
         if future_dates > 0:
-            results["errors"].append(
-                f"Found {future_dates} future dates (after today)"
-            )
+            results["errors"].append(f"Found {future_dates} future dates (after today)")
         else:
             results["no_future_dates"] = True
 
@@ -116,9 +107,7 @@ class DatasetValidator:
 
         nan_count = data[present_ohlcv].isna().sum().sum()
         if nan_count > 0:
-            results["errors"].append(
-                f"Found {nan_count} NaN values in OHLCV"
-            )
+            results["errors"].append(f"Found {nan_count} NaN values in OHLCV")
         else:
             results["no_nan_ohlcv"] = True
 
@@ -145,15 +134,17 @@ class DatasetValidator:
             results["date_range"] = (start_date, end_date)
 
         # Generate summary
-        all_passed = all([
-            results["file_exists"],
-            results["columns_valid"],
-            results["no_duplicates"],
-            results["no_future_dates"],
-            results["no_nan_ohlcv"],
-            results["chronological_order"],
-            results["minimum_size"]
-        ])
+        all_passed = all(
+            [
+                results["file_exists"],
+                results["columns_valid"],
+                results["no_duplicates"],
+                results["no_future_dates"],
+                results["no_nan_ohlcv"],
+                results["chronological_order"],
+                results["minimum_size"],
+            ]
+        )
 
         if all_passed:
             results["summary"] = (

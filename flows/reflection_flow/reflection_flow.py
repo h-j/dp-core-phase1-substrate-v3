@@ -9,17 +9,88 @@ from interfaces.ollama_client import OllamaClient
 class ReflectionFlow:
 
     MARKET_LEXICON = {
-        "gap", "wick", "bull", "bear", "dry", "vix", "atr", "range", "trend", 
-        "weak", "breakout", "volume", "fatigue", "liquidity", "breadth", 
-        "volatility", "participation", "rejection", "compression", "expansion",
-        "momentum", "coherence", "regime", "tension", "falsified", "supported",
-        "structural", "neutral", "analogy", "divergence", "anchor",
-        "synthesis", "conflict", "reconciliation", "reconciled", "reconciling", 
-        "premise", "boundary", "if", "else", "favor", "conditional", "then", "resolved", "logic", "claim",
-        "unless", "scenario", "branch", "triggers", "outcome", "implies", "suggests", "indicates",
-        "however", "despite", "unless", "otherwise", "challenges", "reinforces", "supports", "falsifies", "validates", "remains", "persists",
-        "continuation", "persistence", "price", "high", "low", "close", "level", "scenario", "branch",
-        "reconciles", "suggests", "indicates", "implies", "however", "despite", "unless", "otherwise",
+        "gap",
+        "wick",
+        "bull",
+        "bear",
+        "dry",
+        "vix",
+        "atr",
+        "range",
+        "trend",
+        "weak",
+        "breakout",
+        "volume",
+        "fatigue",
+        "liquidity",
+        "breadth",
+        "volatility",
+        "participation",
+        "rejection",
+        "compression",
+        "expansion",
+        "momentum",
+        "coherence",
+        "regime",
+        "tension",
+        "falsified",
+        "supported",
+        "structural",
+        "neutral",
+        "analogy",
+        "divergence",
+        "anchor",
+        "synthesis",
+        "conflict",
+        "reconciliation",
+        "reconciled",
+        "reconciling",
+        "premise",
+        "boundary",
+        "if",
+        "else",
+        "favor",
+        "conditional",
+        "then",
+        "resolved",
+        "logic",
+        "claim",
+        "unless",
+        "scenario",
+        "branch",
+        "triggers",
+        "outcome",
+        "implies",
+        "suggests",
+        "indicates",
+        "however",
+        "despite",
+        "unless",
+        "otherwise",
+        "challenges",
+        "reinforces",
+        "supports",
+        "falsifies",
+        "validates",
+        "remains",
+        "persists",
+        "continuation",
+        "persistence",
+        "price",
+        "high",
+        "low",
+        "close",
+        "level",
+        "scenario",
+        "branch",
+        "reconciles",
+        "suggests",
+        "indicates",
+        "implies",
+        "however",
+        "despite",
+        "unless",
+        "otherwise",
     }
 
     def __init__(self):
@@ -37,7 +108,7 @@ class ReflectionFlow:
         falsifiability_conditions: list = None,
         analog_divergence_claim: str = None,
         theory_regime_subtype: str = None,
-        theory_structured_data: dict = None, # New: structured theory data
+        theory_structured_data: dict = None,  # New: structured theory data
         theory_falsifiability_conditions: list = None,
         regime_history: dict = None,
         dialectical_synthesis: str = None,
@@ -49,11 +120,19 @@ class ReflectionFlow:
         contradiction_indicators = contradiction_result.get("indicators", [])
 
         # Resolve finalized v3.0 fields with explicit fallbacks
-        final_regime_subtype = regime_subtype if regime_subtype is not None else getattr(market_observation, 'regime_subtype', 'neutral')
+        final_regime_subtype = (
+            regime_subtype
+            if regime_subtype is not None
+            else getattr(market_observation, "regime_subtype", "neutral")
+        )
         if not final_regime_subtype:
             final_regime_subtype = "neutral"
-            
-        final_analog_claim = analog_divergence_claim if analog_divergence_claim is not None else getattr(market_observation, 'analog_divergence_claim', 'None')
+
+        final_analog_claim = (
+            analog_divergence_claim
+            if analog_divergence_claim is not None
+            else getattr(market_observation, "analog_divergence_claim", "None")
+        )
         if not final_analog_claim:
             final_analog_claim = "None"
 
@@ -84,15 +163,28 @@ Avg usefulness: {regime_history.get('avg_usefulness', 0.0):.2f}
 
 Use subtype history only if materially relevant. Primary focus remains: 1 observation, 2 subtype, 3 falsifiability. History is secondary context. Do not force reflection to explain history.
 """
-        print(f"[Reflection History Debug] seen_count: {seen_count}, context: {history_context_for_prompt}")
+        print(
+            f"[Reflection History Debug] seen_count: {seen_count}, context: {history_context_for_prompt}"
+        )
 
         # v3.0 Regime and falsifiability context
-        t_subtype = theory_regime_subtype if theory_regime_subtype is not None else getattr(theory, 'regime_subtype', 'neutral')
-        if not t_subtype: t_subtype = "neutral"
-        t_falsifiability = theory_falsifiability_conditions if theory_falsifiability_conditions is not None else getattr(theory, 'falsifiability_conditions', [])
+        t_subtype = (
+            theory_regime_subtype
+            if theory_regime_subtype is not None
+            else getattr(theory, "regime_subtype", "neutral")
+        )
+        if not t_subtype:
+            t_subtype = "neutral"
+        t_falsifiability = (
+            theory_falsifiability_conditions
+            if theory_falsifiability_conditions is not None
+            else getattr(theory, "falsifiability_conditions", [])
+        )
         regime_context = f"\nTheory Regime Subtype: {t_subtype}"
         if t_falsifiability:
-            regime_context += f"\nTheory is falsified if: " + "; ".join(t_falsifiability)
+            regime_context += f"\nTheory is falsified if: " + "; ".join(
+                t_falsifiability
+            )
 
         # v3.2 Adjust tension constraint if synthesis is present
         tension_constraint = """- identify one unresolved tension
@@ -109,7 +201,11 @@ Use subtype history only if materially relevant. Primary focus remains: 1 observ
 
         # Canonical access to theory claim
         t_struct = getattr(theory, "summary_structured", None)
-        theory_text = t_struct.claim if (t_struct and hasattr(t_struct, 'claim')) else theory.summary
+        theory_text = (
+            t_struct.claim
+            if (t_struct and hasattr(t_struct, "claim"))
+            else theory.summary
+        )
 
         prompt = f"""
 Reflect on the following theory validation using structured market observation dimensions.
@@ -161,7 +257,9 @@ This theory appears insightful and coherent.
             dialectical_synthesis=dialectical_synthesis,
         )
         # Log anchor score for debugging
-        print(f"[Reflection Grounding Score] {reflection_summary.get('anchor_score', 0.0):.3f} (Grounded: {reflection_summary.get('grounded', False)})")
+        print(
+            f"[Reflection Grounding Score] {reflection_summary.get('anchor_score', 0.0):.3f} (Grounded: {reflection_summary.get('grounded', False)})"
+        )
 
         return ReflectionEvent(
             related_theory_id=theory.id,
@@ -176,7 +274,7 @@ This theory appears insightful and coherent.
         contradiction_summary: str = "",
         falsifiability_conditions: list = None,
         dialectical_synthesis: str = "",
-    ) -> Dict[str, Any]: # Return dict with summary and grounding info
+    ) -> Dict[str, Any]:  # Return dict with summary and grounding info
 
         blocked_phrases = [
             "well-crafted",
@@ -240,13 +338,19 @@ This theory appears insightful and coherent.
             if sentence.strip()
         ]
 
-        if not sentences: # This fallback should be more specific to the issue
-            return {"summary": self._fallback_reflection(theory_text, contradiction_summary), "grounded": False, "anchor_score": 0.0}
+        if not sentences:  # This fallback should be more specific to the issue
+            return {
+                "summary": self._fallback_reflection(
+                    theory_text, contradiction_summary
+                ),
+                "grounded": False,
+                "anchor_score": 0.0,
+            }
 
         compressed = " ".join(sentences[:4])
         if compressed[-1:] not in [".", "!", "?"]:
             compressed = compressed + "."
-        
+
         is_grounded = self._is_grounded_reflection(
             compressed,
             theory_text=theory_text,
@@ -256,9 +360,21 @@ This theory appears insightful and coherent.
         )
 
         if not is_grounded:
-            return {"summary": self._fallback_reflection(theory_text, contradiction_summary), "grounded": False, "anchor_score": 0.0}
+            return {
+                "summary": self._fallback_reflection(
+                    theory_text, contradiction_summary
+                ),
+                "grounded": False,
+                "anchor_score": 0.0,
+            }
 
-        anchor_score = self._calculate_anchor_score(compressed, theory_text, contradiction_summary, falsifiability_conditions, dialectical_synthesis)
+        anchor_score = self._calculate_anchor_score(
+            compressed,
+            theory_text,
+            contradiction_summary,
+            falsifiability_conditions,
+            dialectical_synthesis,
+        )
         return {"summary": compressed, "grounded": True, "anchor_score": anchor_score}
 
     def _is_grounded_reflection(
@@ -274,7 +390,7 @@ This theory appears insightful and coherent.
             for sentence in re.split(r"(?<=[.!?])\s+", reflection)
             if sentence.strip()
         ]
-        if not 1 <= len(sentences) <= 4: # Reflection should be at least 1 sentence
+        if not 1 <= len(sentences) <= 4:  # Reflection should be at least 1 sentence
             return False
 
         lower_reflection = reflection.lower()
@@ -314,16 +430,35 @@ This theory appears insightful and coherent.
         contradiction_grounded = (
             contradiction_summary.lower().startswith("no explicit")
             or any(term in lower_reflection for term in contradiction_terms)
-            or any(term in lower_reflection for term in ("contradiction", "contradict", "conflict"))
+            or any(
+                term in lower_reflection
+                for term in ("contradiction", "contradict", "conflict")
+            )
         )
 
         # v3.2 synthesis or tension grounding
-        synthesis_terms = self._salient_terms(dialectical_synthesis) if dialectical_synthesis else set()
+        synthesis_terms = (
+            self._salient_terms(dialectical_synthesis)
+            if dialectical_synthesis
+            else set()
+        )
         tension_grounded = any(term in lower_reflection for term in tension_terms)
-        synthesis_grounded = any(term in lower_reflection for term in synthesis_terms) if synthesis_terms else False
-        falsifiability_grounded = any(term in lower_reflection for term in falsifiability_terms) if falsifiability_terms else False
+        synthesis_grounded = (
+            any(term in lower_reflection for term in synthesis_terms)
+            if synthesis_terms
+            else False
+        )
+        falsifiability_grounded = (
+            any(term in lower_reflection for term in falsifiability_terms)
+            if falsifiability_terms
+            else False
+        )
 
-        return theory_grounded and contradiction_grounded and (tension_grounded or synthesis_grounded or falsifiability_grounded)
+        return (
+            theory_grounded
+            and contradiction_grounded
+            and (tension_grounded or synthesis_grounded or falsifiability_grounded)
+        )
 
     def _calculate_anchor_score(
         self,
@@ -339,7 +474,11 @@ This theory appears insightful and coherent.
         if falsifiability_conditions:
             for cond in falsifiability_conditions:
                 falsifiability_terms.update(self._salient_terms(cond))
-        synthesis_terms = self._salient_terms(dialectical_synthesis) if dialectical_synthesis else set()
+        synthesis_terms = (
+            self._salient_terms(dialectical_synthesis)
+            if dialectical_synthesis
+            else set()
+        )
 
         reflection_terms = self._salient_terms(reflection)
 
@@ -349,7 +488,10 @@ This theory appears insightful and coherent.
         def overlap_score(target_terms: Set[str], weight: float) -> float:
             if not target_terms:
                 return 0.0
-            return min(1.0, len(reflection_terms & target_terms) / len(target_terms)) * weight
+            return (
+                min(1.0, len(reflection_terms & target_terms) / len(target_terms))
+                * weight
+            )
 
         score = 0.0
         score += overlap_score(theory_terms, 0.25)
@@ -357,7 +499,17 @@ This theory appears insightful and coherent.
         score += overlap_score(falsifiability_terms, 0.30)
         score += overlap_score(synthesis_terms, 0.15)
 
-        if any(word in reflection.lower() for word in ["if", "unless", "because", "boundary", "contradicted", "falsified"]):
+        if any(
+            word in reflection.lower()
+            for word in [
+                "if",
+                "unless",
+                "because",
+                "boundary",
+                "contradicted",
+                "falsified",
+            ]
+        ):
             score += 0.05
 
         return min(1.0, max(0.0, score))
@@ -396,7 +548,7 @@ This theory appears insightful and coherent.
             "market",
             "also",
             "then",
-            "both"
+            "both",
         }
         tokens = re.findall(r"[a-z0-9-]{3,}", text.lower())
         salient = set()

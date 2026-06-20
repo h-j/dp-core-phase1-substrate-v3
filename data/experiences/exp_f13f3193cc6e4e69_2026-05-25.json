@@ -3,21 +3,54 @@
   "lineage_id": "f13f3193cc6e4e69",
   "theory_family_id": "f13f3193cc6e4e69",
   "created_at": "2026-05-25",
-  "status": "closed",
+  "status": "validated",
   "theory_ids": [
-    "90b42890-a8dc-4f74-98a2-8d1282e581a0",
-    "698f23d1-e4b0-429a-8d02-8701963e1868",
-    "f28b212e-0b09-47b1-80f8-b504ebf52e6a"
+    "5fb0b007-dcc3-40d7-9c95-bd3c83c806a5",
+    "7554a0cf-36ed-4d18-b791-ae1dbcf36b30",
+    "58718a6c-3718-4522-b6d2-df8abe530c73",
+    "374a56e1-198f-48be-a856-c7921160be5d",
+    "ff7d6872-19b6-4f4f-aa29-3277aa5e7333",
+    "438fb180-0c3a-4e87-b5db-57de22b3766f",
+    "5e30c3ca-1278-41b1-af77-d038e274f467",
+    "d5ae3124-2995-49e4-a782-5ee5c1c6f764",
+    "24a9b249-baa0-43fb-8743-805317bfabdc"
   ],
   "contradictions": [
-    "Structural: Low semantic similarity: price closes above t... vs decisive close below...; Low semantic similarity: Regime is driven by ... vs volume rebounds abov...; Low semantic similarity: price closes above r... vs volume rebounds abov...; Low semantic similarity: volatility contracts... vs volatility expands f...",
-    "Structural: Low semantic similarity: Regime is driven by ... vs price closes above r...",
-    "Structural: Low semantic similarity: decisive close below... vs price closes above t...; Low semantic similarity: Regime is driven by ... vs price closes above r...; Low semantic similarity: volume increases abo... vs price closes above r...; Low semantic similarity: short-term momentum ... vs volatility contracts...",
-    "Structural: Low semantic similarity: Regime is driven by ... vs volume rebounds abov...; Low semantic similarity: short-term momentum ... vs volatility expands f..."
+    "Structural: Low semantic similarity: price closes above r... vs decisive close below...; Low semantic similarity: Range-bound RELIANCE... vs volume confirms high...; Field conflict: price closes above rejection h vs volume confirms higher partici; Low semantic similarity: volatility contracts... vs volatility expands a...; Volatility: expansion vs stability",
+    "Structural: Low semantic similarity: Range-bound RELIANCE... vs price closes above r...; Volatility: expansion vs stability",
+    "Structural: Low semantic similarity: Range-bound market w... vs Range-bound RELIANCE...; Low semantic similarity: decisive close below... vs price closes above r...; Low semantic similarity: Range-bound market w... vs price closes above r...",
+    "Structural: Low semantic similarity: Range-bound market w... vs Range-bound RELIANCE...; Low semantic similarity: Range-bound market w... vs volume confirms high...; Field conflict: RELIEANCE's price closes above vs volume confirms higher partici; Low semantic similarity: volatility contracts... vs volatility expands a...",
+    "Structural: Low semantic similarity: Range expansion and ... vs Range-bound market w...; Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: Range expansion and ... vs RELIEANCE's price cl...; Low semantic similarity: short-term momentum ... vs RELIEANCE's price cl...; Low semantic similarity: volatility remains e... vs volatility contracts...",
+    "Structural: Low semantic similarity: Range expansion and ... vs Range-bound RELIANCE...; Low semantic similarity: decisive close above... vs price closes above r...; Low semantic similarity: Range expansion and ... vs price closes above r...; Low semantic similarity: short-term momentum ... vs price closes above r...; Low semantic similarity: volatility remains e... vs volatility contracts...; Volatility: expansion vs stability",
+    "Structural: Low semantic similarity: Range expansion and ... vs Range-bound RELIANCE...; Field conflict: decisive close above the prior vs decisive close below the prior; Field conflict: Range expansion and volatility vs volume confirms higher partici; Low semantic similarity: short-term momentum ... vs volume confirms high...; Low semantic similarity: volatility remains e... vs volatility expands a...",
+    "Structural: Low semantic similarity: Range-bound market w... vs Range expansion and ...; Low semantic similarity: decisive close below... vs decisive close above...; Low semantic similarity: Range-bound market w... vs short-term momentum ...",
+    "Structural: Low semantic similarity: Range-bound market w... vs Range-bound market w...; Low semantic similarity: Range-bound market w... vs RELIEANCE's price cl...; Low semantic similarity: short-term momentum ... vs RELIEANCE's price cl...",
+    "Structural: Low semantic similarity: decisive close below... vs price closes above r...; Low semantic similarity: Range-bound market w... vs price closes above r...; Low semantic similarity: short-term momentum ... vs price closes above r...; Low semantic similarity: volatility contracts... vs volatility contracts...",
+    "Structural: Low semantic similarity: Range-bound market w... vs volume confirms high...; Low semantic similarity: short-term momentum ... vs volume confirms high...; Low semantic similarity: volatility contracts... vs volatility expands a...",
+    "Structural: Low semantic similarity: Market in mixed regi... vs short-term momentum ...; Low semantic similarity: participation remain... vs short-term momentum ...; Low semantic similarity: volatility expands s... vs volatility contracts...; Participation: weakening vs elevated",
+    "Structural: Low semantic similarity: Market in mixed regi... vs Range expansion and ...; Field conflict: decisive close below the prior vs decisive close above the prior; Low semantic similarity: Market in mixed regi... vs short-term momentum ...; Low semantic similarity: participation remain... vs short-term momentum ...; Participation: weakening vs elevated",
+    "Structural: Low semantic similarity: Market in mixed regi... vs Range-bound market w...; Low semantic similarity: Market in mixed regi... vs RELIEANCE's price cl...; Low semantic similarity: participation remain... vs RELIEANCE's price cl...; Low semantic similarity: volatility expands s... vs volatility contracts...",
+    "Structural: Low semantic similarity: Market in mixed regi... vs Range-bound RELIANCE...; Low semantic similarity: decisive close below... vs price closes above r...; Low semantic similarity: Market in mixed regi... vs price closes above r...; Low semantic similarity: participation remain... vs price closes above r...; Low semantic similarity: volatility expands s... vs volatility contracts...",
+    "Structural: Low semantic similarity: decisive close below... vs price closes above r...; Low semantic similarity: Market in mixed regi... vs price closes above r...; Low semantic similarity: participation remain... vs price closes above r...; Low semantic similarity: volatility expands s... vs volatility contracts...",
+    "Structural: Field conflict: Range-bound RELIANCE with mixe vs participation remains strong: ; Low semantic similarity: participation widens... vs participation remain...; Participation: weakening vs elevated",
+    "Structural: Low semantic similarity: Range-bound RELIANCE... vs short-term momentum ...; Low semantic similarity: participation widens... vs short-term momentum ...",
+    "Structural: Low semantic similarity: Range-bound RELIANCE... vs Range expansion and ...; Field conflict: decisive close below the prior vs decisive close above the prior; Low semantic similarity: Range-bound RELIANCE... vs short-term momentum ...; Low semantic similarity: participation widens... vs short-term momentum ...",
+    "Structural: Low semantic similarity: Range-bound RELIANCE... vs Range-bound market w...; Low semantic similarity: Range-bound RELIANCE... vs RELIEANCE's price cl...; Low semantic similarity: participation widens... vs RELIEANCE's price cl...; Low semantic similarity: volatility expands f... vs volatility contracts...",
+    "Structural: Low semantic similarity: decisive close below... vs price closes above r...; Low semantic similarity: Range-bound RELIANCE... vs price closes above r...; Low semantic similarity: participation widens... vs price closes above r...; Low semantic similarity: volatility expands f... vs volatility contracts...; Volatility: expansion vs stability",
+    "Structural: Low semantic similarity: a decisive close out... vs decisive close below...; Low semantic similarity: Range-bound RELIANCE... vs participation widens...; Low semantic similarity: a decisive close abo... vs participation widens...; Low semantic similarity: participation remain... vs volatility expands f...",
+    "Structural: Low semantic similarity: a decisive close out... vs decisive close below...; Field conflict: Range-bound RELIANCE with mixe vs participation remains strong: ; Low semantic similarity: a decisive close abo... vs participation remain...; Low semantic similarity: participation remain... vs volatility expands s...; Participation: weakening vs elevated",
+    "Structural: Low semantic similarity: a decisive close out... vs decisive close below...; Low semantic similarity: Range-bound RELIANCE... vs short-term momentum ...; Low semantic similarity: a decisive close abo... vs short-term momentum ...; Low semantic similarity: participation remain... vs volatility contracts...",
+    "Structural: Low semantic similarity: Range-bound RELIANCE... vs Range expansion and ...; Low semantic similarity: a decisive close out... vs decisive close above...; Low semantic similarity: Range-bound RELIANCE... vs short-term momentum ...; Low semantic similarity: a decisive close abo... vs short-term momentum ...; Low semantic similarity: participation remain... vs volatility remains e...",
+    "Structural: Low semantic similarity: Range-bound RELIANCE... vs Range-bound market w...; Low semantic similarity: a decisive close out... vs decisive close below...; Low semantic similarity: Range-bound RELIANCE... vs RELIEANCE's price cl...; Low semantic similarity: a decisive close abo... vs RELIEANCE's price cl...; Low semantic similarity: participation remain... vs volatility contracts...",
+    "Structural: Low semantic similarity: Range expansion with... vs Range-bound RELIANCE...; Low semantic similarity: decisive close above... vs a decisive close out...; Low semantic similarity: Range expansion with... vs a decisive close abo...; Low semantic similarity: short-term momentum ... vs a decisive close abo...; Low semantic similarity: volatility expands f... vs participation remain...",
+    "Structural: Low semantic similarity: Range expansion with... vs Range-bound RELIANCE...; Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: Range expansion with... vs participation widens...; Low semantic similarity: short-term momentum ... vs participation widens...",
+    "Structural: Low semantic similarity: Range expansion with... vs Market in mixed regi...; Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: Range expansion with... vs participation remain...; Low semantic similarity: short-term momentum ... vs participation remain...",
+    "Structural: Low semantic similarity: Range expansion with... vs Range-bound market w...; Low semantic similarity: decisive close above... vs decisive close below...; Low semantic similarity: Range expansion with... vs short-term momentum ...",
+    "Structural: Low semantic similarity: Range expansion with... vs Range expansion and ...; Low semantic similarity: Range expansion with... vs short-term momentum ...; Low semantic similarity: volatility expands f... vs volatility remains e..."
   ],
   "mutations": [],
   "outcome": {
-    "outcome_confidence": 0.5
+    "outcome_confidence": 0.2857142857142857
   },
   "regime_context": [
     "trend:range_bound",
@@ -30,8 +63,128 @@
     "subtype:neutral"
   ],
   "theory_subtype": "neutral",
-  "mutation_count": 2,
-  "contradiction_count": 3,
-  "validation_count": 1,
-  "falsification_count": 5
+  "mutation_count": 8,
+  "contradiction_count": 9,
+  "validation_count": 2,
+  "falsification_count": 5,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-20T20:31:44.323453",
+      "outcome": "validated",
+      "theory_claim": "Range-bound RELIANCE with mixed trend persistence, moderate volatility, and fading liquidity is driven by exhaustion; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "price_structure",
+        "volume_confirmation",
+        "liquidity_fade"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-20T20:34:14.846618",
+      "outcome": "validated",
+      "theory_claim": "Range-bound RELIANCE with mixed trend persistence, moderate volatility, and normal participation is driven by pressure-loaded range mechanism.",
+      "components_passed": [
+        "range_bound_price_action",
+        "mixed_trend_persistence",
+        "moderate_volatility",
+        "normal_participation"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-20T20:36:44.246624",
+      "outcome": "validated",
+      "theory_claim": "Range-bound RELIANCE with mixed trend persistence, stable volatility, and normal participation is driven by pressure-loaded range; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "range_bound_price_action",
+        "mixed_trend_persistence",
+        "stable_volatility",
+        "normal_participation"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-20T20:39:49.254880",
+      "outcome": "validated",
+      "theory_claim": "Range-bound market with mixed trend persistence is driven by pressure-loaded range dynamics; RELIANCE's price action may appear contradictory, but it can be reconciled by recognizing that the market i",
+      "components_passed": [
+        "range_pressure",
+        "trend_persistence"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-20T20:42:21.789661",
+      "outcome": "validated",
+      "theory_claim": "Range expansion and volatility increase amidst a bearish confirmation, with RELIANCE closing lower. Short-term momentum weakens, while long-term trends are mixed.",
+      "components_passed": [
+        "short_term_momentum_exhaustion",
+        "range_expansion_volatility_increase"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-20T20:44:57.472043",
+      "outcome": "validated",
+      "theory_claim": "Range-bound market with mixed trend persistence is driven by RELIANCE focus amidst moderate liquidity; price remains range-bound despite weak short-term momentum and expanding volatility.",
+      "components_passed": [
+        "reliance_focus",
+        "moderate_liquidity"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-20T20:48:23.947396",
+      "outcome": "validated",
+      "theory_claim": "Market in mixed regime with neutral participation and moderate volatility, characterized by elevated volume, expanding range, and weakening short-term momentum, is driven by absorption of market parti",
+      "components_passed": [
+        "absorption_mechanism",
+        "short_term_momentum_weakening"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    }
+  ],
+  "component_failure_counts": {}
 }

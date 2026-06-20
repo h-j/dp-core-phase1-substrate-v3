@@ -341,9 +341,11 @@ class ReplayValidationRunner:
                     market_obs.macro_sentiment,
                     epistemic_quality,
                     prediction_probe.to_dict(),
-                    prior_prediction_result.to_dict()
-                    if prior_prediction_result is not None
-                    else None,
+                    (
+                        prior_prediction_result.to_dict()
+                        if prior_prediction_result is not None
+                        else None
+                    ),
                     regime_matches,
                     theory_usefulness=self.epistemic_scoring.score_theory(
                         lineage_record=None,
@@ -358,14 +360,18 @@ class ReplayValidationRunner:
                         ),
                         reflection_summary=reflection.reflection_summary,
                     ),
-                    transition_pressure=transition_pressure.to_dict()
-                    if hasattr(transition_pressure, "to_dict")
-                    else transition_pressure,
+                    transition_pressure=(
+                        transition_pressure.to_dict()
+                        if hasattr(transition_pressure, "to_dict")
+                        else transition_pressure
+                    ),
                 )
 
                 # Record daily capital simulation logs for analysis
                 if self.capital_simulator.get_daily_logs():
-                    analysis.record_capital_simulation_day(self.capital_simulator.get_daily_logs()[-1])
+                    analysis.record_capital_simulation_day(
+                        self.capital_simulator.get_daily_logs()[-1]
+                    )
 
                 # Compute hash for determinism
                 obs_hash = hashlib.sha256(
@@ -460,7 +466,9 @@ class ReplayValidationRunner:
                 # Print analysis summary
                 result["analysis"].print_summary()
 
-                prediction_summary = result["analysis"].analyze().get("prediction_analysis", {})
+                prediction_summary = (
+                    result["analysis"].analyze().get("prediction_analysis", {})
+                )
                 if prediction_summary:
                     print("    Prediction probe performance:")
                     print(
@@ -473,7 +481,9 @@ class ReplayValidationRunner:
                         f"| Mean confidence: {prediction_summary['mean_confidence']:.3f}"
                     )
 
-                capital_summary = result["analysis"].analyze().get("capital_simulation_analysis", {})
+                capital_summary = (
+                    result["analysis"].analyze().get("capital_simulation_analysis", {})
+                )
                 if capital_summary:
                     print("    Capital Simulation Summary:")
                     print(
@@ -493,7 +503,9 @@ class ReplayValidationRunner:
 
         # Export CSV for the last replay (e.g., 1-year)
         if "1-year" in self.replay_results:
-            self.replay_results["1-year"]["analysis"].export_prediction_analysis_csv(Path("market/replay/output/prediction_analysis.csv"))
+            self.replay_results["1-year"]["analysis"].export_prediction_analysis_csv(
+                Path("market/replay/output/prediction_analysis.csv")
+            )
 
 
 def main():

@@ -1,10 +1,6 @@
 from typing import List, Union
-from cognition.schemas.reflection.reflective_memory_state import (
-    ReflectiveMemoryState
-)
-from memory.relational.models.reflective_memory_model import (
-    ReflectiveMemoryModel
-)
+from cognition.schemas.reflection.reflective_memory_state import ReflectiveMemoryState
+from memory.relational.models.reflective_memory_model import ReflectiveMemoryModel
 from memory.relational.postgres_client import SessionLocal
 
 
@@ -33,7 +29,7 @@ class ReflectiveMemoryRepository:
                 ),
                 cognition_trajectory_summary=(
                     reflective_memory_state.cognition_trajectory_summary
-                )
+                ),
             )
 
             session.merge(model)
@@ -41,7 +37,7 @@ class ReflectiveMemoryRepository:
 
         return {
             "status": "stored",
-            "reflective_memory_state_id": reflective_memory_state.id
+            "reflective_memory_state_id": reflective_memory_state.id,
         }
 
     def list_recent(self, limit: int = 5):
@@ -54,10 +50,7 @@ class ReflectiveMemoryRepository:
                 .all()
             )
 
-            return [
-                self._to_schema(model)
-                for model in models
-            ]
+            return [self._to_schema(model) for model in models]
 
     def _to_schema(self, model):
 
@@ -65,19 +58,11 @@ class ReflectiveMemoryRepository:
             id=model.id,
             created_at=model.created_at,
             recurring_themes=self._deserialize(model.recurring_themes),
-            strengthening_patterns=self._deserialize(
-                model.strengthening_patterns
-            ),
+            strengthening_patterns=self._deserialize(model.strengthening_patterns),
             weakening_patterns=self._deserialize(model.weakening_patterns),
-            persistent_uncertainties=self._deserialize(
-                model.persistent_uncertainties
-            ),
-            contradiction_hotspots=self._deserialize(
-                model.contradiction_hotspots
-            ),
-            cognition_trajectory_summary=(
-                model.cognition_trajectory_summary
-            )
+            persistent_uncertainties=self._deserialize(model.persistent_uncertainties),
+            contradiction_hotspots=self._deserialize(model.contradiction_hotspots),
+            cognition_trajectory_summary=(model.cognition_trajectory_summary),
         )
 
     def _serialize(self, values: List[str]) -> str:
@@ -89,8 +74,4 @@ class ReflectiveMemoryRepository:
         if not value:
             return []
 
-        return [
-            item
-            for item in value.splitlines()
-            if item
-        ]
+        return [item for item in value.splitlines() if item]

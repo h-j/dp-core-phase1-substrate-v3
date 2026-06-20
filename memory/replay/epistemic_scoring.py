@@ -53,9 +53,7 @@ class EpistemicScoringEngine:
             except Exception:
                 avg_similarity = 0.0
 
-        current_similarity_contribution = (
-            avg_similarity * MAX_SIMILARITY_CONTRIBUTION
-        )
+        current_similarity_contribution = avg_similarity * MAX_SIMILARITY_CONTRIBUTION
 
         # mild cushion for familiar regimes
         epistemic_cushion = 0.85 if avg_similarity > 0.70 else 1.0
@@ -93,8 +91,7 @@ class EpistemicScoringEngine:
 
         if (
             prior_prediction_result
-            and prior_prediction_result.get("direction_score")
-            is not None
+            and prior_prediction_result.get("direction_score") is not None
         ):
             pred_score = prior_prediction_result["direction_score"]
 
@@ -150,23 +147,17 @@ class EpistemicScoringEngine:
                 revival_count / 3.0,
             )
 
-            combined_factor = (
-                survival_factor * 0.70
-                + recurrence_factor * 0.30
-            )
+            combined_factor = survival_factor * 0.70 + recurrence_factor * 0.30
 
             current_recurrence_contribution = (
-                combined_factor
-                * MAX_RECURRENCE_CONTRIBUTION
+                combined_factor * MAX_RECURRENCE_CONTRIBUTION
             )
 
         # ---------------------------------------------------
         # 6. contradiction
         # ---------------------------------------------------
         current_contradiction_penalty = (
-            contradiction_score
-            * MAX_CONTRADICTION_PENALTY
-            * epistemic_cushion
+            contradiction_score * MAX_CONTRADICTION_PENALTY * epistemic_cushion
         )
 
         # ---------------------------------------------------

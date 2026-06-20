@@ -5,13 +5,13 @@
   "created_at": "2026-05-01",
   "status": "active",
   "theory_ids": [
-    "38bee749-9a00-4879-9e8a-22624ade452f"
+    "3ca75eae-5fd1-4c81-aa0d-e92554d3fc9f"
   ],
   "contradictions": [
-    "Structural: Low semantic similarity: Neutral regime is dr... vs short-term momentum ...; Low semantic similarity: volatility expansion... vs volatility contracti...",
-    "Structural: Low semantic similarity: Neutral regime is dr... vs volume remains eleva...; Low semantic similarity: short-term momentum ... vs volume remains eleva...; Low semantic similarity: volatility expansion... vs volatility contracts...",
-    "Structural: Low semantic similarity: Neutral regime is dr... vs Regime is driven by ...; Low semantic similarity: Neutral regime is dr... vs participation remain...; Low semantic similarity: short-term momentum ... vs participation remain...; Low semantic similarity: volatility expansion... vs volatility expands s...",
-    "Structural: Low semantic similarity: Neutral regime is dr... vs volume continues to ...; Low semantic similarity: short-term momentum ... vs volume continues to ...; Low semantic similarity: volatility expansion... vs volatility contracts..."
+    "Structural: Low semantic similarity: Range-bound regime d... vs Bullish momentum per...; Low semantic similarity: Range-bound regime d... vs RELIEF's momentum co...; Low semantic similarity: short-term momentum ... vs RELIEF's momentum co...; Low semantic similarity: long-term trend pers... vs volatility contracti...",
+    "Structural: Low semantic similarity: Range-bound regime d... vs Strong bullish confi...; Low semantic similarity: Range-bound regime d... vs volume continues to ...; Low semantic similarity: short-term momentum ... vs volume continues to ...; Low semantic similarity: long-term trend pers... vs volatility increases...",
+    "Structural: Low semantic similarity: Range-bound regime d... vs Regime is driven by ...; Low semantic similarity: Range-bound regime d... vs asset rally continue...; Low semantic similarity: short-term momentum ... vs asset rally continue...; Low semantic similarity: long-term trend pers... vs volatility expands b...",
+    "Structural: Low semantic similarity: Range-bound regime d... vs Regime is driven by ...; Low semantic similarity: Range-bound regime d... vs bullish momentum per...; Low semantic similarity: short-term momentum ... vs bullish momentum per...; Low semantic similarity: long-term trend pers... vs volatility contracts..."
   ],
   "mutations": [],
   "outcome": {
@@ -31,5 +31,7 @@
   "mutation_count": 0,
   "contradiction_count": 1,
   "validation_count": 1,
-  "falsification_count": 0
+  "falsification_count": 0,
+  "causal_events": [],
+  "component_failure_counts": {}
 }

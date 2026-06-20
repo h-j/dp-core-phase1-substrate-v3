@@ -20,7 +20,7 @@ from typing import List, Dict, Union
 class MarketObservationSynthesizer:
     """
     Synthesizes deterministic market observations from historical market data.
-    
+
     Rule-based synthesis ensures:
     - reproducibility
     - inspectability
@@ -30,22 +30,24 @@ class MarketObservationSynthesizer:
     def __init__(self, data: pd.DataFrame, market_name: str = "NIFTY 50"):
         """
         Initialize synthesizer with historical data.
-        
+
         Args:
             data: DataFrame with OHLCV + optional derived fields
             market_name: Label for the source instrument/trading universe
         """
         self.data = data.reset_index(drop=True)
         self.market_name = market_name
-        self.prior_observations: List[MarketObservation] = []  # Track for regime continuity
+        self.prior_observations: List[MarketObservation] = (
+            []
+        )  # Track for regime continuity
 
     def synthesize(self, day_index: int) -> MarketObservation:
         """
         Generate market observation for a specific day.
-        
+
         Args:
             day_index: 0-based index into data
-            
+
         Returns:
             MarketObservation instance
         """
@@ -95,7 +97,11 @@ class MarketObservationSynthesizer:
         )
 
         # v3.0 Regime subtype classification for knowledge deepening
-        momentum_regime = "strengthening" if float(row.get("return_3d", 0.0)) > 0.5 else "weakening" if float(row.get("return_3d", 0.0)) < -0.5 else "flat"
+        momentum_regime = (
+            "strengthening"
+            if float(row.get("return_3d", 0.0)) > 0.5
+            else "weakening" if float(row.get("return_3d", 0.0)) < -0.5 else "flat"
+        )
         contradiction_score = len(contradiction_markers) / 10.0  # Normalize to 0-1
         regime_subtype, falsifiability_conditions = RegimeSubtypeClassifier.classify(
             observation=None,  # We'll use extracted fields instead
@@ -103,7 +109,7 @@ class MarketObservationSynthesizer:
             contradiction_score=contradiction_score,
             momentum_regime=momentum_regime,
         )
-        
+
         # Override with direct field assessment
         regime_subtype, falsifiability_conditions = self._override_regime_subtype(
             volume_state=row.get("volume_state", "normal"),
@@ -149,17 +155,19 @@ class MarketObservationSynthesizer:
             open_position_pct=candle_structure["open_position_pct"],
             candle_type=candle_structure["candle_type"],
             participation_strength=participation_signals["participation_strength"],
-            participation_confirmation=participation_signals["participation_confirmation"],
+            participation_confirmation=participation_signals[
+                "participation_confirmation"
+            ],
             # v3.0 Regime typology
             regime_subtype=regime_subtype,
             falsifiability_conditions=falsifiability_conditions,
             analog_divergence_claim="",
-            observation_source=f"replay_engine_{date_str}"
+            observation_source=f"replay_engine_{date_str}",
         )
-        
+
         # Store for prior context
         self.prior_observations.append(observation)
-        
+
         return observation
 
     def _derive_trend_state(self, day_index: int) -> str:
@@ -245,14 +253,16 @@ class MarketObservationSynthesizer:
 
         # Volume trend
         if day_index >= 20:
-            avg_volume = self.data.iloc[max(0, day_index - 20):day_index]["volume"].mean()
+            avg_volume = self.data.iloc[max(0, day_index - 20) : day_index][
+                "volume"
+            ].mean()
             volume_ratio = volume / avg_volume if avg_volume > 0 else 1.0
         else:
             volume_ratio = 1.0
 
         # Price strength with volume
-        intraday_return = (
-            (float(row["close"]) - float(row["open"])) / float(row["open"])
+        intraday_return = (float(row["close"]) - float(row["open"])) / float(
+            row["open"]
         )
 
         if volume_ratio > 1.2:
@@ -274,7 +284,7 @@ class MarketObservationSynthesizer:
     def _derive_breadth_state(self, day_index: int) -> str:
         """
         Derive breadth from directional persistence.
-        
+
         In absence of true breadth data, use rolling trend consistency
         as a proxy for participation quality.
         """
@@ -282,7 +292,7 @@ class MarketObservationSynthesizer:
             return "nascent"
 
         # Look at last 5 days
-        window = self.data.iloc[max(0, day_index - 4):day_index + 1]
+        window = self.data.iloc[max(0, day_index - 4) : day_index + 1]
         up_days = (window["close"] > window["open"]).sum()
         down_days = (window["close"] <= window["open"]).sum()
 
@@ -316,11 +326,13 @@ class MarketObservationSynthesizer:
         ]
 
         # Negative indicators
-        negative = sum([
-            "lower" in trend_state or "deteriorated" in trend_state,
-            volatility_state in ["expanded", "high"],
-            breadth_state in ["weakened", "deteriorated"],
-        ])
+        negative = sum(
+            [
+                "lower" in trend_state or "deteriorated" in trend_state,
+                volatility_state in ["expanded", "high"],
+                breadth_state in ["weakened", "deteriorated"],
+            ]
+        )
 
         # v2.0 momentum influence
         if descriptors:
@@ -330,9 +342,15 @@ class MarketObservationSynthesizer:
                 negative += 1
 
         if participation_signals:
-            if participation_signals.get("participation_confirmation") == "bullish_confirmed":
+            if (
+                participation_signals.get("participation_confirmation")
+                == "bullish_confirmed"
+            ):
                 positive_list.append(True)
-            if participation_signals.get("participation_confirmation") == "bearish_confirmed":
+            if (
+                participation_signals.get("participation_confirmation")
+                == "bearish_confirmed"
+            ):
                 negative += 1
             if participation_signals.get("participation_confirmation") == "divergence":
                 negative += 1
@@ -413,13 +431,21 @@ class MarketObservationSynthesizer:
             components.append(f"[{', '.join(descriptors)}]")
 
         if candle_structure:
-            candle_label = candle_structure.get("candle_type", "neutral").replace("_", " ")
+            candle_label = candle_structure.get("candle_type", "neutral").replace(
+                "_", " "
+            )
             components.append(f"candle {candle_label}")
 
         if participation_signals:
-            participation_label = participation_signals.get("participation_strength", "normal")
-            confirmation_label = participation_signals.get("participation_confirmation", "normal").replace("_", " ")
-            components.append(f"participation {participation_label} ({confirmation_label})")
+            participation_label = participation_signals.get(
+                "participation_strength", "normal"
+            )
+            confirmation_label = participation_signals.get(
+                "participation_confirmation", "normal"
+            ).replace("_", " ")
+            components.append(
+                f"participation {participation_label} ({confirmation_label})"
+            )
 
         # Trend
         if "higher" in trend_state:
@@ -463,40 +489,40 @@ class MarketObservationSynthesizer:
     def _derive_enriched_descriptors(self, row: pd.Series) -> List:
         """Structured market descriptors for v2.0."""
         descriptors = []
-        
+
         # 1. Volume State
         vol_state = row.get("volume_state", "normal")
         if vol_state != "normal":
             descriptors.append(f"volume {vol_state}")
-        
+
         # 2. Price Range Action
         range_pct = float(row.get("range_pct", 0.0))
         if range_pct > 1.3:
             descriptors.append("range expanding")
         elif range_pct < 0.7:
             descriptors.append("range narrow")
-            
+
         # 3. Gaps
         gap_pct = float(row.get("gap_pct", 0.0))
         if gap_pct > 0.2:
             descriptors.append("gap up")
         elif gap_pct < -0.2:
             descriptors.append("gap down")
-            
+
         # 4. Volatility Regimes
         vol_30d = float(row.get("rolling_volatility_30d", 0.0))
         if vol_30d < 0.8:
             descriptors.append("volatility compressed")
         elif vol_30d > 1.5:
             descriptors.append("volatility expanding")
-            
+
         # 5. Momentum Regimes
         ret_3d = float(row.get("return_3d", 0.0))
         if ret_3d > 0.7:
             descriptors.append("short-term momentum strengthening")
         elif ret_3d < -0.7:
             descriptors.append("short-term momentum weakening")
-            
+
         descriptors.extend(self._build_cross_asset_descriptors(row))
         # Deduplicate while preserving order
         deduped = []
@@ -536,8 +562,12 @@ class MarketObservationSynthesizer:
         range_value = max(high_price - low_price, 1e-9)
 
         body_pct = abs(close_price - open_price) / range_value
-        upper_wick_pct = max(high_price - max(open_price, close_price), 0.0) / range_value
-        lower_wick_pct = max(min(open_price, close_price) - low_price, 0.0) / range_value
+        upper_wick_pct = (
+            max(high_price - max(open_price, close_price), 0.0) / range_value
+        )
+        lower_wick_pct = (
+            max(min(open_price, close_price) - low_price, 0.0) / range_value
+        )
         close_position_pct = (close_price - low_price) / range_value
         open_position_pct = (open_price - low_price) / range_value
         daily_return_pct = (close_price - open_price) / open_price * 100
@@ -584,7 +614,9 @@ class MarketObservationSynthesizer:
 
         if daily_return_pct > 0.8 and volume_ratio_5d > 1.1 and volume_ratio_20d > 1.0:
             participation_confirmation = "bullish_confirmed"
-        elif daily_return_pct < -0.8 and volume_ratio_5d > 1.1 and volume_ratio_20d > 1.0:
+        elif (
+            daily_return_pct < -0.8 and volume_ratio_5d > 1.1 and volume_ratio_20d > 1.0
+        ):
             participation_confirmation = "bearish_confirmed"
         elif abs(daily_return_pct) > 0.8 and (
             volume_ratio_5d < 0.95 or volume_ratio_20d < 0.95
@@ -615,51 +647,52 @@ class MarketObservationSynthesizer:
     ) -> tuple[str, List[str]]:
         """
         Classify market regime subtype based on multi-dimensional observation.
-        
+
         Returns:
             (regime_subtype, falsifiability_conditions)
         """
-        
+
         # Count weak prior days for context
         weak_prior_days = sum(
-            1 for obs in self.prior_observations[-3:]
-            if getattr(obs, "volume_state", "normal") == "dry" or
-               getattr(obs, "participation_strength", "normal") == "weak"
+            1
+            for obs in self.prior_observations[-3:]
+            if getattr(obs, "volume_state", "normal") == "dry"
+            or getattr(obs, "participation_strength", "normal") == "weak"
         )
-        
+
         # Determine conditions
         is_liquidity_constrained = (
-            volume_state == "dry" and
-            participation_strength == "weak" and
-            volatility_state in ("compressed", "normal")
+            volume_state == "dry"
+            and participation_strength == "weak"
+            and volatility_state in ("compressed", "normal")
         )
 
         is_pressure_loaded_range = (
-            volume_state == "elevated" and
-            gap_pct < -0.2 and
-            candle_type == "rejection_upper" and
-            volatility_state in ("stable", "moderate") and
-            trend_state == "range_bound"
+            volume_state == "elevated"
+            and gap_pct < -0.2
+            and candle_type == "rejection_upper"
+            and volatility_state in ("stable", "moderate")
+            and trend_state == "range_bound"
         )
-        
+
         is_pressure_loaded = (
-            contradiction_score >= 0.5 and
-            weak_prior_days >= 2 and
-            participation_strength in ("weak", "deteriorated")
+            contradiction_score >= 0.5
+            and weak_prior_days >= 2
+            and participation_strength in ("weak", "deteriorated")
         )
-        
+
         is_fatigue = (
-            participation_strength == "weak" and
-            momentum_regime == "weakening" and
-            candle_type == "rejection_upper"
+            participation_strength == "weak"
+            and momentum_regime == "weakening"
+            and candle_type == "rejection_upper"
         )
-        
+
         is_expansion_confirmed = (
-            volume_state == "elevated" and
-            participation_strength in ("strong", "normal") and
-            volatility_state == "expanding"
+            volume_state == "elevated"
+            and participation_strength in ("strong", "normal")
+            and volatility_state == "expanding"
         )
-        
+
         # Classification logic
         if is_expansion_confirmed:
             subtype = "expansion_confirmed"
@@ -696,5 +729,5 @@ class MarketObservationSynthesizer:
             conditions = [
                 "requires additional confirmation signals",
             ]
-        
+
         return subtype, conditions

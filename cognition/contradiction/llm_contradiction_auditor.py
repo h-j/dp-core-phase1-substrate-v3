@@ -1,10 +1,11 @@
 import json
 from interfaces.ollama_client import OllamaClient
-from cognition.schemas.theory.theory import Theory # Import Theory Pydantic model
+from cognition.schemas.theory.theory import Theory  # Import Theory Pydantic model
+
 
 class LLMContradictionAuditor:
     """Probabilistic Auditor to resolve semantic synonym conflicts."""
-    
+
     def __init__(self):
         self.client = OllamaClient()
 
@@ -13,8 +14,16 @@ class LLMContradictionAuditor:
         Inputs: Two theory objects.
         Logic: Asks LLM if the mechanisms are mutually exclusive or just using different language.
         """
-        summary_a = theory_a.summary_structured.claim if theory_a.summary_structured else theory_a.summary
-        summary_b = theory_b.summary_structured.claim if theory_b.summary_structured else theory_b.summary
+        summary_a = (
+            theory_a.summary_structured.claim
+            if theory_a.summary_structured
+            else theory_a.summary
+        )
+        summary_b = (
+            theory_b.summary_structured.claim
+            if theory_b.summary_structured
+            else theory_b.summary
+        )
 
         prompt = f"""
         Audit the logical relationship between these two market theories:
@@ -31,10 +40,14 @@ class LLMContradictionAuditor:
             "reasoning": "..."
         }}
         """
-        
+
         result = self.client.generate(prompt)
         try:
-            cleaned = result.strip().replace('```json', '').replace('```', '')
+            cleaned = result.strip().replace("```json", "").replace("```", "")
             return json.loads(cleaned)
         except Exception:
-            return {"relationship": "unknown", "confidence": 0.0, "reasoning": result[:200]}
+            return {
+                "relationship": "unknown",
+                "confidence": 0.0,
+                "reasoning": result[:200],
+            }

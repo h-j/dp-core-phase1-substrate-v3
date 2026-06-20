@@ -15,15 +15,14 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         macro_sentiment="cautiously_positive",
         contradiction_markers=[
             "price_up_breadth_down",
-            "volatility_expansion_with_positive_close"
+            "volatility_expansion_with_positive_close",
         ],
-        observation_source="sample_seed"
+        observation_source="sample_seed",
     ),
     MarketObservation(
         market_name="NIFTY 50",
         observation_text=(
-            "NIFTY extended gains with broad participation and stable "
-            "volatility."
+            "NIFTY extended gains with broad participation and stable " "volatility."
         ),
         trend_state="closed_higher",
         volatility_state="stable",
@@ -31,7 +30,7 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         breadth_state="strengthened",
         macro_sentiment="positive",
         contradiction_markers=[],
-        observation_source="sample_seed"
+        observation_source="sample_seed",
     ),
     MarketObservation(
         market_name="NIFTY 50",
@@ -44,10 +43,8 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         liquidity_state="selective",
         breadth_state="mixed",
         macro_sentiment="neutral",
-        contradiction_markers=[
-            "index_stable_internal_rotation"
-        ],
-        observation_source="sample_seed"
+        contradiction_markers=["index_stable_internal_rotation"],
+        observation_source="sample_seed",
     ),
     MarketObservation(
         market_name="NIFTY 50",
@@ -60,10 +57,8 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         liquidity_state="concentrated_in_defensives",
         breadth_state="weakened",
         macro_sentiment="risk_off",
-        contradiction_markers=[
-            "defensive_support_breadth_weakness"
-        ],
-        observation_source="sample_seed"
+        contradiction_markers=["defensive_support_breadth_weakness"],
+        observation_source="sample_seed",
     ),
     MarketObservation(
         market_name="NIFTY 50",
@@ -78,9 +73,9 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         macro_sentiment="uncertain",
         contradiction_markers=[
             "price_recovery_breadth_weakness",
-            "high_volatility_recovery"
+            "high_volatility_recovery",
         ],
-        observation_source="sample_seed"
+        observation_source="sample_seed",
     ),
     MarketObservation(
         market_name="NIFTY 50",
@@ -93,10 +88,8 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         liquidity_state="sector_concentrated",
         breadth_state="narrowed",
         macro_sentiment="mixed",
-        contradiction_markers=[
-            "index_strength_participation_narrowing"
-        ],
-        observation_source="sample_seed"
+        contradiction_markers=["index_strength_participation_narrowing"],
+        observation_source="sample_seed",
     ),
     MarketObservation(
         market_name="NIFTY 50",
@@ -110,7 +103,7 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         breadth_state="weakened",
         macro_sentiment="negative",
         contradiction_markers=[],
-        observation_source="sample_seed"
+        observation_source="sample_seed",
     ),
     MarketObservation(
         market_name="NIFTY 50",
@@ -123,10 +116,8 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         liquidity_state="broad_participation",
         breadth_state="strengthened",
         macro_sentiment="constructive",
-        contradiction_markers=[
-            "price_stability_breadth_improvement"
-        ],
-        observation_source="sample_seed"
+        contradiction_markers=["price_stability_breadth_improvement"],
+        observation_source="sample_seed",
     ),
     MarketObservation(
         market_name="NIFTY 50",
@@ -141,9 +132,9 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         macro_sentiment="cautiously_positive",
         contradiction_markers=[
             "new_high_narrow_breadth",
-            "volatility_lift_on_strength"
+            "volatility_lift_on_strength",
         ],
-        observation_source="sample_seed"
+        observation_source="sample_seed",
     ),
     MarketObservation(
         market_name="NIFTY 50",
@@ -157,7 +148,7 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         breadth_state="weakened",
         macro_sentiment="risk_off",
         contradiction_markers=[],
-        observation_source="sample_seed"
+        observation_source="sample_seed",
     ),
     MarketObservation(
         market_name="NIFTY 50",
@@ -171,7 +162,7 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         breadth_state="strengthened",
         macro_sentiment="positive",
         contradiction_markers=[],
-        observation_source="sample_seed"
+        observation_source="sample_seed",
     ),
     MarketObservation(
         market_name="NIFTY 50",
@@ -184,9 +175,7 @@ SAMPLE_NIFTY_OBSERVATIONS = [
         liquidity_state="rotational",
         breadth_state="mixed",
         macro_sentiment="uncertain",
-        contradiction_markers=[
-            "flat_index_active_rotation"
-        ],
-        observation_source="sample_seed"
+        contradiction_markers=["flat_index_active_rotation"],
+        observation_source="sample_seed",
     ),
 ]

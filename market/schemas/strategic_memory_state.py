@@ -6,7 +6,7 @@ from cognition.schemas.base import CognitionBase
 class StrategicMemoryState(CognitionBase):
     """
     Strategic cognition snapshot capturing reflective market understanding.
-    
+
     Preserves longitudinal interpretation of:
     - Theory evolution trajectories
     - Coherence/instability patterns

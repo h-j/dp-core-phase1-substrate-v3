@@ -1,13 +1,14 @@
 from typing import Any, List, Optional
 
+
 class CognitionPipeline:
     """Encapsulates the sequential execution of LLM-based cognition flows."""
-    
+
     def __init__(self, flows: dict):
-        self.abstraction_flow = flows['abstraction']
-        self.theory_flow = flows['theory']
-        self.reflection_flow = flows['reflection']
-        self.contradiction_detector = flows['contradiction']
+        self.abstraction_flow = flows["abstraction"]
+        self.theory_flow = flows["theory"]
+        self.reflection_flow = flows["reflection"]
+        self.contradiction_detector = flows["contradiction"]
 
     def process(
         self,
@@ -24,7 +25,7 @@ class CognitionPipeline:
         recent_validations: List[Any],
         recent_reflections: List[Any],
         prior_market_obs: List[Any],
-        relevant_lessons: List[str] = None
+        relevant_lessons: List[str] = None,
     ):
         # 1. Abstraction
         abstraction = self.abstraction_flow.process(obs_event)
@@ -41,7 +42,7 @@ class CognitionPipeline:
             analog_divergence_claim=getattr(market_obs, "analog_divergence_claim", ""),
             regime_history=regime_history,
             dialectical_synthesis=active_synthesis,
-            relevant_lessons=relevant_lessons
+            relevant_lessons=relevant_lessons,
         )
 
         # 3. Contradiction
@@ -53,5 +54,5 @@ class CognitionPipeline:
             current_observation=market_obs,
             historical_observations=prior_market_obs,
         )
-        
+
         return abstraction, theory, contradiction_result, branch_stats

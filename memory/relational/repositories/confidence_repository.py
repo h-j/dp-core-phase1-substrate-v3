@@ -10,28 +10,17 @@ class ConfidenceRepository:
             model = ConfidenceModel(
                 id=confidence_state.id,
                 created_at=confidence_state.created_at,
-                empirical_confidence=(
-                    confidence_state.empirical_confidence
-                ),
+                empirical_confidence=(confidence_state.empirical_confidence),
                 regime_confidence=confidence_state.regime_confidence,
-                reflection_confidence=(
-                    confidence_state.reflection_confidence
-                ),
-                theoretical_coherence=(
-                    confidence_state.theoretical_coherence
-                ),
-                contradiction_pressure=(
-                    confidence_state.contradiction_pressure
-                )
+                reflection_confidence=(confidence_state.reflection_confidence),
+                theoretical_coherence=(confidence_state.theoretical_coherence),
+                contradiction_pressure=(confidence_state.contradiction_pressure),
             )
 
             session.merge(model)
             session.commit()
 
-        return {
-            "status": "stored",
-            "confidence_state_id": confidence_state.id
-        }
+        return {"status": "stored", "confidence_state_id": confidence_state.id}
 
     def list_recent(self, limit: int = 5):
 

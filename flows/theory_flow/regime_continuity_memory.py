@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Dict
 
+
 @dataclass
 class RegimeSubtypeMemory:
     subtype: str
@@ -10,12 +11,15 @@ class RegimeSubtypeMemory:
     avg_usefulness: float = 0.0
     total_usefulness: float = 0.0
     falsified_count: int = 0
-    resolution_counts: Dict[str, int] = field(default_factory=lambda: {
-        "higher": 0,
-        "lower": 0,
-        "range_bound": 0,
-        "uncertain": 0,
-    })
+    resolution_counts: Dict[str, int] = field(
+        default_factory=lambda: {
+            "higher": 0,
+            "lower": 0,
+            "range_bound": 0,
+            "uncertain": 0,
+        }
+    )
+
 
 class RegimeContinuityMemory:
     def __init__(self):
@@ -30,17 +34,19 @@ class RegimeContinuityMemory:
         falsified: bool,
     ):
         if subtype not in self.records:
-            self.records[subtype] = RegimeSubtypeMemory(subtype=subtype, first_seen=date)
-        
+            self.records[subtype] = RegimeSubtypeMemory(
+                subtype=subtype, first_seen=date
+            )
+
         rec = self.records[subtype]
         rec.seen_count += 1
         rec.last_seen = date
         rec.total_usefulness += usefulness
         rec.avg_usefulness = rec.total_usefulness / rec.seen_count
-        
+
         if falsified:
             rec.falsified_count += 1
-        
+
         if actual_direction and actual_direction in rec.resolution_counts:
             rec.resolution_counts[actual_direction] += 1
 
@@ -52,7 +58,12 @@ class RegimeContinuityMemory:
                 "seen_count": 0,
                 "avg_usefulness": 0.0,
                 "last_seen": None,
-                "historical_resolution": {"higher": 0, "lower": 0, "range_bound": 0, "uncertain": 0},
+                "historical_resolution": {
+                    "higher": 0,
+                    "lower": 0,
+                    "range_bound": 0,
+                    "uncertain": 0,
+                },
                 "falsified_count": 0,
             }
         return {

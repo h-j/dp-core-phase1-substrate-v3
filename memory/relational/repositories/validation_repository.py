@@ -13,16 +13,13 @@ class ValidationRepository:
                 theory_id=validation.theory_id,
                 validation_summary=validation.validation_summary,
                 observed_behavior=validation.observed_behavior,
-                expected_behavior=validation.expected_behavior
+                expected_behavior=validation.expected_behavior,
             )
 
             session.merge(model)
             session.commit()
 
-        return {
-            "status": "stored",
-            "validation_id": validation.id
-        }
+        return {"status": "stored", "validation_id": validation.id}
 
     def list_recent(self, limit: int = 5):
 

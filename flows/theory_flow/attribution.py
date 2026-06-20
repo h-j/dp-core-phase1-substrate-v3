@@ -10,21 +10,22 @@ from datetime import datetime
 @dataclass
 class MechanismComponent:
     """A single testable sub-component of a theory's mechanism."""
+
     component_id: str
     description: str
     observable: str
     expected_behavior: str
     dependency: Optional[str] = None
-    
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "component_id": self.component_id,
             "description": self.description,
             "observable": self.observable,
             "expected_behavior": self.expected_behavior,
-            "dependency": self.dependency
+            "dependency": self.dependency,
         }
-    
+
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "MechanismComponent":
         return cls(
@@ -32,12 +33,14 @@ class MechanismComponent:
             description=data["description"],
             observable=data["observable"],
             expected_behavior=data["expected_behavior"],
-            dependency=data.get("dependency")
+            dependency=data.get("dependency"),
         )
+
 
 @dataclass
 class AttributionResult:
     """Captures WHY a theory succeeded or failed."""
+
     theory_id: str
     theory_claim: str
     outcome: str
@@ -55,10 +58,10 @@ class AttributionResult:
     attribution_confidence: float = 0.0
     timestamp: str = field(default_factory=lambda: datetime.now().isoformat())
     market_snapshot: Optional[Dict[str, Any]] = None
-    
+
     def is_falsified(self) -> bool:
         return self.outcome == "falsified"
-    
+
     def get_mutation_guidance(self) -> str:
         if self.outcome == "validated":
             return "Theory validated."
@@ -79,5 +82,5 @@ class AttributionResult:
             "falsification_triggered": self.falsification_triggered,
             "attribution_reasoning": self.attribution_reasoning,
             "root_cause_component": self.root_cause_component,
-            "timestamp": self.timestamp
+            "timestamp": self.timestamp,
         }

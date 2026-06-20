@@ -21,6 +21,7 @@ from market.replay.replay_analysis_reporting import ReplayAnalysisReportingMixin
 from pathlib import Path
 from typing import List, Dict, Union
 
+
 def extract_usefulness_score(value):
     """Normalizes theory_usefulness to a float score. Supports dict or numeric."""
     if isinstance(value, dict):
@@ -28,6 +29,7 @@ def extract_usefulness_score(value):
     if isinstance(value, (int, float)):
         return float(value)
     return 0.0
+
 
 class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
     """
@@ -50,7 +52,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         self.decisions_history = []
         self.config_snapshot = {}
         self.transition_memory_hits = 0
-        self.miss_analysis = [] # v2.1 Miss Audit
+        self.miss_analysis = []  # v2.1 Miss Audit
 
     def set_config_snapshot(self, config: dict):
         """Record the configuration used for this replay."""
@@ -124,11 +126,11 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                 "analog_divergence_claim": analog_divergence_claim,
                 "regime_history": regime_history,
                 "branches_generated": branches_generated,
-                "branch_stats": branch_stats or {}, # Store branch stats
+                "branch_stats": branch_stats or {},  # Store branch stats
                 "intelligence": intelligence_data or {},
             }
         )
-        
+
         if transition_memory_hit:
             self.transition_memory_hits += 1
 
@@ -150,8 +152,8 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                 "date": date,
                 "score": contradiction_result.get("score", 0),
                 "count": len(
-                    contradiction_result.get("contradictions") or 
-                    contradiction_result.get("indicators", [])
+                    contradiction_result.get("contradictions")
+                    or contradiction_result.get("indicators", [])
                 ),
             }
         )
@@ -173,7 +175,11 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             if regime_matches:
                 try:
                     regime_sim = max(
-                        (m.get("similarity") if isinstance(m, dict) else getattr(m, "similarity", 0))
+                        (
+                            m.get("similarity")
+                            if isinstance(m, dict)
+                            else getattr(m, "similarity", 0)
+                        )
                         for m in regime_matches
                     )
                 except Exception:
@@ -191,10 +197,18 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                     "prior_prediction_result": prior_prediction_result or {},
                     "contradiction_score": float(contradiction_result.get("score", 0)),
                     "regime_similarity": float(regime_sim),
-                    "theory_usefulness": theory_usefulness, # Store the full dict
+                    "theory_usefulness": theory_usefulness,  # Store the full dict
                     "theory_summary": theory_summary,
-                    "transition_pressure_score": float(transition_pressure.get("pressure_score", 0.0)) if transition_pressure else 0.0,
-                    "transition_breakout_risk": bool(transition_pressure.get("breakout_risk", False)) if transition_pressure else False,
+                    "transition_pressure_score": (
+                        float(transition_pressure.get("pressure_score", 0.0))
+                        if transition_pressure
+                        else 0.0
+                    ),
+                    "transition_breakout_risk": (
+                        bool(transition_pressure.get("breakout_risk", False))
+                        if transition_pressure
+                        else False
+                    ),
                     "participation_confirmation": participation_confirmation,
                     # v2.0 dimensions
                     "volume_state": volume_state,
@@ -213,23 +227,30 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                 {
                     "date": date,
                     "day_index": day_index,
-                    "direction_bias": transition_pressure.get("direction_bias", "neutral"),
-                    "pressure_score": float(transition_pressure.get("pressure_score", 0.0)),
-                    "stability_score": float(transition_pressure.get("stability_score", 0.7)),
-                    "breakout_risk": bool(transition_pressure.get("breakout_risk", False)),
+                    "direction_bias": transition_pressure.get(
+                        "direction_bias", "neutral"
+                    ),
+                    "pressure_score": float(
+                        transition_pressure.get("pressure_score", 0.0)
+                    ),
+                    "stability_score": float(
+                        transition_pressure.get("stability_score", 0.7)
+                    ),
+                    "breakout_risk": bool(
+                        transition_pressure.get("breakout_risk", False)
+                    ),
                     "drivers": transition_pressure.get("drivers", []),
                     "contradiction_score": float(contradiction_result.get("score", 0)),
-                    "prediction_direction": prediction.get("direction", "uncertain") if prediction else "uncertain",
+                    "prediction_direction": (
+                        prediction.get("direction", "uncertain")
+                        if prediction
+                        else "uncertain"
+                    ),
                 }
             )
-        
+
         if decisions:
-            self.decisions_history.append(
-                {
-                    "date": date,
-                    "decisions": decisions
-                }
-            )
+            self.decisions_history.append({"date": date, "decisions": decisions})
 
     def _extract_theme(self, theory_text: str):
         """Extract recurring themes from theory text."""
@@ -346,11 +367,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             "contradiction_pressure": {
                 "initial": contradiction_pressure[0] if contradiction_pressure else 0,
                 "final": contradiction_pressure[-1] if contradiction_pressure else 0,
-                "mean": (
-                    mean(contradiction_pressure)
-                    if contradiction_pressure
-                    else 0
-                ),
+                "mean": (mean(contradiction_pressure) if contradiction_pressure else 0),
                 "increasing": contradiction_pressure[-1] > contradiction_pressure[0],
             },
         }
@@ -490,7 +507,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         if not self.transition_pressure_history:
             return {
                 "status": "no_data",
-                "message": "No transition pressure data recorded"
+                "message": "No transition pressure data recorded",
             }
 
         tp_data = self.transition_pressure_history
@@ -498,7 +515,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         # Basic metrics
         pressure_scores = [d["pressure_score"] for d in tp_data]
         stability_scores = [d["stability_score"] for d in tp_data]
-        
+
         # TUNED METRICS: New breakpoints for calibration audit
         high_pressure_gt_0_5 = [d for d in tp_data if d["pressure_score"] > 0.5]
         high_pressure_gt_0_7 = [d for d in tp_data if d["pressure_score"] > 0.7]
@@ -511,8 +528,11 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         accuracy_when_pressure_gt_0_5 = 0.0
         if high_pressure_gt_0_5:
             correct = sum(
-                1 for d in high_pressure_gt_0_5
-                if "prior_prediction_result" in d and d.get("prior_prediction_result", {}).get("direction_score", 0) >= 0.5
+                1
+                for d in high_pressure_gt_0_5
+                if "prior_prediction_result" in d
+                and d.get("prior_prediction_result", {}).get("direction_score", 0)
+                >= 0.5
             )
             accuracy_when_pressure_gt_0_5 = correct / len(high_pressure_gt_0_5)
 
@@ -520,8 +540,11 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         accuracy_when_pressure_gt_0_7 = 0.0
         if high_pressure_gt_0_7:
             correct = sum(
-                1 for d in high_pressure_gt_0_7
-                if "prior_prediction_result" in d and d.get("prior_prediction_result", {}).get("direction_score", 0) >= 0.5
+                1
+                for d in high_pressure_gt_0_7
+                if "prior_prediction_result" in d
+                and d.get("prior_prediction_result", {}).get("direction_score", 0)
+                >= 0.5
             )
             accuracy_when_pressure_gt_0_7 = correct / len(high_pressure_gt_0_7)
 
@@ -529,71 +552,88 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         accuracy_when_high_pressure = 0.0
         if high_pressure_days:
             correct_high_pressure = sum(
-                1 for d in high_pressure_days
-                if "prior_prediction_result" in d and d.get("prior_prediction_result", {}).get("direction_score", 0) >= 0.5
+                1
+                for d in high_pressure_days
+                if "prior_prediction_result" in d
+                and d.get("prior_prediction_result", {}).get("direction_score", 0)
+                >= 0.5
             )
-            accuracy_when_high_pressure = correct_high_pressure / len(high_pressure_days)
+            accuracy_when_high_pressure = correct_high_pressure / len(
+                high_pressure_days
+            )
 
         # Accuracy when breakout_risk=True
         breakout_risk_days = [d for d in tp_data if d["breakout_risk"]]
         accuracy_when_breakout_risk = 0.0
         if breakout_risk_days:
             correct_breakout = sum(
-                1 for d in breakout_risk_days
-                if "prior_prediction_result" in d and d.get("prior_prediction_result", {}).get("direction_score", 0) >= 0.5
+                1
+                for d in breakout_risk_days
+                if "prior_prediction_result" in d
+                and d.get("prior_prediction_result", {}).get("direction_score", 0)
+                >= 0.5
             )
             accuracy_when_breakout_risk = correct_breakout / len(breakout_risk_days)
 
         # Transition capture rate: pressure > 0.5 AND directional move
         transition_attempts = sum(
-            1 for d in tp_data
-            if d["direction_bias"] in ["higher", "lower"]
+            1 for d in tp_data if d["direction_bias"] in ["higher", "lower"]
         )
         transition_hits = sum(
-            1 for d in tp_data
+            1
+            for d in tp_data
             if d["direction_bias"] in ["higher", "lower"]
             and d.get("prediction_direction") in ["higher", "lower"]
         )
-        transition_hit_rate = transition_hits / transition_attempts if transition_attempts > 0 else 0.0
+        transition_hit_rate = (
+            transition_hits / transition_attempts if transition_attempts > 0 else 0.0
+        )
 
         # TUNED: High-pressure transition capture (when pressure > 0.5 + directional bias)
         high_pressure_directional = sum(
-            1 for d in high_pressure_gt_0_5
+            1
+            for d in high_pressure_gt_0_5
             if d["direction_bias"] in ["higher", "lower"]
         )
         high_pressure_transitions_captured = sum(
-            1 for d in high_pressure_gt_0_5
+            1
+            for d in high_pressure_gt_0_5
             if d["direction_bias"] in ["higher", "lower"]
             and d.get("prediction_direction") in ["higher", "lower"]
         )
         transition_capture_under_high_pressure = (
             high_pressure_transitions_captured / high_pressure_directional
-            if high_pressure_directional > 0 else 0.0
+            if high_pressure_directional > 0
+            else 0.0
         )
 
         # False positives: high pressure but direction missed
         false_positives = sum(
-            1 for d in high_pressure_gt_0_5
+            1
+            for d in high_pressure_gt_0_5
             if d.get("prediction_direction") == "uncertain"
         )
 
         # False negatives: low pressure but missed actual move (proxy: low stability + move happened)
         false_negatives = sum(
-            1 for d in tp_data
+            1
+            for d in tp_data
             if d["stability_score"] < 0.4
             and d.get("prediction_direction") in ["higher", "lower"]
         )
 
         # TUNED: Missed transitions analysis with pressure context
         missed_high_pressure = [
-            d for d in tp_data
+            d
+            for d in tp_data
             if d["pressure_score"] > 0.5
             and d["direction_bias"] in ["higher", "lower"]
             and d.get("prediction_direction") == "uncertain"
         ]
         missed_high_pressure_avg_score = (
             mean([d["pressure_score"] for d in missed_high_pressure])
-            if missed_high_pressure else 0.0
+            if missed_high_pressure
+            else 0.0
         )
 
         # Direction bias distribution
@@ -618,22 +658,32 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                 "gt_0_6": len(high_pressure_days),
                 "gt_0_7": len(high_pressure_gt_0_7),
             },
-            "high_pressure_rate_0_5": len(high_pressure_gt_0_5) / len(tp_data) if tp_data else 0.0,
-            "high_pressure_rate_0_7": len(high_pressure_gt_0_7) / len(tp_data) if tp_data else 0.0,
+            "high_pressure_rate_0_5": (
+                len(high_pressure_gt_0_5) / len(tp_data) if tp_data else 0.0
+            ),
+            "high_pressure_rate_0_7": (
+                len(high_pressure_gt_0_7) / len(tp_data) if tp_data else 0.0
+            ),
             "accuracy_when_pressure_gt_0_5": round(accuracy_when_pressure_gt_0_5, 3),
             "accuracy_when_pressure_gt_0_6": round(accuracy_when_high_pressure, 3),
             "accuracy_when_pressure_gt_0_7": round(accuracy_when_pressure_gt_0_7, 3),
             "breakout_risk_count": breakout_risk_count,
-            "breakout_risk_rate": breakout_risk_count / len(tp_data) if tp_data else 0.0,
+            "breakout_risk_rate": (
+                breakout_risk_count / len(tp_data) if tp_data else 0.0
+            ),
             "accuracy_when_breakout_risk": round(accuracy_when_breakout_risk, 3),
             "transition_hit_rate": round(transition_hit_rate, 3),
-            "transition_capture_under_high_pressure": round(transition_capture_under_high_pressure, 3),
+            "transition_capture_under_high_pressure": round(
+                transition_capture_under_high_pressure, 3
+            ),
             "false_positives": false_positives,
             "false_negatives": false_negatives,
             "missed_high_pressure_count": len(missed_high_pressure),
             "missed_high_pressure_avg_score": round(missed_high_pressure_avg_score, 3),
             "direction_bias_distribution": direction_counts,
-            "top_drivers": sorted(driver_frequency.items(), key=lambda x: x[1], reverse=True)[:10],
+            "top_drivers": sorted(
+                driver_frequency.items(), key=lambda x: x[1], reverse=True
+            )[:10],
         }
 
     def _analyze_predictions(self) -> Dict:
@@ -664,7 +714,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             if scored
             else 0.0
         )
-        
+
         # Task 2.1: Median Confidence
         conf_list = [r["prediction"].get("confidence", 0) for r in scored]
         median_conf = median(conf_list) if conf_list else 0.0
@@ -676,15 +726,27 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             rows = [r for r in scored if r.get("prediction", {}).get("direction") == d]
             cnt = len(rows)
             acc = sum(1 for r in rows if is_correct(r)) / cnt if cnt else 0.0
-            
+
             # Task 2.2: Extended direction metrics
-            partial_acc = (sum(1 for r in rows if is_correct(r)) + sum(1 for r in rows if is_partial(r))) / cnt if cnt else 0.0
-            avg_conf_dir = statistics.mean([r["prediction"].get("confidence", 0) for r in rows]) if cnt else 0.0
+            partial_acc = (
+                (
+                    sum(1 for r in rows if is_correct(r))
+                    + sum(1 for r in rows if is_partial(r))
+                )
+                / cnt
+                if cnt
+                else 0.0
+            )
+            avg_conf_dir = (
+                statistics.mean([r["prediction"].get("confidence", 0) for r in rows])
+                if cnt
+                else 0.0
+            )
             accuracy_by_direction[d] = {
-                "count": cnt, 
-                "accuracy": acc, 
-                "partial_accuracy": partial_acc, 
-                "avg_confidence": avg_conf_dir
+                "count": cnt,
+                "accuracy": acc,
+                "partial_accuracy": partial_acc,
+                "avg_confidence": avg_conf_dir,
             }
 
         # Contradiction buckets
@@ -707,47 +769,80 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             accuracy_by_contradiction[bname] = {"count": cnt, "accuracy": acc}
 
         # v1.5 Confidence Calibration Buckets (0.0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, 0.8-1.0)
-        cal_buckets = {"0.0-0.2": [], "0.2-0.4": [], "0.4-0.6": [], "0.6-0.8": [], "0.8-1.0": []}
+        cal_buckets = {
+            "0.0-0.2": [],
+            "0.2-0.4": [],
+            "0.4-0.6": [],
+            "0.6-0.8": [],
+            "0.8-1.0": [],
+        }
         for r in scored:
             c = r["prediction"].get("confidence", 0.0)
-            if c < 0.2: cal_buckets["0.0-0.2"].append(r)
-            elif c < 0.4: cal_buckets["0.2-0.4"].append(r)
-            elif c < 0.6: cal_buckets["0.4-0.6"].append(r)
-            elif c < 0.8: cal_buckets["0.6-0.8"].append(r)
-            else: cal_buckets["0.8-1.0"].append(r)
+            if c < 0.2:
+                cal_buckets["0.0-0.2"].append(r)
+            elif c < 0.4:
+                cal_buckets["0.2-0.4"].append(r)
+            elif c < 0.6:
+                cal_buckets["0.4-0.6"].append(r)
+            elif c < 0.8:
+                cal_buckets["0.6-0.8"].append(r)
+            else:
+                cal_buckets["0.8-1.0"].append(r)
 
         accuracy_by_confidence_bucket = {}
         gaps = []
         for bname, rows in cal_buckets.items():
             cnt = len(rows)
             acc = sum(1 for r in rows if is_correct(r)) / cnt if cnt else 0.0
-            p_acc = (sum(1 for r in rows if is_correct(r)) + sum(1 for r in rows if is_partial(r))) / cnt if cnt else 0.0
-            avg_c = statistics.mean([r["prediction"].get("confidence", 0) for r in rows]) if cnt else 0.0
-            
+            p_acc = (
+                (
+                    sum(1 for r in rows if is_correct(r))
+                    + sum(1 for r in rows if is_partial(r))
+                )
+                / cnt
+                if cnt
+                else 0.0
+            )
+            avg_c = (
+                statistics.mean([r["prediction"].get("confidence", 0) for r in rows])
+                if cnt
+                else 0.0
+            )
+
             gap = avg_c - acc if cnt else 0.0
-            if cnt > 0: gaps.append(abs(gap))
-            
+            if cnt > 0:
+                gaps.append(abs(gap))
+
             accuracy_by_confidence_bucket[bname] = {
-                "count": cnt, 
-                "actual_accuracy": acc, 
+                "count": cnt,
+                "actual_accuracy": acc,
                 "partial_accuracy": p_acc,
                 "avg_confidence": avg_c,
-                "gap": gap
+                "gap": gap,
             }
-        
+
         calibration_score = statistics.mean(gaps) if gaps else 0.0
 
         # Usefulness Bands
         useful_buckets = {"0-0.3": [], "0.3-0.5": [], "0.5-0.7": [], "0.7+": []}
         for r in scored:
             v = extract_usefulness_score(r.get("theory_usefulness", 0.0))
-            if v < 0.3: useful_buckets["0-0.3"].append(r)
-            elif v < 0.5: useful_buckets["0.3-0.5"].append(r)
-            elif v < 0.7: useful_buckets["0.5-0.7"].append(r)
-            else: useful_buckets["0.7+"].append(r)
-        
+            if v < 0.3:
+                useful_buckets["0-0.3"].append(r)
+            elif v < 0.5:
+                useful_buckets["0.3-0.5"].append(r)
+            elif v < 0.7:
+                useful_buckets["0.5-0.7"].append(r)
+            else:
+                useful_buckets["0.7+"].append(r)
+
         accuracy_by_usefulness = {
-            b: {"count": len(rs), "accuracy": sum(1 for r in rs if is_correct(r))/len(rs) if rs else 0.0}
+            b: {
+                "count": len(rs),
+                "accuracy": (
+                    sum(1 for r in rs if is_correct(r)) / len(rs) if rs else 0.0
+                ),
+            }
             for b, rs in useful_buckets.items()
         }
 
@@ -755,12 +850,20 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         contra_buckets = {"0-0.2": [], "0.2-0.5": [], "0.5+": []}
         for r in scored:
             v = r.get("contradiction_score", 0.0)
-            if v < 0.2: contra_buckets["0-0.2"].append(r)
-            elif v < 0.5: contra_buckets["0.2-0.5"].append(r)
-            else: contra_buckets["0.5+"].append(r)
+            if v < 0.2:
+                contra_buckets["0-0.2"].append(r)
+            elif v < 0.5:
+                contra_buckets["0.2-0.5"].append(r)
+            else:
+                contra_buckets["0.5+"].append(r)
 
         accuracy_by_contradiction_severity = {
-            b: {"count": len(rs), "accuracy": sum(1 for r in rs if is_correct(r))/len(rs) if rs else 0.0}
+            b: {
+                "count": len(rs),
+                "accuracy": (
+                    sum(1 for r in rs if is_correct(r)) / len(rs) if rs else 0.0
+                ),
+            }
             for b, rs in contra_buckets.items()
         }
 
@@ -780,62 +883,107 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         # Accuracy when usefulness > 0.7
         high_usefulness_predictions = [
-            r for r in scored
-            if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
+            r for r in scored if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
         ]
         accuracy_when_high_usefulness = (
-            sum(1 for r in high_usefulness_predictions if is_correct(r)) / len(high_usefulness_predictions)
-            if high_usefulness_predictions else 0.0
+            sum(1 for r in high_usefulness_predictions if is_correct(r))
+            / len(high_usefulness_predictions)
+            if high_usefulness_predictions
+            else 0.0
         )
 
         # Prediction Drift
         change_count = 0
         if len(self.prediction_history) > 1:
             for i in range(1, len(self.prediction_history)):
-                if self.prediction_history[i-1]["prediction"].get("direction") != self.prediction_history[i]["prediction"].get("direction"):
+                if self.prediction_history[i - 1]["prediction"].get(
+                    "direction"
+                ) != self.prediction_history[i]["prediction"].get("direction"):
                     change_count += 1
-        prediction_drift = change_count / (len(self.prediction_history) - 1) if len(self.prediction_history) > 1 else 0.0
+        prediction_drift = (
+            change_count / (len(self.prediction_history) - 1)
+            if len(self.prediction_history) > 1
+            else 0.0
+        )
 
         # Rolling Confidence Drift
-        conf_vals = [r["prediction"].get("confidence", 0) for r in self.prediction_history]
+        conf_vals = [
+            r["prediction"].get("confidence", 0) for r in self.prediction_history
+        ]
         rolling_drift = {
             "7d": statistics.mean(conf_vals[-7:]) if len(conf_vals) >= 7 else 0.0,
-            "15d": statistics.mean(conf_vals[-15:]) if len(conf_vals) >= 15 else 0.0
+            "15d": statistics.mean(conf_vals[-15:]) if len(conf_vals) >= 15 else 0.0,
         }
 
         # Task 2.2: Add 'uncertain'
-        uncertain_rows = [r for r in self.prediction_history if r.get("prediction", {}).get("direction") == PredictionDirection.uncertain.value]
-        avg_conf_uncertain = mean([r["prediction"].get("confidence", 0) for r in uncertain_rows]) if uncertain_rows else 0.0
-        accuracy_by_direction["uncertain"] = {"count": len(uncertain_rows), "accuracy": 0.0, "partial_accuracy": 0.0, "avg_confidence": avg_conf_uncertain}
+        uncertain_rows = [
+            r
+            for r in self.prediction_history
+            if r.get("prediction", {}).get("direction")
+            == PredictionDirection.uncertain.value
+        ]
+        avg_conf_uncertain = (
+            mean([r["prediction"].get("confidence", 0) for r in uncertain_rows])
+            if uncertain_rows
+            else 0.0
+        )
+        accuracy_by_direction["uncertain"] = {
+            "count": len(uncertain_rows),
+            "accuracy": 0.0,
+            "partial_accuracy": 0.0,
+            "avg_confidence": avg_conf_uncertain,
+        }
 
         # Regime similarity > 0.9
         high_regime = [r for r in scored if r.get("regime_similarity", 0.0) > 0.9]
-        regime_acc = sum(1 for r in high_regime if is_correct(r)) / len(high_regime) if high_regime else 0.0
+        regime_acc = (
+            sum(1 for r in high_regime if is_correct(r)) / len(high_regime)
+            if high_regime
+            else 0.0
+        )
 
         # Theory usefulness > 0.5
-        useful = [r for r in scored if extract_usefulness_score(r.get("theory_usefulness", 0.0)) > 0.5]
-        useful_acc = sum(1 for r in useful if is_correct(r)) / len(useful) if useful else 0.0
+        useful = [
+            r
+            for r in scored
+            if extract_usefulness_score(r.get("theory_usefulness", 0.0)) > 0.5
+        ]
+        useful_acc = (
+            sum(1 for r in useful if is_correct(r)) / len(useful) if useful else 0.0
+        )
 
         # Task 2.4: Prediction slices by pressure
-        pressure_gt_0_5 = [r for r in scored if r.get("transition_pressure_score", 0.0) > 0.5]
-        acc_pressure_gt_0_5 = sum(1 for r in pressure_gt_0_5 if is_correct(r)) / len(pressure_gt_0_5) if pressure_gt_0_5 else 0.0
+        pressure_gt_0_5 = [
+            r for r in scored if r.get("transition_pressure_score", 0.0) > 0.5
+        ]
+        acc_pressure_gt_0_5 = (
+            sum(1 for r in pressure_gt_0_5 if is_correct(r)) / len(pressure_gt_0_5)
+            if pressure_gt_0_5
+            else 0.0
+        )
 
-        pressure_gt_0_7 = [r for r in scored if r.get("transition_pressure_score", 0.0) > 0.7]
-        acc_pressure_gt_0_7 = sum(1 for r in pressure_gt_0_7 if is_correct(r)) / len(pressure_gt_0_7) if pressure_gt_0_7 else 0.0
+        pressure_gt_0_7 = [
+            r for r in scored if r.get("transition_pressure_score", 0.0) > 0.7
+        ]
+        acc_pressure_gt_0_7 = (
+            sum(1 for r in pressure_gt_0_7 if is_correct(r)) / len(pressure_gt_0_7)
+            if pressure_gt_0_7
+            else 0.0
+        )
 
         # Task 2.5: False breakout
         false_breakouts = [
-            r for r in scored
-            if r.get("transition_breakout_risk")
-            and not is_correct(r)
+            r for r in scored if r.get("transition_breakout_risk") and not is_correct(r)
         ]
 
         # Task 2.6: Best breakout capture
         best_breakout_captures = [
-            r for r in scored
+            r
+            for r in scored
             if r.get("transition_breakout_risk")
             and is_correct(r)
-            and r["prediction"].get("direction") in [PredictionDirection.higher.value, PredictionDirection.lower.value]
+            and r["prediction"].get("direction")
+            in [PredictionDirection.higher.value, PredictionDirection.lower.value]
         ]
 
         # Missed transition cases: range_bound -> higher / lower
@@ -856,13 +1004,21 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         def sample_top(rows, n=5):
             return [
-                {"date": r.get("date"), "theory_summary": r.get("theory_summary", ""), "confidence": r.get("prediction", {}).get("confidence")}
+                {
+                    "date": r.get("date"),
+                    "theory_summary": r.get("theory_summary", ""),
+                    "confidence": r.get("prediction", {}).get("confidence"),
+                }
                 for r in rows[:n]
             ]
 
         correlation_coeff = 0.0
-        confidences = [r["prediction"].get("confidence", 0) for r in scored if r.get("prediction")]
-        scores = [r["prior_prediction_result"].get("direction_score", 0) for r in scored]
+        confidences = [
+            r["prediction"].get("confidence", 0) for r in scored if r.get("prediction")
+        ]
+        scores = [
+            r["prior_prediction_result"].get("direction_score", 0) for r in scored
+        ]
         if len(confidences) > 1 and len(scores) > 1:
             try:
                 correlation_val = statistics.correlation(confidences, scores)
@@ -873,9 +1029,31 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             "total_predictions": total,
             "scored_predictions": scored_count,
             "accuracy": correct / scored_count if scored_count else 0.0,
-            "partial_accuracy": (correct + partial) / scored_count if scored_count else 0.0,
-            "uncertain_rate": sum(1 for r in self.prediction_history if r.get("prediction", {}).get("direction") == "uncertain") / total if total else 0.0,
-            "invalidation_rate": sum(1 for r in scored if r.get("prior_prediction_result", {}).get("invalidation_triggered")) / scored_count if scored_count else 0.0,
+            "partial_accuracy": (
+                (correct + partial) / scored_count if scored_count else 0.0
+            ),
+            "uncertain_rate": (
+                sum(
+                    1
+                    for r in self.prediction_history
+                    if r.get("prediction", {}).get("direction") == "uncertain"
+                )
+                / total
+                if total
+                else 0.0
+            ),
+            "invalidation_rate": (
+                sum(
+                    1
+                    for r in scored
+                    if r.get("prior_prediction_result", {}).get(
+                        "invalidation_triggered"
+                    )
+                )
+                / scored_count
+                if scored_count
+                else 0.0
+            ),
             "mean_confidence": mean_conf,
             "median_confidence": median_conf,
             "confidence_accuracy_correlation": round(correlation_coeff, 3),
@@ -891,10 +1069,22 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             "accuracy_theory_usefulness_gt_0_5": useful_acc,
             "accuracy_by_usefulness": accuracy_by_usefulness,
             "accuracy_by_contradiction_severity": accuracy_by_contradiction_severity,
-            "missed_range_to_higher": {"count": len(missed_range_to_higher), "samples": sample_top(missed_range_to_higher)},
-            "missed_range_to_lower": {"count": len(missed_range_to_lower), "samples": sample_top(missed_range_to_lower)},
-            "false_breakouts": {"count": len(false_breakouts), "samples": sample_top(false_breakouts)},
-            "best_breakout_captures": {"count": len(best_breakout_captures), "samples": sample_top(best_breakout_captures)},
+            "missed_range_to_higher": {
+                "count": len(missed_range_to_higher),
+                "samples": sample_top(missed_range_to_higher),
+            },
+            "missed_range_to_lower": {
+                "count": len(missed_range_to_lower),
+                "samples": sample_top(missed_range_to_lower),
+            },
+            "false_breakouts": {
+                "count": len(false_breakouts),
+                "samples": sample_top(false_breakouts),
+            },
+            "best_breakout_captures": {
+                "count": len(best_breakout_captures),
+                "samples": sample_top(best_breakout_captures),
+            },
             "avg_theory_usefulness": avg_theory_usefulness,
             "high_usefulness_days": high_usefulness_days,
             "accuracy_when_high_usefulness": accuracy_when_high_usefulness,
@@ -912,23 +1102,41 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         #   - "prior_prediction_result": The evaluation of the prediction made ON day_i-1 for day_i
         # To correctly analyze, we need to pair prediction_history[i-1]["prediction"] with
         # prediction_history[i]["prior_prediction_result"].
-        
+
         aligned_predictions = []
         for i in range(1, len(self.prediction_history)):
             current_day_record = self.prediction_history[i]
-            previous_day_prediction_record = self.prediction_history[i-1]
-            
-            if current_day_record.get("prior_prediction_result") and previous_day_prediction_record.get("prediction"):
-                aligned_predictions.append({
-                    "date": current_day_record["date"],
-                    "theory_family": previous_day_prediction_record.get("regime_subtype", "neutral"),
-                    "predicted_direction": previous_day_prediction_record["prediction"].get("direction"),
-                    "actual_direction": current_day_record["prior_prediction_result"].get("actual_direction"),
-                    "direction_score": current_day_record["prior_prediction_result"].get("direction_score"),
-                    "intelligence": previous_day_prediction_record.get("intelligence", {}),
-                    "volatility_regime": previous_day_prediction_record.get("volatility_regime", "normal"),
-                    "volume_state": previous_day_prediction_record.get("volume_state", "normal")
-                })
+            previous_day_prediction_record = self.prediction_history[i - 1]
+
+            if current_day_record.get(
+                "prior_prediction_result"
+            ) and previous_day_prediction_record.get("prediction"):
+                aligned_predictions.append(
+                    {
+                        "date": current_day_record["date"],
+                        "theory_family": previous_day_prediction_record.get(
+                            "regime_subtype", "neutral"
+                        ),
+                        "predicted_direction": previous_day_prediction_record[
+                            "prediction"
+                        ].get("direction"),
+                        "actual_direction": current_day_record[
+                            "prior_prediction_result"
+                        ].get("actual_direction"),
+                        "direction_score": current_day_record[
+                            "prior_prediction_result"
+                        ].get("direction_score"),
+                        "intelligence": previous_day_prediction_record.get(
+                            "intelligence", {}
+                        ),
+                        "volatility_regime": previous_day_prediction_record.get(
+                            "volatility_regime", "normal"
+                        ),
+                        "volume_state": previous_day_prediction_record.get(
+                            "volume_state", "normal"
+                        ),
+                    }
+                )
 
         if not aligned_predictions:
             return {}
@@ -948,17 +1156,24 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             p_intel = r["intelligence"].get("directional_persistence", {})
             p_regime = p_intel.get("regime", "Mixed")
             p_score_5d = p_intel.get("5d", 0.0)
-            
+
             persistence_stats[p_regime].append(r["direction_score"])
-            
+
             # Blindness Audit: Strong trend but predicted Range
-            if p_regime in ["Persistent Higher", "Persistent Lower"] and r["predicted_direction"] == "range_bound":
+            if (
+                p_regime in ["Persistent Higher", "Persistent Lower"]
+                and r["predicted_direction"] == "range_bound"
+            ):
                 blindness_violations += 1
-            
+
             if r["predicted_direction"] != "uncertain":
                 alignment_total += 1
                 p_sign = 1 if p_score_5d > 0.3 else -1 if p_score_5d < -0.3 else 0
-                pred_sign = 1 if r["predicted_direction"] == "higher" else -1 if r["predicted_direction"] == "lower" else 0
+                pred_sign = (
+                    1
+                    if r["predicted_direction"] == "higher"
+                    else -1 if r["predicted_direction"] == "lower" else 0
+                )
                 if p_sign == pred_sign:
                     alignment_hits += 1
 
@@ -989,20 +1204,33 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             volume_regime[r["volume_state"]].append(r["direction_score"])
 
         regime_accuracy = {
-            "direction": {k: {"accuracy": mean(v), "count": len(v)} for k, v in direction_regime.items()},
-            "volatility": {k: {"accuracy": mean(v), "count": len(v)} for k, v in volatility_regime.items()},
-            "volume": {k: {"accuracy": mean(v), "count": len(v)} for k, v in volume_regime.items()}
+            "direction": {
+                k: {"accuracy": mean(v), "count": len(v)}
+                for k, v in direction_regime.items()
+            },
+            "volatility": {
+                k: {"accuracy": mean(v), "count": len(v)}
+                for k, v in volatility_regime.items()
+            },
+            "volume": {
+                k: {"accuracy": mean(v), "count": len(v)}
+                for k, v in volume_regime.items()
+            },
         }
 
         # 4. Contradiction Intelligence (Aligned)
         contra_buckets = {"0": [], "1-3": [], "3-5": [], "5+": []}
         for r in aligned_predictions:
             c = r["intelligence"].get("contradiction_count", 0)
-            if c == 0: contra_buckets["0"].append(r["direction_score"])
-            elif c <= 3: contra_buckets["1-3"].append(r["direction_score"])
-            elif c <= 5: contra_buckets["3-5"].append(r["direction_score"])
-            else: contra_buckets["5+"].append(r["direction_score"])
-        
+            if c == 0:
+                contra_buckets["0"].append(r["direction_score"])
+            elif c <= 3:
+                contra_buckets["1-3"].append(r["direction_score"])
+            elif c <= 5:
+                contra_buckets["3-5"].append(r["direction_score"])
+            else:
+                contra_buckets["5+"].append(r["direction_score"])
+
         contradiction_intelligence = {
             k: {"accuracy": mean(v) if v else 0.0, "count": len(v)}
             for k, v in contra_buckets.items()
@@ -1020,17 +1248,20 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         # 6. Learning Trend (Thirds)
         n_aligned = len(aligned_predictions)
         segments = {
-            "first": aligned_predictions[:n_aligned//3], 
-            "middle": aligned_predictions[n_aligned//3:2*n_aligned//3], 
-            "final": aligned_predictions[2*n_aligned//3:]
+            "first": aligned_predictions[: n_aligned // 3],
+            "middle": aligned_predictions[n_aligned // 3 : 2 * n_aligned // 3],
+            "final": aligned_predictions[2 * n_aligned // 3 :],
         }
         learning_trend = {
-            k: mean([r["direction_score"] for r in v]) if v else 0.0 for k, v in segments.items()
+            k: mean([r["direction_score"] for r in v]) if v else 0.0
+            for k, v in segments.items()
         }
 
         # 7. Drift and Convergence
         # Best/Worst Family
-        sorted_fams = sorted(theory_family_accuracy.items(), key=lambda x: x[1]['accuracy'], reverse=True)
+        sorted_fams = sorted(
+            theory_family_accuracy.items(), key=lambda x: x[1]["accuracy"], reverse=True
+        )
         best_family = sorted_fams[0][0] if sorted_fams else "N/A"
         worst_family = sorted_fams[-1][0] if sorted_fams else "N/A"
 
@@ -1039,31 +1270,59 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         base_acc = mutation_effectiveness.get(0, {}).get("accuracy", 0.0)
         max_depth = depths[-1] if depths else 0
         final_acc = mutation_effectiveness.get(max_depth, {}).get("accuracy", 0.0)
-        mutation_trend = "Improving" if final_acc > base_acc else "Degrading" if final_acc < base_acc else "Stable"
+        mutation_trend = (
+            "Improving"
+            if final_acc > base_acc
+            else "Degrading" if final_acc < base_acc else "Stable"
+        )
 
         # Drift
         pred_changes = 0
         for i in range(1, len(self.prediction_history)):
-            if self.prediction_history[i]["prediction"].get("direction") != self.prediction_history[i-1]["prediction"].get("direction"):
+            if self.prediction_history[i]["prediction"].get(
+                "direction"
+            ) != self.prediction_history[i - 1]["prediction"].get("direction"):
                 pred_changes += 1
-        
-        prediction_drift = pred_changes / (len(self.prediction_history) - 1) if len(self.prediction_history) > 1 else 0.0
 
-        mutations = sum(1 for r in self.prediction_history if r.get("intelligence", {}).get("mutation_count", 0) > 0)
-        theory_drift = mutations / len(self.prediction_history) if self.prediction_history else 0.0
+        prediction_drift = (
+            pred_changes / (len(self.prediction_history) - 1)
+            if len(self.prediction_history) > 1
+            else 0.0
+        )
+
+        mutations = sum(
+            1
+            for r in self.prediction_history
+            if r.get("intelligence", {}).get("mutation_count", 0) > 0
+        )
+        theory_drift = (
+            mutations / len(self.prediction_history) if self.prediction_history else 0.0
+        )
         accuracy_drift = learning_trend["final"] - learning_trend["first"]
 
         # Audit
         audit = []
         for r in self.prediction_history:
             res = r.get("prior_prediction_result", {})
-            audit.append({
-                "date": r["date"],
-                "actual": res.get("actual_direction", "N/A"),
-                "predicted": r["prediction"].get("direction", "N/A"),
-                "persistence": r.get("intelligence", {}).get("directional_persistence", {}).get("10d", 0.0),
-                "result": "PASS" if res.get("direction_score", 0) == 1.0 else "FAIL" if res.get("direction_score", 0) == 0.0 else "PARTIAL"
-            })
+            audit.append(
+                {
+                    "date": r["date"],
+                    "actual": res.get("actual_direction", "N/A"),
+                    "predicted": r["prediction"].get("direction", "N/A"),
+                    "persistence": r.get("intelligence", {})
+                    .get("directional_persistence", {})
+                    .get("10d", 0.0),
+                    "result": (
+                        "PASS"
+                        if res.get("direction_score", 0) == 1.0
+                        else (
+                            "FAIL"
+                            if res.get("direction_score", 0) == 0.0
+                            else "PARTIAL"
+                        )
+                    ),
+                }
+            )
 
         return {
             "theory_family_accuracy": theory_family_accuracy,
@@ -1076,16 +1335,21 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             "worst_family": worst_family,
             "mutation_trend_label": mutation_trend,
             "persistence_intelligence": {
-                "accuracy_by_regime": {k: {"accuracy": mean(v), "count": len(v)} for k, v in persistence_stats.items()},
+                "accuracy_by_regime": {
+                    k: {"accuracy": mean(v), "count": len(v)}
+                    for k, v in persistence_stats.items()
+                },
                 "blindness_violations": blindness_violations,
-                "alignment_score": alignment_hits / alignment_total if alignment_total > 0 else 0.0
+                "alignment_score": (
+                    alignment_hits / alignment_total if alignment_total > 0 else 0.0
+                ),
             },
             "convergence": {
                 "prediction_drift": prediction_drift,
                 "theory_drift": theory_drift,
-                "accuracy_drift": accuracy_drift
+                "accuracy_drift": accuracy_drift,
             },
-            "trend_audit": audit
+            "trend_audit": audit,
         }
 
     def _detect_cognition_risks(self) -> List:
@@ -1167,7 +1431,11 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         """Analyze transition memory performance."""
         return {
             "total_transition_memory_hits": self.transition_memory_hits,
-            "hit_rate": self.transition_memory_hits / len(self.days) if len(self.days) > 0 else 0.0,
+            "hit_rate": (
+                self.transition_memory_hits / len(self.days)
+                if len(self.days) > 0
+                else 0.0
+            ),
         }
 
     def set_capital_simulation_logs(self, logs: list):
@@ -1212,30 +1480,50 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             if not isinstance(cap_rec, dict):
                 cap_rec = {}
 
-            baseline = cap_rec.get("policies", {}).get("baseline", {}) if isinstance(cap_rec, dict) else {}
+            baseline = (
+                cap_rec.get("policies", {}).get("baseline", {})
+                if isinstance(cap_rec, dict)
+                else {}
+            )
 
-            combined_data.append({
-                "date": pred_rec.get("date"),
-                "prediction_direction": prediction.get("direction"),
-                "prediction_confidence": prediction.get("confidence") or baseline.get("conviction"),
-                "actual_direction": prior_prediction_result.get("actual_direction"),
-                "transition_pressure_score": pred_rec.get("transition_pressure_score"),
-                "transition_breakout_risk": pred_rec.get("transition_breakout_risk"),
-                "theory_usefulness_score": extract_usefulness_score(pred_rec.get("theory_usefulness")),
-                "theory_usefulness_label": pred_rec.get("theory_usefulness", {}).get("label", "unknown") if isinstance(pred_rec.get("theory_usefulness"), dict) else "unknown",
-                "regime_similarity": pred_rec.get("regime_similarity"),
-                "capital_before": baseline.get("capital_before") or cap_rec.get("capital_before"),
-                "capital_after": baseline.get("capital_after") or cap_rec.get("capital_after"),
-                "daily_return_pct": baseline.get("daily_return_pct") or cap_rec.get("daily_return_pct"),
-                # v2.0 Dimensions
-                "volume_state": pred_rec.get("volume_state"),
-                "volatility_regime": pred_rec.get("volatility_regime"),
-                "momentum_regime": pred_rec.get("momentum_regime"),
-                # v3.0 Dimensions
-                "regime_subtype": pred_rec.get("regime_subtype"),
-                "analog_divergence_claim": pred_rec.get("analog_divergence_claim"),
-                "regime_history": pred_rec.get("regime_history"),
-            })
+            combined_data.append(
+                {
+                    "date": pred_rec.get("date"),
+                    "prediction_direction": prediction.get("direction"),
+                    "prediction_confidence": prediction.get("confidence")
+                    or baseline.get("conviction"),
+                    "actual_direction": prior_prediction_result.get("actual_direction"),
+                    "transition_pressure_score": pred_rec.get(
+                        "transition_pressure_score"
+                    ),
+                    "transition_breakout_risk": pred_rec.get(
+                        "transition_breakout_risk"
+                    ),
+                    "theory_usefulness_score": extract_usefulness_score(
+                        pred_rec.get("theory_usefulness")
+                    ),
+                    "theory_usefulness_label": (
+                        pred_rec.get("theory_usefulness", {}).get("label", "unknown")
+                        if isinstance(pred_rec.get("theory_usefulness"), dict)
+                        else "unknown"
+                    ),
+                    "regime_similarity": pred_rec.get("regime_similarity"),
+                    "capital_before": baseline.get("capital_before")
+                    or cap_rec.get("capital_before"),
+                    "capital_after": baseline.get("capital_after")
+                    or cap_rec.get("capital_after"),
+                    "daily_return_pct": baseline.get("daily_return_pct")
+                    or cap_rec.get("daily_return_pct"),
+                    # v2.0 Dimensions
+                    "volume_state": pred_rec.get("volume_state"),
+                    "volatility_regime": pred_rec.get("volatility_regime"),
+                    "momentum_regime": pred_rec.get("momentum_regime"),
+                    # v3.0 Dimensions
+                    "regime_subtype": pred_rec.get("regime_subtype"),
+                    "analog_divergence_claim": pred_rec.get("analog_divergence_claim"),
+                    "regime_history": pred_rec.get("regime_history"),
+                }
+            )
 
         df = pd.DataFrame(combined_data)
         df.to_csv(file_path, index=False)
@@ -1243,15 +1531,16 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
     def _count_branches(self, text: str) -> int:
         """Lightweight count of If/Else logic branches."""
-        if not text: return 0
+        if not text:
+            return 0
         count = 0
         patterns = [r"^\s*if\b", r"^\s*else\s+if\b", r"^\s*else\b"]
-        
+
         for line in text.splitlines():
             cleaned = line.strip().strip("*").strip("#").strip().lower()
             if any(re.search(p, cleaned) for p in patterns):
                 count += 1
-        
+
         if count == 0:
             sentences = re.split(r"(?<=[.!?])\s+", text)
             for s in sentences:

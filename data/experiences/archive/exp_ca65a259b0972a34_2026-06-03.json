@@ -1,0 +1,37 @@
+{
+  "experience_id": "exp_ca65a259b0972a34_2026-06-03",
+  "lineage_id": "ca65a259b0972a34",
+  "theory_family_id": "ca65a259b0972a34",
+  "created_at": "2026-06-03",
+  "status": "active",
+  "theory_ids": [
+    "4abe4250-dde3-45eb-9936-8d7002ba3850",
+    "3357cc46-b065-4fa5-b42f-9d02c434abf3"
+  ],
+  "contradictions": [
+    "Structural: Field conflict: decisive gap down below the pr vs decisive close above the prior; Low semantic similarity: Range-bound regime i... vs participation normal...; Low semantic similarity: short-term momentum ... vs participation normal...",
+    "Structural: Low semantic similarity: Range expansion with... vs Range-bound regime i...; Field conflict: decisive close above the prior vs decisive gap down below the pr; Low semantic similarity: Range expansion with... vs short-term momentum ...",
+    "Structural: Low semantic similarity: Range expansion with... vs Range-bound RELIANCE...; Low semantic similarity: Range expansion with... vs participation normal...; Low semantic similarity: RELIANCE focus stren... vs participation normal...; Low semantic similarity: short-term momentum ... vs volatility expands a..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:range_bound",
+    "volume:normal",
+    "volatility:moderate",
+    "liquidity:even_flow",
+    "breadth:nascent",
+    "participation:normal",
+    "momentum:weakening",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 1,
+  "contradiction_count": 2,
+  "validation_count": 1,
+  "falsification_count": 0,
+  "causal_events": [],
+  "component_failure_counts": {}
+}

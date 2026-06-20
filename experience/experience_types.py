@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import List
+from typing import Any, Dict, List
+
 
 class ExperienceStatus(str, Enum):
     ACTIVE = "active"
@@ -9,9 +10,11 @@ class ExperienceStatus(str, Enum):
     FALSIFIED = "falsified"
     ABANDONED = "abandoned"
 
+
 @dataclass
 class ExperienceOutcome:
     outcome_confidence: float = 0.5
+
 
 @dataclass
 class Experience:
@@ -30,3 +33,5 @@ class Experience:
     contradiction_count: int = 0
     validation_count: int = 0
     falsification_count: int = 0
+    causal_events: List[Dict[str, Any]] = field(default_factory=list)
+    component_failure_counts: Dict[str, int] = field(default_factory=dict)

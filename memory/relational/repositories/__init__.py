@@ -3,7 +3,7 @@ from memory.relational.repositories.confidence_repository import ConfidenceRepos
 from memory.relational.repositories.observation_repository import ObservationRepository
 from memory.relational.repositories.reflection_repository import ReflectionRepository
 from memory.relational.repositories.reflective_memory_repository import (
-    ReflectiveMemoryRepository
+    ReflectiveMemoryRepository,
 )
 from memory.relational.repositories.theory_repository import TheoryRepository
 from memory.relational.repositories.validation_repository import ValidationRepository
@@ -16,5 +16,5 @@ __all__ = [
     "ReflectionRepository",
     "ReflectiveMemoryRepository",
     "TheoryRepository",
-    "ValidationRepository"
+    "ValidationRepository",
 ]

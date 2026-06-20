@@ -1,31 +1,27 @@
 from typing import List
 
+
 class OutcomeValidationEngine:
     """
     Validates theories against actual market outcomes.
-    
+
     Compares:
     - Prior theory thesis
     - Prior market observation
     - Realized market outcome
-    
+
     Returns validation scores and adaptation recommendations.
     """
 
-    def validate(
-        self,
-        theory,
-        prior_observation,
-        market_outcome
-    ):
+    def validate(self, theory, prior_observation, market_outcome):
         """
         Validate a theory against realized market outcome.
-        
+
         Args:
             theory: The theoretical prediction
             prior_observation: The initial market observation
             market_outcome: The realized market outcome
-            
+
         Returns:
             Validation result dict with scores and summary
         """
@@ -36,27 +32,19 @@ class OutcomeValidationEngine:
 
         # Calculate alignment scores
         trend_alignment = self._trend_alignment(
-            theory_thesis,
-            observation_text,
-            market_outcome
+            theory_thesis, observation_text, market_outcome
         )
 
         breadth_alignment = self._breadth_alignment(
-            theory_thesis,
-            observation_text,
-            market_outcome
+            theory_thesis, observation_text, market_outcome
         )
 
         liquidity_alignment = self._liquidity_alignment(
-            theory_thesis,
-            observation_text,
-            market_outcome
+            theory_thesis, observation_text, market_outcome
         )
 
         volatility_alignment = self._volatility_alignment(
-            theory_thesis,
-            observation_text,
-            market_outcome
+            theory_thesis, observation_text, market_outcome
         )
 
         # Calculate coherence
@@ -69,28 +57,18 @@ class OutcomeValidationEngine:
 
         # Detect contradictions
         contradictions = self._detect_contradictions(
-            theory.assumptions,
-            market_outcome,
-            observation_text
+            theory.assumptions, market_outcome, observation_text
         )
 
         contradiction_score = len(contradictions) * 0.15
 
         # Calculate regime mismatch
         regime_mismatch = self._regime_mismatch(
-            theory_thesis,
-            observation_text,
-            market_outcome
+            theory_thesis, observation_text, market_outcome
         )
 
         # Validation score: combination of alignment and contradiction
-        validation_score = max(
-            0.0,
-            min(
-                1.0,
-                average_alignment - contradiction_score
-            )
-        )
+        validation_score = max(0.0, min(1.0, average_alignment - contradiction_score))
 
         # Generate summary
         summary = self._generate_summary(
@@ -98,15 +76,12 @@ class OutcomeValidationEngine:
             market_outcome,
             average_alignment,
             contradictions,
-            regime_mismatch
+            regime_mismatch,
         )
 
         # Adaptation recommendations
         recommendations = self._generate_recommendations(
-            validation_score,
-            contradictions,
-            regime_mismatch,
-            average_alignment
+            validation_score, contradictions, regime_mismatch, average_alignment
         )
 
         return {
@@ -119,21 +94,18 @@ class OutcomeValidationEngine:
             "regime_mismatch": regime_mismatch,
             "contradictions_detected": contradictions,
             "validation_summary": summary,
-            "adaptation_recommendations": recommendations
+            "adaptation_recommendations": recommendations,
         }
 
     def _trend_alignment(
-        self,
-        theory_thesis,
-        observation_text,
-        market_outcome
+        self, theory_thesis, observation_text, market_outcome
     ) -> float:
         """Calculate trend alignment between theory and outcome."""
 
         trend_keywords = {
             "continuing": ["continuation", "continue", "persistent"],
             "reversing": ["reversal", "reverse", "turned", "correction"],
-            "consolidating": ["consolidat", "range", "sideways"]
+            "consolidating": ["consolidat", "range", "sideways"],
         }
 
         theory_trend = None
@@ -164,10 +136,7 @@ class OutcomeValidationEngine:
             return 0.5
 
     def _breadth_alignment(
-        self,
-        theory_thesis,
-        observation_text,
-        market_outcome
+        self, theory_thesis, observation_text, market_outcome
     ) -> float:
         """Calculate breadth alignment between theory and outcome."""
 
@@ -176,14 +145,14 @@ class OutcomeValidationEngine:
             "narrow",
             "divergence",
             "selective",
-            "limited participation"
+            "limited participation",
         ]
 
         breadth_strength_signals = [
             "broad participation",
             "breadth support",
             "widespread",
-            "participation strength"
+            "participation strength",
         ]
 
         theory_expects_weakness = any(
@@ -215,18 +184,11 @@ class OutcomeValidationEngine:
             return 0.5
 
     def _liquidity_alignment(
-        self,
-        theory_thesis,
-        observation_text,
-        market_outcome
+        self, theory_thesis, observation_text, market_outcome
     ) -> float:
         """Calculate liquidity alignment between theory and outcome."""
 
-        liquidity_signals = [
-            "liquidity",
-            "volume",
-            "flow"
-        ]
+        liquidity_signals = ["liquidity", "volume", "flow"]
 
         theory_mentions_liquidity = any(
             sig in theory_thesis for sig in liquidity_signals
@@ -245,16 +207,13 @@ class OutcomeValidationEngine:
             return 0.5
 
     def _volatility_alignment(
-        self,
-        theory_thesis,
-        observation_text,
-        market_outcome
+        self, theory_thesis, observation_text, market_outcome
     ) -> float:
         """Calculate volatility alignment between theory and outcome."""
 
         volatility_keywords = {
             "elevated": ["elevated", "high", "expanded"],
-            "compressed": ["compressed", "low", "quiet", "stable"]
+            "compressed": ["compressed", "low", "quiet", "stable"],
         }
 
         theory_volatility = None
@@ -285,10 +244,7 @@ class OutcomeValidationEngine:
             return 0.5
 
     def _detect_contradictions(
-        self,
-        assumptions,
-        market_outcome,
-        observation_text
+        self, assumptions, market_outcome, observation_text
     ) -> List[str]:
         """Detect contradictions between assumptions and outcome."""
 
@@ -298,11 +254,9 @@ class OutcomeValidationEngine:
             assumption_lower = assumption.lower()
 
             # Price strength vs weak breadth
-            if ("strong" in assumption_lower and "price" in assumption_lower):
+            if "strong" in assumption_lower and "price" in assumption_lower:
                 if "weak" in market_outcome.realized_breadth.lower():
-                    contradictions.append(
-                        "Price strength contradicted by weak breadth"
-                    )
+                    contradictions.append("Price strength contradicted by weak breadth")
 
             # Momentum persistence vs volatility expansion
             if "momentum" in assumption_lower:
@@ -324,10 +278,7 @@ class OutcomeValidationEngine:
         return list(set(contradictions))
 
     def _regime_mismatch(
-        self,
-        theory_thesis,
-        observation_text,
-        market_outcome
+        self, theory_thesis, observation_text, market_outcome
     ) -> float:
         """Detect regime mismatch between theory and outcome."""
 
@@ -335,7 +286,7 @@ class OutcomeValidationEngine:
             "trend_heavy": ["trending", "directional", "momentum"],
             "range_heavy": ["range-bound", "consolidat", "mean-revert"],
             "volatile": ["volatile", "choppy", "indecisive"],
-            "quiet": ["quiet", "stable", "smooth"]
+            "quiet": ["quiet", "stable", "smooth"],
         }
 
         theory_regime = None
@@ -345,8 +296,7 @@ class OutcomeValidationEngine:
                 break
 
         outcome_strings = (
-            market_outcome.realized_trend
-            + " " + market_outcome.realized_volatility
+            market_outcome.realized_trend + " " + market_outcome.realized_volatility
         ).lower()
 
         outcome_regime = None
@@ -369,7 +319,7 @@ class OutcomeValidationEngine:
         market_outcome,
         average_alignment,
         contradictions,
-        regime_mismatch
+        regime_mismatch,
     ) -> str:
         """Generate validation summary."""
 
@@ -389,11 +339,7 @@ class OutcomeValidationEngine:
         return base
 
     def _generate_recommendations(
-        self,
-        validation_score,
-        contradictions,
-        regime_mismatch,
-        average_alignment
+        self, validation_score, contradictions, regime_mismatch, average_alignment
     ) -> List[str]:
         """Generate adaptation recommendations."""
 
@@ -420,8 +366,6 @@ class OutcomeValidationEngine:
             )
 
         if not recommendations:
-            recommendations.append(
-                "Continue monitoring theory performance"
-            )
+            recommendations.append("Continue monitoring theory performance")
 
         return recommendations

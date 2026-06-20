@@ -2,6 +2,4 @@ class EvolutionTracker:
 
     def track(self, payload):
 
-        return {
-            "status": "tracked"
-        }
+        return {"status": "tracked"}

@@ -60,8 +60,8 @@ class TheoryLineageEngine:
                 for tid, rec in raw.items():
                     # Handle potential missing lineage_id for old records
                     if "lineage_id" not in rec:
-                        rec["lineage_id"] = rec["id"] # Default to self.id for root
-                    self.theories[tid] = TheoryRecord(**rec) 
+                        rec["lineage_id"] = rec["id"]  # Default to self.id for root
+                    self.theories[tid] = TheoryRecord(**rec)
             except Exception:
                 self.theories = {}
 
@@ -94,7 +94,9 @@ class TheoryLineageEngine:
         abstraction: str,
         confidence_state: Optional[Dict[str, float]] = None,
         parent_ids: Optional[List[str]] = None,
-        lineage_id: Optional[str] = None, # Allow explicit lineage_id for merges/revivals
+        lineage_id: Optional[
+            str
+        ] = None,  # Allow explicit lineage_id for merges/revivals
     ) -> TheoryRecord:
         parent_ids = parent_ids or []
         confidence_state = confidence_state or {
@@ -105,7 +107,9 @@ class TheoryLineageEngine:
             "contradiction_pressure": 0.0,
         }
         rec = TheoryRecord(
-            lineage_id=lineage_id if lineage_id is not None else tid, # New: Set lineage_id
+            lineage_id=(
+                lineage_id if lineage_id is not None else tid
+            ),  # New: Set lineage_id
             id=tid,
             created_at_step=step,
             parent_ids=parent_ids,
@@ -134,7 +138,11 @@ class TheoryLineageEngine:
         rec = self.theories.get(tid)
         if not rec:
             return self.create_theory(
-                tid, step, new_abstraction, confidence_state=confidence_state, lineage_id=tid
+                tid,
+                step,
+                new_abstraction,
+                confidence_state=confidence_state,
+                lineage_id=tid,
             )
 
         rec.abstraction = new_abstraction
@@ -171,7 +179,7 @@ class TheoryLineageEngine:
 
         child_id = self._record_id(tid + new_abstraction, step)
         child = TheoryRecord(
-            lineage_id=parent.lineage_id, # Identity Rules: Mutation -> child.lineage_id = parent.lineage_id
+            lineage_id=parent.lineage_id,  # Identity Rules: Mutation -> child.lineage_id = parent.lineage_id
             id=child_id,
             created_at_step=step,
             parent_ids=[parent.id],
@@ -187,12 +195,16 @@ class TheoryLineageEngine:
             mutation_count=parent.mutation_count + 1,
         )
         if self.debug:
-            print(f"  [MUTATION EVENT] Parent Theory ID: {parent.id}, Parent mutation_count: {parent.mutation_count}")
-            print(f"  [MUTATION EVENT] Child Theory ID: {child_id}, Child mutation_count: {child.mutation_count}")
+            print(
+                f"  [MUTATION EVENT] Parent Theory ID: {parent.id}, Parent mutation_count: {parent.mutation_count}"
+            )
+            print(
+                f"  [MUTATION EVENT] Child Theory ID: {child_id}, Child mutation_count: {child.mutation_count}"
+            )
         self.theories[child_id] = child
         self._persist()
         return child
-    
+
     def merge_theories(
         self,
         parent_ids: List[str],
@@ -208,7 +220,9 @@ class TheoryLineageEngine:
         if not parents:
             # If no valid parents, create a new root theory
             new_id = self._record_id(new_abstraction, step)
-            return self.create_theory(new_id, step, new_abstraction, confidence_state=confidence_state)
+            return self.create_theory(
+                new_id, step, new_abstraction, confidence_state=confidence_state
+            )
 
         # Determine lineage_id based on merge rules
         first_parent_lineage_id = parents[0].lineage_id
@@ -219,11 +233,15 @@ class TheoryLineageEngine:
             effective_lineage_id = first_parent_lineage_id
         else:
             # Cross-Lineage Synthesis: Create new lineage_id
-            effective_lineage_id = self._record_id(new_abstraction + str(step) + "".join(sorted(parent_ids)), step)
+            effective_lineage_id = self._record_id(
+                new_abstraction + str(step) + "".join(sorted(parent_ids)), step
+            )
 
         child_depth = max([p.mutation_count for p in parents]) + 1 if parents else 0
 
-        child_id = self._record_id(new_abstraction + str(step) + "".join(sorted(parent_ids)), step)
+        child_id = self._record_id(
+            new_abstraction + str(step) + "".join(sorted(parent_ids)), step
+        )
         child = TheoryRecord(
             id=child_id,
             lineage_id=effective_lineage_id,
@@ -233,7 +251,7 @@ class TheoryLineageEngine:
             confidence=float(confidence_state.get("empirical_confidence", 0.5)),
             confidence_state=confidence_state,
             abstraction=new_abstraction,
-            contradictions=[], # Merged theories start with fresh contradictions
+            contradictions=[],  # Merged theories start with fresh contradictions
             contradiction_count=0,
             mutation_reason=reason,
             survival_steps=0,
@@ -308,7 +326,7 @@ class TheoryLineageEngine:
                 "merged": False,
                 "continued": True,
                 "parent_id": best_match.id,
-                "lineage_id": rec.lineage_id, # New: Return lineage_id
+                "lineage_id": rec.lineage_id,  # New: Return lineage_id
             }
 
         if best_match and best_score >= 0.45 and structural_shift:
@@ -325,7 +343,7 @@ class TheoryLineageEngine:
                     f"child={rec.id} reason=semantic_similarity_{best_score:.2f} "
                     f"confidence={rec.confidence:.3f} "
                     f"survival_steps={rec.survival_steps}"
-            )
+                )
             self.update_survival(step)
             return {
                 "record": rec,
@@ -333,7 +351,7 @@ class TheoryLineageEngine:
                 "mutated": True,
                 "merged": False,
                 "continued": False,
-                "lineage_id": rec.lineage_id, # New: Return lineage_id
+                "lineage_id": rec.lineage_id,  # New: Return lineage_id
                 "parent_id": best_match.id,
             }
 
@@ -345,7 +363,7 @@ class TheoryLineageEngine:
                 abstraction,
                 confidence_state=confidence_state,
                 parent_ids=[],
-                lineage_id=new_id, # New: Pass lineage_id
+                lineage_id=new_id,  # New: Pass lineage_id
             )
             if self.debug:
                 print(
@@ -359,7 +377,7 @@ class TheoryLineageEngine:
                 "mutated": False,
                 "merged": False,
                 "continued": False,
-                "lineage_id": rec.lineage_id, # New: Return lineage_id
+                "lineage_id": rec.lineage_id,  # New: Return lineage_id
                 "parent_id": None,
             }
 
@@ -381,7 +399,7 @@ class TheoryLineageEngine:
                     f"child={rec.id} reason=semantic_similarity_{best_score:.2f} "
                     f"confidence={rec.confidence:.3f} "
                     f"survival_steps={rec.survival_steps}"
-            )
+                )
             self.update_survival(step)
             return {
                 "record": rec,
@@ -389,7 +407,7 @@ class TheoryLineageEngine:
                 "mutated": True,
                 "merged": False,
                 "continued": False,
-                "lineage_id": rec.lineage_id, # New: Return lineage_id
+                "lineage_id": rec.lineage_id,  # New: Return lineage_id
                 "parent_id": best_match.id,
             }
 
@@ -400,7 +418,7 @@ class TheoryLineageEngine:
             abstraction,
             confidence_state=confidence_state,
             parent_ids=[],
-            lineage_id=new_id, # New: Pass lineage_id
+            lineage_id=new_id,  # New: Pass lineage_id
         )
         if self.debug:
             print(
@@ -413,7 +431,7 @@ class TheoryLineageEngine:
             "created": True,
             "mutated": False,
             "merged": False,
-            "lineage_id": rec.lineage_id, # New: Return lineage_id
+            "lineage_id": rec.lineage_id,  # New: Return lineage_id
             "parent_id": None,
         }
 

@@ -19,7 +19,9 @@ class ReplayFinalizationMixin:
             external_metrics = {}
             external_metrics["total_steps"] = len(self.engine)
             external_metrics["execution_hash"] = execution_hash
-            external_metrics["total_synthesis_triggered"] = self.total_synthesis_triggered
+            external_metrics["total_synthesis_triggered"] = (
+                self.total_synthesis_triggered
+            )
             if self.theory_lineage:
                 external_metrics.update(
                     {
@@ -39,43 +41,73 @@ class ReplayFinalizationMixin:
                 # derive aggregate observer metrics
                 external_metrics.update(
                     {
-                        "avg_confidence": float(
-                            mean([m.avg_confidence for m in self.observer.metrics])
-                        )
-                        if self.observer and self.observer.metrics
-                        else 0.0,
-                        "confidence_volatility": float(
-                            mean([m.confidence_volatility for m in self.observer.metrics])
-                        )
-                        if self.observer and self.observer.metrics
-                        else 0.0,
-                        "grounded_reflection": float(
-                            mean([m.grounded_reflection_score for m in self.observer.metrics])
-                        )
-                        if self.observer and self.observer.metrics
-                        else 0.0,
-                        "meta_commentary": float(
-                            mean([m.meta_commentary_score for m in self.observer.metrics])
-                        )
-                        if self.observer and self.observer.metrics
-                        else 0.0,
-                        "narrative_inflation": float(
-                            mean([m.inflation_relapse_score for m in self.observer.metrics])
-                        )
-                        if self.observer and self.observer.metrics
-                        else 0.0,
+                        "avg_confidence": (
+                            float(
+                                mean([m.avg_confidence for m in self.observer.metrics])
+                            )
+                            if self.observer and self.observer.metrics
+                            else 0.0
+                        ),
+                        "confidence_volatility": (
+                            float(
+                                mean(
+                                    [
+                                        m.confidence_volatility
+                                        for m in self.observer.metrics
+                                    ]
+                                )
+                            )
+                            if self.observer and self.observer.metrics
+                            else 0.0
+                        ),
+                        "grounded_reflection": (
+                            float(
+                                mean(
+                                    [
+                                        m.grounded_reflection_score
+                                        for m in self.observer.metrics
+                                    ]
+                                )
+                            )
+                            if self.observer and self.observer.metrics
+                            else 0.0
+                        ),
+                        "meta_commentary": (
+                            float(
+                                mean(
+                                    [
+                                        m.meta_commentary_score
+                                        for m in self.observer.metrics
+                                    ]
+                                )
+                            )
+                            if self.observer and self.observer.metrics
+                            else 0.0
+                        ),
+                        "narrative_inflation": (
+                            float(
+                                mean(
+                                    [
+                                        m.inflation_relapse_score
+                                        for m in self.observer.metrics
+                                    ]
+                                )
+                            )
+                            if self.observer and self.observer.metrics
+                            else 0.0
+                        ),
                     }
                 )
 
             # regime memory metrics if available on executor
             try:
                 external_metrics["regime_recall_hit_rate"] = (
-                    self.regime_memory.recall_hit_rate()
-                    if self.regime_memory
-                    else 0.0
+                    self.regime_memory.recall_hit_rate() if self.regime_memory else 0.0
                 )
                 external_metrics["memory_retrieval_usefulness"] = (
-                    self.regime_memory.retrieval_usefulness(self._regime_matches_by_step)
+                    self.regime_memory.retrieval_usefulness(
+                        self._regime_matches_by_step
+                    )
                     if self.regime_memory
                     else 0.0
                 )
@@ -89,7 +121,9 @@ class ReplayFinalizationMixin:
                 **(
                     {
                         "charts_dir": str(self.output_dir),
-                        "cross_asset_summary": str(self.base_output_dir / "cross_asset_failure_summary.json"),
+                        "cross_asset_summary": str(
+                            self.base_output_dir / "cross_asset_failure_summary.json"
+                        ),
                     }
                     if self.generate_visualizations
                     else {}
@@ -130,7 +164,9 @@ class ReplayFinalizationMixin:
                 self._log(f"WARNING: Optional Visualization generation failed: {e}")
 
         if self.compare_secondary and self.engine.market_name == "RELIANCE":
-            nifty_path = Path(__file__).parent.parent.parent / "data" / "nifty_daily_3y.csv"
+            nifty_path = (
+                Path(__file__).parent.parent.parent / "data" / "nifty_daily_3y.csv"
+            )
             if nifty_path.exists():
                 self._log("\nCross-asset comparison: detected NIFTY dataset.")
                 self._log("Starting NIFTY replay for cross-asset comparison...")
@@ -149,15 +185,24 @@ class ReplayFinalizationMixin:
                         from market.replay.visualization import (
                             generate_cross_asset_visualizations,
                         )
+
                         generate_cross_asset_visualizations(
                             base_output_dir=self.base_output_dir,
                             primary_analysis=self.replay_analysis_engine.analyze(),
                             secondary_analysis=comparison_executor.replay_analysis_engine.analyze(),
                         )
-                        self._log(f"  - {self.base_output_dir / 'reliance_vs_nifty_comparison.png'}")
-                        self._log(f"  - {self.base_output_dir / 'prediction_failure_heatmap.png'}")
-                        self._log(f"  - {self.base_output_dir / 'cross_asset_divergence_timeline.png'}")
-                        self._log(f"  - {self.base_output_dir / 'cross_asset_failure_summary.json'}")
+                        self._log(
+                            f"  - {self.base_output_dir / 'reliance_vs_nifty_comparison.png'}"
+                        )
+                        self._log(
+                            f"  - {self.base_output_dir / 'prediction_failure_heatmap.png'}"
+                        )
+                        self._log(
+                            f"  - {self.base_output_dir / 'cross_asset_divergence_timeline.png'}"
+                        )
+                        self._log(
+                            f"  - {self.base_output_dir / 'cross_asset_failure_summary.json'}"
+                        )
                 except Exception as e:
                     self._log(f"WARNING: Cross-asset comparison failed: {e}")
 
@@ -166,11 +211,16 @@ class ReplayFinalizationMixin:
                 # refresh outputs path in external metrics (cross-asset JSON may now exist)
                 if hasattr(self.replay_analysis_engine, "external_metrics"):
                     self.replay_analysis_engine.external_metrics["outputs"] = {
-                        "prediction_csv": str(self.base_output_dir / "prediction_analysis.csv"),
+                        "prediction_csv": str(
+                            self.base_output_dir / "prediction_analysis.csv"
+                        ),
                         **(
                             {
                                 "charts_dir": str(self.output_dir),
-                                "cross_asset_summary": str(self.base_output_dir / "cross_asset_failure_summary.json"),
+                                "cross_asset_summary": str(
+                                    self.base_output_dir
+                                    / "cross_asset_failure_summary.json"
+                                ),
                             }
                             if self.generate_visualizations
                             else {}

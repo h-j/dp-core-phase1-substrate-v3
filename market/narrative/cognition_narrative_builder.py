@@ -4,13 +4,13 @@ from datetime import datetime, UTC
 class CognitionNarrativeBuilder:
     """
     Constructs longitudinal cognition narratives.
-    
+
     Builds coherent stories about:
     - Theory evolution
     - Contradiction history
     - Confidence drift
     - Regime transitions
-    
+
     Emphasizes uncertainty and adaptive interpretation.
     """
 
@@ -22,74 +22,57 @@ class CognitionNarrativeBuilder:
         recent_confidence_states,
         recent_outcomes,
         theory_survival_analysis,
-        strategic_memory_history
+        strategic_memory_history,
     ) -> str:
         """Build longitudinal cognition narrative."""
 
         narrative_parts = []
 
         # Opening: current state
-        opening = self._construct_opening(
-            recent_confidence_states,
-            recent_theories
-        )
+        opening = self._construct_opening(recent_confidence_states, recent_theories)
         narrative_parts.append(opening)
 
         # Theory evolution chapter
         evolution_chapter = self._theory_evolution_chapter(
-            theory_survival_analysis,
-            recent_validations,
-            recent_theories
+            theory_survival_analysis, recent_validations, recent_theories
         )
         if evolution_chapter:
             narrative_parts.append(evolution_chapter)
 
         # Contradiction history chapter
         contradiction_chapter = self._contradiction_history_chapter(
-            theory_survival_analysis,
-            recent_reflections,
-            recent_outcomes
+            theory_survival_analysis, recent_reflections, recent_outcomes
         )
         if contradiction_chapter:
             narrative_parts.append(contradiction_chapter)
 
         # Confidence drift chapter
         confidence_chapter = self._confidence_drift_chapter(
-            recent_confidence_states,
-            strategic_memory_history
+            recent_confidence_states, strategic_memory_history
         )
         if confidence_chapter:
             narrative_parts.append(confidence_chapter)
 
         # Regime transition chapter
         regime_chapter = self._regime_transition_chapter(
-            theory_survival_analysis,
-            recent_outcomes
+            theory_survival_analysis, recent_outcomes
         )
         if regime_chapter:
             narrative_parts.append(regime_chapter)
 
         # Closing: interpretation and uncertainty
         closing = self._construct_closing(
-            recent_confidence_states,
-            recent_reflections,
-            theory_survival_analysis
+            recent_confidence_states, recent_reflections, theory_survival_analysis
         )
         narrative_parts.append(closing)
 
         return "\n\n".join(narrative_parts)
 
-    def _construct_opening(
-        self,
-        recent_confidence_states,
-        recent_theories
-    ) -> str:
+    def _construct_opening(self, recent_confidence_states, recent_theories) -> str:
         """Construct narrative opening."""
 
         if not recent_confidence_states or not recent_theories:
-            return (
-                "Cognition history insufficient for full narrative construction."
-            )
+            return "Cognition history insufficient for full narrative construction."
 
         latest_state = recent_confidence_states[0]
         coherence = latest_state.theoretical_coherence
@@ -116,20 +99,14 @@ class CognitionNarrativeBuilder:
         return opening
 
     def _theory_evolution_chapter(
-        self,
-        theory_survival_analysis,
-        recent_validations,
-        recent_theories
+        self, theory_survival_analysis, recent_validations, recent_theories
     ) -> str:
         """Construct theory evolution narrative chapter."""
 
         chapter = "CHAPTER 1: THEORY EVOLUTION\n"
         chapter += "-" * 60 + "\n\n"
 
-        strengthening = theory_survival_analysis.get(
-            "strengthening_theories",
-            []
-        )
+        strengthening = theory_survival_analysis.get("strengthening_theories", [])
         weakening = theory_survival_analysis.get("weakening_theories", [])
         unstable = theory_survival_analysis.get("unstable_theories", [])
 
@@ -174,20 +151,14 @@ class CognitionNarrativeBuilder:
         return chapter
 
     def _contradiction_history_chapter(
-        self,
-        theory_survival_analysis,
-        recent_reflections,
-        recent_outcomes
+        self, theory_survival_analysis, recent_reflections, recent_outcomes
     ) -> str:
         """Construct contradiction history narrative chapter."""
 
         chapter = "CHAPTER 2: CONTRADICTION ACCUMULATION\n"
         chapter += "-" * 60 + "\n\n"
 
-        recurring_failures = theory_survival_analysis.get(
-            "recurring_failures",
-            []
-        )
+        recurring_failures = theory_survival_analysis.get("recurring_failures", [])
 
         if not recurring_failures and not recent_outcomes:
             return None
@@ -211,9 +182,7 @@ class CognitionNarrativeBuilder:
                 chapter += "\nMarket-Reality Contradictions:\n"
                 for outcome in recent_outcomes[:2]:
                     if outcome.outcome_contradictions:
-                        for contradiction in (
-                            outcome.outcome_contradictions[:2]
-                        ):
+                        for contradiction in outcome.outcome_contradictions[:2]:
                             chapter += f"  • {contradiction}\n"
 
         chapter += (
@@ -226,9 +195,7 @@ class CognitionNarrativeBuilder:
         return chapter
 
     def _confidence_drift_chapter(
-        self,
-        recent_confidence_states,
-        strategic_memory_history
+        self, recent_confidence_states, strategic_memory_history
     ) -> str:
         """Construct confidence drift narrative chapter."""
 
@@ -238,15 +205,9 @@ class CognitionNarrativeBuilder:
         if len(recent_confidence_states) < 2:
             return None
 
-        empirical_values = [
-            s.empirical_confidence for s in recent_confidence_states
-        ]
-        coherence_values = [
-            s.theoretical_coherence for s in recent_confidence_states
-        ]
-        pressure_values = [
-            s.contradiction_pressure for s in recent_confidence_states
-        ]
+        empirical_values = [s.empirical_confidence for s in recent_confidence_states]
+        coherence_values = [s.theoretical_coherence for s in recent_confidence_states]
+        pressure_values = [s.contradiction_pressure for s in recent_confidence_states]
 
         empirical_trend = empirical_values[0] - empirical_values[-1]
         coherence_trend = coherence_values[0] - coherence_values[-1]
@@ -282,9 +243,7 @@ class CognitionNarrativeBuilder:
         return chapter
 
     def _regime_transition_chapter(
-        self,
-        theory_survival_analysis,
-        recent_outcomes
+        self, theory_survival_analysis, recent_outcomes
     ) -> str:
         """Construct regime transition narrative chapter."""
 
@@ -293,12 +252,7 @@ class CognitionNarrativeBuilder:
 
         weakening = theory_survival_analysis.get("weakening_theories", [])
 
-        regime_keywords = [
-            "volatility",
-            "regime",
-            "dispersion",
-            "participation"
-        ]
+        regime_keywords = ["volatility", "regime", "dispersion", "participation"]
 
         regime_signals = []
         for theory in weakening:
@@ -317,16 +271,12 @@ class CognitionNarrativeBuilder:
         if recent_outcomes:
             outcome_trends = []
             volatility_states = [
-                o.realized_volatility.lower()
-                for o in recent_outcomes[:5]
+                o.realized_volatility.lower() for o in recent_outcomes[:5]
             ]
             if volatility_states.count("elevated") >= 2:
                 outcome_trends.append("elevated volatility regime detected")
 
-            breadth_states = [
-                o.realized_breadth.lower()
-                for o in recent_outcomes[:5]
-            ]
+            breadth_states = [o.realized_breadth.lower() for o in recent_outcomes[:5]]
             if breadth_states.count("weak") >= 2:
                 outcome_trends.append("participation dispersion regime detected")
 
@@ -345,10 +295,7 @@ class CognitionNarrativeBuilder:
         return chapter
 
     def _construct_closing(
-        self,
-        recent_confidence_states,
-        recent_reflections,
-        theory_survival_analysis
+        self, recent_confidence_states, recent_reflections, theory_survival_analysis
     ) -> str:
         """Construct narrative closing with uncertainty emphasis."""
 
@@ -362,9 +309,7 @@ class CognitionNarrativeBuilder:
         )
 
         if recent_confidence_states:
-            latest_pressure = (
-                recent_confidence_states[0].contradiction_pressure
-            )
+            latest_pressure = recent_confidence_states[0].contradiction_pressure
             if latest_pressure > 0.5:
                 closing += (
                     f"Current contradiction pressure ({latest_pressure:.2f}) "

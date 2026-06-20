@@ -17,7 +17,7 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
         "regime": (
             "Stable regime with broad participation. "
             "Theories developed under similar conditions remain valid."
-        )
+        ),
     },
     {
         "posture": "cautiously_coherent",
@@ -29,7 +29,7 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
         ),
         "contradictions": [
             "Price strength vs weak breadth (2 occurrences)",
-            "Index momentum vs declining participation"
+            "Index momentum vs declining participation",
         ],
         "weakening_assumptions": [
             "Broad-based participation assumption weakening (45% failure rate)"
@@ -37,7 +37,7 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
         "regime": (
             "Transitional regime with selective strength. "
             "Index performance masking underlying dispersion."
-        )
+        ),
     },
     {
         "posture": "adaptive",
@@ -51,17 +51,17 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
         "contradictions": [
             "Liquidity concentration vs participation weakness (3 occurrences)",
             "Momentum persistence vs volatility expansion (4 occurrences)",
-            "Trend reversal zones (recurring)"
+            "Trend reversal zones (recurring)",
         ],
         "weakening_assumptions": [
             "Liquidity-led momentum (58% failure under vol spike)",
             "Trend persistence (52% failure rate)",
-            "Breadth support assumption (51% failure)"
+            "Breadth support assumption (51% failure)",
         ],
         "regime": (
             "Volatile, dispersed regime destabilizing momentum theories. "
             "Regime-sensitive confidence weighting required."
-        )
+        ),
     },
     {
         "posture": "contradicted",
@@ -76,19 +76,19 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
             "Price strength vs weak breadth (dominant pattern)",
             "Liquidity fragmentation despite index moves",
             "Volatility expansion breaking momentum assumptions",
-            "Regime shift from trend to range-bound"
+            "Regime shift from trend to range-bound",
         ],
         "weakening_assumptions": [
             "Trend continuation (72% failure rate)",
             "Liquidity support for momentum (68% failure)",
             "Broad participation (75% failure)",
-            "Volatility compression (critical failure)"
+            "Volatility compression (critical failure)",
         ],
         "regime": (
             "Major regime transition. "
             "Previous theoretical framework boundaries exceeded. "
             "New regime requires new interpretive structures."
-        )
+        ),
     },
     {
         "posture": "uncertain",
@@ -101,7 +101,7 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
         ),
         "contradictions": [
             "Regime sensitivity creating interpretation ambiguity",
-            "Theory success/failure ratio highly time-dependent"
+            "Theory success/failure ratio highly time-dependent",
         ],
         "weakening_assumptions": [
             "Regime-invariant theory assumptions (highest uncertainty)"
@@ -110,7 +110,7 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
             "Uncertain regime classification. "
             "Multiple theoretical frameworks partially applicable. "
             "Requires continuous re-evaluation."
-        )
+        ),
     },
     {
         "posture": "confident",
@@ -127,7 +127,7 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
             "Broad participation regime. "
             "All-sector market strength. "
             "Theories well-grounded in current market structure."
-        )
+        ),
     },
     {
         "posture": "adaptive",
@@ -140,17 +140,17 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
         ),
         "contradictions": [
             "Liquidity concentration in large caps (2 occurrences)",
-            "Mid-cap weakness despite index strength"
+            "Mid-cap weakness despite index strength",
         ],
         "weakening_assumptions": [
             "Index-wide liquidity assumptions (sector-specific failure)",
-            "Uniform participation assumption (40% failure rate)"
+            "Uniform participation assumption (40% failure rate)",
         ],
         "regime": (
             "Selective leadership regime. "
             "Large cap-led moves. "
             "Mid-cap theories require separate regime treatment."
-        )
+        ),
     },
     {
         "posture": "cautiously_coherent",
@@ -163,7 +163,7 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
         ),
         "contradictions": [
             "Volatility expansion (2 recent occurrences)",
-            "Divergence widening (recurring pattern)"
+            "Divergence widening (recurring pattern)",
         ],
         "weakening_assumptions": [
             "Volatility compression assumption (emerging weakness)"
@@ -172,7 +172,7 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
             "Transitional volatility regime. "
             "Calm period ending. "
             "Increased adaptability required going forward."
-        )
+        ),
     },
     {
         "posture": "contradicted",
@@ -187,18 +187,18 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
             "Momentum persistence (dominant failure)",
             "Liquidity support failed",
             "Price strength without breadth (critical zone)",
-            "Trend reversal zone active"
+            "Trend reversal zone active",
         ],
         "weakening_assumptions": [
             "All momentum-based theories (>80% failure)",
             "Liquidity support (critical failure)",
-            "Trend continuation (universal failure)"
+            "Trend continuation (universal failure)",
         ],
         "regime": (
             "Volatility shock regime. "
             "Previous frameworks invalidated. "
             "Emergency regime adaptation required."
-        )
+        ),
     },
     {
         "posture": "adaptive",
@@ -211,17 +211,17 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
         ),
         "contradictions": [
             "Price recovery vs weak breadth support",
-            "Liquidity recovery without participation recovery"
+            "Liquidity recovery without participation recovery",
         ],
         "weakening_assumptions": [
             "V-shaped recovery assumption (53% failure)",
-            "Symmetrical market structure assumption"
+            "Symmetrical market structure assumption",
         ],
         "regime": (
             "Recovery uncertainty regime. "
             "Asymmetric market healing. "
             "Divergent sector strength patterns."
-        )
+        ),
     },
     {
         "posture": "confident",
@@ -238,7 +238,7 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
             "Confirmed trend regime. "
             "Market validation across multiple theory dimensions. "
             "Framework integrity high."
-        )
+        ),
     },
     {
         "posture": "uncertain",
@@ -249,17 +249,13 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
             "Different theories succeeding in different sub-periods. "
             "Framework requirements changing rapidly."
         ),
-        "contradictions": [
-            "Temporal inconsistency in validation patterns"
-        ],
-        "weakening_assumptions": [
-            "Regime-invariant theory structure"
-        ],
+        "contradictions": ["Temporal inconsistency in validation patterns"],
+        "weakening_assumptions": ["Regime-invariant theory structure"],
         "regime": (
             "Multi-regime period. "
             "Daily/hourly switches between behavioral patterns. "
             "Highest interpretive uncertainty."
-        )
+        ),
     },
     {
         "posture": "cautiously_coherent",
@@ -272,17 +268,17 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
         ),
         "contradictions": [
             "Price strength vs weak participation (2 occurrences)",
-            "Liquidity concentration patterns"
+            "Liquidity concentration patterns",
         ],
         "weakening_assumptions": [
             "Broad market assumptions (partial failure)",
-            "Uniform sector behavior (56% failure rate)"
+            "Uniform sector behavior (56% failure rate)",
         ],
         "regime": (
             "Stressed but stable regime. "
             "Market structure testing framework boundaries. "
             "Near potential regime transition."
-        )
+        ),
     },
     {
         "posture": "adaptive",
@@ -293,17 +289,13 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
             "Pressure declining as regime adaptations applied. "
             "Regime-conditional theory success improving."
         ),
-        "contradictions": [
-            "Residual liquidity concentration (declining frequency)"
-        ],
-        "weakening_assumptions": [
-            "Regime-invariant assumptions (being phased out)"
-        ],
+        "contradictions": ["Residual liquidity concentration (declining frequency)"],
+        "weakening_assumptions": ["Regime-invariant assumptions (being phased out)"],
         "regime": (
             "Stabilizing mixed regime. "
             "Regime-conditional framework showing effectiveness. "
             "Adaptive interpretation paying dividends."
-        )
+        ),
     },
     {
         "posture": "contradicted",
@@ -319,16 +311,14 @@ EXAMPLE_STRATEGIC_OUTPUTS = [
             "Price direction unpredictable",
             "Liquidity fragmented",
             "Volatility extreme",
-            "Breadth collapsed"
+            "Breadth collapsed",
         ],
-        "weakening_assumptions": [
-            "ALL active theories showing universal failure"
-        ],
+        "weakening_assumptions": ["ALL active theories showing universal failure"],
         "regime": (
             "Shock/dislocation regime. "
             "Market structure fundamentally altered. "
             "Existing theory bases obsolete. "
             "Requires market regime re-evaluation from first principles."
-        )
-    }
+        ),
+    },
 ]

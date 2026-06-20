@@ -33,7 +33,9 @@ class HistoricalMarketDownloader:
         if csv_path:
             self.CSV_PATH = Path(csv_path)
         else:
-            self.CSV_PATH = Path(__file__).parent.parent.parent / "data" / self.DEFAULT_CSV_NAME
+            self.CSV_PATH = (
+                Path(__file__).parent.parent.parent / "data" / self.DEFAULT_CSV_NAME
+            )
 
     def download(self, start_date: str = None, end_date: str = None):
         start_date = start_date or self.DEFAULT_START_DATE
@@ -80,9 +82,7 @@ class HistoricalMarketDownloader:
                 break
 
         if date_col is None:
-            raise ValueError(
-                f"No date column found. Columns: {list(data.columns)}"
-            )
+            raise ValueError(f"No date column found. Columns: {list(data.columns)}")
 
         if date_col != "date":
             data = data.rename(columns={date_col: "date"})
@@ -99,7 +99,17 @@ class HistoricalMarketDownloader:
             if old_col in data.columns:
                 data = data.rename(columns={old_col: new_col})
 
-        required_cols = ["date", "open", "high", "low", "close", "adjusted_close", "volume", "source", "downloaded_at"]
+        required_cols = [
+            "date",
+            "open",
+            "high",
+            "low",
+            "close",
+            "adjusted_close",
+            "volume",
+            "source",
+            "downloaded_at",
+        ]
         available_cols = [col for col in required_cols if col in data.columns]
         if not available_cols:
             raise ValueError(
@@ -140,13 +150,25 @@ class HistoricalMarketDownloader:
         data["date"] = pd.to_datetime(data["date"])
         data = data.sort_values("date")
 
-        data["daily_return_pct"] = ((data["close"] - data["open"]) / data["open"] * 100).round(4)
-        data["return_3d"] = ((data["close"] - data["close"].shift(3)) / data["close"].shift(3) * 100).round(4)
-        data["return_5d"] = ((data["close"] - data["close"].shift(5)) / data["close"].shift(5) * 100).round(4)
-        data["return_10d"] = ((data["close"] - data["close"].shift(10)) / data["close"].shift(10) * 100).round(4)
+        data["daily_return_pct"] = (
+            (data["close"] - data["open"]) / data["open"] * 100
+        ).round(4)
+        data["return_3d"] = (
+            (data["close"] - data["close"].shift(3)) / data["close"].shift(3) * 100
+        ).round(4)
+        data["return_5d"] = (
+            (data["close"] - data["close"].shift(5)) / data["close"].shift(5) * 100
+        ).round(4)
+        data["return_10d"] = (
+            (data["close"] - data["close"].shift(10)) / data["close"].shift(10) * 100
+        ).round(4)
 
-        data["avg_5d_volume"] = data["volume"].rolling(window=5, min_periods=1).mean().round(0)
-        data["avg_20d_volume"] = data["volume"].rolling(window=20, min_periods=1).mean().round(0)
+        data["avg_5d_volume"] = (
+            data["volume"].rolling(window=5, min_periods=1).mean().round(0)
+        )
+        data["avg_20d_volume"] = (
+            data["volume"].rolling(window=20, min_periods=1).mean().round(0)
+        )
         data["volume_ratio_5d"] = (data["volume"] / data["avg_5d_volume"]).round(4)
         data["volume_ratio_20d"] = (data["volume"] / data["avg_20d_volume"]).round(4)
 
@@ -159,17 +181,22 @@ class HistoricalMarketDownloader:
         data["volume_state"] = np.select(conditions, choices, default="normal")
 
         data["range_points"] = (data["high"] - data["low"]).round(2)
-        data["range_pct"] = ((data["high"] - data["low"]) / data["close"] * 100).round(4)
+        data["range_pct"] = ((data["high"] - data["low"]) / data["close"] * 100).round(
+            4
+        )
 
         prior_close = data["close"].shift(1)
         data["gap_points"] = (data["open"] - prior_close).round(2)
         data["gap_pct"] = ((data["open"] - prior_close) / prior_close * 100).round(4)
 
-        tr = pd.concat([
-            data["high"] - data["low"],
-            (data["high"] - prior_close).abs(),
-            (data["low"] - prior_close).abs(),
-        ], axis=1).max(axis=1)
+        tr = pd.concat(
+            [
+                data["high"] - data["low"],
+                (data["high"] - prior_close).abs(),
+                (data["low"] - prior_close).abs(),
+            ],
+            axis=1,
+        ).max(axis=1)
         data["atr_5"] = tr.rolling(window=5).mean().round(2)
         data["atr_14"] = tr.rolling(window=14).mean().round(2)
 

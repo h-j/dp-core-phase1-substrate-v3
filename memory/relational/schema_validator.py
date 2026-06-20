@@ -22,19 +22,19 @@ class SchemaValidator:
     def validate_startup(self):
         """
         Comprehensive schema validation at startup.
-        
+
         Raises:
             RuntimeError: If any validation fails
         """
         print("\n" + "=" * 70)
         print("SCHEMA VALIDATION: Structured Theory Persistence")
         print("=" * 70)
-        
+
         try:
             # Check 1: PostgreSQL connection
             self._check_postgres_connection()
             print("=" * 70 + "\n")
-            
+
         except RuntimeError as e:
             print("\n" + "!" * 70)
             print("✗ PostgreSQL Connection FAILED")
@@ -63,7 +63,7 @@ class SchemaValidator:
         try:
             inspector = inspect(self.engine)
             tables = inspector.get_table_names()
-            
+
             if table_name not in tables:
                 raise RuntimeError(
                     f"Table '{table_name}' not found in database.\n"
@@ -76,20 +76,22 @@ class SchemaValidator:
         """Verify summary_structured column exists on theories table."""
         try:
             inspector = inspect(self.engine)
-            columns = inspector.get_columns('theories')
-            column_names = [c['name'] for c in columns]
-            
-            if 'summary_structured' not in column_names:
+            columns = inspector.get_columns("theories")
+            column_names = [c["name"] for c in columns]
+
+            if "summary_structured" not in column_names:
                 raise RuntimeError(
                     "summary_structured column not found on theories table.\n"
                     f"Available columns: {', '.join(column_names)}\n"
                     "Run: ALTER TABLE theories ADD COLUMN summary_structured TEXT;"
                 )
-            
+
             # Check column type
-            col_type = next(c['type'] for c in columns if c['name'] == 'summary_structured')
+            col_type = next(
+                c["type"] for c in columns if c["name"] == "summary_structured"
+            )
             print(f"✓ theories.summary_structured column exists (type: {col_type})")
-            
+
         except RuntimeError:
             raise
         except Exception as e:
@@ -98,20 +100,20 @@ class SchemaValidator:
     def _check_theory_structures_removed(self):
         """
         Verify theory_structures table does NOT exist (dead schema).
-        
+
         This is an anti-pattern check - warns if dead schema still exists.
         """
         try:
             inspector = inspect(self.engine)
             tables = inspector.get_table_names()
-            
-            if 'theory_structures' in tables:
+
+            if "theory_structures" in tables:
                 print("⚠ WARNING: theory_structures table still exists (deprecated)")
                 print("  This table is no longer used. Consider dropping it:")
                 print("  DROP TABLE theory_structures;")
             else:
                 print("✓ theory_structures table correctly removed (dead schema)")
-                
+
         except Exception as e:
             # Don't fail on this check - just log
             print(f"⚠ Could not check theory_structures table: {e}")

@@ -17,6 +17,8 @@ class TheoryStructured(CognitionBase):
     unless: str = ""
     falsified_if: str
     forbidden_state: str = ""
+    mechanism_components: List[dict] = []
+    falsification_conditions: List[str] = []
 
 
 class Theory(CognitionBase):

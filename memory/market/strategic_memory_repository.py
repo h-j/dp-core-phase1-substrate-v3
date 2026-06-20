@@ -1,5 +1,5 @@
 from memory.relational.repositories.strategic_memory_repository import (
-    StrategicMemoryRepository as RelationalStrategicMemoryRepository
+    StrategicMemoryRepository as RelationalStrategicMemoryRepository,
 )
 
 

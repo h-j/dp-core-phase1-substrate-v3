@@ -1,22 +1,19 @@
 class ReflectiveQueryEngine:
     """
     Reflective query layer for cognition introspection.
-    
+
     Supports queries:
     - Why is coherence weakening?
     - Which theories repeatedly failed?
     - Which contradictions recur most?
     - Which regimes destabilize confidence?
     - What assumptions weakened?
-    
+
     Uses explicit retrieval logic, no embeddings.
     """
 
     def query_coherence_decline(
-        self,
-        recent_confidence_states,
-        recent_reflections,
-        theory_survival_analysis
+        self, recent_confidence_states, recent_reflections, theory_survival_analysis
     ) -> str:
         """Query: Why is coherence weakening?"""
 
@@ -43,9 +40,7 @@ class ReflectiveQueryEngine:
         )
 
         # Factor 1: Contradiction pressure
-        recent_pressure = (
-            recent_confidence_states[0].contradiction_pressure
-        )
+        recent_pressure = recent_confidence_states[0].contradiction_pressure
         if recent_pressure > 0.5:
             response += (
                 f"  1. High contradiction pressure ({recent_pressure:.2f}) "
@@ -63,7 +58,8 @@ class ReflectiveQueryEngine:
         # Factor 3: Reflective uncertainty
         if recent_reflections:
             uncertain_reflections = [
-                r for r in recent_reflections[:3]
+                r
+                for r in recent_reflections[:3]
                 if "uncertain" in r.reflection_summary.lower()
                 or "caution" in r.reflection_summary.lower()
             ]
@@ -80,22 +76,17 @@ class ReflectiveQueryEngine:
 
         return response
 
-    def query_repeated_failures(
-        self,
-        theory_survival_analysis,
-        recent_outcomes
-    ) -> str:
+    def query_repeated_failures(self, theory_survival_analysis, recent_outcomes) -> str:
         """Query: Which theories repeatedly failed?"""
 
-        recurring_failures = theory_survival_analysis.get(
-            "recurring_failures",
-            []
-        )
+        recurring_failures = theory_survival_analysis.get("recurring_failures", [])
 
         if not recurring_failures:
             return "No recurring theory failures detected in recent history."
 
-        response = f"Detected {len(recurring_failures)} recurring failure pattern(s):\n\n"
+        response = (
+            f"Detected {len(recurring_failures)} recurring failure pattern(s):\n\n"
+        )
 
         for i, theory in enumerate(recurring_failures[:5], 1):
             thesis = theory.get("thesis", "")[:80]
@@ -116,26 +107,21 @@ class ReflectiveQueryEngine:
             "volatility" in str(t.get("thesis", "")).lower()
             for t in recurring_failures[:3]
         ):
-            response += (
-                "  • Volatility-related assumptions show consistent failure\n"
-            )
+            response += "  • Volatility-related assumptions show consistent failure\n"
 
         if all(
             "liquidity" in str(t.get("thesis", "")).lower()
             for t in recurring_failures[:3]
         ):
             response += (
-                "  • Liquidity-based theories deteriorate under "
-                "certain regimes\n"
+                "  • Liquidity-based theories deteriorate under " "certain regimes\n"
             )
 
         if all(
             "breadth" in str(t.get("thesis", "")).lower()
             for t in recurring_failures[:3]
         ):
-            response += (
-                "  • Breadth-led assumptions repeatedly break down\n"
-            )
+            response += "  • Breadth-led assumptions repeatedly break down\n"
 
         response += (
             "\nRecommendation: Investigate regime-specific "
@@ -145,9 +131,7 @@ class ReflectiveQueryEngine:
         return response
 
     def query_contradiction_frequency(
-        self,
-        contradiction_zone_map,
-        recent_reflections
+        self, contradiction_zone_map, recent_reflections
     ) -> str:
         """Query: Which contradictions recur most frequently?"""
 
@@ -162,9 +146,7 @@ class ReflectiveQueryEngine:
         response = f"Detected {len(zones)} recurring contradiction zone(s):\n\n"
 
         sorted_zones = sorted(
-            zones.items(),
-            key=lambda x: x[1]["occurrences"],
-            reverse=True
+            zones.items(), key=lambda x: x[1]["occurrences"], reverse=True
         )
 
         for zone_name, data in sorted_zones[:5]:
@@ -195,10 +177,7 @@ class ReflectiveQueryEngine:
         return response
 
     def query_regime_sensitivity(
-        self,
-        theory_survival_analysis,
-        recent_confidence_states,
-        recent_outcomes
+        self, theory_survival_analysis, recent_confidence_states, recent_outcomes
     ) -> str:
         """Query: Which regimes destabilize confidence?"""
 
@@ -209,7 +188,8 @@ class ReflectiveQueryEngine:
         weakening = theory_survival_analysis.get("weakening_theories", [])
 
         regime_weak_theories = [
-            t for t in weakening
+            t
+            for t in weakening
             if any(
                 keyword in str(t.get("thesis", "")).lower()
                 for keyword in ["volatility", "regime", "dispersion"]
@@ -220,14 +200,14 @@ class ReflectiveQueryEngine:
 
         # Regime 1: Volatility
         vol_outcomes = [
-            o for o in recent_outcomes
+            o
+            for o in recent_outcomes
             if "expand" in o.realized_volatility.lower()
             or "elevated" in o.realized_volatility.lower()
         ]
         if len(vol_outcomes) >= 2:
             vol_coherence = [
-                s.theoretical_coherence
-                for s in recent_confidence_states[:3]
+                s.theoretical_coherence for s in recent_confidence_states[:3]
             ]
             response += (
                 f"VOLATILITY REGIME: Elevated volatility detected in "
@@ -239,7 +219,8 @@ class ReflectiveQueryEngine:
 
         # Regime 2: Dispersion
         disp_outcomes = [
-            o for o in recent_outcomes
+            o
+            for o in recent_outcomes
             if "weak" in o.realized_breadth.lower()
             or "narrow" in o.realized_breadth.lower()
         ]
@@ -253,7 +234,8 @@ class ReflectiveQueryEngine:
 
         # Regime 3: Liquidity stress
         liq_outcomes = [
-            o for o in recent_outcomes
+            o
+            for o in recent_outcomes
             if "fragmented" in o.realized_liquidity.lower()
             or "uneven" in o.realized_liquidity.lower()
         ]
@@ -279,16 +261,11 @@ class ReflectiveQueryEngine:
         return response
 
     def query_weakening_assumptions(
-        self,
-        theory_survival_analysis,
-        recent_validations
+        self, theory_survival_analysis, recent_validations
     ) -> str:
         """Query: What assumptions weakened recently?"""
 
-        weakening_theories = theory_survival_analysis.get(
-            "weakening_theories",
-            []
-        )
+        weakening_theories = theory_survival_analysis.get("weakening_theories", [])
 
         if not weakening_theories:
             return (
@@ -329,10 +306,7 @@ class ReflectiveQueryEngine:
 
         return response
 
-    def query_confidence_trajectory(
-        self,
-        recent_confidence_states
-    ) -> str:
+    def query_confidence_trajectory(self, recent_confidence_states) -> str:
         """Query: How is confidence evolving?"""
 
         if len(recent_confidence_states) < 2:
@@ -343,15 +317,9 @@ class ReflectiveQueryEngine:
         # Extract time series
         empirical = [s.empirical_confidence for s in recent_confidence_states]
         regime = [s.regime_confidence for s in recent_confidence_states]
-        reflection = [
-            s.reflection_confidence for s in recent_confidence_states
-        ]
-        coherence = [
-            s.theoretical_coherence for s in recent_confidence_states
-        ]
-        pressure = [
-            s.contradiction_pressure for s in recent_confidence_states
-        ]
+        reflection = [s.reflection_confidence for s in recent_confidence_states]
+        coherence = [s.theoretical_coherence for s in recent_confidence_states]
+        pressure = [s.contradiction_pressure for s in recent_confidence_states]
 
         # Analyze trends
         def trend_description(values):

@@ -28,7 +28,11 @@ class PredictionProbe:
             "confidence": round(self.confidence, 3),
             "tension": self.tension,
             "invalidation": self.invalidation,
-            "transition_examples": [ex.date for ex in self.transition_examples] if self.transition_examples else []
+            "transition_examples": (
+                [ex.date for ex in self.transition_examples]
+                if self.transition_examples
+                else []
+            ),
         }
 
 
@@ -76,7 +80,7 @@ class PredictionProbeGenerator:
         close_position_pct: float = 0.5,
         participation_confirmation: str = "normal",
         theory_usefulness: dict = None,
-        intelligence_data: dict = None
+        intelligence_data: dict = None,
     ) -> PredictionProbe:
         direction = self._infer_direction(
             observation,
@@ -87,7 +91,7 @@ class PredictionProbeGenerator:
             return_5d=return_5d,
             close_position_pct=close_position_pct,
             participation_confirmation=participation_confirmation,
-            intelligence_data=intelligence_data
+            intelligence_data=intelligence_data,
         )
         confidence = self._infer_confidence(
             direction,
@@ -105,7 +109,7 @@ class PredictionProbeGenerator:
             close_position_pct,
             participation_confirmation,
             theory_usefulness=theory_usefulness,
-            intelligence_data=intelligence_data
+            intelligence_data=intelligence_data,
         )
         tension = self._compose_tension(theory, reflection, contradictions, horizons)
         invalidation = self._compose_invalidation(theory, reflection, contradictions)
@@ -114,14 +118,16 @@ class PredictionProbeGenerator:
             confidence=confidence,
             tension=tension,
             invalidation=invalidation,
-            transition_examples=transition_examples or []
+            transition_examples=transition_examples or [],
         )
 
     def score_actual(
         self, prior_prediction: PredictionProbe, actual_observation: object
     ) -> PredictionEvaluation:
         actual_direction = self._actual_direction(actual_observation)
-        direction_score = self._score_direction(prior_prediction.direction, actual_direction)
+        direction_score = self._score_direction(
+            prior_prediction.direction, actual_direction
+        )
         invalidation_triggered = bool(
             prior_prediction.invalidation
             and actual_direction != prior_prediction.direction
@@ -146,7 +152,7 @@ class PredictionProbeGenerator:
         return_5d: float = 0.0,
         close_position_pct: float = 0.5,
         participation_confirmation: str = "normal",
-        intelligence_data: dict = None
+        intelligence_data: dict = None,
     ) -> PredictionDirection:
         trend = getattr(observation, "trend_state", "").lower()
         breadth = getattr(observation, "breadth_state", "").lower()
@@ -155,12 +161,18 @@ class PredictionProbeGenerator:
         reflection_text = getattr(reflection, "reflection_summary", "").lower()
         candle_type = getattr(observation, "candle_type", "").lower()
         gap_pct = getattr(observation, "gap_pct", 0.0)
-        descriptors = [str(item).lower() for item in getattr(observation, "descriptors", []) or []]
+        descriptors = [
+            str(item).lower() for item in getattr(observation, "descriptors", []) or []
+        ]
 
         # v3.5 Trend Persistence Influence
-        p_intel = intelligence_data.get("directional_persistence", {}) if intelligence_data else {}
+        p_intel = (
+            intelligence_data.get("directional_persistence", {})
+            if intelligence_data
+            else {}
+        )
         p_regime = p_intel.get("regime", "Mixed")
-        
+
         if p_regime == "Persistent Higher" and "lower" not in trend:
             return PredictionDirection.higher
         if p_regime == "Persistent Lower" and "higher" not in trend:
@@ -178,21 +190,30 @@ class PredictionProbeGenerator:
         strong_down = (
             return_3d < -0.3
             and return_5d < -0.5
-            and (
-                volume_ratio_5d > 1.0
-                or gap_pct < -0.35
-            )
+            and (volume_ratio_5d > 1.0 or gap_pct < -0.35)
         )
         close_high = close_position_pct >= 0.80 or candle_type == "strong_bull"
         close_low = close_position_pct <= 0.20 or candle_type == "strong_bear"
 
-        if "uncertain" in sentiment or "uncertain" in reflection_text or "fragile" in reflection_text:
+        if (
+            "uncertain" in sentiment
+            or "uncertain" in reflection_text
+            or "fragile" in reflection_text
+        ):
             # NEW: Break Uncertainty Deadlock
             # If we have strong regime history for this subtype, force a probe based on the dominant resolution
-            dominant_res = intelligence_data.get("regime_history", {}).get("historical_resolution", {}) if intelligence_data else {}
+            dominant_res = (
+                intelligence_data.get("regime_history", {}).get(
+                    "historical_resolution", {}
+                )
+                if intelligence_data
+                else {}
+            )
             if dominant_res:
                 top_res = max(dominant_res, key=dominant_res.get)
-                if dominant_res.get(top_res, 0) > 3: # Quorum check (found dominant res > 3 times)
+                if (
+                    dominant_res.get(top_res, 0) > 3
+                ):  # Quorum check (found dominant res > 3 times)
                     return PredictionDirection(top_res)
             return PredictionDirection.uncertain
 
@@ -210,7 +231,10 @@ class PredictionProbeGenerator:
         ):
             return PredictionDirection.lower
 
-        if any(word in trend for word in ["higher", "up", "extended_higher", "recovered_intraday"]):
+        if any(
+            word in trend
+            for word in ["higher", "up", "extended_higher", "recovered_intraday"]
+        ):
             if "weak" in breadth or "deteriorat" in breadth or "risk_off" in sentiment:
                 if not (
                     strong_up
@@ -233,12 +257,16 @@ class PredictionProbeGenerator:
             ):
                 return PredictionDirection.higher
             if strong_down and (
-                close_low
-                or volume_ratio_5d > 1.15
-                or candle_type == "strong_bear"
+                close_low or volume_ratio_5d > 1.15 or candle_type == "strong_bear"
             ):
                 return PredictionDirection.lower
-            if abs(return_3d) < 0.25 and abs(return_5d) < 0.35 and volume_ratio_5d <= 1.05 and not close_high and not close_low:
+            if (
+                abs(return_3d) < 0.25
+                and abs(return_5d) < 0.35
+                and volume_ratio_5d <= 1.05
+                and not close_high
+                and not close_low
+            ):
                 return PredictionDirection.range_bound
             if "uncertain" in sentiment or "uncertain" in reflection_text:
                 return PredictionDirection.uncertain
@@ -274,7 +302,7 @@ class PredictionProbeGenerator:
         close_position_pct: float = 0.5,
         participation_confirmation: str = "normal",
         theory_usefulness: dict = None,
-        intelligence_data: dict = None
+        intelligence_data: dict = None,
     ) -> float:
         # v2.4 CALIBRATION: align confidence to stronger signal clusters
         if direction == PredictionDirection.uncertain:
@@ -302,42 +330,72 @@ class PredictionProbeGenerator:
         if close_position_pct >= 0.80 or close_position_pct <= 0.20:
             base += 0.05
 
-        if (direction == PredictionDirection.higher and momentum_regime == "strengthening") or (
+        if (
+            direction == PredictionDirection.higher
+            and momentum_regime == "strengthening"
+        ) or (
             direction == PredictionDirection.lower and momentum_regime == "weakening"
         ):
             base += 0.05
 
-        if volume_state == "normal" and momentum_regime == "flat" and volatility_regime == "normal":
+        if (
+            volume_state == "normal"
+            and momentum_regime == "flat"
+            and volatility_regime == "normal"
+        ):
             base -= 0.06
 
         matches = list(regime_matches) if regime_matches else []
-        if matches and any(getattr(m, 'similarity', 0) > 0.9 for m in matches):
+        if matches and any(getattr(m, "similarity", 0) > 0.9 for m in matches):
             base += 0.08
 
         # Persistence Alignment Bonus
-        p_intel = intelligence_data.get("directional_persistence", {}) if intelligence_data else {}
+        p_intel = (
+            intelligence_data.get("directional_persistence", {})
+            if intelligence_data
+            else {}
+        )
         p_regime = p_intel.get("regime", "Mixed")
-        if (direction == PredictionDirection.higher and p_regime == "Persistent Higher") or \
-           (direction == PredictionDirection.lower and p_regime == "Persistent Lower"):
+        if (
+            direction == PredictionDirection.higher and p_regime == "Persistent Higher"
+        ) or (
+            direction == PredictionDirection.lower and p_regime == "Persistent Lower"
+        ):
             base += 0.07
         elif p_regime != "Mixed" and direction == PredictionDirection.range_bound:
-            base -= 0.10 # Penalty for blindness
+            base -= 0.10  # Penalty for blindness
 
-        text = (getattr(theory, "summary", "") + " " + getattr(reflection, "reflection_summary", "")).lower()
+        text = (
+            getattr(theory, "summary", "")
+            + " "
+            + getattr(reflection, "reflection_summary", "")
+        ).lower()
         if "uncertain" in text or "fragile" in text or "caution" in text:
             base -= 0.08
-        if "weak" in text and direction in {PredictionDirection.higher, PredictionDirection.lower}:
+        if "weak" in text and direction in {
+            PredictionDirection.higher,
+            PredictionDirection.lower,
+        }:
             base -= 0.04
-        if "strength" in text and direction in {PredictionDirection.higher, PredictionDirection.lower}:
+        if "strength" in text and direction in {
+            PredictionDirection.higher,
+            PredictionDirection.lower,
+        }:
             base += 0.03
 
         if transition_examples and len(transition_examples) > 0:
             base += 0.04
 
-        if "bullish_confirmed" in participation_confirmation or "bearish_confirmed" in participation_confirmation:
+        if (
+            "bullish_confirmed" in participation_confirmation
+            or "bearish_confirmed" in participation_confirmation
+        ):
             base += 0.04
 
-        if contra_score > 0.55 and direction in {PredictionDirection.higher, PredictionDirection.lower}:
+        if contra_score > 0.55 and direction in {
+            PredictionDirection.higher,
+            PredictionDirection.lower,
+        }:
             base -= 0.05
 
         # v2.6 Calibration Logic
@@ -349,12 +407,16 @@ class PredictionProbeGenerator:
         elif raw_confidence <= 0.25:
             base *= 1.05
 
-        usefulness_score = theory_usefulness.get("score", 0.0) if theory_usefulness else 0.0
+        usefulness_score = (
+            theory_usefulness.get("score", 0.0) if theory_usefulness else 0.0
+        )
         if direction != PredictionDirection.uncertain and usefulness_score < 0.15:
             base = min(base, 0.55)
 
-        if self.debug: # Only show when trace/debug is enabled
-            print(f"[Probe v2.6] Raw: {raw_confidence:.3f} | Calibrated: {base:.3f} | Usefulness: {usefulness_score:.3f}")
+        if self.debug:  # Only show when trace/debug is enabled
+            print(
+                f"[Probe v2.6] Raw: {raw_confidence:.3f} | Calibrated: {base:.3f} | Usefulness: {usefulness_score:.3f}"
+            )
 
         return float(max(0.05, min(0.95, round(base, 3))))
 
@@ -365,7 +427,11 @@ class PredictionProbeGenerator:
         contradictions: dict,
         horizons: object,
     ) -> str:
-        text = (getattr(theory, "summary", "") + " " + getattr(reflection, "reflection_summary", "")).lower()
+        text = (
+            getattr(theory, "summary", "")
+            + " "
+            + getattr(reflection, "reflection_summary", "")
+        ).lower()
         if "breadth" in text and "strength" in text:
             return "strength vs weakening breadth"
         if "volatility" in text and "expans" in text:
@@ -381,7 +447,9 @@ class PredictionProbeGenerator:
             )
         return "observation coherence vs residual uncertainty"
 
-    def _compose_invalidation(self, theory: object, reflection: object, contradictions: dict) -> str:
+    def _compose_invalidation(
+        self, theory: object, reflection: object, contradictions: dict
+    ) -> str:
         reflection_text = getattr(reflection, "reflection_summary", "").lower()
         if contradictions.get("contradictions"):
             return str(contradictions.get("contradictions", [""])[0])
@@ -397,7 +465,10 @@ class PredictionProbeGenerator:
         trend = getattr(observation, "trend_state", "").lower()
         if "range_bound" in trend:
             return PredictionDirection.range_bound
-        if any(word in trend for word in ["higher", "up", "extended_higher", "recovered_intraday"]):
+        if any(
+            word in trend
+            for word in ["higher", "up", "extended_higher", "recovered_intraday"]
+        ):
             return PredictionDirection.higher
         if any(word in trend for word in ["lower", "down", "closed_lower"]):
             return PredictionDirection.lower

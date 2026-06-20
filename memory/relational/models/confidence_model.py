@@ -10,10 +10,7 @@ class ConfidenceModel(Base):
 
     id = Column(String, primary_key=True)
 
-    created_at = Column(
-        DateTime(timezone=True),
-        server_default=func.now()
-    )
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     empirical_confidence = Column(Float)
 

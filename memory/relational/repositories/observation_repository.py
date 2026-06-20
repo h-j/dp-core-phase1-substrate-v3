@@ -12,13 +12,10 @@ class ObservationRepository:
                 created_at=observation.created_at,
                 source_type=observation.source_type,
                 raw_content=observation.raw_content,
-                source_reliability=observation.source_reliability
+                source_reliability=observation.source_reliability,
             )
 
             session.merge(model)
             session.commit()
 
-        return {
-            "status": "stored",
-            "observation_id": observation.id
-        }
+        return {"status": "stored", "observation_id": observation.id}

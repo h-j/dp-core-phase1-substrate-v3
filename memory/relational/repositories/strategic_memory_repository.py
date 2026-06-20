@@ -1,9 +1,7 @@
 import json
 
 from market.schemas.strategic_memory_state import StrategicMemoryState
-from memory.relational.models.strategic_memory_model import (
-    StrategicMemoryModel
-)
+from memory.relational.models.strategic_memory_model import StrategicMemoryModel
 from memory.relational.postgres_client import SessionLocal
 
 
@@ -13,18 +11,10 @@ class StrategicMemoryRepository:
     def save(self, strategic_memory: StrategicMemoryState):
         """Save a strategic memory snapshot to PostgreSQL."""
 
-        contradictions_json = json.dumps(
-            strategic_memory.major_contradictions
-        )
-        assumptions_json = json.dumps(
-            strategic_memory.weakening_assumptions
-        )
-        patterns_json = json.dumps(
-            strategic_memory.strengthening_patterns
-        )
-        frequency_json = json.dumps(
-            strategic_memory.contradiction_frequency
-        )
+        contradictions_json = json.dumps(strategic_memory.major_contradictions)
+        assumptions_json = json.dumps(strategic_memory.weakening_assumptions)
+        patterns_json = json.dumps(strategic_memory.strengthening_patterns)
+        frequency_json = json.dumps(strategic_memory.contradiction_frequency)
 
         with SessionLocal() as session:
             model = StrategicMemoryModel(
@@ -38,16 +28,13 @@ class StrategicMemoryRepository:
                 regime_interpretation=strategic_memory.regime_interpretation,
                 uncertainty_summary=strategic_memory.uncertainty_summary,
                 coherence_trajectory=strategic_memory.coherence_trajectory,
-                contradiction_frequency=frequency_json
+                contradiction_frequency=frequency_json,
             )
 
             session.merge(model)
             session.commit()
 
-        return {
-            "status": "stored",
-            "strategic_memory_id": strategic_memory.id
-        }
+        return {"status": "stored", "strategic_memory_id": strategic_memory.id}
 
     def list_recent(self, limit: int = 20):
         """Retrieve recent strategic memory snapshots."""
@@ -62,18 +49,10 @@ class StrategicMemoryRepository:
 
             memories = []
             for model in models:
-                contradictions = json.loads(
-                    model.major_contradictions or "[]"
-                )
-                assumptions = json.loads(
-                    model.weakening_assumptions or "[]"
-                )
-                patterns = json.loads(
-                    model.strengthening_patterns or "[]"
-                )
-                frequency = json.loads(
-                    model.contradiction_frequency or "{}"
-                )
+                contradictions = json.loads(model.major_contradictions or "[]")
+                assumptions = json.loads(model.weakening_assumptions or "[]")
+                patterns = json.loads(model.strengthening_patterns or "[]")
+                frequency = json.loads(model.contradiction_frequency or "{}")
 
                 memory = StrategicMemoryState(
                     id=model.id,
@@ -86,7 +65,7 @@ class StrategicMemoryRepository:
                     regime_interpretation=model.regime_interpretation,
                     uncertainty_summary=model.uncertainty_summary,
                     coherence_trajectory=model.coherence_trajectory,
-                    contradiction_frequency=frequency
+                    contradiction_frequency=frequency,
                 )
                 memories.append(memory)
 

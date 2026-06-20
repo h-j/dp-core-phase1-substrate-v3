@@ -30,7 +30,7 @@ class ReplayAnalysisMetricsMixin:
             "transition_memory_analysis": self._analyze_transition_memory(),
             "prediction_history": self.prediction_history,
             "transition_pressure_history": self.transition_pressure_history,
-            "lesson_analysis": self._analyze_lessons(), # New: Lesson analysis
+            "lesson_analysis": self._analyze_lessons(),  # New: Lesson analysis
             "config": self.config_snapshot,
             "risks": self._detect_cognition_risks(),
         }
@@ -38,7 +38,7 @@ class ReplayAnalysisMetricsMixin:
         return analysis
 
     def _analyze_lessons(self) -> Dict:
-        """Extracts lesson stats from external metrics.""" #
+        """Extracts lesson stats from external metrics."""  #
         return getattr(self, "external_metrics", {}).get("lesson_stats", {})
 
     def _analyze_confidence(self) -> Dict:
@@ -90,11 +90,7 @@ class ReplayAnalysisMetricsMixin:
             "contradiction_pressure": {
                 "initial": contradiction_pressure[0] if contradiction_pressure else 0,
                 "final": contradiction_pressure[-1] if contradiction_pressure else 0,
-                "mean": (
-                    mean(contradiction_pressure)
-                    if contradiction_pressure
-                    else 0
-                ),
+                "mean": (mean(contradiction_pressure) if contradiction_pressure else 0),
                 "increasing": contradiction_pressure[-1] > contradiction_pressure[0],
             },
         }
@@ -234,7 +230,7 @@ class ReplayAnalysisMetricsMixin:
         if not self.transition_pressure_history:
             return {
                 "status": "no_data",
-                "message": "No transition pressure data recorded"
+                "message": "No transition pressure data recorded",
             }
 
         tp_data = self.transition_pressure_history
@@ -242,7 +238,7 @@ class ReplayAnalysisMetricsMixin:
         # Basic metrics
         pressure_scores = [d["pressure_score"] for d in tp_data]
         stability_scores = [d["stability_score"] for d in tp_data]
-        
+
         # TUNED METRICS: New breakpoints for calibration audit
         high_pressure_gt_0_5 = [d for d in tp_data if d["pressure_score"] > 0.5]
         high_pressure_gt_0_7 = [d for d in tp_data if d["pressure_score"] > 0.7]
@@ -255,8 +251,11 @@ class ReplayAnalysisMetricsMixin:
         accuracy_when_pressure_gt_0_5 = 0.0
         if high_pressure_gt_0_5:
             correct = sum(
-                1 for d in high_pressure_gt_0_5
-                if "prior_prediction_result" in d and d.get("prior_prediction_result", {}).get("direction_score", 0) >= 0.5
+                1
+                for d in high_pressure_gt_0_5
+                if "prior_prediction_result" in d
+                and d.get("prior_prediction_result", {}).get("direction_score", 0)
+                >= 0.5
             )
             accuracy_when_pressure_gt_0_5 = correct / len(high_pressure_gt_0_5)
 
@@ -264,8 +263,11 @@ class ReplayAnalysisMetricsMixin:
         accuracy_when_pressure_gt_0_7 = 0.0
         if high_pressure_gt_0_7:
             correct = sum(
-                1 for d in high_pressure_gt_0_7
-                if "prior_prediction_result" in d and d.get("prior_prediction_result", {}).get("direction_score", 0) >= 0.5
+                1
+                for d in high_pressure_gt_0_7
+                if "prior_prediction_result" in d
+                and d.get("prior_prediction_result", {}).get("direction_score", 0)
+                >= 0.5
             )
             accuracy_when_pressure_gt_0_7 = correct / len(high_pressure_gt_0_7)
 
@@ -273,71 +275,88 @@ class ReplayAnalysisMetricsMixin:
         accuracy_when_high_pressure = 0.0
         if high_pressure_days:
             correct_high_pressure = sum(
-                1 for d in high_pressure_days
-                if "prior_prediction_result" in d and d.get("prior_prediction_result", {}).get("direction_score", 0) >= 0.5
+                1
+                for d in high_pressure_days
+                if "prior_prediction_result" in d
+                and d.get("prior_prediction_result", {}).get("direction_score", 0)
+                >= 0.5
             )
-            accuracy_when_high_pressure = correct_high_pressure / len(high_pressure_days)
+            accuracy_when_high_pressure = correct_high_pressure / len(
+                high_pressure_days
+            )
 
         # Accuracy when breakout_risk=True
         breakout_risk_days = [d for d in tp_data if d["breakout_risk"]]
         accuracy_when_breakout_risk = 0.0
         if breakout_risk_days:
             correct_breakout = sum(
-                1 for d in breakout_risk_days
-                if "prior_prediction_result" in d and d.get("prior_prediction_result", {}).get("direction_score", 0) >= 0.5
+                1
+                for d in breakout_risk_days
+                if "prior_prediction_result" in d
+                and d.get("prior_prediction_result", {}).get("direction_score", 0)
+                >= 0.5
             )
             accuracy_when_breakout_risk = correct_breakout / len(breakout_risk_days)
 
         # Transition capture rate: pressure > 0.5 AND directional move
         transition_attempts = sum(
-            1 for d in tp_data
-            if d["direction_bias"] in ["higher", "lower"]
+            1 for d in tp_data if d["direction_bias"] in ["higher", "lower"]
         )
         transition_hits = sum(
-            1 for d in tp_data
+            1
+            for d in tp_data
             if d["direction_bias"] in ["higher", "lower"]
             and d.get("prediction_direction") in ["higher", "lower"]
         )
-        transition_hit_rate = transition_hits / transition_attempts if transition_attempts > 0 else 0.0
+        transition_hit_rate = (
+            transition_hits / transition_attempts if transition_attempts > 0 else 0.0
+        )
 
         # TUNED: High-pressure transition capture (when pressure > 0.5 + directional bias)
         high_pressure_directional = sum(
-            1 for d in high_pressure_gt_0_5
+            1
+            for d in high_pressure_gt_0_5
             if d["direction_bias"] in ["higher", "lower"]
         )
         high_pressure_transitions_captured = sum(
-            1 for d in high_pressure_gt_0_5
+            1
+            for d in high_pressure_gt_0_5
             if d["direction_bias"] in ["higher", "lower"]
             and d.get("prediction_direction") in ["higher", "lower"]
         )
         transition_capture_under_high_pressure = (
             high_pressure_transitions_captured / high_pressure_directional
-            if high_pressure_directional > 0 else 0.0
+            if high_pressure_directional > 0
+            else 0.0
         )
 
         # False positives: high pressure but direction missed
         false_positives = sum(
-            1 for d in high_pressure_gt_0_5
+            1
+            for d in high_pressure_gt_0_5
             if d.get("prediction_direction") == "uncertain"
         )
 
         # False negatives: low pressure but missed actual move (proxy: low stability + move happened)
         false_negatives = sum(
-            1 for d in tp_data
+            1
+            for d in tp_data
             if d["stability_score"] < 0.4
             and d.get("prediction_direction") in ["higher", "lower"]
         )
 
         # TUNED: Missed transitions analysis with pressure context
         missed_high_pressure = [
-            d for d in tp_data
+            d
+            for d in tp_data
             if d["pressure_score"] > 0.5
             and d["direction_bias"] in ["higher", "lower"]
             and d.get("prediction_direction") == "uncertain"
         ]
         missed_high_pressure_avg_score = (
             mean([d["pressure_score"] for d in missed_high_pressure])
-            if missed_high_pressure else 0.0
+            if missed_high_pressure
+            else 0.0
         )
 
         # Direction bias distribution
@@ -362,22 +381,32 @@ class ReplayAnalysisMetricsMixin:
                 "gt_0_6": len(high_pressure_days),
                 "gt_0_7": len(high_pressure_gt_0_7),
             },
-            "high_pressure_rate_0_5": len(high_pressure_gt_0_5) / len(tp_data) if tp_data else 0.0,
-            "high_pressure_rate_0_7": len(high_pressure_gt_0_7) / len(tp_data) if tp_data else 0.0,
+            "high_pressure_rate_0_5": (
+                len(high_pressure_gt_0_5) / len(tp_data) if tp_data else 0.0
+            ),
+            "high_pressure_rate_0_7": (
+                len(high_pressure_gt_0_7) / len(tp_data) if tp_data else 0.0
+            ),
             "accuracy_when_pressure_gt_0_5": round(accuracy_when_pressure_gt_0_5, 3),
             "accuracy_when_pressure_gt_0_6": round(accuracy_when_high_pressure, 3),
             "accuracy_when_pressure_gt_0_7": round(accuracy_when_pressure_gt_0_7, 3),
             "breakout_risk_count": breakout_risk_count,
-            "breakout_risk_rate": breakout_risk_count / len(tp_data) if tp_data else 0.0,
+            "breakout_risk_rate": (
+                breakout_risk_count / len(tp_data) if tp_data else 0.0
+            ),
             "accuracy_when_breakout_risk": round(accuracy_when_breakout_risk, 3),
             "transition_hit_rate": round(transition_hit_rate, 3),
-            "transition_capture_under_high_pressure": round(transition_capture_under_high_pressure, 3),
+            "transition_capture_under_high_pressure": round(
+                transition_capture_under_high_pressure, 3
+            ),
             "false_positives": false_positives,
             "false_negatives": false_negatives,
             "missed_high_pressure_count": len(missed_high_pressure),
             "missed_high_pressure_avg_score": round(missed_high_pressure_avg_score, 3),
             "direction_bias_distribution": direction_counts,
-            "top_drivers": sorted(driver_frequency.items(), key=lambda x: x[1], reverse=True)[:10],
+            "top_drivers": sorted(
+                driver_frequency.items(), key=lambda x: x[1], reverse=True
+            )[:10],
         }
 
     def _analyze_predictions(self) -> Dict:
@@ -391,20 +420,32 @@ class ReplayAnalysisMetricsMixin:
         #   - "prior_prediction_result": The evaluation of the prediction made ON day_i-1 for day_i
         # To correctly analyze, we need to pair prediction_history[i-1]["prediction"] with
         # prediction_history[i]["prior_prediction_result"].
-        
+
         aligned_predictions = []
         for i in range(1, len(self.prediction_history)):
             current_day_record = self.prediction_history[i]
-            previous_day_prediction_record = self.prediction_history[i-1]
-            
-            if current_day_record.get("prior_prediction_result") and previous_day_prediction_record.get("prediction"):
-                aligned_predictions.append({
-                    "date": current_day_record["date"],
-                    "predicted_direction": previous_day_prediction_record["prediction"].get("direction"),
-                    "actual_direction": current_day_record["prior_prediction_result"].get("actual_direction"),
-                    "direction_score": current_day_record["prior_prediction_result"].get("direction_score"),
-                    "intelligence": previous_day_prediction_record.get("intelligence", {}) # Metadata for the theory that made the prediction
-                })
+            previous_day_prediction_record = self.prediction_history[i - 1]
+
+            if current_day_record.get(
+                "prior_prediction_result"
+            ) and previous_day_prediction_record.get("prediction"):
+                aligned_predictions.append(
+                    {
+                        "date": current_day_record["date"],
+                        "predicted_direction": previous_day_prediction_record[
+                            "prediction"
+                        ].get("direction"),
+                        "actual_direction": current_day_record[
+                            "prior_prediction_result"
+                        ].get("actual_direction"),
+                        "direction_score": current_day_record[
+                            "prior_prediction_result"
+                        ].get("direction_score"),
+                        "intelligence": previous_day_prediction_record.get(
+                            "intelligence", {}
+                        ),  # Metadata for the theory that made the prediction
+                    }
+                )
 
         total = len(self.prediction_history)
         # scored rows have a prior_prediction_result with a direction_score
@@ -424,14 +465,22 @@ class ReplayAnalysisMetricsMixin:
         scored_count_aligned = len(aligned_predictions)
         scored_count = len(scored)
         correct = sum(1 for r in scored if is_correct(r))
-        correct_aligned = sum(1 for r in aligned_predictions if r["direction_score"] == 1.0)
+        correct_aligned = sum(
+            1 for r in aligned_predictions if r["direction_score"] == 1.0
+        )
         partial = sum(1 for r in scored if is_partial(r))
         mean_conf = (
-            mean([r["prediction"].get("confidence", 0) for r in self.prediction_history if r.get("prediction")])
-            if self.prediction_history else 0.0
+            mean(
+                [
+                    r["prediction"].get("confidence", 0)
+                    for r in self.prediction_history
+                    if r.get("prediction")
+                ]
+            )
+            if self.prediction_history
+            else 0.0
         )
-        
-        
+
         # Task 2.1: Median Confidence
         conf_list = [r["prediction"].get("confidence", 0) for r in scored]
         median_conf = median(conf_list) if conf_list else 0.0
@@ -439,19 +488,35 @@ class ReplayAnalysisMetricsMixin:
         # By direction
         directions = ["higher", "lower", "range_bound"]
         accuracy_by_direction = {}
-        for d in directions: # This still uses `scored` which is misaligned for `prediction.direction`
+        for (
+            d
+        ) in (
+            directions
+        ):  # This still uses `scored` which is misaligned for `prediction.direction`
             rows = [r for r in scored if r.get("prediction", {}).get("direction") == d]
             cnt = len(rows)
             acc = sum(1 for r in rows if is_correct(r)) / cnt if cnt else 0.0
-            
+
             # Task 2.2: Extended direction metrics
-            partial_acc = (sum(1 for r in rows if is_correct(r)) + sum(1 for r in rows if is_partial(r))) / cnt if cnt else 0.0
-            avg_conf_dir = statistics.mean([r["prediction"].get("confidence", 0) for r in rows]) if cnt else 0.0
+            partial_acc = (
+                (
+                    sum(1 for r in rows if is_correct(r))
+                    + sum(1 for r in rows if is_partial(r))
+                )
+                / cnt
+                if cnt
+                else 0.0
+            )
+            avg_conf_dir = (
+                statistics.mean([r["prediction"].get("confidence", 0) for r in rows])
+                if cnt
+                else 0.0
+            )
             accuracy_by_direction[d] = {
-                "count": cnt, 
-                "accuracy": acc, 
-                "partial_accuracy": partial_acc, 
-                "avg_confidence": avg_conf_dir
+                "count": cnt,
+                "accuracy": acc,
+                "partial_accuracy": partial_acc,
+                "avg_confidence": avg_conf_dir,
             }
 
         # Contradiction buckets
@@ -461,8 +526,12 @@ class ReplayAnalysisMetricsMixin:
         # This metric should probably be moved to `_analyze_prediction_intelligence`
         # and use the `aligned_predictions` with `r["intelligence"].get("contradiction_count")`
         # For now, leaving as is, but noting it's potentially inconsistent.
-        buckets = {"low": [], "medium": [], "high": []} # This is for `_analyze_predictions`
-        for r in scored: # `scored` is still the original list
+        buckets = {
+            "low": [],
+            "medium": [],
+            "high": [],
+        }  # This is for `_analyze_predictions`
+        for r in scored:  # `scored` is still the original list
             # This `contradiction_score` is from the current day's record, not the prediction being evaluated.
             b = bucket(r.get("contradiction_score", 0.0))
             buckets[b].append(r)
@@ -474,66 +543,116 @@ class ReplayAnalysisMetricsMixin:
             accuracy_by_contradiction[bname] = {"count": cnt, "accuracy": acc}
 
         # v1.5 Confidence Calibration Buckets (0.0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, 0.8-1.0)
-        cal_buckets = {"0.0-0.2": [], "0.2-0.4": [], "0.4-0.6": [], "0.6-0.8": [], "0.8-1.0": []} # This still uses `scored`
+        cal_buckets = {
+            "0.0-0.2": [],
+            "0.2-0.4": [],
+            "0.4-0.6": [],
+            "0.6-0.8": [],
+            "0.8-1.0": [],
+        }  # This still uses `scored`
         for r in scored:
             c = r["prediction"].get("confidence", 0.0)
-            if c < 0.2: cal_buckets["0.0-0.2"].append(r)
-            elif c < 0.4: cal_buckets["0.2-0.4"].append(r)
-            elif c < 0.6: cal_buckets["0.4-0.6"].append(r)
-            elif c < 0.8: cal_buckets["0.6-0.8"].append(r)
-            else: cal_buckets["0.8-1.0"].append(r)
+            if c < 0.2:
+                cal_buckets["0.0-0.2"].append(r)
+            elif c < 0.4:
+                cal_buckets["0.2-0.4"].append(r)
+            elif c < 0.6:
+                cal_buckets["0.4-0.6"].append(r)
+            elif c < 0.8:
+                cal_buckets["0.6-0.8"].append(r)
+            else:
+                cal_buckets["0.8-1.0"].append(r)
 
         accuracy_by_confidence_bucket = {}
         gaps = []
         for bname, rows in cal_buckets.items():
             cnt = len(rows)
             acc = sum(1 for r in rows if is_correct(r)) / cnt if cnt else 0.0
-            p_acc = (sum(1 for r in rows if is_correct(r)) + sum(1 for r in rows if is_partial(r))) / cnt if cnt else 0.0
-            avg_c = statistics.mean([r["prediction"].get("confidence", 0) for r in rows]) if cnt else 0.0
-            
+            p_acc = (
+                (
+                    sum(1 for r in rows if is_correct(r))
+                    + sum(1 for r in rows if is_partial(r))
+                )
+                / cnt
+                if cnt
+                else 0.0
+            )
+            avg_c = (
+                statistics.mean([r["prediction"].get("confidence", 0) for r in rows])
+                if cnt
+                else 0.0
+            )
+
             gap = avg_c - acc if cnt else 0.0
-            if cnt > 0: gaps.append(abs(gap))
-            
+            if cnt > 0:
+                gaps.append(abs(gap))
+
             accuracy_by_confidence_bucket[bname] = {
-                "count": cnt, 
-                "actual_accuracy": acc, 
+                "count": cnt,
+                "actual_accuracy": acc,
                 "partial_accuracy": p_acc,
                 "avg_confidence": avg_c,
-                "gap": gap
+                "gap": gap,
             }
-        
+
         calibration_score = statistics.mean(gaps) if gaps else 0.0
 
         # Usefulness Bands
-        useful_buckets = {"0-0.3": [], "0.3-0.5": [], "0.5-0.7": [], "0.7+": []} # This still uses `scored`
+        useful_buckets = {
+            "0-0.3": [],
+            "0.3-0.5": [],
+            "0.5-0.7": [],
+            "0.7+": [],
+        }  # This still uses `scored`
         for r in scored:
             v = extract_usefulness_score(r.get("theory_usefulness", 0.0))
-            if v < 0.3: useful_buckets["0-0.3"].append(r)
-            elif v < 0.5: useful_buckets["0.3-0.5"].append(r)
-            elif v < 0.7: useful_buckets["0.5-0.7"].append(r)
-            else: useful_buckets["0.7+"].append(r)
-        
+            if v < 0.3:
+                useful_buckets["0-0.3"].append(r)
+            elif v < 0.5:
+                useful_buckets["0.3-0.5"].append(r)
+            elif v < 0.7:
+                useful_buckets["0.5-0.7"].append(r)
+            else:
+                useful_buckets["0.7+"].append(r)
+
         accuracy_by_usefulness = {
-            b: {"count": len(rs), "accuracy": sum(1 for r in rs if is_correct(r))/len(rs) if rs else 0.0}
+            b: {
+                "count": len(rs),
+                "accuracy": (
+                    sum(1 for r in rs if is_correct(r)) / len(rs) if rs else 0.0
+                ),
+            }
             for b, rs in useful_buckets.items()
         }
 
         # Contradiction Bands
-        contra_buckets = {"0-0.2": [], "0.2-0.5": [], "0.5+": []} # This still uses `scored`
+        contra_buckets = {
+            "0-0.2": [],
+            "0.2-0.5": [],
+            "0.5+": [],
+        }  # This still uses `scored`
         for r in scored:
             v = r.get("contradiction_score", 0.0)
-            if v < 0.2: contra_buckets["0-0.2"].append(r)
-            elif v < 0.5: contra_buckets["0.2-0.5"].append(r)
-            else: contra_buckets["0.5+"].append(r)
+            if v < 0.2:
+                contra_buckets["0-0.2"].append(r)
+            elif v < 0.5:
+                contra_buckets["0.2-0.5"].append(r)
+            else:
+                contra_buckets["0.5+"].append(r)
 
         accuracy_by_contradiction_severity = {
-            b: {"count": len(rs), "accuracy": sum(1 for r in rs if is_correct(r))/len(rs) if rs else 0.0}
+            b: {
+                "count": len(rs),
+                "accuracy": (
+                    sum(1 for r in rs if is_correct(r)) / len(rs) if rs else 0.0
+                ),
+            }
             for b, rs in contra_buckets.items()
         }
 
         # Theory Usefulness Analysis
         usefulness_scores = []
-        missing_usefulness_count = 0 # This still uses `prediction_history`
+        missing_usefulness_count = 0  # This still uses `prediction_history`
         for r in self.prediction_history:
             tu = r.get("theory_usefulness")
             # Ensure it's a dict and has 'score' and 'label'
@@ -547,62 +666,108 @@ class ReplayAnalysisMetricsMixin:
 
         # Accuracy when usefulness > 0.7 # This still uses `scored`
         high_usefulness_predictions = [
-            r for r in scored
-            if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
+            r for r in scored if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
         ]
         accuracy_when_high_usefulness = (
-            sum(1 for r in high_usefulness_predictions if is_correct(r)) / len(high_usefulness_predictions)
-            if high_usefulness_predictions else 0.0
+            sum(1 for r in high_usefulness_predictions if is_correct(r))
+            / len(high_usefulness_predictions)
+            if high_usefulness_predictions
+            else 0.0
         )
 
         # Prediction Drift
-        change_count = 0 # This still uses `prediction_history`
+        change_count = 0  # This still uses `prediction_history`
         if len(aligned_predictions) > 1:
             for i in range(1, len(aligned_predictions)):
-                if aligned_predictions[i-1]["predicted_direction"] != aligned_predictions[i]["predicted_direction"]:
+                if (
+                    aligned_predictions[i - 1]["predicted_direction"]
+                    != aligned_predictions[i]["predicted_direction"]
+                ):
                     change_count += 1
-        prediction_drift = change_count / (len(aligned_predictions) - 1) if len(aligned_predictions) > 1 else 0.0
+        prediction_drift = (
+            change_count / (len(aligned_predictions) - 1)
+            if len(aligned_predictions) > 1
+            else 0.0
+        )
 
         # Rolling Confidence Drift
-        conf_vals = [r["prediction"].get("confidence", 0) for r in self.prediction_history]
+        conf_vals = [
+            r["prediction"].get("confidence", 0) for r in self.prediction_history
+        ]
         rolling_drift = {
             "7d": statistics.mean(conf_vals[-7:]) if len(conf_vals) >= 7 else 0.0,
-            "15d": statistics.mean(conf_vals[-15:]) if len(conf_vals) >= 15 else 0.0
+            "15d": statistics.mean(conf_vals[-15:]) if len(conf_vals) >= 15 else 0.0,
         }
 
         # Task 2.2: Add 'uncertain' # This still uses `prediction_history`
-        uncertain_rows = [r for r in self.prediction_history if r.get("prediction", {}).get("direction") == PredictionDirection.uncertain.value]
-        avg_conf_uncertain = mean([r["prediction"].get("confidence", 0) for r in uncertain_rows]) if uncertain_rows else 0.0
-        accuracy_by_direction["uncertain"] = {"count": len(uncertain_rows), "accuracy": 0.0, "partial_accuracy": 0.0, "avg_confidence": avg_conf_uncertain}
+        uncertain_rows = [
+            r
+            for r in self.prediction_history
+            if r.get("prediction", {}).get("direction")
+            == PredictionDirection.uncertain.value
+        ]
+        avg_conf_uncertain = (
+            mean([r["prediction"].get("confidence", 0) for r in uncertain_rows])
+            if uncertain_rows
+            else 0.0
+        )
+        accuracy_by_direction["uncertain"] = {
+            "count": len(uncertain_rows),
+            "accuracy": 0.0,
+            "partial_accuracy": 0.0,
+            "avg_confidence": avg_conf_uncertain,
+        }
 
         # Regime similarity > 0.9 # This still uses `scored`
         high_regime = [r for r in scored if r.get("regime_similarity", 0.0) > 0.9]
-        regime_acc = sum(1 for r in high_regime if is_correct(r)) / len(high_regime) if high_regime else 0.0
+        regime_acc = (
+            sum(1 for r in high_regime if is_correct(r)) / len(high_regime)
+            if high_regime
+            else 0.0
+        )
 
         # Theory usefulness > 0.5 # This still uses `scored`
-        useful = [r for r in scored if extract_usefulness_score(r.get("theory_usefulness", 0.0)) > 0.5]
-        useful_acc = sum(1 for r in useful if is_correct(r)) / len(useful) if useful else 0.0
+        useful = [
+            r
+            for r in scored
+            if extract_usefulness_score(r.get("theory_usefulness", 0.0)) > 0.5
+        ]
+        useful_acc = (
+            sum(1 for r in useful if is_correct(r)) / len(useful) if useful else 0.0
+        )
 
         # Task 2.4: Prediction slices by pressure # This still uses `scored`
-        pressure_gt_0_5 = [r for r in scored if r.get("transition_pressure_score", 0.0) > 0.5]
-        acc_pressure_gt_0_5 = sum(1 for r in pressure_gt_0_5 if is_correct(r)) / len(pressure_gt_0_5) if pressure_gt_0_5 else 0.0
+        pressure_gt_0_5 = [
+            r for r in scored if r.get("transition_pressure_score", 0.0) > 0.5
+        ]
+        acc_pressure_gt_0_5 = (
+            sum(1 for r in pressure_gt_0_5 if is_correct(r)) / len(pressure_gt_0_5)
+            if pressure_gt_0_5
+            else 0.0
+        )
 
-        pressure_gt_0_7 = [r for r in scored if r.get("transition_pressure_score", 0.0) > 0.7]
-        acc_pressure_gt_0_7 = sum(1 for r in pressure_gt_0_7 if is_correct(r)) / len(pressure_gt_0_7) if pressure_gt_0_7 else 0.0
+        pressure_gt_0_7 = [
+            r for r in scored if r.get("transition_pressure_score", 0.0) > 0.7
+        ]
+        acc_pressure_gt_0_7 = (
+            sum(1 for r in pressure_gt_0_7 if is_correct(r)) / len(pressure_gt_0_7)
+            if pressure_gt_0_7
+            else 0.0
+        )
 
         # Task 2.5: False breakout # This still uses `scored`
         false_breakouts = [
-            r for r in scored
-            if r.get("transition_breakout_risk")
-            and not is_correct(r)
+            r for r in scored if r.get("transition_breakout_risk") and not is_correct(r)
         ]
 
         # Task 2.6: Best breakout capture # This still uses `scored`
         best_breakout_captures = [
-            r for r in scored
+            r
+            for r in scored
             if r.get("transition_breakout_risk")
             and is_correct(r)
-            and r["prediction"].get("direction") in [PredictionDirection.higher.value, PredictionDirection.lower.value]
+            and r["prediction"].get("direction")
+            in [PredictionDirection.higher.value, PredictionDirection.lower.value]
         ]
 
         # Missed transition cases: range_bound -> higher / lower # This still uses `scored`
@@ -623,28 +788,63 @@ class ReplayAnalysisMetricsMixin:
 
         def sample_top(rows, n=5):
             return [
-                {"date": r.get("date"), "theory_summary": r.get("theory_summary", ""), "confidence": r.get("prediction", {}).get("confidence")}
+                {
+                    "date": r.get("date"),
+                    "theory_summary": r.get("theory_summary", ""),
+                    "confidence": r.get("prediction", {}).get("confidence"),
+                }
                 for r in rows[:n]
             ]
 
         correlation_coeff = 0.0
-        confidences = [r["prediction"].get("confidence", 0) for r in self.prediction_history if r.get("prediction")]
-        scores = [r["prior_prediction_result"].get("direction_score", 0) for r in aligned_predictions] # Use aligned scores
+        confidences = [
+            r["prediction"].get("confidence", 0)
+            for r in self.prediction_history
+            if r.get("prediction")
+        ]
+        scores = [
+            r["prior_prediction_result"].get("direction_score", 0)
+            for r in aligned_predictions
+        ]  # Use aligned scores
         if len(confidences) > 1 and len(scores) > 1:
             try:
-                correlation_val = statistics.correlation(confidences[:len(scores)], scores) # Align lengths
+                correlation_val = statistics.correlation(
+                    confidences[: len(scores)], scores
+                )  # Align lengths
             except Exception:
                 correlation_coeff = 0.0
 
-        return { # This return needs to be updated to use aligned_predictions for accuracy
+        return {  # This return needs to be updated to use aligned_predictions for accuracy
             "total_predictions": total,
             "scored_predictions": scored_count,
             "accuracy": correct / scored_count if scored_count else 0.0,
-            "partial_accuracy": (correct + partial) / scored_count if scored_count else 0.0,
-            "uncertain_rate": sum(1 for r in self.prediction_history if r.get("prediction", {}).get("direction") == "uncertain") / total if total else 0.0,
-            "invalidation_rate": sum(1 for r in scored if r.get("prior_prediction_result", {}).get("invalidation_triggered")) / scored_count if scored_count else 0.0,
+            "partial_accuracy": (
+                (correct + partial) / scored_count if scored_count else 0.0
+            ),
+            "uncertain_rate": (
+                sum(
+                    1
+                    for r in self.prediction_history
+                    if r.get("prediction", {}).get("direction") == "uncertain"
+                )
+                / total
+                if total
+                else 0.0
+            ),
+            "invalidation_rate": (
+                sum(
+                    1
+                    for r in scored
+                    if r.get("prior_prediction_result", {}).get(
+                        "invalidation_triggered"
+                    )
+                )
+                / scored_count
+                if scored_count
+                else 0.0
+            ),
             "mean_confidence": mean_conf,
-            "median_confidence": median_conf, # This is still based on `scored`
+            "median_confidence": median_conf,  # This is still based on `scored`
             "confidence_accuracy_correlation": round(correlation_coeff, 3),
             "accuracy_by_direction": accuracy_by_direction,
             "accuracy_by_contradiction_bucket": accuracy_by_contradiction,
@@ -658,10 +858,22 @@ class ReplayAnalysisMetricsMixin:
             "accuracy_theory_usefulness_gt_0_5": useful_acc,
             "accuracy_by_usefulness": accuracy_by_usefulness,
             "accuracy_by_contradiction_severity": accuracy_by_contradiction_severity,
-            "missed_range_to_higher": {"count": len(missed_range_to_higher), "samples": sample_top(missed_range_to_higher)},
-            "missed_range_to_lower": {"count": len(missed_range_to_lower), "samples": sample_top(missed_range_to_lower)},
-            "false_breakouts": {"count": len(false_breakouts), "samples": sample_top(false_breakouts)},
-            "best_breakout_captures": {"count": len(best_breakout_captures), "samples": sample_top(best_breakout_captures)},
+            "missed_range_to_higher": {
+                "count": len(missed_range_to_higher),
+                "samples": sample_top(missed_range_to_higher),
+            },
+            "missed_range_to_lower": {
+                "count": len(missed_range_to_lower),
+                "samples": sample_top(missed_range_to_lower),
+            },
+            "false_breakouts": {
+                "count": len(false_breakouts),
+                "samples": sample_top(false_breakouts),
+            },
+            "best_breakout_captures": {
+                "count": len(best_breakout_captures),
+                "samples": sample_top(best_breakout_captures),
+            },
             "avg_theory_usefulness": avg_theory_usefulness,
             "high_usefulness_days": high_usefulness_days,
             "accuracy_when_high_usefulness": accuracy_when_high_usefulness,

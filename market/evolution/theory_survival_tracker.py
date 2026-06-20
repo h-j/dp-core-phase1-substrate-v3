@@ -6,7 +6,7 @@ from typing import List, Dict
 class TheorySurvivalTracker:
     """
     Tracks recurring theories over time.
-    
+
     Identifies:
     - Strengthening theories
     - Weakening theories
@@ -15,20 +15,18 @@ class TheorySurvivalTracker:
     """
 
     def __init__(self):
-        self.theory_tracker = defaultdict(lambda: {
-            "count": 0,
-            "validations": [],
-            "failures": 0,
-            "last_seen": None,
-            "validation_scores": [],
-            "assumptions": []
-        })
+        self.theory_tracker = defaultdict(
+            lambda: {
+                "count": 0,
+                "validations": [],
+                "failures": 0,
+                "last_seen": None,
+                "validation_scores": [],
+                "assumptions": [],
+            }
+        )
 
-    def track(
-        self,
-        theory,
-        validation_result
-    ):
+    def track(self, theory, validation_result):
         """Track theory performance over time."""
 
         thesis_key = self._normalize_thesis(theory.thesis)
@@ -56,9 +54,7 @@ class TheorySurvivalTracker:
             if data["count"] < 2:
                 continue
 
-            avg_score = sum(data["validation_scores"]) / len(
-                data["validation_scores"]
-            )
+            avg_score = sum(data["validation_scores"]) / len(data["validation_scores"])
 
             recent_scores = data["validation_scores"][-3:]
             recent_avg = sum(recent_scores) / len(recent_scores)
@@ -66,45 +62,53 @@ class TheorySurvivalTracker:
             trend = recent_avg - avg_score
 
             if trend > 0.1:
-                strengthening.append({
-                    "thesis": thesis_key,
-                    "occurrences": data["count"],
-                    "avg_score": avg_score,
-                    "recent_trend": trend,
-                    "failure_rate": data["failures"] / data["count"]
-                })
-
-            elif trend < -0.1:
-                weakening.append({
-                    "thesis": thesis_key,
-                    "occurrences": data["count"],
-                    "avg_score": avg_score,
-                    "recent_trend": trend,
-                    "failure_rate": data["failures"] / data["count"]
-                })
-
-            else:
-                if avg_score < 0.5:
-                    unstable.append({
+                strengthening.append(
+                    {
                         "thesis": thesis_key,
                         "occurrences": data["count"],
                         "avg_score": avg_score,
-                        "failure_rate": data["failures"] / data["count"]
-                    })
+                        "recent_trend": trend,
+                        "failure_rate": data["failures"] / data["count"],
+                    }
+                )
+
+            elif trend < -0.1:
+                weakening.append(
+                    {
+                        "thesis": thesis_key,
+                        "occurrences": data["count"],
+                        "avg_score": avg_score,
+                        "recent_trend": trend,
+                        "failure_rate": data["failures"] / data["count"],
+                    }
+                )
+
+            else:
+                if avg_score < 0.5:
+                    unstable.append(
+                        {
+                            "thesis": thesis_key,
+                            "occurrences": data["count"],
+                            "avg_score": avg_score,
+                            "failure_rate": data["failures"] / data["count"],
+                        }
+                    )
 
             if data["failures"] / data["count"] > 0.5:
-                failing.append({
-                    "thesis": thesis_key,
-                    "occurrences": data["count"],
-                    "failure_rate": data["failures"] / data["count"],
-                    "last_seen": data["last_seen"]
-                })
+                failing.append(
+                    {
+                        "thesis": thesis_key,
+                        "occurrences": data["count"],
+                        "failure_rate": data["failures"] / data["count"],
+                        "last_seen": data["last_seen"],
+                    }
+                )
 
         return {
             "strengthening_theories": strengthening,
             "weakening_theories": weakening,
             "unstable_theories": unstable,
-            "recurring_failures": failing
+            "recurring_failures": failing,
         }
 
     def generate_survival_summary(self) -> str:
@@ -150,9 +154,7 @@ class TheorySurvivalTracker:
 
         for theory in trends["recurring_failures"]:
             for data in self.theory_tracker.values():
-                if (self._normalize_thesis(
-                    data["assumptions"]
-                ) == theory["thesis"]):
+                if self._normalize_thesis(data["assumptions"]) == theory["thesis"]:
                     unstable_assumptions.extend(data["assumptions"])
 
         return list(set(unstable_assumptions))

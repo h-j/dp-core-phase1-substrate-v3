@@ -1,9 +1,11 @@
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
+
 @dataclass
 class CognitionResult:
     """Encapsulates the structured output of a day's cognition."""
+
     day_index: int
     date: str
     observation: Any

@@ -5,14 +5,9 @@
   "created_at": "2026-06-03",
   "status": "active",
   "theory_ids": [
-    "4501524b-3d36-4c46-a48e-4a4245fea250",
-    "88ccbcc1-1ebd-4a12-b93c-fde95270ac1f"
+    "625136f9-8c0b-4a1d-8ca2-6d6c0649e4ba"
   ],
-  "contradictions": [
-    "Structural: Low semantic similarity: Regime is driven by ... vs participation normal...; Low semantic similarity: short-term momentum ... vs participation normal...; Field conflict: volatility expands further: fa vs volatility expands above avera",
-    "Structural: Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: short-term momentum ... vs volatility expands f...",
-    "Structural: Low semantic similarity: Regime is driven by ... vs participation normal...; Low semantic similarity: RELIANCE focus stren... vs participation normal...; Low semantic similarity: short-term momentum ... vs volatility expands a..."
-  ],
+  "contradictions": [],
   "mutations": [],
   "outcome": {
     "outcome_confidence": 0.5
@@ -28,8 +23,10 @@
     "subtype:neutral"
   ],
   "theory_subtype": "neutral",
-  "mutation_count": 1,
-  "contradiction_count": 2,
-  "validation_count": 1,
-  "falsification_count": 0
+  "mutation_count": 0,
+  "contradiction_count": 0,
+  "validation_count": 0,
+  "falsification_count": 0,
+  "causal_events": [],
+  "component_failure_counts": {}
 }

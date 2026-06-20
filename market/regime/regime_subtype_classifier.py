@@ -10,7 +10,7 @@ from typing import Dict, List, Tuple
 class RegimeSubtypeClassifier:
     """
     Classifies market regimes into semantic subtypes with falsifiability conditions.
-    
+
     Subtypes:
     - Liquidity-constrained: Volume dry, participation weak, volatility compressed
     - Pressure-loaded range: elevated volume, gap down, rejection upper, range bound
@@ -29,23 +29,24 @@ class RegimeSubtypeClassifier:
     ) -> Tuple[str, List[str]]:
         """
         Classify regime subtype and return falsifiability conditions.
-        
+
         Args:
             observation: Current MarketObservation
             prior_days_observations: Last 3-5 days of observations
             contradiction_score: Current contradiction severity (0-1)
             momentum_regime: "strengthening", "weakening", or "flat"
-            
+
         Returns:
             (regime_subtype, falsifiability_conditions)
         """
-        
+
         # Handle potential None or raw dict observations during synthesis
         if observation is None:
             return "neutral", ["requires additional confirmation signals"]
-            
+
         get_val = lambda attr, default: (
-            observation.get(attr, default) if isinstance(observation, dict) 
+            observation.get(attr, default)
+            if isinstance(observation, dict)
             else getattr(observation, attr, default)
         )
 
@@ -58,46 +59,47 @@ class RegimeSubtypeClassifier:
         breadth_state = get_val("breadth_state", "unknown")
         candle_type = get_val("candle_type", "neutral")
         gap_pct = get_val("gap_pct", 0.0)
-        
+
         # Compute context
         weak_prior_days = sum(
-            1 for obs in prior_days_observations[-3:]
-            if getattr(obs, "volume_state", "normal") == "dry" or
-               getattr(obs, "participation_strength", "normal") == "weak"
+            1
+            for obs in prior_days_observations[-3:]
+            if getattr(obs, "volume_state", "normal") == "dry"
+            or getattr(obs, "participation_strength", "normal") == "weak"
         )
-        
+
         is_liquidity_constrained = (
-            volume_state == "dry" and 
-            participation_strength == "weak" and
-            volatility_state in ("compressed", "normal")
+            volume_state == "dry"
+            and participation_strength == "weak"
+            and volatility_state in ("compressed", "normal")
         )
 
         is_pressure_loaded_range = (
-            volume_state == "elevated" and
-            gap_pct < -0.2 and
-            candle_type == "rejection_upper" and
-            volatility_state in ("stable", "moderate") and
-            trend_state == "range_bound"
+            volume_state == "elevated"
+            and gap_pct < -0.2
+            and candle_type == "rejection_upper"
+            and volatility_state in ("stable", "moderate")
+            and trend_state == "range_bound"
         )
-        
+
         is_pressure_loaded = (
-            contradiction_score >= 0.5 and
-            weak_prior_days >= 2 and
-            participation_strength in ("weak", "deteriorated")
+            contradiction_score >= 0.5
+            and weak_prior_days >= 2
+            and participation_strength in ("weak", "deteriorated")
         )
-        
+
         is_fatigue = (
-            participation_strength == "weak" and
-            momentum_regime == "weakening" and
-            candle_type == "rejection_upper"
+            participation_strength == "weak"
+            and momentum_regime == "weakening"
+            and candle_type == "rejection_upper"
         )
-        
+
         is_expansion_confirmed = (
-            volume_state == "elevated" and
-            participation_strength in ("strong", "normal") and
-            volatility_state == "expanding"
+            volume_state == "elevated"
+            and participation_strength in ("strong", "normal")
+            and volatility_state == "expanding"
         )
-        
+
         # Classification logic
         if is_expansion_confirmed:
             subtype = "expansion_confirmed"
@@ -134,9 +136,9 @@ class RegimeSubtypeClassifier:
             conditions = [
                 "requires additional confirmation signals",
             ]
-        
+
         return subtype, conditions
-    
+
     @staticmethod
     def get_regime_description(regime_subtype: str) -> str:
         """Get narrative description of regime subtype."""
@@ -173,7 +175,7 @@ class RegimeSubtypeClassifier:
             ),
         }
         return descriptions.get(regime_subtype, "Unknown regime")
-    
+
     @staticmethod
     def evaluate_falsifiability(
         observation: object,
@@ -182,27 +184,34 @@ class RegimeSubtypeClassifier:
     ) -> Tuple[bool, List[str]]:
         """
         Evaluate whether falsifiability conditions have been met (regime is contradicted).
-        
+
         Returns:
             (falsified, triggered_conditions)
         """
         triggered = []
-        
+
         volume_state = getattr(observation, "volume_state", "normal")
-        participation_strength = getattr(observation, "participation_strength", "normal")
+        participation_strength = getattr(
+            observation, "participation_strength", "normal"
+        )
         volatility_state = getattr(observation, "volatility_state", "normal")
         breadth_state = getattr(observation, "breadth_state", "unknown")
         momentum_regime = getattr(observation, "momentum_regime", "flat")
         candle_type = getattr(observation, "candle_type", "neutral")
-        
+
         # Map conditions to evaluation
         condition_checks = {
             "volume exceeds 5d moving average": volume_state == "elevated",
             "volume exceeds 5-day average and participation strengthens": (
-                volume_state == "elevated" and participation_strength in ("normal", "strong")
+                volume_state == "elevated"
+                and participation_strength in ("normal", "strong")
             ),
-            "participation normalizes or strengthens": participation_strength in ("normal", "strong"),
-            "liquidity returns to normal": getattr(observation, "liquidity_state", "normal") == "normal",
+            "participation normalizes or strengthens": participation_strength
+            in ("normal", "strong"),
+            "liquidity returns to normal": getattr(
+                observation, "liquidity_state", "normal"
+            )
+            == "normal",
             "volume drops below 20d moving average": volume_state == "dry",
             "participation collapses to weak": participation_strength == "weak",
             "volatility reverts to compressed": volatility_state == "compressed",
@@ -211,7 +220,8 @@ class RegimeSubtypeClassifier:
                 candle_type in ("strong_bull", "expansion") and volume_state == "normal"
             ),
             "breadth reversal after multi-day decline": breadth_state == "strengthened",
-            "participation strengthens despite pressure": participation_strength in ("normal", "strong"),
+            "participation strengthens despite pressure": participation_strength
+            in ("normal", "strong"),
             "contradiction severity drops below 0.4": False,  # Evaluated externally
             "momentum re-accelerates while participation remains weak": (
                 momentum_regime == "strengthening" and participation_strength == "weak"
@@ -223,10 +233,10 @@ class RegimeSubtypeClassifier:
             "volatility expands unexpectedly": volatility_state == "expanding",
             "requires additional confirmation signals": False,  # Always incomplete
         }
-        
+
         for condition in falsifiability_conditions:
             if condition_checks.get(condition, False):
                 triggered.append(condition)
-        
+
         falsified = len(triggered) > 0
         return falsified, triggered

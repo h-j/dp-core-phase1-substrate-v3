@@ -4,30 +4,50 @@ from pathlib import Path
 import pandas as pd
 from market.replay.replay_analysis import extract_usefulness_score
 
+
 def generate_visualizations(analysis, logs, tp_history, output_dir):
     """v1.6 Visualization Layer - Generates calibration and capital charts."""
     os.makedirs(output_dir, exist_ok=True)
-    plt.style.use('fast') # Matplotlib only, no seaborn
+    plt.style.use("fast")  # Matplotlib only, no seaborn
 
     # 1. Actual vs Predicted Curve
     def plot_actual_vs_predicted():
         plt.figure(figsize=(12, 6))
         hist = analysis.get("prediction_history", [])
         dates = [r["date"] for r in hist]
-        
+
         mapping = {"higher": 1, "lower": -1, "range_bound": 0, "uncertain": 0}
         pred_vals = [mapping.get(r["prediction"].get("direction"), 0) for r in hist]
-        act_vals = [mapping.get(r["prior_prediction_result"].get("actual_direction"), 0) for r in hist]
+        act_vals = [
+            mapping.get(r["prior_prediction_result"].get("actual_direction"), 0)
+            for r in hist
+        ]
 
-        plt.step(dates, act_vals, label="Actual Market Direction", color="gray", alpha=0.5, where='post')
-        plt.step(dates, pred_vals, label="Predicted Direction", color="blue", linewidth=2, where='post')
-        
+        plt.step(
+            dates,
+            act_vals,
+            label="Actual Market Direction",
+            color="gray",
+            alpha=0.5,
+            where="post",
+        )
+        plt.step(
+            dates,
+            pred_vals,
+            label="Predicted Direction",
+            color="blue",
+            linewidth=2,
+            where="post",
+        )
+
         # Marks
         for i, r in enumerate(hist):
             if r.get("prior_prediction_result"):
                 score = r["prior_prediction_result"].get("direction_score", 0)
-                if score == 1.0: plt.scatter(dates[i], pred_vals[i], color="green", s=30)
-                elif score == 0.0: plt.scatter(dates[i], pred_vals[i], color="red", s=30)
+                if score == 1.0:
+                    plt.scatter(dates[i], pred_vals[i], color="green", s=30)
+                elif score == 0.0:
+                    plt.scatter(dates[i], pred_vals[i], color="red", s=30)
 
         plt.title("Actual vs Predicted Direction Curve")
         plt.xticks(rotation=45)
@@ -40,20 +60,37 @@ def generate_visualizations(analysis, logs, tp_history, output_dir):
     def plot_policy_capital_comparison():
         plt.figure(figsize=(12, 6))
         dates = [l["date"] for l in logs]
-        
+
         # Backward compatibility check for v1.7 structure
         if logs and "policies" in logs[0]:
             policies = ["baseline", "high_conviction", "breakout"]
-            colors = {"baseline": "forestgreen", "high_conviction": "blue", "breakout": "purple"}
+            colors = {
+                "baseline": "forestgreen",
+                "high_conviction": "blue",
+                "breakout": "purple",
+            }
             for p in policies:
                 if p in logs[0]["policies"]:
-                    caps = [l["policies"].get(p, {}).get("capital_after", 10000.0) for l in logs]
-                    plt.plot(dates, caps, label=p.replace("_", " ").title(), color=colors.get(p), linewidth=2)
+                    caps = [
+                        l["policies"].get(p, {}).get("capital_after", 10000.0)
+                        for l in logs
+                    ]
+                    plt.plot(
+                        dates,
+                        caps,
+                        label=p.replace("_", " ").title(),
+                        color=colors.get(p),
+                        linewidth=2,
+                    )
         elif logs and "capital_after" in logs[0]:
             caps = [l.get("capital_after", 10000.0) for l in logs]
-            plt.plot(dates, caps, color="forestgreen", label="Legacy Capital", linewidth=2)
+            plt.plot(
+                dates, caps, color="forestgreen", label="Legacy Capital", linewidth=2
+            )
 
-        plt.axhline(y=10000, color="red", linestyle="--", alpha=0.5, label="Starting Capital")
+        plt.axhline(
+            y=10000, color="red", linestyle="--", alpha=0.5, label="Starting Capital"
+        )
         plt.title("Policy Capital Comparison (Start: ₹10,000)")
         plt.ylabel("Capital (₹)")
         plt.xticks(rotation=45)
@@ -68,17 +105,17 @@ def generate_visualizations(analysis, logs, tp_history, output_dir):
         plt.figure(figsize=(8, 8))
         p = analysis.get("prediction_analysis", {})
         buckets = p.get("accuracy_by_confidence_bucket", {})
-        
+
         x_vals = []
         y_vals = []
         for b in sorted(buckets.keys()):
             x_vals.append(buckets[b]["avg_confidence"])
             y_vals.append(buckets[b]["actual_accuracy"])
-            
-        plt.plot([0, 1], [0, 1], 'k--', alpha=0.5, label="Perfect Calibration")
+
+        plt.plot([0, 1], [0, 1], "k--", alpha=0.5, label="Perfect Calibration")
         plt.scatter(x_vals, y_vals, color="blue", s=100)
-        plt.plot(x_vals, y_vals, 'b-', alpha=0.3)
-        
+        plt.plot(x_vals, y_vals, "b-", alpha=0.3)
+
         plt.xlabel("Average Confidence")
         plt.ylabel("Actual Accuracy")
         plt.title("Confidence Calibration Curve")
@@ -95,12 +132,14 @@ def generate_visualizations(analysis, logs, tp_history, output_dir):
         plt.figure(figsize=(12, 4))
         dates = [d["date"] for d in tp_history]
         scores = [d["pressure_score"] for d in tp_history]
-        
+
         plt.plot(dates, scores, color="purple", label="Pressure Score")
         risk_dates = [d["date"] for d in tp_history if d.get("breakout_risk")]
-        risk_scores = [d["pressure_score"] for d in tp_history if d.get("breakout_risk")]
+        risk_scores = [
+            d["pressure_score"] for d in tp_history if d.get("breakout_risk")
+        ]
         plt.scatter(risk_dates, risk_scores, color="red", label="Breakout Risk")
-        
+
         plt.title("Transition Pressure Timeline")
         plt.xticks(rotation=45)
         plt.legend()
@@ -112,24 +151,40 @@ def generate_visualizations(analysis, logs, tp_history, output_dir):
     def plot_policy_trade_frequency():
         plt.figure(figsize=(10, 6))
         cap_analysis = analysis.get("capital_simulation_analysis", {})
-        
+
         policies = ["baseline", "high_conviction", "breakout"]
         labels = [p.replace("_", " ").title() for p in policies if p in cap_analysis]
-        
+
         if not labels:
             return
 
-        trades = [cap_analysis.get(p, {}).get("trade_count", 0) for p in policies if p in cap_analysis]
-        skipped = [cap_analysis.get(p, {}).get("skipped_days", 0) for p in policies if p in cap_analysis]
+        trades = [
+            cap_analysis.get(p, {}).get("trade_count", 0)
+            for p in policies
+            if p in cap_analysis
+        ]
+        skipped = [
+            cap_analysis.get(p, {}).get("skipped_days", 0)
+            for p in policies
+            if p in cap_analysis
+        ]
 
         x = list(range(len(labels)))
         width = 0.35
 
-        plt.bar([i - width/2 for i in x], trades, width, label='Trades', color='skyblue')
-        plt.bar([i + width/2 for i in x], skipped, width, label='Skipped Days', color='lightcoral')
+        plt.bar(
+            [i - width / 2 for i in x], trades, width, label="Trades", color="skyblue"
+        )
+        plt.bar(
+            [i + width / 2 for i in x],
+            skipped,
+            width,
+            label="Skipped Days",
+            color="lightcoral",
+        )
 
-        plt.ylabel('Count')
-        plt.title('Trade Frequency by Policy')
+        plt.ylabel("Count")
+        plt.title("Trade Frequency by Policy")
         plt.xticks(x, labels)
         plt.legend()
         plt.tight_layout()
@@ -139,19 +194,24 @@ def generate_visualizations(analysis, logs, tp_history, output_dir):
     # 6. Dashboard
     def generate_dashboard():
         plt.figure(figsize=(16, 12))
-        
+
         # Panel 1: Prediction Accuracy (Actual vs Predicted)
         plt.subplot(2, 2, 1)
         hist = analysis.get("prediction_history", [])
         dates = [r["date"] for r in hist]
         mapping = {"higher": 1, "lower": -1, "range_bound": 0, "uncertain": 0}
         pred_vals = [mapping.get(r["prediction"].get("direction"), 0) for r in hist]
-        act_vals = [mapping.get(r["prior_prediction_result"].get("actual_direction"), 0) for r in hist]
-        plt.step(dates, act_vals, label="Actual", color="gray", alpha=0.5, where='post')
-        plt.step(dates, pred_vals, label="Pred", color="blue", linewidth=1.5, where='post')
+        act_vals = [
+            mapping.get(r["prior_prediction_result"].get("actual_direction"), 0)
+            for r in hist
+        ]
+        plt.step(dates, act_vals, label="Actual", color="gray", alpha=0.5, where="post")
+        plt.step(
+            dates, pred_vals, label="Pred", color="blue", linewidth=1.5, where="post"
+        )
         plt.title("Prediction Accuracy")
         plt.xticks(rotation=45, fontsize=8)
-        plt.legend(prop={'size': 8})
+        plt.legend(prop={"size": 8})
 
         # Panel 2: Policy Comparison (Capital Curves)
         plt.subplot(2, 2, 2)
@@ -159,14 +219,17 @@ def generate_visualizations(analysis, logs, tp_history, output_dir):
         if logs and "policies" in logs[0]:
             for p in ["baseline", "high_conviction", "breakout"]:
                 if p in logs[0]["policies"]:
-                    caps = [l["policies"].get(p, {}).get("capital_after", 10000.0) for l in logs]
+                    caps = [
+                        l["policies"].get(p, {}).get("capital_after", 10000.0)
+                        for l in logs
+                    ]
                     plt.plot(dates, caps, label=p.replace("_", " ").title())
         elif logs and "capital_after" in logs[0]:
             caps = [l.get("capital_after", 10000.0) for l in logs]
             plt.plot(dates, caps, label="Legacy")
         plt.title("Policy Capital Comparison")
         plt.xticks(rotation=45, fontsize=8)
-        plt.legend(prop={'size': 8})
+        plt.legend(prop={"size": 8})
 
         # Panel 3: Confidence Calibration
         plt.subplot(2, 2, 3)
@@ -174,7 +237,7 @@ def generate_visualizations(analysis, logs, tp_history, output_dir):
         buckets = p_an.get("accuracy_by_confidence_bucket", {})
         x_v = [buckets[b]["avg_confidence"] for b in sorted(buckets.keys())]
         y_v = [buckets[b]["actual_accuracy"] for b in sorted(buckets.keys())]
-        plt.plot([0, 1], [0, 1], 'k--', alpha=0.5)
+        plt.plot([0, 1], [0, 1], "k--", alpha=0.5)
         plt.scatter(x_v, y_v, color="blue", s=40)
         plt.title("Confidence Calibration")
         plt.xlabel("Confidence")
@@ -221,7 +284,9 @@ def _prediction_dataframe(analysis: dict) -> pd.DataFrame:
         lambda x: x.get("direction_score") if isinstance(x, dict) else None
     )
     if "theory_usefulness" in df.columns:
-        df["theory_usefulness"] = df["theory_usefulness"].apply(extract_usefulness_score)
+        df["theory_usefulness"] = df["theory_usefulness"].apply(
+            extract_usefulness_score
+        )
     df["confidence"] = df["prediction"].apply(
         lambda x: x.get("confidence", 0.0) if isinstance(x, dict) else 0.0
     )
@@ -245,11 +310,19 @@ def _top_missed_signal(df: pd.DataFrame) -> str:
     missed = df[df["direction_score"] != 1.0]
     if missed.empty:
         return "none"
-    signal_counts = missed["participation_confirmation"].fillna("unknown").value_counts()
+    signal_counts = (
+        missed["participation_confirmation"].fillna("unknown").value_counts()
+    )
     return signal_counts.index[0] if not signal_counts.empty else "unknown"
 
 
-def _generate_failure_json(base_output_dir: Path, primary_metrics: dict, secondary_metrics: dict, primary_df: pd.DataFrame, secondary_df: pd.DataFrame):
+def _generate_failure_json(
+    base_output_dir: Path,
+    primary_metrics: dict,
+    secondary_metrics: dict,
+    primary_df: pd.DataFrame,
+    secondary_df: pd.DataFrame,
+):
     summary = {
         "primary_market": primary_metrics["market_name"],
         "secondary_market": secondary_metrics["market_name"],
@@ -276,7 +349,9 @@ def _generate_failure_json(base_output_dir: Path, primary_metrics: dict, seconda
 
     combined_misses = pd.concat([primary_df, secondary_df], ignore_index=True)
     combined_misses = combined_misses[combined_misses["direction_score"] != 1.0]
-    combined_misses = combined_misses.sort_values("confidence", ascending=False).head(10)
+    combined_misses = combined_misses.sort_values("confidence", ascending=False).head(
+        10
+    )
     for _, row in combined_misses.iterrows():
         summary["top_high_confidence_misses"].append(
             {
@@ -300,7 +375,9 @@ def _generate_failure_json(base_output_dir: Path, primary_metrics: dict, seconda
     return summary
 
 
-def generate_cross_asset_visualizations(base_output_dir, primary_analysis: dict, secondary_analysis: dict):
+def generate_cross_asset_visualizations(
+    base_output_dir, primary_analysis: dict, secondary_analysis: dict
+):
     os.makedirs(base_output_dir, exist_ok=True)
 
     primary_df = _prediction_dataframe(primary_analysis)
@@ -315,8 +392,20 @@ def generate_cross_asset_visualizations(base_output_dir, primary_analysis: dict,
 
     plt.figure(figsize=(10, 6))
     width = 0.35
-    plt.bar([i - width / 2 for i in x], primary_vals, width, label=primary_metrics["market_name"], color="steelblue")
-    plt.bar([i + width / 2 for i in x], secondary_vals, width, label=secondary_metrics["market_name"], color="darkorange")
+    plt.bar(
+        [i - width / 2 for i in x],
+        primary_vals,
+        width,
+        label=primary_metrics["market_name"],
+        color="steelblue",
+    )
+    plt.bar(
+        [i + width / 2 for i in x],
+        secondary_vals,
+        width,
+        label=secondary_metrics["market_name"],
+        color="darkorange",
+    )
     plt.ylim(0, 1)
     plt.xticks(x, [l.replace("_", " ").title() for l in labels])
     plt.ylabel("Normalized Value")
@@ -347,7 +436,9 @@ def generate_cross_asset_visualizations(base_output_dir, primary_analysis: dict,
         ax.set_title(f"{market_name} Actual vs Predicted")
         for i in range(len(directions)):
             for j in range(len(directions)):
-                ax.text(j, i, int(matrix.iat[i, j]), ha="center", va="center", color="black")
+                ax.text(
+                    j, i, int(matrix.iat[i, j]), ha="center", va="center", color="black"
+                )
         return im
 
     plt.figure(figsize=(14, 6))
@@ -363,7 +454,13 @@ def generate_cross_asset_visualizations(base_output_dir, primary_analysis: dict,
     plt.close()
 
     if primary_df.empty and secondary_df.empty:
-        _generate_failure_json(base_output_dir, primary_metrics, secondary_metrics, primary_df, secondary_df)
+        _generate_failure_json(
+            base_output_dir,
+            primary_metrics,
+            secondary_metrics,
+            primary_df,
+            secondary_df,
+        )
         return
 
     combined = pd.concat([primary_df, secondary_df], ignore_index=True)
@@ -389,7 +486,9 @@ def generate_cross_asset_visualizations(base_output_dir, primary_analysis: dict,
                 edgecolor="black",
                 alpha=0.7,
             )
-        plt.yticks([0, 1], [secondary_metrics["market_name"], primary_metrics["market_name"]])
+        plt.yticks(
+            [0, 1], [secondary_metrics["market_name"], primary_metrics["market_name"]]
+        )
         plt.xlabel("Date")
         plt.title("Cross-Asset Divergence Timeline")
         plt.legend()
@@ -397,4 +496,6 @@ def generate_cross_asset_visualizations(base_output_dir, primary_analysis: dict,
         plt.savefig(base_output_dir / "cross_asset_divergence_timeline.png")
         plt.close()
 
-    _generate_failure_json(base_output_dir, primary_metrics, secondary_metrics, primary_df, secondary_df)
+    _generate_failure_json(
+        base_output_dir, primary_metrics, secondary_metrics, primary_df, secondary_df
+    )

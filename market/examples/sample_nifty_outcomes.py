@@ -18,9 +18,9 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_liquidity="concentrated in large caps",
         outcome_contradictions=[
             "price strength vs weak breadth",
-            "new highs with narrow participation"
+            "new highs with narrow participation",
         ],
-        outcome_confidence=0.6
+        outcome_confidence=0.6,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -35,9 +35,9 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_liquidity="uneven flow",
         outcome_contradictions=[
             "momentum persistence vs volatility expansion",
-            "recovery without conviction"
+            "recovery without conviction",
         ],
-        outcome_confidence=0.5
+        outcome_confidence=0.5,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -52,9 +52,9 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_liquidity="concentrated in index heavyweights",
         outcome_contradictions=[
             "liquidity concentration vs participation weakness",
-            "index strength vs broad market weakness"
+            "index strength vs broad market weakness",
         ],
-        outcome_confidence=0.65
+        outcome_confidence=0.65,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -67,11 +67,8 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_volatility="high with doji patterns",
         realized_breadth="declined through session",
         realized_liquidity="strong but directional",
-        outcome_contradictions=[
-            "breakout failed",
-            "intraday reversal from trend"
-        ],
-        outcome_confidence=0.45
+        outcome_contradictions=["breakout failed", "intraday reversal from trend"],
+        outcome_confidence=0.45,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -85,7 +82,7 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_breadth="broad improvement",
         realized_liquidity="ample across sectors",
         outcome_contradictions=[],
-        outcome_confidence=0.85
+        outcome_confidence=0.85,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -100,9 +97,9 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_liquidity="fragmented",
         outcome_contradictions=[
             "volatility expansion with positive close",
-            "range expansion indicating uncertainty"
+            "range expansion indicating uncertainty",
         ],
-        outcome_confidence=0.5
+        outcome_confidence=0.5,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -117,9 +114,9 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_liquidity="weak in mid-cap segment",
         outcome_contradictions=[
             "NIFTY support vs mid-cap weakness",
-            "liquidity fragmentation"
+            "liquidity fragmentation",
         ],
-        outcome_confidence=0.55
+        outcome_confidence=0.55,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -133,7 +130,7 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_breadth="broad and improving",
         realized_liquidity="strong ample flow",
         outcome_contradictions=[],
-        outcome_confidence=0.8
+        outcome_confidence=0.8,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -148,9 +145,9 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_liquidity="steady but no directional push",
         outcome_contradictions=[
             "regime shift from trend to range",
-            "assumption failure"
+            "assumption failure",
         ],
-        outcome_confidence=0.6
+        outcome_confidence=0.6,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -165,9 +162,9 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_liquidity="concentrated in banking stocks",
         outcome_contradictions=[
             "price strength vs very weak breadth",
-            "sector concentration risk"
+            "sector concentration risk",
         ],
-        outcome_confidence=0.5
+        outcome_confidence=0.5,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -181,7 +178,7 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_breadth="strong on decline",
         realized_liquidity="ample and broad",
         outcome_contradictions=[],
-        outcome_confidence=0.75
+        outcome_confidence=0.75,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -194,11 +191,8 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_volatility="elevated with whipsaws",
         realized_breadth="weak sellers dominating",
         realized_liquidity="uneven execution",
-        outcome_contradictions=[
-            "bounce failure",
-            "lack of conviction"
-        ],
-        outcome_confidence=0.4
+        outcome_contradictions=["bounce failure", "lack of conviction"],
+        outcome_confidence=0.4,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -212,7 +206,7 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_breadth="steady improvement",
         realized_liquidity="reliable flow",
         outcome_contradictions=[],
-        outcome_confidence=0.82
+        outcome_confidence=0.82,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -225,11 +219,8 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_volatility="spiked higher",
         realized_breadth="universal weakness",
         realized_liquidity="stress evident in execution",
-        outcome_contradictions=[
-            "macro assumption failure",
-            "external shock impact"
-        ],
-        outcome_confidence=0.35
+        outcome_contradictions=["macro assumption failure", "external shock impact"],
+        outcome_confidence=0.35,
     ),
     MarketOutcome(
         market_name="NIFTY",
@@ -244,8 +235,8 @@ SAMPLE_NIFTY_OUTCOMES = [
         realized_liquidity="fragmented severely",
         outcome_contradictions=[
             "liquidity led theories fail in vol spike",
-            "regime sensitivity confirmed"
+            "regime sensitivity confirmed",
         ],
-        outcome_confidence=0.45
-    )
+        outcome_confidence=0.45,
+    ),
 ]

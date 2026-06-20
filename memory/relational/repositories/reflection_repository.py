@@ -12,16 +12,13 @@ class ReflectionRepository:
                 created_at=reflection.created_at,
                 related_theory_id=reflection.related_theory_id,
                 reflection_summary=reflection.reflection_summary,
-                confidence_impact=reflection.confidence_impact
+                confidence_impact=reflection.confidence_impact,
             )
 
             session.merge(model)
             session.commit()
 
-        return {
-            "status": "stored",
-            "reflection_id": reflection.id
-        }
+        return {"status": "stored", "reflection_id": reflection.id}
 
     def list_recent(self, limit: int = 5):
 

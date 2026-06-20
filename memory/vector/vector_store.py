@@ -2,6 +2,4 @@ class VectorStore:
 
     def store(self, embedding):
 
-        return {
-            "status": "stored"
-        }
+        return {"status": "stored"}

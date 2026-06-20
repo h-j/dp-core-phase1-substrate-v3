@@ -5,7 +5,7 @@ class MarketRegimeClassifier:
         return {
             "trend_regime": self._trend_regime(observation),
             "volatility_regime": self._volatility_regime(observation),
-            "liquidity_regime": self._liquidity_regime(observation)
+            "liquidity_regime": self._liquidity_regime(observation),
         }
 
     def _trend_regime(self, observation):

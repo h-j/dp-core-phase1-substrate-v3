@@ -1,6 +1,7 @@
 from typing import List, Dict, Any, Optional
 from statistics import mean
 
+
 class ConfidenceEvolutionEngine:
 
     def evolve(
@@ -27,8 +28,12 @@ class ConfidenceEvolutionEngine:
         pressure_delta = 0.0
 
         new_contradictions = int(contradiction_result.get("new_contradictions", 0))
-        resolved_contradictions = int(contradiction_result.get("resolved_contradictions", 0))
-        active_contradictions = int(contradiction_result.get("active_contradictions", 0))
+        resolved_contradictions = int(
+            contradiction_result.get("resolved_contradictions", 0)
+        )
+        active_contradictions = int(
+            contradiction_result.get("active_contradictions", 0)
+        )
         mutated = int(lineage_event.get("mutated", 0))
         merged = int(lineage_event.get("merged", 0))
 
@@ -46,7 +51,9 @@ class ConfidenceEvolutionEngine:
                 coherence_delta -= 0.06
                 pressure_delta += 0.08
 
-            outcome_contradictions = outcome_validation_result.get("contradictions_detected", [])
+            outcome_contradictions = outcome_validation_result.get(
+                "contradictions_detected", []
+            )
             if outcome_contradictions:
                 pressure_delta += len(outcome_contradictions) * 0.06
                 coherence_delta -= len(outcome_contradictions) * 0.03
@@ -68,7 +75,10 @@ class ConfidenceEvolutionEngine:
 
         if regime_matches:
             try:
-                sims = [m.similarity if hasattr(m, 'similarity') else m.get('similarity', 0) for m in regime_matches]
+                sims = [
+                    m.similarity if hasattr(m, "similarity") else m.get("similarity", 0)
+                    for m in regime_matches
+                ]
                 avg_sim = mean(sims) if sims else 0.0
                 if avg_sim > 0.75:
                     regime_delta += 0.06
@@ -142,7 +152,13 @@ class ConfidenceEvolutionEngine:
                 market_observation, "contradiction_markers", []
             )
 
-            if candle_type in ["strong_bull", "strong_bear"] and participation_confirmation in ["bullish_confirmed", "bearish_confirmed"]:
+            if candle_type in [
+                "strong_bull",
+                "strong_bear",
+            ] and participation_confirmation in [
+                "bullish_confirmed",
+                "bearish_confirmed",
+            ]:
                 empirical_delta += 0.04
                 regime_delta += 0.02
 
@@ -197,8 +213,7 @@ class ConfidenceEvolutionEngine:
         expected = validation.expected_behavior.lower()
 
         if self._contains_any(
-            observed,
-            ["failed", "weakened", "declined", "opposite", "did not"]
+            observed, ["failed", "weakened", "declined", "opposite", "did not"]
         ):
             return False
 
@@ -213,7 +228,7 @@ class ConfidenceEvolutionEngine:
 
         return self._contains_any(
             validation.validation_summary.lower(),
-            ["showed", "supported", "aligned", "confirmed"]
+            ["showed", "supported", "aligned", "confirmed"],
         )
 
     def _repeated_support(self, validation, recent_validations) -> bool:

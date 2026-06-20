@@ -22,9 +22,7 @@ class MarketObservationRepository:
                 contradiction_markers=self._serialize(
                     market_observation.contradiction_markers
                 ),
-                descriptors=self._serialize(
-                    market_observation.descriptors
-                ),
+                descriptors=self._serialize(market_observation.descriptors),
                 body_pct=market_observation.body_pct,
                 upper_wick_pct=market_observation.upper_wick_pct,
                 lower_wick_pct=market_observation.lower_wick_pct,
@@ -33,16 +31,13 @@ class MarketObservationRepository:
                 candle_type=market_observation.candle_type,
                 participation_strength=market_observation.participation_strength,
                 participation_confirmation=market_observation.participation_confirmation,
-                observation_source=market_observation.observation_source
+                observation_source=market_observation.observation_source,
             )
 
             session.merge(model)
             session.commit()
 
-        return {
-            "status": "stored",
-            "market_observation_id": market_observation.id
-        }
+        return {"status": "stored", "market_observation_id": market_observation.id}
 
     def list_recent(self, limit: int = 10):
 
@@ -54,10 +49,7 @@ class MarketObservationRepository:
                 .all()
             )
 
-            return [
-                self._to_schema(model)
-                for model in models
-            ]
+            return [self._to_schema(model) for model in models]
 
     def count(self) -> int:
 
@@ -76,12 +68,8 @@ class MarketObservationRepository:
             liquidity_state=model.liquidity_state,
             breadth_state=model.breadth_state,
             macro_sentiment=model.macro_sentiment,
-            contradiction_markers=self._deserialize(
-                model.contradiction_markers
-            ),
-            descriptors=self._deserialize(
-                model.descriptors
-            ),
+            contradiction_markers=self._deserialize(model.contradiction_markers),
+            descriptors=self._deserialize(model.descriptors),
             body_pct=model.body_pct or 0.0,
             upper_wick_pct=model.upper_wick_pct or 0.0,
             lower_wick_pct=model.lower_wick_pct or 0.0,
@@ -90,7 +78,7 @@ class MarketObservationRepository:
             candle_type=model.candle_type or "neutral",
             participation_strength=model.participation_strength or "normal",
             participation_confirmation=model.participation_confirmation or "normal",
-            observation_source=model.observation_source
+            observation_source=model.observation_source,
         )
 
     def _serialize(self, values: List[str]) -> str:
@@ -102,8 +90,4 @@ class MarketObservationRepository:
         if not value:
             return []
 
-        return [
-            item
-            for item in value.splitlines()
-            if item
-        ]
+        return [item for item in value.splitlines() if item]

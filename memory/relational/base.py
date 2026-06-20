@@ -3,6 +3,7 @@ try:
 
     class Base(DeclarativeBase):
         pass
+
 except ImportError:
     from sqlalchemy.ext.declarative import declarative_base
 

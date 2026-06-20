@@ -37,5 +37,7 @@
   "mutation_count": 1,
   "contradiction_count": 2,
   "validation_count": 1,
-  "falsification_count": 1
+  "falsification_count": 1,
+  "causal_events": [],
+  "component_failure_counts": {}
 }

@@ -1,0 +1,38 @@
+{
+  "experience_id": "exp_1e615dbe1fd3c07e_2026-05-06",
+  "lineage_id": "1e615dbe1fd3c07e",
+  "theory_family_id": "1e615dbe1fd3c07e",
+  "created_at": "2026-05-06",
+  "status": "active",
+  "theory_ids": [
+    "dc31dd3f-62d6-4462-973c-986d04f99952"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Market regime driven... vs Range-bound RELIANCE...; Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: Market regime driven... vs participation remain...; Low semantic similarity: RELATIONSHIP between... vs participation remain...; Low semantic similarity: asset selloff intens... vs volatility expands f...",
+    "Structural: Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: Market regime driven... vs short-term momentum ...; Low semantic similarity: RELATIONSHIP between... vs short-term momentum ...; Low semantic similarity: asset selloff intens... vs volatility contracti...",
+    "Structural: Low semantic similarity: Market regime driven... vs Range-bound regime d...; Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: Market regime driven... vs short-term momentum ...; Low semantic similarity: RELATIONSHIP between... vs short-term momentum ...; Low semantic similarity: asset selloff intens... vs long-term trend pers...",
+    "Structural: Low semantic similarity: Market regime driven... vs Bullish momentum per...; Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: Market regime driven... vs RELIEF's momentum co...; Low semantic similarity: RELATIONSHIP between... vs RELIEF's momentum co...; Low semantic similarity: asset selloff intens... vs volatility contracti...",
+    "Structural: Low semantic similarity: Market regime driven... vs Strong bullish confi...; Field conflict: decisive close above the prior vs decisive close below the prior; Low semantic similarity: Market regime driven... vs volume continues to ...; Low semantic similarity: RELATIONSHIP between... vs volume continues to ...; Low semantic similarity: asset selloff intens... vs volatility increases..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:extended_lower",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:strengthened",
+    "participation:weak",
+    "momentum:flat",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 0,
+  "causal_events": [],
+  "component_failure_counts": {}
+}

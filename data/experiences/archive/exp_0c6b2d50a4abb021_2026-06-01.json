@@ -1,0 +1,35 @@
+{
+  "experience_id": "exp_0c6b2d50a4abb021_2026-06-01",
+  "lineage_id": "0c6b2d50a4abb021",
+  "theory_family_id": "0c6b2d50a4abb021",
+  "created_at": "2026-06-01",
+  "status": "active",
+  "theory_ids": [
+    "65101443-0721-4fbd-87a1-a9b52a1d4693",
+    "564a1dad-308a-46cd-b163-40c9a750b1d3"
+  ],
+  "contradictions": [
+    "Structural: Field conflict: Neutral market with mixed tren vs Market regime is driven by REL; Field conflict: decisive close below the prior vs decisive close above the prior; Low semantic similarity: Neutral market with ... vs short-term momentum ...; Participation: weakening vs elevated"
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:closed_lower",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:weak",
+    "momentum:weakening",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 1,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 0,
+  "causal_events": [],
+  "component_failure_counts": {}
+}

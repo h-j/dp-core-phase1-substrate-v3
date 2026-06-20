@@ -1,6 +1,4 @@
-from memory.market.market_observation_repository import (
-    MarketObservationRepository
-)
+from memory.market.market_observation_repository import MarketObservationRepository
 
 
 class HistoricalMarketMemoryService:
@@ -13,9 +11,7 @@ class HistoricalMarketMemoryService:
 
     def build_context(self, limit: int = 10) -> str:
 
-        observations = self.market_observation_repository.list_recent(
-            limit=limit
-        )
+        observations = self.market_observation_repository.list_recent(limit=limit)
 
         if not observations:
             return "RECENT MARKET MEMORY:\n\n* None recorded yet."
@@ -27,8 +23,7 @@ class HistoricalMarketMemoryService:
 
             if observation.contradiction_markers:
                 lines.append(
-                    "  Contradictions: "
-                    + "; ".join(observation.contradiction_markers)
+                    "  Contradictions: " + "; ".join(observation.contradiction_markers)
                 )
 
         return "\n".join(lines)

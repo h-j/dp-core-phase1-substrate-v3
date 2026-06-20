@@ -10,6 +10,7 @@ try:
     from market.replay.replay_engine import ReplayExecutor
     from market.replay.replay_analysis import ReplayAnalysisEngine
     from market.replay.capital_simulator import CapitalSimulator
+
     print("✓ All imports successful")
 except Exception as e:
     print(f"✗ Import failed: {e}")
@@ -19,12 +20,12 @@ except Exception as e:
 print("\nTesting ReplayAnalysisEngine methods...")
 engine = ReplayAnalysisEngine()
 
-if not hasattr(engine, 'set_capital_simulation_logs'):
+if not hasattr(engine, "set_capital_simulation_logs"):
     print("✗ set_capital_simulation_logs method missing")
     sys.exit(1)
 print("✓ set_capital_simulation_logs method exists")
 
-if not hasattr(engine, 'set_capital_simulation_summary'):
+if not hasattr(engine, "set_capital_simulation_summary"):
     print("✗ set_capital_simulation_summary method missing")
     sys.exit(1)
 print("✓ set_capital_simulation_summary method exists")
@@ -33,7 +34,7 @@ print("✓ set_capital_simulation_summary method exists")
 print("\nTesting CapitalSimulator methods...")
 simulator = CapitalSimulator()
 
-if not hasattr(simulator, 'get_daily_logs'):
+if not hasattr(simulator, "get_daily_logs"):
     print("✗ get_daily_logs method missing")
     sys.exit(1)
 print("✓ get_daily_logs method exists")
@@ -60,11 +61,11 @@ except Exception as e:
 
 # Test 5: Verify prediction history exists
 print("\nTesting prediction history...")
-if not hasattr(engine, 'prediction_history'):
+if not hasattr(engine, "prediction_history"):
     print("✗ prediction_history attribute missing")
     sys.exit(1)
 print(f"✓ prediction_history exists (currently {len(engine.prediction_history)} items)")
 
-print("\n" + "="*60)
+print("\n" + "=" * 60)
 print("✓ All wiring tests passed!")
-print("="*60)
+print("=" * 60)

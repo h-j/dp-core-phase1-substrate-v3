@@ -9,8 +9,10 @@ try:
 except ImportError:
     # Fallback for testing or if database.py is not yet created
     # In a real scenario, this ImportError should be resolved.
-    logging.warning("SessionLocal not found in memory.relational.database. "
-                    "BaseRepository will not be able to create sessions automatically.")
+    logging.warning(
+        "SessionLocal not found in memory.relational.database. "
+        "BaseRepository will not be able to create sessions automatically."
+    )
     SessionLocal = None
 
 
@@ -19,6 +21,7 @@ class BaseRepository:
     Base class for all repositories, providing common database operations.
     Manages its own session lifecycle for each operation.
     """
+
     def __init__(self):
         self.logger = logging.getLogger(self.__class__.__name__)
 
@@ -28,8 +31,10 @@ class BaseRepository:
         Returns a SQLAlchemy Session object.
         """
         if SessionLocal:
-            return SessionLocal() # SessionLocal() returns a session object
-        raise RuntimeError("SessionLocal is not configured. Cannot get database session.")
+            return SessionLocal()  # SessionLocal() returns a session object
+        raise RuntimeError(
+            "SessionLocal is not configured. Cannot get database session."
+        )
 
     def _save(self, model_instance):
         """
@@ -50,9 +55,13 @@ class BaseRepository:
         """Retrieves an item by its ID."""
         with self._get_session() as session:
             try:
-                return session.query(model_class).filter(model_class.id == item_id).first()
+                return (
+                    session.query(model_class).filter(model_class.id == item_id).first()
+                )
             except SQLAlchemyError as e:
                 # For read operations, rollback might not be strictly necessary, but it's harmless.
-                session.rollback() 
-                self.logger.error(f"Error getting {model_class.__name__} by ID {item_id}: {e}")
+                session.rollback()
+                self.logger.error(
+                    f"Error getting {model_class.__name__} by ID {item_id}: {e}"
+                )
                 raise

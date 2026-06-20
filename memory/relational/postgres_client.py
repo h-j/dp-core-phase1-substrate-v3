@@ -24,6 +24,7 @@ except (ImportError, ModuleNotFoundError, NoSuchModuleError, Exception) as exc:
         f"PostgreSQL unavailable or misconfigured: {exc}. Ensure Postgres is running and settings are correct."
     ) from exc
 
+
 class SessionContext:
     def __init__(self, session):
         self.session = session
@@ -42,31 +43,36 @@ class SessionContext:
 
 
 SessionFactory = sessionmaker(
-    bind=engine,
-    autoflush=False,
-    autocommit=False,
-    expire_on_commit=False
+    bind=engine, autoflush=False, autocommit=False, expire_on_commit=False
 )
 
 SessionLocal = lambda *args, **kwargs: SessionContext(SessionFactory(*args, **kwargs))
 
 from memory.relational.base import Base
+
 # Import the models package to trigger registration of all relational models
 # This uses the __all__ list in memory/relational/models/__init__.py
 import memory.relational.models  # noqa: F401
 
-# Explicitly import models located outside the relational package to ensure 
+# Explicitly import models located outside the relational package to ensure
 # they are registered with the same Base metadata.
 # Note: Ensure MarketObservationModel imports Base from memory.relational.base
 from memory.market.market_observation_model import MarketObservationModel  # noqa: F401
-from memory.market.strategic_memory_model import StrategicMemoryModel as MarketStrategicMemoryModel  # noqa: F401
+from memory.market.strategic_memory_model import (
+    StrategicMemoryModel as MarketStrategicMemoryModel,
+)  # noqa: F401
 
 # Explicit Analytical Model Registration
-from memory.relational.models.transition_pressure_model import TransitionPressureModel  # noqa: F401
-from memory.relational.models.prediction_probe_model import PredictionProbeModel  # noqa: F401
+from memory.relational.models.transition_pressure_model import (
+    TransitionPressureModel,
+)  # noqa: F401
+from memory.relational.models.prediction_probe_model import (
+    PredictionProbeModel,
+)  # noqa: F401
 
 Base.metadata.create_all(engine)
 
 # PHASE 4: Fail-fast schema validation (startup check)
 from memory.relational.schema_validator import validate_schema_startup
+
 validate_schema_startup(engine)

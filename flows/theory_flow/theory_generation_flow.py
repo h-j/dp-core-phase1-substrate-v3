@@ -1,8 +1,11 @@
 import json
 import re
-from typing import Dict, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 from uuid import uuid4
-from cognition.schemas.theory.theory import Branch, TheoryStructured # Import new schemas
+from cognition.schemas.theory.theory import (
+    Branch,
+    TheoryStructured,
+)  # Import new schemas
 from cognition.schemas.confidence.confidence_state import ConfidenceState
 from cognition.schemas.theory.theory import Theory
 from interfaces.ollama_client import OllamaClient
@@ -30,6 +33,8 @@ class TheoryGenerationFlow:
         regime_history: dict = None,
         dialectical_synthesis: str = None,
         relevant_lessons: list = None,
+        prior_theory: Optional[Theory] = None,
+        prior_attribution: Optional[Any] = None,
     ) -> tuple[Theory, dict]:
 
         if not regime_subtype:
@@ -43,7 +48,10 @@ class TheoryGenerationFlow:
 
         falsifiability_text = ""
         if falsifiability_conditions:
-            falsifiability_text = f"\n\nThe theory is falsified if any of these conditions occur:\n- " + "\n- ".join(falsifiability_conditions)
+            falsifiability_text = (
+                f"\n\nThe theory is falsified if any of these conditions occur:\n- "
+                + "\n- ".join(falsifiability_conditions)
+            )
 
         # v3.1 Tuning Correction: Reduced history burden
         seen_count = regime_history.get("seen_count", 0) if regime_history else 0
@@ -62,7 +70,9 @@ Avg usefulness: {regime_history.get('avg_usefulness', 0.0):.2f}
 Use subtype history only if materially relevant. Primary focus remains: 1 observation, 2 subtype, 3 falsifiability. History is secondary context. Do not force theory to explain history.
 """
         if self.debug:
-            print(f"[Theory History Debug] seen_count: {seen_count}, context: {history_text_for_prompt}")
+            print(
+                f"[Theory History Debug] seen_count: {seen_count}, context: {history_text_for_prompt}"
+            )
 
         synthesis_context = ""
         if dialectical_synthesis:
@@ -74,9 +84,36 @@ You MUST incorporate the logic of this synthesis into your new theory. If curren
 
         lessons_context = ""
         if relevant_lessons:
-            lessons_context = "Historical Lessons for this Regime:\n- " + "\n- ".join(relevant_lessons)
+            lessons_context = "Historical Lessons for this Regime:\n- " + "\n- ".join(
+                relevant_lessons
+            )
         else:
             lessons_context = "No validated historical lessons for this regime yet."
+
+        attribution_context = ""
+        if prior_theory and prior_attribution and getattr(prior_attribution, "components_failed", None):
+            failed_comps = prior_attribution.components_failed
+            passed_comps = getattr(prior_attribution, "components_passed", [])
+            root_cause = getattr(prior_attribution, "root_cause_component", "Unknown")
+            guidance = prior_attribution.get_mutation_guidance()
+            prior_claim = prior_theory.summary_structured.claim if prior_theory.summary_structured else prior_theory.summary
+            
+            attribution_context = f"""
+MANDATORY MUTATION GUIDANCE FOR EXISTING THEORY:
+You are mutating the existing active theory to fix its failures:
+Claim: {prior_claim}
+
+Causal Attribution Analysis of the prior theory:
+- Failed Components: {', '.join(failed_comps)}
+- Passed Components: {', '.join(passed_comps) if passed_comps else 'None'}
+- Root Cause of Failure: {root_cause}
+- Guidance: {guidance}
+
+INSTRUCTIONS:
+1. Mutate the existing theory to resolve the failures in the components that failed: {', '.join(failed_comps)}.
+2. Keep the components that passed unchanged: {', '.join(passed_comps) if passed_comps else 'None'}.
+3. Ensure the mutated theory is structurally coherent and directly addresses the root cause: {root_cause}.
+"""
 
         prompt = f"""
 Market Memory:
@@ -95,6 +132,8 @@ Analog Divergence: {analog_divergence_claim or "None"}
 
 {lessons_context}
 
+{attribution_context}
+
 Reflective Memory Summary:
 {reflective_memory_summary}
 
@@ -108,6 +147,46 @@ MANDATORY COGNITIVE TASK:
 1. Identify the hidden causal MECHANISM (e.g., Absorption, Exhaustion, Front-running).
 2. Define what the market is FORBIDDEN to do if your mechanism is correct.
 3. Decompose your mechanism into independently testable sub-components.
+
+MECHANISM COMPONENT REQUIREMENTS:
+
+You must decompose your mechanism into independently testable sub-components.
+Each component must be verifiable against specific market data.
+
+Add these fields to your output:
+- "mechanism_components": A JSON array of objects, each with:
+  - "component_id": Short snake_case name (e.g., "price_structure", "volume_confirm")
+  - "description": What this component claims about the market
+  - "observable": What specific market data validates this (e.g., "price_action.daily_structure")
+  - "expected_behavior": What we should observe if component holds
+  - "dependency": null or component_id this depends on
+
+- "falsification_conditions": A JSON array of strings like:
+  "component_id: specific condition that would falsify this component"
+
+Example:
+{{
+  "mechanism_components": [
+    {{
+      "component_id": "price_structure",
+      "description": "Price maintains sequence of higher highs and higher lows",
+      "observable": "price_action.daily_structure",
+      "expected_behavior": "Each day's high > previous high, each low > previous low",
+      "dependency": null
+    }},
+    {{
+      "component_id": "volume_confirmation",
+      "description": "Volume expands on up days relative to down days",
+      "observable": "volume.daily_ratio",
+      "expected_behavior": "Average volume on up days exceeds average volume on down days",
+      "dependency": null
+    }}
+  ],
+  "falsification_conditions": [
+    "price_structure: lower low formed breaking HH/HL sequence",
+    "volume_confirmation: down-day volume exceeds up-day volume for 3 consecutive sessions"
+  ]
+}}
 
 Return exactly a JSON object conforming to this schema:
 {{
@@ -163,14 +242,16 @@ Example:
             try:
                 # Extract JSON using a more targeted approach to avoid greedy capture of multiple blocks
                 # We search for the first '{' and the last '}' in the string
-                start = result.find('{')
-                end = result.rfind('}') + 1
+                start = result.find("{")
+                end = result.rfind("}") + 1
                 json_text = result[start:end] if start != -1 and end > start else result
                 parsed_theory_data = json.loads(json_text)
                 break
             except (json.JSONDecodeError, AttributeError):
                 if self.debug:
-                    print(f"[Theory JSON Parse Error] Attempt {attempt+1}/3. Retrying generation...")
+                    print(
+                        f"[Theory JSON Parse Error] Attempt {attempt+1}/3. Retrying generation..."
+                    )
                 result = self.client.generate(prompt)
 
         # If still not parsed, attempt one final targeted JSON-only repair prompt
@@ -178,15 +259,22 @@ Example:
             repair_prompt = (
                 "The previous response could not be parsed as JSON.\n"
                 "Extract the core theory content from the last message and return ONLY a JSON object with keys:"
-                " claim, if_branch, else_branch, unless, falsified_if.\n"
-                "Here is the original output:\n" + result + "\n\nRespond ONLY with the JSON object. No commentary."
+                " claim, mechanism, if_branch, else_branch, unless, falsified_if,"
+                " mechanism_components, falsification_conditions.\n"
+                "Here is the original output:\n"
+                + result
+                + "\n\nRespond ONLY with the JSON object. No commentary."
             )
             try:
                 repair_result = self.client.generate(repair_prompt)
                 # Extract JSON from repair result
-                start = repair_result.find('{')
-                end = repair_result.rfind('}') + 1
-                json_text = repair_result[start:end] if start != -1 and end > start else repair_result
+                start = repair_result.find("{")
+                end = repair_result.rfind("}") + 1
+                json_text = (
+                    repair_result[start:end]
+                    if start != -1 and end > start
+                    else repair_result
+                )
                 parsed_theory_data = json.loads(json_text)
                 result = repair_result
             except Exception:
@@ -196,13 +284,23 @@ Example:
         # v3.7 Logic: Convert dict to Pydantic object to support attribute access in downstream logic
         if parsed_theory_data and isinstance(parsed_theory_data, dict):
             # Pre-sanitize to prevent validation noise
-            if "if_branch" in parsed_theory_data and isinstance(parsed_theory_data["if_branch"], str):
-                parsed_theory_data["if_branch"] = {"condition": parsed_theory_data["if_branch"], "action": "behavior continues"}
-            if "else_branch" in parsed_theory_data and isinstance(parsed_theory_data["else_branch"], str):
-                parsed_theory_data["else_branch"] = {"condition": parsed_theory_data["else_branch"], "action": "behavior persists"}
+            if "if_branch" in parsed_theory_data and isinstance(
+                parsed_theory_data["if_branch"], str
+            ):
+                parsed_theory_data["if_branch"] = {
+                    "condition": parsed_theory_data["if_branch"],
+                    "action": "behavior continues",
+                }
+            if "else_branch" in parsed_theory_data and isinstance(
+                parsed_theory_data["else_branch"], str
+            ):
+                parsed_theory_data["else_branch"] = {
+                    "condition": parsed_theory_data["else_branch"],
+                    "action": "behavior persists",
+                }
             if parsed_theory_data.get("unless") is None:
                 parsed_theory_data["unless"] = "no contrary evidence emerges"
-            
+
             try:
                 parsed_theory_data = TheoryStructured(**parsed_theory_data)
             except Exception as e:
@@ -213,7 +311,12 @@ Example:
         # Phase 1: Attach structured data to object for the evaluator
         # This ensures the evaluator has access to the clean JSON even if persistence hasn't happened yet
 
-        theory_text, branches_generated, branches_retained = self._clean_theory(result, parsed_theory_data, regime_subtype=regime_subtype, dialectical_synthesis=dialectical_synthesis)
+        theory_text, branches_generated, branches_retained = self._clean_theory(
+            result,
+            parsed_theory_data,
+            regime_subtype=regime_subtype,
+            dialectical_synthesis=dialectical_synthesis,
+        )
 
         if self.debug:
             print("[Theory Summary Debug]", theory_text)
@@ -230,12 +333,18 @@ Example:
             falsifiability_conditions=falsifiability_conditions,
         )
 
-        object.__setattr__(theory, 'llm_evaluation', self.evaluator.evaluate(theory))
+        object.__setattr__(theory, "llm_evaluation", self.evaluator.evaluate(theory))
 
         branch_stats = {"generated": branches_generated, "retained": branches_retained}
         return theory, branch_stats
 
-    def _clean_theory(self, raw_llm_output: str, parsed_theory_data: Optional[TheoryStructured], regime_subtype: str = "neutral", dialectical_synthesis: str = None) -> Tuple[str, int, int]:
+    def _clean_theory(
+        self,
+        raw_llm_output: str,
+        parsed_theory_data: Optional[TheoryStructured],
+        regime_subtype: str = "neutral",
+        dialectical_synthesis: str = None,
+    ) -> Tuple[str, int, int]:
 
         replacements = {
             "I've generated the requested outputs:": "",
@@ -277,12 +386,12 @@ Example:
             "contradiction-sensitive theory",
         ]
         lines = []
-        
+
         if parsed_theory_data:
             # v3.7 Structured Theory Output: Prioritize JSON parsing
             # With the new TheoryStructured Pydantic model, parsed_theory_data is guaranteed to be valid.
             # We will now generate the 'summary' (legacy text) from the structured data.
-            
+
             # Generate a concise text summary from the structured data for legacy 'summary' field
             # This is a temporary step to maintain compatibility with existing print statements
             # and logging that might still rely on theory.summary as a string.
@@ -316,7 +425,7 @@ Example:
         cleaned = re.sub(r"\*\*[^*]+:\*\*", "", cleaned)
         cleaned = re.sub(
             r"\b(Concise Reflection|Momentum Behavior Theory|Note):", "", cleaned
-        ) 
+        )
         cleaned = cleaned.replace("**", "")
 
         sentences = [
@@ -367,7 +476,7 @@ Example:
             "level",
             "uncertain",
             "scenario",
-            "gate"
+            "gate",
         ]
         blocked_terms = [
             "i've",
@@ -399,12 +508,22 @@ Example:
 
             # v3.4 bypass for regime and synthesis logic
             if regime_subtype != "neutral" and regime_subtype.lower() in lower_sentence:
-                 grounded_sentences.append(sentence)
-                 continue
-            
+                grounded_sentences.append(sentence)
+                continue
+
             if dialectical_synthesis:
                 # Preserve sentences that explicitly address the mandatory anchor
-                if any(term in lower_sentence for term in ["synthesis", "conflict", "reconciliation", "reconcil", "premise", "boundary"]):
+                if any(
+                    term in lower_sentence
+                    for term in [
+                        "synthesis",
+                        "conflict",
+                        "reconciliation",
+                        "reconcil",
+                        "premise",
+                        "boundary",
+                    ]
+                ):
                     grounded_sentences.append(sentence)
                     continue
 
@@ -421,9 +540,11 @@ Example:
                 continue
 
             grounded_sentences.append(sentence)
-        
+
         if parsed_theory_data:
-            branches_generated = self._count_branches_from_structured(parsed_theory_data)
+            branches_generated = self._count_branches_from_structured(
+                parsed_theory_data
+            )
             branches_retained = branches_generated
         else:
             branches_generated = self._count_branches(raw_llm_output)
@@ -436,10 +557,14 @@ Example:
         compressed = self._remove_generic_phrases(cleaned).strip()
         if not compressed:
             compressed = "Evidence remains insufficient for a compressed market theory."
-        
+
         branches_generated = self._count_branches(raw_llm_output)
         branches_retained = self._count_branches(compressed)
-        return theory_text, branches_generated, branches_retained # Return the generated theory_text
+        return (
+            theory_text,
+            branches_generated,
+            branches_retained,
+        )  # Return the generated theory_text
 
     def _remove_generic_phrases(self, text: str) -> str:
         """Minimally remove known filler openings without rewriting claims."""
@@ -465,7 +590,11 @@ Example:
             return 0
         count = 0
         # v3.7 Loosen anchors to catch branches in joined or formatted text
-        patterns = [r"(?:^|\n|\. |; )\s*if\b", r"(?:^|\n|\. |; )\s*else\s+if\b", r"(?:^|\n|\. |; )\s*else\b"]
+        patterns = [
+            r"(?:^|\n|\. |; )\s*if\b",
+            r"(?:^|\n|\. |; )\s*else\s+if\b",
+            r"(?:^|\n|\. |; )\s*else\b",
+        ]
 
         for line in text.splitlines():
             cleaned = line.strip().strip("*").strip("#").strip().lower()
@@ -480,10 +609,15 @@ Example:
                     count += 1
         return count
 
-    def _count_branches_from_structured(self, theory_structured: TheoryStructured) -> int:
+    def _count_branches_from_structured(
+        self, theory_structured: TheoryStructured
+    ) -> int:
         """Count branches from a structured theory dictionary."""
         count = 0
-        if theory_structured.if_branch: count += 1
-        if theory_structured.else_branch: count += 1
-        if theory_structured.unless: count += 1
+        if theory_structured.if_branch:
+            count += 1
+        if theory_structured.else_branch:
+            count += 1
+        if theory_structured.unless:
+            count += 1
         return count
