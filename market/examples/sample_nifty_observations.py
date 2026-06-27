@@ -1,6 +1,5 @@
 from market.schemas.market_observation import MarketObservation
 
-
 SAMPLE_NIFTY_OBSERVATIONS = [
     MarketObservation(
         market_name="NIFTY 50",

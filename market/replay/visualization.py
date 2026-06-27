@@ -1,7 +1,9 @@
-import matplotlib.pyplot as plt
 import os
 from pathlib import Path
+
+import matplotlib.pyplot as plt
 import pandas as pd
+
 from market.replay.replay_analysis import extract_usefulness_score
 
 

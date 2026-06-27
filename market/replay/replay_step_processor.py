@@ -1,6 +1,6 @@
-from market.replay.cognition_result import CognitionResult
-from cognition.schemas.confidence.confidence_state import ConfidenceState
 from cognition.evaluation.epistemic_quality import evaluate_epistemic_quality
+from cognition.schemas.confidence.confidence_state import ConfidenceState
+from market.replay.cognition_result import CognitionResult
 
 
 class ReplayStepProcessor:

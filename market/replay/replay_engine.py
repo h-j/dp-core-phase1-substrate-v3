@@ -22,18 +22,20 @@ from typing import List
 
 import pandas as pd
 
+from flows.theory_flow.attribution import AttributionResult
+from flows.theory_flow.attribution_engine import AttributionEngine
 from market.data.dataset_validator import DatasetValidator
-from market.replay.prediction_probe import PredictionProbeGenerator
 from market.replay.capital_simulator import CapitalSimulator
-from market.replay.transition_pressure import TransitionPressureEngine
 from market.replay.decision_policy import DecisionPolicyEngine
-from memory.replay.regime_memory import RegimeMemoryStore  # Import RegimeMemoryStore
-from flows.theory_flow.regime_continuity_memory import RegimeContinuityMemory
-from market.replay.transition_memory import TransitionMemoryStore, TransitionExample
-from experience.experience_engine import ExperienceEngine
-from experience.experience_repository import ExperienceRepository
-from dp.core.attribution_engine import AttributionEngine
-from dp.models.attribution import AttributionResult
+from market.replay.prediction_probe import PredictionProbeGenerator
+from market.replay.transition_memory import (TransitionExample,
+                                             TransitionMemoryStore)
+from market.replay.transition_pressure import TransitionPressureEngine
+from memory.experience.experience_engine import ExperienceEngine
+from memory.experience.experience_repository import ExperienceRepository
+from memory.replay.regime_continuity_memory import RegimeContinuityMemory
+from memory.replay.regime_memory import \
+    RegimeMemoryStore  # Import RegimeMemoryStore
 
 
 class ReplayEngine:
@@ -236,6 +238,8 @@ class ReplayExecutor:
         compare_secondary: bool = False,
         generate_visualizations: bool = False,
         lineage_debug: bool = False,
+        restart: bool = False,
+        verbose: bool = False,
     ):
         """Initialize executor.
 
@@ -247,10 +251,12 @@ class ReplayExecutor:
         """
         self.max_days = max_days
         self.quiet = quiet
+        self.verbose = verbose
         self.dataset_path = dataset_path
         self.market_name = market_name
         self.compare_secondary = compare_secondary
         self.lineage_debug = lineage_debug
+        self.restart = restart
         self.replay_dir = Path(__file__).parent.parent.parent / "memory" / "replay"
         self.base_data_snap_dir = (
             Path(__file__).parent.parent.parent / "data" / "replay_snapshots"
@@ -333,6 +339,7 @@ class ReplayExecutor:
         # Experience tracking
         self.experience_repo = ExperienceRepository()
         self.experience_engine = ExperienceEngine(self.experience_repo)
+        self.experience_engine.verbose = self.verbose
         self._lineage_audit_table = []  # Instrumentation: For final audit table
 
     def _create_snapshot_dirs(self):
@@ -350,63 +357,129 @@ class ReplayExecutor:
         for d in dirs:
             d.mkdir(parents=True, exist_ok=True)
 
+    def _initialize_run_dir(self, restart: bool = False):
+        """Initializes self.run_dir, reusing the most recent one if not restarting."""
+        if not restart and self.base_data_snap_dir.exists():
+            # Find the most recent run_ directory
+            run_dirs = sorted(
+                [
+                    d
+                    for d in self.base_data_snap_dir.iterdir()
+                    if d.is_dir() and d.name.startswith("run_")
+                ],
+                key=lambda x: x.name,
+                reverse=True,
+            )
+            if run_dirs:
+                self.run_dir = run_dirs[0]
+                self._log(
+                    f"✓ Reusing existing run directory for incremental replay: {self.run_dir.name}"
+                )
+                return
+
+        # Generate new timestamped run directory
+        self.run_dir = (
+            self.base_data_snap_dir / f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        )
+        self.run_dir.mkdir(parents=True, exist_ok=True)
+        self._log(f"✓ Created new run directory: {self.run_dir.name}")
+
+    def restart_clean(self):
+        """Clears all relational database tables, generated experiences, and snapshot files."""
+        self._log("\n" + "=" * 70)
+        self._log(
+            "RESTART REPLAY: Clearing all database records and generated artifacts..."
+        )
+        self._log("=" * 70)
+
+        # 1. Clear database records/tables by dropping and recreating
+        import memory.relational.models  # Ensure all models are registered
+        from memory.relational.postgres_client import Base, engine
+
+        try:
+            Base.metadata.drop_all(bind=engine)
+            Base.metadata.create_all(bind=engine)
+            # Re-run schema validation check
+            from memory.relational.schema_validator import \
+                validate_schema_startup
+
+            validate_schema_startup(engine)
+            self._log(
+                "✓ PostgreSQL database tables dropped and recreated successfully."
+            )
+        except Exception as e:
+            self._log(f"⚠ Database drop/recreate failed: {e}")
+
+        # 2. Clear generated experience JSON files
+        exp_dir = Path(__file__).parent.parent.parent / "data" / "experiences"
+        if exp_dir.exists():
+            for f in exp_dir.glob("*.json"):
+                try:
+                    f.unlink()
+                except Exception as e:
+                    self._log(f"⚠ Failed to delete experience file {f}: {e}")
+            self._log("✓ Experience JSON files cleared.")
+
+        # 3. Clear run snapshot directories
+        snap_dir = Path(__file__).parent.parent.parent / "data" / "replay_snapshots"
+        if snap_dir.exists():
+            import shutil
+
+            for d in snap_dir.iterdir():
+                if d.is_dir() and d.name.startswith("run_"):
+                    try:
+                        shutil.rmtree(d)
+                    except Exception as e:
+                        self._log(f"⚠ Failed to delete snapshot dir {d}: {e}")
+            self._log("✓ Replay snapshots cleared.")
+
     def _initialize_flows(self):
         """Lazy initialize cognition flows and repositories."""
         if self.flows_initialized:
             return
 
         # v3.7 Logic: Ensure schema is valid before starting execution
-        from memory.relational.postgres_client import engine
-
         # Note: postgres_client triggers create_all and validation on import.
         # No explicit call needed here to avoid redundant I/O.
-
-        from cognition.confidence.confidence_evolution_engine import (
-            ConfidenceEvolutionEngine,
-        )
-        from cognition.contradiction.contradiction_detector import ContradictionDetector
+        from cognition.confidence.confidence_evolution_engine import \
+            ConfidenceEvolutionEngine
+        from cognition.contradiction.contradiction_detector import \
+            ContradictionDetector
         from flows.observation_flow.abstraction_flow import AbstractionFlow
         from flows.reflection_flow.reflection_flow import ReflectionFlow
-        from flows.theory_flow.theory_generation_flow import TheoryGenerationFlow
-        from flows.theory_flow.dialectical_synthesizer import (
-            DialecticalTheorySynthesizer,
-        )
-        from memory.relational.repositories.abstraction_repository import (
-            AbstractionRepository,
-        )
-        from memory.relational.repositories.confidence_repository import (
-            ConfidenceRepository,
-        )
-        from memory.relational.repositories.observation_repository import (
-            ObservationRepository,
-        )
-        from memory.relational.repositories.reflection_repository import (
-            ReflectionRepository,
-        )
-        from memory.relational.repositories.theory_repository import TheoryRepository
-        from memory.relational.repositories.validation_repository import (
-            ValidationRepository,
-        )
-        from memory.relational.repositories.prediction_repository import (
-            PredictionRepository,
-        )
-        from memory.relational.repositories.prediction_result_repository import (
-            PredictionResultRepository,
-        )
-        from memory.relational.repositories.transition_pressure_repository import (
-            TransitionPressureRepository,
-        )
-        from memory.relational.repositories.market_outcome_repository import (
-            MarketOutcomeRepository,
-        )
+        from flows.theory_flow.dialectical_synthesizer import \
+            DialecticalTheorySynthesizer
+        from flows.theory_flow.theory_generation_flow import \
+            TheoryGenerationFlow
+        from memory.relational.postgres_client import engine
+        from memory.relational.repositories.abstraction_repository import \
+            AbstractionRepository
+        from memory.relational.repositories.confidence_repository import \
+            ConfidenceRepository
+        from memory.relational.repositories.market_outcome_repository import \
+            MarketOutcomeRepository
+        from memory.relational.repositories.observation_repository import \
+            ObservationRepository
+        from memory.relational.repositories.prediction_repository import \
+            PredictionRepository
+        from memory.relational.repositories.prediction_result_repository import \
+            PredictionResultRepository
+        from memory.relational.repositories.reflection_repository import \
+            ReflectionRepository
+        from memory.relational.repositories.theory_repository import \
+            TheoryRepository
+        from memory.relational.repositories.transition_pressure_repository import \
+            TransitionPressureRepository
+        from memory.relational.repositories.validation_repository import \
+            ValidationRepository
 
         self.abstraction_flow = AbstractionFlow()
         self.theory_flow = TheoryGenerationFlow()
-        self.reflection_flow = ReflectionFlow()
+        self.reflection_flow = ReflectionFlow(verbose=self.verbose)
         self.dialectical_synthesizer = DialecticalTheorySynthesizer()
         # Inject client into attribution engine
         self.attribution_engine.llm = self.theory_flow.client
-        self.contradiction_detector = ContradictionDetector()
+        self.contradiction_detector = ContradictionDetector(verbose=self.verbose)
         self.theory_flow.debug = self.lineage_debug
         self.confidence_engine = ConfidenceEvolutionEngine()
 
@@ -423,9 +496,8 @@ class ReplayExecutor:
         self.transition_pressure_repo = TransitionPressureRepository()
 
         try:
-            from memory.relational.repositories.market_outcome_repository import (
-                MarketOutcomeRepository,
-            )
+            from memory.relational.repositories.market_outcome_repository import \
+                MarketOutcomeRepository
 
             self.market_outcome_repo = MarketOutcomeRepository()
             # Lesson Layer V1: JSON file persistence, not relational DB
@@ -448,40 +520,38 @@ class ReplayExecutor:
         """Execute full replay with cognition loop."""
         self._initialize_flows()
 
-        # Create a run-isolated snapshot directory for this replay.
-        self.run_dir = (
-            self.base_data_snap_dir / f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-        )
-        self.run_dir.mkdir(parents=True, exist_ok=True)
+        # Restart clean if requested
+        if self.restart:
+            self.restart_clean()
 
-        from cognition.evaluation.epistemic_quality import evaluate_epistemic_quality
-        from cognition.schemas.observation.observation_event import ObservationEvent
-        from cognition.schemas.validation.validation_event import ValidationEvent
-        from cognition.schemas.confidence.confidence_state import ConfidenceState
-        from market.replay.market_observation_synthesizer import (
-            MarketObservationSynthesizer,
-        )
+        # Initialize run directory
+        self._initialize_run_dir(restart=self.restart)
 
+        from cognition.evaluation.epistemic_quality import \
+            evaluate_epistemic_quality
+        from cognition.schemas.confidence.confidence_state import \
+            ConfidenceState
+        from cognition.schemas.observation.observation_event import \
+            ObservationEvent
+        from cognition.schemas.validation.validation_event import \
+            ValidationEvent
+        from market.replay.lesson_extractor import LessonExtractor
         # Lesson Layer V1: Initialize LessonRepository and LessonExtractor
         from market.replay.lesson_repository import LessonRepository
-        from market.replay.lesson_extractor import LessonExtractor
+        from market.replay.market_observation_synthesizer import \
+            MarketObservationSynthesizer
 
         self.lesson_repo = LessonRepository(self.run_dir / "lessons.json")
         self.lesson_extractor = LessonExtractor(self.lesson_repo, self.experience_repo)
+        self.lesson_extractor.debug = self.verbose
         from memory.replay.epistemic_scoring import EpistemicScoringEngine
         from memory.replay.horizon_cognition import HorizonCognitionEngine
         from memory.replay.regime_memory import RegimeMemoryStore
 
-        # Create a run-isolated snapshot directory for this replay.
-        self.run_dir = (
-            self.base_data_snap_dir / f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-        )
-        self.run_dir.mkdir(parents=True, exist_ok=True)
-
         try:
-            from dp.observability.cognition_observer import CognitionObserver
-            from dp.observability.contradiction_registry import ContradictionRegistry
-            from dp.theory.theory_lineage import TheoryLineageEngine
+            from memory.lineage.theory_lineage import TheoryLineageEngine
+            from telemetry.cognition_observer import CognitionObserver
+            from telemetry.contradiction_registry import ContradictionRegistry
 
             self.observer = CognitionObserver(
                 self.run_dir / "observability_metrics.json"
@@ -494,7 +564,7 @@ class ReplayExecutor:
                 self.run_dir / "contradiction_registry.json"
             )
             self.horizon_engine = HorizonCognitionEngine()
-            self.epistemic_scoring = EpistemicScoringEngine()
+            self.epistemic_scoring = EpistemicScoringEngine(verbose=self.verbose)
             self.prediction_generator = PredictionProbeGenerator()
             self.prediction_generator.debug = self.lineage_debug
             self.experience_engine.set_lesson_extractor(
@@ -506,7 +576,7 @@ class ReplayExecutor:
             self.theory_lineage = None
             self.contradiction_registry = None
             self.horizon_engine = HorizonCognitionEngine()
-            self.epistemic_scoring = EpistemicScoringEngine()
+            self.epistemic_scoring = EpistemicScoringEngine(verbose=self.verbose)
             self.prediction_generator = PredictionProbeGenerator()
             self.prediction_generator.debug = self.lineage_debug
             self.experience_engine.set_lesson_extractor(self.lesson_extractor)
@@ -567,10 +637,365 @@ class ReplayExecutor:
         last_lineage_id = None  # Instrumentation: Track lineage changes
 
         # Execute replay
+        # Execute replay
         for day_idx in range(len(self.engine)):
             try:
                 obs_data = self.engine.get_observation_for_day(day_idx)
                 date_str = obs_data["date"]
+                newly_retired_count = 0
+
+                # --- INCREMENTAL CHECK ---
+                from cognition.schemas.confidence.confidence_state import \
+                    ConfidenceState
+                from cognition.schemas.reflection.reflection_event import \
+                    ReflectionEvent
+                from cognition.schemas.theory.theory import (Theory,
+                                                             TheoryStructured)
+                from cognition.schemas.validation.validation_event import \
+                    ValidationEvent
+                from market.replay.prediction_probe import (
+                    PredictionDirection, PredictionProbe)
+                from memory.relational.models.confidence_model import \
+                    ConfidenceModel
+                from memory.relational.models.prediction_probe_model import \
+                    PredictionProbeModel
+                from memory.relational.models.prediction_result_model import \
+                    PredictionResultModel
+                from memory.relational.models.reflection_model import \
+                    ReflectionModel
+                from memory.relational.models.theory_model import TheoryModel
+                from memory.relational.models.transition_pressure_model import \
+                    TransitionPressureModel
+                from memory.relational.models.validation_model import \
+                    ValidationModel
+                from memory.relational.postgres_client import SessionLocal
+
+                existing_probe = None
+                with SessionLocal() as session:
+                    existing_probe = (
+                        session.query(PredictionProbeModel)
+                        .filter(PredictionProbeModel.date == date_str)
+                        .first()
+                    )
+
+                if existing_probe is not None:
+                    # Date already replayed. Reconstruct state from DB to fast-forward.
+                    self._log(
+                        f"  [INCREMENTAL] Skipping already replayed day {date_str} (day_idx={day_idx})"
+                    )
+
+                    # 1. Synthesize deterministic observation
+                    market_obs = synthesizer.synthesize(day_idx)
+
+                    # 2. Get and reconstruct ConfidenceState
+                    confidence_state = None
+                    theory_model = None
+                    with SessionLocal() as session:
+                        theory_model = (
+                            session.query(TheoryModel)
+                            .filter(TheoryModel.id == existing_probe.theory_id)
+                            .first()
+                        )
+                        if theory_model:
+                            conf_model = (
+                                session.query(ConfidenceModel)
+                                .filter(
+                                    ConfidenceModel.id
+                                    == theory_model.confidence_state_id
+                                )
+                                .first()
+                            )
+                            if conf_model:
+                                confidence_state = ConfidenceState(
+                                    id=conf_model.id,
+                                    created_at=conf_model.created_at,
+                                    empirical_confidence=conf_model.empirical_confidence,
+                                    regime_confidence=conf_model.regime_confidence,
+                                    reflection_confidence=conf_model.reflection_confidence,
+                                    theoretical_coherence=conf_model.theoretical_coherence,
+                                    contradiction_pressure=conf_model.contradiction_pressure,
+                                )
+
+                    if confidence_state is None:
+                        confidence_state = ConfidenceState()
+
+                    # 3. Reconstruct Theory
+                    theory = None
+                    if theory_model:
+                        structured_data = None
+                        if theory_model.summary_structured:
+                            try:
+                                structured_data = TheoryStructured(
+                                    **json.loads(theory_model.summary_structured)
+                                )
+                            except Exception:
+                                pass
+                        theory = Theory(
+                            id=theory_model.id,
+                            created_at=theory_model.created_at,
+                            lineage_id=theory_model.lineage_id,
+                            thesis=theory_model.thesis,
+                            summary=theory_model.summary,
+                            summary_structured=structured_data,
+                            confidence_state=confidence_state,
+                        )
+                        object.__setattr__(
+                            theory, "llm_evaluation", theory_model.llm_evaluation
+                        )
+                        object.__setattr__(
+                            theory, "survival_days", theory_model.survival_days
+                        )
+                        object.__setattr__(
+                            theory,
+                            "falsified_at_index",
+                            theory_model.falsified_at_index,
+                        )
+                        object.__setattr__(
+                            theory,
+                            "falsification_precision",
+                            theory_model.falsification_precision,
+                        )
+
+                    # 4. Reconstruct ValidationEvent
+                    validation = None
+                    with SessionLocal() as session:
+                        val_model = (
+                            session.query(ValidationModel)
+                            .filter(
+                                ValidationModel.theory_id == existing_probe.theory_id
+                            )
+                            .first()
+                        )
+                        if val_model:
+                            validation = ValidationEvent(
+                                id=val_model.id,
+                                created_at=val_model.created_at,
+                                theory_id=val_model.theory_id,
+                                validation_summary=val_model.validation_summary,
+                                observed_behavior=val_model.observed_behavior,
+                                expected_behavior=val_model.expected_behavior,
+                            )
+
+                    # 5. Reconstruct ReflectionEvent
+                    reflection = None
+                    with SessionLocal() as session:
+                        ref_model = (
+                            session.query(ReflectionModel)
+                            .filter(ReflectionModel.id == existing_probe.reflection_id)
+                            .first()
+                        )
+                        if ref_model:
+                            reflection = ReflectionEvent(
+                                id=ref_model.id,
+                                created_at=ref_model.created_at,
+                                related_theory_id=ref_model.related_theory_id,
+                                reflection_summary=ref_model.reflection_summary,
+                                confidence_impact=ref_model.confidence_impact,
+                            )
+
+                    # 6. Reconstruct PredictionProbe
+                    prediction_probe = PredictionProbe(
+                        direction=PredictionDirection(existing_probe.direction),
+                        confidence=existing_probe.confidence,
+                        tension=existing_probe.tension,
+                        invalidation=existing_probe.invalidation,
+                    )
+
+                    # 7. Append to histories
+                    self._confidence_history.append(
+                        confidence_state.empirical_confidence
+                    )
+                    actual_dir_str = market_obs.trend_state.lower()
+                    dir_val = (
+                        1
+                        if "higher" in actual_dir_str
+                        else -1 if "lower" in actual_dir_str else 0
+                    )
+                    self._actual_directions_val_history.append(dir_val)
+
+                    if theory:
+                        self._run_theories.append(theory)
+                    if validation:
+                        self._run_validations.append(validation)
+                    if reflection:
+                        self._run_reflections.append(reflection)
+                    self._run_market_observations.append(market_obs)
+
+                    # Compute hashes for determinism log
+                    obs_hash = hashlib.sha256(
+                        market_obs.observation_text.encode()
+                    ).hexdigest()[:16]
+                    theory_hash = (
+                        hashlib.sha256(theory.summary.encode()).hexdigest()[:16]
+                        if theory
+                        else ""
+                    )
+                    conf_hash = hashlib.sha256(
+                        str(confidence_state.empirical_confidence).encode()
+                    ).hexdigest()[:16]
+                    self.engine.log_entry(
+                        day_idx, date_str, obs_hash, theory_hash, conf_hash
+                    )
+
+                    # Set prior state variables
+                    self._prior_prediction = prediction_probe
+                    self._prior_prediction_db_id = existing_probe.id
+                    self._prior_lineage_id = theory.lineage_id if theory else None
+
+                    # Retrieve prior attribution from Experience causal_events
+                    self._prior_attribution = None
+                    if theory:
+                        active_exp = self.experience_repo.load_by_lineage(
+                            theory.lineage_id
+                        )
+                        if active_exp and active_exp.causal_events:
+                            last_event = active_exp.causal_events[-1]
+                            from flows.theory_flow.attribution import \
+                                AttributionResult
+
+                            self._prior_attribution = AttributionResult(
+                                theory_id=theory.id,
+                                theory_claim=last_event.get("theory_claim", ""),
+                                outcome=last_event.get("outcome", ""),
+                                components_passed=last_event.get(
+                                    "components_passed", []
+                                ),
+                                components_failed=last_event.get(
+                                    "components_failed", []
+                                ),
+                                root_cause_component=last_event.get("root_cause"),
+                                attribution_reasoning=last_event.get(
+                                    "attribution_reasoning", ""
+                                ),
+                            )
+
+                    # Retrieve prior transition context
+                    with SessionLocal() as session:
+                        tp_model = (
+                            session.query(TransitionPressureModel)
+                            .filter(TransitionPressureModel.date == date_str)
+                            .first()
+                        )
+                        if tp_model:
+                            horizon_view = self.horizon_engine.compute(
+                                self._run_market_observations
+                            )
+                            self._prior_transition_context = {
+                                "confidence": existing_probe.confidence,
+                                "usefulness": (
+                                    getattr(theory, "llm_evaluation", {}).get(
+                                        "overall_score", 0.5
+                                    )
+                                    if theory
+                                    else 0.5
+                                ),
+                                "contradiction": (
+                                    tp_model.stability_score if tp_model else 0.0
+                                ),
+                                "pressure": (
+                                    tp_model.pressure_score if tp_model else 0.0
+                                ),
+                                "breakout": (
+                                    tp_model.breakout_risk if tp_model else False
+                                ),
+                                "bias": (
+                                    tp_model.direction_bias if tp_model else "neutral"
+                                ),
+                                "horizon": horizon_view,
+                                "theory_summary": theory.summary if theory else "",
+                            }
+
+                    # Keep regime memories updated
+                    regime_subtype = getattr(market_obs, "regime_subtype", "neutral")
+                    actual_dir = (
+                        1
+                        if "higher" in actual_dir_str
+                        else -1 if "lower" in actual_dir_str else 0
+                    )
+
+                    invalidation_triggered = False
+                    with SessionLocal() as session:
+                        res_model = (
+                            session.query(PredictionResultModel)
+                            .filter(PredictionResultModel.date == date_str)
+                            .first()
+                        )
+                        probe_model = None
+                        if res_model:
+                            invalidation_triggered = res_model.invalidation_triggered
+                            if res_model.prediction_id:
+                                probe_model = (
+                                    session.query(PredictionProbeModel)
+                                    .filter(PredictionProbeModel.id == res_model.prediction_id)
+                                    .first()
+                                )
+
+                    # Reconstruct prior_prediction_result dict
+                    prior_pred_res_dict = {}
+                    if res_model:
+                        prior_pred_res_dict = {
+                            "prior_direction": res_model.prior_direction,
+                            "actual_direction": res_model.actual_direction,
+                            "direction_score": res_model.direction_score,
+                            "invalidation_triggered": res_model.invalidation_triggered,
+                            "confidence": probe_model.confidence if probe_model else 0.5,
+                            "invalidation": probe_model.invalidation if probe_model else "",
+                        }
+
+                    # Get contradiction score
+                    contra_score = 0.0
+                    if tp_model:
+                        contra_score = tp_model.stability_score
+
+                    # Get regime matches
+                    active_theory_count = (
+                        self.theory_lineage.active_count() if self.theory_lineage else 0
+                    )
+                    preliminary_regime_signature = self.regime_memory.build_signature(
+                        date=date_str,
+                        observation=market_obs,
+                        confidence_values=(
+                            self._confidence_history[-10:]
+                            if self._confidence_history
+                            else [0.5]
+                        ),
+                        contradiction_severity=min(
+                            1.0,
+                            len(getattr(market_obs, "contradiction_markers", [])) * 0.2,
+                        ),
+                        active_theory_count=active_theory_count,
+                    )
+                    regime_matches = self.regime_memory.retrieve(
+                        preliminary_regime_signature,
+                        getattr(market_obs, "contradiction_markers", []),
+                    )
+
+                    theory_usefulness = {"score": 0.0, "label": "No active theory"}
+                    if theory:
+                        lineage_record = (
+                            self.theory_lineage.theories.get(theory.id)
+                            if self.theory_lineage
+                            else None
+                        )
+                        theory_usefulness = self.epistemic_scoring.score_theory(
+                            lineage_record=lineage_record,
+                            regime_matches=regime_matches,
+                            prior_prediction_result=prior_pred_res_dict,
+                            contradiction_score=contra_score,
+                            reflection_summary=(
+                                reflection.reflection_summary if reflection else ""
+                            ),
+                        )
+
+                    self.regime_continuity_memory.update(
+                        date=date_str,
+                        subtype=regime_subtype,
+                        usefulness=theory_usefulness.get("score", 0.0),
+                        actual_direction=actual_dir,
+                        falsified=invalidation_triggered,
+                    )
+
+                    continue  # Fast forward to next day!
 
                 # Instrumentation: Reset daily tracking flags
                 exp_create_called = False
@@ -786,19 +1211,58 @@ class ReplayExecutor:
                     market_obs, "falsifiability_conditions", []
                 )
 
-                # CHANGE: Retrieve Active Lessons relevant to current regime
+                # CHANGE: Retrieve Active Lessons relevant to current regime via multi-dimensional weighted similarity
                 relevant_lessons = []
                 if self.lesson_repo:
+                    from market.replay.lesson_record import LessonStatus
                     all_active = [
                         l
                         for l in self.lesson_repo.list_lessons()
-                        if getattr(l, "status", None) == "active"
+                        if getattr(l, "status", None) == LessonStatus.ACTIVE
+                        or getattr(l, "status", None) == "active"
                     ]
-                    relevant_lessons = [
-                        l.lesson_text
-                        for l in all_active
-                        if regime_subtype.lower() in l.lesson_text.lower()
-                    ]
+                    
+                    derived_data = obs_data.get("derived") or {}
+                    vol_30d = float(derived_data.get("volatility_30d", 0.0))
+                    vol_regime = (
+                        "compressed"
+                        if vol_30d < 0.8
+                        else "expanded" if vol_30d > 1.5 else "normal"
+                    )
+                    ret_3d = float(derived_data.get("return_3d", 0.0))
+                    mom_regime = (
+                        "strengthening"
+                        if ret_3d > 0.5
+                        else "weakening" if ret_3d < -0.5 else "flat"
+                    )
+                    vol_state = derived_data.get("volume_state", "normal")
+                    part_confirm = getattr(market_obs, "participation_confirmation", "normal")
+                    
+                    scored_lessons = []
+                    for l in all_active:
+                        tr = getattr(l, "target_regime", {}) or {}
+                        
+                        subtype_match = 1.0 if str(tr.get("regime_subtype", "")).lower() == str(regime_subtype).lower() else 0.0
+                        volatility_match = 1.0 if str(tr.get("volatility", "")).lower() == str(vol_regime).lower() else 0.0
+                        momentum_match = 1.0 if str(tr.get("momentum", "")).lower() == str(mom_regime).lower() else 0.0
+                        
+                        tr_volume = tr.get("volume") or tr.get("participation") or ""
+                        volume_val = vol_state or part_confirm or ""
+                        participation_match = 1.0 if str(tr_volume).lower() == str(volume_val).lower() else 0.0
+                        
+                        sim = (
+                            0.4 * subtype_match +
+                            0.3 * volatility_match +
+                            0.2 * momentum_match +
+                            0.1 * participation_match
+                        )
+                        
+                        if sim > 0.0:
+                            scored_lessons.append((l, sim))
+                            
+                    scored_lessons.sort(key=lambda x: x[1], reverse=True)
+                    relevant_lessons = [item[0].lesson_text for item in scored_lessons[:5]]
+                    self._prior_lessons = relevant_lessons
 
                 # v3.1 Regime Continuity Retrieval
                 regime_history = self.regime_continuity_memory.summary(regime_subtype)
@@ -846,9 +1310,14 @@ class ReplayExecutor:
                 prior_attribution = None
                 if self._run_theories and self.theory_lineage:
                     active_records = self.theory_lineage.active_theories()
-                    active_ids = {t.id for t in active_records} | {t.lineage_id for t in active_records}
+                    active_ids = {t.id for t in active_records} | {
+                        t.lineage_id for t in active_records
+                    }
                     last_theory = self._run_theories[-1]
-                    if last_theory.id in active_ids or getattr(self, "_prior_lineage_id", None) in active_ids:
+                    if (
+                        last_theory.id in active_ids
+                        or getattr(self, "_prior_lineage_id", None) in active_ids
+                    ):
                         prior_theory = last_theory
                         prior_attribution = getattr(self, "_prior_attribution", None)
 
@@ -963,15 +1432,16 @@ class ReplayExecutor:
                             parent_id_for_log = lineage_result.get(
                                 "parent_id", "N/A"
                             )  # Use parent_id from result for logging
-                            if lineage_result.get("mutated"):
+                            if lineage_result.get("mutated") and self.verbose:
                                 print(
                                     f"  [LINEAGE AUDIT] MUTATION DETECTED: Old Lineage (Parent): {parent_id_for_log} -> New Lineage (Child): {lineage_record.id} (Stable Lineage: {lineage_id_val})"
                                 )
 
                             if lineage_result.get("created"):
-                                print(
-                                    f"  [AUDIT] Calling create_experience for lineage {lineage_record.id}"
-                                )
+                                if self.verbose:
+                                    print(
+                                        f"  [AUDIT] Calling create_experience for lineage {lineage_record.id}"
+                                    )
                                 regime_context_list = (
                                     self._build_experience_regime_context(
                                         market_obs,
@@ -991,9 +1461,10 @@ class ReplayExecutor:
                                 "merged"
                             ):
                                 # Use the stable lineage_id for attaching theories to the experience
-                                print(
-                                    f"  [AUDIT] Calling attach_theory for lineage {lineage_id_val} (Theory ID: {theory.id})"
-                                )
+                                if self.verbose:
+                                    print(
+                                        f"  [AUDIT] Calling attach_theory for lineage {lineage_id_val} (Theory ID: {theory.id})"
+                                    )
                                 self.experience_engine.attach_theory(
                                     lineage_id_val, theory.id
                                 )  # Use stable lineage_id
@@ -1003,11 +1474,12 @@ class ReplayExecutor:
                         if (
                             lineage_record and lineage_id_val != last_lineage_id
                         ):  # Compare stable lineage_id
-                            print(
-                                f"!!! LINEAGE CHANGE: {last_lineage_id} -> {lineage_record.id}"
-                            )
+                            if self.verbose:
+                                print(
+                                    f"!!! LINEAGE CHANGE: {last_lineage_id} -> {lineage_record.id}"
+                                )
                             last_lineage_id = lineage_record.id
-                        if exp_create_called:
+                        if exp_create_called and self.verbose:
                             print(
                                 f"!!! NEW EXPERIENCE CREATED: exp_{lineage_record.id}_{date_str}"
                             )
@@ -1110,9 +1582,21 @@ class ReplayExecutor:
                     print(f"active_theories={active_theory_count}")
                     print(f"contradiction_score={contradiction_score:.3f}")
                     print(f"will_trigger={will_trigger}")
-
                 if will_trigger:
                     self.total_synthesis_triggered += 1
+                    
+                    # Aggregate component failures for the current regime subtype
+                    component_failures = {}
+                    if hasattr(self, "experience_repo") and self.experience_repo:
+                        try:
+                            for exp in self.experience_repo.get_all():
+                                if getattr(exp, "theory_subtype", None) == regime_subtype:
+                                    f_counts = getattr(exp, "component_failure_counts", {}) or {}
+                                    for comp, count in f_counts.items():
+                                        component_failures[comp] = component_failures.get(comp, 0) + count
+                        except Exception as e:
+                            logger.warning(f"Failed to aggregate experience failures: {e}")
+
                     dialectical_data = self.dialectical_synthesizer.synthesize(
                         observation_text=market_obs.observation_text,
                         active_theories=active_lineage_records,
@@ -1122,6 +1606,7 @@ class ReplayExecutor:
                         regime_subtype=regime_subtype,
                         falsifiability_conditions=falsifiability_conditions,
                         relevant_lessons=relevant_lessons,
+                        component_failures=component_failures,
                     )
                     if dialectical_data:
                         current_dialectical_data = dialectical_data
@@ -1204,9 +1689,10 @@ class ReplayExecutor:
                             )
                         # Experience Integration: attach revived theories if lineage is reactivated
                         for revived_record in revived_records:
-                            print(
-                                f"  [AUDIT] Calling attach_theory (REVIVAL) for lineage {revived_record.lineage_id} (Theory ID: {theory.id})"
-                            )  # Use revived_record.lineage_id
+                            if self.verbose:
+                                print(
+                                    f"  [AUDIT] Calling attach_theory (REVIVAL) for lineage {revived_record.lineage_id} (Theory ID: {theory.id})"
+                                )  # Use revived_record.lineage_id
                             self.experience_engine.attach_theory(
                                 revived_record.lineage_id, theory.id
                             )
@@ -1215,19 +1701,20 @@ class ReplayExecutor:
                     pass
 
                 # Instrumentation: Print Daily Trace
-                print(f"\nDAY {date_str}")
-                print(f"theory_id={theory.id}")
-                print(f"lineage_id={lineage_id_val}")
-                print(f"\nlineage_result:")
-                print(f"created={audit_created}")
-                print(f"mutated={audit_mutated}")
-                print(f"merged={audit_merged}")
-                print(f"revived={audit_revived}")
-                print(f"retired={audit_retired}")
-                print(f"\nexperience actions:")
-                print(f"create_experience={exp_create_called}")
-                print(f"attach_theory={exp_attach_called}")
-                print(f"close_experience={exp_close_called}")
+                if self.verbose:
+                    print(f"\nDAY {date_str}")
+                    print(f"theory_id={theory.id}")
+                    print(f"lineage_id={lineage_id_val}")
+                    print(f"\nlineage_result:")
+                    print(f"created={audit_created}")
+                    print(f"mutated={audit_mutated}")
+                    print(f"merged={audit_merged}")
+                    print(f"revived={audit_revived}")
+                    print(f"retired={audit_retired}")
+                    print(f"\nexperience actions:")
+                    print(f"create_experience={exp_create_called}")
+                    print(f"attach_theory={exp_attach_called}")
+                    print(f"close_experience={exp_close_called}")
 
                 # Instrumentation: Accumulate audit table row
                 action = "none"
@@ -1307,7 +1794,11 @@ class ReplayExecutor:
                     print("[Reflection Output]", reflection.reflection_summary)
 
                 # Prefer structured claim when available for downstream consumers
-                theory_text = theory.summary_structured.claim  # Canonical access
+                theory_text = (
+                    theory.summary_structured.claim
+                    if theory.summary_structured
+                    else theory.summary
+                )  # Canonical access with fallback
 
                 epistemic_quality = {
                     "theory": evaluate_epistemic_quality(theory_text),
@@ -1535,12 +2026,8 @@ class ReplayExecutor:
                         except Exception as e:
                             logger.warning(f"[ATTRIBUTION] Attribution failed: {e}")
                             attribution = None
-
-                    # Experience Lifecycle: Outcome Grounding
+                    # Experience Lifecycle: Outcome Grounding & Hypothesis Validation
                     if prior_prediction_result and self._prior_lineage_id:
-                        # Wiring Fix: Outcome grounding data was being lost for CLOSED experiences because
-                        # ExperienceEngine.record_validation/falsification filtered for ACTIVE status.
-                        # We use the repository directly to ensure counts are attributed even after closure.
                         target_exp = self.experience_repo.load_by_lineage(
                             self._prior_lineage_id
                         )
@@ -1562,6 +2049,39 @@ class ReplayExecutor:
                                 )
                                 self.experience_repo.save(target_exp)
 
+                            # Structured Lesson Hypothesis Validation: reinforce or penalize active lessons
+                            if getattr(self, "_prior_lessons", None) and self.lesson_repo:
+                                from market.replay.lesson_record import LessonStatus
+                                score_val = getattr(prior_prediction_result, "direction_score", 0.5)
+                                is_invalidated = getattr(prior_prediction_result, "invalidation_triggered", False)
+                                
+                                for l_text in self._prior_lessons:
+                                    matching_lesson = None
+                                    for l in self.lesson_repo.list_lessons():
+                                        if l.lesson_text == l_text:
+                                            matching_lesson = l
+                                            break
+                                    if matching_lesson:
+                                        if score_val == 1.0 and not is_invalidated:
+                                            matching_lesson.validation_count += 1
+                                        elif is_invalidated or score_val == 0.0:
+                                            matching_lesson.falsification_count += 1
+                                            
+                                        total = matching_lesson.validation_count + matching_lesson.falsification_count
+                                        matching_lesson.confidence = matching_lesson.validation_count / total if total > 0 else 0.0
+                                        
+                                        was_retired = (matching_lesson.status == LessonStatus.RETIRED or getattr(matching_lesson, "status", None) == "retired")
+                                        if matching_lesson.confidence >= 0.75:
+                                            matching_lesson.status = LessonStatus.ACTIVE
+                                        elif matching_lesson.confidence < 0.2:
+                                            matching_lesson.status = LessonStatus.RETIRED
+                                            if not was_retired:
+                                                newly_retired_count += 1
+                                        else:
+                                            matching_lesson.status = LessonStatus.CANDIDATE
+                                            
+                                        self.lesson_repo.save(matching_lesson)
+
                 # Task B: Capital Simulation (observer-only)
                 derived = obs_data.get("derived")
                 actual_ret = derived["daily_return_pct"] if derived else 0.0
@@ -1579,6 +2099,48 @@ class ReplayExecutor:
                         date_str, "uncertain", 0.0, actual_ret, actual_ret
                     )
 
+                # Track rolling prediction accuracy across three windows
+                recent_acc = 0.5
+                regime_acc = 0.5
+                lifetime_acc = 0.5
+                
+                if prior_prediction_result:
+                    score = getattr(prior_prediction_result, "direction_score", 0.5)
+                    if score is None:
+                        score = 0.5
+                    
+                    # Track lifetime accuracy
+                    if not hasattr(self, "_lifetime_predictions_count"):
+                        self._lifetime_predictions_count = 0
+                        self._lifetime_correct_predictions_count = 0.0
+                    self._lifetime_predictions_count += 1
+                    self._lifetime_correct_predictions_count += score
+                    
+                    # Track recent accuracy
+                    if not hasattr(self, "_prediction_accuracy_history"):
+                        self._prediction_accuracy_history = []
+                    self._prediction_accuracy_history.append(score)
+                    
+                    # Track regime-specific accuracy
+                    if not hasattr(self, "_regime_prediction_accuracy_history"):
+                        self._regime_prediction_accuracy_history = {}
+                    prior_subtype = getattr(self, "_prior_dialectical_subtype", None) or regime_subtype
+                    if prior_subtype not in self._regime_prediction_accuracy_history:
+                        self._regime_prediction_accuracy_history[prior_subtype] = []
+                    self._regime_prediction_accuracy_history[prior_subtype].append(score)
+
+                # Compute window metrics
+                if hasattr(self, "_prediction_accuracy_history") and self._prediction_accuracy_history:
+                    recent_scores = self._prediction_accuracy_history[-15:]
+                    recent_acc = sum(recent_scores) / len(recent_scores)
+                    
+                if hasattr(self, "_regime_prediction_accuracy_history") and regime_subtype in self._regime_prediction_accuracy_history and self._regime_prediction_accuracy_history[regime_subtype]:
+                    regime_scores = self._regime_prediction_accuracy_history[regime_subtype][-15:]
+                    regime_acc = sum(regime_scores) / len(regime_scores)
+                    
+                if hasattr(self, "_lifetime_predictions_count") and self._lifetime_predictions_count > 0:
+                    lifetime_acc = self._lifetime_correct_predictions_count / self._lifetime_predictions_count
+
                 # Confidence evolution
                 confidence_state = self.confidence_engine.evolve(
                     confidence_state=theory.confidence_state,
@@ -1595,6 +2157,9 @@ class ReplayExecutor:
                     lineage_event=theory_step_info,
                     theory_usefulness=theory_usefulness,
                     regime_matches=regime_matches,
+                    rolling_accuracy=recent_acc,
+                    regime_accuracy=regime_acc,
+                    lifetime_accuracy=lifetime_acc,
                 )
 
                 # Update in-memory confidence history
@@ -1800,6 +2365,14 @@ class ReplayExecutor:
                     branch_stats=branch_stats,  # Pass branch_stats
                     branches_generated=branch_stats.get("generated", 0),
                     intelligence_data=intelligence_metadata,
+                    components_failed=(
+                        self._prior_attribution.components_failed
+                        if getattr(self, "_prior_attribution", None) and hasattr(self._prior_attribution, "components_failed")
+                        else []
+                    ),
+                    reused_lessons=relevant_lessons if 'relevant_lessons' in locals() else [],
+                    lessons_retired=newly_retired_count,
+                    transition_memory_hit=(len(similar_transitions) > 0) if 'similar_transitions' in locals() else False,
                 )
 
                 snapshot_data = {
@@ -1997,6 +2570,13 @@ class ReplayExecutor:
                 ):  # Use the stable lineage_id for lookup
                     active_exp = self.experience_repo.load_by_lineage(lineage_id_val)
 
+                if intelligence_metadata:
+                    intelligence_metadata["created"] = audit_created
+                    intelligence_metadata["mutated"] = audit_mutated
+                    intelligence_metadata["merged"] = audit_merged
+                    intelligence_metadata["revived"] = audit_revived
+                    intelligence_metadata["retired"] = audit_retired
+
                 # Print formatted log
                 self._print_day_log(
                     day_idx,
@@ -2046,16 +2626,17 @@ class ReplayExecutor:
         execution_hash = self.engine.finalize_execution()
 
         # Instrumentation: Print final audit table
-        print("\n" + "=" * 80)
-        print("LINEAGE CONTINUITY AUDIT TABLE")
-        print("=" * 80)
-        print(
-            f"{'day':<12} | {'lineage_id':<33} | {'cre':<5} | {'mut':<5} | {'mer':<5} | {'rev':<5} | {'action':<10}"
-        )
-        for r in self._lineage_audit_table:
+        if self.verbose:
+            print("\n" + "=" * 80)
+            print("LINEAGE CONTINUITY AUDIT TABLE")
+            print("=" * 80)
             print(
-                f"{r['day']:<12} | {r['lineage_id']:<33} | {str(r['created'])[0]:<5} | {str(r['mutated'])[0]:<5} | {str(r['merged'])[0]:<5} | {str(r['revived'])[0]:<5} | {r['experience_action']:<10}"
+                f"{'day':<12} | {'lineage_id':<33} | {'cre':<5} | {'mut':<5} | {'mer':<5} | {'rev':<5} | {'action':<10}"
             )
+            for r in self._lineage_audit_table:
+                print(
+                    f"{r['day']:<12} | {r['lineage_id']:<33} | {str(r['created'])[0]:<5} | {str(r['mutated'])[0]:<5} | {str(r['merged'])[0]:<5} | {str(r['revived'])[0]:<5} | {r['experience_action']:<10}"
+                )
 
         # Finalize capital simulation and analysis
         capital_summary = self.capital_simulator.get_summary()
@@ -2069,6 +2650,22 @@ class ReplayExecutor:
         experience_stats = self.experience_engine.get_summary_stats()
         experience_audit = self.experience_engine.audit()
 
+        # Compute component failure counts from experience repository
+        component_failure_counts = {}
+        try:
+            all_exps = self.experience_repo.get_all()
+            for exp in all_exps:
+                for event in getattr(exp, "causal_events", []):
+                    failed_list = (
+                        event.get("components_failed") or event.get("failed") or []
+                    )
+                    for comp in failed_list:
+                        component_failure_counts[comp] = (
+                            component_failure_counts.get(comp, 0) + 1
+                        )
+        except Exception as e:
+            pass
+
         # Prepare external metrics (from runtime objects) for richer summary
         try:
             external_metrics = {}
@@ -2079,9 +2676,26 @@ class ReplayExecutor:
             )
             external_metrics["experience_stats"] = experience_stats
             external_metrics["experience_audit"] = experience_audit
+            active_lessons_list = []
+            if hasattr(self, "lesson_repo") and self.lesson_repo:
+                from market.replay.lesson_record import LessonStatus
+                active_lessons_list = [
+                    {
+                        "text": l.lesson_text,
+                        "confidence": l.confidence,
+                        "regime": (l.target_regime or {}).get("regime_subtype", "unknown"),
+                    }
+                    for l in self.lesson_repo.list_lessons()
+                    if getattr(l, "status", None) == LessonStatus.ACTIVE
+                    or getattr(l, "status", None) == "active"
+                ]
+            external_metrics["active_lessons_list"] = active_lessons_list
             external_metrics["lesson_stats"] = (
                 self.lesson_repo.get_lesson_stats()
             )  # Add lesson stats
+            external_metrics["lineage_audit_table"] = self._lineage_audit_table
+            external_metrics["component_failure_counts"] = component_failure_counts
+            external_metrics["verbose"] = self.verbose
             if self.theory_lineage:
                 external_metrics.update(
                     {
@@ -2202,9 +2816,7 @@ class ReplayExecutor:
         # v1.6 Visualization Layer Integration
         if self.generate_visualizations:
             try:
-                from market.replay.visualization import (
-                    generate_visualizations,
-                )
+                from market.replay.visualization import generate_visualizations
 
                 generate_visualizations(
                     analysis=self.replay_analysis_engine.analyze(),
@@ -2241,9 +2853,8 @@ class ReplayExecutor:
                     comparison_executor.execute(emit_summary=False)
 
                     if self.generate_visualizations:
-                        from market.replay.visualization import (
-                            generate_cross_asset_visualizations,
-                        )
+                        from market.replay.visualization import \
+                            generate_cross_asset_visualizations
 
                         generate_cross_asset_visualizations(
                             base_output_dir=self.base_output_dir,
@@ -2445,84 +3056,233 @@ class ReplayExecutor:
         lesson_info=None,
         intelligence=None,
     ):
-        """Print concise COGNITIVE TRACE."""
+        """Print concise COGNITIVE TRACE or learning-focused report."""
         if self.quiet:
             return
 
-        lesson_extracted, reason, evidence_count = (
-            lesson_info if lesson_info else (None, "not_processed", 0)
-        )
+        if self.verbose:
+            # -------------------------------------------------------------
+            # 1. Debug Trace (Verbose Mode)
+            # -------------------------------------------------------------
+            lesson_extracted, reason, evidence_count = (
+                lesson_info if lesson_info else (None, "not_processed", 0)
+            )
 
-        print(f"\n── COGNITIVE TRACE: DAY {day_idx} ── {date_str} ──────────────────")
+            print(
+                f"\n── COGNITIVE TRACE: DAY {day_idx} ── {date_str} ──────────────────"
+            )
 
-        print(f"Observation:")
-        print(f"  {observation.observation_text[:160]}...")
+            print(f"Observation:")
+            print(f"  {observation.observation_text[:160]}...")
 
+            if intelligence:
+                dp = intelligence.get("directional_persistence", {})
+                print(f"Trend Persistence:")
+                print(
+                    f"  3D: {dp.get('3d', 0):.2f} | 5D: {dp.get('5d', 0):.2f} | 10D: {dp.get('10d', 0):.2f}"
+                )
+                print(f"  Regime: {dp.get('regime', 'Mixed')}")
+
+            if intelligence:
+                print(
+                    f"  Theory ID: {intelligence.get('theory_id', 'N/A')[:8]}... | Lineage: {intelligence.get('lineage_id', 'N/A')[:8]}..."
+                )
+                print(
+                    f"  Theory Depth: {intelligence.get('theory_mutation_count', 0)} | Experience Mutations: {intelligence.get('mutation_count', 0)}"
+                )
+
+            print(f"Theory:")
+            theory_claim = (
+                theory.summary_structured.claim
+                if theory.summary_structured
+                else theory.summary
+            )
+            print(f"  {theory_claim[:120]}...")
+
+            print(f"Contradiction:")
+            contra_summary = (
+                contradiction.get("summary", "None detected")
+                if contradiction.get("indicators")
+                else "None detected"
+            )
+            print(f"  {contra_summary}")
+            tension_summary = getattr(reflection, "tension_summary", None)
+            if (
+                contra_summary == "None detected"
+                and tension_summary
+                and tension_summary != "None"
+            ):
+                print(f"  Tension: {tension_summary}")
+
+            if active_experience:
+                print(f"Experience:")
+                print(f"  {active_experience.experience_id}")
+                print(f"  Status: {active_experience.status.value}")
+                print(
+                    f"  Theories: {len(active_experience.theory_ids)} | Contradictions: {active_experience.contradiction_count} | Mutations: {active_experience.mutation_count}"
+                )
+
+            if prediction:
+                print(f"Prediction: {prediction.direction.value} (Next Day)")
+
+            print(f"Reflection:")
+            print(f"  {reflection.reflection_summary[:250]}...")  # Shorten for brevity
+
+            if lesson_extracted:
+                print(
+                    f"  Extracted: {lesson_extracted.lesson_text[:100]}... (Confidence: {lesson_extracted.confidence:.2f}, Status: {lesson_extracted.status.value})"
+                )
+            elif reason == "insufficient_evidence":
+                print(
+                    f"  Lesson: No lesson formed. Insufficient evidence ({evidence_count}/{self.lesson_extractor.MIN_EVIDENCE_THRESHOLD} experiences)"
+                )
+            elif reason == "internal_id_rejected":
+                print(f"  Lesson: Rejected. Lesson text contained internal IDs.")
+            else:
+                print("  No lesson has stabilized.")
+            return
+
+        # -------------------------------------------------------------
+        # 2. Cognitive Learning Report (Default Mode)
+        # -------------------------------------------------------------
+        updates = []
+
+        # A. Theory / Mutation changes
         if intelligence:
-            dp = intelligence.get("directional_persistence", {})
-            print(f"Trend Persistence:")
-            print(
-                f"  3D: {dp.get('3d', 0):.2f} | 5D: {dp.get('5d', 0):.2f} | 10D: {dp.get('10d', 0):.2f}"
-            )
-            print(f"  Regime: {dp.get('regime', 'Mixed')}")
+            lineage_id = intelligence.get("lineage_id", "N/A")
+            depth = intelligence.get("theory_mutation_count", 0)
 
-        if intelligence:
-            print(
-                f"  Theory ID: {intelligence.get('theory_id', 'N/A')[:8]}... | Lineage: {intelligence.get('lineage_id', 'N/A')[:8]}..."
+            action_label = "Active"
+            if intelligence.get("created"):
+                action_label = "CREATED"
+            elif intelligence.get("mutated"):
+                action_label = "MUTATED"
+            elif intelligence.get("merged"):
+                action_label = "MERGED"
+            elif intelligence.get("revived"):
+                action_label = "REVIVED"
+            elif intelligence.get("retired"):
+                action_label = "RETIRED"
+
+            theory_claim = (
+                theory.summary_structured.claim
+                if theory.summary_structured
+                else theory.summary
             )
-            print(
-                f"  Theory Depth: {intelligence.get('theory_mutation_count', 0)} | Experience Mutations: {intelligence.get('mutation_count', 0)}"
+            updates.append(
+                f"  • [THEORY CHANGE] Family: {lineage_id[:8]}... | Status: {action_label} (Depth: {depth})\n"
+                f"    Thesis: {theory_claim[:140]}..."
             )
 
-        print(f"Theory:")
-        theory_claim = (
-            theory.summary_structured.claim
-            if theory.summary_structured
-            else theory.summary
-        )
-        print(f"  {theory_claim[:120]}...")
+        # B. Failed Assumptions & Attribution
+        if prior_prediction_result:
+            pred_score = (
+                prior_prediction_result.get("direction_score")
+                if isinstance(prior_prediction_result, dict)
+                else getattr(prior_prediction_result, "direction_score", 1.0)
+            )
+            invalidation_triggered = (
+                prior_prediction_result.get("invalidation_triggered")
+                if isinstance(prior_prediction_result, dict)
+                else getattr(prior_prediction_result, "invalidation_triggered", False)
+            )
 
-        print(f"Contradiction:")
-        contra_summary = (
-            contradiction.get("summary", "None detected")
-            if contradiction.get("indicators")
-            else "None detected"
-        )
-        print(f"  {contra_summary}")
-        tension_summary = getattr(reflection, "tension_summary", None)
+            if invalidation_triggered or (pred_score is not None and pred_score < 1.0):
+                attr_text = ""
+                attr = getattr(self, "_prior_attribution", None)
+                if attr:
+                    failed = (
+                        ", ".join(attr.components_failed)
+                        if attr.components_failed
+                        else "none"
+                    )
+                    root_cause = attr.root_cause_component or "none"
+                    reasoning = (
+                        attr.attribution_reasoning[:180] + "..."
+                        if attr.attribution_reasoning
+                        else ""
+                    )
+                    attr_text = f"Failed components: [{failed}] (Root cause: {root_cause}). {reasoning}"
+                else:
+                    attr_text = "No causal attribution available."
+
+                updates.append(
+                    f"  • [FAILED ASSUMPTIONS] Prior prediction invalidation triggered (Score: {pred_score:.1f}).\n"
+                    f"    Attribution: {attr_text}"
+                )
+
+        # C. Confidence Changes
+        emp_diff = 0.0
+        reg_diff = 0.0
+        coh_diff = 0.0
+        prs_diff = 0.0
+        prior_state = getattr(self, "_prior_confidence_state_log", None)
+        if prior_state is not None:
+            emp_diff = (
+                confidence.empirical_confidence - prior_state.empirical_confidence
+            )
+            reg_diff = confidence.regime_confidence - prior_state.regime_confidence
+            coh_diff = (
+                confidence.theoretical_coherence - prior_state.theoretical_coherence
+            )
+            prs_diff = (
+                confidence.contradiction_pressure - prior_state.contradiction_pressure
+            )
+
+        # Show confidence if there's any drift
         if (
-            contra_summary == "None detected"
-            and tension_summary
-            and tension_summary != "None"
+            any(abs(d) > 0.001 for d in [emp_diff, reg_diff, coh_diff, prs_diff])
+            or day_idx == 0
         ):
-            print(f"  Tension: {tension_summary}")
+            updates.append(
+                f"  • [CONFIDENCE CHANGE] "
+                f"Empirical: {confidence.empirical_confidence:.2f} ({emp_diff:+.2f}) | "
+                f"Regime: {confidence.regime_confidence:.2f} ({reg_diff:+.2f}) | "
+                f"Coherence: {confidence.theoretical_coherence:.2f} ({coh_diff:+.2f}) | "
+                f"Pressure: {confidence.contradiction_pressure:.2f} ({prs_diff:+.2f})"
+            )
+        self._prior_confidence_state_log = confidence
 
-        if active_experience:
-            print(f"Experience:")
-            print(f"  {active_experience.experience_id}")
-            print(f"  Status: {active_experience.status.value}")
-            print(
-                f"  Theories: {len(active_experience.theory_ids)} | Contradictions: {active_experience.contradiction_count} | Mutations: {active_experience.mutation_count}"
+        # D. Contradictions
+        contra_indicators = contradiction.get("indicators", []) if contradiction else []
+        contra_count = len(contra_indicators)
+        contra_score = float(contradiction.get("score", 0.0)) if contradiction else 0.0
+        if contra_count > 0:
+            zone_desc = ", ".join(contra_indicators)
+            updates.append(
+                f"  • [CONTRADICTION CHANGE] Count: {contra_count} | Severity: {contra_score:.2f}\n"
+                f"    Conflicts: {zone_desc[:140]}..."
             )
 
-        if prediction:
-            print(f"Prediction: {prediction.direction.value} (Next Day)")
-
-        print(f"Reflection:")
-        print(f"  {reflection.reflection_summary[:250]}...")  # Shorten for brevity
-
-        if lesson_extracted:
-            print(
-                f"  Extracted: {lesson_extracted.lesson_text[:100]}... (Confidence: {lesson_extracted.confidence:.2f}, Status: {lesson_extracted.status.value})"
+        # E. Memory Reuse Decisions
+        if regime_matches:
+            best_match = regime_matches[0]
+            sim = (
+                best_match.similarity
+                if hasattr(best_match, "similarity")
+                else best_match.get("similarity", 0.0)
             )
-        elif reason == "insufficient_evidence":
-            print(
-                f"  Lesson: No lesson formed. Insufficient evidence ({evidence_count}/{self.lesson_extractor.MIN_EVIDENCE_THRESHOLD} experiences)"
-            )
-        elif reason == "internal_id_rejected":
-            print(f"  Lesson: Rejected. Lesson text contained internal IDs.")
+            if sim >= 0.8:
+                m_date = (
+                    best_match.date
+                    if hasattr(best_match, "date")
+                    else best_match.get("date", "N/A")
+                )
+                divergence = getattr(
+                    observation, "analog_divergence_claim", "Analog continuity"
+                )
+                updates.append(
+                    f"  • [MEMORY REUSE] Recalled analog from {m_date} (Similarity: {sim:.2f})\n"
+                    f"    Decision: {divergence}"
+                )
+
+        # Print unified report block
+        print(f"\n── COGNITIVE LEARNING REPORT: DAY {day_idx} ({date_str}) ──")
+        if not updates:
+            print("  Cognition stable. No significant learning updates.")
         else:
-            print("  No lesson has stabilized.")
+            for up in updates:
+                print(up)
 
 
 def main():
@@ -2571,6 +3331,11 @@ def main():
         action="store_true",
         help="Enable verbose lineage carry-forward tracing",
     )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Enable verbose debug trace output",
+    )
 
     args = parser.parse_args()
 
@@ -2596,6 +3361,8 @@ def main():
             compare_secondary=args.cross_asset,
             generate_visualizations=args.visualize,
             lineage_debug=args.lineage_debug,
+            restart=args.restart,
+            verbose=args.verbose,
         )
 
         # Reset if requested
@@ -2605,6 +3372,10 @@ def main():
             if executor.replay_dir.exists():
                 shutil.rmtree(executor.replay_dir)
             executor._create_snapshot_dirs()
+
+        # Restart if requested
+        if args.restart:
+            executor.restart_clean()
 
         # Execute replay
         executor.execute()

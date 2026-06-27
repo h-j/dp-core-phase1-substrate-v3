@@ -4,7 +4,6 @@ from sqlalchemy.orm import sessionmaker
 
 from config.settings import settings
 
-
 DATABASE_URL = (
     f"postgresql://"
     f"{settings.POSTGRES_USER}:"
@@ -48,27 +47,22 @@ SessionFactory = sessionmaker(
 
 SessionLocal = lambda *args, **kwargs: SessionContext(SessionFactory(*args, **kwargs))
 
-from memory.relational.base import Base
-
 # Import the models package to trigger registration of all relational models
 # This uses the __all__ list in memory/relational/models/__init__.py
 import memory.relational.models  # noqa: F401
-
 # Explicitly import models located outside the relational package to ensure
 # they are registered with the same Base metadata.
 # Note: Ensure MarketObservationModel imports Base from memory.relational.base
-from memory.market.market_observation_model import MarketObservationModel  # noqa: F401
-from memory.market.strategic_memory_model import (
-    StrategicMemoryModel as MarketStrategicMemoryModel,
-)  # noqa: F401
-
+from memory.market.market_observation_model import \
+    MarketObservationModel  # noqa: F401
+from memory.market.strategic_memory_model import \
+    StrategicMemoryModel as MarketStrategicMemoryModel  # noqa: F401
+from memory.relational.base import Base
+from memory.relational.models.prediction_probe_model import \
+    PredictionProbeModel  # noqa: F401
 # Explicit Analytical Model Registration
-from memory.relational.models.transition_pressure_model import (
-    TransitionPressureModel,
-)  # noqa: F401
-from memory.relational.models.prediction_probe_model import (
-    PredictionProbeModel,
-)  # noqa: F401
+from memory.relational.models.transition_pressure_model import \
+    TransitionPressureModel  # noqa: F401
 
 Base.metadata.create_all(engine)
 

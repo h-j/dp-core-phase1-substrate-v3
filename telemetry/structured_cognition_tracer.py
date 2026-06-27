@@ -6,8 +6,8 @@ Measures structured cognition survival rate across the cognition pipeline.
 
 import json
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
 from datetime import datetime
+from typing import Dict, List, Optional
 
 
 @dataclass

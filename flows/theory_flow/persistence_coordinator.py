@@ -1,4 +1,5 @@
 from typing import Any
+
 from market.replay.runtime.cognition_result import CognitionResult
 
 
@@ -40,7 +41,8 @@ class PersistenceCoordinator:
             )
 
     def _create_validation_event(self, result: CognitionResult):
-        from cognition.schemas.validation.validation_event import ValidationEvent
+        from cognition.schemas.validation.validation_event import \
+            ValidationEvent
 
         return ValidationEvent(
             theory_id=result.theory.id,

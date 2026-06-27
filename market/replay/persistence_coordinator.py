@@ -1,4 +1,5 @@
 from typing import Any, Dict
+
 from market.replay.replay_output import ReplayOutputMixin
 
 

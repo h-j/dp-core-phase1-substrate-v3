@@ -1,6 +1,5 @@
 from market.schemas.market_outcome import MarketOutcome
 
-
 # Seeded market outcomes for validation testing
 # Linked to observations that were previously created in the system
 

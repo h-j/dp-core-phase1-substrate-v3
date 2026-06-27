@@ -10,11 +10,12 @@ Generates observations using rule-based heuristics:
 - regime_subtype for knowledge-grounded theory continuity
 """
 
+from typing import Dict, List, Union
+
 import pandas as pd
 
-from market.schemas.market_observation import MarketObservation
 from market.regime.regime_subtype_classifier import RegimeSubtypeClassifier
-from typing import List, Dict, Union
+from market.schemas.market_observation import MarketObservation
 
 
 class MarketObservationSynthesizer:

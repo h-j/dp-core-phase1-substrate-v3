@@ -1,9 +1,9 @@
 """Metric analyzers for replay cognition analysis."""
 
+import statistics
 from collections import defaultdict
 from statistics import mean, median
 from typing import Dict, List
-import statistics
 
 from market.replay.prediction_probe import PredictionDirection
 from market.replay.replay_analysis_utils import extract_usefulness_score
@@ -414,47 +414,30 @@ class ReplayAnalysisMetricsMixin:
         if not self.prediction_history:
             return {}
 
-        # Create a temporally aligned list of predictions and their outcomes
-        # Each entry in prediction_history[i] contains:
-        #   - "prediction": The prediction made ON day_i for day_i+1
-        #   - "prior_prediction_result": The evaluation of the prediction made ON day_i-1 for day_i
-        # To correctly analyze, we need to pair prediction_history[i-1]["prediction"] with
-        # prediction_history[i]["prior_prediction_result"].
-
         aligned_predictions = []
         for i in range(1, len(self.prediction_history)):
             current_day_record = self.prediction_history[i]
             previous_day_prediction_record = self.prediction_history[i - 1]
 
-            if current_day_record.get(
-                "prior_prediction_result"
-            ) and previous_day_prediction_record.get("prediction"):
-                aligned_predictions.append(
-                    {
-                        "date": current_day_record["date"],
-                        "predicted_direction": previous_day_prediction_record[
-                            "prediction"
-                        ].get("direction"),
-                        "actual_direction": current_day_record[
-                            "prior_prediction_result"
-                        ].get("actual_direction"),
-                        "direction_score": current_day_record[
-                            "prior_prediction_result"
-                        ].get("direction_score"),
-                        "intelligence": previous_day_prediction_record.get(
-                            "intelligence", {}
-                        ),  # Metadata for the theory that made the prediction
-                    }
-                )
+            if current_day_record.get("prior_prediction_result") and previous_day_prediction_record.get("prediction"):
+                aligned_predictions.append({
+                    "date": current_day_record["date"],
+                    "prediction": previous_day_prediction_record["prediction"],
+                    "prior_prediction_result": current_day_record["prior_prediction_result"],
+                    "contradiction_score": previous_day_prediction_record.get("contradiction_score", 0.0),
+                    "regime_similarity": previous_day_prediction_record.get("regime_similarity", 0.0),
+                    "theory_usefulness": previous_day_prediction_record.get("theory_usefulness"),
+                    "theory_summary": previous_day_prediction_record.get("theory_summary", ""),
+                    "transition_pressure_score": previous_day_prediction_record.get("transition_pressure_score", 0.0),
+                    "transition_breakout_risk": previous_day_prediction_record.get("transition_breakout_risk", False),
+                    "components_failed": previous_day_prediction_record.get("components_failed", []),
+                    "reused_lessons": previous_day_prediction_record.get("reused_lessons", []),
+                    "lessons_retired": previous_day_prediction_record.get("lessons_retired", 0),
+                    "regime_matches": previous_day_prediction_record.get("regime_matches", []),
+                })
 
         total = len(self.prediction_history)
-        # scored rows have a prior_prediction_result with a direction_score
-        scored = [
-            r
-            for r in self.prediction_history
-            if r.get("prior_prediction_result")
-            and r["prior_prediction_result"].get("direction_score") is not None
-        ]
+        scored_count = len(aligned_predictions)
 
         def is_correct(row):
             return row["prior_prediction_result"].get("direction_score", 0) == 1.0
@@ -462,38 +445,23 @@ class ReplayAnalysisMetricsMixin:
         def is_partial(row):
             return row["prior_prediction_result"].get("direction_score", 0) == 0.5
 
-        scored_count_aligned = len(aligned_predictions)
-        scored_count = len(scored)
-        correct = sum(1 for r in scored if is_correct(r))
-        correct_aligned = sum(
-            1 for r in aligned_predictions if r["direction_score"] == 1.0
-        )
-        partial = sum(1 for r in scored if is_partial(r))
+        correct = sum(1 for r in aligned_predictions if is_correct(r))
+        partial = sum(1 for r in aligned_predictions if is_partial(r))
         mean_conf = (
-            mean(
-                [
-                    r["prediction"].get("confidence", 0)
-                    for r in self.prediction_history
-                    if r.get("prediction")
-                ]
-            )
-            if self.prediction_history
+            mean([r["prediction"].get("confidence", 0) for r in aligned_predictions])
+            if aligned_predictions
             else 0.0
         )
 
         # Task 2.1: Median Confidence
-        conf_list = [r["prediction"].get("confidence", 0) for r in scored]
+        conf_list = [r["prediction"].get("confidence", 0) for r in aligned_predictions]
         median_conf = median(conf_list) if conf_list else 0.0
 
         # By direction
         directions = ["higher", "lower", "range_bound"]
         accuracy_by_direction = {}
-        for (
-            d
-        ) in (
-            directions
-        ):  # This still uses `scored` which is misaligned for `prediction.direction`
-            rows = [r for r in scored if r.get("prediction", {}).get("direction") == d]
+        for d in directions:
+            rows = [r for r in aligned_predictions if r.get("prediction", {}).get("direction") == d]
             cnt = len(rows)
             acc = sum(1 for r in rows if is_correct(r)) / cnt if cnt else 0.0
 
@@ -520,19 +488,15 @@ class ReplayAnalysisMetricsMixin:
             }
 
         # Contradiction buckets
-        # This section needs to be updated to use aligned_predictions as well
-        # The `contradiction_score` here refers to the score of the current day's theory,
-        # not necessarily the theory that made the prediction being evaluated.
-        # This metric should probably be moved to `_analyze_prediction_intelligence`
-        # and use the `aligned_predictions` with `r["intelligence"].get("contradiction_count")`
-        # For now, leaving as is, but noting it's potentially inconsistent.
-        buckets = {
-            "low": [],
-            "medium": [],
-            "high": [],
-        }  # This is for `_analyze_predictions`
-        for r in scored:  # `scored` is still the original list
-            # This `contradiction_score` is from the current day's record, not the prediction being evaluated.
+        def bucket(score: float) -> str:
+            if score >= 0.66:
+                return "high"
+            if score >= 0.33:
+                return "medium"
+            return "low"
+
+        buckets = {"low": [], "medium": [], "high": []}
+        for r in aligned_predictions:
             b = bucket(r.get("contradiction_score", 0.0))
             buckets[b].append(r)
 
@@ -549,8 +513,8 @@ class ReplayAnalysisMetricsMixin:
             "0.4-0.6": [],
             "0.6-0.8": [],
             "0.8-1.0": [],
-        }  # This still uses `scored`
-        for r in scored:
+        }
+        for r in aligned_predictions:
             c = r["prediction"].get("confidence", 0.0)
             if c < 0.2:
                 cal_buckets["0.0-0.2"].append(r)
@@ -598,13 +562,8 @@ class ReplayAnalysisMetricsMixin:
         calibration_score = statistics.mean(gaps) if gaps else 0.0
 
         # Usefulness Bands
-        useful_buckets = {
-            "0-0.3": [],
-            "0.3-0.5": [],
-            "0.5-0.7": [],
-            "0.7+": [],
-        }  # This still uses `scored`
-        for r in scored:
+        useful_buckets = {"0-0.3": [], "0.3-0.5": [], "0.5-0.7": [], "0.7+": []}
+        for r in aligned_predictions:
             v = extract_usefulness_score(r.get("theory_usefulness", 0.0))
             if v < 0.3:
                 useful_buckets["0-0.3"].append(r)
@@ -626,12 +585,8 @@ class ReplayAnalysisMetricsMixin:
         }
 
         # Contradiction Bands
-        contra_buckets = {
-            "0-0.2": [],
-            "0.2-0.5": [],
-            "0.5+": [],
-        }  # This still uses `scored`
-        for r in scored:
+        contra_buckets = {"0-0.2": [], "0.2-0.5": [], "0.5+": []}
+        for r in aligned_predictions:
             v = r.get("contradiction_score", 0.0)
             if v < 0.2:
                 contra_buckets["0-0.2"].append(r)
@@ -652,8 +607,8 @@ class ReplayAnalysisMetricsMixin:
 
         # Theory Usefulness Analysis
         usefulness_scores = []
-        missing_usefulness_count = 0  # This still uses `prediction_history`
-        for r in self.prediction_history:
+        missing_usefulness_count = 0
+        for r in aligned_predictions:
             tu = r.get("theory_usefulness")
             # Ensure it's a dict and has 'score' and 'label'
             if tu and isinstance(tu, dict) and "score" in tu and "label" in tu:
@@ -664,9 +619,9 @@ class ReplayAnalysisMetricsMixin:
         avg_theory_usefulness = mean(usefulness_scores) if usefulness_scores else 0.0
         high_usefulness_days = sum(1 for s in usefulness_scores if s > 0.7)
 
-        # Accuracy when usefulness > 0.7 # This still uses `scored`
+        # Accuracy when usefulness > 0.7
         high_usefulness_predictions = [
-            r for r in scored if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
+            r for r in aligned_predictions if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
         ]
         accuracy_when_high_usefulness = (
             sum(1 for r in high_usefulness_predictions if is_correct(r))
@@ -676,17 +631,16 @@ class ReplayAnalysisMetricsMixin:
         )
 
         # Prediction Drift
-        change_count = 0  # This still uses `prediction_history`
-        if len(aligned_predictions) > 1:
-            for i in range(1, len(aligned_predictions)):
-                if (
-                    aligned_predictions[i - 1]["predicted_direction"]
-                    != aligned_predictions[i]["predicted_direction"]
-                ):
+        change_count = 0
+        if len(self.prediction_history) > 1:
+            for i in range(1, len(self.prediction_history)):
+                if self.prediction_history[i - 1]["prediction"].get(
+                    "direction"
+                ) != self.prediction_history[i]["prediction"].get("direction"):
                     change_count += 1
         prediction_drift = (
-            change_count / (len(aligned_predictions) - 1)
-            if len(aligned_predictions) > 1
+            change_count / (len(self.prediction_history) - 1)
+            if len(self.prediction_history) > 1
             else 0.0
         )
 
@@ -699,10 +653,10 @@ class ReplayAnalysisMetricsMixin:
             "15d": statistics.mean(conf_vals[-15:]) if len(conf_vals) >= 15 else 0.0,
         }
 
-        # Task 2.2: Add 'uncertain' # This still uses `prediction_history`
+        # Task 2.2: Add 'uncertain'
         uncertain_rows = [
             r
-            for r in self.prediction_history
+            for r in aligned_predictions
             if r.get("prediction", {}).get("direction")
             == PredictionDirection.uncertain.value
         ]
@@ -718,27 +672,27 @@ class ReplayAnalysisMetricsMixin:
             "avg_confidence": avg_conf_uncertain,
         }
 
-        # Regime similarity > 0.9 # This still uses `scored`
-        high_regime = [r for r in scored if r.get("regime_similarity", 0.0) > 0.9]
+        # Regime similarity > 0.9
+        high_regime = [r for r in aligned_predictions if r.get("regime_similarity", 0.0) > 0.9]
         regime_acc = (
             sum(1 for r in high_regime if is_correct(r)) / len(high_regime)
             if high_regime
             else 0.0
         )
 
-        # Theory usefulness > 0.5 # This still uses `scored`
+        # Theory usefulness > 0.5
         useful = [
             r
-            for r in scored
+            for r in aligned_predictions
             if extract_usefulness_score(r.get("theory_usefulness", 0.0)) > 0.5
         ]
         useful_acc = (
             sum(1 for r in useful if is_correct(r)) / len(useful) if useful else 0.0
         )
 
-        # Task 2.4: Prediction slices by pressure # This still uses `scored`
+        # Task 2.4: Prediction slices by pressure
         pressure_gt_0_5 = [
-            r for r in scored if r.get("transition_pressure_score", 0.0) > 0.5
+            r for r in aligned_predictions if r.get("transition_pressure_score", 0.0) > 0.5
         ]
         acc_pressure_gt_0_5 = (
             sum(1 for r in pressure_gt_0_5 if is_correct(r)) / len(pressure_gt_0_5)
@@ -747,7 +701,7 @@ class ReplayAnalysisMetricsMixin:
         )
 
         pressure_gt_0_7 = [
-            r for r in scored if r.get("transition_pressure_score", 0.0) > 0.7
+            r for r in aligned_predictions if r.get("transition_pressure_score", 0.0) > 0.7
         ]
         acc_pressure_gt_0_7 = (
             sum(1 for r in pressure_gt_0_7 if is_correct(r)) / len(pressure_gt_0_7)
@@ -755,32 +709,32 @@ class ReplayAnalysisMetricsMixin:
             else 0.0
         )
 
-        # Task 2.5: False breakout # This still uses `scored`
+        # Task 2.5: False breakout
         false_breakouts = [
-            r for r in scored if r.get("transition_breakout_risk") and not is_correct(r)
+            r for r in aligned_predictions if r.get("transition_breakout_risk") and not is_correct(r)
         ]
 
-        # Task 2.6: Best breakout capture # This still uses `scored`
+        # Task 2.6: Best breakout capture
         best_breakout_captures = [
             r
-            for r in scored
+            for r in aligned_predictions
             if r.get("transition_breakout_risk")
             and is_correct(r)
             and r["prediction"].get("direction")
             in [PredictionDirection.higher.value, PredictionDirection.lower.value]
         ]
 
-        # Missed transition cases: range_bound -> higher / lower # This still uses `scored`
+        # Missed transition cases: range_bound -> higher / lower
         missed_range_to_higher = [
             r
-            for r in scored
+            for r in aligned_predictions
             if r.get("prediction", {}).get("direction") == "range_bound"
             and r.get("prior_prediction_result", {}).get("actual_direction") == "higher"
             and not is_correct(r)
         ]
         missed_range_to_lower = [
             r
-            for r in scored
+            for r in aligned_predictions
             if r.get("prediction", {}).get("direction") == "range_bound"
             and r.get("prior_prediction_result", {}).get("actual_direction") == "lower"
             and not is_correct(r)
@@ -796,25 +750,22 @@ class ReplayAnalysisMetricsMixin:
                 for r in rows[:n]
             ]
 
+        # Correlation Analysis
         correlation_coeff = 0.0
         confidences = [
-            r["prediction"].get("confidence", 0)
-            for r in self.prediction_history
-            if r.get("prediction")
+            r["prediction"].get("confidence", 0) for r in aligned_predictions if r.get("prediction")
         ]
         scores = [
-            r["prior_prediction_result"].get("direction_score", 0)
-            for r in aligned_predictions
-        ]  # Use aligned scores
+            r["prior_prediction_result"].get("direction_score", 0) for r in aligned_predictions
+        ]
         if len(confidences) > 1 and len(scores) > 1:
             try:
-                correlation_val = statistics.correlation(
-                    confidences[: len(scores)], scores
-                )  # Align lengths
+                correlation_val = statistics.correlation(confidences, scores)
+                correlation_coeff = correlation_val
             except Exception:
                 correlation_coeff = 0.0
 
-        return {  # This return needs to be updated to use aligned_predictions for accuracy
+        return {
             "total_predictions": total,
             "scored_predictions": scored_count,
             "accuracy": correct / scored_count if scored_count else 0.0,
@@ -834,7 +785,7 @@ class ReplayAnalysisMetricsMixin:
             "invalidation_rate": (
                 sum(
                     1
-                    for r in scored
+                    for r in aligned_predictions
                     if r.get("prior_prediction_result", {}).get(
                         "invalidation_triggered"
                     )
@@ -844,7 +795,7 @@ class ReplayAnalysisMetricsMixin:
                 else 0.0
             ),
             "mean_confidence": mean_conf,
-            "median_confidence": median_conf,  # This is still based on `scored`
+            "median_confidence": median_conf,
             "confidence_accuracy_correlation": round(correlation_coeff, 3),
             "accuracy_by_direction": accuracy_by_direction,
             "accuracy_by_contradiction_bucket": accuracy_by_contradiction,

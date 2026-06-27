@@ -1,9 +1,8 @@
-from typing import List, Dict, Any, Optional
 from statistics import mean
+from typing import Any, Dict, List, Optional
 
 
 class ConfidenceEvolutionEngine:
-
     def evolve(
         self,
         confidence_state,
@@ -16,6 +15,9 @@ class ConfidenceEvolutionEngine:
         lineage_event=None,
         theory_usefulness: Optional[Dict[str, Any]] = None,
         regime_matches: Optional[List[Any]] = None,
+        rolling_accuracy: float = 0.5,   # Recent 15-day accuracy
+        regime_accuracy: float = 0.5,    # Regime-specific rolling accuracy
+        lifetime_accuracy: float = 0.5,  # Lifetime overall accuracy
     ):
 
         recent_validations = recent_validations or []
@@ -186,6 +188,57 @@ class ConfidenceEvolutionEngine:
         contradiction_score = contradiction_result.get("score", 0.0)
         if contradiction_score > 0:
             pressure_delta += contradiction_score * 0.10
+        # 1. Three-Window Confidence: blend regime-specific, recent, and lifetime accuracies
+        # (Weighting: 50% regime, 30% recent, 20% lifetime)
+        weighted_accuracy = 0.5 * regime_accuracy + 0.3 * rolling_accuracy + 0.2 * lifetime_accuracy
+
+        # 2. Rich Prior probability P(Theory): Theory prior confidence + Lineage usefulness + Regime matches
+        lineage_usefulness_val = theory_usefulness.get("score", 0.5) if theory_usefulness else 0.5
+        regime_sim = 0.5
+        if regime_matches:
+            try:
+                sims = [
+                    m.similarity if hasattr(m, "similarity") else m.get("similarity", 0)
+                    for m in regime_matches
+                ]
+                regime_sim = mean(sims) if sims else 0.5
+            except Exception:
+                pass
+        
+        prior_probability = 0.5 * confidence_state.empirical_confidence + 0.3 * lineage_usefulness_val + 0.2 * regime_sim
+
+        # 3. Bayesian calibration multipliers
+        # Normalizes pos_mult and neg_mult around a baseline of 0.25 (which is 0.5 * 0.5)
+        pos_mult = (weighted_accuracy * prior_probability) / 0.25
+        neg_mult = ((1.0 - weighted_accuracy) * (1.0 - prior_probability)) / 0.25
+
+        # Clamp multipliers to a safe range [0.1, 3.0] to prevent underflow/overflow
+        pos_mult = max(0.1, min(3.0, pos_mult))
+        neg_mult = max(0.1, min(3.0, neg_mult))
+        if empirical_delta > 0:
+            empirical_delta *= pos_mult
+        else:
+            empirical_delta *= neg_mult
+
+        if regime_delta > 0:
+            regime_delta *= pos_mult
+        else:
+            regime_delta *= neg_mult
+
+        if reflection_delta > 0:
+            reflection_delta *= pos_mult
+        else:
+            reflection_delta *= neg_mult
+
+        if coherence_delta > 0:
+            coherence_delta *= pos_mult
+        else:
+            coherence_delta *= neg_mult
+
+        if pressure_delta > 0:
+            pressure_delta *= neg_mult
+        else:
+            pressure_delta *= pos_mult
 
         confidence_state.empirical_confidence = self._clamp(
             confidence_state.empirical_confidence + empirical_delta

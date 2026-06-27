@@ -1,6 +1,9 @@
 from typing import List, Union
-from cognition.schemas.reflection.reflective_memory_state import ReflectiveMemoryState
-from memory.relational.models.reflective_memory_model import ReflectiveMemoryModel
+
+from cognition.schemas.reflection.reflective_memory_state import \
+    ReflectiveMemoryState
+from memory.relational.models.reflective_memory_model import \
+    ReflectiveMemoryModel
 from memory.relational.postgres_client import SessionLocal
 
 

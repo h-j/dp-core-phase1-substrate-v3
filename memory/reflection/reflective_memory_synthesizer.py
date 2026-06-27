@@ -1,7 +1,8 @@
-from collections import Counter
 import json
+from collections import Counter
 
-from cognition.schemas.reflection.reflective_memory_state import ReflectiveMemoryState
+from cognition.schemas.reflection.reflective_memory_state import \
+    ReflectiveMemoryState
 
 
 class ReflectiveMemorySynthesizer:

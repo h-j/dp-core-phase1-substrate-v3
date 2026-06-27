@@ -1,13 +1,12 @@
+import json
+
+from cognition.schemas.confidence.confidence_state import ConfidenceState
+from cognition.schemas.theory.theory import (  # Import Theory Pydantic model
+    Branch, Theory, TheoryStructured)
 from memory.relational.models.confidence_model import ConfidenceModel
 from memory.relational.models.theory_model import TheoryModel
 from memory.relational.postgres_client import SessionLocal
-from cognition.schemas.theory.theory import (
-    Theory,
-    TheoryStructured,
-    Branch,
-)  # Import Theory Pydantic model
 from telemetry.structured_cognition_tracer import get_tracer
-import json
 
 
 def _is_json(s: str) -> bool:
@@ -103,6 +102,27 @@ class TheoryRepository:
                             forbidden_state="unknown",
                         )
 
+                # Reconstruct ConfidenceState from relational database
+                confidence_state = None
+                if model.confidence_state_id:
+                    conf_model = (
+                        session.query(ConfidenceModel)
+                        .filter(ConfidenceModel.id == model.confidence_state_id)
+                        .first()
+                    )
+                    if conf_model:
+                        confidence_state = ConfidenceState(
+                            id=conf_model.id,
+                            created_at=conf_model.created_at,
+                            empirical_confidence=conf_model.empirical_confidence,
+                            regime_confidence=conf_model.regime_confidence,
+                            reflection_confidence=conf_model.reflection_confidence,
+                            theoretical_coherence=conf_model.theoretical_coherence,
+                            contradiction_pressure=conf_model.contradiction_pressure,
+                        )
+                if not confidence_state:
+                    confidence_state = ConfidenceState()
+
                 theory = Theory(
                     id=model.id,
                     created_at=model.created_at,
@@ -110,7 +130,7 @@ class TheoryRepository:
                     thesis=model.thesis,
                     summary=model.summary,
                     summary_structured=structured_data,
-                    confidence_state=model.confidence_state,  # Assuming ConfidenceModel can be converted or is already loaded
+                    confidence_state=confidence_state,
                     llm_evaluation=model.llm_evaluation,
                     survival_days=model.survival_days,
                     falsified_at_index=model.falsified_at_index,

@@ -1,4 +1,5 @@
-from typing import List, Dict, Any, Optional
+from typing import Any, Dict, List, Optional
+
 from cognition.schemas.observation.observation_event import ObservationEvent
 from cognition.schemas.validation.validation_event import ValidationEvent
 

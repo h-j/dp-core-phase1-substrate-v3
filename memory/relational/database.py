@@ -6,7 +6,7 @@ raise if the Postgres client is unavailable.
 """
 
 try:
-    from memory.relational.postgres_client import SessionLocal, engine, Base
+    from memory.relational.postgres_client import Base, SessionLocal, engine
 except Exception as exc:
     raise RuntimeError(
         "Postgres relational client unavailable. Ensure PostgreSQL is configured and running."

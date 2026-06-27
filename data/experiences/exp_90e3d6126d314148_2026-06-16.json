@@ -1,0 +1,54 @@
+{
+  "experience_id": "exp_90e3d6126d314148_2026-06-16",
+  "lineage_id": "90e3d6126d314148",
+  "theory_family_id": "90e3d6126d314148",
+  "created_at": "2026-06-16",
+  "status": "active",
+  "theory_ids": [
+    "6dcc62f7-ca37-4c7e-b23b-9988e139fab8"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Regime is driven by ... vs participation widens..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:extended_higher",
+    "volume:elevated",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:strengthened",
+    "participation:normal",
+    "momentum:strengthening",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:20:11.550308",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by absorption_rate; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "absorption_rate"
+      ],
+      "components_failed": [
+        "volume_confirmation"
+      ],
+      "root_cause": "volume_confirmation",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by absorption_rate; price remains range-bound despite volume expansion\" failed to predict the observed market behavior due to several reasons:\n\n1. **Volume dry**: The absence of significant volume, which is a key driver of price movement according to the theory, suggests"
+    }
+  ],
+  "component_failure_counts": {
+    "volume_confirmation": 1
+  }
+}

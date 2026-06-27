@@ -1,7 +1,9 @@
 from sqlalchemy import text
-from memory.relational.repositories.base_repository import BaseRepository
-from memory.relational.models.prediction_probe_model import PredictionProbeModel
+
 from memory.relational.database import SessionLocal
+from memory.relational.models.prediction_probe_model import \
+    PredictionProbeModel
+from memory.relational.repositories.base_repository import BaseRepository
 
 
 class PredictionRepository(BaseRepository):

@@ -1,50 +1,50 @@
+from cognition.confidence.confidence_evolution_engine import \
+    ConfidenceEvolutionEngine
+from cognition.contradiction.contradiction_detector import \
+    ContradictionDetector
 from cognition.schemas.observation.observation_event import ObservationEvent
 from cognition.schemas.validation.validation_event import ValidationEvent
-from cognition.confidence.confidence_evolution_engine import ConfidenceEvolutionEngine
-from cognition.contradiction.contradiction_detector import ContradictionDetector
-
 from flows.observation_flow.abstraction_flow import AbstractionFlow
-from flows.theory_flow.theory_generation_flow import TheoryGenerationFlow
 from flows.reflection_flow.reflection_flow import ReflectionFlow
-
+from flows.theory_flow.theory_generation_flow import TheoryGenerationFlow
+from market.contradiction.market_contradiction_mapper import \
+    MarketContradictionMapper
+from market.evolution.theory_survival_tracker import TheorySurvivalTracker
 from market.examples.sample_nifty_observations import SAMPLE_NIFTY_OBSERVATIONS
 from market.examples.sample_nifty_outcomes import SAMPLE_NIFTY_OUTCOMES
-from market.regime.market_regime_classifier import MarketRegimeClassifier
-from market.validation.outcome_validation_engine import OutcomeValidationEngine
-from market.evolution.theory_survival_tracker import TheorySurvivalTracker
-from market.contradiction.market_contradiction_mapper import MarketContradictionMapper
-from market.strategy.strategic_reflection_synthesizer import (
-    StrategicReflectionSynthesizer,
-)
-from market.narrative.cognition_narrative_builder import CognitionNarrativeBuilder
+from market.narrative.cognition_narrative_builder import \
+    CognitionNarrativeBuilder
 from market.query.reflective_query_engine import ReflectiveQueryEngine
-
-from memory.lineage.historical_cognition_service import HistoricalCognitionService
-from memory.market.historical_market_memory_service import HistoricalMarketMemoryService
-from memory.market.market_observation_repository import MarketObservationRepository
+from market.regime.market_regime_classifier import MarketRegimeClassifier
+from market.strategy.strategic_reflection_synthesizer import \
+    StrategicReflectionSynthesizer
+from market.validation.outcome_validation_engine import OutcomeValidationEngine
+from memory.lineage.historical_cognition_service import \
+    HistoricalCognitionService
+from memory.market.historical_market_memory_service import \
+    HistoricalMarketMemoryService
+from memory.market.market_observation_repository import \
+    MarketObservationRepository
 from memory.market.strategic_memory_repository import StrategicMemoryRepository
-from memory.reflection.reflective_memory_synthesizer import ReflectiveMemorySynthesizer
-
-from memory.relational.repositories.observation_repository import ObservationRepository
-
-from memory.relational.repositories.abstraction_repository import AbstractionRepository
-
+from memory.reflection.reflective_memory_synthesizer import \
+    ReflectiveMemorySynthesizer
+from memory.relational.repositories.abstraction_repository import \
+    AbstractionRepository
+from memory.relational.repositories.confidence_repository import \
+    ConfidenceRepository
+from memory.relational.repositories.observation_repository import \
+    ObservationRepository
+from memory.relational.repositories.reflection_repository import \
+    ReflectionRepository
+from memory.relational.repositories.reflective_memory_repository import \
+    ReflectiveMemoryRepository
 from memory.relational.repositories.theory_repository import TheoryRepository
-
-from memory.relational.repositories.validation_repository import ValidationRepository
-
-from memory.relational.repositories.reflection_repository import ReflectionRepository
-
-from memory.relational.repositories.confidence_repository import ConfidenceRepository
-
-from memory.relational.repositories.reflective_memory_repository import (
-    ReflectiveMemoryRepository,
-)
+from memory.relational.repositories.validation_repository import \
+    ValidationRepository
 
 try:
-    from memory.relational.repositories.market_outcome_repository import (
-        MarketOutcomeRepository,
-    )
+    from memory.relational.repositories.market_outcome_repository import \
+        MarketOutcomeRepository
 except ImportError:
     MarketOutcomeRepository = None
 
@@ -166,7 +166,7 @@ def main():
 
     theory_flow = TheoryGenerationFlow()
 
-    theory = theory_flow.process(
+    theory, _ = theory_flow.process(
         abstraction,
         historical_context=historical_context,
         market_memory_context=market_memory_context,

@@ -5,6 +5,7 @@ Runs at startup and raises if schema is invalid.
 """
 
 import json
+
 from sqlalchemy import inspect, text
 from sqlalchemy.exc import OperationalError
 

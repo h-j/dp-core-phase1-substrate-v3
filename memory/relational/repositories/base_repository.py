@@ -1,6 +1,7 @@
 import logging
-from sqlalchemy.orm import Session
+
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import Session
 
 # Assume SessionLocal is defined in memory.relational.database
 # This is a common pattern for managing SQLAlchemy sessions.

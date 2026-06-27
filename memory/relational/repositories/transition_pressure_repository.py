@@ -1,6 +1,8 @@
 import json
+
+from memory.relational.models.transition_pressure_model import \
+    TransitionPressureModel
 from memory.relational.repositories.base_repository import BaseRepository
-from memory.relational.models.transition_pressure_model import TransitionPressureModel
 
 
 class TransitionPressureRepository(BaseRepository):

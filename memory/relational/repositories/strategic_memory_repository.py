@@ -1,7 +1,8 @@
 import json
 
 from market.schemas.strategic_memory_state import StrategicMemoryState
-from memory.relational.models.strategic_memory_model import StrategicMemoryModel
+from memory.relational.models.strategic_memory_model import \
+    StrategicMemoryModel
 from memory.relational.postgres_client import SessionLocal
 
 

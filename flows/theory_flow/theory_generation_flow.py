@@ -2,14 +2,12 @@ import json
 import re
 from typing import Any, Dict, Optional, Tuple
 from uuid import uuid4
-from cognition.schemas.theory.theory import (
-    Branch,
-    TheoryStructured,
-)  # Import new schemas
-from cognition.schemas.confidence.confidence_state import ConfidenceState
-from cognition.schemas.theory.theory import Theory
-from interfaces.ollama_client import OllamaClient
+
 from cognition.evaluation.llm_theory_evaluator import LLMTheoryEvaluator
+from cognition.schemas.confidence.confidence_state import ConfidenceState
+from cognition.schemas.theory.theory import Branch  # Import new schemas
+from cognition.schemas.theory.theory import Theory, TheoryStructured
+from interfaces.ollama_client import OllamaClient
 
 
 class TheoryGenerationFlow:
@@ -35,6 +33,7 @@ class TheoryGenerationFlow:
         relevant_lessons: list = None,
         prior_theory: Optional[Theory] = None,
         prior_attribution: Optional[Any] = None,
+        retrieved_theory: Optional[Theory] = None,
     ) -> tuple[Theory, dict]:
 
         if not regime_subtype:
@@ -91,13 +90,21 @@ You MUST incorporate the logic of this synthesis into your new theory. If curren
             lessons_context = "No validated historical lessons for this regime yet."
 
         attribution_context = ""
-        if prior_theory and prior_attribution and getattr(prior_attribution, "components_failed", None):
+        if (
+            prior_theory
+            and prior_attribution
+            and getattr(prior_attribution, "components_failed", None)
+        ):
             failed_comps = prior_attribution.components_failed
             passed_comps = getattr(prior_attribution, "components_passed", [])
             root_cause = getattr(prior_attribution, "root_cause_component", "Unknown")
             guidance = prior_attribution.get_mutation_guidance()
-            prior_claim = prior_theory.summary_structured.claim if prior_theory.summary_structured else prior_theory.summary
-            
+            prior_claim = (
+                prior_theory.summary_structured.claim
+                if prior_theory.summary_structured
+                else prior_theory.summary
+            )
+
             attribution_context = f"""
 MANDATORY MUTATION GUIDANCE FOR EXISTING THEORY:
 You are mutating the existing active theory to fix its failures:
@@ -113,6 +120,37 @@ INSTRUCTIONS:
 1. Mutate the existing theory to resolve the failures in the components that failed: {', '.join(failed_comps)}.
 2. Keep the components that passed unchanged: {', '.join(passed_comps) if passed_comps else 'None'}.
 3. Ensure the mutated theory is structurally coherent and directly addresses the root cause: {root_cause}.
+"""
+
+        retrieved_theory_context = ""
+        if retrieved_theory:
+            ret_claim = (
+                retrieved_theory.summary_structured.claim
+                if retrieved_theory.summary_structured
+                else retrieved_theory.summary
+            )
+            ret_falsified = (
+                retrieved_theory.summary_structured.falsified_if
+                if retrieved_theory.summary_structured
+                else "unknown"
+            )
+            retrieved_theory_context = f"""
+MANDATORY MEMORY COMPARISON TASK:
+Historical theory from similar regime:
+- Claim: {ret_claim}
+- Falsified if: {ret_falsified}
+
+Evaluate whether this historical theory remains valid under current observations.
+You may:
+1. reuse (set "reuse_decision" to "REUSED", keep the "claim", "if_branch", "else_branch", "unless", and "falsified_if" identical to the historical theory)
+2. modify (set "reuse_decision" to "MODIFIED", adapt the historical theory slightly to fit the current situation)
+3. reject (set "reuse_decision" to "REJECTED", write a completely new theory from scratch)
+
+You MUST select one of these decisions and populate the "reuse_decision" field with exactly one of: "REUSED", "MODIFIED", or "REJECTED".
+"""
+        else:
+            retrieved_theory_context = """
+No historical retrieved theory is available. Populate the "reuse_decision" field with "REJECTED".
 """
 
         prompt = f"""
@@ -133,6 +171,8 @@ Analog Divergence: {analog_divergence_claim or "None"}
 {lessons_context}
 
 {attribution_context}
+
+{retrieved_theory_context}
 
 Reflective Memory Summary:
 {reflective_memory_summary}
@@ -205,7 +245,8 @@ Return exactly a JSON object conforming to this schema:
       "dependency": "string or null"
     }}
   ],
-  "falsification_conditions": ["string"]
+  "falsification_conditions": ["string"],
+  "reuse_decision": "REUSED | MODIFIED | REJECTED"
 }}
 
 Constraint Checklist:
@@ -218,6 +259,7 @@ Constraint Checklist:
 - focus on market structure, coherence, uncertainty, volatility, breadth, participation, liquidity, and regime evolution.
 - do not produce trading recommendations or advice.
 - No macro filler, no headings, no markdown.
+- Populate "reuse_decision" field exactly with one of: "REUSED", "MODIFIED", or "REJECTED".
 
 Example:
 {{
@@ -225,7 +267,8 @@ Example:
   "if_branch": {{"condition": "participation widens above average", "action": "favor breakout higher"}},
   "else_branch": {{"condition": "volatility remains compressed", "action": "favor range persistence"}},
   "unless": "liquidity evaporates entirely",
-  "falsified_if": "decisive close below the prior support floor"
+  "falsified_if": "decisive close below the prior support floor",
+  "reuse_decision": "REJECTED"
 }}
 """
 
@@ -233,7 +276,7 @@ Example:
         # requirement to the prompt to reduce free-text responses.
         # The prompt above already includes the detailed output format.
 
-        result = self.client.generate(prompt)
+        result = self.client.generate(prompt, json_format=True)
 
         # Attempt to parse JSON output, with more robust retries.
         parsed_theory_data = None
@@ -252,7 +295,7 @@ Example:
                     print(
                         f"[Theory JSON Parse Error] Attempt {attempt+1}/3. Retrying generation..."
                     )
-                result = self.client.generate(prompt)
+                result = self.client.generate(prompt, json_format=True)
 
         # If still not parsed, attempt one final targeted JSON-only repair prompt
         if parsed_theory_data is None:
@@ -260,13 +303,13 @@ Example:
                 "The previous response could not be parsed as JSON.\n"
                 "Extract the core theory content from the last message and return ONLY a JSON object with keys:"
                 " claim, mechanism, if_branch, else_branch, unless, falsified_if,"
-                " mechanism_components, falsification_conditions.\n"
+                " mechanism_components, falsification_conditions, reuse_decision.\n"
                 "Here is the original output:\n"
                 + result
                 + "\n\nRespond ONLY with the JSON object. No commentary."
             )
             try:
-                repair_result = self.client.generate(repair_prompt)
+                repair_result = self.client.generate(repair_prompt, json_format=True)
                 # Extract JSON from repair result
                 start = repair_result.find("{")
                 end = repair_result.rfind("}") + 1

@@ -211,6 +211,188 @@ class HistoricalMarketDownloader:
         data.to_csv(self.CSV_PATH, index=False)
         print(f"Added derived fields. Updated: {self.CSV_PATH}")
 
+    def is_latest(self) -> bool:
+        """
+        Check if the local dataset is already up-to-date.
+        Considers weekends and intra-day trading hours (assuming market close at 16:00).
+        """
+        if not self.CSV_PATH.exists():
+            return False
+
+        try:
+            df = pd.read_csv(self.CSV_PATH)
+            if df.empty or "date" not in df.columns:
+                return False
+
+            df["date"] = pd.to_datetime(df["date"])
+            latest_date = df["date"].max()
+
+            now = datetime.now()
+            # If latest date in CSV is today or in the future, it is up-to-date
+            if latest_date.date() >= now.date():
+                return True
+
+            # Adjust check based on weekends and active trading hours
+            weekday = now.weekday()
+            delta_days = (now.date() - latest_date.date()).days
+
+            if weekday == 5:  # Saturday
+                # If latest date is Friday (1 day ago), it's latest
+                if delta_days <= 1:
+                    return True
+            elif weekday == 6:  # Sunday
+                # If latest date is Friday (2 days ago), it's latest
+                if delta_days <= 2:
+                    return True
+            elif weekday == 0 and now.hour < 16:  # Monday before 16:00
+                # If latest date is Friday (3 days ago), it's latest
+                if delta_days <= 3:
+                    return True
+            else:
+                # If it's a weekday after 16:00, we expect today's data.
+                # If before 16:00, yesterday's data (1 day ago) is acceptable.
+                if now.hour < 16:
+                    if delta_days <= 1:
+                        return True
+
+            return False
+        except Exception as e:
+            print(f"Error checking if dataset is latest: {e}")
+            return False
+
+    def update_incremental(self) -> bool:
+        """
+        Incrementally download missing latest market data,
+        merge with existing dataset, and update derived fields.
+        Returns True if new rows were added, False otherwise.
+        """
+        if not self.CSV_PATH.exists():
+            print(f"No existing dataset at {self.CSV_PATH}. Performing full download.")
+            data = self.download()
+            self.persist(data)
+            self.add_derived_fields()
+            return True
+
+        try:
+            existing_df = pd.read_csv(self.CSV_PATH)
+            if existing_df.empty or "date" not in existing_df.columns:
+                print(
+                    f"Dataset at {self.CSV_PATH} is empty or invalid. Performing full download."
+                )
+                data = self.download()
+                self.persist(data)
+                self.add_derived_fields()
+                return True
+
+            # Get latest date in string format
+            existing_df["date"] = pd.to_datetime(existing_df["date"])
+            latest_date = existing_df["date"].max()
+            latest_date_str = latest_date.strftime("%Y-%m-%d")
+        except Exception as e:
+            print(f"Error reading existing dataset: {e}. Performing full download.")
+            data = self.download()
+            self.persist(data)
+            self.add_derived_fields()
+            return True
+
+        today_str = datetime.now().strftime("%Y-%m-%d")
+        if latest_date_str >= today_str:
+            print(
+                f"Dataset already includes today's date ({latest_date_str}). No update needed."
+            )
+            return False
+
+        print(
+            f"Dataset latest date: {latest_date_str}. Fetching updates from yfinance..."
+        )
+        try:
+            # yfinance start_date is inclusive. We start from latest_date_str to ensure overlapping
+            # boundary rows are cleanly updated/deduplicated.
+            new_data = self.download(start_date=latest_date_str)
+            if new_data.empty:
+                print("No new data returned from yfinance.")
+                return False
+
+            new_data = new_data.reset_index()
+            if isinstance(new_data.columns, pd.MultiIndex):
+                new_data.columns = [col[0] for col in new_data.columns]
+
+            date_col = None
+            for col in new_data.columns:
+                if "date" in col.lower():
+                    date_col = col
+                    break
+
+            if date_col is None:
+                print(
+                    f"No date column found in downloaded data. Columns: {list(new_data.columns)}"
+                )
+                return False
+
+            if date_col != "date":
+                new_data = new_data.rename(columns={date_col: "date"})
+
+            new_data.columns = new_data.columns.str.lower()
+            new_data["source"] = f"yfinance:{self.TICKER}"
+            new_data["downloaded_at"] = datetime.now().isoformat()
+
+            for old_col, new_col in {
+                "adj close": "adjusted_close",
+                "adjusted close": "adjusted_close",
+            }.items():
+                if old_col in new_data.columns:
+                    new_data = new_data.rename(columns={old_col: new_col})
+
+            required_cols = [
+                "date",
+                "open",
+                "high",
+                "low",
+                "close",
+                "adjusted_close",
+                "volume",
+                "source",
+                "downloaded_at",
+            ]
+            available_cols = [col for col in required_cols if col in new_data.columns]
+            new_data = new_data[available_cols]
+            new_data = new_data.dropna(
+                subset=["open", "high", "low", "close", "volume"]
+            )
+
+            new_data["date"] = pd.to_datetime(new_data["date"])
+            existing_df["date"] = pd.to_datetime(existing_df["date"])
+
+            # Merge and deduplicate
+            initial_row_count = len(existing_df)
+            combined_df = pd.concat([existing_df, new_data])
+            combined_df = combined_df.drop_duplicates(subset=["date"], keep="last")
+            combined_df = combined_df.sort_values("date", ascending=True)
+
+            # Ensure we don't leak future dates
+            today = datetime.now()
+            combined_df = combined_df[combined_df["date"] <= today]
+
+            # Write back to CSV
+            combined_df["date"] = combined_df["date"].dt.strftime("%Y-%m-%d")
+            self.CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
+            combined_df.to_csv(self.CSV_PATH, index=False)
+
+            new_rows_count = len(combined_df) - initial_row_count
+            if new_rows_count > 0:
+                print(
+                    f"✓ Added {new_rows_count} new trading days incrementally. Total: {len(combined_df)} rows."
+                )
+                self.add_derived_fields()
+                return True
+            else:
+                print("No new trading days were added after deduplication.")
+                return False
+
+        except Exception as e:
+            print(f"Failed to incrementally update market data: {e}")
+            raise
+
 
 class NIFTYHistoryDownloader(HistoricalMarketDownloader):
     TICKER = "^NSEI"

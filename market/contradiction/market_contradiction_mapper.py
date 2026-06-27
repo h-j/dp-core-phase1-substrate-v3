@@ -1,5 +1,5 @@
 from collections import defaultdict
-from datetime import datetime, UTC, timedelta
+from datetime import UTC, datetime, timedelta
 
 
 class MarketContradictionMapper:

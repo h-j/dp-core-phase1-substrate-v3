@@ -1,10 +1,12 @@
-from memory.relational.repositories.reflection_repository import ReflectionRepository
-from memory.relational.repositories.reflective_memory_repository import (
 from typing import List
+
+from memory.relational.repositories.reflection_repository import \
+    ReflectionRepository
+from memory.relational.repositories.reflective_memory_repository import \
     ReflectiveMemoryRepository
-)
 from memory.relational.repositories.theory_repository import TheoryRepository
-from memory.relational.repositories.validation_repository import ValidationRepository
+from memory.relational.repositories.validation_repository import \
+    ValidationRepository
 
 
 class HistoricalCognitionService:
@@ -14,16 +16,12 @@ class HistoricalCognitionService:
         theory_repository=None,
         reflection_repository=None,
         validation_repository=None,
-        reflective_memory_repository=None
+        reflective_memory_repository=None,
     ):
 
         self.theory_repository = theory_repository or TheoryRepository()
-        self.reflection_repository = (
-            reflection_repository or ReflectionRepository()
-        )
-        self.validation_repository = (
-            validation_repository or ValidationRepository()
-        )
+        self.reflection_repository = reflection_repository or ReflectionRepository()
+        self.validation_repository = validation_repository or ValidationRepository()
         self.reflective_memory_repository = (
             reflective_memory_repository or ReflectiveMemoryRepository()
         )
@@ -33,9 +31,7 @@ class HistoricalCognitionService:
         theories = self.theory_repository.list_recent(limit=limit)
         reflections = self.reflection_repository.list_recent(limit=limit)
         validations = self.validation_repository.list_recent(limit=limit)
-        reflective_memories = (
-            self.reflective_memory_repository.list_recent(limit=limit)
-        )
+        reflective_memories = self.reflective_memory_repository.list_recent(limit=limit)
 
         # Prefer structured theory claim text when available
         theory_texts = []
@@ -60,17 +56,11 @@ class HistoricalCognitionService:
             self._format_section("PREVIOUS THEORIES", theory_texts),
             self._format_section(
                 "PREVIOUS REFLECTIONS",
-                [
-                    reflection.reflection_summary
-                    for reflection in reflections
-                ]
+                [reflection.reflection_summary for reflection in reflections],
             ),
             self._format_section(
                 "PREVIOUS VALIDATIONS",
-                [
-                    validation.validation_summary
-                    for validation in validations
-                ]
+                [validation.validation_summary for validation in validations],
             ),
         ]
 
@@ -84,9 +74,7 @@ class HistoricalCognitionService:
         lines = ["RECENT REFLECTIVE MEMORY:"]
 
         for memory in reflective_memories:
-            lines.append(
-                f"* Trajectory: {memory.cognition_trajectory_summary}"
-            )
+            lines.append(f"* Trajectory: {memory.cognition_trajectory_summary}")
 
             if memory.persistent_uncertainties:
                 lines.append(

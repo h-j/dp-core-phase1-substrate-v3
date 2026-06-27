@@ -27,7 +27,7 @@ poetry install
 ollama serve
 ```
 
-### Verify llama3 exists
+### Verify llama3.2 exists
 
 ```bash
 ollama list
@@ -38,3 +38,8 @@ ollama list
 ```bash
 poetry run python -m bootstrap.run_cognition_loop
 ```
+
+## Documentation
+
+Full architectural documentation, guides, and historical report archives can be found in the [docs/ directory](file:///Users/hemantj/Proj/dp_core/dp-core-phase1-substrate-v3/docs/README.md).
+

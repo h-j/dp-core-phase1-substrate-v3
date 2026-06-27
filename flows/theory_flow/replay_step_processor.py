@@ -1,4 +1,5 @@
 import hashlib
+
 from market.replay.runtime.cognition_result import CognitionResult
 
 
@@ -13,7 +14,8 @@ class ReplayStepProcessor:
     def process_day(
         self, day_idx: int, date_str: str, obs_data: dict
     ) -> CognitionResult:
-        from cognition.schemas.observation.observation_event import ObservationEvent
+        from cognition.schemas.observation.observation_event import \
+            ObservationEvent
 
         # 1. Synthesis & Grounding
         market_obs = self.ex.synthesizer.synthesize(day_idx)
@@ -25,7 +27,8 @@ class ReplayStepProcessor:
         regime_matches = self._get_regime_matches(day_idx, date_str, market_obs)
         regime_context = self.ex._format_regime_context(regime_matches)
 
-        # CHANGE: Retrieve Active Lessons relevant to current regime
+        # CHANGE: Retrieve Active Lessons relevant to current regime via multi-dimensional metadata matching
+        regime_subtype = getattr(market_obs, "regime_subtype", "neutral")
         lesson_repo = self.persistence.repos.get("lesson")
         relevant_lessons = []
         if lesson_repo:
@@ -33,12 +36,52 @@ class ReplayStepProcessor:
                 l
                 for l in lesson_repo.list_lessons()
                 if getattr(l, "status", None) == "active"
+                or getattr(l, "status", None) == "LessonStatus.ACTIVE"
+                or (hasattr(getattr(l, "status", None), "value") and getattr(l, "status").value == "active")
             ]
-            relevant_lessons = [
-                l.lesson_text
-                for l in all_active
-                if regime_subtype.lower() in l.lesson_text.lower()
-            ]
+            
+            # Derive current metadata state
+            vol_30d = float(obs_data["derived"].get("volatility_30d", 0.0)) if obs_data.get("derived") else 0.0
+            vol_regime = (
+                "compressed"
+                if vol_30d < 0.8
+                else "expanded" if vol_30d > 1.5 else "normal"
+            )
+            ret_3d = float(obs_data["derived"].get("return_3d", 0.0)) if obs_data.get("derived") else 0.0
+            mom_regime = (
+                "strengthening"
+                if ret_3d > 0.5
+                else "weakening" if ret_3d < -0.5 else "flat"
+            )
+            vol_state = obs_data["derived"].get("volume_state", "normal") if obs_data.get("derived") else "normal"
+            
+            query_state = {
+                "regime_subtype": regime_subtype,
+                "volatility": vol_regime,
+                "momentum": mom_regime,
+                "volume": vol_state,
+            }
+            
+            scored_lessons = []
+            for l in all_active:
+                match_score = 0
+                meta = getattr(l, "metadata", {}) or {}
+                for k, v in query_state.items():
+                    if k in meta and str(meta[k]).lower() == str(v).lower():
+                        match_score += 1
+                
+                subtype_matches = (
+                    "regime_subtype" in meta 
+                    and str(meta["regime_subtype"]).lower() == str(regime_subtype).lower()
+                )
+                
+                # Retrieve lessons that match subtype or have at least 2 other matching keys
+                if subtype_matches or match_score >= 2:
+                    scored_lessons.append((l, match_score))
+            
+            scored_lessons.sort(key=lambda x: x[1], reverse=True)
+            relevant_lessons = [item[0].lesson_text for item in scored_lessons[:5]]
+            self.ex._prior_lessons = relevant_lessons
 
         historical_context = self.ex._format_historical_context(
             list(reversed(self.ex._run_validations[-5:])),
@@ -91,6 +134,50 @@ class ReplayStepProcessor:
 
         # 6. Assessment
         prior_prediction_result = self._score_prior(market_obs)
+        
+        # Calculate rolling 15-day prediction accuracy
+        if prior_prediction_result:
+            score = getattr(prior_prediction_result, "direction_score", 0.5)
+            if score is None:
+                score = 0.5
+            if not hasattr(self.ex, "_prediction_accuracy_history"):
+                self.ex._prediction_accuracy_history = []
+            self.ex._prediction_accuracy_history.append(score)
+
+            # Hypothesis Validation: reinforce/penalize lessons used for this prediction
+            if getattr(self.ex, "_prior_lessons", None):
+                lesson_repo = self.persistence.repos.get("lesson")
+                if lesson_repo:
+                    from market.replay.lesson_record import LessonStatus
+                    for l_text in self.ex._prior_lessons:
+                        matching_lesson = None
+                        for l in lesson_repo.list_lessons():
+                            if l.lesson_text == l_text:
+                                matching_lesson = l
+                                break
+                        if matching_lesson:
+                            if score == 1.0:
+                                matching_lesson.support_count += 1
+                            elif score == 0.0:
+                                matching_lesson.contradiction_count += 1
+                            
+                            total = matching_lesson.support_count + matching_lesson.contradiction_count
+                            matching_lesson.confidence = matching_lesson.support_count / total if total > 0 else 0.0
+                            
+                            if matching_lesson.confidence >= 0.75:
+                                matching_lesson.status = LessonStatus.ACTIVE
+                            elif matching_lesson.confidence < 0.2:
+                                matching_lesson.status = LessonStatus.RETIRED
+                            else:
+                                matching_lesson.status = LessonStatus.CANDIDATE
+                            
+                            lesson_repo.save(matching_lesson)
+
+        rolling_accuracy = 0.5
+        if hasattr(self.ex, "_prediction_accuracy_history") and self.ex._prediction_accuracy_history:
+            recent_scores = self.ex._prediction_accuracy_history[-15:]
+            rolling_accuracy = sum(recent_scores) / len(recent_scores)
+
         theory_usefulness = self.ex.epistemic_scoring.score_theory(
             lineage_record=lineage_record,
             regime_matches=regime_matches,
@@ -145,6 +232,7 @@ class ReplayStepProcessor:
             ),
             theory_usefulness=theory_usefulness,
             regime_matches=regime_matches,
+            rolling_accuracy=rolling_accuracy,
         )
 
         # Build Result
@@ -232,6 +320,19 @@ class ReplayStepProcessor:
 
             active_lineage = self.ex.theory_lineage.active_theories()
             if len(active_lineage) >= 2 and contra_score >= 0.35:
+                # Aggregate component failures for the current regime subtype
+                component_failures = {}
+                if hasattr(self.ex, "experience_repo") and self.ex.experience_repo:
+                    try:
+                        current_subtype = getattr(market_obs, "regime_subtype", "neutral")
+                        for exp in self.ex.experience_repo.get_all():
+                            if getattr(exp, "theory_subtype", None) == current_subtype:
+                                f_counts = getattr(exp, "component_failure_counts", {}) or {}
+                                for comp, count in f_counts.items():
+                                    component_failures[comp] = component_failures.get(comp, 0) + count
+                    except Exception:
+                        pass
+
                 synthesis_data = self.ex.dialectical_synthesizer.synthesize(
                     market_obs.observation_text,
                     active_lineage,
@@ -239,6 +340,7 @@ class ReplayStepProcessor:
                     getattr(market_obs, "regime_subtype", "neutral"),
                     [],
                     relevant_lessons=relevant_lessons,
+                    component_failures=component_failures,
                 )
 
             # NEW: Only retire if the theory has had at least one chance to be validated

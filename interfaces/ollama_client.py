@@ -1,5 +1,6 @@
-import ollama
 from typing import Optional
+
+import ollama
 
 from config.settings import settings
 
@@ -9,7 +10,7 @@ class OllamaClient:
         self.temperature = temperature
         self.seed = seed
 
-    def generate(self, prompt: str) -> str:
+    def generate(self, prompt: str, json_format: bool = False) -> str:
         options = {
             "temperature": self.temperature,
             "top_p": 1,
@@ -20,6 +21,7 @@ class OllamaClient:
         response = ollama.chat(
             model=settings.OLLAMA_MODEL,
             options=options,
+            format="json" if json_format else "",
             messages=[{"role": "user", "content": prompt}],
         )
 

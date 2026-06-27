@@ -1,8 +1,8 @@
-from typing import List, Dict, Any, Optional
-from uuid import UUID, uuid4
-from datetime import datetime
 import json
+from datetime import datetime
 from pathlib import Path
+from typing import Any, Dict, List, Optional
+from uuid import UUID, uuid4
 
 from market.replay.lesson_record import LessonRecord, LessonStatus
 

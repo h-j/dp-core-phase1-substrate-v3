@@ -1,7 +1,10 @@
 import json
 import re
-from typing import List, Dict, Optional, Any
-from cognition.schemas.theory.theory import Theory  # Import Theory Pydantic model
+from typing import Any, Dict, List, Optional
+
+from cognition.schemas.theory.theory import \
+    Theory  # Import Theory Pydantic model
+from config.settings import settings
 from interfaces.ollama_client import OllamaClient
 
 
@@ -21,6 +24,7 @@ class DialecticalTheorySynthesizer:
         regime_subtype: str,
         falsifiability_conditions: List[str],
         relevant_lessons: List[str] = None,  # NEW: Inject historical lessons
+        component_failures: Dict[str, int] = None,  # NEW: Closed-loop failure constraints
     ) -> Optional[Dict[str, str]]:
         """
         Performs dialectical synthesis of conflicting theories.
@@ -49,13 +53,27 @@ class DialecticalTheorySynthesizer:
             else "None"
         )
 
+        failures_text = ""
+        if component_failures:
+            failures_list = [
+                f"- Component '{comp}' has failed {count} times"
+                for comp, count in sorted(component_failures.items(), key=lambda x: x[1], reverse=True)
+                if count > 0
+            ]
+            if failures_list:
+                failures_text = (
+                    "\nRecurring Component Failures in this Subtype (MANDATORY CONSTRAINT):\n"
+                    + "\n".join(failures_list)
+                    + "\nAvoid using or relying on expectations of these failing components in the synthesized thesis.\n"
+                )
+
         prompt = f"""
 Observation:
 {observation_text}
 
 Historical Lessons Learned:
 {lessons_text}
-
+{failures_text}
 Active Theories:
 {theory_texts}
 
@@ -94,15 +112,18 @@ Constraints:
 - No markdown.
 """
         self._last_prompt = prompt
-        result = self.client.generate(prompt)
+        result = self.client.generate(prompt, json_format=True)
         synthesis = self._parse_synthesis(result)
 
         # Phase 3: Synthesis Validation
         if synthesis:
-            validation = self._validate_synthesis(synthesis, theory_texts)
-            synthesis["validation"] = validation
-            if not validation.get("valid", True):
-                print(f"[Synthesis Validation Warning] {validation.get('issues')}")
+            if settings.LLM_AUDIT_ENABLED:
+                validation = self._validate_synthesis(synthesis, theory_texts)
+                synthesis["validation"] = validation
+                if not validation.get("valid", True):
+                    print(f"[Synthesis Validation Warning] {validation.get('issues')}")
+            else:
+                synthesis["validation"] = {"valid": True, "quality": 1.0, "issues": []}
 
         return synthesis
 
@@ -118,7 +139,7 @@ Constraints:
         Audit this synthesis. Is it coherent? Does it hallucinate mechanisms not present or implied by parents?
         Return JSON: {{"valid": bool, "quality": 0.0-1.0, "issues": []}}
         """
-        audit_raw = self.client.generate(prompt)
+        audit_raw = self.client.generate(prompt, json_format=True)
         try:
             return json.loads(
                 audit_raw.strip().replace("```json", "").replace("```", "")

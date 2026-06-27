@@ -1,0 +1,287 @@
+{
+  "experience_id": "exp_0123a71448fc0e05_2026-05-12",
+  "lineage_id": "0123a71448fc0e05",
+  "theory_family_id": "0123a71448fc0e05",
+  "created_at": "2026-05-12",
+  "status": "active",
+  "theory_ids": [
+    "766e5342-8a07-4f9c-b64e-1c27a9880f6b",
+    "80fe69c1-7b5b-452f-b6c4-dd923af404ad",
+    "1cc56648-9d41-4fda-92f2-5e06a057c560",
+    "5c45561a-708d-4856-a831-8e2ce0c2ac77",
+    "00d8269d-4b63-415c-b960-fd14cd87fabe",
+    "5c263250-8c12-4535-81a6-a2f8136864ed",
+    "4c9dda4b-6e7b-4374-866c-b102ffe3c9b0",
+    "9728eca4-b2d6-4905-ba2f-7b26060f8a7d",
+    "200e034d-00ed-4ba1-bff1-96f535346197",
+    "0331226a-68cd-42d9-b90f-2f4db25ff9bc",
+    "52787e7f-f344-41bc-893b-4137c672681d",
+    "3027625b-1a8e-467d-849b-eed642811bc5",
+    "38c47949-e766-4ab5-b2d4-36e401b859bb",
+    "b0726fae-2c2b-4e3e-b7c1-66cda2f16679",
+    "f842061c-d547-4148-a3e3-d89bb59fd7e0"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Regime is driven by ... vs participation widens...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs Regime is driven by ...; Field conflict: decisive close below the prior vs decisive close above the prior; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation widens... vs short-term momentum ...; Low semantic similarity: volatility remains c... vs bearish momentum con...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs participation widens...; Volatility: expansion vs stability",
+    "Structural: Low semantic similarity: price weakens despit... vs decisive close above...; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: volume dry, gap up, ... vs bearish confirmation...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs Regime is driven by ...; Low semantic similarity: price weakens despit... vs decisive close below...; Low semantic similarity: Regime is driven by ... vs volume dry: favor ra...; Low semantic similarity: short-term momentum ... vs volume dry: favor ra...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs Regime is driven by ...; Low semantic similarity: price weakens despit... vs decisive close below...; Low semantic similarity: Regime is driven by ... vs participation widens...; Low semantic similarity: short-term momentum ... vs participation widens...; Field conflict: volume dry, gap up, volatility vs volatility remains compressed:",
+    "Structural: Low semantic similarity: Regime is driven by ... vs Regime is driven by ...; Low semantic similarity: decisive close below... vs price weakens despit...; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation widens... vs short-term momentum ...; Field conflict: volatility remains compressed: vs volume dry, gap up, volatility",
+    "Structural: Low semantic similarity: Regime is driven by ... vs Regime is driven by ...; Field conflict: decisive close below the prior vs decisive close above the prior; Low semantic similarity: Regime is driven by ... vs short-term momentum ...; Low semantic similarity: participation widens... vs short-term momentum ...; Low semantic similarity: volatility remains c... vs bearish confirmation...",
+    "Structural: Low semantic similarity: Regime is driven by ... vs volume dry: favor ra...; Low semantic similarity: participation widens... vs volume dry: favor ra...; Low semantic similarity: volatility remains c... vs short-term momentum ..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.23076923076923078
+  },
+  "regime_context": [
+    "trend:closed_lower",
+    "volume:elevated",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:strong",
+    "momentum:weakening",
+    "subtype:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 14,
+  "contradiction_count": 15,
+  "validation_count": 3,
+  "falsification_count": 10,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:00:41.105139",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by Absorption; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "absorption_rate"
+      ],
+      "components_failed": [
+        "volume_expansion"
+      ],
+      "root_cause": "volume_expansion",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by Absorption; price remains range-bound despite volume expansion\" failed to predict the observed market behavior due to several reasons:\n\n1. **Volume dry**: The theory assumes that volume expansion should lead to a change in regime, but the observation of \"volume dry\" s"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:03:32.390450",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by Absorption; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "absorption_rate",
+        "price_structure"
+      ],
+      "components_failed": [
+        "price_structure"
+      ],
+      "root_cause": "price_structure",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by Absorption; price remains range-bound despite volume expansion\" failed to predict the market behavior based on the provided observations.\n\nHere's a breakdown of why this theory might not have held up:\n\n1. **Volume expansion**: The observation that volume has elevated,"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:05:26.425236",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by Absorption; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "absorption_rate"
+      ],
+      "components_failed": [
+        "volume_confirmation"
+      ],
+      "root_cause": "volume_confirmation",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by Absorption; price remains range-bound despite volume expansion\" failed to predict the observed market behavior due to several reasons:\n\n1. **Volume expansion**: The theory assumes that volume expansion would keep prices within a range, but in this case, the data shows"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:06:50.539056",
+      "outcome": "validated",
+      "theory_claim": "Regime is driven by Absorption; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "absorption_rate",
+        "volume_confirmation"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:07:29.044718",
+      "outcome": "validated",
+      "theory_claim": "Regime is driven by Absorption; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "absorption_rate",
+        "price_structure"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:08:04.855075",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by pressure_loaded_range; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "pressure_loaded_range"
+      ],
+      "components_failed": [
+        "volume_confirmation"
+      ],
+      "root_cause": "volume_confirmation",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by pressure_loaded_range; price remains range-bound despite volume expansion\" failed to hold true in this case because the observed data contradicts several key assumptions of the theory.\n\nHere are some reasons why:\n\n1. **Volume expansion**: The observation states that v"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:11:14.101875",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by RELIANCE stock exhaustion; price weakens despite moderate volatility and mixed trend persistence.",
+      "components_passed": [
+        "stock_exhaustion",
+        "volume_confirmation"
+      ],
+      "components_failed": [
+        "stock_exhaustion"
+      ],
+      "root_cause": "stock_exhaustion",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by RELIANCE stock exhaustion; price weakens despite moderate volatility and mixed trend persistence\" failed to predict the market behavior given the observed data.\n\nHere's a breakdown of why this theory might have failed:\n\n1. **Volume elevated**: The theory predicted tha"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:13:47.495107",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by passive absorption; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "price_structure",
+        "volume_confirmation"
+      ],
+      "components_failed": [
+        "price_structure"
+      ],
+      "root_cause": "price_structure",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by passive absorption; price remains range-bound despite volume expansion\" failed to predict the observed market behavior for several reasons:\n\n1. **Range expansion**: The data shows that the price has expanded its range, indicating a widening of the trading range. This "
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:16:09.672234",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by absorption_rate; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "absorption_rate",
+        "volume_confirmation"
+      ],
+      "components_failed": [
+        "absorption_rate"
+      ],
+      "root_cause": "absorption_rate",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by absorption_rate; price remains range-bound despite volume expansion\" failed to predict the observed market behavior for several reasons:\n\n1. **Range expansion**: The data shows a range expanding, which contradicts the theory's assumption that price would remain range-"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:17:50.610420",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by absorption_rate; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "absorption_rate",
+        "volume_confirmation"
+      ],
+      "components_failed": [
+        "absorption_rate"
+      ],
+      "root_cause": "absorption_rate",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by absorption_rate; price remains range-bound despite volume expansion\" failed to hold true in this scenario because the observed data contradicts several key assumptions of the theory.\n\nHere are some reasons why:\n\n1. **Volume expansion**: The observation that liquidity "
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:18:39.706257",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by absorption_rate; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "absorption_rate"
+      ],
+      "components_failed": [
+        "volume_confirmation"
+      ],
+      "root_cause": "volume_confirmation",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by absorption_rate; price remains range-bound despite volume expansion\" failed to hold true in the observed data for several reasons:\n\n1. **Range expansion**: The observation that the price range expanded, indicating a widening of the trading range, contradicts the theor"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:21:02.504148",
+      "outcome": "validated",
+      "theory_claim": "Regime is driven by absorption_rate; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "absorption_rate",
+        "volume_confirmation"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-06-27T11:21:37.459724",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by absorption_rate; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "absorption_rate",
+        "volume_confirmation"
+      ],
+      "components_failed": [
+        "absorption_rate"
+      ],
+      "root_cause": "absorption_rate",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by absorption_rate; price remains range-bound despite volume expansion\" failed to accurately predict the market behavior based on the provided observations.\n\nHere's why:\n\n1. **Volume expansion**: The observation states that volume has elevated, which contradicts the theo"
+    }
+  ],
+  "component_failure_counts": {
+    "volume_expansion": 1,
+    "price_structure": 2,
+    "volume_confirmation": 3,
+    "stock_exhaustion": 1,
+    "absorption_rate": 3
+  }
+}

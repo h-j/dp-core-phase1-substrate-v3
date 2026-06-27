@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from enum import Enum
 from statistics import mean
 from typing import Iterable, List, Optional
+
 from market.replay.transition_memory import TransitionExample
 
 

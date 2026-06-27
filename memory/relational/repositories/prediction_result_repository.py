@@ -1,5 +1,6 @@
+from memory.relational.models.prediction_result_model import \
+    PredictionResultModel
 from memory.relational.repositories.base_repository import BaseRepository
-from memory.relational.models.prediction_result_model import PredictionResultModel
 
 
 class PredictionResultRepository(BaseRepository):

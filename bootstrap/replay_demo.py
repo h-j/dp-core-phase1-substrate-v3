@@ -16,7 +16,9 @@ from pathlib import Path
 import pandas as pd
 
 from market.data.dataset_validator import DatasetValidator
-from market.replay.market_observation_synthesizer import MarketObservationSynthesizer
+from market.data.download_history import NIFTYHistoryDownloader
+from market.replay.market_observation_synthesizer import \
+    MarketObservationSynthesizer
 from market.replay.replay_analysis import ReplayAnalysisEngine
 from market.replay.replay_engine import ReplayEngine
 
@@ -31,11 +33,33 @@ class SimplifiedReplayRunner:
         self.data_dir = script_dir / "data"
         self.csv_path = self.data_dir / "nifty_daily_3y.csv"
 
-    def run(self):
+    def run(self, restart: bool = False):
         """Run demonstration."""
         print("\n" + "=" * 70)
         print("NIFTY REPLAY DEMONSTRATION")
         print("=" * 70)
+
+        # Step 0: Check incremental update if restart is true
+        if restart:
+            print(
+                "\n[0/5] Checking and downloading latest market data incrementally (-restart)..."
+            )
+            try:
+                downloader = NIFTYHistoryDownloader(str(self.csv_path))
+                if downloader.is_latest():
+                    print("✓ Market data is already up-to-date. Skipping download.")
+                else:
+                    print(
+                        "Market data is not up-to-date. Fetching latest incremental updates..."
+                    )
+                    updated = downloader.update_incremental()
+                    if updated:
+                        print("✓ Market data updated successfully.")
+                    else:
+                        print("✓ No new market data available to update.")
+            except Exception as e:
+                print(f"✗ Incremental update check failed: {e}")
+                raise
 
         # Step 1: Validate dataset
         print("\n[1/5] Validating dataset...")
@@ -178,10 +202,22 @@ class SimplifiedReplayRunner:
 
 def main():
     """Run the demonstration."""
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Run NIFTY Replay Demonstration")
+    # Accept standard --restart and yfinance-friendly -restart flags
+    parser.add_argument(
+        "-restart",
+        "--restart",
+        action="store_true",
+        help="Incremental check and download of latest market data before starting demo",
+    )
+    args, unknown = parser.parse_known_args()
+
     runner = SimplifiedReplayRunner()
 
     try:
-        runner.run()
+        runner.run(restart=args.restart)
     except Exception as e:
         print(f"\n✗ Demonstration failed: {e}")
         import traceback

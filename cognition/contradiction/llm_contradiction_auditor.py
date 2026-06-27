@@ -1,6 +1,8 @@
 import json
+
+from cognition.schemas.theory.theory import \
+    Theory  # Import Theory Pydantic model
 from interfaces.ollama_client import OllamaClient
-from cognition.schemas.theory.theory import Theory  # Import Theory Pydantic model
 
 
 class LLMContradictionAuditor:
@@ -41,7 +43,7 @@ class LLMContradictionAuditor:
         }}
         """
 
-        result = self.client.generate(prompt)
+        result = self.client.generate(prompt, json_format=True)
         try:
             cleaned = result.strip().replace("```json", "").replace("```", "")
             return json.loads(cleaned)

@@ -7,11 +7,14 @@ remained coherent, inspectable, appropriately contradicted, and reusable.
 from __future__ import annotations
 
 from statistics import mean
-from typing import Dict, Any, List
+from typing import Any, Dict, List
 
 
 class EpistemicScoringEngine:
     """Deterministic usefulness scoring over lineage records."""
+
+    def __init__(self, verbose: bool = False):
+        self.verbose = verbose
 
     def score_theory(
         self,
@@ -183,43 +186,44 @@ class EpistemicScoringEngine:
         # ---------------------------------------------------
         # debug output
         # ---------------------------------------------------
-        print(
-            {
-                "id": getattr(
-                    lineage_record,
-                    "id",
-                    None,
-                ),
-                "created_at_step": getattr(
-                    lineage_record,
-                    "created_at_step",
-                    None,
-                ),
-                "survival_steps": survival_steps,
-                "revival_count": revival_count,
-                "raw_score": round(raw_score, 4),
-                "sim": round(
-                    current_similarity_contribution,
-                    4,
-                ),
-                "pred": round(
-                    current_prediction_contribution,
-                    4,
-                ),
-                "reflection": round(
-                    current_reflection_contribution,
-                    4,
-                ),
-                "recurrence": round(
-                    current_recurrence_contribution,
-                    4,
-                ),
-                "penalty": round(
-                    current_contradiction_penalty,
-                    4,
-                ),
-            }
-        )
+        if getattr(self, "verbose", False):
+            print(
+                {
+                    "id": getattr(
+                        lineage_record,
+                        "id",
+                        None,
+                    ),
+                    "created_at_step": getattr(
+                        lineage_record,
+                        "created_at_step",
+                        None,
+                    ),
+                    "survival_steps": survival_steps,
+                    "revival_count": revival_count,
+                    "raw_score": round(raw_score, 4),
+                    "sim": round(
+                        current_similarity_contribution,
+                        4,
+                    ),
+                    "pred": round(
+                        current_prediction_contribution,
+                        4,
+                    ),
+                    "reflection": round(
+                        current_reflection_contribution,
+                        4,
+                    ),
+                    "recurrence": round(
+                        current_recurrence_contribution,
+                        4,
+                    ),
+                    "penalty": round(
+                        current_contradiction_penalty,
+                        4,
+                    ),
+                }
+            )
 
         # ---------------------------------------------------
         # labels

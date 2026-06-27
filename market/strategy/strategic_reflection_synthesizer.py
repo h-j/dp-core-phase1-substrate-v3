@@ -1,7 +1,7 @@
+from collections import Counter
 from typing import List
 
 from market.schemas.strategic_memory_state import StrategicMemoryState
-from collections import Counter
 
 
 class StrategicReflectionSynthesizer:

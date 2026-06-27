@@ -10,16 +10,17 @@ Analyzes:
 - narrative repetition
 """
 
+import re
+import statistics
 from collections import defaultdict
 from datetime import datetime
-import re
-
-from statistics import mean, median
-import statistics
-from market.replay.prediction_probe import PredictionDirection
-from market.replay.replay_analysis_reporting import ReplayAnalysisReportingMixin
 from pathlib import Path
-from typing import List, Dict, Union
+from statistics import mean, median
+from typing import Dict, List, Union
+
+from market.replay.prediction_probe import PredictionDirection
+from market.replay.replay_analysis_reporting import \
+    ReplayAnalysisReportingMixin
 
 
 def extract_usefulness_score(value):
@@ -91,6 +92,10 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         branches_generated: int = 0,
         branch_stats: dict = None,
         intelligence_data: dict = None,
+        # NEW Learning Effectiveness Audit fields
+        components_failed: Union[list, None] = None,
+        reused_lessons: Union[list, None] = None,
+        lessons_retired: int = 0,
     ):
         """Record cognition state for a day."""
         # v2.4 Persistence fallback
@@ -128,6 +133,9 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                 "branches_generated": branches_generated,
                 "branch_stats": branch_stats or {},  # Store branch stats
                 "intelligence": intelligence_data or {},
+                "components_failed": components_failed or [],
+                "reused_lessons": reused_lessons or [],
+                "lessons_retired": lessons_retired,
             }
         )
 
@@ -195,6 +203,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                     "market_name": market_name or self.market_name,
                     "prediction": prediction or {},
                     "prior_prediction_result": prior_prediction_result or {},
+                    "regime_matches": regime_matches or [],
                     "contradiction_score": float(contradiction_result.get("score", 0)),
                     "regime_similarity": float(regime_sim),
                     "theory_usefulness": theory_usefulness,  # Store the full dict
@@ -219,6 +228,9 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                     "regime_history": regime_history,
                     "branches_generated": branches_generated,
                     "intelligence": intelligence_data or {},
+                    "components_failed": components_failed or [],
+                    "reused_lessons": reused_lessons or [],
+                    "lessons_retired": lessons_retired,
                 }
             )
 
@@ -691,14 +703,30 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         if not self.prediction_history:
             return {}
 
+        aligned_predictions = []
+        for i in range(1, len(self.prediction_history)):
+            current_day_record = self.prediction_history[i]
+            previous_day_prediction_record = self.prediction_history[i - 1]
+
+            if current_day_record.get("prior_prediction_result") and previous_day_prediction_record.get("prediction"):
+                aligned_predictions.append({
+                    "date": current_day_record["date"],
+                    "prediction": previous_day_prediction_record["prediction"],
+                    "prior_prediction_result": current_day_record["prior_prediction_result"],
+                    "contradiction_score": previous_day_prediction_record.get("contradiction_score", 0.0),
+                    "regime_similarity": previous_day_prediction_record.get("regime_similarity", 0.0),
+                    "theory_usefulness": previous_day_prediction_record.get("theory_usefulness"),
+                    "theory_summary": previous_day_prediction_record.get("theory_summary", ""),
+                    "transition_pressure_score": previous_day_prediction_record.get("transition_pressure_score", 0.0),
+                    "transition_breakout_risk": previous_day_prediction_record.get("transition_breakout_risk", False),
+                    "components_failed": previous_day_prediction_record.get("components_failed", []),
+                    "reused_lessons": previous_day_prediction_record.get("reused_lessons", []),
+                    "lessons_retired": previous_day_prediction_record.get("lessons_retired", 0),
+                    "regime_matches": previous_day_prediction_record.get("regime_matches", []),
+                })
+
         total = len(self.prediction_history)
-        # scored rows have a prior_prediction_result with a direction_score
-        scored = [
-            r
-            for r in self.prediction_history
-            if r.get("prior_prediction_result")
-            and r["prior_prediction_result"].get("direction_score") is not None
-        ]
+        scored_count = len(aligned_predictions)
 
         def is_correct(row):
             return row["prior_prediction_result"].get("direction_score", 0) == 1.0
@@ -706,24 +734,23 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         def is_partial(row):
             return row["prior_prediction_result"].get("direction_score", 0) == 0.5
 
-        scored_count = len(scored)
-        correct = sum(1 for r in scored if is_correct(r))
-        partial = sum(1 for r in scored if is_partial(r))
+        correct = sum(1 for r in aligned_predictions if is_correct(r))
+        partial = sum(1 for r in aligned_predictions if is_partial(r))
         mean_conf = (
-            mean([r["prediction"].get("confidence", 0) for r in scored])
-            if scored
+            mean([r["prediction"].get("confidence", 0) for r in aligned_predictions])
+            if aligned_predictions
             else 0.0
         )
 
         # Task 2.1: Median Confidence
-        conf_list = [r["prediction"].get("confidence", 0) for r in scored]
+        conf_list = [r["prediction"].get("confidence", 0) for r in aligned_predictions]
         median_conf = median(conf_list) if conf_list else 0.0
 
         # By direction
         directions = ["higher", "lower", "range_bound"]
         accuracy_by_direction = {}
         for d in directions:
-            rows = [r for r in scored if r.get("prediction", {}).get("direction") == d]
+            rows = [r for r in aligned_predictions if r.get("prediction", {}).get("direction") == d]
             cnt = len(rows)
             acc = sum(1 for r in rows if is_correct(r)) / cnt if cnt else 0.0
 
@@ -758,7 +785,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             return "low"
 
         buckets = {"low": [], "medium": [], "high": []}
-        for r in scored:
+        for r in aligned_predictions:
             b = bucket(r.get("contradiction_score", 0.0))
             buckets[b].append(r)
 
@@ -776,7 +803,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             "0.6-0.8": [],
             "0.8-1.0": [],
         }
-        for r in scored:
+        for r in aligned_predictions:
             c = r["prediction"].get("confidence", 0.0)
             if c < 0.2:
                 cal_buckets["0.0-0.2"].append(r)
@@ -825,7 +852,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         # Usefulness Bands
         useful_buckets = {"0-0.3": [], "0.3-0.5": [], "0.5-0.7": [], "0.7+": []}
-        for r in scored:
+        for r in aligned_predictions:
             v = extract_usefulness_score(r.get("theory_usefulness", 0.0))
             if v < 0.3:
                 useful_buckets["0-0.3"].append(r)
@@ -848,7 +875,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         # Contradiction Bands
         contra_buckets = {"0-0.2": [], "0.2-0.5": [], "0.5+": []}
-        for r in scored:
+        for r in aligned_predictions:
             v = r.get("contradiction_score", 0.0)
             if v < 0.2:
                 contra_buckets["0-0.2"].append(r)
@@ -870,7 +897,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         # Theory Usefulness Analysis
         usefulness_scores = []
         missing_usefulness_count = 0
-        for r in self.prediction_history:
+        for r in aligned_predictions:
             tu = r.get("theory_usefulness")
             # Ensure it's a dict and has 'score' and 'label'
             if tu and isinstance(tu, dict) and "score" in tu and "label" in tu:
@@ -883,7 +910,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         # Accuracy when usefulness > 0.7
         high_usefulness_predictions = [
-            r for r in scored if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
+            r for r in aligned_predictions if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
         ]
         accuracy_when_high_usefulness = (
             sum(1 for r in high_usefulness_predictions if is_correct(r))
@@ -918,7 +945,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         # Task 2.2: Add 'uncertain'
         uncertain_rows = [
             r
-            for r in self.prediction_history
+            for r in aligned_predictions
             if r.get("prediction", {}).get("direction")
             == PredictionDirection.uncertain.value
         ]
@@ -935,7 +962,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         }
 
         # Regime similarity > 0.9
-        high_regime = [r for r in scored if r.get("regime_similarity", 0.0) > 0.9]
+        high_regime = [r for r in aligned_predictions if r.get("regime_similarity", 0.0) > 0.9]
         regime_acc = (
             sum(1 for r in high_regime if is_correct(r)) / len(high_regime)
             if high_regime
@@ -945,7 +972,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         # Theory usefulness > 0.5
         useful = [
             r
-            for r in scored
+            for r in aligned_predictions
             if extract_usefulness_score(r.get("theory_usefulness", 0.0)) > 0.5
         ]
         useful_acc = (
@@ -954,7 +981,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         # Task 2.4: Prediction slices by pressure
         pressure_gt_0_5 = [
-            r for r in scored if r.get("transition_pressure_score", 0.0) > 0.5
+            r for r in aligned_predictions if r.get("transition_pressure_score", 0.0) > 0.5
         ]
         acc_pressure_gt_0_5 = (
             sum(1 for r in pressure_gt_0_5 if is_correct(r)) / len(pressure_gt_0_5)
@@ -963,7 +990,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         )
 
         pressure_gt_0_7 = [
-            r for r in scored if r.get("transition_pressure_score", 0.0) > 0.7
+            r for r in aligned_predictions if r.get("transition_pressure_score", 0.0) > 0.7
         ]
         acc_pressure_gt_0_7 = (
             sum(1 for r in pressure_gt_0_7 if is_correct(r)) / len(pressure_gt_0_7)
@@ -973,13 +1000,13 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         # Task 2.5: False breakout
         false_breakouts = [
-            r for r in scored if r.get("transition_breakout_risk") and not is_correct(r)
+            r for r in aligned_predictions if r.get("transition_breakout_risk") and not is_correct(r)
         ]
 
         # Task 2.6: Best breakout capture
         best_breakout_captures = [
             r
-            for r in scored
+            for r in aligned_predictions
             if r.get("transition_breakout_risk")
             and is_correct(r)
             and r["prediction"].get("direction")
@@ -989,14 +1016,14 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         # Missed transition cases: range_bound -> higher / lower
         missed_range_to_higher = [
             r
-            for r in scored
+            for r in aligned_predictions
             if r.get("prediction", {}).get("direction") == "range_bound"
             and r.get("prior_prediction_result", {}).get("actual_direction") == "higher"
             and not is_correct(r)
         ]
         missed_range_to_lower = [
             r
-            for r in scored
+            for r in aligned_predictions
             if r.get("prediction", {}).get("direction") == "range_bound"
             and r.get("prior_prediction_result", {}).get("actual_direction") == "lower"
             and not is_correct(r)
@@ -1014,14 +1041,15 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         correlation_coeff = 0.0
         confidences = [
-            r["prediction"].get("confidence", 0) for r in scored if r.get("prediction")
+            r["prediction"].get("confidence", 0) for r in aligned_predictions if r.get("prediction")
         ]
         scores = [
-            r["prior_prediction_result"].get("direction_score", 0) for r in scored
+            r["prior_prediction_result"].get("direction_score", 0) for r in aligned_predictions
         ]
         if len(confidences) > 1 and len(scores) > 1:
             try:
                 correlation_val = statistics.correlation(confidences, scores)
+                correlation_coeff = correlation_val
             except Exception:
                 correlation_coeff = 0.0
 
@@ -1045,7 +1073,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             "invalidation_rate": (
                 sum(
                     1
-                    for r in scored
+                    for r in aligned_predictions
                     if r.get("prior_prediction_result", {}).get(
                         "invalidation_triggered"
                     )
@@ -1444,8 +1472,9 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
     def export_prediction_analysis_csv(self, file_path: Path):
         """Export prediction analysis and capital simulation data to CSV."""
-        import pandas as pd
         from pathlib import Path
+
+        import pandas as pd
 
         if not self.prediction_history or not self.capital_simulation_logs:
             print("No data to export for prediction analysis CSV.")
@@ -1466,17 +1495,23 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             pred_rec = self.prediction_history[i] or {}
             cap_rec = self.capital_simulation_logs[i] or {}
             prediction = pred_rec.get("prediction") or {}
-            prior_prediction_result = pred_rec.get("prior_prediction_result") or {}
+
+            # The actual outcome for prediction i (made on day i for day i+1)
+            # is evaluated and stored in prior_prediction_result of day i+1
+            actual_dir = None
+            if i + 1 < len(self.prediction_history):
+                next_rec = self.prediction_history[i + 1] or {}
+                next_res = next_rec.get("prior_prediction_result") or {}
+                if hasattr(next_res, "to_dict"):
+                    next_res = next_res.to_dict()
+                if isinstance(next_res, dict):
+                    actual_dir = next_res.get("actual_direction")
 
             if hasattr(prediction, "to_dict"):
                 prediction = prediction.to_dict()
-            if hasattr(prior_prediction_result, "to_dict"):
-                prior_prediction_result = prior_prediction_result.to_dict()
 
             if not isinstance(prediction, dict):
                 prediction = {}
-            if not isinstance(prior_prediction_result, dict):
-                prior_prediction_result = {}
             if not isinstance(cap_rec, dict):
                 cap_rec = {}
 
@@ -1492,7 +1527,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                     "prediction_direction": prediction.get("direction"),
                     "prediction_confidence": prediction.get("confidence")
                     or baseline.get("conviction"),
-                    "actual_direction": prior_prediction_result.get("actual_direction"),
+                    "actual_direction": actual_dir,
                     "transition_pressure_score": pred_rec.get(
                         "transition_pressure_score"
                     ),

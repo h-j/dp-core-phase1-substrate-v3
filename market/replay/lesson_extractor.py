@@ -5,10 +5,11 @@ from datetime import datetime
 from typing import TYPE_CHECKING, Any, Dict, List, Optional
 from uuid import UUID, uuid4
 
-from experience.experience_repository import ExperienceRepository
-from experience.experience_types import Experience, ExperienceStatus
+from cognition.schemas.experience.experience import (Experience,
+                                                     ExperienceStatus)
 from market.replay.lesson_record import LessonRecord, LessonStatus
 from market.replay.lesson_repository import LessonRepository
+from memory.experience.experience_repository import ExperienceRepository
 
 
 class LessonExtractor:  #
@@ -320,11 +321,11 @@ class LessonExtractor:  #
         new_contradiction_count: int,
     ) -> LessonRecord:
         # Update counts and recalculate cumulative confidence
-        existing_lesson.support_count += new_support_count
-        existing_lesson.contradiction_count += new_contradiction_count
-        total = existing_lesson.support_count + existing_lesson.contradiction_count
+        existing_lesson.validation_count += new_support_count
+        existing_lesson.falsification_count += new_contradiction_count
+        total = existing_lesson.validation_count + existing_lesson.falsification_count
         existing_lesson.confidence = (
-            existing_lesson.support_count / total if total > 0 else 0.0
+            existing_lesson.validation_count / total if total > 0 else 0.0
         )
 
         # Update source experience IDs
@@ -334,13 +335,40 @@ class LessonExtractor:  #
         )
 
         # Update status based on confidence and counts
-        # CHANGE 5: Simplified Lesson Lifecycle
         if existing_lesson.confidence >= 0.75:
             existing_lesson.status = LessonStatus.ACTIVE
         elif existing_lesson.confidence < 0.2:
             existing_lesson.status = LessonStatus.RETIRED
         else:
             existing_lesson.status = LessonStatus.CANDIDATE
+
+        # Refresh structured data from experiences
+        target_regime = dict(existing_lesson.target_regime)
+        activation_conditions = set(existing_lesson.activation_conditions)
+        failure_conditions = set(existing_lesson.failure_conditions)
+        affected_components = set(existing_lesson.affected_components)
+
+        for exp in experiences:
+            if getattr(exp, "theory_subtype", None):
+                target_regime["regime_subtype"] = exp.theory_subtype
+            for item in getattr(exp, "regime_context", []):
+                if ":" in item:
+                    parts = item.split(":", 1)
+                    target_regime[parts[0].strip().lower()] = parts[1].strip().lower()
+                activation_conditions.add(item)
+            
+            for c in getattr(exp, "contradictions", []):
+                failure_conditions.add(c)
+                
+            f_counts = getattr(exp, "component_failure_counts", {}) or {}
+            for comp, cnt in f_counts.items():
+                if cnt > 0:
+                    affected_components.add(comp)
+
+        existing_lesson.target_regime = target_regime
+        existing_lesson.activation_conditions = sorted(list(activation_conditions))
+        existing_lesson.failure_conditions = sorted(list(failure_conditions))
+        existing_lesson.affected_components = sorted(list(affected_components))
 
         existing_lesson.last_updated_at = datetime.utcnow()
         return existing_lesson
@@ -358,12 +386,40 @@ class LessonExtractor:  #
         if confidence >= 0.75:
             status = LessonStatus.ACTIVE
 
+        # Extract structured fields from experiences
+        target_regime = {}
+        activation_conditions = set()
+        failure_conditions = set()
+        affected_components = set()
+
+        for exp in experiences:
+            if getattr(exp, "theory_subtype", None):
+                target_regime["regime_subtype"] = exp.theory_subtype
+            for item in getattr(exp, "regime_context", []):
+                if ":" in item:
+                    parts = item.split(":", 1)
+                    target_regime[parts[0].strip().lower()] = parts[1].strip().lower()
+                activation_conditions.add(item)
+            
+            for c in getattr(exp, "contradictions", []):
+                failure_conditions.add(c)
+                
+            f_counts = getattr(exp, "component_failure_counts", {}) or {}
+            for comp, cnt in f_counts.items():
+                if cnt > 0:
+                    affected_components.add(comp)
+
         return LessonRecord(
             lesson_id=lesson_id,
-            lesson_text=lesson_text,
+            target_regime=target_regime,
+            activation_conditions=sorted(list(activation_conditions)),
+            failure_conditions=sorted(list(failure_conditions)),
+            affected_components=sorted(list(affected_components)),
+            validation_count=support_count,
+            falsification_count=contradiction_count,
             confidence=confidence,
-            support_count=support_count,
-            contradiction_count=contradiction_count,
-            source_experience_ids=[exp.experience_id for exp in experiences],
             status=status,
+            lesson_text=lesson_text,
+            source_experience_ids=[exp.experience_id for exp in experiences],
         )
+

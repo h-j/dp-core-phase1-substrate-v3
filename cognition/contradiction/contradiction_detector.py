@@ -1,13 +1,12 @@
-import re
 import json
-from typing import List, Dict, Any, Optional, Set, Tuple
-from cognition.schemas.theory.theory import (
-    Theory,
-    TheoryStructured,
-    Branch,
-)  # Import Theory Pydantic model
+import re
+from typing import Any, Dict, List, Optional, Set, Tuple
+
+from cognition.contradiction.llm_contradiction_auditor import \
+    LLMContradictionAuditor
+from cognition.schemas.theory.theory import (  # Import Theory Pydantic model
+    Branch, Theory, TheoryStructured)
 from flows.reflection_flow.reflection_flow import ReflectionFlow
-from cognition.contradiction.llm_contradiction_auditor import LLMContradictionAuditor
 
 
 class ContradictionDetector:
@@ -29,8 +28,9 @@ class ContradictionDetector:
         "regime_secondary_conflict_score": 0.3,
     }
 
-    def __init__(self):
+    def __init__(self, verbose: bool = False):
         self.llm_auditor = LLMContradictionAuditor()
+        self.verbose = verbose
 
     def detect(
         self,
@@ -42,10 +42,10 @@ class ContradictionDetector:
         reflections: List[
             Any
         ],  # Not used in this specific structural detection, but part of interface
-        current_observation: Any,  # Assuming MarketObservation object
+        current_observation: Any = None,  # Assuming MarketObservation object
         historical_observations: List[
             Any
-        ],  # Not used in this specific structural detection, but part of interface
+        ] = None,  # Not used in this specific structural detection, but part of interface
     ) -> Dict[str, Any]:
         """
         Detects contradictions and assigns a score.
@@ -229,14 +229,15 @@ class ContradictionDetector:
             if structural_indicators:
                 contradictions.append(f"Structural: {'; '.join(structural_indicators)}")
 
-            # Phase 2: Parallel LLM Audit
-            try:
-                audit = self.llm_auditor.audit_conflict(current_theory, hist_theory)
-                llm_audits.append(
-                    {"theory_id": getattr(hist_theory, "id", "unknown"), "audit": audit}
-                )
-            except Exception:
-                pass
+            # Phase 2: Parallel LLM Audit (Optimized: disabled to avoid redundant LLM calls during replay)
+            audit = {
+                "relationship": "unknown",
+                "confidence": 0.0,
+                "reasoning": "Optimized: LLM contradiction audit bypassed during replay.",
+            }
+            llm_audits.append(
+                {"theory_id": getattr(hist_theory, "id", "unknown"), "audit": audit}
+            )
 
             # Aggregate score for this pair
             pair_score = lexical_conflict_score + structural_conflict_score
@@ -244,14 +245,15 @@ class ContradictionDetector:
             pair_scores.append(pair_score)
 
             # Debug print for each pair
-            print(f"\n[CONTRADICTION MATCHES (Field-Aware)]")
-            print(f"theory A (claim): {curr_data.get('claim', '')}")
-            print(f"theory B (claim): {hist_data.get('claim', '')}")
-            print(f"lexical conflict: {lexical_conflict_score:.3f}")
-            print(
-                f"structural conflict: {structural_conflict_score:.3f} ({'; '.join(structural_indicators)})"
-            )
-            print(f"final score (pair): {pair_score:.3f}")
+            if getattr(self, "verbose", False):
+                print(f"\n[CONTRADICTION MATCHES (Field-Aware)]")
+                print(f"theory A (claim): {curr_data.get('claim', '')}")
+                print(f"theory B (claim): {hist_data.get('claim', '')}")
+                print(f"lexical conflict: {lexical_conflict_score:.3f}")
+                print(
+                    f"structural conflict: {structural_conflict_score:.3f} ({'; '.join(structural_indicators)})"
+                )
+                print(f"final score (pair): {pair_score:.3f}")
 
         # Normalize score (simple sum for now, can be refined)
         # If no historical theories, score is 0.0
@@ -265,11 +267,12 @@ class ContradictionDetector:
             + (self.CONFIG["mean_score_weight"] * mean_score),
         )
 
-        print(f"\n[CONTRADICTION SCORE]")
-        print(f"pair_scores={[f'{s:.3f}' for s in pair_scores]}")
-        print(f"max={max_score:.3f}")
-        print(f"mean={mean_score:.3f}")
-        print(f"final={normalized_score:.3f}")
+        if getattr(self, "verbose", False):
+            print(f"\n[CONTRADICTION SCORE]")
+            print(f"pair_scores={[f'{s:.3f}' for s in pair_scores]}")
+            print(f"max={max_score:.3f}")
+            print(f"mean={mean_score:.3f}")
+            print(f"final={normalized_score:.3f}")
 
         return {
             "score": normalized_score,

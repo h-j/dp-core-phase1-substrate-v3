@@ -7,7 +7,7 @@ visible without replacing human inspection or LLM generation.
 
 import re
 from collections import Counter
-from typing import List, Dict
+from typing import Dict, List
 
 GENERIC_PHRASES = [
     "the market is characterized by",

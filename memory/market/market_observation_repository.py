@@ -1,7 +1,8 @@
+from typing import List, Union
+
 from market.schemas.market_observation import MarketObservation
 from memory.market.market_observation_model import MarketObservationModel
 from memory.relational.postgres_client import SessionLocal
-from typing import List, Union
 
 
 class MarketObservationRepository:

@@ -3,6 +3,7 @@ Attribution Engine: Determines WHY a theory succeeded or failed.
 """
 
 from typing import Any, Dict, List, Optional
+
 from flows.theory_flow.attribution import AttributionResult, MechanismComponent
 
 
@@ -29,15 +30,78 @@ class AttributionEngine:
 
         passed, failed = [], []
         obs_text = getattr(observation, "observation_text", "").lower()
+
+        # Determine actual direction from observation
+        trend = ""
+        if hasattr(observation, "trend_state") and getattr(observation, "trend_state"):
+            trend = getattr(observation, "trend_state", "").lower()
+        else:
+            trend = obs_text
+
+        actual_direction = "uncertain"
+        if "range_bound" in trend:
+            actual_direction = "range_bound"
+        elif any(word in trend for word in ["higher", "up", "extended_higher", "recovered_intraday"]):
+            actual_direction = "higher"
+        elif any(word in trend for word in ["lower", "down", "closed_lower"]):
+            actual_direction = "lower"
+
+        OPPOSITES = [
+            ("higher", "lower"),
+            ("up", "down"),
+            ("increase", "decrease"),
+            ("expansion", "contraction"),
+            ("bullish", "bearish"),
+            ("above", "below"),
+            ("exceed", "below"),
+            ("growth", "decline"),
+            ("rising", "falling"),
+            ("gains", "losses"),
+            ("expansion", "compression"),
+            ("expansion", "flat"),
+        ]
+
         for c in components:
             if c.dependency and c.dependency in failed:
                 failed.append(c.component_id)
                 continue
-            # Basic heuristic: check if expected behavior is contradicted in text
-            if "higher" in c.expected_behavior.lower() and "lower" in obs_text:
+
+            exp_lowered = c.expected_behavior.lower()
+            is_failed = False
+
+            # 1. Opposites heuristic (only triggers if one opposite is present in expected, but not both)
+            for word_a, word_b in OPPOSITES:
+                if (word_a in exp_lowered) != (word_b in exp_lowered):
+                    if word_a in exp_lowered and word_b in obs_text:
+                        is_failed = True
+                        break
+                    if word_b in exp_lowered and word_a in obs_text:
+                        is_failed = True
+                        break
+
+            # 2. Prediction failure alignment
+            if not is_failed and actual_direction != "uncertain" and prediction != "uncertain" and actual_direction != prediction:
+                if prediction == "higher" and any(w in exp_lowered for w in ["higher", "up", "bullish", "expansion", "increase"]):
+                    is_failed = True
+                elif prediction == "lower" and any(w in exp_lowered for w in ["lower", "down", "bearish", "contraction", "decrease"]):
+                    is_failed = True
+                elif prediction == "range_bound" and any(w in exp_lowered for w in ["range", "flat", "compress", "absorb", "limit"]):
+                    is_failed = True
+
+            if is_failed:
                 failed.append(c.component_id)
             else:
                 passed.append(c.component_id)
+
+        # 3. Fallback when prediction failed but no component flagged
+        if not failed and actual_direction != "uncertain" and prediction != "uncertain" and actual_direction != prediction and components:
+            fallback_idx = 0
+            for i, c in enumerate(components):
+                c_id_lower = c.component_id.lower()
+                if any(w in c_id_lower for w in ["price", "trend", "momentum", "direction", "move"]):
+                    fallback_idx = i
+                    break
+            failed.append(components[fallback_idx].component_id)
 
         outcome = (
             "falsified"

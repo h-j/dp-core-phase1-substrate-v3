@@ -1,4 +1,5 @@
-from memory.market.market_observation_repository import MarketObservationRepository
+from memory.market.market_observation_repository import \
+    MarketObservationRepository
 
 
 class HistoricalMarketMemoryService:

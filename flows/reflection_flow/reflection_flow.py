@@ -1,5 +1,5 @@
-import re
 import json
+import re
 from typing import Any, Dict, Set
 
 from cognition.schemas.reflection.reflection_event import ReflectionEvent
@@ -93,9 +93,10 @@ class ReflectionFlow:
         "otherwise",
     }
 
-    def __init__(self):
+    def __init__(self, verbose: bool = False):
 
         self.client = OllamaClient()
+        self.verbose = verbose
 
     def process(
         self,
@@ -163,9 +164,10 @@ Avg usefulness: {regime_history.get('avg_usefulness', 0.0):.2f}
 
 Use subtype history only if materially relevant. Primary focus remains: 1 observation, 2 subtype, 3 falsifiability. History is secondary context. Do not force reflection to explain history.
 """
-        print(
-            f"[Reflection History Debug] seen_count: {seen_count}, context: {history_context_for_prompt}"
-        )
+        if getattr(self, "verbose", False):
+            print(
+                f"[Reflection History Debug] seen_count: {seen_count}, context: {history_context_for_prompt}"
+            )
 
         # v3.0 Regime and falsifiability context
         t_subtype = (
@@ -257,9 +259,10 @@ This theory appears insightful and coherent.
             dialectical_synthesis=dialectical_synthesis,
         )
         # Log anchor score for debugging
-        print(
-            f"[Reflection Grounding Score] {reflection_summary.get('anchor_score', 0.0):.3f} (Grounded: {reflection_summary.get('grounded', False)})"
-        )
+        if getattr(self, "verbose", False):
+            print(
+                f"[Reflection Grounding Score] {reflection_summary.get('anchor_score', 0.0):.3f} (Grounded: {reflection_summary.get('grounded', False)})"
+            )
 
         return ReflectionEvent(
             related_theory_id=theory.id,

@@ -143,9 +143,7 @@ class ReplayFinalizationMixin:
         # v1.6 Visualization Layer Integration
         if self.generate_visualizations:
             try:
-                from market.replay.visualization import (
-                    generate_visualizations,
-                )
+                from market.replay.visualization import generate_visualizations
 
                 generate_visualizations(
                     analysis=self.replay_analysis_engine.analyze(),
@@ -182,9 +180,8 @@ class ReplayFinalizationMixin:
                     comparison_executor.execute(emit_summary=False)
 
                     if self.generate_visualizations:
-                        from market.replay.visualization import (
-                            generate_cross_asset_visualizations,
-                        )
+                        from market.replay.visualization import \
+                            generate_cross_asset_visualizations
 
                         generate_cross_asset_visualizations(
                             base_output_dir=self.base_output_dir,

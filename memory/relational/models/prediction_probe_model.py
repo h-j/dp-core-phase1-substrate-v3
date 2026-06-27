@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, func
+from sqlalchemy import (Column, DateTime, Float, ForeignKey, Integer, String,
+                        func)
+
 from memory.relational.base import Base
 
 

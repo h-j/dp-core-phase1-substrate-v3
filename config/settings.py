@@ -13,7 +13,7 @@ except Exception:
 
 class Settings(BaseSettings):
 
-    OLLAMA_MODEL: str = "llama3"
+    OLLAMA_MODEL: str = "llama3.2"
 
     POSTGRES_HOST: str = "localhost"
     POSTGRES_PORT: int = 5432
@@ -26,6 +26,7 @@ class Settings(BaseSettings):
     NEO4J_PASSWORD: str = "password"
 
     DUCKDB_PATH: str = "market_memory.duckdb"
+    LLM_AUDIT_ENABLED: bool = True
 
     class Config:
         env_file = ".env"

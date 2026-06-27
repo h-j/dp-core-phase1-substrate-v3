@@ -277,13 +277,12 @@ def test_attribution_wiring():
     print("=" * 50)
 
     from cognition.schemas.confidence.confidence_state import ConfidenceState
-    from cognition.schemas.theory.theory import Theory
-    from dp.core.attribution_engine import AttributionEngine
-    from dp.models.attribution import AttributionResult
-    from dp.models.market import TheoryStructured
-    from experience.experience_engine import ExperienceEngine
-    from experience.experience_repository import ExperienceRepository
-    from experience.experience_types import Experience
+    from cognition.schemas.experience.experience import Experience
+    from cognition.schemas.theory.theory import Theory, TheoryStructured
+    from flows.theory_flow.attribution import AttributionResult
+    from flows.theory_flow.attribution_engine import AttributionEngine
+    from memory.experience.experience_engine import ExperienceEngine
+    from memory.experience.experience_repository import ExperienceRepository
 
     # 1. Test imports and TheoryStructured fields
     theory_structured = TheoryStructured(
@@ -342,6 +341,7 @@ def test_attribution_wiring():
     with TemporaryDirectory() as temp_dir:
         repo = ExperienceRepository(base_path=temp_dir)
         experience_engine = ExperienceEngine(repo)
+        experience_engine.verbose = True
 
         experience = Experience(
             experience_id="exp_996",
@@ -393,12 +393,13 @@ def test_causal_learning_loop():
     from pathlib import Path
     from tempfile import TemporaryDirectory
 
-    from dp.models.attribution import AttributionResult
-    from experience.experience_engine import ExperienceEngine
-    from experience.experience_repository import ExperienceRepository
-    from experience.experience_types import Experience, ExperienceStatus
+    from cognition.schemas.experience.experience import (Experience,
+                                                         ExperienceStatus)
+    from flows.theory_flow.attribution import AttributionResult
     from market.replay.lesson_extractor import LessonExtractor
     from market.replay.lesson_repository import LessonRepository
+    from memory.experience.experience_engine import ExperienceEngine
+    from memory.experience.experience_repository import ExperienceRepository
 
     with TemporaryDirectory() as temp_dir:
         exp_repo = ExperienceRepository(base_path=temp_dir)
@@ -567,15 +568,17 @@ def test_causal_loop_adjustments():
     print("TEST 7: CAUSAL LOOP ADJUSTMENTS (STATUS & MUTATION)")
     print("=" * 50)
 
-    from experience.experience_engine import ExperienceEngine
-    from experience.experience_repository import ExperienceRepository
-    from experience.experience_types import Experience, ExperienceStatus
-    from dp.models.attribution import AttributionResult
     from tempfile import TemporaryDirectory
     from unittest.mock import MagicMock
-    from flows.theory_flow.theory_generation_flow import TheoryGenerationFlow
-    from cognition.schemas.theory.theory import Theory, TheoryStructured
+
     from cognition.schemas.confidence.confidence_state import ConfidenceState
+    from cognition.schemas.experience.experience import (Experience,
+                                                         ExperienceStatus)
+    from cognition.schemas.theory.theory import Theory, TheoryStructured
+    from flows.theory_flow.attribution import AttributionResult
+    from flows.theory_flow.theory_generation_flow import TheoryGenerationFlow
+    from memory.experience.experience_engine import ExperienceEngine
+    from memory.experience.experience_repository import ExperienceRepository
 
     # 1. Test status transitions via process_cycle
     with TemporaryDirectory() as temp_dir:
@@ -603,7 +606,9 @@ def test_causal_loop_adjustments():
         )
         engine.process_cycle("lineage_adj_1", exp, "active", attr1)
         assert exp.status == ExperienceStatus.VALIDATED
-        print("✓ process_cycle successfully transitioned status to VALIDATED via attribution.outcome")
+        print(
+            "✓ process_cycle successfully transitioned status to VALIDATED via attribution.outcome"
+        )
 
         # 1.2 Outcome falsified -> status FALSIFIED
         exp.status = ExperienceStatus.ACTIVE
@@ -618,7 +623,9 @@ def test_causal_loop_adjustments():
         )
         engine.process_cycle("lineage_adj_1", exp, "active", attr2)
         assert exp.status == ExperienceStatus.FALSIFIED
-        print("✓ process_cycle successfully transitioned status to FALSIFIED via attribution.outcome")
+        print(
+            "✓ process_cycle successfully transitioned status to FALSIFIED via attribution.outcome"
+        )
 
         # 1.3 Outcome other -> status ACTIVE
         exp.status = ExperienceStatus.VALIDATED
@@ -633,7 +640,9 @@ def test_causal_loop_adjustments():
         )
         engine.process_cycle("lineage_adj_1", exp, "active", attr3)
         assert exp.status == ExperienceStatus.ACTIVE
-        print("✓ process_cycle successfully transitioned status to ACTIVE for other outcome")
+        print(
+            "✓ process_cycle successfully transitioned status to ACTIVE for other outcome"
+        )
 
     # 2. Test TheoryGenerationFlow mutation guidance injection
     flow = TheoryGenerationFlow()
@@ -662,7 +671,7 @@ def test_causal_loop_adjustments():
             unless="e",
             falsified_if="f",
         ),
-        confidence_state=ConfidenceState()
+        confidence_state=ConfidenceState(),
     )
 
     prior_attr = MagicMock()
@@ -671,14 +680,21 @@ def test_causal_loop_adjustments():
     prior_attr.root_cause_component = "volume_confirm"
     prior_attr.get_mutation_guidance.return_value = "Fix volume_confirm component"
 
-    flow.process(DummyAbstraction(), prior_theory=prior_theory, prior_attribution=prior_attr, regime_history={})
+    flow.process(
+        DummyAbstraction(),
+        prior_theory=prior_theory,
+        prior_attribution=prior_attr,
+        regime_history={},
+    )
     called_prompt_with = flow.client.generate.call_args[0][0]
     assert "MANDATORY MUTATION GUIDANCE FOR EXISTING THEORY" in called_prompt_with
     assert "Failed Components: volume_confirm" in called_prompt_with
     assert "Passed Components: price_structure" in called_prompt_with
     assert "Root Cause of Failure: volume_confirm" in called_prompt_with
     assert "Fix volume_confirm component" in called_prompt_with
-    print("✓ Prompt successfully injects mutation guidance context with passed/failed components and root cause")
+    print(
+        "✓ Prompt successfully injects mutation guidance context with passed/failed components and root cause"
+    )
 
 
 def run_all_tests():

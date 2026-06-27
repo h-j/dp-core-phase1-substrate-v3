@@ -1,0 +1,35 @@
+{
+  "experience_id": "exp_a070cb7729d13743_2026-05-13",
+  "lineage_id": "a070cb7729d13743",
+  "theory_family_id": "a070cb7729d13743",
+  "created_at": "2026-05-13",
+  "status": "closed",
+  "theory_ids": [
+    "39f4db95-5b7c-4fb6-b056-aa80fb09837f",
+    "6eabe4e8-e121-4423-a47c-d1c7e0503b08"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Regime is driven by ... vs participation widens..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:range_bound",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:even_flow",
+    "breadth:nascent",
+    "participation:weak",
+    "momentum:weakening",
+    "subtype:fatigue"
+  ],
+  "theory_subtype": "fatigue",
+  "mutation_count": 1,
+  "contradiction_count": 2,
+  "validation_count": 0,
+  "falsification_count": 0,
+  "causal_events": [],
+  "component_failure_counts": {}
+}

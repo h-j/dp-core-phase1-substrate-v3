@@ -1,6 +1,6 @@
 from collections import defaultdict
-from datetime import datetime, UTC
-from typing import List, Dict
+from datetime import UTC, datetime
+from typing import Dict, List
 
 
 class TheorySurvivalTracker:
