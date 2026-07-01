@@ -164,6 +164,17 @@ class MarketObservationSynthesizer:
             falsifiability_conditions=falsifiability_conditions,
             analog_divergence_claim="",
             observation_source=f"replay_engine_{date_str}",
+            # New features and descriptors
+            delivery_pct=float(row.get("delivery_pct", 0.0)) if not pd.isna(row.get("delivery_pct")) else 0.0,
+            delivery_pct_5d=float(row.get("delivery_pct_5d", 0.0)) if not pd.isna(row.get("delivery_pct_5d")) else 0.0,
+            fii_net=float(row.get("fii_net", 0.0)) if not pd.isna(row.get("fii_net")) else 0.0,
+            dii_net=float(row.get("dii_net", 0.0)) if not pd.isna(row.get("dii_net")) else 0.0,
+            sector_zscore=float(row.get("sector_zscore", 0.0)) if not pd.isna(row.get("sector_zscore")) else 0.0,
+            sector_rs_ratio=float(row.get("sector_rs_ratio", 0.0)) if not pd.isna(row.get("sector_rs_ratio")) else 0.0,
+            sector_percentile=float(row.get("sector_percentile", 0.0)) if not pd.isna(row.get("sector_percentile")) else 0.0,
+            delivery_descriptor=next((d for d in descriptors if d.startswith("delivery:")), "delivery:unknown"),
+            fii_descriptor=next((d for d in descriptors if d.startswith("fii:")), "fii:unknown"),
+            sector_descriptor=next((d for d in descriptors if d.startswith("sector:")), "sector:unknown"),
         )
 
         # Store for prior context
@@ -497,32 +508,81 @@ class MarketObservationSynthesizer:
             descriptors.append(f"volume {vol_state}")
 
         # 2. Price Range Action
-        range_pct = float(row.get("range_pct", 0.0))
+        range_pct = float(row.get("range_pct", 0.0)) if not pd.isna(row.get("range_pct")) else 0.0
         if range_pct > 1.3:
             descriptors.append("range expanding")
         elif range_pct < 0.7:
             descriptors.append("range narrow")
 
         # 3. Gaps
-        gap_pct = float(row.get("gap_pct", 0.0))
+        gap_pct = float(row.get("gap_pct", 0.0)) if not pd.isna(row.get("gap_pct")) else 0.0
         if gap_pct > 0.2:
             descriptors.append("gap up")
         elif gap_pct < -0.2:
             descriptors.append("gap down")
 
         # 4. Volatility Regimes
-        vol_30d = float(row.get("rolling_volatility_30d", 0.0))
+        vol_30d = float(row.get("rolling_volatility_30d", 0.0)) if not pd.isna(row.get("rolling_volatility_30d")) else 0.0
         if vol_30d < 0.8:
             descriptors.append("volatility compressed")
         elif vol_30d > 1.5:
             descriptors.append("volatility expanding")
 
         # 5. Momentum Regimes
-        ret_3d = float(row.get("return_3d", 0.0))
+        ret_3d = float(row.get("return_3d", 0.0)) if not pd.isna(row.get("return_3d")) else 0.0
         if ret_3d > 0.7:
             descriptors.append("short-term momentum strengthening")
         elif ret_3d < -0.7:
             descriptors.append("short-term momentum weakening")
+
+        # 6. Delivery Percentage (5-day rolling average)
+        delivery_pct_5d = row.get("delivery_pct_5d", None)
+        if pd.isna(delivery_pct_5d) or delivery_pct_5d is None:
+            descriptors.append("delivery:unknown")
+        else:
+            pct = float(delivery_pct_5d)
+            if pct > 60.0:
+                descriptors.append("delivery:high_conviction")
+            elif pct >= 45.0:
+                descriptors.append("delivery:moderate")
+            elif pct >= 30.0:
+                descriptors.append("delivery:low")
+            else:
+                descriptors.append("delivery:speculative")
+
+        # 7. FII/DII Net Flows
+        fii_net = row.get("fii_net", None)
+        if pd.isna(fii_net) or fii_net is None:
+            descriptors.append("fii:unknown")
+        else:
+            val = float(fii_net)
+            if val > 1000.0:
+                descriptors.append("fii:strong_buy")
+            elif val > 100.0:
+                descriptors.append("fii:buying")
+            elif val >= -100.0:
+                descriptors.append("fii:neutral")
+            elif val >= -1000.0:
+                descriptors.append("fii:selling")
+            else:
+                descriptors.append("fii:strong_sell")
+
+        # 8. Sector Relative Strength (Z-score)
+        sector_zscore = row.get("sector_zscore", None)
+        if pd.isna(sector_zscore) or sector_zscore is None:
+            descriptors.append("sector:unknown")
+        else:
+            val = float(sector_zscore)
+            if val > 1.5:
+                descriptors.append("sector:leading_strong")
+            elif val > 0.5:
+                descriptors.append("sector:leading")
+            elif val >= -0.5:
+                descriptors.append("sector:neutral")
+            elif val >= -1.5:
+                descriptors.append("sector:lagging")
+            else:
+                descriptors.append("sector:lagging_strong")
 
         descriptors.extend(self._build_cross_asset_descriptors(row))
         # Deduplicate while preserving order

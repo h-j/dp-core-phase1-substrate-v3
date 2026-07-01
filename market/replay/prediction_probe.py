@@ -82,6 +82,8 @@ class PredictionProbeGenerator:
         participation_confirmation: str = "normal",
         theory_usefulness: dict = None,
         intelligence_data: dict = None,
+        world_model: Optional[object] = None,
+        active_principles: Optional[List[object]] = None,
     ) -> PredictionProbe:
         direction = self._infer_direction(
             observation,
@@ -94,6 +96,17 @@ class PredictionProbeGenerator:
             participation_confirmation=participation_confirmation,
             intelligence_data=intelligence_data,
         )
+
+        # Apply World Model regime constraints on Direction
+        regime_subtype = getattr(observation, "regime_subtype", "neutral")
+        if world_model and hasattr(world_model, "regime_constraints") and world_model.regime_constraints:
+            constraints = world_model.regime_constraints.get(regime_subtype) or world_model.regime_constraints.get(str(regime_subtype).lower())
+            if constraints and isinstance(constraints, dict):
+                blocked_bias = constraints.get("blocked_bias")
+                if blocked_bias and str(direction.value).lower() == str(blocked_bias).lower():
+                    # Blocked bias override to avoid false prediction
+                    direction = PredictionDirection.range_bound
+
         confidence = self._infer_confidence(
             direction,
             contradictions,
@@ -112,6 +125,15 @@ class PredictionProbeGenerator:
             theory_usefulness=theory_usefulness,
             intelligence_data=intelligence_data,
         )
+
+        # Apply World Model confidence constraints
+        if world_model and hasattr(world_model, "regime_constraints") and world_model.regime_constraints:
+            constraints = world_model.regime_constraints.get(regime_subtype) or world_model.regime_constraints.get(str(regime_subtype).lower())
+            if constraints and isinstance(constraints, dict):
+                max_conf = constraints.get("max_confidence")
+                if max_conf is not None:
+                    confidence = min(confidence, float(max_conf))
+
         tension = self._compose_tension(theory, reflection, contradictions, horizons)
         invalidation = self._compose_invalidation(theory, reflection, contradictions)
         return PredictionProbe(
@@ -477,16 +499,19 @@ class PredictionProbeGenerator:
 
     def _score_direction(
         self,
-        predicted: PredictionDirection,
-        actual: PredictionDirection,
+        predicted: Any,
+        actual: Any,
     ) -> float:
-        if predicted == PredictionDirection.uncertain:
+        pred_val = predicted.value if hasattr(predicted, "value") else str(predicted)
+        act_val = actual.value if hasattr(actual, "value") else str(actual)
+
+        if pred_val == "uncertain":
             return 0.0
-        if predicted == actual:
+        if pred_val == act_val:
             return 1.0
-        if predicted == PredictionDirection.range_bound and actual in {
-            PredictionDirection.higher,
-            PredictionDirection.lower,
+        if pred_val == "range_bound" and act_val in {
+            "higher",
+            "lower",
         }:
             return 0.5
         return 0.0

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DP Multi-Asset Benchmark Report</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f8fafc;
+        }
+        .apple-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .apple-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-8 border-b border-slate-200">
+            <div>
+                <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-700 bg-indigo-50 rounded-full">Architecture Generalization Benchmark</span>
+                <h1 class="text-4xl font-bold tracking-tight text-slate-900 mt-2">Multi-Asset Benchmark</h1>
+                <p class="text-sm text-slate-500 mt-1">Replay Duration: <span class="font-medium text-slate-700">{{ days }} Days per Asset</span> | Benchmark Date: <span class="font-medium text-slate-700">{{ benchmark_date }}</span></p>
+            </div>
+            <div class="mt-4 md:mt-0 flex flex-col items-end text-xs text-slate-500 space-y-1">
+                <div>Benchmark Run ID: <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono text-slate-700 text-[10px]">{{ benchmark_id }}</code></div>
+                <div>Git Commit: <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono text-slate-700 text-[10px]">{{ git_commit[:8] }}</code></div>
+                <div>LLM Version: <span class="font-medium text-slate-700">{{ llm_version }}</span></div>
+            </div>
+        </div>
+
+        <!-- Summary KPIs -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
+            <div class="apple-card p-6 bg-gradient-to-br from-indigo-500/5 to-purple-500/5">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Generalization Score</div>
+                <div class="text-3xl font-extrabold text-indigo-700 mt-2">{{ "%.1f"|format(generalization_score) }}%</div>
+                <div class="text-xs text-slate-500 mt-2">Shared component failures & principles across assets.</div>
+            </div>
+            <div class="apple-card p-6">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Avg Calibration Error</div>
+                <div class="text-3xl font-extrabold text-slate-900 mt-2">{{ "%.1f"|format(avg_calibration_error * 100) }}%</div>
+                <div class="text-xs text-slate-500 mt-2">Lower error represents stable self-awareness.</div>
+            </div>
+            <div class="apple-card p-6">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Cross-Asset Reuse Rate</div>
+                <div class="text-3xl font-extrabold text-emerald-600 mt-2">{{ "%.1f"|format(cross_asset_reuse_rate * 100) }}%</div>
+                <div class="text-xs text-slate-500 mt-2">Lessons & principles applied outside originating asset.</div>
+            </div>
+            <div class="apple-card p-6">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Principles (Active)</div>
+                <div class="text-3xl font-extrabold text-purple-600 mt-2">{{ total_active_principles }}</div>
+                <div class="text-xs text-slate-500 mt-2">Consolidated cross-asset structural logic.</div>
+            </div>
+        </div>
+
+        <!-- Health Report & Generalization Breakdown -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+            <!-- Health Report -->
+            <div class="apple-card p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-slate-900">Benchmark Health & Integrity</h2>
+                    <span class="px-2.5 py-1 text-xs font-bold uppercase tracking-wider rounded-full border
+                        {% if health_report.integrity == 'PASS' %} bg-emerald-50 text-emerald-700 border-emerald-200
+                        {% else %} bg-amber-50 text-amber-700 border-amber-200 {% endif %}">
+                        Integrity: {{ health_report.integrity }}
+                    </span>
+                </div>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <span class="text-xs text-slate-400 block uppercase font-medium">Metrics Verified</span>
+                        <span class="text-lg font-bold text-slate-800">{{ health_report.metrics_verified }} / 18</span>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <span class="text-xs text-slate-400 block uppercase font-medium">Aggregation Errors</span>
+                        <span class="text-lg font-bold {% if health_report.aggregation_errors > 0 %} text-rose-600 {% else %} text-slate-800 {% endif %}">
+                            {{ health_report.aggregation_errors }}
+                        </span>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <span class="text-xs text-slate-400 block uppercase font-medium">Experimental Metrics</span>
+                        <span class="text-lg font-bold text-slate-800">{{ health_report.experimental_metrics }}</span>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <span class="text-xs text-slate-400 block uppercase font-medium">Cold Start Metrics</span>
+                        <span class="text-lg font-bold text-slate-800">{{ health_report.cold_start_metrics }}</span>
+                    </div>
+                </div>
+                {% if health_report.warnings %}
+                <div class="mt-4 p-3 bg-amber-50/50 border border-amber-200 rounded-xl">
+                    <h4 class="text-xs font-bold text-amber-800 uppercase tracking-wider mb-2">Consistency Warnings</h4>
+                    <ul class="text-xs text-amber-700 space-y-1 list-disc list-inside">
+                        {% for warning in health_report.warnings %}
+                        <li>{{ warning }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% else %}
+                <div class="mt-4 p-3 bg-emerald-50/50 border border-emerald-200 rounded-xl text-xs text-emerald-700 font-medium">
+                    ✓ All replication outputs, HTML dashboard fields, and JSON report summaries reconciled perfectly.
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Generalization Breakdown -->
+            <div class="apple-card p-6">
+                <h2 class="text-xl font-bold text-slate-900 mb-4">Generalization Breakdown</h2>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                            <span>Failure Similarity (Weight: 30%)</span>
+                            <span>{{ "%.1f"|format(generalization_breakdown.failure_similarity) }}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-1.5">
+                            <div class="bg-indigo-600 h-1.5 rounded-full" style="width: {{ generalization_breakdown.failure_similarity }}%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                            <span>Principle Similarity (Weight: 30%)</span>
+                            <span>{{ "%.1f"|format(generalization_breakdown.principle_similarity) }}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-1.5">
+                            <div class="bg-indigo-600 h-1.5 rounded-full" style="width: {{ generalization_breakdown.principle_similarity }}%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                            <span>World Model Similarity (Weight: 20%)</span>
+                            <span>{{ "%.1f"|format(generalization_breakdown.world_model_similarity) }}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-1.5">
+                            <div class="bg-indigo-600 h-1.5 rounded-full" style="width: {{ generalization_breakdown.world_model_similarity }}%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                            <span>Memory Behaviour (Weight: 20%)</span>
+                            <span>{{ "%.1f"|format(generalization_breakdown.memory_behaviour) }}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-1.5">
+                            <div class="bg-indigo-600 h-1.5 rounded-full" style="width: {{ generalization_breakdown.memory_behaviour }}%"></div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100">
+                        <div class="flex justify-between text-sm font-bold text-slate-900">
+                            <span>Weighted Score</span>
+                            <span class="text-indigo-700">{{ "%.1f"|format(generalization_breakdown.weighted_score) }}%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Asset Comparison Table -->
+        <div class="apple-card p-6 mt-8">
+            <h2 class="text-xl font-bold text-slate-900 mb-4">Asset Performance & Knowledge Metrics</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-slate-100 text-sm">
+                    <thead>
+                        <tr class="text-slate-400 text-left font-medium">
+                            <th class="py-3 px-4">Asset</th>
+                            <th class="py-3 px-4">Category</th>
+                            <th class="py-3 px-4 text-center">Lifecycle Status</th>
+                            <th class="py-3 px-4 text-center">Prediction Accuracy (n)</th>
+                            <th class="py-3 px-4 text-center">Confidence</th>
+                            <th class="py-3 px-4 text-center">Calibration Error</th>
+                            <th class="py-3 px-4 text-center">Knowledge Debt</th>
+                            <th class="py-3 px-4 text-center">Memory Reuse</th>
+                            <th class="py-3 px-4 text-center">Contradiction Pressure</th>
+                            <th class="py-3 px-4 text-center">Principles Breakdown</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50 text-slate-700">
+                        {% for asset in assets_summary %}
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="py-4 px-4 font-semibold text-slate-900">{{ asset.symbol }}</td>
+                            <td class="py-4 px-4"><span class="text-xs text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full font-medium">{{ asset.category }}</span></td>
+                            <td class="py-4 px-4 text-center">
+                                <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                    {% if asset.status == 'Cold Start' %} bg-amber-50 text-amber-700 border border-amber-200
+                                    {% else %} bg-emerald-50 text-emerald-700 border border-emerald-200 {% endif %}">
+                                    {{ asset.status }}
+                                </span>
+                                <p class="text-[10px] text-slate-400 mt-0.5">{{ asset.guidance }}</p>
+                            </td>
+                            <td class="py-4 px-4 text-center font-bold text-indigo-700">
+                                {{ "%.1f"|format(asset.accuracy) }}%
+                                <span class="text-xs text-slate-400 font-normal">(n={{ asset.evaluations }})</span>
+                            </td>
+                            <td class="py-4 px-4 text-center">
+                                <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                    {% if asset.accuracy_confidence == 'High' %} bg-emerald-100 text-emerald-800
+                                    {% elif asset.accuracy_confidence == 'Medium' %} bg-blue-100 text-blue-800
+                                    {% else %} bg-rose-100 text-rose-800 {% endif %}">
+                                    {{ asset.accuracy_confidence }}
+                                </span>
+                            </td>
+                            <td class="py-4 px-4 text-center">{{ "%.1f"|format(asset.calibration_error * 100) }}%</td>
+                            <td class="py-4 px-4 text-center font-medium">{{ asset.knowledge_debt }}</td>
+                            <td class="py-4 px-4 text-center">{{ "%.1f"|format(asset.memory_reuse * 100) }}%</td>
+                            <td class="py-4 px-4 text-center">
+                                <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                    {% if asset.contradiction_pressure > 0.4 %} bg-rose-50 text-rose-700
+                                    {% elif asset.contradiction_pressure > 0.2 %} bg-amber-50 text-amber-700
+                                    {% else %} bg-emerald-50 text-emerald-700 {% endif %}">
+                                    {{ "%.2f"|format(asset.contradiction_pressure) }}
+                                </span>
+                            </td>
+                            <td class="py-4 px-4 text-center">
+                                <div class="text-xs font-medium text-slate-800">
+                                    Total: <span class="font-bold text-purple-700">{{ asset.principles_count }}</span>
+                                </div>
+                                <div class="text-[10px] text-slate-500 mt-0.5">
+                                    L: {{ asset.principles_breakdown.local }} | S: {{ asset.principles_breakdown.shared }} | C: {{ asset.principles_breakdown.canonical }}
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+            
+            <!-- Component Failure Matrix -->
+            <div class="apple-card p-6">
+                <h2 class="text-xl font-bold text-slate-900 mb-4">Component Failure Matrix</h2>
+                <p class="text-xs text-slate-400 mb-4">Identifies systemic architectural limits vs individual stock anomalies.</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-slate-100 text-xs">
+                        <thead>
+                            <tr class="text-slate-400 text-left font-medium">
+                                <th class="py-2.5 px-3">Component</th>
+                                {% for asset in assets_summary %}
+                                <th class="py-2.5 px-3 text-center">{{ asset.symbol }}</th>
+                                {% endfor %}
+                                <th class="py-2.5 px-3 text-center font-semibold text-slate-900">Systemic?</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-50 text-slate-700">
+                            {% for comp, status_map in failure_matrix.items() %}
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-3 px-3 font-medium text-slate-800">{{ comp }}</td>
+                                {% for asset in assets_summary %}
+                                <td class="py-3 px-3 text-center">
+                                    {% if status_map[asset.symbol] %}
+                                    <span class="text-rose-600 font-bold">✗</span>
+                                    {% else %}
+                                    <span class="text-emerald-500 font-bold">✓</span>
+                                    {% endif %}
+                                </td>
+                                {% endfor %}
+                                <td class="py-3 px-3 text-center font-semibold">
+                                    {% if status_map['systemic'] %}
+                                    <span class="px-2 py-0.5 rounded bg-rose-50 text-rose-700 font-medium">YES</span>
+                                    {% else %}
+                                    <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-500">NO</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Principle Generalization Analysis -->
+            <div class="apple-card p-6">
+                <h2 class="text-xl font-bold text-slate-900 mb-4">Principle Generalization Analysis</h2>
+                <div class="space-y-4">
+                    {% if generalized_principles %}
+                    <div class="space-y-3">
+                        {% for item in generalized_principles %}
+                        <div class="border border-slate-100 p-4 rounded-xl bg-slate-50/50">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-xs text-indigo-700 uppercase tracking-wider">Common Principle Family</span>
+                                <span class="text-[10px] text-slate-400">Target: {{ item.target_component }}</span>
+                            </div>
+                            <div class="text-slate-800 text-xs font-semibold leading-relaxed">{{ item.statement }}</div>
+                            <div class="mt-2 flex flex-wrap gap-1 text-[9px]">
+                                <span class="text-slate-400 font-medium mr-1">Discovered in:</span>
+                                {% for symbol in item.assets %}
+                                <span class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-medium">{{ symbol }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="text-sm text-slate-400 py-8 text-center bg-slate-50/50 rounded-xl border border-dashed border-slate-200">
+                        No recurring principles found across assets in this benchmark run.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- World Model & Stability Comparison -->
+        <div class="apple-card p-6 mt-8">
+            <h2 class="text-xl font-bold text-slate-900 mb-4">Cross-Asset World Model Comparison</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for wm in world_models_comparison %}
+                <div class="border border-slate-100 p-5 rounded-2xl bg-white hover:shadow-sm transition-shadow">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-bold text-slate-900">{{ wm.symbol }} World Model</h3>
+                        <span class="text-[10px] text-slate-400 uppercase font-semibold">Stability: {{ wm.stability }}</span>
+                    </div>
+                    <p class="text-slate-600 text-xs leading-relaxed italic mb-4">
+                        "{{ wm.narrative }}"
+                    </p>
+                    <div class="mb-3">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Regime Constraints</span>
+                        <div class="mt-1 flex flex-wrap gap-1">
+                            {% if wm.regime_constraints %}
+                                {% for key, val in wm.regime_constraints.items() %}
+                                <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[10px]">
+                                    {{ key }}: blocked={{ val.blocked_bias or 'None' }}, max_conf={{ val.max_confidence or 'N/A' }}
+                                </span>
+                                {% endfor %}
+                            {% else %}
+                                <span class="text-slate-400 text-xs italic">No constraints applied.</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Key Principles ({{ wm.principles|length }})</span>
+                        <ul class="mt-2 text-xs space-y-1.5 text-slate-500">
+                            {% for p in wm.principles[:3] %}
+                            <li class="truncate">• {{ p }}</li>
+                            {% endfor %}
+                            {% if wm.principles|length > 3 %}
+                            <li class="text-[10px] text-slate-400 font-medium">+ {{ wm.principles|length - 3 }} more principles</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Historical Benchmark Benchmarks -->
+        <div class="apple-card p-6 mt-8">
+            <h2 class="text-xl font-bold text-slate-900 mb-4">Longitudinal Benchmark History</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-slate-100 text-sm">
+                    <thead>
+                        <tr class="text-slate-400 text-left font-medium">
+                            <th class="py-3 px-4">Run ID</th>
+                            <th class="py-3 px-4">Date</th>
+                            <th class="py-3 px-4 text-center">Assets Tested</th>
+                            <th class="py-3 px-4 text-center">Generalization Score</th>
+                            <th class="py-3 px-4 text-center">Avg Accuracy</th>
+                            <th class="py-3 px-4 text-center">Git Commit</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50 text-slate-700">
+                        {% for hist in history %}
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="py-4 px-4 font-semibold text-slate-900">{{ hist.benchmark_id }}</td>
+                            <td class="py-4 px-4 text-slate-500">{{ hist.date }}</td>
+                            <td class="py-4 px-4 text-center text-slate-600">{{ hist.assets_tested|join(', ') }}</td>
+                            <td class="py-4 px-4 text-center font-bold text-indigo-600">{{ "%.1f"|format(hist.generalization_score) }}%</td>
+                            <td class="py-4 px-4 text-center text-slate-800">{{ "%.1f"|format(hist.avg_accuracy) }}%</td>
+                            <td class="py-4 px-4 text-center"><code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono text-slate-700 text-xs">{{ hist.git_commit[:8] }}</code></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Metric Registry -->
+        <div class="apple-card p-6 mt-8">
+            <details class="group">
+                <summary class="flex justify-between items-center font-bold text-xl text-slate-900 cursor-pointer list-none">
+                    <span>Benchmark Metric Registry & Specification</span>
+                    <span class="transition group-open:rotate-180">
+                        <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                    </span>
+                </summary>
+                <div class="mt-6 border-t border-slate-100 pt-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {% for key, spec in registry.items() %}
+                        <div class="border border-slate-100 p-4 rounded-xl bg-slate-50/50">
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">{{ spec.name }}</h3>
+                            <p class="text-xs text-slate-500 mb-2 leading-relaxed">{{ spec.definition }}</p>
+                            <div class="text-[10px] text-slate-400 space-y-1">
+                                <div><span class="font-semibold text-slate-600">Formula:</span> <code class="font-mono bg-slate-100 px-1 py-0.5 rounded text-indigo-700 text-[9px]">{{ spec.formula }}</code></div>
+                                <div><span class="font-semibold text-slate-600">Stage:</span> {{ spec.stage }}</div>
+                                <div><span class="font-semibold text-slate-600">Range:</span> {{ spec.expected_range }}</div>
+                                <div><span class="font-semibold text-slate-600">Cold-start:</span> {{ spec.cold_start_behaviour }}</div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </details>
+        </div>
+
+    </div>
+</body>
+</html>

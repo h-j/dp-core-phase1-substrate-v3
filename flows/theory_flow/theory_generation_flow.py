@@ -34,6 +34,9 @@ class TheoryGenerationFlow:
         prior_theory: Optional[Theory] = None,
         prior_attribution: Optional[Any] = None,
         retrieved_theory: Optional[Theory] = None,
+        world_model_narrative: Optional[str] = None,
+        active_principles: Optional[list] = None,
+        active_open_questions: Optional[list] = None,
     ) -> tuple[Theory, dict]:
 
         if not regime_subtype:
@@ -116,10 +119,11 @@ Causal Attribution Analysis of the prior theory:
 - Root Cause of Failure: {root_cause}
 - Guidance: {guidance}
 
-INSTRUCTIONS:
-1. Mutate the existing theory to resolve the failures in the components that failed: {', '.join(failed_comps)}.
-2. Keep the components that passed unchanged: {', '.join(passed_comps) if passed_comps else 'None'}.
-3. Ensure the mutated theory is structurally coherent and directly addresses the root cause: {root_cause}.
+MANDATORY REFINEMENT TASK:
+Your previous theory experienced failures. Use the causal attribution to modify your hypothesis:
+- Failed components: {prior_attribution.components_failed}
+- Root cause: {prior_attribution.root_cause_component}
+- Analysis: {prior_attribution.attribution_reasoning}
 """
 
         retrieved_theory_context = ""
@@ -153,6 +157,20 @@ You MUST select one of these decisions and populate the "reuse_decision" field w
 No historical retrieved theory is available. Populate the "reuse_decision" field with "REJECTED".
 """
 
+        world_model_context = ""
+        if world_model_narrative:
+            world_model_context = f"\n=== ACTIVE WORLD MODEL PHYSICS ===\n{world_model_narrative}\n"
+
+        principles_context = ""
+        if active_principles:
+            p_statements = [f"- {p.statement}" for p in active_principles]
+            principles_context = "\n=== ACTIVE COGNITIVE PRINCIPLES ===\n" + "\n".join(p_statements) + "\n"
+
+        open_questions_context = ""
+        if active_open_questions:
+            oq_texts = [f"- {q.question_text} (Hypothesized factors: {', '.join(q.hypothesized_factors)})" for q in active_open_questions]
+            open_questions_context = "\n=== ACTIVE OPEN QUESTIONS (FOCUS AREAS) ===\n" + "\n".join(oq_texts) + "\nGenerate new theories that specifically attempt to address these unresolved contradictions.\n"
+
         prompt = f"""
 Market Memory:
 {market_memory_context}
@@ -174,6 +192,10 @@ Analog Divergence: {analog_divergence_claim or "None"}
 
 {retrieved_theory_context}
 
+{world_model_context}
+{principles_context}
+{open_questions_context}
+
 Reflective Memory Summary:
 {reflective_memory_summary}
 
@@ -192,6 +214,17 @@ MECHANISM COMPONENT REQUIREMENTS:
 
 You must decompose your mechanism into independently testable sub-components.
 Each component must be verifiable against specific market data.
+
+AVAILABLE OBSERVABLES AND VARIABLES:
+You can reference the following observables/features in your "expected_behavior" and "falsification_conditions":
+- `delivery_pct`: Rolling 5-day average of security delivery percentage (e.g. >60% is high conviction, <30% speculative).
+- `fii_net` / `dii_net`: FII and DII Net Flows (in Crores).
+- `sector_zscore`: Rolling 20-day relative strength Z-score against its sector index (e.g. ^CNXENERGY).
+- `volume_state`: Volume state ('spike', 'elevated', 'dry', 'normal').
+
+Example of referencing them in components/conditions:
+- A component can specify "delivery_pct > 50 AND volume_state = elevated" as its expected behavior.
+- A falsification condition can specify "sector_zscore < -1.5".
 
 Add these fields to your output:
 - "mechanism_components": A JSON array of objects, each with:

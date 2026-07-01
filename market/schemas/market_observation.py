@@ -36,3 +36,14 @@ class MarketObservation(CognitionBase):
     falsifiability_conditions: List[str] = []
     analog_divergence_claim: str = ""
     momentum_regime: str = "flat"
+    # New features and descriptors
+    delivery_pct: float = 0.0
+    delivery_pct_5d: float = 0.0
+    fii_net: float = 0.0
+    dii_net: float = 0.0
+    sector_zscore: float = 0.0
+    sector_rs_ratio: float = 0.0
+    sector_percentile: float = 0.0
+    delivery_descriptor: str = "delivery:unknown"
+    fii_descriptor: str = "fii:unknown"
+    sector_descriptor: str = "sector:unknown"

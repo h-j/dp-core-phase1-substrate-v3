@@ -1,0 +1,184 @@
+{
+  "metrics": {
+    "prediction_accuracy": {
+      "name": "Prediction Accuracy",
+      "definition": "The ratio of correct directional predictions to the total scored predictions.",
+      "formula": "Correct Predictions / Scored Predictions",
+      "source": "Prediction History (aligned_predictions)",
+      "stage": "Prediction Analysis",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "Highly volatile, requires at least 30 evaluation points to stabilize.",
+      "interpretation": "Primary directional effectiveness metric. Higher is better."
+    },
+    "confidence_calibration_error": {
+      "name": "Confidence Calibration Error",
+      "definition": "The Mean Absolute Error between predicted conviction/confidence and the realized score.",
+      "formula": "Mean(|Confidence - Direction Score|)",
+      "source": "Confidence History & Prediction Result",
+      "stage": "Prediction Analysis",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "Unreliable when data points are scarce. Expected to drop over time.",
+      "interpretation": "Overconfidence/underconfidence marker. Lower is better."
+    },
+    "knowledge_debt": {
+      "name": "Knowledge Debt",
+      "definition": "The backlog of unexplained observations, candidate principles, and open questions.",
+      "formula": "Unexplained Obs + Active Open Questions + Uncovered Theories + Candidate Backlog",
+      "source": "Knowledge Repository & Prediction History",
+      "stage": "Knowledge Reconciliation",
+      "expected_range": ">= 0.0",
+      "cold_start_behaviour": "Starts higher and decreases as general principles are consolidated.",
+      "interpretation": "Measures explanatory completeness of the substrate. Lower is better."
+    },
+    "principle_coverage": {
+      "name": "Principle Coverage",
+      "definition": "The proportion of historical generated theories explaining component behaviors covered by active/stable principles.",
+      "formula": "Covered Theories / Total Theories",
+      "source": "Knowledge Repository & Prediction History",
+      "stage": "Knowledge Reconciliation",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "0.0 in cold-start. Increases as candidate principles are validated.",
+      "interpretation": "Measures coverage power of principles. Higher is better."
+    },
+    "memory_reuse_rate": {
+      "name": "Memory Reuse Rate",
+      "definition": "Percentage of steps where prior extracted lessons were successfully recalled and applied.",
+      "formula": "Steps with Reused Lessons / Total Replayed Steps",
+      "source": "Prediction History (reused_lessons)",
+      "stage": "Memory Utilization",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "0.0 initially, grows as historical lesson database matures.",
+      "interpretation": "Measures memory exploitation. Higher is better."
+    },
+    "regime_recall_hit_rate": {
+      "name": "Regime Recall Hit Rate",
+      "definition": "The proportion of steps where analog matching found prior matching regimes above the similarity threshold.",
+      "formula": "Steps with Recall Sim >= 0.8 / Total Replayed Steps",
+      "source": "Regime Memory",
+      "stage": "Memory Utilization",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "Low or zero initially, increases as experience is accumulated.",
+      "interpretation": "Measures retrieval recall efficiency. Higher is better."
+    },
+    "memory_retrieval_usefulness": {
+      "name": "Memory Retrieval Usefulness",
+      "definition": "Average score indicating how useful the retrieved analog regime matches were to the active decision policy.",
+      "formula": "Mean(Retrieval Usefulness Score)",
+      "source": "Regime Memory matches",
+      "stage": "Memory Utilization",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "Low, expected to stabilize with historical analogs.",
+      "interpretation": "Measures quality of retrieved analogs. Higher is better."
+    },
+    "prediction_drift": {
+      "name": "Prediction Drift",
+      "definition": "The rate at which the directional bias predictions switch direction day-over-day.",
+      "formula": "Direction Changes / (Total Steps - 1)",
+      "source": "Prediction History",
+      "stage": "Prediction Analysis",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "Volatile initially. Stabilizes under coherent market regimes.",
+      "interpretation": "Measures prediction stability. High drift indicates low conviction shifts."
+    },
+    "theory_drift": {
+      "name": "Theory Drift",
+      "definition": "The rate at which active theory lines of lineage mutate, merge, or retire.",
+      "formula": "Theory Lineage Changes / Total Steps",
+      "source": "Theory Lineage",
+      "stage": "Theory Evolution",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "Higher at start as theories are generated frequently. Decreases with stability.",
+      "interpretation": "Measures cognitive conceptual stability. Lower is better."
+    },
+    "active_principles": {
+      "name": "Active Principles",
+      "definition": "Total number of non-retired principles currently held in active or stable status.",
+      "formula": "Count(Principles with status in [ACTIVE, STABLE])",
+      "source": "Knowledge Repository",
+      "stage": "Knowledge Reconciliation",
+      "expected_range": ">= 0",
+      "cold_start_behaviour": "0 in cold-start. Grows as candidate principles complete backtesting.",
+      "interpretation": "Measures the richness of the active world model library."
+    },
+    "asset_local_principles": {
+      "name": "Asset-local Principles",
+      "definition": "Principles that are unique to a single asset and not shared globally.",
+      "formula": "Count(Active Principles not found in generalized_principles)",
+      "source": "Knowledge Repository & Benchmark Runner",
+      "stage": "Cross-Asset Generalization",
+      "expected_range": ">= 0",
+      "cold_start_behaviour": "Initially low, expected to represent asset-specific quirks.",
+      "interpretation": "Measures asset-specific adaptations of the cognitive loop."
+    },
+    "shared_principles": {
+      "name": "Shared Principles",
+      "definition": "Principles that apply across multiple assets targeting the same component.",
+      "formula": "Count(Active Principles matching generalized_principles target components)",
+      "source": "Knowledge Repository & Benchmark Runner",
+      "stage": "Cross-Asset Generalization",
+      "expected_range": ">= 0",
+      "cold_start_behaviour": "0 in cold-start, increases as common market physics are discovered.",
+      "interpretation": "Measures shared dynamics across different symbols."
+    },
+    "canonical_principles": {
+      "name": "Canonical Principles",
+      "definition": "High-confidence generalized principles promoted to stable/trusted/canonical status.",
+      "formula": "Count(Shared Principles with status STABLE/canonical)",
+      "source": "Knowledge Repository & Benchmark Runner",
+      "stage": "Cross-Asset Generalization",
+      "expected_range": ">= 0",
+      "cold_start_behaviour": "0 in cold-start. Takes longest to mature.",
+      "interpretation": "Measures core physics of the system. Higher is better."
+    },
+    "failure_similarity": {
+      "name": "Failure Similarity",
+      "definition": "Proportion of mechanism failures that are systemic (occur across >= 50% of assets).",
+      "formula": "Systemic Failures / Total Failures",
+      "source": "Benchmark Failure Matrix",
+      "stage": "Cross-Asset Generalization",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "Highly volatile. Requires failures to be observed on multiple assets.",
+      "interpretation": "Measures if assets share underlying failure modes."
+    },
+    "principle_similarity": {
+      "name": "Principle Similarity",
+      "definition": "Proportion of active principles that have been generalized across multiple assets.",
+      "formula": "Generalized Principles / Total Active Principles",
+      "source": "Benchmark Principles Cluster",
+      "stage": "Cross-Asset Generalization",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "0.0 in cold-start. Increases as common rules are abstracted.",
+      "interpretation": "Measures generalization power of the induction engine."
+    },
+    "world_model_similarity": {
+      "name": "World Model Similarity",
+      "definition": "The degree of overlap in constrained market regimes across asset world models.",
+      "formula": "Regimes Constrained in >= 2 Assets / Total Unique Constrained Regimes",
+      "source": "Benchmark World Model constraints",
+      "stage": "Cross-Asset Generalization",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "0.0 in cold-start, increases as common regime restrictions form.",
+      "interpretation": "Measures consistency of structural overrides."
+    },
+    "memory_behaviour": {
+      "name": "Memory Behaviour",
+      "definition": "Average lesson reuse rate across all evaluated assets.",
+      "formula": "Mean(Memory Reuse Rate across assets)",
+      "source": "Benchmark Assets Summary",
+      "stage": "Cross-Asset Generalization",
+      "expected_range": "[0.0, 1.0]",
+      "cold_start_behaviour": "Low, expected to grow as history database is populated.",
+      "interpretation": "Measures general memory behavior of the system."
+    },
+    "weighted_generalization_score": {
+      "name": "Weighted Generalization Score",
+      "definition": "Comprehensive generalization index combining failure, principle, world model, and memory similarity components.",
+      "formula": "0.3 * Failure Similarity + 0.3 * Principle Similarity + 0.2 * World Model Similarity + 0.2 * Memory Behaviour",
+      "source": "Benchmark Generalization Analysis",
+      "stage": "Cross-Asset Generalization",
+      "expected_range": "[0.0, 100.0]",
+      "cold_start_behaviour": "Low (under 10%) for cold-start runs. Increases with mature long replays.",
+      "interpretation": "Ultimate measure of cross-asset cognitive transfer. Higher is better."
+    }
+  }
+}

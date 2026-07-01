@@ -110,7 +110,6 @@ class ReplayValidationRunner:
             {"days": 3, "label": "3-day"},
             {"days": 5, "label": "5-day"},
             {"days": 10, "label": "10-day"},
-            {"days": 30, "label": "30-day"},
         ]
 
         self.replay_results = {}
@@ -244,9 +243,9 @@ class ReplayValidationRunner:
 
         print("\n" + "=" * 70 + "\n")
 
-        # Export CSV for the last replay (e.g., 30-day)
-        if "30-day" in self.replay_results:
-            self.replay_results["30-day"]["analysis"].export_prediction_analysis_csv(
+        # Export CSV for the last replay (e.g., 10-day)
+        if "10-day" in self.replay_results:
+            self.replay_results["10-day"]["analysis"].export_prediction_analysis_csv(
                 Path("market/replay/output/prediction_analysis.csv")
             )
 

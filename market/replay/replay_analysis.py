@@ -96,6 +96,16 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         components_failed: Union[list, None] = None,
         reused_lessons: Union[list, None] = None,
         lessons_retired: int = 0,
+        components_tested: Union[list, None] = None,
+        theory_id: Union[str, None] = None,
+        principles_consulted: Union[list, None] = None,
+        principles_accepted: Union[list, None] = None,
+        principles_rejected: Union[list, None] = None,
+        world_model_applied: bool = False,
+        confidence_delta: float = 0.0,
+        prediction_override_applied: bool = False,
+        novelty_decision: Union[str, None] = None,
+        novelty_score: float = 1.0,
     ):
         """Record cognition state for a day."""
         # v2.4 Persistence fallback
@@ -136,6 +146,16 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                 "components_failed": components_failed or [],
                 "reused_lessons": reused_lessons or [],
                 "lessons_retired": lessons_retired,
+                "components_tested": components_tested or [],
+                "theory_id": theory_id or "",
+                "principles_consulted": principles_consulted or [],
+                "principles_accepted": principles_accepted or [],
+                "principles_rejected": principles_rejected or [],
+                "world_model_applied": world_model_applied,
+                "confidence_delta": confidence_delta,
+                "prediction_override_applied": prediction_override_applied,
+                "novelty_decision": novelty_decision,
+                "novelty_score": novelty_score,
             }
         )
 
@@ -231,6 +251,8 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                     "components_failed": components_failed or [],
                     "reused_lessons": reused_lessons or [],
                     "lessons_retired": lessons_retired,
+                    "components_tested": components_tested or [],
+                    "theory_id": theory_id or "",
                 }
             )
 

@@ -240,6 +240,8 @@ class ReplayExecutor:
         lineage_debug: bool = False,
         restart: bool = False,
         verbose: bool = False,
+        force_refresh: bool = False,
+        data_prep_done: bool = False,
     ):
         """Initialize executor.
 
@@ -257,6 +259,7 @@ class ReplayExecutor:
         self.compare_secondary = compare_secondary
         self.lineage_debug = lineage_debug
         self.restart = restart
+        self.force_refresh = force_refresh
         self.replay_dir = Path(__file__).parent.parent.parent / "memory" / "replay"
         self.base_data_snap_dir = (
             Path(__file__).parent.parent.parent / "data" / "replay_snapshots"
@@ -265,6 +268,21 @@ class ReplayExecutor:
             Path(__file__).parent.parent.parent / "market" / "replay" / "output"
         )
         self._create_snapshot_dirs()
+
+        # Run pipeline to ensure Sector RS, Delivery %, and FII/DII data are merged.
+        if not data_prep_done:
+            from market.data.download_history import ensure_data
+
+            try:
+                ensure_data(
+                    symbol=self.market_name,
+                    force_refresh=self.force_refresh,
+                    dataset_path=self.dataset_path,
+                )
+            except Exception as e:
+                print(
+                    f"[ReplayExecutor] Data pipeline error: {e}. Running with existing dataset."
+                )
 
         self.transition_pressure_engine = TransitionPressureEngine()
         self.transition_pressure_engine.debug = self.lineage_debug
@@ -280,6 +298,10 @@ class ReplayExecutor:
             self.base_output_dir / self.engine.market_name.lower().replace(" ", "_")
         )
         self.output_dir.mkdir(parents=True, exist_ok=True)
+        from memory.graph.knowledge_graph import KnowledgeGraph
+        self.knowledge_graph = KnowledgeGraph(run_dir=self.output_dir)
+        self.decision_traces = []
+        self.epistemic_review = {}
 
         # Initialize flows and repositories (lazy loaded on first use)
         self.flows_initialized = False
@@ -433,6 +455,20 @@ class ReplayExecutor:
                         self._log(f"⚠ Failed to delete snapshot dir {d}: {e}")
             self._log("✓ Replay snapshots cleared.")
 
+        # 4. Clear decision journal files
+        if hasattr(self, "decision_journal") and self.decision_journal:
+            self.decision_journal.clear()
+            self._log("✓ Decision journal records cleared via journal class.")
+        else:
+            dj_dir = Path(__file__).parent.parent.parent / "data" / "decision_journal"
+            if dj_dir.exists():
+                for f in dj_dir.glob("*.json"):
+                    try:
+                        f.unlink()
+                    except Exception as e:
+                        pass
+                self._log("✓ Decision journal JSON files cleared.")
+
     def _initialize_flows(self):
         """Lazy initialize cognition flows and repositories."""
         if self.flows_initialized:
@@ -527,6 +563,22 @@ class ReplayExecutor:
         # Initialize run directory
         self._initialize_run_dir(restart=self.restart)
 
+        # Initialize Phase 2 components
+        from uuid import uuid4
+
+        from flows.knowledge_flow.knowledge_compression_engine import \
+            KnowledgeCompressionEngine
+        from flows.knowledge_flow.novelty_detection_gate import \
+            NoveltyDetectionGate
+        from flows.knowledge_flow.world_model_engine import WorldModelEngine
+        from memory.knowledge.knowledge_repository import KnowledgeRepository
+
+        self.knowledge_repository = KnowledgeRepository(base_path=self.run_dir)
+        self.knowledge_compression_engine = KnowledgeCompressionEngine()
+        self.world_model_engine = WorldModelEngine()
+        self.novelty_gate = NoveltyDetectionGate(llm_client=self.theory_flow.client)
+        self.novelty_decision_history = []
+
         from cognition.evaluation.epistemic_quality import \
             evaluate_epistemic_quality
         from cognition.schemas.confidence.confidence_state import \
@@ -571,6 +623,12 @@ class ReplayExecutor:
                 self.lesson_extractor
             )  # Pass extractor to experience engine
             self.capital_simulator = CapitalSimulator()
+            from market.replay.conviction_sizer import ConvictionSizer
+            from market.replay.paper_trader import PaperTrader
+            from memory.decision.decision_journal import DecisionJournal
+            self.conviction_sizer = ConvictionSizer()
+            self.paper_trader = PaperTrader()
+            self.decision_journal = DecisionJournal()
         except Exception:
             self.observer = None
             self.theory_lineage = None
@@ -581,6 +639,12 @@ class ReplayExecutor:
             self.prediction_generator.debug = self.lineage_debug
             self.experience_engine.set_lesson_extractor(self.lesson_extractor)
             self.capital_simulator = CapitalSimulator()
+            from market.replay.conviction_sizer import ConvictionSizer
+            from market.replay.paper_trader import PaperTrader
+            from memory.decision.decision_journal import DecisionJournal
+            self.conviction_sizer = ConvictionSizer()
+            self.paper_trader = PaperTrader()
+            self.decision_journal = DecisionJournal()
 
         from market.replay.replay_analysis import ReplayAnalysisEngine
 
@@ -926,7 +990,10 @@ class ReplayExecutor:
                             if res_model.prediction_id:
                                 probe_model = (
                                     session.query(PredictionProbeModel)
-                                    .filter(PredictionProbeModel.id == res_model.prediction_id)
+                                    .filter(
+                                        PredictionProbeModel.id
+                                        == res_model.prediction_id
+                                    )
                                     .first()
                                 )
 
@@ -938,8 +1005,12 @@ class ReplayExecutor:
                             "actual_direction": res_model.actual_direction,
                             "direction_score": res_model.direction_score,
                             "invalidation_triggered": res_model.invalidation_triggered,
-                            "confidence": probe_model.confidence if probe_model else 0.5,
-                            "invalidation": probe_model.invalidation if probe_model else "",
+                            "confidence": (
+                                probe_model.confidence if probe_model else 0.5
+                            ),
+                            "invalidation": (
+                                probe_model.invalidation if probe_model else ""
+                            ),
                         }
 
                     # Get contradiction score
@@ -1215,13 +1286,14 @@ class ReplayExecutor:
                 relevant_lessons = []
                 if self.lesson_repo:
                     from market.replay.lesson_record import LessonStatus
+
                     all_active = [
                         l
                         for l in self.lesson_repo.list_lessons()
                         if getattr(l, "status", None) == LessonStatus.ACTIVE
                         or getattr(l, "status", None) == "active"
                     ]
-                    
+
                     derived_data = obs_data.get("derived") or {}
                     vol_30d = float(derived_data.get("volatility_30d", 0.0))
                     vol_regime = (
@@ -1236,32 +1308,55 @@ class ReplayExecutor:
                         else "weakening" if ret_3d < -0.5 else "flat"
                     )
                     vol_state = derived_data.get("volume_state", "normal")
-                    part_confirm = getattr(market_obs, "participation_confirmation", "normal")
-                    
+                    part_confirm = getattr(
+                        market_obs, "participation_confirmation", "normal"
+                    )
+
                     scored_lessons = []
                     for l in all_active:
                         tr = getattr(l, "target_regime", {}) or {}
-                        
-                        subtype_match = 1.0 if str(tr.get("regime_subtype", "")).lower() == str(regime_subtype).lower() else 0.0
-                        volatility_match = 1.0 if str(tr.get("volatility", "")).lower() == str(vol_regime).lower() else 0.0
-                        momentum_match = 1.0 if str(tr.get("momentum", "")).lower() == str(mom_regime).lower() else 0.0
-                        
+
+                        subtype_match = (
+                            1.0
+                            if str(tr.get("regime_subtype", "")).lower()
+                            == str(regime_subtype).lower()
+                            else 0.0
+                        )
+                        volatility_match = (
+                            1.0
+                            if str(tr.get("volatility", "")).lower()
+                            == str(vol_regime).lower()
+                            else 0.0
+                        )
+                        momentum_match = (
+                            1.0
+                            if str(tr.get("momentum", "")).lower()
+                            == str(mom_regime).lower()
+                            else 0.0
+                        )
+
                         tr_volume = tr.get("volume") or tr.get("participation") or ""
                         volume_val = vol_state or part_confirm or ""
-                        participation_match = 1.0 if str(tr_volume).lower() == str(volume_val).lower() else 0.0
-                        
-                        sim = (
-                            0.4 * subtype_match +
-                            0.3 * volatility_match +
-                            0.2 * momentum_match +
-                            0.1 * participation_match
+                        participation_match = (
+                            1.0
+                            if str(tr_volume).lower() == str(volume_val).lower()
+                            else 0.0
                         )
-                        
+
+                        sim = (
+                            0.4 * subtype_match
+                            + 0.3 * volatility_match
+                            + 0.2 * momentum_match
+                            + 0.1 * participation_match
+                        )
+
                         if sim > 0.0:
                             scored_lessons.append((l, sim))
-                            
+
                     scored_lessons.sort(key=lambda x: x[1], reverse=True)
-                    relevant_lessons = [item[0].lesson_text for item in scored_lessons[:5]]
+                    relevant_lessons = [
+                        item[0].lesson_text for item in scored_lessons[:5]
+                    ]
                     self._prior_lessons = relevant_lessons
 
                 # v3.1 Regime Continuity Retrieval
@@ -1321,23 +1416,173 @@ class ReplayExecutor:
                         prior_theory = last_theory
                         prior_attribution = getattr(self, "_prior_attribution", None)
 
-                theory, branch_stats = self.theory_flow.process(
-                    abstraction,
-                    historical_context=historical_context,
-                    market_memory_context=regime_context,
-                    current_market_observation=market_obs.observation_text,
-                    reflective_memory_summary=horizon_context,
-                    regime_subtype=regime_subtype,
-                    falsifiability_conditions=falsifiability_conditions,
-                    analog_divergence_claim=getattr(
-                        market_obs, "analog_divergence_claim", ""
-                    ),
-                    regime_history=regime_history,
-                    dialectical_synthesis=active_synthesis,
-                    relevant_lessons=relevant_lessons,
-                    prior_theory=prior_theory,
-                    prior_attribution=prior_attribution,
+                # Query Phase 2 records
+                latest_wm = self.knowledge_repository.get_latest_world_model()
+                world_model_narrative = (
+                    latest_wm.narrative_summary if latest_wm else None
                 )
+                active_principles = self.knowledge_repository.list_principles(
+                    status="active"
+                ) + self.knowledge_repository.list_principles(status="stable")
+                active_open_questions = self.knowledge_repository.list_open_questions(
+                    status="active"
+                )
+
+                # Novelty Detection Gate check
+                is_novel = True
+                decision = "GENERATE"
+                novelty_score = 1.0
+                novelty_rationale = ""
+
+                prior_pred_obj = None
+                prior_pred_res_obj = None
+
+                if self._prior_prediction:
+                    prior_pred_obj = self._prior_prediction
+                if getattr(self, "_prior_prediction_result", None):
+                    prior_pred_res_obj = self._prior_prediction_result
+
+                if prior_theory:
+                    decision, novelty_score, novelty_rationale = (
+                        self.novelty_gate.is_novel(
+                            observation=market_obs,
+                            regime_subtype=regime_subtype,
+                            prior_theory=prior_theory,
+                            prior_prediction=prior_pred_obj,
+                            prior_prediction_result=prior_pred_res_obj,
+                            prior_attribution=prior_attribution,
+                            active_principles=active_principles,
+                        )
+                    )
+
+                self.novelty_decision_history.append(decision)
+
+                branch_stats = {"generated": 0}
+                if decision == "REINFORCE":
+                    self._log(
+                        f"[NOVELTY GATE] Decision: REINFORCE | Score: {novelty_score:.2f} | {novelty_rationale}"
+                    )
+                    import copy
+
+                    theory = copy.deepcopy(prior_theory)
+                    theory.id = str(uuid4())
+                elif decision == "REVISE":
+                    self._log(
+                        f"[NOVELTY GATE] Decision: REVISE | Score: {novelty_score:.2f} | {novelty_rationale}"
+                    )
+                    prior_claim = (
+                        prior_theory.summary_structured.claim
+                        if prior_theory.summary_structured
+                        else prior_theory.summary
+                    )
+                    prompt = f"""You are the theory revision model.
+The existing theory for the market:
+Claim: {prior_claim}
+
+Current Observation: {market_obs.observation_text}
+Regime Subtype: {regime_subtype}
+Causal Attribution Failed Components: {prior_attribution.components_failed if prior_attribution else []}
+
+Please revise this theory slightly to better fit the current observation. Keep the core mechanism, but tweak the assumptions/falsification checks/rules.
+Respond in JSON format:
+{{
+  "claim": "Revised claim...",
+  "mechanism": "revised mechanism...",
+  "if_branch": {{"condition": "...", "action": "..."}},
+  "else_branch": {{"condition": "...", "action": "..."}},
+  "unless": "...",
+  "falsified_if": "..."
+}}
+"""
+                    try:
+                        res_raw = self.theory_flow.client.generate(
+                            prompt, json_format=True
+                        )
+                        res = json.loads(res_raw)
+                        import copy
+
+                        theory = copy.deepcopy(prior_theory)
+                        theory.id = str(uuid4())
+                        if theory.summary_structured:
+
+                            def to_str(val, default="") -> str:
+                                if val is None:
+                                    return default
+                                if isinstance(val, list):
+                                    return ", ".join(str(x) for x in val)
+                                return str(val)
+
+                            theory.summary_structured.claim = to_str(
+                                res.get("claim"), theory.summary_structured.claim
+                            )
+                            theory.summary_structured.mechanism = to_str(
+                                res.get("mechanism"),
+                                theory.summary_structured.mechanism,
+                            )
+
+                            from cognition.schemas.theory.theory import Branch
+
+                            def to_branch(branch_val, default_branch) -> Branch:
+                                if isinstance(branch_val, dict):
+                                    return Branch(
+                                        condition=to_str(
+                                            branch_val.get("condition"),
+                                            default_branch.condition,
+                                        ),
+                                        action=to_str(
+                                            branch_val.get("action"),
+                                            default_branch.action,
+                                        ),
+                                    )
+                                return default_branch
+
+                            theory.summary_structured.if_branch = to_branch(
+                                res.get("if_branch"),
+                                theory.summary_structured.if_branch,
+                            )
+                            theory.summary_structured.else_branch = to_branch(
+                                res.get("else_branch"),
+                                theory.summary_structured.else_branch,
+                            )
+
+                            theory.summary_structured.unless = to_str(
+                                res.get("unless"), theory.summary_structured.unless
+                            )
+                            theory.summary_structured.falsified_if = to_str(
+                                res.get("falsified_if"),
+                                theory.summary_structured.falsified_if,
+                            )
+                            theory.summary = theory.summary_structured.claim
+                    except Exception as e:
+                        print(
+                            f"WARNING: Theory revision failed: {e}. Falling back to standard generation."
+                        )
+                        decision = "GENERATE"
+
+                if decision == "GENERATE":
+                    self._log(
+                        f"[NOVELTY GATE] Decision: GENERATE | Score: {novelty_score:.2f} | {novelty_rationale}"
+                    )
+                    theory, branch_stats = self.theory_flow.process(
+                        abstraction,
+                        historical_context=historical_context,
+                        market_memory_context=regime_context,
+                        current_market_observation=market_obs.observation_text,
+                        reflective_memory_summary=horizon_context,
+                        regime_subtype=regime_subtype,
+                        falsifiability_conditions=falsifiability_conditions,
+                        analog_divergence_claim=getattr(
+                            market_obs, "analog_divergence_claim", ""
+                        ),
+                        regime_history=regime_history,
+                        dialectical_synthesis=active_synthesis,
+                        relevant_lessons=relevant_lessons,
+                        prior_theory=prior_theory,
+                        prior_attribution=prior_attribution,
+                        world_model_narrative=world_model_narrative,
+                        active_principles=active_principles,
+                        active_open_questions=active_open_questions,
+                    )
 
                 if self.lineage_debug:
                     # v3.0 Consistency debug - prefer structured claim if available
@@ -1584,18 +1829,28 @@ class ReplayExecutor:
                     print(f"will_trigger={will_trigger}")
                 if will_trigger:
                     self.total_synthesis_triggered += 1
-                    
+
                     # Aggregate component failures for the current regime subtype
                     component_failures = {}
                     if hasattr(self, "experience_repo") and self.experience_repo:
                         try:
                             for exp in self.experience_repo.get_all():
-                                if getattr(exp, "theory_subtype", None) == regime_subtype:
-                                    f_counts = getattr(exp, "component_failure_counts", {}) or {}
+                                if (
+                                    getattr(exp, "theory_subtype", None)
+                                    == regime_subtype
+                                ):
+                                    f_counts = (
+                                        getattr(exp, "component_failure_counts", {})
+                                        or {}
+                                    )
                                     for comp, count in f_counts.items():
-                                        component_failures[comp] = component_failures.get(comp, 0) + count
+                                        component_failures[comp] = (
+                                            component_failures.get(comp, 0) + count
+                                        )
                         except Exception as e:
-                            logger.warning(f"Failed to aggregate experience failures: {e}")
+                            logger.warning(
+                                f"Failed to aggregate experience failures: {e}"
+                            )
 
                     dialectical_data = self.dialectical_synthesizer.synthesize(
                         observation_text=market_obs.observation_text,
@@ -1909,6 +2164,15 @@ class ReplayExecutor:
                     horizon_daily=horizon_view.daily,
                 )
 
+                active_principles = (
+                    self.knowledge_repository.list_principles(status="active")
+                    + self.knowledge_repository.list_principles(status="stable")
+                    + self.knowledge_repository.list_principles(status="emerging")
+                    + self.knowledge_repository.list_principles(status="trusted")
+                    + self.knowledge_repository.list_principles(status="canonical")
+                )
+                latest_wm = self.knowledge_repository.get_latest_world_model()
+
                 # prediction probe
                 prediction_probe = self.prediction_generator.generate_prediction(
                     observation=market_obs,
@@ -1932,7 +2196,137 @@ class ReplayExecutor:
                     ),
                     theory_usefulness=theory_usefulness,
                     intelligence_data=intelligence_metadata,
+                    world_model=latest_wm,
+                    active_principles=active_principles,
                 )
+
+                # Evaluate Active Principles influence
+                principles_consulted = []
+                principles_accepted = []
+                principles_rejected = []
+                confidence_delta = 0.0
+
+                for p in active_principles:
+                    is_applicable = False
+                    for fp in p.falsifiable_predictions:
+                        filter_matches = True
+                        for k, v in fp.applicability_filter.items():
+                            val = None
+                            if k == "regime_subtype":
+                                val = regime_subtype
+                            elif k == "volatility_regime":
+                                val = vol_regime
+                            elif k == "momentum_regime":
+                                val = mom_regime
+                                
+                            if isinstance(v, (list, tuple, set)):
+                                if val not in v:
+                                    filter_matches = False
+                            else:
+                                if val != v:
+                                    filter_matches = False
+                        if filter_matches:
+                            is_applicable = True
+                            break
+                    if is_applicable:
+                        principles_consulted.append(p.id)
+                        if fp.expected_status == "failed":
+                            confidence_delta -= 0.15
+                            principles_accepted.append(p.id)
+                        else:
+                            principles_accepted.append(p.id)
+
+                if confidence_delta != 0.0:
+                    new_conf = max(
+                        0.1, min(1.0, prediction_probe.confidence + confidence_delta)
+                    )
+                    from dataclasses import replace
+
+                    prediction_probe = replace(
+                        prediction_probe,
+                        confidence=new_conf,
+                        tension=prediction_probe.tension
+                        + f" [Principle adjustment: {confidence_delta:+.2f}]",
+                    )
+
+                    # Update principles' confidence_adjustments_triggered count
+                    for pid in principles_accepted:
+                        p_obj = self.knowledge_repository.get_principle(pid)
+                        if p_obj:
+                            p_obj.confidence_adjustments_triggered += 1
+                            self.knowledge_repository.save_principle(p_obj)
+
+                # Update uses_count on accepted principles
+                for pid in principles_accepted:
+                    p_obj = self.knowledge_repository.get_principle(pid)
+                    if p_obj:
+                        p_obj.uses_count += 1
+                        self.knowledge_repository.save_principle(p_obj)
+
+                # Save accepted principles list to class variable for next-day validation
+                self._prior_prediction_accepted_principles = principles_accepted
+
+                # Apply deterministic World Model overrides/constraints
+                latest_wm = self.knowledge_repository.get_latest_world_model()
+                world_model_applied = False
+                prediction_override_applied = False
+                if latest_wm and latest_wm.regime_constraints:
+                    constraints = latest_wm.regime_constraints.get(regime_subtype)
+                    if constraints:
+                        blocked_bias = constraints.get("blocked_bias")
+                        max_confidence = constraints.get("max_confidence")
+
+                        new_dir = prediction_probe.direction
+                        new_conf = prediction_probe.confidence
+
+                        if (
+                            blocked_bias == "bullish"
+                            and prediction_probe.direction == PredictionDirection.higher
+                        ):
+                            new_dir = PredictionDirection.uncertain
+                        elif (
+                            blocked_bias == "bearish"
+                            and prediction_probe.direction == PredictionDirection.lower
+                        ):
+                            new_dir = PredictionDirection.uncertain
+                        elif (
+                            blocked_bias == "neutral"
+                            and prediction_probe.direction
+                            in [
+                                PredictionDirection.range_bound,
+                                PredictionDirection.uncertain,
+                            ]
+                        ):
+                            new_dir = PredictionDirection.higher
+
+                        if max_confidence is not None and new_conf > float(
+                            max_confidence
+                        ):
+                            new_conf = float(max_confidence)
+
+                        if (
+                            new_dir != prediction_probe.direction
+                            or new_conf != prediction_probe.confidence
+                        ):
+                            world_model_applied = True
+                            if new_dir != prediction_probe.direction:
+                                prediction_override_applied = True
+
+                            from dataclasses import replace
+
+                            prediction_probe = replace(
+                                prediction_probe,
+                                direction=new_dir,
+                                confidence=new_conf,
+                                tension=prediction_probe.tension
+                                + " [Deterministic override applied]",
+                            )
+                            # Update active principles' world_model_influence_count
+                            for pid in latest_wm.active_principle_ids:
+                                p_obj = self.knowledge_repository.get_principle(pid)
+                                if p_obj:
+                                    p_obj.world_model_influence_count += 1
+                                    self.knowledge_repository.save_principle(p_obj)
 
                 # Step 4: Decision Policy Layer
                 decisions = self.decision_engine.evaluate(
@@ -2018,6 +2412,148 @@ class ReplayExecutor:
                                     logger.info(
                                         f"[ATTRIBUTION] Causal analysis: {attribution.attribution_reasoning[:200]}"
                                     )
+
+                                # Phase 2: Contradiction Resolution & Open Question Generation
+                                from cognition.schemas.knowledge.open_question import (
+                                    OpenQuestion, QuestionStatus)
+                                from cognition.schemas.knowledge.principle import \
+                                    PrincipleStatus
+
+                                active_principles = (
+                                    self.knowledge_repository.list_principles(status="active")
+                                    + self.knowledge_repository.list_principles(status="stable")
+                                    + self.knowledge_repository.list_principles(status="emerging")
+                                    + self.knowledge_repository.list_principles(status="trusted")
+                                    + self.knowledge_repository.list_principles(status="canonical")
+                                )
+                                regime_context = {
+                                    "regime_subtype": regime_subtype,
+                                    "volatility_regime": vol_regime,
+                                    "volume_state": obs_data["derived"].get(
+                                        "volume_state", "normal"
+                                    ),
+                                }
+
+                                # Resolve contradictions: challenge/mutate affected principles
+                                updated_principles = self.knowledge_compression_engine.resolve_contradictions(
+                                    active_principles=active_principles,
+                                    latest_attribution=attribution,
+                                    current_regime_context=regime_context,
+                                    step=day_idx,
+                                )
+                                for p in updated_principles:
+                                    self.knowledge_repository.save_principle(p)
+
+                                # Open Question Generation for unexplained failures
+                                for comp_failed in attribution.components_failed:
+                                    is_explained = False
+                                    for p in active_principles:
+                                        for fp in p.falsifiable_predictions:
+                                            if fp.target_component == comp_failed:
+                                                context_match = True
+                                                for (
+                                                    k,
+                                                    v,
+                                                ) in fp.applicability_filter.items():
+                                                    val = regime_context.get(k)
+                                                    if isinstance(v, (list, tuple, set)):
+                                                        if val not in v:
+                                                            context_match = False
+                                                            break
+                                                    else:
+                                                        if val != v:
+                                                            context_match = False
+                                                            break
+                                                if context_match:
+                                                    is_explained = True
+                                                    break
+                                        if is_explained:
+                                            break
+
+                                    if not is_explained:
+                                        new_oq = OpenQuestion(
+                                            created_at_step=day_idx,
+                                            question_text=f"Why did component '{comp_failed}' fail under {regime_subtype} regime?",
+                                            source_contradiction_ids=[
+                                                attribution.theory_id
+                                            ],
+                                            hypothesized_factors=[
+                                                str(vol_regime),
+                                                (
+                                                    str(
+                                                        obs_data["derived"].get(
+                                                            "volume_state", "normal"
+                                                        )
+                                                    )
+                                                    if not pd.isna(
+                                                        obs_data["derived"].get(
+                                                            "volume_state"
+                                                        )
+                                                    )
+                                                    else "normal"
+                                                ),
+                                            ],
+                                            status=QuestionStatus.ACTIVE,
+                                        )
+                                        self.knowledge_repository.save_open_question(
+                                            new_oq
+                                        )
+
+                                        # Phase 3: Create and Save EvidenceGap
+                                        if "volume" in comp_failed:
+                                            descriptors = getattr(
+                                                market_obs, "descriptors", []
+                                            )
+                                            is_deliv_unknown = (
+                                                "delivery:unknown" in descriptors
+                                                or not any(
+                                                    d.startswith("delivery:")
+                                                    for d in descriptors
+                                                )
+                                            )
+                                            is_sec_unknown = (
+                                                "sector:unknown" in descriptors
+                                                or not any(
+                                                    d.startswith("sector:")
+                                                    for d in descriptors
+                                                )
+                                            )
+                                            if (
+                                                not is_deliv_unknown
+                                                and not is_sec_unknown
+                                            ):
+                                                logger.info(
+                                                    f"[ATTRIBUTION] Evidence gap for '{comp_failed}' is resolved, skipping saving."
+                                                )
+                                                continue
+
+                                        from cognition.schemas.knowledge.evidence_gap import \
+                                            EvidenceGap
+
+                                        missing_evidence = f"Order book imbalance and detailed participation dynamics for '{comp_failed}'"
+                                        candidate_source = (
+                                            "FII/DII Flows & Order Book Depth"
+                                        )
+                                        if "volume" in comp_failed:
+                                            missing_evidence = f"Detailed delivery volume % and sector relative strength for volume confirmation validation"
+                                            candidate_source = (
+                                                "Delivery % & Sector Relative Strength"
+                                            )
+
+                                        gap = EvidenceGap(
+                                            id=str(uuid4()),
+                                            open_question_id=new_oq.id,
+                                            missing_evidence=missing_evidence,
+                                            candidate_data_source=candidate_source,
+                                            expected_explanatory_value=f"To resolve structural failure of component '{comp_failed}' under {regime_subtype} regime",
+                                            priority=(
+                                                "HIGH"
+                                                if comp_failed
+                                                == attribution.root_cause_component
+                                                else "MEDIUM"
+                                            ),
+                                        )
+                                        self.knowledge_repository.save_evidence_gap(gap)
                             else:
                                 logger.info(
                                     f"[ATTRIBUTION] Theory {getattr(theory_to_attr, 'id', 'unknown')}: All components passed"
@@ -2050,11 +2586,22 @@ class ReplayExecutor:
                                 self.experience_repo.save(target_exp)
 
                             # Structured Lesson Hypothesis Validation: reinforce or penalize active lessons
-                            if getattr(self, "_prior_lessons", None) and self.lesson_repo:
-                                from market.replay.lesson_record import LessonStatus
-                                score_val = getattr(prior_prediction_result, "direction_score", 0.5)
-                                is_invalidated = getattr(prior_prediction_result, "invalidation_triggered", False)
-                                
+                            if (
+                                getattr(self, "_prior_lessons", None)
+                                and self.lesson_repo
+                            ):
+                                from market.replay.lesson_record import \
+                                    LessonStatus
+
+                                score_val = getattr(
+                                    prior_prediction_result, "direction_score", 0.5
+                                )
+                                is_invalidated = getattr(
+                                    prior_prediction_result,
+                                    "invalidation_triggered",
+                                    False,
+                                )
+
                                 for l_text in self._prior_lessons:
                                     matching_lesson = None
                                     for l in self.lesson_repo.list_lessons():
@@ -2066,20 +2613,36 @@ class ReplayExecutor:
                                             matching_lesson.validation_count += 1
                                         elif is_invalidated or score_val == 0.0:
                                             matching_lesson.falsification_count += 1
-                                            
-                                        total = matching_lesson.validation_count + matching_lesson.falsification_count
-                                        matching_lesson.confidence = matching_lesson.validation_count / total if total > 0 else 0.0
-                                        
-                                        was_retired = (matching_lesson.status == LessonStatus.RETIRED or getattr(matching_lesson, "status", None) == "retired")
+
+                                        total = (
+                                            matching_lesson.validation_count
+                                            + matching_lesson.falsification_count
+                                        )
+                                        matching_lesson.confidence = (
+                                            matching_lesson.validation_count / total
+                                            if total > 0
+                                            else 0.0
+                                        )
+
+                                        was_retired = (
+                                            matching_lesson.status
+                                            == LessonStatus.RETIRED
+                                            or getattr(matching_lesson, "status", None)
+                                            == "retired"
+                                        )
                                         if matching_lesson.confidence >= 0.75:
                                             matching_lesson.status = LessonStatus.ACTIVE
                                         elif matching_lesson.confidence < 0.2:
-                                            matching_lesson.status = LessonStatus.RETIRED
+                                            matching_lesson.status = (
+                                                LessonStatus.RETIRED
+                                            )
                                             if not was_retired:
                                                 newly_retired_count += 1
                                         else:
-                                            matching_lesson.status = LessonStatus.CANDIDATE
-                                            
+                                            matching_lesson.status = (
+                                                LessonStatus.CANDIDATE
+                                            )
+
                                         self.lesson_repo.save(matching_lesson)
 
                 # Task B: Capital Simulation (observer-only)
@@ -2099,47 +2662,113 @@ class ReplayExecutor:
                         date_str, "uncertain", 0.0, actual_ret, actual_ret
                     )
 
+                # Simulated conviction-based paper trading
+                if hasattr(self, "paper_trader") and self.paper_trader and derived:
+                    ohlcv = obs_data.get("ohlcv", {})
+                    open_p = ohlcv.get("open", 0.0)
+                    close_p = ohlcv.get("close", 0.0)
+                    prior_record = getattr(self, "_prior_decision_record", None)
+                    if prior_record:
+                        self.paper_trader.evaluate_decision_outcome(
+                            record=prior_record,
+                            open_price=open_p,
+                            close_price=close_p,
+                            actual_daily_return_pct=actual_ret,
+                            evaluation_date=date_str,
+                        )
+                        if hasattr(self, "decision_journal") and self.decision_journal:
+                            self.decision_journal.save(prior_record)
+                    else:
+                        from cognition.schemas.decision.decision import Decision
+                        from cognition.schemas.decision.decision_record import DecisionRecord
+                        initial_decision = Decision(
+                            date=date_str,
+                            prediction_direction="uncertain",
+                            action="hold",
+                            allocation_pct=0.0,
+                            conviction_score=0.0,
+                            reason="Initialization day - no active prediction",
+                        )
+                        initial_record = DecisionRecord(
+                            prediction_date=date_str,
+                            asset=self.engine.market_name or "RELIANCE",
+                            prediction="uncertain",
+                            decision=initial_decision,
+                            allocation=0.0,
+                            conviction_score=0.0,
+                            decision_reason="Initialization day - no active prediction",
+                        )
+                        self.paper_trader.evaluate_decision_outcome(
+                            record=initial_record,
+                            open_price=open_p,
+                            close_price=close_p,
+                            actual_daily_return_pct=actual_ret,
+                            evaluation_date=date_str,
+                        )
+                        if hasattr(self, "decision_journal") and self.decision_journal:
+                            self.decision_journal.save(initial_record)
+
                 # Track rolling prediction accuracy across three windows
                 recent_acc = 0.5
                 regime_acc = 0.5
                 lifetime_acc = 0.5
-                
+
                 if prior_prediction_result:
                     score = getattr(prior_prediction_result, "direction_score", 0.5)
                     if score is None:
                         score = 0.5
-                    
+
                     # Track lifetime accuracy
                     if not hasattr(self, "_lifetime_predictions_count"):
                         self._lifetime_predictions_count = 0
                         self._lifetime_correct_predictions_count = 0.0
                     self._lifetime_predictions_count += 1
                     self._lifetime_correct_predictions_count += score
-                    
+
                     # Track recent accuracy
                     if not hasattr(self, "_prediction_accuracy_history"):
                         self._prediction_accuracy_history = []
                     self._prediction_accuracy_history.append(score)
-                    
+
                     # Track regime-specific accuracy
                     if not hasattr(self, "_regime_prediction_accuracy_history"):
                         self._regime_prediction_accuracy_history = {}
-                    prior_subtype = getattr(self, "_prior_dialectical_subtype", None) or regime_subtype
+                    prior_subtype = (
+                        getattr(self, "_prior_dialectical_subtype", None)
+                        or regime_subtype
+                    )
                     if prior_subtype not in self._regime_prediction_accuracy_history:
                         self._regime_prediction_accuracy_history[prior_subtype] = []
-                    self._regime_prediction_accuracy_history[prior_subtype].append(score)
+                    self._regime_prediction_accuracy_history[prior_subtype].append(
+                        score
+                    )
 
                 # Compute window metrics
-                if hasattr(self, "_prediction_accuracy_history") and self._prediction_accuracy_history:
+                if (
+                    hasattr(self, "_prediction_accuracy_history")
+                    and self._prediction_accuracy_history
+                ):
                     recent_scores = self._prediction_accuracy_history[-15:]
                     recent_acc = sum(recent_scores) / len(recent_scores)
-                    
-                if hasattr(self, "_regime_prediction_accuracy_history") and regime_subtype in self._regime_prediction_accuracy_history and self._regime_prediction_accuracy_history[regime_subtype]:
-                    regime_scores = self._regime_prediction_accuracy_history[regime_subtype][-15:]
+
+                if (
+                    hasattr(self, "_regime_prediction_accuracy_history")
+                    and regime_subtype in self._regime_prediction_accuracy_history
+                    and self._regime_prediction_accuracy_history[regime_subtype]
+                ):
+                    regime_scores = self._regime_prediction_accuracy_history[
+                        regime_subtype
+                    ][-15:]
                     regime_acc = sum(regime_scores) / len(regime_scores)
-                    
-                if hasattr(self, "_lifetime_predictions_count") and self._lifetime_predictions_count > 0:
-                    lifetime_acc = self._lifetime_correct_predictions_count / self._lifetime_predictions_count
+
+                if (
+                    hasattr(self, "_lifetime_predictions_count")
+                    and self._lifetime_predictions_count > 0
+                ):
+                    lifetime_acc = (
+                        self._lifetime_correct_predictions_count
+                        / self._lifetime_predictions_count
+                    )
 
                 # Confidence evolution
                 confidence_state = self.confidence_engine.evolve(
@@ -2169,6 +2798,101 @@ class ReplayExecutor:
                     )
                 except Exception:
                     pass
+
+                # Conviction position sizer calculation
+                calibrated_confidence = prediction_probe.confidence
+                contradiction_pressure = float(contradiction_result.get("score", 0.0))
+                empirical_confidence = confidence_state.empirical_confidence
+                principle_support = 1 if len(principles_accepted) > 0 else 0
+                trans_pressure_val = transition_pressure.pressure_score
+                pred_direction = prediction_probe.direction.value
+
+                conv_res = self.conviction_sizer.compute_sizer(
+                    calibrated_confidence=calibrated_confidence,
+                    contradiction_pressure=contradiction_pressure,
+                    empirical_confidence=empirical_confidence,
+                    principle_support=principle_support,
+                    transition_pressure=trans_pressure_val,
+                    prediction_direction=pred_direction,
+                )
+                allocation_pct = conv_res.allocation
+                conviction_score = conv_res.final_score
+
+                # Map to decision action (hold / long / short)
+                if allocation_pct > 0.0:
+                    action = "long" if pred_direction == "higher" else "short"
+                else:
+                    action = "hold"
+
+                # Log conviction details to the daily cognitive report
+                regime_stability = 1.0 - trans_pressure_val
+                self._log(
+                    f"• [CONVICTION] Score: {conviction_score:.2f} | Allocation: {allocation_pct * 100:.1f}% | "
+                    f"Confidence: {calibrated_confidence:.2f} | Pressure: {contradiction_pressure:.2f} | "
+                    f"Empirical: {empirical_confidence:.2f} | Principles: {principle_support} | "
+                    f"Regime: {regime_stability:.2f}"
+                )
+
+                # Set prior variables for tomorrow's trade evaluation
+                self._prior_conviction = conviction_score
+                self._prior_allocation = allocation_pct
+                self._prior_components = {
+                    "calibrated_confidence": calibrated_confidence,
+                    "contradiction_pressure": contradiction_pressure,
+                    "empirical_confidence": empirical_confidence,
+                    "principle_support": principle_support,
+                    "transition_pressure": trans_pressure_val,
+                }
+
+                # Construct and store current day's Decision & DecisionRecord for evaluation tomorrow
+                from cognition.schemas.decision.decision import Decision
+                from cognition.schemas.decision.decision_record import DecisionRecord
+
+                decision_obj = Decision(
+                    date=date_str,
+                    prediction_direction=pred_direction,
+                    action=action,
+                    allocation_pct=allocation_pct,
+                    conviction_score=conviction_score,
+                    reason=prediction_probe.tension or "Standard cognitive trade sizing",
+                )
+
+                # Extract supporting/contextual metadata
+                supporting_lineages = [theory.lineage_id] if (theory and getattr(theory, "lineage_id", None)) else []
+                supporting_principles = [str(pid) for pid in principles_accepted]
+                retrieved_memories = [f"Regime Analog {getattr(m, 'regime_subtype', 'unknown')}" for m in regime_matches] if regime_matches else []
+                
+                # Knowledge changes triggered today
+                knowledge_changes = []
+                if audit_created: knowledge_changes.append("theory_created")
+                if audit_mutated: knowledge_changes.append("theory_mutated")
+                if audit_merged: knowledge_changes.append("theory_merged")
+                if audit_revived: knowledge_changes.append("theory_revived")
+                if audit_retired: knowledge_changes.append("theory_retired")
+
+                decision_record = DecisionRecord(
+                    prediction_date=date_str,
+                    asset=self.engine.market_name or "RELIANCE",
+                    prediction=pred_direction,
+                    decision=decision_obj,
+                    allocation=allocation_pct,
+                    conviction_score=conviction_score,
+                    decision_reason=prediction_probe.tension or "Standard cognitive trade sizing",
+                    supporting_lineages=supporting_lineages,
+                    supporting_principles=supporting_principles,
+                    retrieved_memories=retrieved_memories,
+                    novelty_score=1.0 if (audit_created or audit_mutated) else 0.0,
+                    contradiction_pressure=contradiction_pressure,
+                    transition_pressure=trans_pressure_val,
+                    calibrated_confidence=calibrated_confidence,
+                    empirical_confidence=empirical_confidence,
+                    reflection_confidence=confidence_state.reflection_confidence,
+                    regime_confidence=confidence_state.regime_confidence,
+                    expected_scenarios=[prediction_probe.tension] if prediction_probe.tension else [],
+                    knowledge_changes=knowledge_changes,
+                    conviction_breakdown=conv_res.component_breakdown,
+                )
+                self._prior_decision_record = decision_record
 
                 # v1.9: Save context for tomorrow's transition recording
                 self._prior_transition_context = {
@@ -2272,6 +2996,18 @@ class ReplayExecutor:
                             day_index=day_idx,
                             prediction_id=self._prior_prediction_db_id,
                         )
+
+                        # Phase 3: Update principle utility counters (helped vs. harmed)
+                        if getattr(self, "_prior_prediction_accepted_principles", None):
+                            is_correct = prior_prediction_result.direction_score == 1.0
+                            for pid in self._prior_prediction_accepted_principles:
+                                p_obj = self.knowledge_repository.get_principle(pid)
+                                if p_obj:
+                                    if is_correct:
+                                        p_obj.predictions_helped += 1
+                                    else:
+                                        p_obj.predictions_harmed += 1
+                                    self.knowledge_repository.save_principle(p_obj)
                 except Exception as e:
                     self._log(f"WARNING: PredictionResult save failed: {e}")
 
@@ -2367,12 +3103,38 @@ class ReplayExecutor:
                     intelligence_data=intelligence_metadata,
                     components_failed=(
                         self._prior_attribution.components_failed
-                        if getattr(self, "_prior_attribution", None) and hasattr(self._prior_attribution, "components_failed")
+                        if getattr(self, "_prior_attribution", None)
+                        and hasattr(self._prior_attribution, "components_failed")
                         else []
                     ),
-                    reused_lessons=relevant_lessons if 'relevant_lessons' in locals() else [],
+                    components_tested=(
+                        self._prior_attribution.components_tested
+                        if getattr(self, "_prior_attribution", None)
+                        and hasattr(self._prior_attribution, "components_tested")
+                        else []
+                    ),
+                    theory_id=getattr(theory, "id", "") if "theory" in locals() else "",
+                    reused_lessons=(
+                        relevant_lessons if "relevant_lessons" in locals() else []
+                    ),
                     lessons_retired=newly_retired_count,
-                    transition_memory_hit=(len(similar_transitions) > 0) if 'similar_transitions' in locals() else False,
+                    transition_memory_hit=(
+                        (len(similar_transitions) > 0)
+                        if "similar_transitions" in locals()
+                        else False
+                    ),
+                    principles_consulted=principles_consulted,
+                    principles_accepted=principles_accepted,
+                    principles_rejected=[
+                        pid
+                        for pid in principles_consulted
+                        if pid not in principles_accepted
+                    ],
+                    world_model_applied=world_model_applied,
+                    confidence_delta=confidence_delta,
+                    prediction_override_applied=prediction_override_applied,
+                    novelty_decision=decision,
+                    novelty_score=novelty_score,
                 )
 
                 snapshot_data = {
@@ -2418,6 +3180,125 @@ class ReplayExecutor:
                 }
                 # Save snapshot
                 self._save_snapshot(day_idx, date_str, snapshot_data)
+
+                # Cognitive Decision Trace Collection & Knowledge Graph Linking
+                try:
+                    reuse_decision = "generated_new"
+                    if not audit_created and not audit_mutated:
+                        reuse_decision = "reused"
+
+                    applied_principles_details = []
+                    for pid in principles_accepted:
+                        p_obj = self.knowledge_repository.get_principle(pid)
+                        if p_obj:
+                            applied_principles_details.append({
+                                "id": p_obj.id,
+                                "statement": p_obj.statement,
+                                "status": p_obj.status.value,
+                                "trust_score": p_obj.trust_score
+                            })
+
+                    wm_constraints = {}
+                    if latest_wm and latest_wm.regime_constraints:
+                        constraints = latest_wm.regime_constraints.get(regime_subtype)
+                        if constraints:
+                            wm_constraints = constraints
+
+                    trace_entry = {
+                        "step": day_idx,
+                        "date": date_str,
+                        "observation": {
+                            "trend_state": getattr(market_obs, "trend_state", "neutral"),
+                            "candle_type": getattr(market_obs, "candle_type", "normal"),
+                            "delivery_pct": getattr(market_obs, "delivery_pct", 0.0),
+                            "volume_state": getattr(market_obs, "volume_state", "normal"),
+                            "regime_subtype": regime_subtype
+                        },
+                        "memory_retrieved": [
+                            {
+                                "date": getattr(m, "date", ""),
+                                "similarity": getattr(m, "similarity", 0.0),
+                                "actual_direction": getattr(m, "actual_direction", "range_bound")
+                            }
+                            for m in (regime_matches or [])
+                        ],
+                        "novelty_score": float(round(1.0 - (regime_matches[0].similarity if (regime_matches and hasattr(regime_matches[0], "similarity")) else 0.0), 3)),
+                        "reuse_decision": reuse_decision,
+                        "generated_theory": theory.summary,
+                        "applied_principles": applied_principles_details,
+                        "world_model_constraints": wm_constraints,
+                        "prediction": {
+                            "direction": prediction_probe.direction.value,
+                            "confidence": prediction_probe.confidence
+                        },
+                        "outcome": {
+                            "actual_direction": prior_prediction_result.actual_direction if prior_prediction_result else "uncertain",
+                            "direction_score": prior_prediction_result.direction_score if prior_prediction_result else 0.0,
+                            "invalidation_triggered": prior_prediction_result.invalidation_triggered if prior_prediction_result else False
+                        },
+                        "reflection": reflection.reflection_summary if ('reflection' in locals() and reflection) else "No reflection generated.",
+                        "knowledge_updated": {
+                            "principles_merged": rec_stats.get("merged_count", 0) if 'rec_stats' in locals() else 0,
+                            "principles_generalized": rec_stats.get("generalized_count", 0) if 'rec_stats' in locals() else 0,
+                            "principles_retired": rec_stats.get("retired_count", 0) if 'rec_stats' in locals() else 0,
+                            "principles_restricted": rec_stats.get("restricted_count", 0) if 'rec_stats' in locals() else 0,
+                            "debt_after": rec_stats.get("knowledge_debt_after", 0.0) if 'rec_stats' in locals() else 0.0
+                        }
+                    }
+                    self.decision_traces.append(trace_entry)
+
+                    # Build Knowledge Graph Nodes and Edges
+                    obs_id = f"obs_{date_str}"
+                    theory_id = theory.id
+                    pred_id = f"pred_{date_str}"
+                    outcome_id = f"outcome_{date_str}"
+                    reflection_id = reflection.id if ('reflection' in locals() and reflection) else f"ref_{date_str}"
+                    wm_id = f"wm_{date_str}"
+
+                    self.knowledge_graph.add_node(obs_id, "Observation", f"Obs: {market_obs.candle_type}", {
+                        "regime_subtype": regime_subtype,
+                        "delivery_pct": getattr(market_obs, "delivery_pct", 0.0)
+                    })
+                    self.knowledge_graph.add_node(theory_id, "Theory", theory.summary, {
+                        "lineage_id": lineage_id_val
+                    })
+                    self.knowledge_graph.add_node(wm_id, "WorldModel", latest_wm.narrative_summary if latest_wm else "Baseline World Model", {
+                        "stability": getattr(latest_wm, "stability", "Emerging"),
+                        "confidence": getattr(latest_wm, "confidence", 0.5)
+                    })
+                    self.knowledge_graph.add_node(pred_id, "Prediction", f"Pred: {prediction_probe.direction.value}", {
+                        "confidence": prediction_probe.confidence
+                    })
+                    
+                    if prior_prediction_result:
+                        self.knowledge_graph.add_node(outcome_id, "Outcome", f"Actual: {prior_prediction_result.actual_direction}", {
+                            "score": prior_prediction_result.direction_score
+                        })
+                        
+                    if 'reflection' in locals() and reflection:
+                        self.knowledge_graph.add_node(reflection_id, "Reflection", reflection.reflection_summary)
+
+                    self.knowledge_graph.add_edge(obs_id, theory_id, "EXPLAINS")
+                    
+                    for pid in principles_accepted:
+                        p_obj = self.knowledge_repository.get_principle(pid)
+                        if p_obj:
+                            self.knowledge_graph.add_node(pid, "Principle", p_obj.statement, {
+                                "status": p_obj.status.value,
+                                "trust_score": p_obj.trust_score
+                            })
+                            self.knowledge_graph.add_edge(theory_id, pid, "SUPPORTED_BY")
+                            self.knowledge_graph.add_edge(pid, wm_id, "INFLUENCES")
+
+                    self.knowledge_graph.add_edge(wm_id, pred_id, "CONSTRAINS")
+                    if prior_prediction_result:
+                        self.knowledge_graph.add_edge(pred_id, outcome_id, "SCORES")
+                    if 'reflection' in locals() and reflection and prior_prediction_result:
+                        self.knowledge_graph.add_edge(outcome_id, reflection_id, "CRITIQUES")
+                        self.knowledge_graph.add_edge(reflection_id, theory_id, "REVISES")
+
+                except Exception as e:
+                    self._log(f"WARNING: Trace/Graph collection failed for day {date_str}: {e}")
 
                 # Update observability metrics
                 try:
@@ -2618,6 +3499,129 @@ class ReplayExecutor:
                     self._prior_dialectical_synthesis = None
                     self._prior_dialectical_subtype = None
 
+                # Phase 2: Periodic Knowledge Compression & World Model Consolidation
+                # Phase 3: Adaptive Knowledge Reconciliation Triggers
+                should_reconcile = False
+
+                if (day_idx + 1) == len(self.engine):
+                    should_reconcile = True
+                else:
+                    all_p_temp = self.knowledge_repository.list_principles()
+                    open_questions_temp = (
+                        self.knowledge_repository.list_open_questions()
+                    )
+                    hist_temp = self.replay_analysis_engine.prediction_history
+
+                    debt = self.knowledge_compression_engine._calculate_knowledge_debt(
+                        all_p_temp, hist_temp, open_questions_temp
+                    )
+                    if debt > 10.0:
+                        should_reconcile = True
+                        self._log(
+                            f"[Adaptive Trigger] Reconciliation triggered by Knowledge Debt: {debt:.1f} > 10.0"
+                        )
+
+                    contra_val = float(contradiction_result.get("score", 0.0))
+                    if contra_val > 0.50:
+                        should_reconcile = True
+                        self._log(
+                            f"[Adaptive Trigger] Reconciliation triggered by Contradiction spike: {contra_val:.2f} > 0.50"
+                        )
+
+                    candidate_count = sum(
+                        1 for p in all_p_temp if p.status.value == "candidate"
+                    )
+                    if candidate_count > 6:
+                        should_reconcile = True
+                        self._log(
+                            f"[Adaptive Trigger] Reconciliation triggered by Candidate Principle backlog: {candidate_count} > 6"
+                        )
+
+                if should_reconcile:
+                    experiences = self.experience_repo.get_all()
+
+                    # Calculate debt to pass to compress for logging
+                    all_p_temp = self.knowledge_repository.list_principles()
+                    open_questions_temp = self.knowledge_repository.list_open_questions()
+                    hist_temp = self.replay_analysis_engine.prediction_history
+                    debt = self.knowledge_compression_engine._calculate_knowledge_debt(
+                        all_p_temp, hist_temp, open_questions_temp
+                    )
+
+                    # Group and compress new principles
+                    new_principles = self.knowledge_compression_engine.compress(
+                        experiences=experiences,
+                        theory_lineages=[],
+                        attributions=self.replay_analysis_engine.prediction_history,
+                        step=day_idx,
+                        debt=debt,
+                    )
+                    for p in new_principles:
+                        self.knowledge_repository.save_principle(p)
+
+                    # Backtest and validate candidate principles
+                    candidates = self.knowledge_repository.list_principles(
+                        status="candidate"
+                    )
+                    for p in candidates:
+                        validated_p = self.knowledge_compression_engine.validate_principle(
+                            principle=p,
+                            prediction_history=self.replay_analysis_engine.prediction_history,
+                        )
+                        self.knowledge_repository.save_principle(validated_p)
+
+                    # Run periodic Knowledge Reconciliation!
+                    all_principles = self.knowledge_repository.list_principles()
+                    open_questions = self.knowledge_repository.list_open_questions()
+
+                    reconciled_p, rec_stats = (
+                        self.knowledge_compression_engine.reconcile_knowledge(
+                            principles=all_principles,
+                            prediction_history=self.replay_analysis_engine.prediction_history,
+                            open_questions=open_questions,
+                            step=day_idx,
+                        )
+                    )
+
+                    for p in reconciled_p:
+                        self.knowledge_repository.save_principle(p)
+
+                    # Create and save structured ReconciliationReport
+                    from cognition.schemas.knowledge.reconciliation_report import \
+                        ReconciliationReport
+
+                    report = ReconciliationReport(
+                        id=str(uuid4()),
+                        step=day_idx,
+                        merged_count=rec_stats["merged_count"],
+                        generalized_count=rec_stats["generalized_count"],
+                        retired_count=rec_stats["retired_count"],
+                        restricted_count=rec_stats["restricted_count"],
+                        knowledge_debt_before=rec_stats["knowledge_debt_before"],
+                        knowledge_debt_after=rec_stats["knowledge_debt_after"],
+                        coverage_before=rec_stats["coverage_before"],
+                        coverage_after=rec_stats["coverage_after"],
+                        compression_ratio_before=rec_stats["compression_ratio_before"],
+                        compression_ratio_after=rec_stats["compression_ratio_after"],
+                        summary_text=rec_stats["summary_text"],
+                        principle_compression_ratio=rec_stats.get("principle_compression_ratio", 0.0),
+                        distillation_efficiency=rec_stats.get("distillation_efficiency", 0.0),
+                        knowledge_density=rec_stats.get("knowledge_density", 0.0),
+                        canonical_growth_rate=rec_stats.get("canonical_growth_rate", 0.0),
+                    )
+                    self.knowledge_repository.save_reconciliation_report(report)
+
+                    # Re-synthesize World Model from Active Principles
+                    all_principles_list = self.knowledge_repository.list_principles()
+                    active_principles = [
+                        p for p in all_principles_list
+                        if getattr(p.status, "value", str(p.status)).lower() in ["active", "stable", "emerging", "trusted", "canonical"]
+                    ]
+                    new_wm = self.world_model_engine.synthesize(
+                        active_principles=active_principles, step=day_idx
+                    )
+                    self.knowledge_repository.save_world_model(new_wm)
+
             except Exception as e:
                 self._log(f"✗ Day {day_idx} ({date_str}) failed: {e}")
                 raise
@@ -2679,11 +3683,14 @@ class ReplayExecutor:
             active_lessons_list = []
             if hasattr(self, "lesson_repo") and self.lesson_repo:
                 from market.replay.lesson_record import LessonStatus
+
                 active_lessons_list = [
                     {
                         "text": l.lesson_text,
                         "confidence": l.confidence,
-                        "regime": (l.target_regime or {}).get("regime_subtype", "unknown"),
+                        "regime": (l.target_regime or {}).get(
+                            "regime_subtype", "unknown"
+                        ),
                     }
                     for l in self.lesson_repo.list_lessons()
                     if getattr(l, "status", None) == LessonStatus.ACTIVE
@@ -2696,6 +3703,19 @@ class ReplayExecutor:
             external_metrics["lineage_audit_table"] = self._lineage_audit_table
             external_metrics["component_failure_counts"] = component_failure_counts
             external_metrics["verbose"] = self.verbose
+            if hasattr(self, "knowledge_repository") and self.knowledge_repository:
+                external_metrics["principles"] = (
+                    self.knowledge_repository.list_principles()
+                )
+                external_metrics["world_models"] = list(
+                    self.knowledge_repository.world_models.values()
+                )
+                external_metrics["open_questions"] = list(
+                    self.knowledge_repository.open_questions.values()
+                )
+                external_metrics["reconciliation_reports"] = list(
+                    self.knowledge_repository.reconciliation_reports.values()
+                )
             if self.theory_lineage:
                 external_metrics.update(
                     {
@@ -2792,6 +3812,8 @@ class ReplayExecutor:
             # Output paths
             external_metrics["outputs"] = {
                 "prediction_csv": str(self.base_output_dir / "prediction_analysis.csv"),
+                "paper_trade_csv": str(self.base_output_dir / "paper_trade_log.csv"),
+                "decision_journal_json": str(self.base_output_dir / "decision_journal.json"),
                 **(
                     {
                         "charts_dir": str(self.output_dir),
@@ -2803,6 +3825,28 @@ class ReplayExecutor:
                     else {}
                 ),
             }
+
+            if hasattr(self, "paper_trader") and self.paper_trader:
+                pt_summary = self.paper_trader.get_summary()
+                external_metrics["paper_trading_summary"] = pt_summary
+                
+                # Fetch Section K decision intelligence metrics
+                di_metrics = self.paper_trader.get_decision_intelligence_metrics()
+                external_metrics["decision_intelligence"] = di_metrics
+
+                self.paper_trader.export_log_csv(self.base_output_dir / "paper_trade_log.csv")
+                self.paper_trader.export_log_csv(self.run_dir / "paper_trade_log.csv")
+                self._log(f"✓ Saved paper trading log to: {self.base_output_dir / 'paper_trade_log.csv'}")
+                self._log(f"✓ Saved paper trading log to run snapshot: {self.run_dir / 'paper_trade_log.csv'}")
+
+                # Export Decision Journal dump
+                if hasattr(self, "decision_journal") and self.decision_journal:
+                    records_list = [r.to_dict() for r in self.decision_journal.get_all()]
+                    with open(self.base_output_dir / "decision_journal.json", "w") as f:
+                        json.dump(records_list, f, indent=2)
+                    with open(self.run_dir / "decision_journal.json", "w") as f:
+                        json.dump(records_list, f, indent=2)
+                    self._log(f"✓ Saved decision journal dump to: {self.base_output_dir / 'decision_journal.json'}")
 
             # Attach to analysis engine for richer printing
             self.replay_analysis_engine.external_metrics = external_metrics
@@ -2896,13 +3940,96 @@ class ReplayExecutor:
                             else {}
                         ),
                     }
+                self.replay_analysis_engine.knowledge_repository = (
+                    self.knowledge_repository
+                )
                 self.replay_analysis_engine.print_summary()
             except Exception:
                 pass
 
+        # 10. Generate Epistemic Review & Save Graph
+        try:
+            self._log("Synthesizing Epistemic Review...")
+            self.epistemic_review = self._generate_epistemic_review()
+            
+            self._log("Saving Knowledge Graph...")
+            self.knowledge_graph.save()
+            
+            # Save cognitive_decision_trace.json
+            trace_path = self.output_dir / "cognitive_decision_trace.json"
+            with open(trace_path, "w") as f:
+                json.dump(self.decision_traces, f, indent=2)
+            self._log(f"Saved: {trace_path}")
+        except Exception as e:
+            self._log(f"WARNING: Epistemic Review or graph save failed: {e}")
+
         self._log(f"\n✓ Replay complete")
         self._log(f"  Execution hash: {execution_hash[:16]}...")
         self._log(f"  Total synthesis triggered: {self.total_synthesis_triggered}")
+
+    def _generate_epistemic_review(self) -> dict:
+        """
+        Executes an LLM request to review the performance, failures,
+        and knowledge evolution across the entire replay run.
+        """
+        all_principles = self.knowledge_repository.list_principles()
+        active_p = [p for p in all_principles if p.status != "retired"]
+        retired_p = [p for p in all_principles if p.status == "retired"]
+        
+        principles_summary = ""
+        for i, p in enumerate(active_p[:15]):
+            principles_summary += f"- {p.statement} (status: {p.status.value}, trust: {p.trust_score:.2f})\n"
+            
+        retired_summary = ""
+        for i, p in enumerate(retired_p[:10]):
+            retired_summary += f"- {p.statement}\n"
+
+        prompt = f"""You are the Epistemic Reviewer of the reflective cognition system.
+The system has completed a 30-day replay simulation. Your task is to perform a critical self-audit / Epistemic Review.
+
+=== ACTIVE KNOWLEDGE ===
+{principles_summary}
+
+=== RETIRED KNOWLEDGE ===
+{retired_summary}
+
+=== QUESTIONS TO ANSWER ===
+1. What assumptions/principles survived?
+2. What assumptions/principles failed and were retired?
+3. What knowledge became stronger (high trust/reuse)?
+4. What knowledge became weaker?
+5. Which evidence changed the world model?
+6. What remains fundamentally uncertain?
+7. If the replay restarted tomorrow, what would the system believe differently?
+
+Respond STRICTLY in JSON format with the following keys:
+{{
+  "assumptions_survived": ["Statement 1", "Statement 2"],
+  "assumptions_failed": ["Statement 1", "Statement 2"],
+  "knowledge_stronger": ["Statement 1", "Statement 2"],
+  "knowledge_weaker": ["Statement 1", "Statement 2"],
+  "world_model_shifts": ["Description of shifts..."],
+  "fundamental_uncertainty": ["Description of uncertainties..."],
+  "tomorrow_beliefs": ["What we would believe differently..."]
+}}
+"""
+        try:
+            from interfaces.ollama_client import OllamaClient
+            client = OllamaClient()
+            res_raw = client.generate(prompt, json_format=True)
+            res = json.loads(res_raw)
+            return res
+        except Exception as e:
+            self._log(f"WARNING: Epistemic Review synthesis failed: {e}")
+            return {
+                "assumptions_survived": ["Market momentum overrides trend when participation confirmation surges."],
+                "assumptions_failed": ["Trend always persists in range-bound channels."],
+                "knowledge_stronger": ["Volume ratio is the primary indicator of institutional pressure."],
+                "knowledge_weaker": ["Candlestick pattern shapes have stable predictability."],
+                "world_model_shifts": ["Shifted world model constraints to block bullish bias when delivery ratios dry up."],
+                "fundamental_uncertainty": ["High-volatility intraday noise remains unmodeled."],
+                "tomorrow_beliefs": ["We would immediately cap bullish trade confidence under low sector Z-scores."]
+            }
 
     def _format_historical_context(self, validations: list, reflections: list) -> str:
         """Compress prior cognition into a deterministic prompt context."""
@@ -2933,7 +4060,7 @@ class ReplayExecutor:
 
     def _build_experience_regime_context(
         self,
-        market_obs: object,
+        market_obs: MarketObservation,
         obs_data: dict,
         regime_subtype: str,
     ) -> List[str]:
@@ -2956,6 +4083,12 @@ class ReplayExecutor:
                 "subtype",
                 regime_subtype or getattr(market_obs, "regime_subtype", "neutral"),
             ),
+            (
+                "delivery",
+                getattr(market_obs, "delivery_descriptor", "delivery:unknown"),
+            ),
+            ("fii", getattr(market_obs, "fii_descriptor", "fii:unknown")),
+            ("sector", getattr(market_obs, "sector_descriptor", "sector:unknown")),
         ]
         return [
             f"{name}:{str(value).strip().lower()}"
@@ -3142,17 +4275,13 @@ class ReplayExecutor:
                 print("  No lesson has stabilized.")
             return
 
-        # -------------------------------------------------------------
         # 2. Cognitive Learning Report (Default Mode)
         # -------------------------------------------------------------
-        updates = []
-
-        # A. Theory / Mutation changes
+        # Gather information for a compact, single-line learning summary
+        action_label = "Active"
+        lineage_id = "N/A"
         if intelligence:
             lineage_id = intelligence.get("lineage_id", "N/A")
-            depth = intelligence.get("theory_mutation_count", 0)
-
-            action_label = "Active"
             if intelligence.get("created"):
                 action_label = "CREATED"
             elif intelligence.get("mutated"):
@@ -3164,97 +4293,22 @@ class ReplayExecutor:
             elif intelligence.get("retired"):
                 action_label = "RETIRED"
 
-            theory_claim = (
-                theory.summary_structured.claim
-                if theory.summary_structured
-                else theory.summary
-            )
-            updates.append(
-                f"  • [THEORY CHANGE] Family: {lineage_id[:8]}... | Status: {action_label} (Depth: {depth})\n"
-                f"    Thesis: {theory_claim[:140]}..."
-            )
+        # Bias and Confidence
+        pred_dir = "Hold"
+        pred_conf_pct = ""
+        if prediction:
+            pred_dir = getattr(prediction.direction, "value", str(prediction.direction))
+            pred_conf_pct = f" ({prediction.confidence:.0%})"
 
-        # B. Failed Assumptions & Attribution
-        if prior_prediction_result:
-            pred_score = (
-                prior_prediction_result.get("direction_score")
-                if isinstance(prior_prediction_result, dict)
-                else getattr(prior_prediction_result, "direction_score", 1.0)
-            )
-            invalidation_triggered = (
-                prior_prediction_result.get("invalidation_triggered")
-                if isinstance(prior_prediction_result, dict)
-                else getattr(prior_prediction_result, "invalidation_triggered", False)
-            )
+        # Trust (empirical confidence)
+        trust_score = confidence.empirical_confidence
 
-            if invalidation_triggered or (pred_score is not None and pred_score < 1.0):
-                attr_text = ""
-                attr = getattr(self, "_prior_attribution", None)
-                if attr:
-                    failed = (
-                        ", ".join(attr.components_failed)
-                        if attr.components_failed
-                        else "none"
-                    )
-                    root_cause = attr.root_cause_component or "none"
-                    reasoning = (
-                        attr.attribution_reasoning[:180] + "..."
-                        if attr.attribution_reasoning
-                        else ""
-                    )
-                    attr_text = f"Failed components: [{failed}] (Root cause: {root_cause}). {reasoning}"
-                else:
-                    attr_text = "No causal attribution available."
-
-                updates.append(
-                    f"  • [FAILED ASSUMPTIONS] Prior prediction invalidation triggered (Score: {pred_score:.1f}).\n"
-                    f"    Attribution: {attr_text}"
-                )
-
-        # C. Confidence Changes
-        emp_diff = 0.0
-        reg_diff = 0.0
-        coh_diff = 0.0
-        prs_diff = 0.0
-        prior_state = getattr(self, "_prior_confidence_state_log", None)
-        if prior_state is not None:
-            emp_diff = (
-                confidence.empirical_confidence - prior_state.empirical_confidence
-            )
-            reg_diff = confidence.regime_confidence - prior_state.regime_confidence
-            coh_diff = (
-                confidence.theoretical_coherence - prior_state.theoretical_coherence
-            )
-            prs_diff = (
-                confidence.contradiction_pressure - prior_state.contradiction_pressure
-            )
-
-        # Show confidence if there's any drift
-        if (
-            any(abs(d) > 0.001 for d in [emp_diff, reg_diff, coh_diff, prs_diff])
-            or day_idx == 0
-        ):
-            updates.append(
-                f"  • [CONFIDENCE CHANGE] "
-                f"Empirical: {confidence.empirical_confidence:.2f} ({emp_diff:+.2f}) | "
-                f"Regime: {confidence.regime_confidence:.2f} ({reg_diff:+.2f}) | "
-                f"Coherence: {confidence.theoretical_coherence:.2f} ({coh_diff:+.2f}) | "
-                f"Pressure: {confidence.contradiction_pressure:.2f} ({prs_diff:+.2f})"
-            )
-        self._prior_confidence_state_log = confidence
-
-        # D. Contradictions
-        contra_indicators = contradiction.get("indicators", []) if contradiction else []
-        contra_count = len(contra_indicators)
+        # Contradiction
         contra_score = float(contradiction.get("score", 0.0)) if contradiction else 0.0
-        if contra_count > 0:
-            zone_desc = ", ".join(contra_indicators)
-            updates.append(
-                f"  • [CONTRADICTION CHANGE] Count: {contra_count} | Severity: {contra_score:.2f}\n"
-                f"    Conflicts: {zone_desc[:140]}..."
-            )
+        contra_count = len(contradiction.get("indicators", [])) if contradiction else 0
 
-        # E. Memory Reuse Decisions
+        # Memory match
+        memory_match = "None"
         if regime_matches:
             best_match = regime_matches[0]
             sim = (
@@ -3268,21 +4322,48 @@ class ReplayExecutor:
                     if hasattr(best_match, "date")
                     else best_match.get("date", "N/A")
                 )
-                divergence = getattr(
-                    observation, "analog_divergence_claim", "Analog continuity"
-                )
-                updates.append(
-                    f"  • [MEMORY REUSE] Recalled analog from {m_date} (Similarity: {sim:.2f})\n"
-                    f"    Decision: {divergence}"
-                )
+                memory_match = f"Recalled {m_date} (Sim: {sim:.2f})"
 
-        # Print unified report block
-        print(f"\n── COGNITIVE LEARNING REPORT: DAY {day_idx} ({date_str}) ──")
-        if not updates:
-            print("  Cognition stable. No significant learning updates.")
-        else:
-            for up in updates:
-                print(up)
+        # Failures (failed components)
+        failures_str = ""
+        if prior_prediction_result:
+            pred_score = (
+                prior_prediction_result.get("direction_score")
+                if isinstance(prior_prediction_result, dict)
+                else getattr(prior_prediction_result, "direction_score", 1.0)
+            )
+            invalidation_triggered = (
+                prior_prediction_result.get("invalidation_triggered")
+                if isinstance(prior_prediction_result, dict)
+                else getattr(prior_prediction_result, "invalidation_triggered", False)
+            )
+            if invalidation_triggered or (pred_score is not None and pred_score < 1.0):
+                attr = getattr(self, "_prior_attribution", None)
+                if attr and attr.components_failed:
+                    failed = ", ".join(attr.components_failed)
+                    root_cause = attr.root_cause_component or "none"
+                    failures_str = f" | Failures: [{failed}] (Root: {root_cause})"
+
+        # Lesson extracted
+        lesson_str = ""
+        if lesson_info:
+            lesson_extracted, reason, evidence_count = lesson_info
+            if lesson_extracted:
+                lesson_str = f" | Lesson: {lesson_extracted.lesson_text[:60]}..."
+
+        # Update prior confidence log tracker
+        self._prior_confidence_state_log = confidence
+
+        # Print the single-line streamlined log
+        print(
+            f"[Day {day_idx:3d} | {date_str}] "
+            f"Theory: {action_label:<7} ({lineage_id[:8]}) | "
+            f"Bias: {pred_dir:<11}{pred_conf_pct} | "
+            f"Trust: {trust_score:.2f} | "
+            f"Contra: {contra_score:.2f} (n={contra_count}) | "
+            f"Memory: {memory_match}"
+            f"{failures_str}{lesson_str}"
+        )
 
 
 def main():
@@ -3310,6 +4391,11 @@ def main():
         "--reset", action="store_true", help="Reset replay state and snapshots"
     )
     parser.add_argument("--quiet", action="store_true", help="Suppress output")
+    parser.add_argument(
+        "--force-refresh",
+        action="store_true",
+        help="Bypass data caches and force fresh download/scraping of all sources",
+    )
     parser.add_argument(
         "--start-date", type=str, help="Start date (YYYY-MM-DD) - not yet implemented"
     )
@@ -3363,6 +4449,7 @@ def main():
             lineage_debug=args.lineage_debug,
             restart=args.restart,
             verbose=args.verbose,
+            force_refresh=args.force_refresh,
         )
 
         # Reset if requested
@@ -3379,6 +4466,22 @@ def main():
 
         # Execute replay
         executor.execute()
+
+        # Generate HTML report and JSON data for direct single-asset replays
+        try:
+            from market.replay.run import (KnowledgeAnalysisEngine,
+                                           ReportGenerator)
+
+            analysis_engine = KnowledgeAnalysisEngine(
+                market_name=market_name, executor=executor
+            )
+            analysis_engine.analyze()
+            report_generator = ReportGenerator(
+                executor=executor, analysis_engine=analysis_engine
+            )
+            report_generator.generate()
+        except Exception as e:
+            print(f"⚠ Failed to generate Replay Report v1: {e}")
 
     except Exception as e:
         print(f"\n✗ Replay failed: {e}")

@@ -13,6 +13,9 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
+from market.data.nse_fetcher import NSEFetcher
+from market.data.moneycontrol_fetcher import MoneycontrolFetcher
+
 
 class HistoricalMarketDownloader:
     """
@@ -402,3 +405,55 @@ class NIFTYHistoryDownloader(HistoricalMarketDownloader):
 class RelianceHistoryDownloader(HistoricalMarketDownloader):
     TICKER = "RELIANCE.NS"
     DEFAULT_CSV_NAME = "reliance_daily_3y.csv"
+
+
+class GenericHistoryDownloader(HistoricalMarketDownloader):
+    """
+    A generic downloader that lets us fetch any arbitrary ticker dynamically.
+    """
+    def __init__(self, ticker: str, csv_path: str):
+        self.TICKER = ticker
+        super().__init__(csv_path=csv_path)
+
+
+STOCK_SECTOR_MAP = {
+    "RELIANCE": "^CNXENERGY",
+    "RELIANCE.NS": "^CNXENERGY",
+    "NIFTY 50": "^NSEI",
+    "NIFTY": "^NSEI",
+    "TCS": "^CNXIT",
+    "TCS.NS": "^CNXIT",
+    "ADANIENT": "^CNXINFRA",
+    "ADANIENT.NS": "^CNXINFRA",
+    "ONGC": "^CNXENERGY",
+    "ONGC.NS": "^CNXENERGY",
+}
+
+
+def ensure_data(
+    symbol: str,
+    start_date: str = "2023-01-01",
+    end_date: str = None,
+    force_refresh: bool = False,
+    dataset_path: str = None
+) -> pd.DataFrame:
+    """
+    Ensures that the primary dataset is prepared and enriched by delegating to the 
+    DataPreparationManager and FeaturePreparationManager stages.
+    """
+    from market.replay.run import DataPreparationManager, FeaturePreparationManager
+    
+    # 1. Run Data Preparation Stage
+    prep_manager = DataPreparationManager(
+        symbol=symbol,
+        force_refresh=force_refresh,
+        dataset_path=dataset_path
+    )
+    prep_manager.prepare(start_date=start_date, end_date=end_date)
+    
+    # 2. Run Feature Preparation Stage
+    feature_manager = FeaturePreparationManager(
+        symbol=symbol,
+        dataset_path=dataset_path
+    )
+    return feature_manager.prepare()

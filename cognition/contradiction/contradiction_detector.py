@@ -46,6 +46,8 @@ class ContradictionDetector:
         historical_observations: List[
             Any
         ] = None,  # Not used in this specific structural detection, but part of interface
+        skip_intra_lineage_similar: bool = True,
+        intra_lineage_similarity_threshold: float = 0.85,
     ) -> Dict[str, Any]:
         """
         Detects contradictions and assigns a score.
@@ -57,9 +59,30 @@ class ContradictionDetector:
 
         curr_data = self._extract_structured_theory_fields(current_theory)
         curr_regime = getattr(current_theory, "regime_subtype", "neutral").lower()
+        compared_count = 0
 
         # Compare current theory with historical theories
         for hist_theory in historical_theories:
+            curr_id = getattr(current_theory, "id", None)
+            hist_id = getattr(hist_theory, "id", None)
+            if curr_id and hist_id and curr_id == hist_id:
+                continue
+
+            curr_lineage = getattr(current_theory, "lineage_id", None)
+            hist_lineage = getattr(hist_theory, "lineage_id", None)
+            if (
+                skip_intra_lineage_similar
+                and curr_lineage
+                and hist_lineage
+                and curr_lineage == hist_lineage
+            ):
+                curr_summary = getattr(current_theory, "summary", "")
+                hist_summary = getattr(hist_theory, "summary", "")
+                sem_sim = self._similarity(curr_summary, hist_summary)
+                if sem_sim > intra_lineage_similarity_threshold:
+                    continue
+
+            compared_count += 1
             hist_data = self._extract_structured_theory_fields(hist_theory)
             hist_regime_subtype = getattr(
                 hist_theory, "regime_subtype", "neutral"
@@ -257,10 +280,10 @@ class ContradictionDetector:
 
         # Normalize score (simple sum for now, can be refined)
         # If no historical theories, score is 0.0
-        score_divisor = len(historical_theories) if historical_theories else 1
+        score_divisor = compared_count if compared_count else 1
 
         max_score = max(pair_scores) if pair_scores else 0.0
-        mean_score = total_score / score_divisor if score_divisor else 0.0
+        mean_score = total_score / score_divisor if compared_count else 0.0
         normalized_score = min(
             1.0,
             (self.CONFIG["max_score_weight"] * max_score)
