@@ -1714,13 +1714,7 @@ You MUST return a JSON object conforming exactly to this structure:
                             if "mechanism_id" in m
                         }
 
-                        # Update status for retired mechanisms
-                        for rid in removed_ids:
-                            mech_obj = self.knowledge_repository.get_mechanism(rid)
-                            if mech_obj and mech_obj.status != "retired":
-                                mech_obj.times_retired += 1
-                                mech_obj.status = "retired"
-                                self.knowledge_repository.save_mechanism(mech_obj)
+
 
                         for (
                             comp
