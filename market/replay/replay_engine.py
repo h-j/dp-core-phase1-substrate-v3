@@ -1717,7 +1717,7 @@ You MUST return a JSON object conforming exactly to this structure:
                         # Update status for retired mechanisms
                         for rid in removed_ids:
                             mech_obj = self.knowledge_repository.get_mechanism(rid)
-                            if mech_obj:
+                            if mech_obj and mech_obj.status != "retired":
                                 mech_obj.times_retired += 1
                                 mech_obj.status = "retired"
                                 self.knowledge_repository.save_mechanism(mech_obj)
@@ -1761,21 +1761,12 @@ You MUST return a JSON object conforming exactly to this structure:
                                     )
                                     new_components.append(updated_comp)
 
-                                    # Update registry
+                                    # Update registry metadata (without mutating stable description/tags)
                                     mech_obj = self.knowledge_repository.get_mechanism(
                                         comp.mechanism_id
                                     )
                                     if mech_obj:
                                         mech_obj.times_modified += 1
-                                        mech_obj.description = mod_data.get(
-                                            "description", mech_obj.description
-                                        )
-                                        mech_obj.concept_tags = mod_data.get(
-                                            "concept_tags", mech_obj.concept_tags
-                                        )
-                                        mech_obj.relation_type = mod_data.get(
-                                            "relation_type", mech_obj.relation_type
-                                        )
                                         mech_obj.last_seen = day_idx
                                         if regime_subtype not in mech_obj.regimes_seen:
                                             mech_obj.regimes_seen.append(regime_subtype)
@@ -3587,9 +3578,14 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                         # Update mechanism utility counters (helped vs. harmed)
                         if getattr(self, "_prior_prediction_active_mechanisms", None):
                             is_correct = prior_prediction_result.direction_score == 1.0
-                            for mid in self._prior_prediction_active_mechanisms:
+                            # Deduplicate mechanism IDs for atomic attribution
+                            unique_mids = set(self._prior_prediction_active_mechanisms)
+                            for mid in unique_mids:
                                 mech_obj = self.knowledge_repository.get_mechanism(mid)
                                 if mech_obj:
+                                    # Enforce lifecycle: retired mechanisms stop receiving evidence
+                                    if mech_obj.status == "retired":
+                                        continue
                                     if is_correct:
                                         mech_obj.prediction_helped += 1
                                         mech_obj.support_count += 1

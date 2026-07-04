@@ -67,7 +67,10 @@ def match_and_register_in_registry(
     Search registry for a semantically similar mechanism.
     If match >= 0.75, reuse it. Otherwise, register a new one.
     """
-    existing_mechanisms = repo.list_mechanisms() if repo else []
+    # Filter out retired mechanisms from lookup and reuse
+    existing_mechanisms = (
+        [m for m in repo.list_mechanisms() if m.status != "retired"] if repo else []
+    )
 
     # Check details of proposed component
     comp_id = comp.get("component_id", "unknown")
@@ -80,20 +83,8 @@ def match_and_register_in_registry(
     best_sim = -1.0
     best_mech = None
 
-    # 1. Exact match by primary concept tag or name takes priority
+    # Compute hybrid similarity for all active candidates
     for mech in existing_mechanisms:
-        m_name = getattr(mech, "canonical_name", "") or getattr(mech, "name", "")
-        if m_name and m_name.upper() == primary_tag:
-            best_mech = mech
-            best_sim = 1.0
-            print(
-                f"[Mechanism Registry] Exact match found for component '{primary_tag}' with existing mechanism '{mech.mechanism_id}' ({mech.canonical_name}) -> hybrid_sim=1.0000"
-            )
-            break
-
-    # 2. If no exact match, compute hybrid similarity
-    if best_sim < 1.0:
-        for mech in existing_mechanisms:
             # Calculate ontology overlap (40%)
             tags_overlap = jaccard_similarity(
                 set(tags), set(getattr(mech, "concept_tags", []) or [])
@@ -132,9 +123,12 @@ def match_and_register_in_registry(
 
             historical_sim = 1.0 - (0.5 * diff_rate + 0.5 * diff_support)
 
-            hybrid_sim = (
-                0.4 * ontology_overlap + 0.4 * embedding_sim + 0.2 * historical_sim
-            )
+            if embedding_sim < 0.85:
+                hybrid_sim = 0.0
+            else:
+                hybrid_sim = (
+                    0.4 * ontology_overlap + 0.4 * embedding_sim + 0.2 * historical_sim
+                )
 
             print(
                 f"[Mechanism Registry] Comparing component '{primary_tag}' with existing mechanism '{mech.mechanism_id}' ({mech.canonical_name}): ontology_sim={ontology_overlap:.4f}, embedding_sim={embedding_sim:.4f}, history_sim={historical_sim:.4f} -> hybrid_sim={hybrid_sim:.4f}"
@@ -159,8 +153,9 @@ def match_and_register_in_registry(
         return best_mech.mechanism_id
     else:
         # Create new sequential mechanism_id
+        all_mechs = repo.list_mechanisms() if repo else []
         max_num = 0
-        for m in existing_mechanisms:
+        for m in all_mechs:
             mid = m.mechanism_id or m.id
             if mid and mid.startswith("MECH_"):
                 try:
