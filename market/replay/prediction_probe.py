@@ -99,11 +99,20 @@ class PredictionProbeGenerator:
 
         # Apply World Model regime constraints on Direction
         regime_subtype = getattr(observation, "regime_subtype", "neutral")
-        if world_model and hasattr(world_model, "regime_constraints") and world_model.regime_constraints:
-            constraints = world_model.regime_constraints.get(regime_subtype) or world_model.regime_constraints.get(str(regime_subtype).lower())
+        if (
+            world_model
+            and hasattr(world_model, "regime_constraints")
+            and world_model.regime_constraints
+        ):
+            constraints = world_model.regime_constraints.get(
+                regime_subtype
+            ) or world_model.regime_constraints.get(str(regime_subtype).lower())
             if constraints and isinstance(constraints, dict):
                 blocked_bias = constraints.get("blocked_bias")
-                if blocked_bias and str(direction.value).lower() == str(blocked_bias).lower():
+                if (
+                    blocked_bias
+                    and str(direction.value).lower() == str(blocked_bias).lower()
+                ):
                     # Blocked bias override to avoid false prediction
                     direction = PredictionDirection.range_bound
 
@@ -127,8 +136,14 @@ class PredictionProbeGenerator:
         )
 
         # Apply World Model confidence constraints
-        if world_model and hasattr(world_model, "regime_constraints") and world_model.regime_constraints:
-            constraints = world_model.regime_constraints.get(regime_subtype) or world_model.regime_constraints.get(str(regime_subtype).lower())
+        if (
+            world_model
+            and hasattr(world_model, "regime_constraints")
+            and world_model.regime_constraints
+        ):
+            constraints = world_model.regime_constraints.get(
+                regime_subtype
+            ) or world_model.regime_constraints.get(str(regime_subtype).lower())
             if constraints and isinstance(constraints, dict):
                 max_conf = constraints.get("max_confidence")
                 if max_conf is not None:

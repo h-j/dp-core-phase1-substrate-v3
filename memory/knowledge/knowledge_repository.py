@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from cognition.schemas.knowledge.evidence_gap import EvidenceGap
+from cognition.schemas.knowledge.mechanism import Mechanism
 from cognition.schemas.knowledge.open_question import OpenQuestion
 from cognition.schemas.knowledge.principle import Principle
 from cognition.schemas.knowledge.reconciliation_report import \
@@ -24,18 +25,21 @@ class KnowledgeRepository:
         self.open_questions_path = self.base_path / "open_questions"
         self.reconciliation_reports_path = self.base_path / "reconciliation_reports"
         self.evidence_gaps_path = self.base_path / "evidence_gaps"
+        self.mechanisms_path = self.base_path / "mechanisms"
 
         self.principles_path.mkdir(parents=True, exist_ok=True)
         self.world_models_path.mkdir(parents=True, exist_ok=True)
         self.open_questions_path.mkdir(parents=True, exist_ok=True)
         self.reconciliation_reports_path.mkdir(parents=True, exist_ok=True)
         self.evidence_gaps_path.mkdir(parents=True, exist_ok=True)
+        self.mechanisms_path.mkdir(parents=True, exist_ok=True)
 
         self.principles: Dict[str, Principle] = {}
         self.world_models: Dict[str, WorldModel] = {}
         self.open_questions: Dict[str, OpenQuestion] = {}
         self.reconciliation_reports: Dict[str, ReconciliationReport] = {}
         self.evidence_gaps: Dict[str, EvidenceGap] = {}
+        self.mechanisms: Dict[str, Mechanism] = {}
 
         self.load_all()
 
@@ -44,6 +48,9 @@ class KnowledgeRepository:
         self.principles.clear()
         self.world_models.clear()
         self.open_questions.clear()
+        self.reconciliation_reports.clear()
+        self.evidence_gaps.clear()
+        self.mechanisms.clear()
 
         # Load principles
         for file_path in self.principles_path.glob("*.json"):
@@ -91,6 +98,15 @@ class KnowledgeRepository:
                     self.evidence_gaps[data["id"]] = EvidenceGap.from_dict(data)
             except Exception as e:
                 print(f"WARNING: Failed to load evidence gap {file_path}: {e}")
+
+        # Load mechanisms
+        for file_path in self.mechanisms_path.glob("*.json"):
+            try:
+                with open(file_path, "r") as f:
+                    data = json.load(f)
+                    self.mechanisms[data["id"]] = Mechanism.from_dict(data)
+            except Exception as e:
+                print(f"WARNING: Failed to load mechanism {file_path}: {e}")
 
     def save_principle(self, principle: Principle):
         """Persists a Principle object to disk."""
@@ -172,6 +188,21 @@ class KnowledgeRepository:
         """Lists all cached evidence gaps."""
         return list(self.evidence_gaps.values())
 
+    def save_mechanism(self, mechanism: Mechanism):
+        """Persists a Mechanism object to disk."""
+        self.mechanisms[mechanism.id] = mechanism
+        file_path = self.mechanisms_path / f"{mechanism.id}.json"
+        with open(file_path, "w") as f:
+            json.dump(mechanism.to_dict(), f, indent=2)
+
+    def get_mechanism(self, mid: str) -> Optional[Mechanism]:
+        """Gets a mechanism by its ID."""
+        return self.mechanisms.get(mid)
+
+    def list_mechanisms(self) -> List[Mechanism]:
+        """Lists all cached mechanisms."""
+        return list(self.mechanisms.values())
+
     def clear(self):
         """Clears memory caches and deletes files from base directory."""
         self.principles.clear()
@@ -179,6 +210,7 @@ class KnowledgeRepository:
         self.open_questions.clear()
         self.reconciliation_reports.clear()
         self.evidence_gaps.clear()
+        self.mechanisms.clear()
 
         for file_path in self.principles_path.glob("*.json"):
             try:
@@ -209,3 +241,9 @@ class KnowledgeRepository:
                 file_path.unlink()
             except Exception as e:
                 print(f"WARNING: Error deleting evidence gap {file_path}: {e}")
+
+        for file_path in self.mechanisms_path.glob("*.json"):
+            try:
+                file_path.unlink()
+            except Exception as e:
+                print(f"WARNING: Error deleting mechanism {file_path}: {e}")

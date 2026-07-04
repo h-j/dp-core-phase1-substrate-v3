@@ -1,14 +1,17 @@
-from datetime import datetime, UTC
-from typing import List, Dict, Any, Optional
+from datetime import UTC, datetime
+from typing import Any, Dict, List, Optional
+
 from pydantic import Field
 
 from cognition.schemas.base import CognitionBase
+
 
 class ReconciliationReport(CognitionBase):
     """
     Structured report generated during each Knowledge Reconciliation cycle.
     Tracks structural shifts, knowledge growth, and changes in Knowledge Debt.
     """
+
     step: int
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     merged_count: int
@@ -22,7 +25,7 @@ class ReconciliationReport(CognitionBase):
     compression_ratio_before: str
     compression_ratio_after: str
     summary_text: str
-    
+
     # Distillation metrics
     principle_compression_ratio: float = Field(default=0.0)
     distillation_efficiency: float = Field(default=0.0)

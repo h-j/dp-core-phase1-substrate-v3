@@ -19,12 +19,12 @@ class TestKnowledgeEngines(unittest.TestCase):
         mock_llm = MagicMock()
         mock_response = {
             "statement": "Volume confirmation is only predictive when participation expands.",
-            "applicability_filter": {"regime_subtype": "trend"},
+            "applicability_filter": {"regime_subtype": "neutral"},
             "falsifiable_predictions": [
                 {
                     "target_component": "volume_confirmation",
                     "expected_status": "passed",
-                    "applicability_filter": {"regime_subtype": "trend"},
+                    "applicability_filter": {"regime_subtype": "neutral"},
                 }
             ],
         }
@@ -35,11 +35,11 @@ class TestKnowledgeEngines(unittest.TestCase):
         # Mock experiences and attributions
         mock_exp1 = MagicMock()
         mock_exp1.lineage_id = "theory-1"
-        mock_exp1.target_regime = {"regime_subtype": "trend"}
+        mock_exp1.target_regime = {"regime_subtype": "neutral"}
 
         mock_exp2 = MagicMock()
         mock_exp2.lineage_id = "theory-2"
-        mock_exp2.target_regime = {"regime_subtype": "range_bound"}
+        mock_exp2.target_regime = {"regime_subtype": "fatigue"}
 
         attr1 = AttributionResult(
             theory_id="theory-1",
@@ -80,7 +80,8 @@ class TestKnowledgeEngines(unittest.TestCase):
         )
         self.assertEqual(p.falsifiable_predictions[0].expected_status, "passed")
         self.assertEqual(
-            p.falsifiable_predictions[0].applicability_filter["regime_subtype"], "trend"
+            p.falsifiable_predictions[0].applicability_filter["regime_subtype"],
+            "neutral",
         )
         self.assertIn("theory-1", p.associated_lineage_ids)
         self.assertIn("theory-2", p.associated_lineage_ids)
@@ -92,7 +93,7 @@ class TestKnowledgeEngines(unittest.TestCase):
         fp = FalsifiablePrediction(
             target_component="volume_confirmation",
             expected_status="passed",
-            applicability_filter={"regime_subtype": "trend"},
+            applicability_filter={"regime_subtype": "neutral"},
         )
         p = Principle(
             status=PrincipleStatus.CANDIDATE,
@@ -108,39 +109,39 @@ class TestKnowledgeEngines(unittest.TestCase):
         history = [
             # Matching, supported
             {
-                "regime_subtype": "trend",
+                "regime_subtype": "neutral",
                 "prior_prediction_result": {"direction_score": 1.0},
                 "components_failed": [],
             },
             {
-                "regime_subtype": "trend",
+                "regime_subtype": "neutral",
                 "prior_prediction_result": {"direction_score": 1.0},
                 "components_failed": [],
             },
             {
-                "regime_subtype": "trend",
+                "regime_subtype": "neutral",
                 "prior_prediction_result": {"direction_score": 1.0},
                 "components_failed": [],
             },
             {
-                "regime_subtype": "trend",
+                "regime_subtype": "neutral",
                 "prior_prediction_result": {"direction_score": 1.0},
                 "components_failed": [],
             },
             # Matching, contradicted
             {
-                "regime_subtype": "trend",
+                "regime_subtype": "neutral",
                 "prior_prediction_result": {"direction_score": 0.0},
                 "components_failed": ["volume_confirmation"],
             },
             # Not matching
             {
-                "regime_subtype": "range_bound",
+                "regime_subtype": "fatigue",
                 "prior_prediction_result": {"direction_score": 1.0},
                 "components_failed": [],
             },
             {
-                "regime_subtype": "range_bound",
+                "regime_subtype": "fatigue",
                 "prior_prediction_result": {"direction_score": 0.0},
                 "components_failed": ["volume_confirmation"],
             },
@@ -159,7 +160,7 @@ class TestKnowledgeEngines(unittest.TestCase):
         fp2 = FalsifiablePrediction(
             target_component="volume_confirmation",
             expected_status="passed",
-            applicability_filter={"regime_subtype": "trend"},
+            applicability_filter={"regime_subtype": "neutral"},
         )
         p2 = Principle(
             status=PrincipleStatus.CANDIDATE,
@@ -170,27 +171,27 @@ class TestKnowledgeEngines(unittest.TestCase):
         history2 = [
             # 1 support, 4 contradictions
             {
-                "regime_subtype": "trend",
+                "regime_subtype": "neutral",
                 "prior_prediction_result": {"direction_score": 1.0},
                 "components_failed": [],
             },
             {
-                "regime_subtype": "trend",
+                "regime_subtype": "neutral",
                 "prior_prediction_result": {"direction_score": 0.0},
                 "components_failed": ["volume_confirmation"],
             },
             {
-                "regime_subtype": "trend",
+                "regime_subtype": "neutral",
                 "prior_prediction_result": {"direction_score": 0.0},
                 "components_failed": ["volume_confirmation"],
             },
             {
-                "regime_subtype": "trend",
+                "regime_subtype": "neutral",
                 "prior_prediction_result": {"direction_score": 0.0},
                 "components_failed": ["volume_confirmation"],
             },
             {
-                "regime_subtype": "trend",
+                "regime_subtype": "neutral",
                 "prior_prediction_result": {"direction_score": 0.0},
                 "components_failed": ["volume_confirmation"],
             },
@@ -203,7 +204,7 @@ class TestKnowledgeEngines(unittest.TestCase):
         """Verify active principles mutate correctly on contradiction."""
         mock_llm = MagicMock()
         mock_response = {
-            "statement": "Volume confirmation is only predictive when participation expands in trend.",
+            "statement": "Volume confirmation is only predictive when participation expands in neutral.",
             "applicability_filter_updates": {"volatility_regime": "expanded"},
         }
         mock_llm.generate.return_value = json.dumps(mock_response)
@@ -213,11 +214,11 @@ class TestKnowledgeEngines(unittest.TestCase):
         fp = FalsifiablePrediction(
             target_component="volume_confirmation",
             expected_status="passed",
-            applicability_filter={"regime_subtype": "trend"},
+            applicability_filter={"regime_subtype": "neutral"},
         )
         p = Principle(
             status=PrincipleStatus.ACTIVE,
-            statement="Volume confirmation passes in trend.",
+            statement="Volume confirmation passes in neutral.",
             created_at_step=1,
             falsifiable_predictions=[fp],
         )
@@ -225,7 +226,7 @@ class TestKnowledgeEngines(unittest.TestCase):
         # Contradiction: volume_confirmation fails under trend regime
         attr = AttributionResult(
             theory_id="theory-10",
-            theory_claim="Trend claim",
+            theory_claim="Neutral claim",
             outcome="higher",
             components_tested=["volume_confirmation"],
             components_passed=[],
@@ -236,7 +237,7 @@ class TestKnowledgeEngines(unittest.TestCase):
             active_principles=[p],
             latest_attribution=attr,
             current_regime_context={
-                "regime_subtype": "trend",
+                "regime_subtype": "neutral",
                 "volatility_regime": "compressed",
             },
             step=10,
@@ -248,7 +249,7 @@ class TestKnowledgeEngines(unittest.TestCase):
         self.assertEqual(p_up.status, PrincipleStatus.CANDIDATE)
         self.assertEqual(
             p_up.statement,
-            "Volume confirmation is only predictive when participation expands in trend.",
+            "Volume confirmation is only predictive when participation expands in neutral.",
         )
         self.assertEqual(
             p_up.falsifiable_predictions[0].applicability_filter["volatility_regime"],

@@ -22,8 +22,11 @@ class ReplayAnalysisReportingMixin:
             em["principles"] = self.knowledge_repository.list_principles()
             em["world_models"] = list(self.knowledge_repository.world_models.values())
             em["open_questions"] = self.knowledge_repository.list_open_questions()
-            em["reconciliation_reports"] = self.knowledge_repository.list_reconciliation_reports()
+            em["reconciliation_reports"] = (
+                self.knowledge_repository.list_reconciliation_reports()
+            )
             em["evidence_gaps"] = self.knowledge_repository.list_evidence_gaps()
+            em["mechanisms"] = self.knowledge_repository.list_mechanisms()
         ReplayJournalBuilder.print_journal(self.market_name, analysis, em)
 
     def _analyze_capital_simulation(self) -> Dict:
@@ -438,14 +441,20 @@ class ReplayJournalBuilder:
             end_indices = range(end_start_idx, n_days)
 
             # 1. Component Failure Rate
-            start_failures = sum(len(r.get("components_failed", [])) for r in start_window)
+            start_failures = sum(
+                len(r.get("components_failed", [])) for r in start_window
+            )
             end_failures = sum(len(r.get("components_failed", [])) for r in end_window)
             start_fail_rate = start_failures / len(start_window)
             end_fail_rate = end_failures / len(end_window)
 
             # 2. Lesson Reuse Rate
-            start_reuses = sum(1 for r in start_window if len(r.get("reused_lessons", [])) > 0)
-            end_reuses = sum(1 for r in end_window if len(r.get("reused_lessons", [])) > 0)
+            start_reuses = sum(
+                1 for r in start_window if len(r.get("reused_lessons", [])) > 0
+            )
+            end_reuses = sum(
+                1 for r in end_window if len(r.get("reused_lessons", [])) > 0
+            )
             start_reuse_rate = start_reuses / len(start_window)
             end_reuse_rate = end_reuses / len(end_window)
 
@@ -458,14 +467,20 @@ class ReplayJournalBuilder:
             # 4. Regime Retrieval Success
             start_sims = [r.get("regime_similarity", 0.0) for r in start_window]
             end_sims = [r.get("regime_similarity", 0.0) for r in end_window]
-            start_regime_success = sum(start_sims) / len(start_sims) if start_sims else 0.0
+            start_regime_success = (
+                sum(start_sims) / len(start_sims) if start_sims else 0.0
+            )
             end_regime_success = sum(end_sims) / len(end_sims) if end_sims else 0.0
 
             # 5. Contradiction Pressure
             start_pressures = [r.get("contradiction_score", 0.0) for r in start_window]
             end_pressures = [r.get("contradiction_score", 0.0) for r in end_window]
-            start_contra_pressure = sum(start_pressures) / len(start_pressures) if start_pressures else 0.0
-            end_contra_pressure = sum(end_pressures) / len(end_pressures) if end_pressures else 0.0
+            start_contra_pressure = (
+                sum(start_pressures) / len(start_pressures) if start_pressures else 0.0
+            )
+            end_contra_pressure = (
+                sum(end_pressures) / len(end_pressures) if end_pressures else 0.0
+            )
 
             # 6. Confidence Calibration Error
             def calc_calibration_error(indices):
@@ -474,10 +489,16 @@ class ReplayJournalBuilder:
                     if idx < 1 or idx >= len(prediction_history):
                         continue
                     r_curr = prediction_history[idx]
-                    r_prev = prediction_history[idx-1]
-                    if r_curr.get("prior_prediction_result") and r_curr["prior_prediction_result"].get("direction_score") is not None:
+                    r_prev = prediction_history[idx - 1]
+                    if (
+                        r_curr.get("prior_prediction_result")
+                        and r_curr["prior_prediction_result"].get("direction_score")
+                        is not None
+                    ):
                         pred_conf = r_prev.get("prediction", {}).get("confidence", 0.5)
-                        dir_score = r_curr["prior_prediction_result"].get("direction_score", 0.0)
+                        dir_score = r_curr["prior_prediction_result"].get(
+                            "direction_score", 0.0
+                        )
                         errors.append(abs(pred_conf - dir_score))
                 return sum(errors) / len(errors) if errors else 0.0
 
@@ -487,53 +508,89 @@ class ReplayJournalBuilder:
             # Print Table
             print(f"  {'Metric':<30} | {'Start':<10} | {'End':<10}")
             print(f"  " + "-" * 56)
-            print(f"  {'Component Failure Rate':<30} | {start_fail_rate:<10.2f} | {end_fail_rate:<10.2f}")
-            print(f"  {'Lesson Reuse Rate':<30} | {start_reuse_rate:<10.1%} | {end_reuse_rate:<10.1%}")
-            print(f"  {'Lesson Retirement Rate':<30} | {start_retire_rate:<10.2f} | {end_retire_rate:<10.2f}")
-            print(f"  {'Regime Retrieval Success':<30} | {start_regime_success:<10.2f} | {end_regime_success:<10.2f}")
-            print(f"  {'Contradiction Pressure':<30} | {start_contra_pressure:<10.2f} | {end_contra_pressure:<10.2f}")
-            print(f"  {'Confidence Calibration Error':<30} | {start_cal_error:<10.2f} | {end_cal_error:<10.2f}")
+            print(
+                f"  {'Component Failure Rate':<30} | {start_fail_rate:<10.2f} | {end_fail_rate:<10.2f}"
+            )
+            print(
+                f"  {'Lesson Reuse Rate':<30} | {start_reuse_rate:<10.1%} | {end_reuse_rate:<10.1%}"
+            )
+            print(
+                f"  {'Lesson Retirement Rate':<30} | {start_retire_rate:<10.2f} | {end_retire_rate:<10.2f}"
+            )
+            print(
+                f"  {'Regime Retrieval Success':<30} | {start_regime_success:<10.2f} | {end_regime_success:<10.2f}"
+            )
+            print(
+                f"  {'Contradiction Pressure':<30} | {start_contra_pressure:<10.2f} | {end_contra_pressure:<10.2f}"
+            )
+            print(
+                f"  {'Confidence Calibration Error':<30} | {start_cal_error:<10.2f} | {end_cal_error:<10.2f}"
+            )
 
             # Evaluation/Answer Section
             print("\n  Did DP become less wrong over time?")
 
             # Primary markers of wrongness are failure rate, calibration error, and contradiction pressure
-            wrongness_start = (start_fail_rate * 0.4) + (start_cal_error * 0.4) + (start_contra_pressure * 0.2)
-            wrongness_end = (end_fail_rate * 0.4) + (end_cal_error * 0.4) + (end_contra_pressure * 0.2)
+            wrongness_start = (
+                (start_fail_rate * 0.4)
+                + (start_cal_error * 0.4)
+                + (start_contra_pressure * 0.2)
+            )
+            wrongness_end = (
+                (end_fail_rate * 0.4)
+                + (end_cal_error * 0.4)
+                + (end_contra_pressure * 0.2)
+            )
             net_change = wrongness_start - wrongness_end
 
             reasons = []
             if end_fail_rate < start_fail_rate:
-                reasons.append(f"Component Failure Rate decreased ({start_fail_rate:.2f} -> {end_fail_rate:.2f})")
+                reasons.append(
+                    f"Component Failure Rate decreased ({start_fail_rate:.2f} -> {end_fail_rate:.2f})"
+                )
             if end_cal_error < start_cal_error:
-                reasons.append(f"Confidence Calibration Error decreased ({start_cal_error:.2f} -> {end_cal_error:.2f})")
+                reasons.append(
+                    f"Confidence Calibration Error decreased ({start_cal_error:.2f} -> {end_cal_error:.2f})"
+                )
             if end_contra_pressure < start_contra_pressure:
-                reasons.append(f"Contradiction Pressure decreased ({start_contra_pressure:.2f} -> {end_contra_pressure:.2f})")
+                reasons.append(
+                    f"Contradiction Pressure decreased ({start_contra_pressure:.2f} -> {end_contra_pressure:.2f})"
+                )
             if end_reuse_rate > start_reuse_rate:
-                reasons.append(f"Lesson Reuse Rate increased ({start_reuse_rate:.1%} -> {end_reuse_rate:.1%})")
+                reasons.append(
+                    f"Lesson Reuse Rate increased ({start_reuse_rate:.1%} -> {end_reuse_rate:.1%})"
+                )
             if end_regime_success > start_regime_success:
-                reasons.append(f"Regime Retrieval Success increased ({start_regime_success:.2f} -> {end_regime_success:.2f})")
+                reasons.append(
+                    f"Regime Retrieval Success increased ({start_regime_success:.2f} -> {end_regime_success:.2f})"
+                )
 
             # Check if improvement is measurable and positive
             if net_change > 0.01 and len(reasons) >= 2:
                 print("    - YES (Measurable and Positive):")
                 for r in reasons:
                     print(f"      • {r}")
-                print("\n    Conclusion: Crossing from [Reflective System] to [Learning System] (Empirically Proven).")
+                print(
+                    "\n    Conclusion: Crossing from [Reflective System] to [Learning System] (Empirically Proven)."
+                )
             else:
                 if net_change > 0.0:
                     print("    - SLIGHT IMPROVEMENT:")
                     for r in reasons:
                         print(f"      • {r}")
-                    print("\n    Conclusion: Retained in [Reflective System] boundary (requires more epoch variance).")
+                    print(
+                        "\n    Conclusion: Retained in [Reflective System] boundary (requires more epoch variance)."
+                    )
                 else:
-                    print("    - NO: System error bounds fluctuated or did not decrease measurably.")
+                    print(
+                        "    - NO: System error bounds fluctuated or did not decrease measurably."
+                    )
                     print("\n    Conclusion: Retained in [Reflective System] boundary.")
 
         # -------------------------------------------------------------
         # H. Next Day Outlook
         # -------------------------------------------------------------
-        acc_pct = p.get('accuracy', 0.0)
+        acc_pct = p.get("accuracy", 0.0)
         print("\nH. NEXT DAY OUTLOOK")
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print()
@@ -564,21 +621,27 @@ class ReplayJournalBuilder:
         # -------------------------------------------------------------
         print("\nI. Knowledge Health Dashboard")
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        
+
         principles = external_metrics.get("principles") or []
         world_models = external_metrics.get("world_models") or []
         open_questions = external_metrics.get("open_questions") or []
         reconciliation_reports = external_metrics.get("reconciliation_reports") or []
-        
+
         # 1. Knowledge Compression Ratio
         obs_count = len(prediction_history)
-        theory_count = external_metrics.get("active_theories", 0) + external_metrics.get("retired_theories", 0)
+        theory_count = external_metrics.get(
+            "active_theories", 0
+        ) + external_metrics.get("retired_theories", 0)
         if theory_count == 0:
-            theory_count = len(set(r.get("theory_id") for r in prediction_history if r.get("theory_id")))
+            theory_count = len(
+                set(
+                    r.get("theory_id") for r in prediction_history if r.get("theory_id")
+                )
+            )
         lessons_count = lesson_stats.get("total_lessons", 0)
         principles_count = len(principles)
         wm_count = len(world_models)
-        
+
         print("\n  1. Knowledge Compression Ratio:")
         print(f"    Observations:        {obs_count}")
         print(f"    Generated Theories:   {theory_count}")
@@ -586,10 +649,14 @@ class ReplayJournalBuilder:
         print(f"    Principles:            {principles_count}")
         print(f"    World Models:          {wm_count}")
         print()
-        print(f"    Compression Ratio:   {obs_count} → {theory_count} → {lessons_count} → {principles_count} → {wm_count}")
-        
+        print(
+            f"    Compression Ratio:   {obs_count} → {theory_count} → {lessons_count} → {principles_count} → {wm_count}"
+        )
+
         # 2. Principle Stability
-        active_stable = [p for p in principles if p.status.value in ["active", "stable"]]
+        active_stable = [
+            p for p in principles if p.status.value in ["active", "stable"]
+        ]
         print("\n  2. Principle Stability:")
         if active_stable:
             total_age = 0
@@ -598,74 +665,110 @@ class ReplayJournalBuilder:
                 age = max(1, obs_count - p.created_at_step)
                 total_age += age
                 total_confidence += p.confidence
-                
+
                 rev_count = len(p.revision_history)
-                val_rate = p.support_count / (p.support_count + p.contradiction_count) if (p.support_count + p.contradiction_count) > 0 else 1.0
-                
+                val_rate = (
+                    p.support_count / (p.support_count + p.contradiction_count)
+                    if (p.support_count + p.contradiction_count) > 0
+                    else 1.0
+                )
+
                 print(f"    - Principle {p.id[:8]} (Status: {p.status.value.upper()})")
                 print(f"      Statement:       {p.statement}")
                 print(f"      Age:             {age} step(s)")
                 print(f"      Revisions:       {rev_count}")
-                print(f"      Support/Contra:  {p.support_count} / {p.contradiction_count}")
+                print(
+                    f"      Support/Contra:  {p.support_count} / {p.contradiction_count}"
+                )
                 print(f"      Validation Rate: {val_rate:.1%}")
                 print(f"      Confidence:      {p.confidence:.2f}")
                 print(f"      Uses (Applied):  {p.uses_count} times")
-                print(f"      Utility Score:   {p.usefulness_score:.2f} (Helped: {p.predictions_helped} | Harmed: {p.predictions_harmed})")
+                print(
+                    f"      Utility Score:   {p.usefulness_score:.2f} (Helped: {p.predictions_helped} | Harmed: {p.predictions_harmed})"
+                )
                 print(f"      Conf Adjustments:{p.confidence_adjustments_triggered}")
                 print(f"      WM Influence:    {p.world_model_influence_count}")
-                
-            avg_stability = (total_confidence / len(active_stable)) if active_stable else 0.0
+
+            avg_stability = (
+                (total_confidence / len(active_stable)) if active_stable else 0.0
+            )
             print(f"\n    Average Principle Stability Score: {avg_stability:.2f}")
         else:
             print("    No active or stable principles to report.")
-            
+
         # 3. Principle Coverage
         covered_theories = set()
-        all_theories = set(r.get("theory_id") for r in prediction_history if r.get("theory_id"))
+        all_theories = set(
+            r.get("theory_id") for r in prediction_history if r.get("theory_id")
+        )
         for p in principles:
             if p.status.value in ["active", "stable"]:
-                for tid in p.associated_lineage_ids + p.supporting_theory_ids + p.contradicting_theory_ids:
+                for tid in (
+                    p.associated_lineage_ids
+                    + p.supporting_theory_ids
+                    + p.contradicting_theory_ids
+                ):
                     if tid in all_theories:
                         covered_theories.add(tid)
-        
-        coverage_pct = (len(covered_theories) / len(all_theories)) if all_theories else 0.0
+
+        coverage_pct = (
+            (len(covered_theories) / len(all_theories)) if all_theories else 0.0
+        )
         print("\n  3. Principle Coverage:")
         print(f"    Generated theories:   {len(all_theories)}")
         print(f"    Covered by principles: {len(covered_theories)}")
         print(f"    Coverage:             {coverage_pct:.1%}")
-        
+
         # 4. Principle Compression Efficiency
         explained_per_p = []
         for p in active_stable:
             explained_count = len(set(p.associated_lineage_ids))
             explained_per_p.append(explained_count)
-            
-        avg_efficiency = (sum(explained_per_p) / len(active_stable)) if active_stable else 0.0
+
+        avg_efficiency = (
+            (sum(explained_per_p) / len(active_stable)) if active_stable else 0.0
+        )
         print("\n  4. Principle Compression Efficiency:")
-        print(f"    Average theories explained per principle: {avg_efficiency:.1f} theories/principle")
-        
+        print(
+            f"    Average theories explained per principle: {avg_efficiency:.1f} theories/principle"
+        )
+
         # 5. World Model Stability
         if world_models:
             wms = sorted(world_models, key=lambda x: (x.step, x.created_at))
             latest_wm = wms[-1]
             prev_wm = wms[-2] if len(wms) > 1 else None
-            
+
             days_since = max(0, obs_count - latest_wm.step)
             rev_count = len(wms) - 1
-            wm_confidence = sum(p.confidence for p in active_stable) / len(active_stable) if active_stable else 0.5
-            
+            wm_confidence = (
+                sum(p.confidence for p in active_stable) / len(active_stable)
+                if active_stable
+                else 0.5
+            )
+
             print("\n  5. World Model Stability:")
             print(f"    Current Version:              v{len(wms)}")
-            print(f"    Previous Version:             v{len(wms)-1 if len(wms) > 1 else 'N/A'}")
+            print(
+                f"    Previous Version:             v{len(wms)-1 if len(wms) > 1 else 'N/A'}"
+            )
             print(f"    Revisions Count:              {rev_count}")
             print(f"    Days Since Last Revision:     {days_since} step(s)")
             print(f"    Confidence:                   {wm_confidence:.2f}")
-            print(f"    Active Supporting Principles: {len(latest_wm.active_principle_ids)}")
+            print(
+                f"    Active Supporting Principles: {len(latest_wm.active_principle_ids)}"
+            )
             print(f"    Narrative Summary:            {latest_wm.narrative_summary}")
-            
+
             if prev_wm:
-                retired_diff = len(set(prev_wm.active_principle_ids) - set(latest_wm.active_principle_ids))
-                added_diff = len(set(latest_wm.active_principle_ids) - set(prev_wm.active_principle_ids))
+                retired_diff = len(
+                    set(prev_wm.active_principle_ids)
+                    - set(latest_wm.active_principle_ids)
+                )
+                added_diff = len(
+                    set(latest_wm.active_principle_ids)
+                    - set(prev_wm.active_principle_ids)
+                )
                 print(f"    Revision Trigger:")
                 if retired_diff > 0:
                     print(f"      • {retired_diff} principle(s) retired/demoted")
@@ -676,7 +779,7 @@ class ReplayJournalBuilder:
         else:
             print("\n  5. World Model Stability:")
             print("    No world model generated yet.")
-            
+
         # 6. Principle Lifecycle Distribution
         statuses = [p.status.value for p in principles]
         lifecycle = {
@@ -694,13 +797,13 @@ class ReplayJournalBuilder:
         print(f"    Challenged: {lifecycle['challenged']}")
         print(f"    Revised:    {lifecycle['revised']}")
         print(f"    Retired:    {lifecycle['retired']}")
-        
+
         # Calculate Knowledge Debt breakdown
         active_oq = [q for q in open_questions if q.status.value == "active"]
         active_oq_count = len(active_oq)
         candidate_count = lifecycle["candidate"]
         uncovered_theories_count = len(all_theories - covered_theories)
-        
+
         unexplained_obs_count = 0
         for r in prediction_history:
             failed_comps = r.get("components_failed", [])
@@ -732,8 +835,13 @@ class ReplayJournalBuilder:
                     break
             if not is_obs_explained:
                 unexplained_obs_count += 1
-                
-        knowledge_debt = candidate_count + active_oq_count + uncovered_theories_count + unexplained_obs_count
+
+        knowledge_debt = (
+            candidate_count
+            + active_oq_count
+            + uncovered_theories_count
+            + unexplained_obs_count
+        )
 
         # 7. Knowledge Growth Rate & Debt
         revised_p_count = sum(1 for p in principles if len(p.revision_history) > 0)
@@ -748,7 +856,7 @@ class ReplayJournalBuilder:
         print(f"      - Active Open Questions:{active_oq_count}")
         print(f"      - Uncovered Theories:   {uncovered_theories_count}")
         print(f"      - Candidate Backlog:    {candidate_count}")
-        
+
         # 8. Explanatory Power
         explained_exps = 0
         total_exps = len(prediction_history)
@@ -758,16 +866,21 @@ class ReplayJournalBuilder:
                 continue
             is_exp_covered = False
             for p in active_stable:
-                if tid in p.associated_lineage_ids + p.supporting_theory_ids + p.contradicting_theory_ids:
+                if (
+                    tid
+                    in p.associated_lineage_ids
+                    + p.supporting_theory_ids
+                    + p.contradicting_theory_ids
+                ):
                     is_exp_covered = True
                     break
             if is_exp_covered:
                 explained_exps += 1
-                
+
         explanatory_power = (explained_exps / total_exps) if total_exps > 0 else 0.0
         print("\n  8. Explanatory Power:")
         print(f"    Explanatory Power Rate:   {explanatory_power:.1%}")
-        
+
         # 9. Knowledge Novelty
         novel_theories = 0
         total_theories = len(all_theories)
@@ -775,23 +888,32 @@ class ReplayJournalBuilder:
             is_novel = True
             for p in principles:
                 if p.status.value in ["active", "stable"]:
-                    if tid in p.associated_lineage_ids + p.supporting_theory_ids + p.contradicting_theory_ids:
+                    if (
+                        tid
+                        in p.associated_lineage_ids
+                        + p.supporting_theory_ids
+                        + p.contradicting_theory_ids
+                    ):
                         is_novel = False
                         break
             if is_novel:
                 novel_theories += 1
-                
+
         novelty_rate = (novel_theories / total_theories) if total_theories > 0 else 0.0
         print("\n  9. Knowledge Novelty:")
-        print(f"    Novel Theories Rate:      {novelty_rate:.1%} (unexplained by active principles)")
-        
+        print(
+            f"    Novel Theories Rate:      {novelty_rate:.1%} (unexplained by active principles)"
+        )
+
         # 10. Open Questions (Future Curiosity Layer)
         print("\n  10. Open Questions (Future Curiosity Layer):")
         if active_oq:
             print("    Open Questions:")
             for q in active_oq:
                 print(f"      • {q.question_text}")
-                print(f"        Hypothesized factors: {', '.join(q.hypothesized_factors)}")
+                print(
+                    f"        Hypothesized factors: {', '.join(q.hypothesized_factors)}"
+                )
         else:
             print("    No unresolved open questions.")
 
@@ -805,22 +927,43 @@ class ReplayJournalBuilder:
             print("    No reconciliation cycle run yet.")
 
         # 12. Knowledge Influence
-        guided_count = sum(1 for r in prediction_history if len(r.get("principles_accepted", [])) > 0 or r.get("world_model_applied", False))
+        guided_count = sum(
+            1
+            for r in prediction_history
+            if len(r.get("principles_accepted", [])) > 0
+            or r.get("world_model_applied", False)
+        )
         experience_only_count = len(prediction_history) - guided_count
         print("\n  12. Knowledge Influence:")
-        print(f"    Knowledge Guided Predictions:  {guided_count} (uses active principles or world models)")
-        print(f"    Experience Only Predictions:   {experience_only_count} (no active principles/world models applied)")
+        print(
+            f"    Knowledge Guided Predictions:  {guided_count} (uses active principles or world models)"
+        )
+        print(
+            f"    Experience Only Predictions:   {experience_only_count} (no active principles/world models applied)"
+        )
 
         # 13. Knowledge Reuse Rate
-        reinforce_count = sum(1 for r in prediction_history if r.get("novelty_decision") == "REINFORCE")
-        revise_count = sum(1 for r in prediction_history if r.get("novelty_decision") == "REVISE")
-        generate_count = sum(1 for r in prediction_history if r.get("novelty_decision") == "GENERATE")
+        reinforce_count = sum(
+            1 for r in prediction_history if r.get("novelty_decision") == "REINFORCE"
+        )
+        revise_count = sum(
+            1 for r in prediction_history if r.get("novelty_decision") == "REVISE"
+        )
+        generate_count = sum(
+            1 for r in prediction_history if r.get("novelty_decision") == "GENERATE"
+        )
         total_decisions = reinforce_count + revise_count + generate_count
-        reinforce_pct = (reinforce_count / total_decisions) if total_decisions > 0 else 0.0
+        reinforce_pct = (
+            (reinforce_count / total_decisions) if total_decisions > 0 else 0.0
+        )
         revise_pct = (revise_count / total_decisions) if total_decisions > 0 else 0.0
-        generate_pct = (generate_count / total_decisions) if total_decisions > 0 else 0.0
+        generate_pct = (
+            (generate_count / total_decisions) if total_decisions > 0 else 0.0
+        )
         print("\n  13. Knowledge Reuse Rate:")
-        print(f"    Reinforced Existing Theory: {reinforce_count} ({reinforce_pct:.1%})")
+        print(
+            f"    Reinforced Existing Theory: {reinforce_count} ({reinforce_pct:.1%})"
+        )
         print(f"    Revised Existing Theory:    {revise_count} ({revise_pct:.1%})")
         print(f"    Generated New Theory:       {generate_count} ({generate_pct:.1%})")
 
@@ -843,13 +986,27 @@ class ReplayJournalBuilder:
         if pt_summary:
             print("\nJ. Paper Trading Performance")
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-            print(f"  • Total Return:             {pt_summary.get('total_return_pct', 0.0):.2f}%")
-            print(f"  • Sharpe Ratio:             {pt_summary.get('sharpe_ratio', 0.0):.2f}")
-            print(f"  • Max Drawdown:             {pt_summary.get('max_drawdown_pct', 0.0):.2f}%")
-            print(f"  • Directional Accuracy:     {pt_summary.get('directional_accuracy_pct', 0.0):.2f}%")
-            print(f"  • Commitment Accuracy:      {pt_summary.get('commitment_accuracy_pct', 0.0):.2f}%")
-            print(f"  • Average Conviction Score: {pt_summary.get('avg_conviction_score', 0.0):.2f}")
-            print(f"  • Final Capital:            ₹{pt_summary.get('final_capital', 0.0):,.2f}")
+            print(
+                f"  • Total Return:             {pt_summary.get('total_return_pct', 0.0):.2f}%"
+            )
+            print(
+                f"  • Sharpe Ratio:             {pt_summary.get('sharpe_ratio', 0.0):.2f}"
+            )
+            print(
+                f"  • Max Drawdown:             {pt_summary.get('max_drawdown_pct', 0.0):.2f}%"
+            )
+            print(
+                f"  • Directional Accuracy:     {pt_summary.get('directional_accuracy_pct', 0.0):.2f}%"
+            )
+            print(
+                f"  • Commitment Accuracy:      {pt_summary.get('commitment_accuracy_pct', 0.0):.2f}%"
+            )
+            print(
+                f"  • Average Conviction Score: {pt_summary.get('avg_conviction_score', 0.0):.2f}"
+            )
+            print(
+                f"  • Final Capital:            ₹{pt_summary.get('final_capital', 0.0):,.2f}"
+            )
 
         # -------------------------------------------------------------
         # K. Decision Intelligence
@@ -858,31 +1015,230 @@ class ReplayJournalBuilder:
         if di_metrics:
             print("\nK. Decision Intelligence")
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-            print(f"  • Total Decisions:          {di_metrics.get('total_decisions', 0)}")
+            print(
+                f"  • Total Decisions:          {di_metrics.get('total_decisions', 0)}"
+            )
             print(f"  • Executed Decisions:       {di_metrics.get('executed', 0)}")
             print(f"  • Skipped Decisions:        {di_metrics.get('skipped', 0)}")
-            print(f"  • High Conviction (>=0.6):  {di_metrics.get('high_conviction', 0)}")
-            print(f"  • Low Conviction (<0.4):    {di_metrics.get('low_conviction', 0)}")
-            print(f"  • Decision Accuracy:        {di_metrics.get('decision_accuracy_pct', 0.0):.2f}%")
-            print(f"  • Allocation Efficiency:    {di_metrics.get('allocation_efficiency', 0.0):.4f}")
-            print(f"  • Average Conviction:       {di_metrics.get('avg_conviction', 0.0):.2f}")
-            print(f"  • False High Conviction:    {di_metrics.get('false_high_conviction_pct', 0.0):.2f}%")
-            print(f"  • False Low Conviction:     {di_metrics.get('false_low_conviction_pct', 0.0):.2f}%")
-            print(f"  • Decision Stability:       {di_metrics.get('decision_stability', 0.0):.4f}")
-            
+            print(
+                f"  • High Conviction (>=0.6):  {di_metrics.get('high_conviction', 0)}"
+            )
+            print(
+                f"  • Low Conviction (<0.4):    {di_metrics.get('low_conviction', 0)}"
+            )
+            print(
+                f"  • Decision Accuracy:        {di_metrics.get('decision_accuracy_pct', 0.0):.2f}%"
+            )
+            print(
+                f"  • Allocation Efficiency:    {di_metrics.get('allocation_efficiency', 0.0):.4f}"
+            )
+            print(
+                f"  • Average Conviction:       {di_metrics.get('avg_conviction', 0.0):.2f}"
+            )
+            print(
+                f"  • False High Conviction:    {di_metrics.get('false_high_conviction_pct', 0.0):.2f}%"
+            )
+            print(
+                f"  • False Low Conviction:     {di_metrics.get('false_low_conviction_pct', 0.0):.2f}%"
+            )
+            print(
+                f"  • Decision Stability:       {di_metrics.get('decision_stability', 0.0):.4f}"
+            )
+
             top_lin = di_metrics.get("top_lineages", [])
-            print(f"  • Top Performing Lineages:   {', '.join(top_lin) if top_lin else 'None'}")
-            
+            print(
+                f"  • Top Performing Lineages:   {', '.join(top_lin) if top_lin else 'None'}"
+            )
+
             top_pri = di_metrics.get("top_principles", [])
-            print(f"  • Top Performing Principles: {', '.join(top_pri) if top_pri else 'None'}")
-            
+            print(
+                f"  • Top Performing Principles: {', '.join(top_pri) if top_pri else 'None'}"
+            )
+
             top_mem = di_metrics.get("top_memories", [])
-            print(f"  • Most Helpful Memory Ret:   {', '.join(top_mem) if top_mem else 'None'}")
-            
+            print(
+                f"  • Most Helpful Memory Ret:   {', '.join(top_mem) if top_mem else 'None'}"
+            )
+
             top_harm = di_metrics.get("top_harmful_contradictions", [])
-            print(f"  • Most Harmful Contradiction: {', '.join(top_harm) if top_harm else 'None'}")
-            
-            print(f"  • Knowledge Changes:        {di_metrics.get('knowledge_changes_count', 0)} action(s)")
+            print(
+                f"  • Most Harmful Contradiction: {', '.join(top_harm) if top_harm else 'None'}"
+            )
+
+            print(
+                f"  • Knowledge Changes:        {di_metrics.get('knowledge_changes_count', 0)} action(s)"
+            )
+
+        # -------------------------------------------------------------
+        # L. Ontology Compliance Report
+        # -------------------------------------------------------------
+        from cognition.schemas.knowledge.ontology import OntologyRegistry
+
+        print("\nL. Ontology Compliance Report")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+
+        tc_chk = OntologyRegistry._theory_components_checked
+        tc_val = OntologyRegistry._theory_components_valid
+        tc_pct = (tc_val / tc_chk * 100.0) if tc_chk > 0 else 100.0
+
+        mc_chk = tc_chk
+        mc_val = tc_val
+        mc_pct = tc_pct
+
+        pf_chk = OntologyRegistry._principle_filters_checked
+        pf_val = OntologyRegistry._principle_filters_valid
+        pf_pct = (pf_val / pf_chk * 100.0) if pf_chk > 0 else 100.0
+
+        print(f"  • Theory Components Checked:    {tc_chk}")
+        print(f"  • Theory Components Valid:      {tc_val} ({tc_pct:.1f}%)")
+        print(f"  • Mechanism Components Checked: {mc_chk}")
+        print(f"  • Mechanism Components Valid:   {mc_val} ({mc_pct:.1f}%)")
+        print(f"  • Principle Filters Checked:    {pf_chk}")
+        print(f"  • Principle Filters Valid:      {pf_val} ({pf_pct:.1f}%)")
+        print(
+            f"  • Rejected Filters Count:       {OntologyRegistry._rejected_filters_count}"
+        )
+        print(
+            f"  • Regenerated Filters Count:    {OntologyRegistry._regenerated_filters_count}"
+        )
+
+        unknowns = sorted(list(OntologyRegistry._unknown_ontology_values))
+        print(
+            f"  • Unknown Taxonomy Values:      {', '.join(unknowns) if unknowns else 'None'}"
+        )
+
+        # -------------------------------------------------------------
+        # M. Knowledge Formation Instrumentation
+        # -------------------------------------------------------------
+        print("\nM. Knowledge Formation Instrumentation")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        mechanisms = external_metrics.get("mechanisms") or []
+        mech_reused = sum(max(0, len(m.associated_theory_ids) - 1) for m in mechanisms)
+        candidate_p = sum(1 for p in principles if p.status.value == "candidate")
+        validated_p = sum(
+            1 for p in principles if p.status.value not in ["candidate", "retired"]
+        )
+        avg_sup = (
+            (sum(p.support_count for p in principles) / len(principles))
+            if principles
+            else 0.0
+        )
+        avg_con = (
+            (sum(p.contradiction_count for p in principles) / len(principles))
+            if principles
+            else 0.0
+        )
+
+        maturation_times = []
+        for p in principles:
+            transition_step = None
+            for entry in p.maturation_history:
+                if (
+                    entry.status_before == "candidate"
+                    and entry.status_after != "candidate"
+                ):
+                    transition_step = entry.step
+                    break
+            if transition_step is not None:
+                maturation_times.append(max(0, transition_step - p.created_at_step))
+        avg_maturation_time = (
+            (sum(maturation_times) / len(maturation_times)) if maturation_times else 0.0
+        )
+
+        print(f"  • Mechanisms Discovered:        {len(mechanisms)}")
+        print(f"  • Mechanisms Reused:            {mech_reused} time(s)")
+        print(f"  • Candidate Principles:         {candidate_p}")
+        print(f"  • Validated Principles:         {validated_p}")
+        print(f"  • Average Support Count:        {avg_sup:.2f}")
+        print(f"  • Average Contradiction Count:   {avg_con:.2f}")
+        print(f"  • Average Maturation Time:      {avg_maturation_time:.2f} step(s)")
+        print(f"  • Knowledge Guided Predictions:  {guided_count} step(s)")
+        print(f"  • Principle Coverage:           {coverage_pct:.1%}")
+
+        tm = analysis.get("theory_mutation_metrics") or {}
+        print(
+            f"  • Average Theory Word Count:    {tm.get('avg_theory_word_count', 0.0):.1f}"
+        )
+        print(
+            f"  • Average Mechanism Count:      {tm.get('avg_mechanism_count', 0.0):.1f}"
+        )
+        print(
+            f"  • Average Conditional Clauses:  {tm.get('avg_conditional_clauses', 0.0):.1f}"
+        )
+        print(
+            f"  • Total Exceptions Added:       {tm.get('total_exceptions_added', 0)}"
+        )
+        print(
+            f"  • Total Mechanisms Retired:     {tm.get('total_mechanisms_retired', 0)}"
+        )
+        print(
+            f"  • Total Mechanisms Added:       {tm.get('total_mechanisms_added', 0)}"
+        )
+        print(
+            f"  • Total Mechanisms Modified:    {tm.get('total_mechanisms_modified', 0)}"
+        )
+        print(
+            f"  • Mechanism Stability:          {tm.get('avg_mechanism_stability', 1.0):.3f}"
+        )
+
+        words_before = tm.get("words_before_mutation", 0)
+        words_after = tm.get("words_after_mutation", 0)
+        word_pct = tm.get("word_compression_pct", 0.0)
+        mechs_before = tm.get("mechanisms_before_mutation", 0)
+        mechs_after = tm.get("mechanisms_after_mutation", 0)
+        mech_pct = tm.get("mechanism_compression_pct", 0.0)
+
+        print(
+            f"  • Mutation Word Compression:    {words_before} → {words_after} ({word_pct:+.1f}%)"
+        )
+        print(
+            f"  • Mutation Mech Compression:    {mechs_before} → {mechs_after} ({mech_pct:+.1f}%)"
+        )
+
+        # -------------------------------------------------------------
+        # N. Mechanism Registry Health
+        # -------------------------------------------------------------
+        print("\nN. Mechanism Registry Health")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        mm = analysis.get("mechanism_metrics") or {}
+        print(f"  • Mechanisms Alive:            {mm.get('mechanisms_alive', 0)}")
+        print(f"  • Mechanisms Created:          {mm.get('mechanisms_created', 0)}")
+        print(f"  • Mechanisms Reused:           {mm.get('mechanisms_reused', 0)}")
+        print(f"  • Mechanisms Retired:          {mm.get('mechanisms_retired', 0)}")
+        print(
+            f"  • Average Mechanism Age:       {mm.get('avg_mechanism_age', 0.0):.2f} step(s)"
+        )
+        print(
+            f"  • Mechanism Stability:         {mm.get('mechanism_stability', 1.0):.2f}"
+        )
+        print(f"  • Reuse Rate:                  {mm.get('reuse_rate', 0.0):.1%}")
+        print(
+            f"  • Evidence Accumulated:        {mm.get('evidence_accumulated', 0)} observation(s)"
+        )
+
+        print("\n  Top Stable Mechanisms:")
+        top_stable = mm.get("top_stable_mechanisms", [])
+        if top_stable:
+            for name, age, status in top_stable[:3]:
+                print(f"    - {name} (age: {age} steps, status: {status})")
+        else:
+            print("    - None")
+
+        print("\n  Top Contradicted Mechanisms:")
+        top_contra = mm.get("top_contradicted_mechanisms", [])
+        if top_contra:
+            for name, count in top_contra[:3]:
+                print(f"    - {name} (contradictions: {count})")
+        else:
+            print("    - None")
+
+        print("\n  Candidate Invariants:")
+        invariants = mm.get("candidate_invariants", [])
+        if invariants:
+            for name, desc in invariants:
+                print(f"    - {name}: {desc}")
+        else:
+            print("    - None")
 
         # Artifacts
         print("\n" + "━" * 50)

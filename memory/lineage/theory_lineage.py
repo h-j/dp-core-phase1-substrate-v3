@@ -44,6 +44,11 @@ class TheoryRecord:
     revival_count: int = 0
     retirement_ages: List[int] = field(default_factory=list)
     revival_latencies: List[int] = field(default_factory=list)
+    predictive_fitness: float = 0.5
+    economic_fitness: float = 0.5
+    generalization_fitness: float = 0.5
+    cross_asset_fitness: float = 0.5
+    longevity_days: int = 0
 
 
 class TheoryLineageEngine:

@@ -24,7 +24,9 @@ class DialecticalTheorySynthesizer:
         regime_subtype: str,
         falsifiability_conditions: List[str],
         relevant_lessons: List[str] = None,  # NEW: Inject historical lessons
-        component_failures: Dict[str, int] = None,  # NEW: Closed-loop failure constraints
+        component_failures: Dict[
+            str, int
+        ] = None,  # NEW: Closed-loop failure constraints
     ) -> Optional[Dict[str, str]]:
         """
         Performs dialectical synthesis of conflicting theories.
@@ -57,7 +59,9 @@ class DialecticalTheorySynthesizer:
         if component_failures:
             failures_list = [
                 f"- Component '{comp}' has failed {count} times"
-                for comp, count in sorted(component_failures.items(), key=lambda x: x[1], reverse=True)
+                for comp, count in sorted(
+                    component_failures.items(), key=lambda x: x[1], reverse=True
+                )
                 if count > 0
             ]
             if failures_list:

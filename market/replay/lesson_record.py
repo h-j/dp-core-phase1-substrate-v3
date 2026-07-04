@@ -50,7 +50,7 @@ class LessonRecord:
         data["source_experience_ids"] = [
             str(uid) for uid in data["source_experience_ids"]
         ]
-        
+
         # Upgrade path from older unstructured format
         if "target_regime" not in data:
             metadata = data.get("metadata", {}) or {}
@@ -61,24 +61,23 @@ class LessonRecord:
                 if k != "regime_subtype":
                     target_regime[k.lower()] = str(v).lower()
             data["target_regime"] = target_regime
-            
+
         if "activation_conditions" not in data:
             data["activation_conditions"] = []
         if "failure_conditions" not in data:
             data["failure_conditions"] = []
         if "affected_components" not in data:
             data["affected_components"] = []
-            
+
         if "validation_count" not in data:
             data["validation_count"] = data.pop("support_count", 0)
         else:
             data.pop("support_count", None)
-            
+
         if "falsification_count" not in data:
             data["falsification_count"] = data.pop("contradiction_count", 0)
         else:
             data.pop("contradiction_count", None)
-            
+
         data.pop("metadata", None)
         return cls(**data)
-

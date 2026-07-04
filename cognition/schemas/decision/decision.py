@@ -5,6 +5,7 @@ class Decision(CognitionBase):
     """
     An intermediate decision object between prediction and execution.
     """
+
     date: str
     prediction_direction: str
     action: str  # "long", "short", "hold", "wait"

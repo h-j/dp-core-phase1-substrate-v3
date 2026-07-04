@@ -19,12 +19,12 @@ def mock_generate(prompt: str, json_format: bool = False) -> str:
         return json.dumps(
             {
                 "statement": "Volume confirmation fails under range_bound regimes.",
-                "applicability_filter": {"regime_subtype": "range_bound"},
+                "applicability_filter": {"regime_subtype": "neutral"},
                 "falsifiable_predictions": [
                     {
                         "target_component": "volume_confirmation",
                         "expected_status": "failed",
-                        "applicability_filter": {"regime_subtype": "range_bound"},
+                        "applicability_filter": {"regime_subtype": "neutral"},
                     }
                 ],
             }
@@ -95,6 +95,7 @@ def mock_validate(self, principle, prediction_history):
 
 def mock_score_actual(self, prior_prediction, actual_observation):
     from market.replay.prediction_probe import PredictionEvaluation
+
     return PredictionEvaluation(
         prior_direction="range_bound",
         actual_direction="range_bound",

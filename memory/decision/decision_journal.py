@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 from typing import Dict, List, Optional
+
 from cognition.schemas.decision.decision_record import DecisionRecord
 
 
@@ -14,7 +15,7 @@ class DecisionJournal:
         self.base_path = Path(base_path) if base_path else project_root / "data"
         self.journal_path = self.base_path / "decision_journal"
         self.journal_path.mkdir(parents=True, exist_ok=True)
-        
+
         self.records: Dict[str, DecisionRecord] = {}
         self.load_all()
 

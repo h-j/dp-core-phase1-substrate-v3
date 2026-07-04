@@ -419,22 +419,48 @@ class ReplayAnalysisMetricsMixin:
             current_day_record = self.prediction_history[i]
             previous_day_prediction_record = self.prediction_history[i - 1]
 
-            if current_day_record.get("prior_prediction_result") and previous_day_prediction_record.get("prediction"):
-                aligned_predictions.append({
-                    "date": current_day_record["date"],
-                    "prediction": previous_day_prediction_record["prediction"],
-                    "prior_prediction_result": current_day_record["prior_prediction_result"],
-                    "contradiction_score": previous_day_prediction_record.get("contradiction_score", 0.0),
-                    "regime_similarity": previous_day_prediction_record.get("regime_similarity", 0.0),
-                    "theory_usefulness": previous_day_prediction_record.get("theory_usefulness"),
-                    "theory_summary": previous_day_prediction_record.get("theory_summary", ""),
-                    "transition_pressure_score": previous_day_prediction_record.get("transition_pressure_score", 0.0),
-                    "transition_breakout_risk": previous_day_prediction_record.get("transition_breakout_risk", False),
-                    "components_failed": previous_day_prediction_record.get("components_failed", []),
-                    "reused_lessons": previous_day_prediction_record.get("reused_lessons", []),
-                    "lessons_retired": previous_day_prediction_record.get("lessons_retired", 0),
-                    "regime_matches": previous_day_prediction_record.get("regime_matches", []),
-                })
+            if current_day_record.get(
+                "prior_prediction_result"
+            ) and previous_day_prediction_record.get("prediction"):
+                aligned_predictions.append(
+                    {
+                        "date": current_day_record["date"],
+                        "prediction": previous_day_prediction_record["prediction"],
+                        "prior_prediction_result": current_day_record[
+                            "prior_prediction_result"
+                        ],
+                        "contradiction_score": previous_day_prediction_record.get(
+                            "contradiction_score", 0.0
+                        ),
+                        "regime_similarity": previous_day_prediction_record.get(
+                            "regime_similarity", 0.0
+                        ),
+                        "theory_usefulness": previous_day_prediction_record.get(
+                            "theory_usefulness"
+                        ),
+                        "theory_summary": previous_day_prediction_record.get(
+                            "theory_summary", ""
+                        ),
+                        "transition_pressure_score": previous_day_prediction_record.get(
+                            "transition_pressure_score", 0.0
+                        ),
+                        "transition_breakout_risk": previous_day_prediction_record.get(
+                            "transition_breakout_risk", False
+                        ),
+                        "components_failed": previous_day_prediction_record.get(
+                            "components_failed", []
+                        ),
+                        "reused_lessons": previous_day_prediction_record.get(
+                            "reused_lessons", []
+                        ),
+                        "lessons_retired": previous_day_prediction_record.get(
+                            "lessons_retired", 0
+                        ),
+                        "regime_matches": previous_day_prediction_record.get(
+                            "regime_matches", []
+                        ),
+                    }
+                )
 
         total = len(self.prediction_history)
         scored_count = len(aligned_predictions)
@@ -461,7 +487,11 @@ class ReplayAnalysisMetricsMixin:
         directions = ["higher", "lower", "range_bound"]
         accuracy_by_direction = {}
         for d in directions:
-            rows = [r for r in aligned_predictions if r.get("prediction", {}).get("direction") == d]
+            rows = [
+                r
+                for r in aligned_predictions
+                if r.get("prediction", {}).get("direction") == d
+            ]
             cnt = len(rows)
             acc = sum(1 for r in rows if is_correct(r)) / cnt if cnt else 0.0
 
@@ -621,7 +651,9 @@ class ReplayAnalysisMetricsMixin:
 
         # Accuracy when usefulness > 0.7
         high_usefulness_predictions = [
-            r for r in aligned_predictions if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
+            r
+            for r in aligned_predictions
+            if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
         ]
         accuracy_when_high_usefulness = (
             sum(1 for r in high_usefulness_predictions if is_correct(r))
@@ -673,7 +705,9 @@ class ReplayAnalysisMetricsMixin:
         }
 
         # Regime similarity > 0.9
-        high_regime = [r for r in aligned_predictions if r.get("regime_similarity", 0.0) > 0.9]
+        high_regime = [
+            r for r in aligned_predictions if r.get("regime_similarity", 0.0) > 0.9
+        ]
         regime_acc = (
             sum(1 for r in high_regime if is_correct(r)) / len(high_regime)
             if high_regime
@@ -692,7 +726,9 @@ class ReplayAnalysisMetricsMixin:
 
         # Task 2.4: Prediction slices by pressure
         pressure_gt_0_5 = [
-            r for r in aligned_predictions if r.get("transition_pressure_score", 0.0) > 0.5
+            r
+            for r in aligned_predictions
+            if r.get("transition_pressure_score", 0.0) > 0.5
         ]
         acc_pressure_gt_0_5 = (
             sum(1 for r in pressure_gt_0_5 if is_correct(r)) / len(pressure_gt_0_5)
@@ -701,7 +737,9 @@ class ReplayAnalysisMetricsMixin:
         )
 
         pressure_gt_0_7 = [
-            r for r in aligned_predictions if r.get("transition_pressure_score", 0.0) > 0.7
+            r
+            for r in aligned_predictions
+            if r.get("transition_pressure_score", 0.0) > 0.7
         ]
         acc_pressure_gt_0_7 = (
             sum(1 for r in pressure_gt_0_7 if is_correct(r)) / len(pressure_gt_0_7)
@@ -711,7 +749,9 @@ class ReplayAnalysisMetricsMixin:
 
         # Task 2.5: False breakout
         false_breakouts = [
-            r for r in aligned_predictions if r.get("transition_breakout_risk") and not is_correct(r)
+            r
+            for r in aligned_predictions
+            if r.get("transition_breakout_risk") and not is_correct(r)
         ]
 
         # Task 2.6: Best breakout capture
@@ -753,10 +793,13 @@ class ReplayAnalysisMetricsMixin:
         # Correlation Analysis
         correlation_coeff = 0.0
         confidences = [
-            r["prediction"].get("confidence", 0) for r in aligned_predictions if r.get("prediction")
+            r["prediction"].get("confidence", 0)
+            for r in aligned_predictions
+            if r.get("prediction")
         ]
         scores = [
-            r["prior_prediction_result"].get("direction_score", 0) for r in aligned_predictions
+            r["prior_prediction_result"].get("direction_score", 0)
+            for r in aligned_predictions
         ]
         if len(confidences) > 1 and len(scores) > 1:
             try:

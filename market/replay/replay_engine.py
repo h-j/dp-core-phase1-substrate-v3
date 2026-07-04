@@ -38,6 +38,25 @@ from memory.replay.regime_memory import \
     RegimeMemoryStore  # Import RegimeMemoryStore
 
 
+def count_conditional_clauses(theory_structured) -> int:
+    count = 0
+    if theory_structured:
+        if getattr(theory_structured, "if_branch", None) and getattr(
+            theory_structured.if_branch, "condition", None
+        ):
+            count += 1
+        if getattr(theory_structured, "else_branch", None) and getattr(
+            theory_structured.else_branch, "condition", None
+        ):
+            count += 1
+        if (
+            getattr(theory_structured, "unless", None)
+            and theory_structured.unless != "no contrary evidence emerges"
+        ):
+            count += 1
+    return count
+
+
 class ReplayEngine:
     """
     Deterministic replay of cognition loop over historical market data.
@@ -299,6 +318,7 @@ class ReplayExecutor:
         )
         self.output_dir.mkdir(parents=True, exist_ok=True)
         from memory.graph.knowledge_graph import KnowledgeGraph
+
         self.knowledge_graph = KnowledgeGraph(run_dir=self.output_dir)
         self.decision_traces = []
         self.epistemic_review = {}
@@ -554,6 +574,9 @@ class ReplayExecutor:
 
     def execute(self, emit_summary: bool = True):
         """Execute full replay with cognition loop."""
+        from cognition.schemas.knowledge.ontology import OntologyRegistry
+
+        OntologyRegistry.reset_metrics()
         self._initialize_flows()
 
         # Restart clean if requested
@@ -562,6 +585,17 @@ class ReplayExecutor:
 
         # Initialize run directory
         self._initialize_run_dir(restart=self.restart)
+
+        # Isolate experience repository storage to the unique run directory to prevent test contamination
+        from memory.experience.experience_engine import ExperienceEngine
+        from memory.experience.experience_repository import \
+            ExperienceRepository
+
+        self.experience_repo = ExperienceRepository(
+            base_path=self.run_dir / "experiences"
+        )
+        self.experience_engine = ExperienceEngine(self.experience_repo)
+        self.experience_engine.verbose = self.verbose
 
         # Initialize Phase 2 components
         from uuid import uuid4
@@ -574,6 +608,11 @@ class ReplayExecutor:
         from memory.knowledge.knowledge_repository import KnowledgeRepository
 
         self.knowledge_repository = KnowledgeRepository(base_path=self.run_dir)
+        from flows.knowledge_flow.mechanism_engine import MechanismEngine
+
+        self.mechanism_engine = MechanismEngine(
+            knowledge_repo=self.knowledge_repository
+        )
         self.knowledge_compression_engine = KnowledgeCompressionEngine()
         self.world_model_engine = WorldModelEngine()
         self.novelty_gate = NoveltyDetectionGate(llm_client=self.theory_flow.client)
@@ -626,6 +665,7 @@ class ReplayExecutor:
             from market.replay.conviction_sizer import ConvictionSizer
             from market.replay.paper_trader import PaperTrader
             from memory.decision.decision_journal import DecisionJournal
+
             self.conviction_sizer = ConvictionSizer()
             self.paper_trader = PaperTrader()
             self.decision_journal = DecisionJournal()
@@ -642,6 +682,7 @@ class ReplayExecutor:
             from market.replay.conviction_sizer import ConvictionSizer
             from market.replay.paper_trader import PaperTrader
             from memory.decision.decision_journal import DecisionJournal
+
             self.conviction_sizer = ConvictionSizer()
             self.paper_trader = PaperTrader()
             self.decision_journal = DecisionJournal()
@@ -1454,8 +1495,20 @@ class ReplayExecutor:
                             active_principles=active_principles,
                         )
                     )
-
                 self.novelty_decision_history.append(decision)
+
+                daily_theory_word_count = 0
+                daily_mechanism_count = 0
+                daily_conditional_clauses_count = 0
+                daily_exceptions_added = 0
+                daily_mechanisms_retired = 0
+                daily_mechanisms_added = 0
+                daily_mechanisms_modified = 0
+                daily_mechanism_stability = 1.0
+                daily_words_before_mutation = 0
+                daily_words_after_mutation = 0
+                daily_mechanisms_before_mutation = 0
+                daily_mechanisms_after_mutation = 0
 
                 branch_stats = {"generated": 0}
                 if decision == "REINFORCE":
@@ -1466,96 +1519,427 @@ class ReplayExecutor:
 
                     theory = copy.deepcopy(prior_theory)
                     theory.id = str(uuid4())
+
+                    daily_theory_word_count = (
+                        len(theory.summary.split()) if theory.summary else 0
+                    )
+                    daily_mechanism_count = (
+                        len(theory.summary_structured.mechanism_components)
+                        if (
+                            theory.summary_structured
+                            and theory.summary_structured.mechanism_components
+                        )
+                        else 0
+                    )
+                    daily_conditional_clauses_count = count_conditional_clauses(
+                        theory.summary_structured
+                    )
+                    daily_exceptions_added = (
+                        1
+                        if (
+                            theory.summary_structured
+                            and theory.summary_structured.unless
+                            and theory.summary_structured.unless
+                            != "no contrary evidence emerges"
+                        )
+                        else 0
+                    )
+                    daily_mechanisms_retired = 0
+                    daily_mechanisms_added = 0
+                    daily_mechanisms_modified = 0
+                    daily_mechanism_stability = 1.0
+
                 elif decision == "REVISE":
                     self._log(
                         f"[NOVELTY GATE] Decision: REVISE | Score: {novelty_score:.2f} | {novelty_rationale}"
                     )
-                    prior_claim = (
-                        prior_theory.summary_structured.claim
-                        if prior_theory.summary_structured
-                        else prior_theory.summary
-                    )
-                    prompt = f"""You are the theory revision model.
-The existing theory for the market:
-Claim: {prior_claim}
+                    try:
+                        # Ensure prior theory has a structured representation and assign MECH_xxx IDs if missing
+                        if not prior_theory.summary_structured:
+                            from cognition.schemas.theory.theory import (
+                                Branch, TheoryStructured)
 
-Current Observation: {market_obs.observation_text}
+                            prior_theory.summary_structured = TheoryStructured(
+                                claim=prior_theory.summary,
+                                if_branch=Branch(condition="always", action="observe"),
+                                else_branch=Branch(condition="never", action="ignore"),
+                                falsified_if="never",
+                                mechanism_components=[],
+                            )
+
+                        # Ensure all prior components have sequential mechanism_ids
+                        for idx, comp in enumerate(
+                            prior_theory.summary_structured.mechanism_components
+                        ):
+                            if not comp.mechanism_id:
+                                comp.mechanism_id = f"MECH_{idx+1:03d}"
+
+                        # Prepare Stage 1 Prompt
+                        prior_mechs = []
+                        for (
+                            comp
+                        ) in prior_theory.summary_structured.mechanism_components:
+                            prior_mechs.append(
+                                {
+                                    "mechanism_id": comp.mechanism_id,
+                                    "component_id": comp.component_id,
+                                    "description": comp.description,
+                                    "observable": comp.observable,
+                                    "expected_behavior": comp.expected_behavior,
+                                    "concept_tags": comp.concept_tags,
+                                    "relation_type": comp.relation_type,
+                                }
+                            )
+                        prior_mechs_str = json.dumps(prior_mechs, indent=2)
+
+                        failed_comps = (
+                            prior_attribution.components_failed
+                            if prior_attribution
+                            else []
+                        )
+                        passed_comps = (
+                            getattr(prior_attribution, "components_passed", [])
+                            if prior_attribution
+                            else []
+                        )
+                        root_cause = (
+                            getattr(
+                                prior_attribution, "root_cause_component", "Unknown"
+                            )
+                            if prior_attribution
+                            else "Unknown"
+                        )
+                        attr_reasoning = (
+                            getattr(
+                                prior_attribution,
+                                "attribution_reasoning",
+                                "No attribution reasoning available.",
+                            )
+                            if prior_attribution
+                            else "No attribution reasoning available."
+                        )
+
+                        from cognition.schemas.knowledge.ontology import \
+                            OntologyRegistry
+
+                        prompt_stage1 = f"""You are the DP theory mechanism mutation engine.
+Your objective is to revise the current set of mechanism components to resolve the observed contradictions and better explain today's market behavior.
+
+=== CURRENT MECHANISM COMPONENTS ===
+{prior_mechs_str}
+
+=== OBSERVED CONTRADICTIONS & FAILURES ===
+- Failed/Falsified components: {failed_comps}
+- Passed/Validated components: {passed_comps}
+- Root cause component of failure: {root_cause}
+- Causal analysis: {attr_reasoning}
+
+=== CURRENT MARKET OBSERVATION ===
+Observation: {market_obs.observation_text}
 Regime Subtype: {regime_subtype}
-Causal Attribution Failed Components: {prior_attribution.components_failed if prior_attribution else []}
 
-Please revise this theory slightly to better fit the current observation. Keep the core mechanism, but tweak the assumptions/falsification checks/rules.
-Respond in JSON format:
+=== REVISION RULES ===
+1. Remove falsified mechanisms (removed_mechanism_ids must include them).
+2. Promote mechanisms supported by new evidence.
+3. Demote weakened mechanisms.
+4. Add a new mechanism only if today's evidence cannot be explained by the existing set.
+5. Merge duplicate mechanisms whenever possible.
+6. Prefer simpler explanations over more complex ones.
+7. Never increase complexity unless the new evidence absolutely requires it.
+8. Every mechanism component must use allowed concept_tags and relation_type:
+   - Core Concepts: {OntologyRegistry.CORE_CONCEPTS}
+   - Relation Types: {OntologyRegistry.RELATION_TYPES}
+
+You MUST return a JSON object conforming exactly to this structure:
 {{
-  "claim": "Revised claim...",
-  "mechanism": "revised mechanism...",
-  "if_branch": {{"condition": "...", "action": "..."}},
-  "else_branch": {{"condition": "...", "action": "..."}},
-  "unless": "...",
-  "falsified_if": "..."
+  "retained_mechanism_ids": ["string"],
+  "removed_mechanism_ids": ["string"],
+  "added_mechanisms": [
+    {{
+      "component_id": "string (snake_case)",
+      "description": "string",
+      "observable": "string",
+      "expected_behavior": "string",
+      "dependency": "string or null",
+      "concept_tags": ["string"],
+      "relation_type": "string"
+    }}
+  ],
+  "modified_mechanisms": [
+    {{
+      "mechanism_id": "string",
+      "component_id": "string",
+      "description": "string",
+      "observable": "string",
+      "expected_behavior": "string",
+      "dependency": "string or null",
+      "concept_tags": ["string"],
+      "relation_type": "string"
+    }}
+  ],
+  "if_branch": {{"condition": "string", "action": "string"}},
+  "else_branch": {{"condition": "string", "action": "string"}},
+  "unless": "string",
+  "falsified_if": "string",
+  "falsification_conditions": ["string (format 'component_id: condition')"],
+  "reasons_for_changes": {{
+    "mechanism_id_or_new": "string reason..."
+  }}
 }}
 """
-                    try:
                         res_raw = self.theory_flow.client.generate(
-                            prompt, json_format=True
+                            prompt_stage1, json_format=True
                         )
                         res = json.loads(res_raw)
+
+                        retained_ids = res.get("retained_mechanism_ids", [])
+                        removed_ids = res.get("removed_mechanism_ids", [])
+                        added_mechs = res.get("added_mechanisms", [])
+                        modified_mechs = res.get("modified_mechanisms", [])
+
+                        from cognition.schemas.theory.theory import (
+                            Branch, MechanismComponent)
+
+                        total_before = len(
+                            prior_theory.summary_structured.mechanism_components
+                        )
+                        ret_count = 0
+                        add_count = len(added_mechs)
+                        mod_count = len(modified_mechs)
+
+                        new_components = []
+                        modified_by_id = {
+                            m["mechanism_id"]: m
+                            for m in modified_mechs
+                            if "mechanism_id" in m
+                        }
+
+                        # Update status for retired mechanisms
+                        for rid in removed_ids:
+                            mech_obj = self.knowledge_repository.get_mechanism(rid)
+                            if mech_obj:
+                                mech_obj.times_retired += 1
+                                mech_obj.status = "retired"
+                                self.knowledge_repository.save_mechanism(mech_obj)
+
+                        for (
+                            comp
+                        ) in prior_theory.summary_structured.mechanism_components:
+                            if comp.mechanism_id in removed_ids:
+                                continue
+
+                            if (
+                                comp.mechanism_id in retained_ids
+                                or comp.mechanism_id in modified_by_id
+                            ):
+                                ret_count += 1
+                                if comp.mechanism_id in modified_by_id:
+                                    mod_data = modified_by_id[comp.mechanism_id]
+                                    updated_comp = MechanismComponent(
+                                        component_id=mod_data.get(
+                                            "component_id", comp.component_id
+                                        ),
+                                        description=mod_data.get(
+                                            "description", comp.description
+                                        ),
+                                        observable=mod_data.get(
+                                            "observable", comp.observable
+                                        ),
+                                        expected_behavior=mod_data.get(
+                                            "expected_behavior", comp.expected_behavior
+                                        ),
+                                        dependency=mod_data.get(
+                                            "dependency", comp.dependency
+                                        ),
+                                        concept_tags=mod_data.get(
+                                            "concept_tags", comp.concept_tags
+                                        ),
+                                        relation_type=mod_data.get(
+                                            "relation_type", comp.relation_type
+                                        ),
+                                        mechanism_id=comp.mechanism_id,
+                                    )
+                                    new_components.append(updated_comp)
+
+                                    # Update registry
+                                    mech_obj = self.knowledge_repository.get_mechanism(
+                                        comp.mechanism_id
+                                    )
+                                    if mech_obj:
+                                        mech_obj.times_modified += 1
+                                        mech_obj.description = mod_data.get(
+                                            "description", mech_obj.description
+                                        )
+                                        mech_obj.concept_tags = mod_data.get(
+                                            "concept_tags", mech_obj.concept_tags
+                                        )
+                                        mech_obj.relation_type = mod_data.get(
+                                            "relation_type", mech_obj.relation_type
+                                        )
+                                        mech_obj.last_seen = day_idx
+                                        if regime_subtype not in mech_obj.regimes_seen:
+                                            mech_obj.regimes_seen.append(regime_subtype)
+                                        self.knowledge_repository.save_mechanism(
+                                            mech_obj
+                                        )
+                                else:
+                                    new_components.append(comp)
+
+                        from flows.knowledge_flow.mechanism_engine import \
+                            match_and_register_in_registry
+
+                        for add_data in added_mechs:
+                            mech_id = match_and_register_in_registry(
+                                add_data,
+                                self.knowledge_repository,
+                                step=day_idx,
+                                regime=regime_subtype,
+                            )
+                            new_comp = MechanismComponent(
+                                component_id=add_data.get(
+                                    "component_id", "new_mechanism"
+                                ),
+                                description=add_data.get("description", ""),
+                                observable=add_data.get("observable", ""),
+                                expected_behavior=add_data.get("expected_behavior", ""),
+                                dependency=add_data.get("dependency"),
+                                concept_tags=add_data.get("concept_tags", []),
+                                relation_type=add_data.get("relation_type"),
+                                mechanism_id=mech_id,
+                            )
+                            new_components.append(new_comp)
+
+                        # Stage 2: Narrative Rendering Prompt
+                        final_mechs = []
+                        for comp in new_components:
+                            final_mechs.append(
+                                {
+                                    "mechanism_id": comp.mechanism_id,
+                                    "component_id": comp.component_id,
+                                    "description": comp.description,
+                                    "expected_behavior": comp.expected_behavior,
+                                }
+                            )
+                        final_mechs_str = json.dumps(final_mechs, indent=2)
+
+                        prompt_stage2 = f"""You are a scientific rendering model.
+Your task is to write a concise scientific hypothesis summarizing the current market regime based ONLY on the following active mechanisms.
+
+=== ACTIVE MECHANISMS ===
+{final_mechs_str}
+
+=== REGIME SUBTYPE ===
+{regime_subtype}
+
+=== INSTRUCTIONS ===
+- Write a concise scientific hypothesis.
+- Maximum 35 words.
+- No historical explanation.
+- No implementation details.
+- No exceptions unless essential.
+- One causal claim only.
+- Respond with ONLY the hypothesis text. No headings, no markdown, no quotes, no JSON.
+"""
+                        concise_narrative = self.theory_flow.client.generate(
+                            prompt_stage2, json_format=False
+                        ).strip()
+                        concise_narrative = (
+                            concise_narrative.strip('"').strip("'").strip()
+                        )
+
+                        # Construct mutated theory
                         import copy
 
                         theory = copy.deepcopy(prior_theory)
                         theory.id = str(uuid4())
-                        if theory.summary_structured:
 
-                            def to_str(val, default="") -> str:
-                                if val is None:
-                                    return default
-                                if isinstance(val, list):
-                                    return ", ".join(str(x) for x in val)
-                                return str(val)
+                        def to_str(val, default="") -> str:
+                            if val is None:
+                                return default
+                            if isinstance(val, list):
+                                return ", ".join(str(x) for x in val)
+                            return str(val)
 
-                            theory.summary_structured.claim = to_str(
-                                res.get("claim"), theory.summary_structured.claim
-                            )
-                            theory.summary_structured.mechanism = to_str(
-                                res.get("mechanism"),
-                                theory.summary_structured.mechanism,
-                            )
+                        def to_branch(branch_val, default_branch) -> Branch:
+                            if isinstance(branch_val, dict):
+                                return Branch(
+                                    condition=to_str(
+                                        branch_val.get("condition"),
+                                        default_branch.condition,
+                                    ),
+                                    action=to_str(
+                                        branch_val.get("action"), default_branch.action
+                                    ),
+                                )
+                            return default_branch
 
-                            from cognition.schemas.theory.theory import Branch
+                        theory.summary_structured.claim = concise_narrative
+                        theory.summary_structured.mechanism_components = new_components
 
-                            def to_branch(branch_val, default_branch) -> Branch:
-                                if isinstance(branch_val, dict):
-                                    return Branch(
-                                        condition=to_str(
-                                            branch_val.get("condition"),
-                                            default_branch.condition,
-                                        ),
-                                        action=to_str(
-                                            branch_val.get("action"),
-                                            default_branch.action,
-                                        ),
-                                    )
-                                return default_branch
+                        # Map other fields from JSON or keep default
+                        theory.summary_structured.if_branch = to_branch(
+                            res.get("if_branch"), theory.summary_structured.if_branch
+                        )
+                        theory.summary_structured.else_branch = to_branch(
+                            res.get("else_branch"),
+                            theory.summary_structured.else_branch,
+                        )
+                        theory.summary_structured.unless = to_str(
+                            res.get("unless"), theory.summary_structured.unless
+                        )
+                        theory.summary_structured.falsified_if = to_str(
+                            res.get("falsified_if"),
+                            theory.summary_structured.falsified_if,
+                        )
+                        theory.summary_structured.falsification_conditions = res.get(
+                            "falsification_conditions",
+                            theory.summary_structured.falsification_conditions,
+                        )
 
-                            theory.summary_structured.if_branch = to_branch(
-                                res.get("if_branch"),
-                                theory.summary_structured.if_branch,
-                            )
-                            theory.summary_structured.else_branch = to_branch(
-                                res.get("else_branch"),
-                                theory.summary_structured.else_branch,
-                            )
+                        theory.summary = concise_narrative
+                        theory.thesis = concise_narrative
 
-                            theory.summary_structured.unless = to_str(
-                                res.get("unless"), theory.summary_structured.unless
+                        # Compute complexity metrics
+                        daily_theory_word_count = len(concise_narrative.split())
+                        daily_mechanism_count = len(new_components)
+                        daily_conditional_clauses_count = count_conditional_clauses(
+                            theory.summary_structured
+                        )
+                        daily_exceptions_added = (
+                            1
+                            if (
+                                theory.summary_structured.unless
+                                and theory.summary_structured.unless
+                                != "no contrary evidence emerges"
                             )
-                            theory.summary_structured.falsified_if = to_str(
-                                res.get("falsified_if"),
-                                theory.summary_structured.falsified_if,
+                            else 0
+                        )
+                        daily_mechanisms_retired = len(removed_ids)
+                        daily_mechanisms_added = add_count
+                        daily_mechanisms_modified = mod_count
+                        daily_mechanism_stability = (
+                            (ret_count / total_before) if total_before > 0 else 1.0
+                        )
+                        daily_words_before_mutation = (
+                            len(prior_theory.summary.split())
+                            if (prior_theory and prior_theory.summary)
+                            else 0
+                        )
+                        daily_words_after_mutation = len(concise_narrative.split())
+                        daily_mechanisms_before_mutation = (
+                            len(prior_theory.summary_structured.mechanism_components)
+                            if (
+                                prior_theory
+                                and prior_theory.summary_structured
+                                and prior_theory.summary_structured.mechanism_components
                             )
-                            theory.summary = theory.summary_structured.claim
+                            else 0
+                        )
+                        daily_mechanisms_after_mutation = len(new_components)
+
                     except Exception as e:
                         print(
-                            f"WARNING: Theory revision failed: {e}. Falling back to standard generation."
+                            f"WARNING: Mechanism-First Theory Revision failed: {e}. Falling back to standard generation."
                         )
                         decision = "GENERATE"
 
@@ -1582,7 +1966,45 @@ Respond in JSON format:
                         world_model_narrative=world_model_narrative,
                         active_principles=active_principles,
                         active_open_questions=active_open_questions,
+                        step=day_idx,
+                        knowledge_repository=self.knowledge_repository,
                     )
+
+                    daily_theory_word_count = (
+                        len(theory.summary.split()) if theory.summary else 0
+                    )
+                    daily_mechanism_count = (
+                        len(theory.summary_structured.mechanism_components)
+                        if (
+                            theory.summary_structured
+                            and theory.summary_structured.mechanism_components
+                        )
+                        else 0
+                    )
+                    daily_conditional_clauses_count = count_conditional_clauses(
+                        theory.summary_structured
+                    )
+                    daily_exceptions_added = (
+                        1
+                        if (
+                            theory.summary_structured
+                            and theory.summary_structured.unless
+                            and theory.summary_structured.unless
+                            != "no contrary evidence emerges"
+                        )
+                        else 0
+                    )
+                    daily_mechanisms_retired = 0
+                    daily_mechanisms_added = (
+                        len(theory.summary_structured.mechanism_components)
+                        if (
+                            theory.summary_structured
+                            and theory.summary_structured.mechanism_components
+                        )
+                        else 0
+                    )
+                    daily_mechanisms_modified = 0
+                    daily_mechanism_stability = 1.0
 
                 if self.lineage_debug:
                     # v3.0 Consistency debug - prefer structured claim if available
@@ -2218,7 +2640,7 @@ Respond in JSON format:
                                 val = vol_regime
                             elif k == "momentum_regime":
                                 val = mom_regime
-                                
+
                             if isinstance(v, (list, tuple, set)):
                                 if val not in v:
                                     filter_matches = False
@@ -2265,6 +2687,22 @@ Respond in JSON format:
 
                 # Save accepted principles list to class variable for next-day validation
                 self._prior_prediction_accepted_principles = principles_accepted
+
+                # Save active mechanisms of the day to class variable for next-day feedback
+                self._prior_prediction_active_mechanisms = (
+                    [
+                        comp.mechanism_id
+                        for comp in theory.summary_structured.mechanism_components
+                        if comp.mechanism_id
+                    ]
+                    if (
+                        "theory" in locals()
+                        and theory
+                        and theory.summary_structured
+                        and theory.summary_structured.mechanism_components
+                    )
+                    else []
+                )
 
                 # Apply deterministic World Model overrides/constraints
                 latest_wm = self.knowledge_repository.get_latest_world_model()
@@ -2420,11 +2858,21 @@ Respond in JSON format:
                                     PrincipleStatus
 
                                 active_principles = (
-                                    self.knowledge_repository.list_principles(status="active")
-                                    + self.knowledge_repository.list_principles(status="stable")
-                                    + self.knowledge_repository.list_principles(status="emerging")
-                                    + self.knowledge_repository.list_principles(status="trusted")
-                                    + self.knowledge_repository.list_principles(status="canonical")
+                                    self.knowledge_repository.list_principles(
+                                        status="active"
+                                    )
+                                    + self.knowledge_repository.list_principles(
+                                        status="stable"
+                                    )
+                                    + self.knowledge_repository.list_principles(
+                                        status="emerging"
+                                    )
+                                    + self.knowledge_repository.list_principles(
+                                        status="trusted"
+                                    )
+                                    + self.knowledge_repository.list_principles(
+                                        status="canonical"
+                                    )
                                 )
                                 regime_context = {
                                     "regime_subtype": regime_subtype,
@@ -2456,7 +2904,9 @@ Respond in JSON format:
                                                     v,
                                                 ) in fp.applicability_filter.items():
                                                     val = regime_context.get(k)
-                                                    if isinstance(v, (list, tuple, set)):
+                                                    if isinstance(
+                                                        v, (list, tuple, set)
+                                                    ):
                                                         if val not in v:
                                                             context_match = False
                                                             break
@@ -2679,8 +3129,11 @@ Respond in JSON format:
                         if hasattr(self, "decision_journal") and self.decision_journal:
                             self.decision_journal.save(prior_record)
                     else:
-                        from cognition.schemas.decision.decision import Decision
-                        from cognition.schemas.decision.decision_record import DecisionRecord
+                        from cognition.schemas.decision.decision import \
+                            Decision
+                        from cognition.schemas.decision.decision_record import \
+                            DecisionRecord
+
                         initial_decision = Decision(
                             date=date_str,
                             prediction_direction="uncertain",
@@ -2791,6 +3244,107 @@ Respond in JSON format:
                     lifetime_accuracy=lifetime_acc,
                 )
 
+                # Programmatic Decision Feedback Loop
+                if (
+                    hasattr(self, "paper_trader")
+                    and len(self.paper_trader.decision_records) > 0
+                ):
+                    last_rec = self.paper_trader.decision_records[-1]
+                    if last_rec.evaluation_date == date_str:
+                        if (
+                            last_rec.decision_result == "incorrect"
+                            and last_rec.conviction_score >= 0.60
+                        ):
+                            confidence_state.empirical_confidence = max(
+                                0.0, confidence_state.empirical_confidence - 0.15
+                            )
+                            confidence_state.regime_confidence = max(
+                                0.0, confidence_state.regime_confidence - 0.10
+                            )
+                            self._log(
+                                f"  [Feedback] False High Conviction: Penalizing empirical (-0.15) & regime (-0.10) confidence."
+                            )
+                        elif last_rec.decision_result == "avoided_bad_trade":
+                            confidence_state.empirical_confidence = min(
+                                1.0, confidence_state.empirical_confidence + 0.05
+                            )
+                            self._log(
+                                f"  [Feedback] Avoided Bad Trade: Rewarding empirical confidence (+0.05)."
+                            )
+
+                        for lineage_id in last_rec.supporting_lineages:
+                            for rec in self.theory_lineage.theories.values():
+                                if rec.lineage_id == lineage_id:
+                                    pnl_term = last_rec.pnl / 100000.0
+                                    delta = 0.0
+                                    if last_rec.decision_result == "correct":
+                                        delta += 0.10
+                                    elif last_rec.decision_result == "incorrect":
+                                        delta -= 0.15
+                                    elif (
+                                        last_rec.decision_result == "avoided_bad_trade"
+                                    ):
+                                        delta += 0.05
+
+                                    rec.predictive_fitness = max(
+                                        0.0,
+                                        min(
+                                            1.0,
+                                            getattr(rec, "predictive_fitness", 0.5)
+                                            + delta,
+                                        ),
+                                    )
+                                    rec.economic_fitness = max(
+                                        0.0,
+                                        min(
+                                            1.0,
+                                            getattr(rec, "economic_fitness", 0.5)
+                                            + pnl_term,
+                                        ),
+                                    )
+                                    rec.generalization_fitness = max(
+                                        0.0,
+                                        min(
+                                            1.0,
+                                            getattr(rec, "generalization_fitness", 0.5)
+                                            + (
+                                                0.05
+                                                if last_rec.decision_result == "correct"
+                                                else -0.05
+                                            ),
+                                        ),
+                                    )
+                                    rec.cross_asset_fitness = max(
+                                        0.0,
+                                        min(
+                                            1.0,
+                                            getattr(rec, "cross_asset_fitness", 0.5)
+                                            + 0.02,
+                                        ),
+                                    )
+                                    rec.longevity_days = (
+                                        getattr(rec, "longevity_days", 0) + 1
+                                    )
+
+                        for pid in last_rec.supporting_principles:
+                            principle = self.knowledge_repository.get_principle(pid)
+                            if principle:
+                                principle.uses_count += 1
+                                if last_rec.decision_result in [
+                                    "correct",
+                                    "ignored_opportunity",
+                                ]:
+                                    principle.predictions_helped += 1
+                                    principle.confidence = min(
+                                        1.0, principle.confidence + 0.05
+                                    )
+                                else:
+                                    principle.predictions_harmed += 1
+                                    principle.confidence = max(
+                                        0.0, principle.confidence - 0.08
+                                    )
+                                self.knowledge_repository.save_principle(principle)
+
                 # Update in-memory confidence history
                 try:
                     self._confidence_history.append(
@@ -2846,7 +3400,8 @@ Respond in JSON format:
 
                 # Construct and store current day's Decision & DecisionRecord for evaluation tomorrow
                 from cognition.schemas.decision.decision import Decision
-                from cognition.schemas.decision.decision_record import DecisionRecord
+                from cognition.schemas.decision.decision_record import \
+                    DecisionRecord
 
                 decision_obj = Decision(
                     date=date_str,
@@ -2854,21 +3409,38 @@ Respond in JSON format:
                     action=action,
                     allocation_pct=allocation_pct,
                     conviction_score=conviction_score,
-                    reason=prediction_probe.tension or "Standard cognitive trade sizing",
+                    reason=prediction_probe.tension
+                    or "Standard cognitive trade sizing",
                 )
 
                 # Extract supporting/contextual metadata
-                supporting_lineages = [theory.lineage_id] if (theory and getattr(theory, "lineage_id", None)) else []
+                supporting_lineages = (
+                    [theory.lineage_id]
+                    if (theory and getattr(theory, "lineage_id", None))
+                    else []
+                )
                 supporting_principles = [str(pid) for pid in principles_accepted]
-                retrieved_memories = [f"Regime Analog {getattr(m, 'regime_subtype', 'unknown')}" for m in regime_matches] if regime_matches else []
-                
+                retrieved_memories = (
+                    [
+                        f"Regime Analog {getattr(m, 'regime_subtype', 'unknown')}"
+                        for m in regime_matches
+                    ]
+                    if regime_matches
+                    else []
+                )
+
                 # Knowledge changes triggered today
                 knowledge_changes = []
-                if audit_created: knowledge_changes.append("theory_created")
-                if audit_mutated: knowledge_changes.append("theory_mutated")
-                if audit_merged: knowledge_changes.append("theory_merged")
-                if audit_revived: knowledge_changes.append("theory_revived")
-                if audit_retired: knowledge_changes.append("theory_retired")
+                if audit_created:
+                    knowledge_changes.append("theory_created")
+                if audit_mutated:
+                    knowledge_changes.append("theory_mutated")
+                if audit_merged:
+                    knowledge_changes.append("theory_merged")
+                if audit_revived:
+                    knowledge_changes.append("theory_revived")
+                if audit_retired:
+                    knowledge_changes.append("theory_retired")
 
                 decision_record = DecisionRecord(
                     prediction_date=date_str,
@@ -2877,7 +3449,8 @@ Respond in JSON format:
                     decision=decision_obj,
                     allocation=allocation_pct,
                     conviction_score=conviction_score,
-                    decision_reason=prediction_probe.tension or "Standard cognitive trade sizing",
+                    decision_reason=prediction_probe.tension
+                    or "Standard cognitive trade sizing",
                     supporting_lineages=supporting_lineages,
                     supporting_principles=supporting_principles,
                     retrieved_memories=retrieved_memories,
@@ -2888,7 +3461,9 @@ Respond in JSON format:
                     empirical_confidence=empirical_confidence,
                     reflection_confidence=confidence_state.reflection_confidence,
                     regime_confidence=confidence_state.regime_confidence,
-                    expected_scenarios=[prediction_probe.tension] if prediction_probe.tension else [],
+                    expected_scenarios=(
+                        [prediction_probe.tension] if prediction_probe.tension else []
+                    ),
                     knowledge_changes=knowledge_changes,
                     conviction_breakdown=conv_res.component_breakdown,
                 )
@@ -3008,6 +3583,20 @@ Respond in JSON format:
                                     else:
                                         p_obj.predictions_harmed += 1
                                     self.knowledge_repository.save_principle(p_obj)
+
+                        # Update mechanism utility counters (helped vs. harmed)
+                        if getattr(self, "_prior_prediction_active_mechanisms", None):
+                            is_correct = prior_prediction_result.direction_score == 1.0
+                            for mid in self._prior_prediction_active_mechanisms:
+                                mech_obj = self.knowledge_repository.get_mechanism(mid)
+                                if mech_obj:
+                                    if is_correct:
+                                        mech_obj.prediction_helped += 1
+                                        mech_obj.support_count += 1
+                                    else:
+                                        mech_obj.prediction_harmed += 1
+                                        mech_obj.contradiction_count += 1
+                                    self.knowledge_repository.save_mechanism(mech_obj)
                 except Exception as e:
                     self._log(f"WARNING: PredictionResult save failed: {e}")
 
@@ -3054,6 +3643,26 @@ Respond in JSON format:
                 self.engine.log_entry(
                     day_idx, date_str, obs_hash, theory_hash, conf_hash
                 )
+
+                step_theory_metrics = {
+                    "created": theory_step_info["created"],
+                    "mutated": theory_step_info["mutated"],
+                    "merged": theory_step_info["merged"],
+                    "retired": theory_step_info["retired"],
+                    "revived": theory_step_info["revived"],
+                    "theory_word_count": daily_theory_word_count,
+                    "mechanism_count": daily_mechanism_count,
+                    "conditional_clauses_count": daily_conditional_clauses_count,
+                    "exceptions_added": daily_exceptions_added,
+                    "mechanisms_retired": daily_mechanisms_retired,
+                    "mechanisms_added": daily_mechanisms_added,
+                    "mechanisms_modified": daily_mechanisms_modified,
+                    "mechanism_stability": daily_mechanism_stability,
+                    "words_before_mutation": daily_words_before_mutation,
+                    "words_after_mutation": daily_words_after_mutation,
+                    "mechanisms_before_mutation": daily_mechanisms_before_mutation,
+                    "mechanisms_after_mutation": daily_mechanisms_after_mutation,
+                }
 
                 # Record day for longitudinal analysis
                 self.replay_analysis_engine.record_day(
@@ -3135,6 +3744,7 @@ Respond in JSON format:
                     prediction_override_applied=prediction_override_applied,
                     novelty_decision=decision,
                     novelty_score=novelty_score,
+                    theory_metrics=step_theory_metrics,
                 )
 
                 snapshot_data = {
@@ -3191,12 +3801,14 @@ Respond in JSON format:
                     for pid in principles_accepted:
                         p_obj = self.knowledge_repository.get_principle(pid)
                         if p_obj:
-                            applied_principles_details.append({
-                                "id": p_obj.id,
-                                "statement": p_obj.statement,
-                                "status": p_obj.status.value,
-                                "trust_score": p_obj.trust_score
-                            })
+                            applied_principles_details.append(
+                                {
+                                    "id": p_obj.id,
+                                    "statement": p_obj.statement,
+                                    "status": p_obj.status.value,
+                                    "trust_score": p_obj.trust_score,
+                                }
+                            )
 
                     wm_constraints = {}
                     if latest_wm and latest_wm.regime_constraints:
@@ -3208,42 +3820,97 @@ Respond in JSON format:
                         "step": day_idx,
                         "date": date_str,
                         "observation": {
-                            "trend_state": getattr(market_obs, "trend_state", "neutral"),
+                            "trend_state": getattr(
+                                market_obs, "trend_state", "neutral"
+                            ),
                             "candle_type": getattr(market_obs, "candle_type", "normal"),
                             "delivery_pct": getattr(market_obs, "delivery_pct", 0.0),
-                            "volume_state": getattr(market_obs, "volume_state", "normal"),
-                            "regime_subtype": regime_subtype
+                            "volume_state": getattr(
+                                market_obs, "volume_state", "normal"
+                            ),
+                            "regime_subtype": regime_subtype,
                         },
                         "memory_retrieved": [
                             {
                                 "date": getattr(m, "date", ""),
                                 "similarity": getattr(m, "similarity", 0.0),
-                                "actual_direction": getattr(m, "actual_direction", "range_bound")
+                                "actual_direction": getattr(
+                                    m, "actual_direction", "range_bound"
+                                ),
                             }
                             for m in (regime_matches or [])
                         ],
-                        "novelty_score": float(round(1.0 - (regime_matches[0].similarity if (regime_matches and hasattr(regime_matches[0], "similarity")) else 0.0), 3)),
+                        "novelty_score": float(
+                            round(
+                                1.0
+                                - (
+                                    regime_matches[0].similarity
+                                    if (
+                                        regime_matches
+                                        and hasattr(regime_matches[0], "similarity")
+                                    )
+                                    else 0.0
+                                ),
+                                3,
+                            )
+                        ),
                         "reuse_decision": reuse_decision,
                         "generated_theory": theory.summary,
                         "applied_principles": applied_principles_details,
                         "world_model_constraints": wm_constraints,
                         "prediction": {
                             "direction": prediction_probe.direction.value,
-                            "confidence": prediction_probe.confidence
+                            "confidence": prediction_probe.confidence,
                         },
                         "outcome": {
-                            "actual_direction": prior_prediction_result.actual_direction if prior_prediction_result else "uncertain",
-                            "direction_score": prior_prediction_result.direction_score if prior_prediction_result else 0.0,
-                            "invalidation_triggered": prior_prediction_result.invalidation_triggered if prior_prediction_result else False
+                            "actual_direction": (
+                                prior_prediction_result.actual_direction
+                                if prior_prediction_result
+                                else "uncertain"
+                            ),
+                            "direction_score": (
+                                prior_prediction_result.direction_score
+                                if prior_prediction_result
+                                else 0.0
+                            ),
+                            "invalidation_triggered": (
+                                prior_prediction_result.invalidation_triggered
+                                if prior_prediction_result
+                                else False
+                            ),
                         },
-                        "reflection": reflection.reflection_summary if ('reflection' in locals() and reflection) else "No reflection generated.",
+                        "reflection": (
+                            reflection.reflection_summary
+                            if ("reflection" in locals() and reflection)
+                            else "No reflection generated."
+                        ),
                         "knowledge_updated": {
-                            "principles_merged": rec_stats.get("merged_count", 0) if 'rec_stats' in locals() else 0,
-                            "principles_generalized": rec_stats.get("generalized_count", 0) if 'rec_stats' in locals() else 0,
-                            "principles_retired": rec_stats.get("retired_count", 0) if 'rec_stats' in locals() else 0,
-                            "principles_restricted": rec_stats.get("restricted_count", 0) if 'rec_stats' in locals() else 0,
-                            "debt_after": rec_stats.get("knowledge_debt_after", 0.0) if 'rec_stats' in locals() else 0.0
-                        }
+                            "principles_merged": (
+                                rec_stats.get("merged_count", 0)
+                                if "rec_stats" in locals()
+                                else 0
+                            ),
+                            "principles_generalized": (
+                                rec_stats.get("generalized_count", 0)
+                                if "rec_stats" in locals()
+                                else 0
+                            ),
+                            "principles_retired": (
+                                rec_stats.get("retired_count", 0)
+                                if "rec_stats" in locals()
+                                else 0
+                            ),
+                            "principles_restricted": (
+                                rec_stats.get("restricted_count", 0)
+                                if "rec_stats" in locals()
+                                else 0
+                            ),
+                            "debt_after": (
+                                rec_stats.get("knowledge_debt_after", 0.0)
+                                if "rec_stats" in locals()
+                                else 0.0
+                            ),
+                        },
                     }
                     self.decision_traces.append(trace_entry)
 
@@ -3252,53 +3919,99 @@ Respond in JSON format:
                     theory_id = theory.id
                     pred_id = f"pred_{date_str}"
                     outcome_id = f"outcome_{date_str}"
-                    reflection_id = reflection.id if ('reflection' in locals() and reflection) else f"ref_{date_str}"
+                    reflection_id = (
+                        reflection.id
+                        if ("reflection" in locals() and reflection)
+                        else f"ref_{date_str}"
+                    )
                     wm_id = f"wm_{date_str}"
 
-                    self.knowledge_graph.add_node(obs_id, "Observation", f"Obs: {market_obs.candle_type}", {
-                        "regime_subtype": regime_subtype,
-                        "delivery_pct": getattr(market_obs, "delivery_pct", 0.0)
-                    })
-                    self.knowledge_graph.add_node(theory_id, "Theory", theory.summary, {
-                        "lineage_id": lineage_id_val
-                    })
-                    self.knowledge_graph.add_node(wm_id, "WorldModel", latest_wm.narrative_summary if latest_wm else "Baseline World Model", {
-                        "stability": getattr(latest_wm, "stability", "Emerging"),
-                        "confidence": getattr(latest_wm, "confidence", 0.5)
-                    })
-                    self.knowledge_graph.add_node(pred_id, "Prediction", f"Pred: {prediction_probe.direction.value}", {
-                        "confidence": prediction_probe.confidence
-                    })
-                    
+                    self.knowledge_graph.add_node(
+                        obs_id,
+                        "Observation",
+                        f"Obs: {market_obs.candle_type}",
+                        {
+                            "regime_subtype": regime_subtype,
+                            "delivery_pct": getattr(market_obs, "delivery_pct", 0.0),
+                        },
+                    )
+                    self.knowledge_graph.add_node(
+                        theory_id,
+                        "Theory",
+                        theory.summary,
+                        {"lineage_id": lineage_id_val},
+                    )
+                    self.knowledge_graph.add_node(
+                        wm_id,
+                        "WorldModel",
+                        (
+                            latest_wm.narrative_summary
+                            if latest_wm
+                            else "Baseline World Model"
+                        ),
+                        {
+                            "stability": getattr(latest_wm, "stability", "Emerging"),
+                            "confidence": getattr(latest_wm, "confidence", 0.5),
+                        },
+                    )
+                    self.knowledge_graph.add_node(
+                        pred_id,
+                        "Prediction",
+                        f"Pred: {prediction_probe.direction.value}",
+                        {"confidence": prediction_probe.confidence},
+                    )
+
                     if prior_prediction_result:
-                        self.knowledge_graph.add_node(outcome_id, "Outcome", f"Actual: {prior_prediction_result.actual_direction}", {
-                            "score": prior_prediction_result.direction_score
-                        })
-                        
-                    if 'reflection' in locals() and reflection:
-                        self.knowledge_graph.add_node(reflection_id, "Reflection", reflection.reflection_summary)
+                        self.knowledge_graph.add_node(
+                            outcome_id,
+                            "Outcome",
+                            f"Actual: {prior_prediction_result.actual_direction}",
+                            {"score": prior_prediction_result.direction_score},
+                        )
+
+                    if "reflection" in locals() and reflection:
+                        self.knowledge_graph.add_node(
+                            reflection_id, "Reflection", reflection.reflection_summary
+                        )
 
                     self.knowledge_graph.add_edge(obs_id, theory_id, "EXPLAINS")
-                    
+
                     for pid in principles_accepted:
                         p_obj = self.knowledge_repository.get_principle(pid)
                         if p_obj:
-                            self.knowledge_graph.add_node(pid, "Principle", p_obj.statement, {
-                                "status": p_obj.status.value,
-                                "trust_score": p_obj.trust_score
-                            })
-                            self.knowledge_graph.add_edge(theory_id, pid, "SUPPORTED_BY")
+                            self.knowledge_graph.add_node(
+                                pid,
+                                "Principle",
+                                p_obj.statement,
+                                {
+                                    "status": p_obj.status.value,
+                                    "trust_score": p_obj.trust_score,
+                                },
+                            )
+                            self.knowledge_graph.add_edge(
+                                theory_id, pid, "SUPPORTED_BY"
+                            )
                             self.knowledge_graph.add_edge(pid, wm_id, "INFLUENCES")
 
                     self.knowledge_graph.add_edge(wm_id, pred_id, "CONSTRAINS")
                     if prior_prediction_result:
                         self.knowledge_graph.add_edge(pred_id, outcome_id, "SCORES")
-                    if 'reflection' in locals() and reflection and prior_prediction_result:
-                        self.knowledge_graph.add_edge(outcome_id, reflection_id, "CRITIQUES")
-                        self.knowledge_graph.add_edge(reflection_id, theory_id, "REVISES")
+                    if (
+                        "reflection" in locals()
+                        and reflection
+                        and prior_prediction_result
+                    ):
+                        self.knowledge_graph.add_edge(
+                            outcome_id, reflection_id, "CRITIQUES"
+                        )
+                        self.knowledge_graph.add_edge(
+                            reflection_id, theory_id, "REVISES"
+                        )
 
                 except Exception as e:
-                    self._log(f"WARNING: Trace/Graph collection failed for day {date_str}: {e}")
+                    self._log(
+                        f"WARNING: Trace/Graph collection failed for day {date_str}: {e}"
+                    )
 
                 # Update observability metrics
                 try:
@@ -3333,13 +4046,6 @@ Respond in JSON format:
                             "resolution_rate": self.contradiction_registry.contradiction_resolution_rate(),
                             "avg_severity": self.contradiction_registry.average_severity(),
                             "highest": self.contradiction_registry.highest_severity(),
-                        }
-                        step_theory_metrics = {
-                            "created": theory_step_info["created"],
-                            "mutated": theory_step_info["mutated"],
-                            "merged": theory_step_info["merged"],
-                            "retired": theory_step_info["retired"],
-                            "revived": theory_step_info["revived"],
                         }
                         abstractions_for_obs = (
                             [getattr(abstraction, "abstraction_summary", "")]
@@ -3542,19 +4248,20 @@ Respond in JSON format:
 
                     # Calculate debt to pass to compress for logging
                     all_p_temp = self.knowledge_repository.list_principles()
-                    open_questions_temp = self.knowledge_repository.list_open_questions()
+                    open_questions_temp = (
+                        self.knowledge_repository.list_open_questions()
+                    )
                     hist_temp = self.replay_analysis_engine.prediction_history
                     debt = self.knowledge_compression_engine._calculate_knowledge_debt(
                         all_p_temp, hist_temp, open_questions_temp
                     )
 
                     # Group and compress new principles
-                    new_principles = self.knowledge_compression_engine.compress(
-                        experiences=experiences,
-                        theory_lineages=[],
-                        attributions=self.replay_analysis_engine.prediction_history,
-                        step=day_idx,
-                        debt=debt,
+                    # Component 8: Principle formation from Invariant Candidates
+                    new_principles = (
+                        self.mechanism_engine.discover_invariants_and_form_principles(
+                            step=day_idx
+                        )
                     )
                     for p in new_principles:
                         self.knowledge_repository.save_principle(p)
@@ -3604,23 +4311,49 @@ Respond in JSON format:
                         compression_ratio_before=rec_stats["compression_ratio_before"],
                         compression_ratio_after=rec_stats["compression_ratio_after"],
                         summary_text=rec_stats["summary_text"],
-                        principle_compression_ratio=rec_stats.get("principle_compression_ratio", 0.0),
-                        distillation_efficiency=rec_stats.get("distillation_efficiency", 0.0),
+                        principle_compression_ratio=rec_stats.get(
+                            "principle_compression_ratio", 0.0
+                        ),
+                        distillation_efficiency=rec_stats.get(
+                            "distillation_efficiency", 0.0
+                        ),
                         knowledge_density=rec_stats.get("knowledge_density", 0.0),
-                        canonical_growth_rate=rec_stats.get("canonical_growth_rate", 0.0),
+                        canonical_growth_rate=rec_stats.get(
+                            "canonical_growth_rate", 0.0
+                        ),
                     )
                     self.knowledge_repository.save_reconciliation_report(report)
 
                     # Re-synthesize World Model from Active Principles
                     all_principles_list = self.knowledge_repository.list_principles()
                     active_principles = [
-                        p for p in all_principles_list
-                        if getattr(p.status, "value", str(p.status)).lower() in ["active", "stable", "emerging", "trusted", "canonical"]
+                        p
+                        for p in all_principles_list
+                        if getattr(p.status, "value", str(p.status)).lower()
+                        in ["active", "stable", "emerging", "trusted", "canonical"]
                     ]
+                    dec_metrics = (
+                        self.paper_trader.get_decision_intelligence_metrics()
+                        if hasattr(self, "paper_trader")
+                        else {}
+                    )
                     new_wm = self.world_model_engine.synthesize(
-                        active_principles=active_principles, step=day_idx
+                        active_principles=active_principles,
+                        step=day_idx,
+                        decision_metrics=dec_metrics,
                     )
                     self.knowledge_repository.save_world_model(new_wm)
+
+                # Grounding: run MechanismEngine daily on active theories to track and promote candidate concepts
+                active_theories_to_process = []
+                if "theory" in locals() and theory:
+                    active_theories_to_process.append(theory)
+                if hasattr(self, "mechanism_engine") and self.mechanism_engine:
+                    self.mechanism_engine.process_theories(
+                        active_theories_to_process,
+                        day_idx,
+                        regime_subtype=regime_subtype,
+                    )
 
             except Exception as e:
                 self._log(f"✗ Day {day_idx} ({date_str}) failed: {e}")
@@ -3813,7 +4546,9 @@ Respond in JSON format:
             external_metrics["outputs"] = {
                 "prediction_csv": str(self.base_output_dir / "prediction_analysis.csv"),
                 "paper_trade_csv": str(self.base_output_dir / "paper_trade_log.csv"),
-                "decision_journal_json": str(self.base_output_dir / "decision_journal.json"),
+                "decision_journal_json": str(
+                    self.base_output_dir / "decision_journal.json"
+                ),
                 **(
                     {
                         "charts_dir": str(self.output_dir),
@@ -3829,24 +4564,34 @@ Respond in JSON format:
             if hasattr(self, "paper_trader") and self.paper_trader:
                 pt_summary = self.paper_trader.get_summary()
                 external_metrics["paper_trading_summary"] = pt_summary
-                
+
                 # Fetch Section K decision intelligence metrics
                 di_metrics = self.paper_trader.get_decision_intelligence_metrics()
                 external_metrics["decision_intelligence"] = di_metrics
 
-                self.paper_trader.export_log_csv(self.base_output_dir / "paper_trade_log.csv")
+                self.paper_trader.export_log_csv(
+                    self.base_output_dir / "paper_trade_log.csv"
+                )
                 self.paper_trader.export_log_csv(self.run_dir / "paper_trade_log.csv")
-                self._log(f"✓ Saved paper trading log to: {self.base_output_dir / 'paper_trade_log.csv'}")
-                self._log(f"✓ Saved paper trading log to run snapshot: {self.run_dir / 'paper_trade_log.csv'}")
+                self._log(
+                    f"✓ Saved paper trading log to: {self.base_output_dir / 'paper_trade_log.csv'}"
+                )
+                self._log(
+                    f"✓ Saved paper trading log to run snapshot: {self.run_dir / 'paper_trade_log.csv'}"
+                )
 
                 # Export Decision Journal dump
                 if hasattr(self, "decision_journal") and self.decision_journal:
-                    records_list = [r.to_dict() for r in self.decision_journal.get_all()]
+                    records_list = [
+                        r.to_dict() for r in self.decision_journal.get_all()
+                    ]
                     with open(self.base_output_dir / "decision_journal.json", "w") as f:
                         json.dump(records_list, f, indent=2)
                     with open(self.run_dir / "decision_journal.json", "w") as f:
                         json.dump(records_list, f, indent=2)
-                    self._log(f"✓ Saved decision journal dump to: {self.base_output_dir / 'decision_journal.json'}")
+                    self._log(
+                        f"✓ Saved decision journal dump to: {self.base_output_dir / 'decision_journal.json'}"
+                    )
 
             # Attach to analysis engine for richer printing
             self.replay_analysis_engine.external_metrics = external_metrics
@@ -3951,10 +4696,10 @@ Respond in JSON format:
         try:
             self._log("Synthesizing Epistemic Review...")
             self.epistemic_review = self._generate_epistemic_review()
-            
+
             self._log("Saving Knowledge Graph...")
             self.knowledge_graph.save()
-            
+
             # Save cognitive_decision_trace.json
             trace_path = self.output_dir / "cognitive_decision_trace.json"
             with open(trace_path, "w") as f:
@@ -3975,11 +4720,11 @@ Respond in JSON format:
         all_principles = self.knowledge_repository.list_principles()
         active_p = [p for p in all_principles if p.status != "retired"]
         retired_p = [p for p in all_principles if p.status == "retired"]
-        
+
         principles_summary = ""
         for i, p in enumerate(active_p[:15]):
             principles_summary += f"- {p.statement} (status: {p.status.value}, trust: {p.trust_score:.2f})\n"
-            
+
         retired_summary = ""
         for i, p in enumerate(retired_p[:10]):
             retired_summary += f"- {p.statement}\n"
@@ -4015,6 +4760,7 @@ Respond STRICTLY in JSON format with the following keys:
 """
         try:
             from interfaces.ollama_client import OllamaClient
+
             client = OllamaClient()
             res_raw = client.generate(prompt, json_format=True)
             res = json.loads(res_raw)
@@ -4022,13 +4768,27 @@ Respond STRICTLY in JSON format with the following keys:
         except Exception as e:
             self._log(f"WARNING: Epistemic Review synthesis failed: {e}")
             return {
-                "assumptions_survived": ["Market momentum overrides trend when participation confirmation surges."],
-                "assumptions_failed": ["Trend always persists in range-bound channels."],
-                "knowledge_stronger": ["Volume ratio is the primary indicator of institutional pressure."],
-                "knowledge_weaker": ["Candlestick pattern shapes have stable predictability."],
-                "world_model_shifts": ["Shifted world model constraints to block bullish bias when delivery ratios dry up."],
-                "fundamental_uncertainty": ["High-volatility intraday noise remains unmodeled."],
-                "tomorrow_beliefs": ["We would immediately cap bullish trade confidence under low sector Z-scores."]
+                "assumptions_survived": [
+                    "Market momentum overrides trend when participation confirmation surges."
+                ],
+                "assumptions_failed": [
+                    "Trend always persists in range-bound channels."
+                ],
+                "knowledge_stronger": [
+                    "Volume ratio is the primary indicator of institutional pressure."
+                ],
+                "knowledge_weaker": [
+                    "Candlestick pattern shapes have stable predictability."
+                ],
+                "world_model_shifts": [
+                    "Shifted world model constraints to block bullish bias when delivery ratios dry up."
+                ],
+                "fundamental_uncertainty": [
+                    "High-volatility intraday noise remains unmodeled."
+                ],
+                "tomorrow_beliefs": [
+                    "We would immediately cap bullish trade confidence under low sector Z-scores."
+                ],
             }
 
     def _format_historical_context(self, validations: list, reflections: list) -> str:
@@ -4456,8 +5216,10 @@ def main():
         if args.reset:
             import shutil
 
-            if executor.replay_dir.exists():
-                shutil.rmtree(executor.replay_dir)
+            for sub in ["logs", "theories", "confidence", "observations"]:
+                sub_dir = executor.replay_dir / sub
+                if sub_dir.exists():
+                    shutil.rmtree(sub_dir)
             executor._create_snapshot_dirs()
 
         # Restart if requested

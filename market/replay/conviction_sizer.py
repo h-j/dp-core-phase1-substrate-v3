@@ -21,7 +21,13 @@ class ConvictionResult:
     Result containing allocation, final conviction score, and detailed component breakdown.
     Supports unpacking as a 2-tuple (allocation, final_score) for backward compatibility.
     """
-    def __init__(self, allocation: float, final_score: float, component_breakdown: Dict[str, float]):
+
+    def __init__(
+        self,
+        allocation: float,
+        final_score: float,
+        component_breakdown: Dict[str, float],
+    ):
         self.allocation = allocation
         self.final_score = final_score
         self.component_breakdown = component_breakdown
@@ -109,11 +115,19 @@ class ConvictionSizer:
         # Build detailed components breakdown (Option B: showing base + penalties)
         component_breakdown = {
             "base": 0.30,
-            "confidence": float(round(self.weight_calibrated * calibrated_confidence, 4)),
+            "confidence": float(
+                round(self.weight_calibrated * calibrated_confidence, 4)
+            ),
             "empirical": float(round(self.weight_empirical * empirical_confidence, 4)),
-            "principle_support": float(round(self.weight_principles * principle_support, 4)),
-            "contradictions": float(round(-self.weight_contradiction * contradiction_pressure, 4)),
-            "transition_pressure": float(round(-self.weight_regime * transition_pressure, 4)),
+            "principle_support": float(
+                round(self.weight_principles * principle_support, 4)
+            ),
+            "contradictions": float(
+                round(-self.weight_contradiction * contradiction_pressure, 4)
+            ),
+            "transition_pressure": float(
+                round(-self.weight_regime * transition_pressure, 4)
+            ),
         }
 
         return ConvictionResult(

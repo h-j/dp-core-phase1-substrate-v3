@@ -1,0 +1,56 @@
+{
+  "id": "f2602c49-5e7b-4205-8fd0-ff95a7e890ad",
+  "created_at": "2026-07-04T12:07:48.891121+00:00",
+  "prediction_date": "2026-06-03",
+  "evaluation_date": "2026-06-04",
+  "asset": "RELIANCE",
+  "prediction": "uncertain",
+  "decision": {
+    "id": "58047d7d-4e7e-4f8b-9c0d-debbcf06679e",
+    "created_at": "2026-07-04T12:07:48.891047+00:00",
+    "date": "2026-06-03",
+    "prediction_direction": "uncertain",
+    "action": "hold",
+    "allocation_pct": 0.0,
+    "conviction_score": 0.4325,
+    "reason": "volatility expansion vs structural support"
+  },
+  "allocation": 0.0,
+  "conviction_score": 0.4325,
+  "decision_reason": "volatility expansion vs structural support",
+  "supporting_lineages": [
+    "25a2a265-5faa-4d94-804f-18e35b0b7946"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [
+    "Regime Analog unknown",
+    "Regime Analog unknown",
+    "Regime Analog unknown"
+  ],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 0.0806,
+  "transition_pressure": 0.264,
+  "calibrated_confidence": 0.5,
+  "empirical_confidence": 0.0,
+  "reflection_confidence": 0.1407,
+  "regime_confidence": 0.5493,
+  "expected_scenarios": [
+    "volatility expansion vs structural support"
+  ],
+  "actual_outcome": "+0.21%",
+  "decision_result": "neutral",
+  "pnl": 0.0,
+  "reflection_summary": "The prediction 'uncertain' was incorrect (actual return: +0.21%). Recommended action: Trigger lineage mutation and open an evidence gap to reconcile contradiction.",
+  "knowledge_changes": [
+    "theory_mutated",
+    "theory_revived"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.175,
+    "empirical": 0.0,
+    "principle_support": 0.0,
+    "contradictions": -0.0161,
+    "transition_pressure": -0.0264
+  }
+}

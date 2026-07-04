@@ -138,7 +138,9 @@ class ReplayValidationRunner:
         executor = ReplayExecutor(
             max_days=max_days,
             dataset_path=str(self.csv_path),
-            market_name="NIFTY 50" if "nifty" in str(self.csv_path).lower() else "RELIANCE",
+            market_name=(
+                "NIFTY 50" if "nifty" in str(self.csv_path).lower() else "RELIANCE"
+            ),
             quiet=True,
             verbose=False,
             compare_secondary=False,

@@ -249,6 +249,62 @@ class ContradictionDetector:
                         f"Regime Subtype: {curr_regime} vs {hist_regime_subtype}"
                     )
 
+            # E. Grounded Ontology Semantic Contradiction Check
+            curr_struct = getattr(current_theory, "summary_structured", None)
+            hist_struct = getattr(hist_theory, "summary_structured", None)
+            if isinstance(current_theory, dict):
+                curr_struct = current_theory.get("summary_structured")
+            if isinstance(hist_theory, dict):
+                hist_struct = hist_theory.get("summary_structured")
+
+            if curr_struct and hist_struct:
+                curr_comps = getattr(curr_struct, "mechanism_components", []) or []
+                hist_comps = getattr(hist_struct, "mechanism_components", []) or []
+                if isinstance(curr_struct, dict):
+                    curr_comps = curr_struct.get("mechanism_components") or []
+                if isinstance(hist_struct, dict):
+                    hist_comps = hist_struct.get("mechanism_components") or []
+
+                for curr_comp in curr_comps:
+                    for hist_comp in hist_comps:
+                        curr_tags = []
+                        hist_tags = []
+                        curr_rel = None
+                        hist_rel = None
+
+                        if isinstance(curr_comp, dict):
+                            curr_tags = curr_comp.get("concept_tags") or []
+                            curr_rel = curr_comp.get("relation_type")
+                        else:
+                            curr_tags = getattr(curr_comp, "concept_tags", []) or []
+                            curr_rel = getattr(curr_comp, "relation_type", None)
+
+                        if isinstance(hist_comp, dict):
+                            hist_tags = hist_comp.get("concept_tags") or []
+                            hist_rel = hist_comp.get("relation_type")
+                        else:
+                            hist_tags = getattr(hist_comp, "concept_tags", []) or []
+                            hist_rel = getattr(hist_comp, "relation_type", None)
+
+                        common_tags = set(curr_tags) & set(hist_tags)
+                        if common_tags:
+                            is_contradicting_rel = False
+                            if curr_rel and hist_rel and curr_rel != hist_rel:
+                                if {curr_rel, hist_rel} == {"AMPLIFIES", "DAMPENS"}:
+                                    is_contradicting_rel = True
+                                elif {curr_rel, hist_rel} == {
+                                    "CONTRADICTS",
+                                    "CO-OCCURS_WITH",
+                                }:
+                                    is_contradicting_rel = True
+
+                            if is_contradicting_rel:
+                                for tag in common_tags:
+                                    structural_conflict_score += 0.4
+                                    structural_indicators.append(
+                                        f"Semantic Contradiction: Concept '{tag}' relation is '{curr_rel}' in current theory but '{hist_rel}' in historical theory."
+                                    )
+
             if structural_indicators:
                 contradictions.append(f"Structural: {'; '.join(structural_indicators)}")
 

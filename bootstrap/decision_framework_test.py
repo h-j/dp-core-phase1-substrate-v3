@@ -1,11 +1,12 @@
-import unittest
 import tempfile
+import unittest
 from pathlib import Path
+
 from cognition.schemas.decision.decision import Decision
 from cognition.schemas.decision.decision_record import DecisionRecord
-from memory.decision.decision_journal import DecisionJournal
 from market.replay.conviction_sizer import ConvictionSizer
 from market.replay.paper_trader import PaperTrader
+from memory.decision.decision_journal import DecisionJournal
 
 
 class TestDecisionSchemas(unittest.TestCase):
@@ -89,7 +90,7 @@ class TestDecisionJournal(unittest.TestCase):
     def test_save_load_clear(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             journal = DecisionJournal(base_path=Path(tmpdir))
-            
+
             d = Decision(
                 date="2026-07-01",
                 prediction_direction="higher",
@@ -197,8 +198,11 @@ class TestDecisionQualityMetrics(unittest.TestCase):
         self.assertEqual(summary["high_conviction"], 1)
         self.assertEqual(summary["low_conviction"], 1)
         self.assertEqual(summary["avoided_bad_trades"], 1)  # (renamed or mapped)
-        
+
         # Verify correctness of reflections
         self.assertIn("correct", r1.reflection_summary.lower())
         self.assertIn("incorrect", r2.reflection_summary.lower())
-        self.assertTrue("prediction" in r3.reflection_summary.lower() or "correct" in r3.reflection_summary.lower())
+        self.assertTrue(
+            "prediction" in r3.reflection_summary.lower()
+            or "correct" in r3.reflection_summary.lower()
+        )

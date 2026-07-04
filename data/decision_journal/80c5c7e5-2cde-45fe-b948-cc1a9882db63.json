@@ -1,0 +1,56 @@
+{
+  "id": "80c5c7e5-2cde-45fe-b948-cc1a9882db63",
+  "created_at": "2026-07-04T12:10:31.830293+00:00",
+  "prediction_date": "2026-06-05",
+  "evaluation_date": "2026-06-08",
+  "asset": "RELIANCE",
+  "prediction": "lower",
+  "decision": {
+    "id": "0687d324-4b4c-4a53-b562-e9895871941a",
+    "created_at": "2026-07-04T12:10:31.830236+00:00",
+    "date": "2026-06-05",
+    "prediction_direction": "lower",
+    "action": "short",
+    "allocation_pct": 0.0827,
+    "conviction_score": 0.4825,
+    "reason": "observation coherence vs residual uncertainty"
+  },
+  "allocation": 0.0827,
+  "conviction_score": 0.4825,
+  "decision_reason": "observation coherence vs residual uncertainty",
+  "supporting_lineages": [
+    "25a2a265-5faa-4d94-804f-18e35b0b7946"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [
+    "Regime Analog unknown",
+    "Regime Analog unknown",
+    "Regime Analog unknown"
+  ],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 0.09447500000000002,
+  "transition_pressure": 0.20500000000000002,
+  "calibrated_confidence": 0.634,
+  "empirical_confidence": 0.0,
+  "reflection_confidence": 0.0,
+  "regime_confidence": 0.5523,
+  "expected_scenarios": [
+    "observation coherence vs residual uncertainty"
+  ],
+  "actual_outcome": "-1.07%",
+  "decision_result": "correct",
+  "pnl": 640.65,
+  "reflection_summary": "The prediction 'lower' was correct. Recommended action: Retain lineage and reinforce principle confidence.",
+  "knowledge_changes": [
+    "theory_created",
+    "theory_revived"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.2219,
+    "empirical": 0.0,
+    "principle_support": 0.0,
+    "contradictions": -0.0189,
+    "transition_pressure": -0.0205
+  }
+}

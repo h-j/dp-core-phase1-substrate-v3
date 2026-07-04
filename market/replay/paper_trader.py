@@ -1,14 +1,18 @@
 import csv
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+
 import numpy as np
+
 from cognition.schemas.decision.decision_record import DecisionRecord
 
 # Configurable Parameters
 INITIAL_CAPITAL = 1000000.0  # ₹10,00,000
-SLIPPAGE_PCT = 0.001         # 0.1%
-FEE_PCT = 0.0005             # 0.05% per trade
-RANGE_ACCURACY_THRESHOLD = 0.5  # Absolute daily return < 0.5% is correct for range_bound
+SLIPPAGE_PCT = 0.001  # 0.1%
+FEE_PCT = 0.0005  # 0.05% per trade
+RANGE_ACCURACY_THRESHOLD = (
+    0.5  # Absolute daily return < 0.5% is correct for range_bound
+)
 
 
 class PaperTrader:
@@ -118,7 +122,9 @@ class PaperTrader:
             if prediction == "higher":  # Long
                 entry_price = open_price * (1.0 + self.slippage_pct)
                 exit_price = close_price * (1.0 - self.slippage_pct)
-                gross_return = (exit_price / entry_price) - 1.0 if entry_price > 0 else 0.0
+                gross_return = (
+                    (exit_price / entry_price) - 1.0 if entry_price > 0 else 0.0
+                )
                 fee = trade_val * (2 * self.fee_pct)
                 pnl = trade_val * gross_return - fee
                 is_correct = actual_daily_return_pct > 0.0
@@ -126,7 +132,9 @@ class PaperTrader:
             elif prediction == "lower":  # Short
                 entry_price = open_price * (1.0 - self.slippage_pct)
                 exit_price = close_price * (1.0 + self.slippage_pct)
-                gross_return = 1.0 - (exit_price / entry_price) if entry_price > 0 else 0.0
+                gross_return = (
+                    1.0 - (exit_price / entry_price) if entry_price > 0 else 0.0
+                )
                 fee = trade_val * (2 * self.fee_pct)
                 pnl = trade_val * gross_return - fee
                 is_correct = actual_daily_return_pct < 0.0
@@ -153,7 +161,9 @@ class PaperTrader:
             decision_result = "correct" if is_correct else "incorrect"
         else:
             if prediction in ["higher", "lower", "range_bound"]:
-                decision_result = "ignored_opportunity" if is_correct else "avoided_bad_trade"
+                decision_result = (
+                    "ignored_opportunity" if is_correct else "avoided_bad_trade"
+                )
 
         # Update DecisionRecord fields
         record.evaluation_date = evaluation_date
@@ -162,7 +172,9 @@ class PaperTrader:
         record.pnl = float(round(pnl, 2))
 
         # Generate lightweight reflection
-        record.reflection_summary = self._generate_reflection_text(record, is_correct, actual_daily_return_pct)
+        record.reflection_summary = self._generate_reflection_text(
+            record, is_correct, actual_daily_return_pct
+        )
 
         # Save record
         self.decision_records.append(record)
@@ -183,38 +195,58 @@ class PaperTrader:
             "calibrated_confidence": record.calibrated_confidence,
             "contradiction_pressure": record.contradiction_pressure,
             "empirical_confidence": record.empirical_confidence,
-            "principle_support": record.supporting_principles[0] if record.supporting_principles else 0,
+            "principle_support": (
+                record.supporting_principles[0] if record.supporting_principles else 0
+            ),
             "transition_pressure": record.transition_pressure,
         }
         self.trade_log.append(log_entry)
 
         return record
 
-    def _generate_reflection_text(self, record: DecisionRecord, is_correct: bool, actual_return_pct: float) -> str:
+    def _generate_reflection_text(
+        self, record: DecisionRecord, is_correct: bool, actual_return_pct: float
+    ) -> str:
         parts = []
         if is_correct:
             parts.append(f"The prediction '{record.prediction}' was correct.")
         else:
-            parts.append(f"The prediction '{record.prediction}' was incorrect (actual return: {actual_return_pct:+.2f}%).")
+            parts.append(
+                f"The prediction '{record.prediction}' was incorrect (actual return: {actual_return_pct:+.2f}%)."
+            )
 
         if is_correct and record.calibrated_confidence < 0.40:
-            parts.append("Cognitive confidence was inappropriately low for a successful scenario.")
+            parts.append(
+                "Cognitive confidence was inappropriately low for a successful scenario."
+            )
         elif not is_correct and record.calibrated_confidence > 0.60:
-            parts.append("Cognitive confidence was inappropriately high, failing to capture the risk.")
+            parts.append(
+                "Cognitive confidence was inappropriately high, failing to capture the risk."
+            )
 
         if not is_correct and record.allocation > 0.10:
-            parts.append(f"Allocation was too aggressive ({record.allocation * 100:.1f}%) on a failing path.")
+            parts.append(
+                f"Allocation was too aggressive ({record.allocation * 100:.1f}%) on a failing path."
+            )
 
         if record.contradiction_pressure > 0.40:
             if not is_correct:
-                parts.append(f"High contradiction pressure ({record.contradiction_pressure:.2f}) correctly signaled potential failure.")
+                parts.append(
+                    f"High contradiction pressure ({record.contradiction_pressure:.2f}) correctly signaled potential failure."
+                )
             else:
-                parts.append(f"High contradiction pressure ({record.contradiction_pressure:.2f}) introduced unnecessary cognitive friction.")
+                parts.append(
+                    f"High contradiction pressure ({record.contradiction_pressure:.2f}) introduced unnecessary cognitive friction."
+                )
 
         if not is_correct:
-            parts.append("Recommended action: Trigger lineage mutation and open an evidence gap to reconcile contradiction.")
+            parts.append(
+                "Recommended action: Trigger lineage mutation and open an evidence gap to reconcile contradiction."
+            )
         else:
-            parts.append("Recommended action: Retain lineage and reinforce principle confidence.")
+            parts.append(
+                "Recommended action: Retain lineage and reinforce principle confidence."
+            )
 
         return " ".join(parts)
 
@@ -234,7 +266,9 @@ class PaperTrader:
                 "final_capital": self.capital,
             }
 
-        total_return = (self.capital - self.starting_capital) / self.starting_capital * 100
+        total_return = (
+            (self.capital - self.starting_capital) / self.starting_capital * 100
+        )
 
         # Sharpe ratio calculation
         daily_returns = []
@@ -246,7 +280,9 @@ class PaperTrader:
                 daily_returns.append(0.0)
 
         if len(daily_returns) > 1 and float(np.std(daily_returns)) > 0:
-            sharpe = float(np.sqrt(252) * np.mean(daily_returns) / np.std(daily_returns))
+            sharpe = float(
+                np.sqrt(252) * np.mean(daily_returns) / np.std(daily_returns)
+            )
         else:
             sharpe = 0.0
 
@@ -306,17 +342,39 @@ class PaperTrader:
         high_conv = sum(1 for r in self.decision_records if r.conviction_score >= 0.60)
         low_conv = sum(1 for r in self.decision_records if r.conviction_score < 0.40)
 
-        correct_count = sum(1 for r in self.decision_records if r.decision_result in ["correct", "ignored_opportunity"])
+        correct_count = sum(
+            1
+            for r in self.decision_records
+            if r.decision_result in ["correct", "ignored_opportunity"]
+        )
         decision_accuracy = (correct_count / total_decisions) * 100
 
         # False High/Low Conviction Rates
-        high_conv_records = [r for r in self.decision_records if r.conviction_score >= 0.60]
-        incorrect_high = sum(1 for r in high_conv_records if r.decision_result in ["incorrect", "avoided_bad_trade"])
-        false_high_conv = (incorrect_high / len(high_conv_records) * 100) if high_conv_records else 0.0
+        high_conv_records = [
+            r for r in self.decision_records if r.conviction_score >= 0.60
+        ]
+        incorrect_high = sum(
+            1
+            for r in high_conv_records
+            if r.decision_result in ["incorrect", "avoided_bad_trade"]
+        )
+        false_high_conv = (
+            (incorrect_high / len(high_conv_records) * 100)
+            if high_conv_records
+            else 0.0
+        )
 
-        low_conv_records = [r for r in self.decision_records if r.conviction_score < 0.40]
-        correct_low = sum(1 for r in low_conv_records if r.decision_result in ["correct", "ignored_opportunity"])
-        false_low_conv = (correct_low / len(low_conv_records) * 100) if low_conv_records else 0.0
+        low_conv_records = [
+            r for r in self.decision_records if r.conviction_score < 0.40
+        ]
+        correct_low = sum(
+            1
+            for r in low_conv_records
+            if r.decision_result in ["correct", "ignored_opportunity"]
+        )
+        false_low_conv = (
+            (correct_low / len(low_conv_records) * 100) if low_conv_records else 0.0
+        )
 
         conv_scores = [r.conviction_score for r in self.decision_records]
         avg_conviction = float(np.mean(conv_scores))
@@ -347,22 +405,22 @@ class PaperTrader:
 
         for r in self.decision_records:
             is_correct = r.decision_result in ["correct", "ignored_opportunity"]
-            
+
             # Supporting Lineages success
             for lineage in r.supporting_lineages:
                 if is_correct:
                     lineage_success[lineage] = lineage_success.get(lineage, 0) + 1
-                    
+
             # Supporting Principles success
             for pid in r.supporting_principles:
                 if is_correct:
                     principle_success[pid] = principle_success.get(pid, 0) + 1
-                    
+
             # Retrieved Memories success
             for mem in r.retrieved_memories:
                 if is_correct:
                     memory_success[mem] = memory_success.get(mem, 0) + 1
-                    
+
             # Contradiction harm
             if r.contradiction_pressure > 0.20 and not is_correct:
                 key = f"contradiction_on_{r.prediction_date}"
@@ -371,13 +429,25 @@ class PaperTrader:
             knowledge_changes_count += len(r.knowledge_changes)
 
         # Sort and select top items
-        top_lineages = sorted(lineage_success, key=lineage_success.get, reverse=True)[:3]
-        top_principles = sorted(principle_success, key=principle_success.get, reverse=True)[:3]
+        top_lineages = sorted(lineage_success, key=lineage_success.get, reverse=True)[
+            :3
+        ]
+        top_principles = sorted(
+            principle_success, key=principle_success.get, reverse=True
+        )[:3]
         top_memories = sorted(memory_success, key=memory_success.get, reverse=True)[:3]
-        top_harmful_contradictions = sorted(contradiction_harm, key=contradiction_harm.get, reverse=True)[:3]
+        top_harmful_contradictions = sorted(
+            contradiction_harm, key=contradiction_harm.get, reverse=True
+        )[:3]
 
-        avoided_bad = sum(1 for r in self.decision_records if r.decision_result == "avoided_bad_trade")
-        ignored_opps = sum(1 for r in self.decision_records if r.decision_result == "ignored_opportunity")
+        avoided_bad = sum(
+            1 for r in self.decision_records if r.decision_result == "avoided_bad_trade"
+        )
+        ignored_opps = sum(
+            1
+            for r in self.decision_records
+            if r.decision_result == "ignored_opportunity"
+        )
 
         return {
             "total_decisions": total_decisions,

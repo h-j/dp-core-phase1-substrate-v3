@@ -54,6 +54,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         self.config_snapshot = {}
         self.transition_memory_hits = 0
         self.miss_analysis = []  # v2.1 Miss Audit
+        self.theory_metrics_history = []
 
     def set_config_snapshot(self, config: dict):
         """Record the configuration used for this replay."""
@@ -106,6 +107,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         prediction_override_applied: bool = False,
         novelty_decision: Union[str, None] = None,
         novelty_score: float = 1.0,
+        theory_metrics: Union[dict, None] = None,
     ):
         """Record cognition state for a day."""
         # v2.4 Persistence fallback
@@ -156,11 +158,14 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                 "prediction_override_applied": prediction_override_applied,
                 "novelty_decision": novelty_decision,
                 "novelty_score": novelty_score,
+                "theory_metrics": theory_metrics or {},
             }
         )
 
         if transition_memory_hit:
             self.transition_memory_hits += 1
+
+        self.theory_metrics_history.append(theory_metrics or {})
 
         # Track confidence
         self.confidence_history.append(
@@ -348,9 +353,97 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             "transition_pressure_history": self.transition_pressure_history,
             "config": self.config_snapshot,
             "risks": self._detect_cognition_risks(),
+            "theory_mutation_metrics": self._analyze_theory_mutation_metrics(),
+            "mechanism_metrics": self._analyze_mechanisms(),
         }
 
         return analysis
+
+    def _analyze_theory_mutation_metrics(self) -> Dict:
+        """Analyze theory complexity and mutation metrics."""
+        if not self.theory_metrics_history:
+            return {}
+
+        from statistics import mean
+
+        def safe_mean(values, default=0.0):
+            val_list = [v for v in values if v is not None]
+            return round(mean(val_list), 3) if val_list else default
+
+        def safe_sum(values):
+            return sum(v for v in values if v is not None)
+
+        word_counts = [
+            item.get("theory_word_count") for item in self.theory_metrics_history
+        ]
+        mech_counts = [
+            item.get("mechanism_count") for item in self.theory_metrics_history
+        ]
+        clauses = [
+            item.get("conditional_clauses_count")
+            for item in self.theory_metrics_history
+        ]
+        exceptions = [
+            item.get("exceptions_added") for item in self.theory_metrics_history
+        ]
+        retired = [
+            item.get("mechanisms_retired") for item in self.theory_metrics_history
+        ]
+        added = [item.get("mechanisms_added") for item in self.theory_metrics_history]
+        modified = [
+            item.get("mechanisms_modified") for item in self.theory_metrics_history
+        ]
+        stability = [
+            item.get("mechanism_stability") for item in self.theory_metrics_history
+        ]
+
+        words_before = safe_sum(
+            [item.get("words_before_mutation") for item in self.theory_metrics_history]
+        )
+        words_after = safe_sum(
+            [item.get("words_after_mutation") for item in self.theory_metrics_history]
+        )
+        mechs_before = safe_sum(
+            [
+                item.get("mechanisms_before_mutation")
+                for item in self.theory_metrics_history
+            ]
+        )
+        mechs_after = safe_sum(
+            [
+                item.get("mechanisms_after_mutation")
+                for item in self.theory_metrics_history
+            ]
+        )
+
+        # Compression achieved percentages
+        word_comp_pct = (
+            round(((words_before - words_after) / words_before * 100.0), 1)
+            if words_before > 0
+            else 0.0
+        )
+        mech_comp_pct = (
+            round(((mechs_before - mechs_after) / mechs_before * 100.0), 1)
+            if mechs_before > 0
+            else 0.0
+        )
+
+        return {
+            "avg_theory_word_count": safe_mean(word_counts),
+            "avg_mechanism_count": safe_mean(mech_counts),
+            "avg_conditional_clauses": safe_mean(clauses),
+            "total_exceptions_added": safe_sum(exceptions),
+            "total_mechanisms_retired": safe_sum(retired),
+            "total_mechanisms_added": safe_sum(added),
+            "total_mechanisms_modified": safe_sum(modified),
+            "avg_mechanism_stability": safe_mean(stability, default=1.0),
+            "words_before_mutation": words_before,
+            "words_after_mutation": words_after,
+            "word_compression_pct": word_comp_pct,
+            "mechanisms_before_mutation": mechs_before,
+            "mechanisms_after_mutation": mechs_after,
+            "mechanism_compression_pct": mech_comp_pct,
+        }
 
     def _analyze_confidence(self) -> Dict:
         """Analyze confidence evolution."""
@@ -730,22 +823,48 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
             current_day_record = self.prediction_history[i]
             previous_day_prediction_record = self.prediction_history[i - 1]
 
-            if current_day_record.get("prior_prediction_result") and previous_day_prediction_record.get("prediction"):
-                aligned_predictions.append({
-                    "date": current_day_record["date"],
-                    "prediction": previous_day_prediction_record["prediction"],
-                    "prior_prediction_result": current_day_record["prior_prediction_result"],
-                    "contradiction_score": previous_day_prediction_record.get("contradiction_score", 0.0),
-                    "regime_similarity": previous_day_prediction_record.get("regime_similarity", 0.0),
-                    "theory_usefulness": previous_day_prediction_record.get("theory_usefulness"),
-                    "theory_summary": previous_day_prediction_record.get("theory_summary", ""),
-                    "transition_pressure_score": previous_day_prediction_record.get("transition_pressure_score", 0.0),
-                    "transition_breakout_risk": previous_day_prediction_record.get("transition_breakout_risk", False),
-                    "components_failed": previous_day_prediction_record.get("components_failed", []),
-                    "reused_lessons": previous_day_prediction_record.get("reused_lessons", []),
-                    "lessons_retired": previous_day_prediction_record.get("lessons_retired", 0),
-                    "regime_matches": previous_day_prediction_record.get("regime_matches", []),
-                })
+            if current_day_record.get(
+                "prior_prediction_result"
+            ) and previous_day_prediction_record.get("prediction"):
+                aligned_predictions.append(
+                    {
+                        "date": current_day_record["date"],
+                        "prediction": previous_day_prediction_record["prediction"],
+                        "prior_prediction_result": current_day_record[
+                            "prior_prediction_result"
+                        ],
+                        "contradiction_score": previous_day_prediction_record.get(
+                            "contradiction_score", 0.0
+                        ),
+                        "regime_similarity": previous_day_prediction_record.get(
+                            "regime_similarity", 0.0
+                        ),
+                        "theory_usefulness": previous_day_prediction_record.get(
+                            "theory_usefulness"
+                        ),
+                        "theory_summary": previous_day_prediction_record.get(
+                            "theory_summary", ""
+                        ),
+                        "transition_pressure_score": previous_day_prediction_record.get(
+                            "transition_pressure_score", 0.0
+                        ),
+                        "transition_breakout_risk": previous_day_prediction_record.get(
+                            "transition_breakout_risk", False
+                        ),
+                        "components_failed": previous_day_prediction_record.get(
+                            "components_failed", []
+                        ),
+                        "reused_lessons": previous_day_prediction_record.get(
+                            "reused_lessons", []
+                        ),
+                        "lessons_retired": previous_day_prediction_record.get(
+                            "lessons_retired", 0
+                        ),
+                        "regime_matches": previous_day_prediction_record.get(
+                            "regime_matches", []
+                        ),
+                    }
+                )
 
         total = len(self.prediction_history)
         scored_count = len(aligned_predictions)
@@ -772,7 +891,11 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         directions = ["higher", "lower", "range_bound"]
         accuracy_by_direction = {}
         for d in directions:
-            rows = [r for r in aligned_predictions if r.get("prediction", {}).get("direction") == d]
+            rows = [
+                r
+                for r in aligned_predictions
+                if r.get("prediction", {}).get("direction") == d
+            ]
             cnt = len(rows)
             acc = sum(1 for r in rows if is_correct(r)) / cnt if cnt else 0.0
 
@@ -932,7 +1055,9 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         # Accuracy when usefulness > 0.7
         high_usefulness_predictions = [
-            r for r in aligned_predictions if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
+            r
+            for r in aligned_predictions
+            if r.get("theory_usefulness", {}).get("score", 0.0) > 0.7
         ]
         accuracy_when_high_usefulness = (
             sum(1 for r in high_usefulness_predictions if is_correct(r))
@@ -984,7 +1109,9 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         }
 
         # Regime similarity > 0.9
-        high_regime = [r for r in aligned_predictions if r.get("regime_similarity", 0.0) > 0.9]
+        high_regime = [
+            r for r in aligned_predictions if r.get("regime_similarity", 0.0) > 0.9
+        ]
         regime_acc = (
             sum(1 for r in high_regime if is_correct(r)) / len(high_regime)
             if high_regime
@@ -1003,7 +1130,9 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         # Task 2.4: Prediction slices by pressure
         pressure_gt_0_5 = [
-            r for r in aligned_predictions if r.get("transition_pressure_score", 0.0) > 0.5
+            r
+            for r in aligned_predictions
+            if r.get("transition_pressure_score", 0.0) > 0.5
         ]
         acc_pressure_gt_0_5 = (
             sum(1 for r in pressure_gt_0_5 if is_correct(r)) / len(pressure_gt_0_5)
@@ -1012,7 +1141,9 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         )
 
         pressure_gt_0_7 = [
-            r for r in aligned_predictions if r.get("transition_pressure_score", 0.0) > 0.7
+            r
+            for r in aligned_predictions
+            if r.get("transition_pressure_score", 0.0) > 0.7
         ]
         acc_pressure_gt_0_7 = (
             sum(1 for r in pressure_gt_0_7 if is_correct(r)) / len(pressure_gt_0_7)
@@ -1022,7 +1153,9 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         # Task 2.5: False breakout
         false_breakouts = [
-            r for r in aligned_predictions if r.get("transition_breakout_risk") and not is_correct(r)
+            r
+            for r in aligned_predictions
+            if r.get("transition_breakout_risk") and not is_correct(r)
         ]
 
         # Task 2.6: Best breakout capture
@@ -1063,10 +1196,13 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
 
         correlation_coeff = 0.0
         confidences = [
-            r["prediction"].get("confidence", 0) for r in aligned_predictions if r.get("prediction")
+            r["prediction"].get("confidence", 0)
+            for r in aligned_predictions
+            if r.get("prediction")
         ]
         scores = [
-            r["prior_prediction_result"].get("direction_score", 0) for r in aligned_predictions
+            r["prior_prediction_result"].get("direction_score", 0)
+            for r in aligned_predictions
         ]
         if len(confidences) > 1 and len(scores) > 1:
             try:
@@ -1605,3 +1741,103 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
                 if any(re.search(p, cleaned) for p in patterns):
                     count += 1
         return count
+
+    def _analyze_mechanisms(self) -> Dict:
+        """Analyze persistent mechanisms from the repository."""
+        from memory.knowledge.knowledge_repository import KnowledgeRepository
+
+        repo = KnowledgeRepository()
+        mechanisms = repo.list_mechanisms()
+
+        if not mechanisms:
+            return {
+                "mechanisms_alive": 0,
+                "mechanisms_created": 0,
+                "mechanisms_reused": 0,
+                "mechanisms_retired": 0,
+                "avg_mechanism_age": 0.0,
+                "mechanism_stability": 1.0,
+                "reuse_rate": 0.0,
+                "evidence_accumulated": 0,
+                "top_stable_mechanisms": [],
+                "top_contradicted_mechanisms": [],
+                "candidate_invariants": [],
+            }
+
+        alive = [m for m in mechanisms if m.status != "retired"]
+        created = len(mechanisms)
+        reused = sum(m.times_reused for m in mechanisms)
+        retired = sum(1 for m in mechanisms if m.status == "retired")
+
+        ages = [(m.last_seen - m.first_seen + 1) for m in mechanisms]
+        avg_age = sum(ages) / len(ages) if ages else 0.0
+
+        stabilities = []
+        for m in mechanisms:
+            if m.days_active > 0:
+                stabilities.append(1.0 - (m.times_modified / m.days_active))
+            else:
+                stabilities.append(1.0)
+        avg_stability = sum(stabilities) / len(stabilities) if stabilities else 1.0
+
+        reuse_rate = reused / created if created > 0 else 0.0
+
+        evidence = sum(
+            m.support_count
+            + m.contradiction_count
+            + m.prediction_helped
+            + m.prediction_harmed
+            for m in mechanisms
+        )
+
+        sorted_by_age = sorted(
+            mechanisms, key=lambda x: (x.last_seen - x.first_seen + 1), reverse=True
+        )
+        top_stable = [
+            (
+                m.mechanism_id or m.canonical_name,
+                m.last_seen - m.first_seen + 1,
+                m.status,
+            )
+            for m in sorted_by_age
+        ]
+
+        sorted_by_contra = sorted(
+            mechanisms, key=lambda x: x.contradiction_count, reverse=True
+        )
+        top_contra = [
+            (m.mechanism_id or m.canonical_name, m.contradiction_count)
+            for m in sorted_by_contra
+            if m.contradiction_count > 0
+        ]
+
+        candidate_invariants = []
+        for m in mechanisms:
+            unique_regimes = len(set(m.regimes_seen))
+            unique_theories = len(m.associated_theory_ids)
+            if (
+                m.status == "stable"
+                and unique_regimes >= 2
+                and unique_theories >= 2
+                and m.prediction_helped >= 3
+            ):
+                candidate_invariants.append(
+                    (
+                        m.mechanism_id or m.canonical_name,
+                        m.description or m.canonical_name,
+                    )
+                )
+
+        return {
+            "mechanisms_alive": len(alive),
+            "mechanisms_created": created,
+            "mechanisms_reused": reused,
+            "mechanisms_retired": retired,
+            "avg_mechanism_age": avg_age,
+            "mechanism_stability": round(avg_stability, 3),
+            "reuse_rate": reuse_rate,
+            "evidence_accumulated": evidence,
+            "top_stable_mechanisms": top_stable,
+            "top_contradicted_mechanisms": top_contra,
+            "candidate_invariants": candidate_invariants,
+        }

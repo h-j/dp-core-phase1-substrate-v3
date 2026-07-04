@@ -15,8 +15,8 @@ class ConfidenceEvolutionEngine:
         lineage_event=None,
         theory_usefulness: Optional[Dict[str, Any]] = None,
         regime_matches: Optional[List[Any]] = None,
-        rolling_accuracy: float = 0.5,   # Recent 15-day accuracy
-        regime_accuracy: float = 0.5,    # Regime-specific rolling accuracy
+        rolling_accuracy: float = 0.5,  # Recent 15-day accuracy
+        regime_accuracy: float = 0.5,  # Regime-specific rolling accuracy
         lifetime_accuracy: float = 0.5,  # Lifetime overall accuracy
     ):
 
@@ -190,10 +190,14 @@ class ConfidenceEvolutionEngine:
             pressure_delta += contradiction_score * 0.10
         # 1. Three-Window Confidence: blend regime-specific, recent, and lifetime accuracies
         # (Weighting: 50% regime, 30% recent, 20% lifetime)
-        weighted_accuracy = 0.5 * regime_accuracy + 0.3 * rolling_accuracy + 0.2 * lifetime_accuracy
+        weighted_accuracy = (
+            0.5 * regime_accuracy + 0.3 * rolling_accuracy + 0.2 * lifetime_accuracy
+        )
 
         # 2. Rich Prior probability P(Theory): Theory prior confidence + Lineage usefulness + Regime matches
-        lineage_usefulness_val = theory_usefulness.get("score", 0.5) if theory_usefulness else 0.5
+        lineage_usefulness_val = (
+            theory_usefulness.get("score", 0.5) if theory_usefulness else 0.5
+        )
         regime_sim = 0.5
         if regime_matches:
             try:
@@ -204,8 +208,12 @@ class ConfidenceEvolutionEngine:
                 regime_sim = mean(sims) if sims else 0.5
             except Exception:
                 pass
-        
-        prior_probability = 0.5 * confidence_state.empirical_confidence + 0.3 * lineage_usefulness_val + 0.2 * regime_sim
+
+        prior_probability = (
+            0.5 * confidence_state.empirical_confidence
+            + 0.3 * lineage_usefulness_val
+            + 0.2 * regime_sim
+        )
 
         # 3. Bayesian calibration multipliers
         # Normalizes pos_mult and neg_mult around a baseline of 0.25 (which is 0.5 * 0.5)

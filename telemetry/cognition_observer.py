@@ -58,6 +58,20 @@ class StepMetrics:
     generic_phrase_score: float = 0.0
     inflation_relapse_score: float = 0.0
 
+    # Complexity & Mutation Metrics
+    theory_word_count: int = 0
+    mechanism_count: int = 0
+    conditional_clauses_count: int = 0
+    exceptions_added: int = 0
+    mechanisms_retired_count: int = 0
+    mechanisms_added_count: int = 0
+    mechanisms_modified_count: int = 0
+    mechanism_stability: float = 1.0
+    words_before_mutation: int = 0
+    words_after_mutation: int = 0
+    mechanisms_before_mutation: int = 0
+    mechanisms_after_mutation: int = 0
+
     extras: Optional[Dict[str, Any]] = None
 
 
@@ -159,6 +173,25 @@ class CognitionObserver:
             extras.get("inflation_relapse_score", 0.0) if extras else 0.0
         )
 
+        theory_word_count = int(theory_metrics.get("theory_word_count", 0))
+        mechanism_count = int(theory_metrics.get("mechanism_count", 0))
+        conditional_clauses_count = int(
+            theory_metrics.get("conditional_clauses_count", 0)
+        )
+        exceptions_added = int(theory_metrics.get("exceptions_added", 0))
+        mechanisms_retired_count = int(theory_metrics.get("mechanisms_retired", 0))
+        mechanisms_added_count = int(theory_metrics.get("mechanisms_added", 0))
+        mechanisms_modified_count = int(theory_metrics.get("mechanisms_modified", 0))
+        mechanism_stability = float(theory_metrics.get("mechanism_stability", 1.0))
+        words_before_mutation = int(theory_metrics.get("words_before_mutation", 0))
+        words_after_mutation = int(theory_metrics.get("words_after_mutation", 0))
+        mechanisms_before_mutation = int(
+            theory_metrics.get("mechanisms_before_mutation", 0)
+        )
+        mechanisms_after_mutation = int(
+            theory_metrics.get("mechanisms_after_mutation", 0)
+        )
+
         metrics = StepMetrics(
             step=step,
             date=date,
@@ -197,6 +230,18 @@ class CognitionObserver:
             compression_ratio=compression_ratio,
             generic_phrase_score=generic_phrase_score,
             inflation_relapse_score=inflation_relapse_score,
+            theory_word_count=theory_word_count,
+            mechanism_count=mechanism_count,
+            conditional_clauses_count=conditional_clauses_count,
+            exceptions_added=exceptions_added,
+            mechanisms_retired_count=mechanisms_retired_count,
+            mechanisms_added_count=mechanisms_added_count,
+            mechanisms_modified_count=mechanisms_modified_count,
+            mechanism_stability=mechanism_stability,
+            words_before_mutation=words_before_mutation,
+            words_after_mutation=words_after_mutation,
+            mechanisms_before_mutation=mechanisms_before_mutation,
+            mechanisms_after_mutation=mechanisms_after_mutation,
             extras=extras,
         )
 

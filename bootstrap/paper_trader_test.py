@@ -1,6 +1,7 @@
-import unittest
 import tempfile
+import unittest
 from pathlib import Path
+
 from market.replay.conviction_sizer import ConvictionSizer
 from market.replay.paper_trader import PaperTrader
 

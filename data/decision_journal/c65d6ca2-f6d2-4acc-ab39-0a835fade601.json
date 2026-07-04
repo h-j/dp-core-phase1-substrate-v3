@@ -1,0 +1,51 @@
+{
+  "id": "c65d6ca2-f6d2-4acc-ab39-0a835fade601",
+  "created_at": "2026-07-04T11:57:36.920004+00:00",
+  "prediction_date": "2026-05-25",
+  "evaluation_date": "2026-05-26",
+  "asset": "RELIANCE",
+  "prediction": "uncertain",
+  "decision": {
+    "id": "23efe1ca-560b-4822-af0d-9b4d07a892ab",
+    "created_at": "2026-07-04T11:57:36.919971+00:00",
+    "date": "2026-05-25",
+    "prediction_direction": "uncertain",
+    "action": "hold",
+    "allocation_pct": 0.0,
+    "conviction_score": 0.432,
+    "reason": "liquidity support vs pressure"
+  },
+  "allocation": 0.0,
+  "conviction_score": 0.432,
+  "decision_reason": "liquidity support vs pressure",
+  "supporting_lineages": [
+    "25a2a265-5faa-4d94-804f-18e35b0b7946"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 0.0,
+  "transition_pressure": 0.06999999999999999,
+  "calibrated_confidence": 0.26,
+  "empirical_confidence": 0.24,
+  "reflection_confidence": 0.461,
+  "regime_confidence": 0.5,
+  "expected_scenarios": [
+    "liquidity support vs pressure"
+  ],
+  "actual_outcome": "-0.28%",
+  "decision_result": "neutral",
+  "pnl": 0.0,
+  "reflection_summary": "The prediction 'uncertain' was incorrect (actual return: -0.28%). Recommended action: Trigger lineage mutation and open an evidence gap to reconcile contradiction.",
+  "knowledge_changes": [
+    "theory_created"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.091,
+    "empirical": 0.048,
+    "principle_support": 0.0,
+    "contradictions": -0.0,
+    "transition_pressure": -0.007
+  }
+}

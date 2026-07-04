@@ -5,6 +5,7 @@ from uuid import uuid4
 
 from cognition.evaluation.llm_theory_evaluator import LLMTheoryEvaluator
 from cognition.schemas.confidence.confidence_state import ConfidenceState
+from cognition.schemas.knowledge.ontology import OntologyRegistry
 from cognition.schemas.theory.theory import Branch  # Import new schemas
 from cognition.schemas.theory.theory import Theory, TheoryStructured
 from interfaces.ollama_client import OllamaClient
@@ -37,6 +38,8 @@ class TheoryGenerationFlow:
         world_model_narrative: Optional[str] = None,
         active_principles: Optional[list] = None,
         active_open_questions: Optional[list] = None,
+        step: int = 0,
+        knowledge_repository: Optional[Any] = None,
     ) -> tuple[Theory, dict]:
 
         if not regime_subtype:
@@ -159,17 +162,30 @@ No historical retrieved theory is available. Populate the "reuse_decision" field
 
         world_model_context = ""
         if world_model_narrative:
-            world_model_context = f"\n=== ACTIVE WORLD MODEL PHYSICS ===\n{world_model_narrative}\n"
+            world_model_context = (
+                f"\n=== ACTIVE WORLD MODEL PHYSICS ===\n{world_model_narrative}\n"
+            )
 
         principles_context = ""
         if active_principles:
             p_statements = [f"- {p.statement}" for p in active_principles]
-            principles_context = "\n=== ACTIVE COGNITIVE PRINCIPLES ===\n" + "\n".join(p_statements) + "\n"
+            principles_context = (
+                "\n=== ACTIVE COGNITIVE PRINCIPLES ===\n"
+                + "\n".join(p_statements)
+                + "\n"
+            )
 
         open_questions_context = ""
         if active_open_questions:
-            oq_texts = [f"- {q.question_text} (Hypothesized factors: {', '.join(q.hypothesized_factors)})" for q in active_open_questions]
-            open_questions_context = "\n=== ACTIVE OPEN QUESTIONS (FOCUS AREAS) ===\n" + "\n".join(oq_texts) + "\nGenerate new theories that specifically attempt to address these unresolved contradictions.\n"
+            oq_texts = [
+                f"- {q.question_text} (Hypothesized factors: {', '.join(q.hypothesized_factors)})"
+                for q in active_open_questions
+            ]
+            open_questions_context = (
+                "\n=== ACTIVE OPEN QUESTIONS (FOCUS AREAS) ===\n"
+                + "\n".join(oq_texts)
+                + "\nGenerate new theories that specifically attempt to address these unresolved contradictions.\n"
+            )
 
         prompt = f"""
 Market Memory:
@@ -233,6 +249,8 @@ Add these fields to your output:
   - "observable": What specific market data validates this (e.g., "price_action.daily_structure")
   - "expected_behavior": What we should observe if component holds
   - "dependency": null or component_id this depends on
+  - "concept_tags": A list of concept strings. Choose EXACTLY from Core Concepts: {OntologyRegistry.CORE_CONCEPTS}. Do NOT invent new concept tags.
+  - "relation_type": How it relates to context/concept. Choose EXACTLY from: {OntologyRegistry.RELATION_TYPES}.
 
 - "falsification_conditions": A JSON array of strings like:
   "component_id: specific condition that would falsify this component"
@@ -245,14 +263,18 @@ Example:
       "description": "Price maintains sequence of higher highs and higher lows",
       "observable": "price_action.daily_structure",
       "expected_behavior": "Each day's high > previous high, each low > previous low",
-      "dependency": null
+      "dependency": null,
+      "concept_tags": ["TREND_PERSISTENCE"],
+      "relation_type": "CO-OCCURS_WITH"
     }},
     {{
       "component_id": "volume_confirmation",
       "description": "Volume expands on up days relative to down days",
       "observable": "volume.daily_ratio",
       "expected_behavior": "Average volume on up days exceeds average volume on down days",
-      "dependency": null
+      "dependency": null,
+      "concept_tags": ["VOLATILITY_EXPANSION", "INSTITUTIONAL_ACCUMULATION"],
+      "relation_type": "AMPLIFIES"
     }}
   ],
   "falsification_conditions": [
@@ -275,7 +297,9 @@ Return exactly a JSON object conforming to this schema:
       "description": "string",
       "observable": "string",
       "expected_behavior": "string",
-      "dependency": "string or null"
+      "dependency": "string or null",
+      "concept_tags": ["string"],
+      "relation_type": "string"
     }}
   ],
   "falsification_conditions": ["string"],
@@ -283,6 +307,7 @@ Return exactly a JSON object conforming to this schema:
 }}
 
 Constraint Checklist:
+- Keep the 'claim' concise: a scientific hypothesis under 35 words, stating one causal claim only, with no exceptions, no branch details, and no implementation details.
 - Start claim with the causal mechanism (e.g., "Regime is driven by [Mechanism]...")
 - Define a FORBIDDEN STATE in 'falsified_if'.
 - Logic branches must be conditional ('if... then...') and specific.
@@ -309,57 +334,122 @@ Example:
         # requirement to the prompt to reduce free-text responses.
         # The prompt above already includes the detailed output format.
 
-        result = self.client.generate(prompt, json_format=True)
-
-        # Attempt to parse JSON output, with more robust retries.
+        # Strict validation loop for theory components ontology compliance
+        max_attempts = 3
+        attempt = 0
         parsed_theory_data = None
-        # First, allow a few normal regenerations with the strict prompt
-        for attempt in range(3):
+        validation_errors = []
+        result = ""
+
+        while attempt < max_attempts:
+            result = self.client.generate(prompt, json_format=True)
+
+            # Attempt to parse
+            parsed_data = None
             try:
-                # Extract JSON using a more targeted approach to avoid greedy capture of multiple blocks
-                # We search for the first '{' and the last '}' in the string
                 start = result.find("{")
                 end = result.rfind("}") + 1
                 json_text = result[start:end] if start != -1 and end > start else result
-                parsed_theory_data = json.loads(json_text)
-                break
-            except (json.JSONDecodeError, AttributeError):
-                if self.debug:
-                    print(
-                        f"[Theory JSON Parse Error] Attempt {attempt+1}/3. Retrying generation..."
-                    )
-                result = self.client.generate(prompt, json_format=True)
-
-        # If still not parsed, attempt one final targeted JSON-only repair prompt
-        if parsed_theory_data is None:
-            repair_prompt = (
-                "The previous response could not be parsed as JSON.\n"
-                "Extract the core theory content from the last message and return ONLY a JSON object with keys:"
-                " claim, mechanism, if_branch, else_branch, unless, falsified_if,"
-                " mechanism_components, falsification_conditions, reuse_decision.\n"
-                "Here is the original output:\n"
-                + result
-                + "\n\nRespond ONLY with the JSON object. No commentary."
-            )
-            try:
-                repair_result = self.client.generate(repair_prompt, json_format=True)
-                # Extract JSON from repair result
-                start = repair_result.find("{")
-                end = repair_result.rfind("}") + 1
-                json_text = (
-                    repair_result[start:end]
-                    if start != -1 and end > start
-                    else repair_result
-                )
-                parsed_theory_data = json.loads(json_text)
-                result = repair_result
+                parsed_data = json.loads(json_text)
             except Exception:
-                # Leave parsed_theory_data as None and fall back to text cleaning below
-                parsed_theory_data = None
+                # Fallback repair prompt
+                repair_prompt = (
+                    "The previous response could not be parsed as JSON.\n"
+                    "Extract the core theory content from the last message and return ONLY a JSON object.\n"
+                    "Here is the original output:\n" + result
+                )
+                try:
+                    rep_res = self.client.generate(repair_prompt, json_format=True)
+                    start = rep_res.find("{")
+                    end = rep_res.rfind("}") + 1
+                    json_text = (
+                        rep_res[start:end] if start != -1 and end > start else rep_res
+                    )
+                    parsed_data = json.loads(json_text)
+                    result = rep_res
+                except Exception:
+                    parsed_data = None
+
+            if parsed_data and isinstance(parsed_data, dict):
+                # Validate the mechanism components against ontology
+                is_valid = True
+                errors = []
+                comps = parsed_data.get("mechanism_components", [])
+
+                OntologyRegistry.track_theory_components(len(comps), 0)
+
+                for c in comps:
+                    comp_id = c.get("component_id", "unknown")
+                    # Check concept tags
+                    tags = c.get("concept_tags", [])
+                    for t in tags:
+                        if t not in OntologyRegistry.CORE_CONCEPTS:
+                            is_valid = False
+                            errors.append(
+                                f"Component '{comp_id}' concept tag '{t}' not in allowed Ontology.CORE_CONCEPTS."
+                            )
+                            OntologyRegistry.track_unknown_value(t)
+                    # Check relation type
+                    rel = c.get("relation_type")
+                    if rel and rel not in OntologyRegistry.RELATION_TYPES:
+                        is_valid = False
+                        errors.append(
+                            f"Component '{comp_id}' relation type '{rel}' not in allowed Ontology.RELATION_TYPES."
+                        )
+                        OntologyRegistry.track_unknown_value(rel)
+
+                if is_valid:
+                    OntologyRegistry.track_theory_components(0, len(comps))
+                    parsed_theory_data = parsed_data
+                    break
+                else:
+                    validation_errors = errors
+                    if self.debug:
+                        print(
+                            f"[Ontology Validation Failure] Attempt {attempt+1}/{max_attempts}: {errors}"
+                        )
+            else:
+                validation_errors = [
+                    "Could not parse JSON output conforming to theory schema."
+                ]
+
+            attempt += 1
+            # Append ontology failure reminder to the prompt for next attempt
+            prompt = (
+                prompt
+                + f"\n\nONTOLOGY VALIDATION FAILURE ON ATTEMPT {attempt}:\n"
+                + "\n".join(validation_errors)
+                + "\nPlease correct your choice of concept_tags and relation_type."
+            )
+
+        if parsed_theory_data is None:
+            print(
+                f"WARNING: Theory generation ontology compliance check failed: {validation_errors}"
+            )
 
         # v3.7 Logic: Convert dict to Pydantic object to support attribute access in downstream logic
         if parsed_theory_data and isinstance(parsed_theory_data, dict):
             # Pre-sanitize to prevent validation noise
+            if "mechanism_components" in parsed_theory_data and isinstance(
+                parsed_theory_data["mechanism_components"], list
+            ):
+                from flows.knowledge_flow.mechanism_engine import \
+                    match_and_register_in_registry
+                from memory.knowledge.knowledge_repository import \
+                    KnowledgeRepository
+
+                repo = (
+                    knowledge_repository
+                    if knowledge_repository
+                    else KnowledgeRepository()
+                )
+                for comp in parsed_theory_data["mechanism_components"]:
+                    if isinstance(comp, dict):
+                        mech_id = match_and_register_in_registry(
+                            comp, repo, step=step, regime=regime_subtype
+                        )
+                        comp["mechanism_id"] = mech_id
+
             if "if_branch" in parsed_theory_data and isinstance(
                 parsed_theory_data["if_branch"], str
             ):
@@ -471,10 +561,7 @@ Example:
             # Generate a concise text summary from the structured data for legacy 'summary' field
             # This is a temporary step to maintain compatibility with existing print statements
             # and logging that might still rely on theory.summary as a string.
-            theory_text = f"{parsed_theory_data.claim}. If {parsed_theory_data.if_branch.condition}: {parsed_theory_data.if_branch.action}. Else {parsed_theory_data.else_branch.condition}: {parsed_theory_data.else_branch.action}."
-            if parsed_theory_data.unless:
-                theory_text += f" Unless {parsed_theory_data.unless}."
-            theory_text += f" Falsified if: {parsed_theory_data.falsified_if}."
+            theory_text = parsed_theory_data.claim
         else:
             theory_text = raw_llm_output
 

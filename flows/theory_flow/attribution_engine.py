@@ -41,7 +41,10 @@ class AttributionEngine:
         actual_direction = "uncertain"
         if "range_bound" in trend:
             actual_direction = "range_bound"
-        elif any(word in trend for word in ["higher", "up", "extended_higher", "recovered_intraday"]):
+        elif any(
+            word in trend
+            for word in ["higher", "up", "extended_higher", "recovered_intraday"]
+        ):
             actual_direction = "higher"
         elif any(word in trend for word in ["lower", "down", "closed_lower"]):
             actual_direction = "lower"
@@ -80,12 +83,26 @@ class AttributionEngine:
                         break
 
             # 2. Prediction failure alignment
-            if not is_failed and actual_direction != "uncertain" and prediction != "uncertain" and actual_direction != prediction:
-                if prediction == "higher" and any(w in exp_lowered for w in ["higher", "up", "bullish", "expansion", "increase"]):
+            if (
+                not is_failed
+                and actual_direction != "uncertain"
+                and prediction != "uncertain"
+                and actual_direction != prediction
+            ):
+                if prediction == "higher" and any(
+                    w in exp_lowered
+                    for w in ["higher", "up", "bullish", "expansion", "increase"]
+                ):
                     is_failed = True
-                elif prediction == "lower" and any(w in exp_lowered for w in ["lower", "down", "bearish", "contraction", "decrease"]):
+                elif prediction == "lower" and any(
+                    w in exp_lowered
+                    for w in ["lower", "down", "bearish", "contraction", "decrease"]
+                ):
                     is_failed = True
-                elif prediction == "range_bound" and any(w in exp_lowered for w in ["range", "flat", "compress", "absorb", "limit"]):
+                elif prediction == "range_bound" and any(
+                    w in exp_lowered
+                    for w in ["range", "flat", "compress", "absorb", "limit"]
+                ):
                     is_failed = True
 
             if is_failed:
@@ -94,11 +111,20 @@ class AttributionEngine:
                 passed.append(c.component_id)
 
         # 3. Fallback when prediction failed but no component flagged
-        if not failed and actual_direction != "uncertain" and prediction != "uncertain" and actual_direction != prediction and components:
+        if (
+            not failed
+            and actual_direction != "uncertain"
+            and prediction != "uncertain"
+            and actual_direction != prediction
+            and components
+        ):
             fallback_idx = 0
             for i, c in enumerate(components):
                 c_id_lower = c.component_id.lower()
-                if any(w in c_id_lower for w in ["price", "trend", "momentum", "direction", "move"]):
+                if any(
+                    w in c_id_lower
+                    for w in ["price", "trend", "momentum", "direction", "move"]
+                ):
                     fallback_idx = i
                     break
             failed.append(components[fallback_idx].component_id)

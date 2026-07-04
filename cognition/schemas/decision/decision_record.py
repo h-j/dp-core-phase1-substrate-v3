@@ -1,4 +1,5 @@
 from typing import Dict, List, Optional
+
 from cognition.schemas.base import CognitionBase
 from cognition.schemas.decision.decision import Decision
 
@@ -7,6 +8,7 @@ class DecisionRecord(CognitionBase):
     """
     Complete immutable snapshot of a cognitive decision and its metadata/outcomes.
     """
+
     prediction_date: str
     evaluation_date: Optional[str] = None
     asset: str
@@ -27,7 +29,9 @@ class DecisionRecord(CognitionBase):
     regime_confidence: float = 0.0
     expected_scenarios: List[str] = []
     actual_outcome: Optional[str] = None
-    decision_result: Optional[str] = None  # "correct", "incorrect", "avoided_bad_trade", "ignored_opportunity", "neutral"
+    decision_result: Optional[str] = (
+        None  # "correct", "incorrect", "avoided_bad_trade", "ignored_opportunity", "neutral"
+    )
     pnl: float = 0.0
     reflection_summary: Optional[str] = None
     knowledge_changes: List[str] = []
@@ -108,6 +112,7 @@ class DecisionRecord(CognitionBase):
         )
         if "created_at" in data and data["created_at"]:
             from datetime import datetime
+
             try:
                 record.created_at = datetime.fromisoformat(data["created_at"])
             except ValueError:

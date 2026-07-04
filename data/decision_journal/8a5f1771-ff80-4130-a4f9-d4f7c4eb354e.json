@@ -1,0 +1,55 @@
+{
+  "id": "8a5f1771-ff80-4130-a4f9-d4f7c4eb354e",
+  "created_at": "2026-07-04T12:03:43.641911+00:00",
+  "prediction_date": "2026-05-29",
+  "evaluation_date": "2026-06-01",
+  "asset": "RELIANCE",
+  "prediction": "lower",
+  "decision": {
+    "id": "0e3b9431-4770-460a-bb62-254d8eb003db",
+    "created_at": "2026-07-04T12:03:43.641848+00:00",
+    "date": "2026-05-29",
+    "prediction_direction": "lower",
+    "action": "hold",
+    "allocation_pct": 0.0,
+    "conviction_score": 0.2725,
+    "reason": "volatility expansion vs structural support"
+  },
+  "allocation": 0.0,
+  "conviction_score": 0.2725,
+  "decision_reason": "volatility expansion vs structural support",
+  "supporting_lineages": [
+    "25a2a265-5faa-4d94-804f-18e35b0b7946"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [
+    "Regime Analog unknown",
+    "Regime Analog unknown"
+  ],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 1.0,
+  "transition_pressure": 0.33502000000000004,
+  "calibrated_confidence": 0.56,
+  "empirical_confidence": 0.05,
+  "reflection_confidence": 0.2994,
+  "regime_confidence": 0.5422,
+  "expected_scenarios": [
+    "volatility expansion vs structural support"
+  ],
+  "actual_outcome": "-0.94%",
+  "decision_result": "avoided_bad_trade",
+  "pnl": 0.0,
+  "reflection_summary": "The prediction 'lower' was incorrect (actual return: -0.94%). High contradiction pressure (1.00) correctly signaled potential failure. Recommended action: Trigger lineage mutation and open an evidence gap to reconcile contradiction.",
+  "knowledge_changes": [
+    "theory_mutated",
+    "theory_retired"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.196,
+    "empirical": 0.01,
+    "principle_support": 0.0,
+    "contradictions": -0.2,
+    "transition_pressure": -0.0335
+  }
+}

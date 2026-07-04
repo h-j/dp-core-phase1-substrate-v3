@@ -10,7 +10,7 @@ BENCHMARK_ASSETS = {
         "trend_persistence": "high",
         "participation_profile": "high",
         "sector": "Energy",
-        "liquidity": "extremely_high"
+        "liquidity": "extremely_high",
     },
     "TCS": {
         "sector_index": "^CNXIT",
@@ -19,7 +19,7 @@ BENCHMARK_ASSETS = {
         "trend_persistence": "moderate",
         "participation_profile": "high",
         "sector": "Technology",
-        "liquidity": "high"
+        "liquidity": "high",
     },
     "ADANIENT": {
         "sector_index": "^CNXINFRA",
@@ -28,7 +28,7 @@ BENCHMARK_ASSETS = {
         "trend_persistence": "high",
         "participation_profile": "speculative",
         "sector": "Infrastructure",
-        "liquidity": "high"
+        "liquidity": "high",
     },
     "ONGC": {
         "sector_index": "^CNXENERGY",
@@ -37,7 +37,7 @@ BENCHMARK_ASSETS = {
         "trend_persistence": "moderate",
         "participation_profile": "institutional",
         "sector": "Energy",
-        "liquidity": "moderate"
+        "liquidity": "moderate",
     },
     "NIFTY": {
         "sector_index": "^NSEI",
@@ -46,6 +46,6 @@ BENCHMARK_ASSETS = {
         "trend_persistence": "moderate",
         "participation_profile": "broad",
         "sector": "Index",
-        "liquidity": "maximum"
-    }
+        "liquidity": "maximum",
+    },
 }

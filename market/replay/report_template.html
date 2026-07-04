@@ -99,6 +99,149 @@
             </div>
         </div>
 
+        <!-- Paper Trading & Decision Intelligence -->
+        {% if paper_trading_summary %}
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+            <!-- Simulated Paper Trading Performance -->
+            <div class="apple-card p-6 bg-gradient-to-br from-indigo-50/20 to-emerald-50/20">
+                <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                    <svg class="w-5.5 h-5.5 mr-2.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Paper Trading Performance
+                </h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3.5 border border-slate-100">
+                        <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Total Return</div>
+                        <div class="text-xl font-bold mt-1 {% if paper_trading_summary.total_return_pct >= 0 %}text-emerald-600{% else %}text-rose-600{% endif %}">
+                            {{ "%.2f"|format(paper_trading_summary.total_return_pct) }}%
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3.5 border border-slate-100">
+                        <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Sharpe Ratio</div>
+                        <div class="text-xl font-bold mt-1 text-slate-800">
+                            {{ "%.2f"|format(paper_trading_summary.sharpe_ratio) }}
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3.5 border border-slate-100">
+                        <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Max Drawdown</div>
+                        <div class="text-xl font-bold mt-1 text-rose-600">
+                            {{ "%.2f"|format(paper_trading_summary.max_drawdown_pct) }}%
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3.5 border border-slate-100">
+                        <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Final Capital</div>
+                        <div class="text-xl font-bold mt-1 text-slate-800">
+                            ₹{{ "{:,.2f}".format(paper_trading_summary.final_capital) }}
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3.5 border border-slate-100">
+                        <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Directional Acc.</div>
+                        <div class="text-xl font-bold mt-1 text-slate-800">
+                            {{ "%.1f"|format(paper_trading_summary.directional_accuracy_pct) }}%
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3.5 border border-slate-100">
+                        <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Commitment Acc.</div>
+                        <div class="text-xl font-bold mt-1 text-slate-800">
+                            {{ "%.1f"|format(paper_trading_summary.commitment_accuracy_pct) }}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decision Intelligence -->
+            {% if decision_intelligence %}
+            <div class="apple-card p-6 bg-gradient-to-br from-indigo-50/20 to-purple-50/20">
+                <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                    <svg class="w-5.5 h-5.5 mr-2.5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                    Decision Intelligence
+                </h2>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-slate-100">
+                        <div class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Total / Executed</div>
+                        <div class="text-lg font-bold mt-1 text-slate-800">
+                            {{ decision_intelligence.total_decisions }} / {{ decision_intelligence.executed }}
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-slate-100">
+                        <div class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Skipped Decisions</div>
+                        <div class="text-lg font-bold mt-1 text-slate-800">
+                            {{ decision_intelligence.skipped }}
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-slate-100">
+                        <div class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Avg Conviction</div>
+                        <div class="text-lg font-bold mt-1 text-slate-800">
+                            {{ "%.2f"|format(decision_intelligence.avg_conviction) }}
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-slate-100">
+                        <div class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Stability Index</div>
+                        <div class="text-lg font-bold mt-1 text-slate-800">
+                            {{ "%.2f"|format(decision_intelligence.decision_stability) }}
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-slate-100">
+                        <div class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Decision Acc.</div>
+                        <div class="text-lg font-bold mt-1 text-slate-800">
+                            {{ "%.1f"|format(decision_intelligence.decision_accuracy_pct) }}%
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-slate-100">
+                        <div class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Alloc. Efficiency</div>
+                        <div class="text-lg font-bold mt-1 text-slate-800">
+                            {{ "%.4f"|format(decision_intelligence.allocation_efficiency) }}
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-slate-100">
+                        <div class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">False High Conv.</div>
+                        <div class="text-lg font-bold mt-1 text-rose-600">
+                            {{ "%.1f"|format(decision_intelligence.false_high_conviction_pct) }}%
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-slate-100">
+                        <div class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">False Low Conv.</div>
+                        <div class="text-lg font-bold mt-1 text-rose-600">
+                            {{ "%.1f"|format(decision_intelligence.false_low_conviction_pct) }}%
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entity Attributions -->
+                <div class="grid grid-cols-2 gap-4 text-xs">
+                    <div>
+                        <div class="font-semibold text-slate-700 mb-1">Top Performing Principles</div>
+                        {% if decision_intelligence.top_principles %}
+                            <div class="flex flex-wrap gap-1">
+                                {% for p in decision_intelligence.top_principles %}
+                                <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-mono text-[10px]">Principle: {{ p[:8] }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <span class="text-slate-400 text-[11px]">None</span>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <div class="font-semibold text-slate-700 mb-1">Top Performing Lineages</div>
+                        {% if decision_intelligence.top_lineages %}
+                            <div class="flex flex-wrap gap-1">
+                                {% for l in decision_intelligence.top_lineages %}
+                                <span class="px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 font-mono text-[10px]">Lineage: {{ l[:8] }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <span class="text-slate-400 text-[11px]">None</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
         <!-- Main Splits -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
             
@@ -561,39 +704,54 @@
         const traces = {{ decision_traces_json|safe }};
         
         const ctx = document.getElementById('replayChart').getContext('2d');
+        const datasets = [
+            {
+                label: 'Close Price (Primary)',
+                data: chartData.close,
+                borderColor: 'rgb(79, 70, 229)',
+                backgroundColor: 'rgba(79, 70, 229, 0.05)',
+                borderWidth: 2,
+                yAxisID: 'y_price',
+                tension: 0.15,
+                fill: true
+            },
+            {
+                label: 'Delivery % (Rolling 5d)',
+                data: chartData.delivery_pct,
+                borderColor: 'rgb(16, 185, 129)',
+                borderDash: [5, 5],
+                borderWidth: 1.5,
+                yAxisID: 'y_percent',
+                tension: 0.1
+            },
+            {
+                label: 'Sector RS Z-score (Rolling 20d)',
+                data: chartData.sector_zscore,
+                borderColor: 'rgb(245, 158, 11)',
+                borderWidth: 1.5,
+                yAxisID: 'y_zscore',
+                tension: 0.1
+            }
+        ];
+
+        if (chartData.equity_curve) {
+            datasets.push({
+                label: 'Paper Trading Equity (₹)',
+                data: chartData.equity_curve,
+                borderColor: 'rgb(139, 92, 246)',
+                backgroundColor: 'rgba(139, 92, 246, 0.03)',
+                borderWidth: 2.5,
+                yAxisID: 'y_equity',
+                tension: 0.15,
+                fill: true
+            });
+        }
+
         new Chart(ctx, {
             type: 'line',
             data: {
                 labels: chartData.dates,
-                datasets: [
-                    {
-                        label: 'Close Price (Primary)',
-                        data: chartData.close,
-                        borderColor: 'rgb(79, 70, 229)',
-                        backgroundColor: 'rgba(79, 70, 229, 0.05)',
-                        borderWidth: 2,
-                        yAxisID: 'y_price',
-                        tension: 0.15,
-                        fill: true
-                    },
-                    {
-                        label: 'Delivery % (Rolling 5d)',
-                        data: chartData.delivery_pct,
-                        borderColor: 'rgb(16, 185, 129)',
-                        borderDash: [5, 5],
-                        borderWidth: 1.5,
-                        yAxisID: 'y_percent',
-                        tension: 0.1
-                    },
-                    {
-                        label: 'Sector RS Z-score (Rolling 20d)',
-                        data: chartData.sector_zscore,
-                        borderColor: 'rgb(245, 158, 11)',
-                        borderWidth: 1.5,
-                        yAxisID: 'y_zscore',
-                        tension: 0.1
-                    }
-                ]
+                datasets: datasets
             },
             options: {
                 responsive: true,
@@ -684,6 +842,32 @@
                             color: '#64748b',
                             font: {
                                 family: 'Outfit'
+                            }
+                        }
+                    },
+                    y_equity: {
+                        type: 'linear',
+                        display: typeof chartData.equity_curve !== 'undefined',
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Equity Balance (₹)',
+                            color: 'rgb(139, 92, 246)',
+                            font: {
+                                family: 'Outfit',
+                                weight: '500'
+                            }
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                family: 'Outfit'
+                            },
+                            callback: function(value) {
+                                return '₹' + value.toLocaleString();
                             }
                         }
                     }

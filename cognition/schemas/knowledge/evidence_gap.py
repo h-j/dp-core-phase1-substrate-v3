@@ -1,14 +1,17 @@
-from datetime import datetime, UTC
-from typing import Dict, Any
+from datetime import UTC, datetime
+from typing import Any, Dict
+
 from pydantic import Field
 
 from cognition.schemas.base import CognitionBase
+
 
 class EvidenceGap(CognitionBase):
     """
     EvidenceGap tracks unresolved Open Questions where missing evidence prevents learning.
     Future data acquisition is epistemically guided by these gaps.
     """
+
     open_question_id: str
     missing_evidence: str
     candidate_data_source: str

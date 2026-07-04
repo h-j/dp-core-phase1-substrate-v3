@@ -1,12 +1,15 @@
 import json
 from typing import Any, Dict, List, Optional, Tuple
+
 from interfaces.ollama_client import OllamaClient
+
 
 class NoveltyDetectionGate:
     """
     Novelty Detection Gate evaluates whether a new market observation or regime
     requires generating a new theory, revising the prior theory, or reinforcing (reusing) it.
     """
+
     def __init__(self, llm_client: Optional[OllamaClient] = None):
         self.client = llm_client or OllamaClient(temperature=0.0, seed=42)
 
@@ -17,20 +20,25 @@ class NoveltyDetectionGate:
         prior_prediction_result: Optional[Any],
         prior_attribution: Optional[Any],
         active_principles: List[Any],
-        regime_subtype: str
+        regime_subtype: str,
     ) -> float:
         """
         Calculates a continuous novelty score [0.0, 1.0] based on four factors.
         """
         # Factor 1: Regime Mismatch (Weight: 0.25)
-        regime_mismatch = 1.0 - (regime_similarity if regime_similarity is not None else 0.5)
+        regime_mismatch = 1.0 - (
+            regime_similarity if regime_similarity is not None else 0.5
+        )
 
         # Factor 2: Failed Component Ratio (Weight: 0.35)
         if prior_attribution and hasattr(prior_attribution, "components_failed"):
             failed_count = len(prior_attribution.components_failed)
             # Normalize over a cap of 3 failures
             failed_ratio = min(1.0, failed_count / 3.0)
-        elif isinstance(prior_attribution, dict) and "components_failed" in prior_attribution:
+        elif (
+            isinstance(prior_attribution, dict)
+            and "components_failed" in prior_attribution
+        ):
             failed_count = len(prior_attribution["components_failed"])
             failed_ratio = min(1.0, failed_count / 3.0)
         else:
@@ -62,11 +70,11 @@ class NoveltyDetectionGate:
                 conf = getattr(prior_prediction, "confidence", 0.5)
                 if isinstance(prior_prediction, dict):
                     conf = prior_prediction.get("confidence", 0.5)
-                
+
                 score = getattr(prior_prediction_result, "direction_score", 0.5)
                 if isinstance(prior_prediction_result, dict):
                     score = prior_prediction_result.get("direction_score", 0.5)
-                
+
                 if conf is not None and score is not None:
                     surprise = abs(conf - score)
             except Exception:
@@ -74,10 +82,10 @@ class NoveltyDetectionGate:
 
         # Weighted Novelty Sum
         score = (
-            0.25 * regime_mismatch +
-            0.35 * failed_ratio +
-            0.20 * principle_uncovered +
-            0.20 * surprise
+            0.25 * regime_mismatch
+            + 0.35 * failed_ratio
+            + 0.20 * principle_uncovered
+            + 0.20 * surprise
         )
         return float(max(0.0, min(1.0, score)))
 
@@ -89,7 +97,7 @@ class NoveltyDetectionGate:
         prior_prediction: Optional[Any],
         prior_prediction_result: Optional[Any],
         prior_attribution: Optional[Any],
-        active_principles: List[Any]
+        active_principles: List[Any],
     ) -> Tuple[str, float, str]:
         """
         Runs the full novelty gate.
@@ -113,7 +121,10 @@ class NoveltyDetectionGate:
 
         # Get prior claim safely
         prior_claim = ""
-        if hasattr(prior_theory, "summary_structured") and prior_theory.summary_structured:
+        if (
+            hasattr(prior_theory, "summary_structured")
+            and prior_theory.summary_structured
+        ):
             prior_claim = prior_theory.summary_structured.claim
         elif hasattr(prior_theory, "summary"):
             prior_claim = prior_theory.summary
@@ -132,7 +143,7 @@ class NoveltyDetectionGate:
             prior_prediction_result=prior_prediction_result,
             prior_attribution=prior_attribution,
             active_principles=active_principles,
-            regime_subtype=regime_subtype
+            regime_subtype=regime_subtype,
         )
 
         failed_comps = []
@@ -145,8 +156,16 @@ class NoveltyDetectionGate:
         surprise = 0.5
         if prior_prediction and prior_prediction_result:
             try:
-                conf = prior_prediction.get("confidence", 0.5) if isinstance(prior_prediction, dict) else getattr(prior_prediction, "confidence", 0.5)
-                dir_score = prior_prediction_result.get("direction_score", 0.5) if isinstance(prior_prediction_result, dict) else getattr(prior_prediction_result, "direction_score", 0.5)
+                conf = (
+                    prior_prediction.get("confidence", 0.5)
+                    if isinstance(prior_prediction, dict)
+                    else getattr(prior_prediction, "confidence", 0.5)
+                )
+                dir_score = (
+                    prior_prediction_result.get("direction_score", 0.5)
+                    if isinstance(prior_prediction_result, dict)
+                    else getattr(prior_prediction_result, "direction_score", 0.5)
+                )
                 surprise = abs(conf - dir_score)
             except Exception:
                 pass
@@ -188,7 +207,7 @@ Respond in JSON format:
                     decision = "REVISE"
                 else:
                     decision = "GENERATE"
-            
+
             critique = res.get("critique", "")
             explanation = res.get("explanation", "")
             rationale = f"Critique: {critique} | Explanation: {explanation}"

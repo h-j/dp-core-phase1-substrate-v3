@@ -165,16 +165,51 @@ class MarketObservationSynthesizer:
             analog_divergence_claim="",
             observation_source=f"replay_engine_{date_str}",
             # New features and descriptors
-            delivery_pct=float(row.get("delivery_pct", 0.0)) if not pd.isna(row.get("delivery_pct")) else 0.0,
-            delivery_pct_5d=float(row.get("delivery_pct_5d", 0.0)) if not pd.isna(row.get("delivery_pct_5d")) else 0.0,
-            fii_net=float(row.get("fii_net", 0.0)) if not pd.isna(row.get("fii_net")) else 0.0,
-            dii_net=float(row.get("dii_net", 0.0)) if not pd.isna(row.get("dii_net")) else 0.0,
-            sector_zscore=float(row.get("sector_zscore", 0.0)) if not pd.isna(row.get("sector_zscore")) else 0.0,
-            sector_rs_ratio=float(row.get("sector_rs_ratio", 0.0)) if not pd.isna(row.get("sector_rs_ratio")) else 0.0,
-            sector_percentile=float(row.get("sector_percentile", 0.0)) if not pd.isna(row.get("sector_percentile")) else 0.0,
-            delivery_descriptor=next((d for d in descriptors if d.startswith("delivery:")), "delivery:unknown"),
-            fii_descriptor=next((d for d in descriptors if d.startswith("fii:")), "fii:unknown"),
-            sector_descriptor=next((d for d in descriptors if d.startswith("sector:")), "sector:unknown"),
+            delivery_pct=(
+                float(row.get("delivery_pct", 0.0))
+                if not pd.isna(row.get("delivery_pct"))
+                else 0.0
+            ),
+            delivery_pct_5d=(
+                float(row.get("delivery_pct_5d", 0.0))
+                if not pd.isna(row.get("delivery_pct_5d"))
+                else 0.0
+            ),
+            fii_net=(
+                float(row.get("fii_net", 0.0))
+                if not pd.isna(row.get("fii_net"))
+                else 0.0
+            ),
+            dii_net=(
+                float(row.get("dii_net", 0.0))
+                if not pd.isna(row.get("dii_net"))
+                else 0.0
+            ),
+            sector_zscore=(
+                float(row.get("sector_zscore", 0.0))
+                if not pd.isna(row.get("sector_zscore"))
+                else 0.0
+            ),
+            sector_rs_ratio=(
+                float(row.get("sector_rs_ratio", 0.0))
+                if not pd.isna(row.get("sector_rs_ratio"))
+                else 0.0
+            ),
+            sector_percentile=(
+                float(row.get("sector_percentile", 0.0))
+                if not pd.isna(row.get("sector_percentile"))
+                else 0.0
+            ),
+            delivery_descriptor=next(
+                (d for d in descriptors if d.startswith("delivery:")),
+                "delivery:unknown",
+            ),
+            fii_descriptor=next(
+                (d for d in descriptors if d.startswith("fii:")), "fii:unknown"
+            ),
+            sector_descriptor=next(
+                (d for d in descriptors if d.startswith("sector:")), "sector:unknown"
+            ),
         )
 
         # Store for prior context
@@ -508,28 +543,42 @@ class MarketObservationSynthesizer:
             descriptors.append(f"volume {vol_state}")
 
         # 2. Price Range Action
-        range_pct = float(row.get("range_pct", 0.0)) if not pd.isna(row.get("range_pct")) else 0.0
+        range_pct = (
+            float(row.get("range_pct", 0.0))
+            if not pd.isna(row.get("range_pct"))
+            else 0.0
+        )
         if range_pct > 1.3:
             descriptors.append("range expanding")
         elif range_pct < 0.7:
             descriptors.append("range narrow")
 
         # 3. Gaps
-        gap_pct = float(row.get("gap_pct", 0.0)) if not pd.isna(row.get("gap_pct")) else 0.0
+        gap_pct = (
+            float(row.get("gap_pct", 0.0)) if not pd.isna(row.get("gap_pct")) else 0.0
+        )
         if gap_pct > 0.2:
             descriptors.append("gap up")
         elif gap_pct < -0.2:
             descriptors.append("gap down")
 
         # 4. Volatility Regimes
-        vol_30d = float(row.get("rolling_volatility_30d", 0.0)) if not pd.isna(row.get("rolling_volatility_30d")) else 0.0
+        vol_30d = (
+            float(row.get("rolling_volatility_30d", 0.0))
+            if not pd.isna(row.get("rolling_volatility_30d"))
+            else 0.0
+        )
         if vol_30d < 0.8:
             descriptors.append("volatility compressed")
         elif vol_30d > 1.5:
             descriptors.append("volatility expanding")
 
         # 5. Momentum Regimes
-        ret_3d = float(row.get("return_3d", 0.0)) if not pd.isna(row.get("return_3d")) else 0.0
+        ret_3d = (
+            float(row.get("return_3d", 0.0))
+            if not pd.isna(row.get("return_3d"))
+            else 0.0
+        )
         if ret_3d > 0.7:
             descriptors.append("short-term momentum strengthening")
         elif ret_3d < -0.7:

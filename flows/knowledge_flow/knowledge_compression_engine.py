@@ -6,6 +6,7 @@ from uuid import uuid4
 
 from pydantic import Field
 
+from cognition.schemas.knowledge.ontology import OntologyRegistry
 from cognition.schemas.knowledge.principle import (FalsifiablePrediction,
                                                    Principle,
                                                    PrincipleRevision,
@@ -35,6 +36,7 @@ class KnowledgeCompressionEngine:
         Groups evidence by component and invokes LLM to generate Candidate Principles.
         """
         import logging
+
         logger = logging.getLogger(__name__)
 
         # Group experience stats by lineage_id
@@ -48,18 +50,18 @@ class KnowledgeCompressionEngine:
                     "validation_count": 0,
                     "falsification_count": 0,
                     "theory_ids": set(),
-                    "has_mock": False
+                    "has_mock": False,
                 }
             val_count = getattr(exp, "validation_count", 0)
             fals_count = getattr(exp, "falsification_count", 0)
-            
+
             # Support mock objects in unit tests (MagicMock returns a Mock object, not an int)
             if not isinstance(val_count, int) or not isinstance(fals_count, int):
                 lineage_stats[l_id]["has_mock"] = True
             else:
                 lineage_stats[l_id]["validation_count"] += val_count
                 lineage_stats[l_id]["falsification_count"] += fals_count
-                
+
             for t_id in getattr(exp, "theory_ids", []):
                 lineage_stats[l_id]["theory_ids"].add(t_id)
 
@@ -86,8 +88,12 @@ class KnowledgeCompressionEngine:
 
         if len(candidate_lineage_ids) == 0:
             total_theories = len(experiences)
-            has_validation = sum(1 for exp in experiences if getattr(exp, "validation_count", 0) > 0)
-            has_falsification = sum(1 for exp in experiences if getattr(exp, "falsification_count", 0) > 0)
+            has_validation = sum(
+                1 for exp in experiences if getattr(exp, "validation_count", 0) > 0
+            )
+            has_falsification = sum(
+                1 for exp in experiences if getattr(exp, "falsification_count", 0) > 0
+            )
             warning_msg = f"No theories with validation_count > 0 (found {has_validation}/{total_theories}) and falsification_count == 0 (found {total_theories - has_falsification}/{total_theories})"
             logger.warning(warning_msg)
             print(f"WARNING: {warning_msg}")
@@ -111,7 +117,10 @@ class KnowledgeCompressionEngine:
                 theory_id = getattr(attr, "theory_id", "")
 
             # Filter: only keep attributions from candidate theories/lineages
-            if theory_id not in candidate_lineage_ids and theory_id not in candidate_theory_ids:
+            if (
+                theory_id not in candidate_lineage_ids
+                and theory_id not in candidate_theory_ids
+            ):
                 continue
 
             if isinstance(attr, dict):
@@ -140,7 +149,9 @@ class KnowledgeCompressionEngine:
 
                 is_failed = comp_id in comp_failed
 
-                matching_exp = experience_by_theory_id.get(theory_id) or experience_by_lineage.get(theory_id)
+                matching_exp = experience_by_theory_id.get(
+                    theory_id
+                ) or experience_by_lineage.get(theory_id)
 
                 scenario_desc = {
                     "theory_id": theory_id,
@@ -185,72 +196,174 @@ Target Mechanism Component to generalize: {comp_id}
 Perform semantic abstraction on this evidence:
 1. Formulate a general statement describing under what market conditions the component expectation is valid versus when it breaks down.
 2. Express the statement clearly and abstractly. (e.g., "Volume confirmation is only predictive when participation and volatility expand together.")
-3. Identify the applicability_filter conditions under which this principle holds (e.g. regime_subtype, volatility_regime, volume_state).
+3. Identify the applicability_filter conditions under which this principle holds.
 4. Generate 1 to 2 falsifiable predictions that can be tested in future steps. Each prediction must target the component '{comp_id}' and state the expected outcome ('passed' or 'failed') under a specific applicability filter map.
+
+{OntologyRegistry.get_applicability_filter_snippet()}
 
 Respond STRICTLY in JSON format with the following keys:
 {{
   "statement": "The generalized principle statement...",
   "applicability_filter": {{
-     "regime_subtype": "momentum/range_bound/trend/etc or all",
-     "volatility_regime": "compressed/expanded/normal/etc or all",
-     "volume_state": "high/low/normal/etc or all"
+     "regime_subtype": "consolidated value or null",
+     "volatility_regime": "consolidated value or null",
+     "volume_state": "consolidated value or null"
   }},
   "falsifiable_predictions": [
      {{
         "target_component": "{comp_id}",
         "expected_status": "passed/failed",
         "applicability_filter": {{
-           "regime_subtype": "momentum"
+           "regime_subtype": "value"
         }}
      }}
   ]
 }}
 """
-            try:
-                res_raw = self.client.generate(prompt, json_format=True)
-                res = json.loads(res_raw)
+            # Strict validation loop
+            max_attempts = 3
+            attempt = 0
+            is_valid = False
+            res = {}
+            validation_errors = []
+            while attempt < max_attempts:
+                try:
+                    OntologyRegistry.track_principle_filters(1, 0)
+                    res_raw = self.client.generate(prompt, json_format=True)
+                    res = json.loads(res_raw)
 
-                # Construct falsifiable predictions
-                fps = []
-                for p_dict in res.get("falsifiable_predictions", []):
-                    fp = FalsifiablePrediction(
-                        target_component=p_dict["target_component"],
-                        expected_status=p_dict["expected_status"],
-                        applicability_filter=p_dict.get("applicability_filter", {}),
+                    # Validate top-level applicability_filter and each falsifiable_prediction's filter
+                    filt_valid, err1 = OntologyRegistry.validate_filter(
+                        res.get("applicability_filter", {})
                     )
-                    fps.append(fp)
-
-                principle = Principle(
-                    status=PrincipleStatus.CANDIDATE,
-                    statement=res["statement"],
-                    associated_lineage_ids=list(
-                        set(
-                            [
-                                s["theory_id"]
-                                for s in ev["passed_scenarios"] + ev["failed_scenarios"]
-                            ]
+                    pred_valid = True
+                    for p_dict in res.get("falsifiable_predictions", []):
+                        val_ok, err2 = OntologyRegistry.validate_filter(
+                            p_dict.get("applicability_filter", {})
                         )
-                    ),
-                    supporting_theory_ids=[
-                        s["theory_id"] for s in ev["passed_scenarios"]
-                    ],
-                    contradicting_theory_ids=[
-                        s["theory_id"] for s in ev["failed_scenarios"]
-                    ],
-                    supporting_experience_ids=[],
-                    falsifiable_predictions=fps,
-                    confidence=0.5,
-                    support_count=0,
-                    contradiction_count=0,
-                    created_at_step=step,
-                    revision_history=[],
+                        if not val_ok:
+                            pred_valid = False
+                            errors = err2
+                            break
+
+                    if filt_valid and pred_valid:
+                        OntologyRegistry.track_principle_filters(0, 1)
+                        is_valid = True
+                        break
+                    else:
+                        validation_errors = [err1 if not filt_valid else errors]
+                        if self.debug:
+                            print(
+                                f"[Ontology Validation Failure] compress attempt {attempt+1}: {validation_errors}"
+                            )
+                except Exception as e:
+                    validation_errors = [str(e)]
+
+                OntologyRegistry.track_filter_rejected()
+                OntologyRegistry.track_filter_regenerated()
+                attempt += 1
+                prompt = (
+                    prompt
+                    + f"\n\nONTOLOGY VALIDATION FAILURE ON ATTEMPT {attempt}: {validation_errors}. Please choose exactly from the allowed taxonomy."
                 )
-                new_principles.append(principle)
-            except Exception as e:
-                print(
-                    f"WARNING: Knowledge Compression failed for component {comp_id}: {e}"
-                )
+
+            if is_valid:
+                try:
+                    # Construct falsifiable predictions
+                    fps = []
+                    for p_dict in res.get("falsifiable_predictions", []):
+                        fp = FalsifiablePrediction(
+                            target_component=p_dict["target_component"],
+                            expected_status=p_dict["expected_status"],
+                            applicability_filter=p_dict.get("applicability_filter", {}),
+                        )
+                        fps.append(fp)
+
+                    # Extract supported concepts and relations from matching theories
+                    theory_ids = set()
+                    for s in ev["passed_scenarios"] + ev["failed_scenarios"]:
+                        tid = s.get("theory_id")
+                        if tid:
+                            theory_ids.add(tid)
+
+                    supported_concepts = set()
+                    supported_relations = set()
+
+                    if theory_ids:
+                        try:
+                            from memory.relational.models.theory_model import \
+                                TheoryModel
+                            from memory.relational.postgres_client import \
+                                SessionLocal
+
+                            with SessionLocal() as session:
+                                theory_models = (
+                                    session.query(TheoryModel)
+                                    .filter(TheoryModel.id.in_(list(theory_ids)))
+                                    .all()
+                                )
+                                for model in theory_models:
+                                    if model.summary_structured:
+                                        structured = json.loads(
+                                            model.summary_structured
+                                        )
+                                        if isinstance(structured, dict):
+                                            for comp in structured.get(
+                                                "mechanism_components", []
+                                            ):
+                                                if comp.get("component_id") == comp_id:
+                                                    tags = comp.get("concept_tags", [])
+                                                    for tag in tags:
+                                                        supported_concepts.add(tag)
+                                                    rel = comp.get("relation_type")
+                                                    dep = comp.get("dependency")
+                                                    if rel:
+                                                        primary_tag = (
+                                                            tags[0] if tags else comp_id
+                                                        )
+                                                        supported_relations.add(
+                                                            f"{primary_tag} {rel} {dep or 'context'}"
+                                                        )
+                        except Exception as db_err:
+                            print(
+                                f"WARNING: DB theory loading failed in compress: {db_err}"
+                            )
+
+                    principle = Principle(
+                        status=PrincipleStatus.CANDIDATE,
+                        statement=res["statement"],
+                        associated_lineage_ids=list(
+                            set(
+                                [
+                                    s["theory_id"]
+                                    for s in ev["passed_scenarios"]
+                                    + ev["failed_scenarios"]
+                                ]
+                            )
+                        ),
+                        supporting_theory_ids=[
+                            s["theory_id"] for s in ev["passed_scenarios"]
+                        ],
+                        contradicting_theory_ids=[
+                            s["theory_id"] for s in ev["failed_scenarios"]
+                        ],
+                        supporting_experience_ids=[],
+                        falsifiable_predictions=fps,
+                        confidence=0.5,
+                        support_count=0,
+                        contradiction_count=0,
+                        created_at_step=step,
+                        revision_history=[],
+                        supported_concepts=list(supported_concepts),
+                        supported_relations=list(supported_relations),
+                        ontology_version=OntologyRegistry.ONTOLOGY_VERSION,
+                        validation_taxonomy_version=OntologyRegistry.VALIDATION_TAXONOMY_VERSION,
+                    )
+                    new_principles.append(principle)
+                except Exception as e:
+                    print(
+                        f"WARNING: Knowledge Compression failed for component {comp_id}: {e}"
+                    )
 
         return new_principles
 
@@ -258,10 +371,15 @@ Respond STRICTLY in JSON format with the following keys:
         self, principle: Principle, prediction_history: List[Dict[str, Any]]
     ) -> Principle:
         """
-        Backtests a candidate principle's predictions against the history of prediction records.
+        Backtests a candidate principle's predictions against the history of prediction records,
+        discovers operating boundaries, and logs maturation status promotion/gating roadmaps.
         """
         support = 0
         contradiction = 0
+
+        # Boundary scope discovery: tracks context values where this principle succeeds vs fails
+        valid_contexts = {}
+        fail_contexts = {}
 
         for fp in principle.falsifiable_predictions:
             for r in prediction_history:
@@ -271,9 +389,7 @@ Respond STRICTLY in JSON format with the following keys:
                     continue
 
                 # Check context conditions
-                # The record's regime data must match both principle applicability and falsifiable prediction applicability
                 context_match = True
-
                 for k, v in fp.applicability_filter.items():
                     val = r.get(k)
                     pred_val = r.get("prediction", {}).get(k)
@@ -286,31 +402,30 @@ Respond STRICTLY in JSON format with the following keys:
                             context_match = False
                             break
 
-                # Principle filters
                 if not context_match:
                     continue
 
                 # Verify actual status of the target component
-                # We assume prediction records contain components_failed details
                 components_failed = r.get("components_failed", [])
-
-                # If target component was tested on this day
                 is_failed = fp.target_component in components_failed
 
-                if fp.expected_status == "failed":
-                    if is_failed:
-                        support += 1
-                        fp.empirical_support_count += 1
-                    else:
-                        contradiction += 1
-                        fp.empirical_failure_count += 1
-                elif fp.expected_status == "passed":
-                    if not is_failed:
-                        support += 1
-                        fp.empirical_support_count += 1
-                    else:
-                        contradiction += 1
-                        fp.empirical_failure_count += 1
+                is_supported = False
+                if fp.expected_status == "failed" and is_failed:
+                    is_supported = True
+                elif fp.expected_status == "passed" and not is_failed:
+                    is_supported = True
+
+                regime_val = r.get("regime_subtype") or r.get("prediction", {}).get(
+                    "regime_subtype", "unknown"
+                )
+                if is_supported:
+                    support += 1
+                    fp.empirical_support_count += 1
+                    valid_contexts[regime_val] = valid_contexts.get(regime_val, 0) + 1
+                else:
+                    contradiction += 1
+                    fp.empirical_failure_count += 1
+                    fail_contexts[regime_val] = fail_contexts.get(regime_val, 0) + 1
 
         total = support + contradiction
         accuracy = support / total if total > 0 else 0.5
@@ -319,6 +434,10 @@ Respond STRICTLY in JSON format with the following keys:
         principle.contradiction_count = contradiction
         principle.confidence = accuracy
         principle.empirical_support = support
+
+        # Assign boundaries
+        principle.valid_under = valid_contexts
+        principle.fails_under = fail_contexts
 
         # Compute cross_asset_support based on lineage ID prefixes
         assets = set()
@@ -329,23 +448,125 @@ Respond STRICTLY in JSON format with the following keys:
         principle.cross_asset_support = max(1, len(assets))
 
         ts = principle.trust_score
+        status_before = principle.status
 
-        # Gating/Promotion conditions
-        if total >= 5:
-            if accuracy >= 0.70:
-                if ts >= 15.0 and principle.support_count >= 10 and principle.cross_asset_support >= 1 and principle.contradiction_count == 0:
-                    principle.status = PrincipleStatus.CANONICAL
-                elif ts >= 8.0 and principle.support_count >= 5 and principle.contradiction_count == 0:
-                    principle.status = PrincipleStatus.TRUSTED
-                else:
-                    if principle.status == PrincipleStatus.CANDIDATE:
-                        principle.status = PrincipleStatus.EMERGING
-            elif accuracy < 0.50 or ts < 0.0 or principle.contradiction_count > principle.support_count:
-                principle.status = PrincipleStatus.RETIRED
-        else:
-            # Check trust score for early candidate -> emerging transition
-            if principle.status == PrincipleStatus.CANDIDATE and ts >= 3.0 and principle.support_count >= 3:
+        # Calculate requirements roadmap
+        reqs = []
+        criteria = {}
+        reason = ""
+
+        if (
+            status_before == PrincipleStatus.TRUSTED
+            or status_before == PrincipleStatus.CANONICAL
+        ):
+            criteria = {
+                "accuracy_met": accuracy >= 0.70,
+                "trust_score_met": ts >= 15.0,
+                "support_met": principle.support_count >= 10,
+                "cross_asset_met": principle.cross_asset_support >= 1,
+                "contradiction_met": principle.contradiction_count == 0,
+            }
+            if all(criteria.values()) and total >= 5:
+                principle.status = PrincipleStatus.CANONICAL
+                reason = "Promoted to CANONICAL: met all canonical constraints."
+            else:
+                principle.status = PrincipleStatus.TRUSTED
+                if not criteria["accuracy_met"]:
+                    reqs.append(f"+{(0.70 - accuracy)*100:.1f}% accuracy")
+                if not criteria["trust_score_met"]:
+                    reqs.append(f"+{15.0 - ts:.2f} trust score")
+                if not criteria["support_met"]:
+                    reqs.append(
+                        f"+{10 - principle.support_count} validating observations"
+                    )
+                if not criteria["cross_asset_met"]:
+                    reqs.append("+1 cross-asset confirmation")
+                if not criteria["contradiction_met"]:
+                    reqs.append("0 contradiction count")
+                reason = f"Gated at TRUSTED: remaining requirements: {', '.join(reqs)}"
+        elif status_before == PrincipleStatus.EMERGING:
+            criteria = {
+                "accuracy_met": accuracy >= 0.70,
+                "trust_score_met": ts >= 8.0,
+                "support_met": principle.support_count >= 5,
+                "contradiction_met": principle.contradiction_count == 0,
+            }
+            if all(criteria.values()) and total >= 5:
+                principle.status = PrincipleStatus.TRUSTED
+                reason = "Promoted to TRUSTED: met all trusted constraints."
+            else:
+                if not criteria["accuracy_met"]:
+                    reqs.append(f"+{(0.70 - accuracy)*100:.1f}% accuracy")
+                if not criteria["trust_score_met"]:
+                    reqs.append(f"+{8.0 - ts:.2f} trust score")
+                if not criteria["support_met"]:
+                    reqs.append(
+                        f"+{5 - principle.support_count} validating observations"
+                    )
+                if not criteria["contradiction_met"]:
+                    reqs.append("0 contradiction count")
+                reason = f"Gated at EMERGING: remaining requirements: {', '.join(reqs)}"
+        else:  # CANDIDATE or other
+            criteria = {
+                "support_met": principle.support_count >= 3,
+                "trust_score_met": ts >= 3.0,
+            }
+            if all(criteria.values()):
                 principle.status = PrincipleStatus.EMERGING
+                reason = (
+                    "Promoted to EMERGING: met early support and trust constraints."
+                )
+            else:
+                principle.status = PrincipleStatus.CANDIDATE
+                if not criteria["support_met"]:
+                    reqs.append(
+                        f"+{3 - principle.support_count} validating observations"
+                    )
+                if not criteria["trust_score_met"]:
+                    reqs.append(f"+{3.0 - ts:.2f} trust score")
+                reason = (
+                    f"Gated at CANDIDATE: remaining requirements: {', '.join(reqs)}"
+                )
+
+        # Check retirement
+        if total >= 5 and (
+            accuracy < 0.50
+            or ts < -5.0
+            or principle.contradiction_count > principle.support_count * 2
+        ):
+            principle.status = PrincipleStatus.RETIRED
+            reason = f"Retired: accuracy {accuracy:.2f} < 0.50 or trust score {ts:.2f} < -5.0 or contradiction count {principle.contradiction_count} exceeded support threshold."
+
+        # Append MaturationEntry
+        from cognition.schemas.knowledge.principle import MaturationEntry
+
+        step_idx = getattr(principle, "created_at_step", 0) + principle.stability_age
+        mat_log = MaturationEntry(
+            step=step_idx,
+            status_before=(
+                status_before.value
+                if hasattr(status_before, "value")
+                else str(status_before)
+            ),
+            status_after=(
+                principle.status.value
+                if hasattr(principle.status, "value")
+                else str(principle.status)
+            ),
+            support_count=principle.support_count,
+            contradiction_count=principle.contradiction_count,
+            trust_score=ts,
+            accuracy=accuracy,
+            promotion_criteria=criteria,
+            promotion_requirements_remaining=reqs,
+            reason=reason,
+        )
+        if (
+            not hasattr(principle, "maturation_history")
+            or principle.maturation_history is None
+        ):
+            principle.maturation_history = []
+        principle.maturation_history.append(mat_log)
 
         return principle
 
@@ -398,44 +619,83 @@ Contradicting Causal Attribution: {latest_attribution.components_failed}
 Current Regime Context: {json.dumps(current_regime_context)}
 
 Please revise the applicability filter conditions of the principle so that the contradicting context is excluded, while keeping the statement valid.
+
+{OntologyRegistry.get_applicability_filter_snippet()}
+
 Respond in JSON format:
 {{
   "statement": "Possibly refined statement...",
   "applicability_filter_updates": {{
-     "regime_subtype": "new restricted filter value (e.g. momentum)",
+     "regime_subtype": "new restricted filter value",
      "volatility_regime": "new restricted filter value"
   }}
 }}
 """
-                try:
-                    res_raw = self.client.generate(prompt, json_format=True)
-                    res = json.loads(res_raw)
+                # Strict validation loop
+                max_attempts = 3
+                attempt = 0
+                is_valid = False
+                res = {}
+                validation_errors = []
+                while attempt < max_attempts:
+                    try:
+                        OntologyRegistry.track_principle_filters(1, 0)
+                        res_raw = self.client.generate(prompt, json_format=True)
+                        res = json.loads(res_raw)
 
-                    # Create revision record
-                    rev = PrincipleRevision(
-                        revision_step=step,
-                        previous_statement=p.statement,
-                        updated_statement=res["statement"],
-                        change_reason=f"contradicted at step {step}",
+                        updates = res.get("applicability_filter_updates", {})
+                        val_ok, err = OntologyRegistry.validate_filter(updates)
+                        if val_ok:
+                            OntologyRegistry.track_principle_filters(0, 1)
+                            is_valid = True
+                            break
+                        else:
+                            validation_errors = [err]
+                            if self.debug:
+                                print(
+                                    f"[Ontology Validation Failure] validate_principle attempt {attempt+1}: {err}"
+                                )
+                    except Exception as e:
+                        validation_errors = [str(e)]
+
+                    OntologyRegistry.track_filter_rejected()
+                    OntologyRegistry.track_filter_regenerated()
+                    attempt += 1
+                    prompt = (
+                        prompt
+                        + f"\n\nONTOLOGY VALIDATION FAILURE ON ATTEMPT {attempt}: {validation_errors}. Please choose exactly from allowed taxonomy."
                     )
-                    p.revision_history.append(rev)
-                    p.statement = res["statement"]
 
-                    # Update falsifiable prediction applicability filters
-                    updates = res.get("applicability_filter_updates", {})
-                    for fp in p.falsifiable_predictions:
-                        fp.applicability_filter.update(updates)
+                if is_valid:
+                    try:
+                        # Create revision record
+                        rev = PrincipleRevision(
+                            revision_step=step,
+                            previous_statement=p.statement,
+                            updated_statement=res["statement"],
+                            change_reason=f"contradicted at step {step}",
+                        )
+                        p.revision_history.append(rev)
+                        p.statement = res["statement"]
 
-                    p.status = (
-                        PrincipleStatus.CANDIDATE
-                    )  # Reset to Candidate for backtesting validation
-                except Exception as e:
-                    print(
-                        f"WARNING: Principle mutation revision failed for principle {p.id}: {e}"
-                    )
-                    p.status = (
-                        PrincipleStatus.RETIRED
-                    )  # Retire if we fail to resolve/mutate
+                        # Update falsifiable prediction applicability filters
+                        updates = res.get("applicability_filter_updates", {})
+                        for fp in p.falsifiable_predictions:
+                            fp.applicability_filter.update(updates)
+
+                        p.status = (
+                            PrincipleStatus.CANDIDATE
+                        )  # Reset to Candidate for backtesting validation
+                    except Exception as e:
+                        print(
+                            f"WARNING: validate_principle update execution failed: {e}"
+                        )
+                        print(
+                            f"WARNING: Principle mutation revision failed for principle {p.id}: {e}"
+                        )
+                        p.status = (
+                            PrincipleStatus.RETIRED
+                        )  # Retire if we fail to resolve/mutate
 
             updated_principles.append(p)
         return updated_principles
@@ -467,113 +727,163 @@ Respond in JSON format:
                 reconciled.extend(group_list)
                 continue
 
-            # Perform hierarchical LLM consolidation
-            prompt = f"""You are the Knowledge Compression Engine.
+            try:
+                # Perform hierarchical LLM consolidation
+                prompt = f"""You are the Knowledge Compression Engine.
 Consolidate the following multiple narrow principles about the component "{comp_id}" into a single, broader mechanism statement with unified applicability filter rules.
 
 Principles to consolidate:
 """
-            for i, p in enumerate(group_list):
-                prompt += f"{i+1}. Statement: {p.statement}\n"
-                for fp in p.falsifiable_predictions:
-                    prompt += f"   Filter: {json.dumps(fp.applicability_filter)} expecting: {fp.expected_status}\n"
+                for i, p in enumerate(group_list):
+                    prompt += f"{i+1}. Statement: {p.statement}\n"
+                    for fp in p.falsifiable_predictions:
+                        prompt += f"   Filter: {json.dumps(fp.applicability_filter)} expecting: {fp.expected_status}\n"
 
-            prompt += """
+                prompt += f"""
 Generate a single consolidated broader mechanism statement that generalizes these rules without losing explanatory accuracy. Also specify the consolidated applicability filters.
+
+{OntologyRegistry.get_applicability_filter_snippet()}
+
 Respond in JSON format:
-{
+{{
   "statement": "Consolidated broader mechanism statement...",
-  "applicability_filter": {
-     "regime_subtype": "consolidated value or null if generic",
-     "volatility_regime": "consolidated value or null if generic"
-  },
+  "applicability_filter": {{
+     "regime_subtype": "consolidated value or null",
+     "volatility_regime": "consolidated value or null"
+  }},
   "expected_status": "passed or failed"
-}
+}}
 """
-            try:
-                res_raw = self.client.generate(prompt, json_format=True)
-                res = json.loads(res_raw)
+                # Strict validation loop
+                max_attempts = 3
+                attempt = 0
+                is_valid = False
+                res = {}
+                validation_errors = []
+                while attempt < max_attempts:
+                    try:
+                        OntologyRegistry.track_principle_filters(1, 0)
+                        res_raw = self.client.generate(prompt, json_format=True)
+                        res = json.loads(res_raw)
 
-                # Determine highest status among the group to carry forward
-                statuses = [p.status for p in group_list]
-                target_status = PrincipleStatus.CANDIDATE
-                if PrincipleStatus.CANONICAL in statuses:
-                    target_status = PrincipleStatus.CANONICAL
-                elif PrincipleStatus.TRUSTED in statuses:
-                    target_status = PrincipleStatus.TRUSTED
-                elif PrincipleStatus.EMERGING in statuses:
-                    target_status = PrincipleStatus.EMERGING
-                elif PrincipleStatus.STABLE in statuses:
-                    target_status = PrincipleStatus.STABLE
-                elif PrincipleStatus.ACTIVE in statuses:
-                    target_status = PrincipleStatus.ACTIVE
+                        filt = res.get("applicability_filter", {})
+                        val_ok, err = OntologyRegistry.validate_filter(filt)
+                        if val_ok:
+                            OntologyRegistry.track_principle_filters(0, 1)
+                            is_valid = True
+                            break
+                        else:
+                            validation_errors = [err]
+                            if self.debug:
+                                print(
+                                    f"[Ontology Validation Failure] consolidate_principles attempt {attempt+1}: {err}"
+                                )
+                    except Exception as e:
+                        validation_errors = [str(e)]
 
-                # Collect union of metadata from the consolidated group
-                associated_lineages = list(
-                    set(sum([p.associated_lineage_ids for p in group_list], []))
-                )
-                supporting_theories = list(
-                    set(sum([p.supporting_theory_ids for p in group_list], []))
-                )
-                contradicting_theories = list(
-                    set(sum([p.contradicting_theory_ids for p in group_list], []))
-                )
-                supporting_experiences = list(
-                    set(sum([p.supporting_experience_ids for p in group_list], []))
-                )
-                total_support = sum(p.support_count for p in group_list)
-                total_contra = sum(p.contradiction_count for p in group_list)
-                min_step = min(p.created_at_step for p in group_list)
-
-                # Merge revision histories
-                revisions = []
-                for p in group_list:
-                    revisions.extend(p.revision_history)
-                revisions.append(
-                    PrincipleRevision(
-                        revision_step=min_step,
-                        previous_statement="Consolidated group",
-                        updated_statement=res["statement"],
-                        change_reason="consolidated via hierarchical merging",
+                    OntologyRegistry.track_filter_rejected()
+                    OntologyRegistry.track_filter_regenerated()
+                    attempt += 1
+                    prompt = (
+                        prompt
+                        + f"\n\nONTOLOGY VALIDATION FAILURE ON ATTEMPT {attempt}: {validation_errors}. Please choose exactly from allowed taxonomy."
                     )
-                )
 
-                # Create consolidated Principle
-                fp_merged = FalsifiablePrediction(
-                    id=str(uuid4()),
-                    created_at=datetime.now(timezone.utc),
-                    target_component=comp_id,
-                    expected_status=res.get("expected_status", "failed"),
-                    applicability_filter=res.get("applicability_filter", {}),
-                    empirical_support_count=total_support,
-                    empirical_failure_count=total_contra,
-                )
+                if is_valid:
 
-                merged_p = Principle(
-                    id=str(uuid4()),
-                    created_at=datetime.now(timezone.utc),
-                    status=target_status,
-                    statement=res["statement"],
-                    associated_lineage_ids=associated_lineages,
-                    supporting_theory_ids=supporting_theories,
-                    contradicting_theory_ids=contradicting_theories,
-                    supporting_experience_ids=supporting_experiences,
-                    falsifiable_predictions=[fp_merged],
-                    confidence=0.8 if total_support > 0 else 0.5,
-                    support_count=total_support,
-                    contradiction_count=total_contra,
-                    created_at_step=min_step,
-                    revision_history=revisions,
-                )
+                    # Determine highest status among the group to carry forward
+                    statuses = [p.status for p in group_list]
+                    target_status = PrincipleStatus.CANDIDATE
+                    if PrincipleStatus.CANONICAL in statuses:
+                        target_status = PrincipleStatus.CANONICAL
+                    elif PrincipleStatus.TRUSTED in statuses:
+                        target_status = PrincipleStatus.TRUSTED
+                    elif PrincipleStatus.EMERGING in statuses:
+                        target_status = PrincipleStatus.EMERGING
+                    elif PrincipleStatus.STABLE in statuses:
+                        target_status = PrincipleStatus.STABLE
+                    elif PrincipleStatus.ACTIVE in statuses:
+                        target_status = PrincipleStatus.ACTIVE
 
-                reconciled.append(merged_p)
+                    # Collect union of metadata from the consolidated group
+                    associated_lineages = list(
+                        set(sum([p.associated_lineage_ids for p in group_list], []))
+                    )
+                    supporting_theories = list(
+                        set(sum([p.supporting_theory_ids for p in group_list], []))
+                    )
+                    contradicting_theories = list(
+                        set(sum([p.contradicting_theory_ids for p in group_list], []))
+                    )
+                    supporting_experiences = list(
+                        set(sum([p.supporting_experience_ids for p in group_list], []))
+                    )
+                    total_support = sum(p.support_count for p in group_list)
+                    total_contra = sum(p.contradiction_count for p in group_list)
+                    min_step = min(p.created_at_step for p in group_list)
 
-                # Retire original narrow source principles
-                for p in group_list:
-                    p.status = PrincipleStatus.RETIRED
-                    reconciled.append(p)
+                    # Merge revision histories
+                    revisions = []
+                    for p in group_list:
+                        revisions.extend(p.revision_history)
+                    revisions.append(
+                        PrincipleRevision(
+                            revision_step=min_step,
+                            previous_statement="Consolidated group",
+                            updated_statement=res["statement"],
+                            change_reason="consolidated via hierarchical merging",
+                        )
+                    )
 
-                merged_count += len(group_list) - 1
+                    # Collect union of supported concepts and relations
+                    merged_concepts = set()
+                    merged_relations = set()
+                    for op in group_list:
+                        for tag in getattr(op, "supported_concepts", []):
+                            merged_concepts.add(tag)
+                        for rel in getattr(op, "supported_relations", []):
+                            merged_relations.add(rel)
+
+                    # Create consolidated Principle
+                    fp_merged = FalsifiablePrediction(
+                        id=str(uuid4()),
+                        created_at=datetime.now(timezone.utc),
+                        target_component=comp_id,
+                        expected_status=res.get("expected_status", "failed"),
+                        applicability_filter=res.get("applicability_filter", {}),
+                        empirical_support_count=total_support,
+                        empirical_failure_count=total_contra,
+                    )
+
+                    merged_p = Principle(
+                        id=str(uuid4()),
+                        created_at=datetime.now(timezone.utc),
+                        status=target_status,
+                        statement=res["statement"],
+                        associated_lineage_ids=associated_lineages,
+                        supporting_theory_ids=supporting_theories,
+                        contradicting_theory_ids=contradicting_theories,
+                        supporting_experience_ids=supporting_experiences,
+                        falsifiable_predictions=[fp_merged],
+                        confidence=0.8 if total_support > 0 else 0.5,
+                        support_count=total_support,
+                        contradiction_count=total_contra,
+                        created_at_step=min_step,
+                        revision_history=revisions,
+                        supported_concepts=list(merged_concepts),
+                        supported_relations=list(merged_relations),
+                        ontology_version=OntologyRegistry.ONTOLOGY_VERSION,
+                        validation_taxonomy_version=OntologyRegistry.VALIDATION_TAXONOMY_VERSION,
+                    )
+
+                    reconciled.append(merged_p)
+
+                    # Retire original narrow source principles
+                    for p in group_list:
+                        p.status = PrincipleStatus.RETIRED
+                        reconciled.append(p)
+
+                    merged_count += len(group_list) - 1
             except Exception as e:
                 print(
                     f"WARNING: Hierarchical principle merge failed for component {comp_id}: {e}"
@@ -635,12 +945,16 @@ Respond in JSON format:
                     PrincipleStatus.TRUSTED,
                     PrincipleStatus.CANONICAL,
                 ]:
-                    prompt = f"""You are the Knowledge Compression Engine.
+                    try:
+                        prompt = f"""You are the Knowledge Compression Engine.
 The following active principle has exceptionally high empirical support ({p.support_count} passes, {p.contradiction_count} failures).
 Statement: {p.statement}
 Current Applicability Filters: {json.dumps(p.falsifiable_predictions[0].applicability_filter if p.falsifiable_predictions else {})}
 
 Evaluate whether we can generalize (broaden) the applicability filters. For example, if it's restricted to a specific volatility regime, can we expand it or remove the filter (setting it to null)?
+
+{OntologyRegistry.get_applicability_filter_snippet()}
+
 Respond in JSON format:
 {{
   "statement": "Possibly broader statement...",
@@ -650,25 +964,57 @@ Respond in JSON format:
   }}
 }}
 """
-                    try:
-                        res_raw = self.client.generate(prompt, json_format=True)
-                        res = json.loads(res_raw)
+                        # Strict validation loop
+                        max_attempts = 3
+                        attempt = 0
+                        is_valid = False
+                        res = {}
+                        validation_errors = []
+                        while attempt < max_attempts:
+                            try:
+                                OntologyRegistry.track_principle_filters(1, 0)
+                                res_raw = self.client.generate(prompt, json_format=True)
+                                res = json.loads(res_raw)
 
-                        rev = PrincipleRevision(
-                            revision_step=step,
-                            previous_statement=p.statement,
-                            updated_statement=res["statement"],
-                            change_reason="generalized due to high support",
-                        )
-                        p.revision_history.append(rev)
-                        p.statement = res["statement"]
-                        if p.falsifiable_predictions:
-                            p.falsifiable_predictions[0].applicability_filter = res.get(
-                                "applicability_filter", {}
+                                filt = res.get("applicability_filter", {})
+                                val_ok, err = OntologyRegistry.validate_filter(filt)
+                                if val_ok:
+                                    OntologyRegistry.track_principle_filters(0, 1)
+                                    is_valid = True
+                                    break
+                                else:
+                                    validation_errors = [err]
+                                    if self.debug:
+                                        print(
+                                            f"[Ontology Validation Failure] maturate_principle generalization attempt {attempt+1}: {err}"
+                                        )
+                            except Exception as e:
+                                validation_errors = [str(e)]
+
+                            OntologyRegistry.track_filter_rejected()
+                            OntologyRegistry.track_filter_regenerated()
+                            attempt += 1
+                            prompt = (
+                                prompt
+                                + f"\n\nONTOLOGY VALIDATION FAILURE ON ATTEMPT {attempt}: {validation_errors}. Please choose exactly from allowed taxonomy."
                             )
 
-                        p.status = PrincipleStatus.CANONICAL
-                        generalized_count += 1
+                        if is_valid:
+                            rev = PrincipleRevision(
+                                revision_step=step,
+                                previous_statement=p.statement,
+                                updated_statement=res["statement"],
+                                change_reason="generalized due to high support",
+                            )
+                            p.revision_history.append(rev)
+                            p.statement = res["statement"]
+                            if p.falsifiable_predictions:
+                                p.falsifiable_predictions[0].applicability_filter = (
+                                    res.get("applicability_filter", {})
+                                )
+
+                            p.status = PrincipleStatus.CANONICAL
+                            generalized_count += 1
                     except Exception as e:
                         print(
                             f"WARNING: Generalization failed for principle {p.id}: {e}"
@@ -682,6 +1028,9 @@ Statement: {p.statement}
 Current Applicability Filters: {json.dumps(p.falsifiable_predictions[0].applicability_filter if p.falsifiable_predictions else {})}
 
 We need to restrict or split this principle. Split it into two narrower context-specific statements or restrict its applicability filter to exclude failure zones.
+
+{OntologyRegistry.get_applicability_filter_snippet()}
+
 Respond in JSON format:
 {{
   "split_required": true,
@@ -698,9 +1047,55 @@ Respond in JSON format:
 }}
 """
                     try:
-                        res_raw = self.client.generate(prompt, json_format=True)
-                        res = json.loads(res_raw)
-                        if res.get("split_required") and res.get("principles"):
+                        # Strict validation loop
+                        max_attempts = 3
+                        attempt = 0
+                        is_valid = False
+                        res = {}
+                        validation_errors = []
+                        while attempt < max_attempts:
+                            try:
+                                res_raw = self.client.generate(prompt, json_format=True)
+                                res = json.loads(res_raw)
+
+                                if res.get("split_required") and res.get("principles"):
+                                    all_ok = True
+                                    for np in res["principles"]:
+                                        filt = np.get("applicability_filter", {})
+                                        OntologyRegistry.track_principle_filters(1, 0)
+                                        val_ok, err = OntologyRegistry.validate_filter(
+                                            filt
+                                        )
+                                        if val_ok:
+                                            OntologyRegistry.track_principle_filters(
+                                                0, 1
+                                            )
+                                        else:
+                                            all_ok = False
+                                            validation_errors = [err]
+                                            break
+                                    if all_ok:
+                                        is_valid = True
+                                        break
+                                else:
+                                    is_valid = True
+                                    break
+                            except Exception as e:
+                                validation_errors = [str(e)]
+
+                            OntologyRegistry.track_filter_rejected()
+                            OntologyRegistry.track_filter_regenerated()
+                            attempt += 1
+                            prompt = (
+                                prompt
+                                + f"\n\nONTOLOGY VALIDATION FAILURE ON ATTEMPT {attempt}: {validation_errors}. Please choose exactly from allowed taxonomy."
+                            )
+
+                        if (
+                            is_valid
+                            and res.get("split_required")
+                            and res.get("principles")
+                        ):
                             for np in res["principles"]:
                                 fp_new = FalsifiablePrediction(
                                     id=str(uuid4()),
@@ -742,6 +1137,18 @@ Respond in JSON format:
                                             change_reason=f"split from parent principle {p.id[:8]} due to contradictions",
                                         )
                                     ],
+                                    supported_concepts=getattr(
+                                        p, "supported_concepts", []
+                                    ),
+                                    supported_relations=getattr(
+                                        p, "supported_relations", []
+                                    ),
+                                    ontology_version=getattr(
+                                        p, "ontology_version", "1.0.0"
+                                    ),
+                                    validation_taxonomy_version=getattr(
+                                        p, "validation_taxonomy_version", "1.0.0"
+                                    ),
                                 )
                                 reconciled_list.append(new_principle)
                             p.status = PrincipleStatus.RETIRED
@@ -755,9 +1162,11 @@ Respond in JSON format:
                         p.status = PrincipleStatus.RETIRED
                         retired_count += 1
 
-                elif (accuracy < 0.50) or (
-                    p.uses_count >= 3 and p.usefulness_score < 0.20
-                ) or ts < 0.0:
+                elif (
+                    (accuracy < 0.50)
+                    or (p.uses_count >= 3 and p.usefulness_score < 0.20)
+                    or ts < 0.0
+                ):
                     p.status = PrincipleStatus.RETIRED
                     retired_count += 1
 
@@ -774,22 +1183,33 @@ Respond in JSON format:
         active_principles = [
             p
             for p in reconciled_list
-            if p.status in [PrincipleStatus.ACTIVE, PrincipleStatus.STABLE, PrincipleStatus.EMERGING, PrincipleStatus.TRUSTED, PrincipleStatus.CANONICAL]
+            if p.status
+            in [
+                PrincipleStatus.ACTIVE,
+                PrincipleStatus.STABLE,
+                PrincipleStatus.EMERGING,
+                PrincipleStatus.TRUSTED,
+                PrincipleStatus.CANONICAL,
+            ]
         ]
         canonical_principles = [
-            p
-            for p in reconciled_list
-            if p.status == PrincipleStatus.CANONICAL
+            p for p in reconciled_list if p.status == PrincipleStatus.CANONICAL
         ]
 
         obs_count = len(prediction_history)
         active_count = len(active_principles)
         canonical_count = len(canonical_principles)
 
-        principle_compression_ratio = obs_count / active_count if active_count > 0 else 0.0
-        distillation_efficiency = merged_count / len(principles) if len(principles) > 0 else 0.0
+        principle_compression_ratio = (
+            obs_count / active_count if active_count > 0 else 0.0
+        )
+        distillation_efficiency = (
+            merged_count / len(principles) if len(principles) > 0 else 0.0
+        )
         knowledge_density = cov_after / active_count if active_count > 0 else 0.0
-        canonical_growth_rate = canonical_count / active_count if active_count > 0 else 0.0
+        canonical_growth_rate = (
+            canonical_count / active_count if active_count > 0 else 0.0
+        )
 
         summary_text = (
             f"Knowledge Reconciliation Summary:\n"
@@ -834,7 +1254,14 @@ Respond in JSON format:
         active_stable = [
             p
             for p in principles
-            if p.status in [PrincipleStatus.ACTIVE, PrincipleStatus.STABLE, PrincipleStatus.EMERGING, PrincipleStatus.TRUSTED, PrincipleStatus.CANONICAL]
+            if p.status
+            in [
+                PrincipleStatus.ACTIVE,
+                PrincipleStatus.STABLE,
+                PrincipleStatus.EMERGING,
+                PrincipleStatus.TRUSTED,
+                PrincipleStatus.CANONICAL,
+            ]
         ]
 
         candidate_count = sum(
@@ -908,7 +1335,14 @@ Respond in JSON format:
         active_stable = [
             p
             for p in principles
-            if p.status in [PrincipleStatus.ACTIVE, PrincipleStatus.STABLE, PrincipleStatus.EMERGING, PrincipleStatus.TRUSTED, PrincipleStatus.CANONICAL]
+            if p.status
+            in [
+                PrincipleStatus.ACTIVE,
+                PrincipleStatus.STABLE,
+                PrincipleStatus.EMERGING,
+                PrincipleStatus.TRUSTED,
+                PrincipleStatus.CANONICAL,
+            ]
         ]
         all_theories = set(
             r.get("theory_id") for r in prediction_history if r.get("theory_id")

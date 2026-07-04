@@ -356,10 +356,10 @@ class LessonExtractor:  #
                     parts = item.split(":", 1)
                     target_regime[parts[0].strip().lower()] = parts[1].strip().lower()
                 activation_conditions.add(item)
-            
+
             for c in getattr(exp, "contradictions", []):
                 failure_conditions.add(c)
-                
+
             f_counts = getattr(exp, "component_failure_counts", {}) or {}
             for comp, cnt in f_counts.items():
                 if cnt > 0:
@@ -400,10 +400,10 @@ class LessonExtractor:  #
                     parts = item.split(":", 1)
                     target_regime[parts[0].strip().lower()] = parts[1].strip().lower()
                 activation_conditions.add(item)
-            
+
             for c in getattr(exp, "contradictions", []):
                 failure_conditions.add(c)
-                
+
             f_counts = getattr(exp, "component_failure_counts", {}) or {}
             for comp, cnt in f_counts.items():
                 if cnt > 0:
@@ -422,4 +422,3 @@ class LessonExtractor:  #
             lesson_text=lesson_text,
             source_experience_ids=[exp.experience_id for exp in experiences],
         )
-
