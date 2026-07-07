@@ -1746,7 +1746,9 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         """Analyze persistent mechanisms from the repository."""
         from memory.knowledge.knowledge_repository import KnowledgeRepository
 
-        repo = KnowledgeRepository()
+        repo = getattr(self, "knowledge_repository", None)
+        if not repo:
+            repo = KnowledgeRepository()
         mechanisms = repo.list_mechanisms()
 
         if not mechanisms:

@@ -1,0 +1,420 @@
+{
+  "pairwise_matched_tests": {
+    "Agent A (Raw Experience)": {
+      "precision": {
+        "mean_diff": 0.059333333333333335,
+        "std_diff": 0.13616666291418827,
+        "t_statistic": 7.5472473009430825,
+        "p_value": 4.4455396983482095e-14,
+        "cohens_d": 0.4357405260840165,
+        "ci_lower": 0.04392462487365405,
+        "ci_upper": 0.07474204179301262,
+        "wins": 99,
+        "ties": 177,
+        "losses": 24,
+        "win_rate": 0.33
+      },
+      "mean_lift": {
+        "mean_diff": 0.007659157206431737,
+        "std_diff": 0.031702568322315335,
+        "t_statistic": 4.184534606099768,
+        "p_value": 2.8575091569623357e-05,
+        "cohens_d": 0.24159421812650053,
+        "ci_lower": 0.00407167388087305,
+        "ci_upper": 0.011246640531990423,
+        "wins": 157,
+        "ties": 30,
+        "losses": 113,
+        "win_rate": 0.5233333333333333
+      }
+    },
+    "Agent B (Heuristic Lift)": {
+      "precision": {
+        "mean_diff": -0.034666666666666665,
+        "std_diff": 0.09324091618163236,
+        "t_statistic": -6.43970806536855,
+        "p_value": 1.1970351708751255e-10,
+        "cohens_d": -0.3717967185043136,
+        "ci_lower": -0.04521786960582941,
+        "ci_upper": -0.024115463727503922,
+        "wins": 5,
+        "ties": 244,
+        "losses": 51,
+        "win_rate": 0.016666666666666666
+      },
+      "mean_lift": {
+        "mean_diff": -0.004211555204506988,
+        "std_diff": 0.021155879377581847,
+        "t_statistic": -3.4480379959138463,
+        "p_value": 0.0005646745954965555,
+        "cohens_d": -0.19907256651169167,
+        "ci_lower": -0.0066055683246106535,
+        "ci_upper": -0.0018175420844033226,
+        "wins": 51,
+        "ties": 160,
+        "losses": 89,
+        "win_rate": 0.17
+      }
+    },
+    "Agent D (Matched Random)": {
+      "precision": {
+        "mean_diff": 0.16333333333333333,
+        "std_diff": 0.16394658836037293,
+        "t_statistic": 17.255719361543967,
+        "p_value": 1.0135156486016894e-66,
+        "cohens_d": 0.9962594218448048,
+        "ci_lower": 0.14478103037650725,
+        "ci_upper": 0.1818856362901594,
+        "wins": 201,
+        "ties": 82,
+        "losses": 17,
+        "win_rate": 0.67
+      },
+      "mean_lift": {
+        "mean_diff": 0.026049971177418876,
+        "std_diff": 0.044323425669437144,
+        "t_statistic": 10.179690069873455,
+        "p_value": 2.443383368009101e-24,
+        "cohens_d": 0.5877246802108399,
+        "ci_lower": 0.02103430339605432,
+        "ci_upper": 0.031065638958783434,
+        "wins": 219,
+        "ties": 0,
+        "losses": 81,
+        "win_rate": 0.73
+      }
+    },
+    "Agent E (Counterfactual Inverted)": {
+      "precision": {
+        "mean_diff": 0.108,
+        "std_diff": 0.17712682756566908,
+        "t_statistic": 10.56087831461253,
+        "p_value": 4.5240871220718153e-26,
+        "cohens_d": 0.6097325937820425,
+        "ci_lower": 0.08795621257115428,
+        "ci_upper": 0.12804378742884573,
+        "wins": 158,
+        "ties": 106,
+        "losses": 36,
+        "win_rate": 0.5266666666666666
+      },
+      "mean_lift": {
+        "mean_diff": 0.05030564824715325,
+        "std_diff": 0.06703328626823986,
+        "t_statistic": 12.998309276243925,
+        "p_value": 1.2507799181139422e-38,
+        "cohens_d": 0.7504577359649439,
+        "ci_lower": 0.04272011781631308,
+        "ci_upper": 0.05789117867799342,
+        "wins": 230,
+        "ties": 0,
+        "losses": 70,
+        "win_rate": 0.7666666666666667
+      }
+    }
+  },
+  "world_decomposition": [
+    {
+      "world_id": 1,
+      "world_name": "Stable Baseline",
+      "agents": {
+        "Agent A (Raw Experience)": {
+          "mean_precision": 0.1466666666666667,
+          "mean_lift": 0.010474270674367946
+        },
+        "Agent B (Heuristic Lift)": {
+          "mean_precision": 0.24000000000000007,
+          "mean_lift": 0.029796831566287266
+        },
+        "Agent C (Evidence Representation)": {
+          "mean_precision": 0.2066666666666667,
+          "mean_lift": 0.021509705624691955
+        },
+        "Agent D (Matched Random)": {
+          "mean_precision": 0.05333333333333333,
+          "mean_lift": -0.004290867470522623
+        },
+        "Agent E (Counterfactual Inverted)": {
+          "mean_precision": 0.12666666666666668,
+          "mean_lift": -0.021509705624691955
+        }
+      },
+      "c_minus_b_precision_diff": -0.03333333333333338,
+      "winner": "Agent B"
+    },
+    {
+      "world_id": 2,
+      "world_name": "High Noise",
+      "agents": {
+        "Agent A (Raw Experience)": {
+          "mean_precision": 0.15333333333333335,
+          "mean_lift": 0.020687242232861353
+        },
+        "Agent B (Heuristic Lift)": {
+          "mean_precision": 0.22666666666666668,
+          "mean_lift": 0.025701307872767247
+        },
+        "Agent C (Evidence Representation)": {
+          "mean_precision": 0.1866666666666667,
+          "mean_lift": 0.021590922445796152
+        },
+        "Agent D (Matched Random)": {
+          "mean_precision": 0.05333333333333333,
+          "mean_lift": 0.005819495815694156
+        },
+        "Agent E (Counterfactual Inverted)": {
+          "mean_precision": 0.13333333333333336,
+          "mean_lift": -0.02159092244579616
+        }
+      },
+      "c_minus_b_precision_diff": -0.03999999999999998,
+      "winner": "Agent B"
+    },
+    {
+      "world_id": 3,
+      "world_name": "Extreme Noise",
+      "agents": {
+        "Agent A (Raw Experience)": {
+          "mean_precision": 0.08666666666666668,
+          "mean_lift": 0.007778871619364866
+        },
+        "Agent B (Heuristic Lift)": {
+          "mean_precision": 0.12000000000000002,
+          "mean_lift": 0.01130566447661818
+        },
+        "Agent C (Evidence Representation)": {
+          "mean_precision": 0.12000000000000004,
+          "mean_lift": 0.008348470531250658
+        },
+        "Agent D (Matched Random)": {
+          "mean_precision": 0.05333333333333333,
+          "mean_lift": 0.00038943317241052505
+        },
+        "Agent E (Counterfactual Inverted)": {
+          "mean_precision": 0.06666666666666667,
+          "mean_lift": -0.008348470531250663
+        }
+      },
+      "c_minus_b_precision_diff": 1.3877787807814457e-17,
+      "winner": "Agent C"
+    },
+    {
+      "world_id": 4,
+      "world_name": "Strong Signal",
+      "agents": {
+        "Agent A (Raw Experience)": {
+          "mean_precision": 0.18666666666666673,
+          "mean_lift": 0.02862572283911469
+        },
+        "Agent B (Heuristic Lift)": {
+          "mean_precision": 0.33999999999999997,
+          "mean_lift": 0.05107869854266371
+        },
+        "Agent C (Evidence Representation)": {
+          "mean_precision": 0.29333333333333333,
+          "mean_lift": 0.04319002843806134
+        },
+        "Agent D (Matched Random)": {
+          "mean_precision": 0.05333333333333333,
+          "mean_lift": -0.0002770715449364127
+        },
+        "Agent E (Counterfactual Inverted)": {
+          "mean_precision": 0.16666666666666669,
+          "mean_lift": -0.04319002843806136
+        }
+      },
+      "c_minus_b_precision_diff": -0.046666666666666634,
+      "winner": "Agent B"
+    },
+    {
+      "world_id": 5,
+      "world_name": "Unbalanced Base Rate",
+      "agents": {
+        "Agent A (Raw Experience)": {
+          "mean_precision": 0.14000000000000004,
+          "mean_lift": 0.01319529410296391
+        },
+        "Agent B (Heuristic Lift)": {
+          "mean_precision": 0.18666666666666668,
+          "mean_lift": 0.01028987573709217
+        },
+        "Agent C (Evidence Representation)": {
+          "mean_precision": 0.18000000000000005,
+          "mean_lift": 0.01365886229493138
+        },
+        "Agent D (Matched Random)": {
+          "mean_precision": 0.05333333333333333,
+          "mean_lift": -0.004588268876745457
+        },
+        "Agent E (Counterfactual Inverted)": {
+          "mean_precision": 0.09333333333333335,
+          "mean_lift": -0.013658862294931403
+        }
+      },
+      "c_minus_b_precision_diff": -0.006666666666666626,
+      "winner": "Agent B"
+    },
+    {
+      "world_id": 6,
+      "world_name": "High Persistence Regimes",
+      "agents": {
+        "Agent A (Raw Experience)": {
+          "mean_precision": 0.1466666666666667,
+          "mean_lift": 0.02188603765082951
+        },
+        "Agent B (Heuristic Lift)": {
+          "mean_precision": 0.24666666666666673,
+          "mean_lift": 0.025259158309979286
+        },
+        "Agent C (Evidence Representation)": {
+          "mean_precision": 0.22000000000000008,
+          "mean_lift": 0.027775681228676626
+        },
+        "Agent D (Matched Random)": {
+          "mean_precision": 0.05333333333333333,
+          "mean_lift": 0.005648867015059553
+        },
+        "Agent E (Counterfactual Inverted)": {
+          "mean_precision": 0.13333333333333333,
+          "mean_lift": -0.027775681228676637
+        }
+      },
+      "c_minus_b_precision_diff": -0.026666666666666644,
+      "winner": "Agent B"
+    },
+    {
+      "world_id": 7,
+      "world_name": "Low Persistence Regimes",
+      "agents": {
+        "Agent A (Raw Experience)": {
+          "mean_precision": 0.18000000000000002,
+          "mean_lift": 0.01661619713718717
+        },
+        "Agent B (Heuristic Lift)": {
+          "mean_precision": 0.2733333333333334,
+          "mean_lift": 0.02908684495666374
+        },
+        "Agent C (Evidence Representation)": {
+          "mean_precision": 0.2466666666666667,
+          "mean_lift": 0.02647725030515725
+        },
+        "Agent D (Matched Random)": {
+          "mean_precision": 0.05333333333333333,
+          "mean_lift": -0.0033139509051464252
+        },
+        "Agent E (Counterfactual Inverted)": {
+          "mean_precision": 0.12666666666666668,
+          "mean_lift": -0.026477250305157258
+        }
+      },
+      "c_minus_b_precision_diff": -0.026666666666666672,
+      "winner": "Agent B"
+    },
+    {
+      "world_id": 8,
+      "world_name": "Multiple Shifts",
+      "agents": {
+        "Agent A (Raw Experience)": {
+          "mean_precision": 0.19333333333333338,
+          "mean_lift": 0.018233801735863243
+        },
+        "Agent B (Heuristic Lift)": {
+          "mean_precision": 0.3266666666666667,
+          "mean_lift": 0.03378222783704712
+        },
+        "Agent C (Evidence Representation)": {
+          "mean_precision": 0.26000000000000006,
+          "mean_lift": 0.030305509633977813
+        },
+        "Agent D (Matched Random)": {
+          "mean_precision": 0.05333333333333333,
+          "mean_lift": -0.0015456106473700462
+        },
+        "Agent E (Counterfactual Inverted)": {
+          "mean_precision": 0.02666666666666667,
+          "mean_lift": -0.03030550963397783
+        }
+      },
+      "c_minus_b_precision_diff": -0.06666666666666665,
+      "winner": "Agent B"
+    },
+    {
+      "world_id": 9,
+      "world_name": "Low Noise Stable",
+      "agents": {
+        "Agent A (Raw Experience)": {
+          "mean_precision": 0.18000000000000005,
+          "mean_lift": 0.0193362745030213
+        },
+        "Agent B (Heuristic Lift)": {
+          "mean_precision": 0.31333333333333335,
+          "mean_lift": 0.05501482136619766
+        },
+        "Agent C (Evidence Representation)": {
+          "mean_precision": 0.26000000000000006,
+          "mean_lift": 0.041313232998856884
+        },
+        "Agent D (Matched Random)": {
+          "mean_precision": 0.05333333333333333,
+          "mean_lift": -0.004814291054081296
+        },
+        "Agent E (Counterfactual Inverted)": {
+          "mean_precision": 0.1466666666666667,
+          "mean_lift": -0.041313232998856884
+        }
+      },
+      "c_minus_b_precision_diff": -0.05333333333333329,
+      "winner": "Agent B"
+    },
+    {
+      "world_id": 10,
+      "world_name": "Moderate Noise Shift",
+      "agents": {
+        "Agent A (Raw Experience)": {
+          "mean_precision": 0.16000000000000003,
+          "mean_lift": 0.018102956675874846
+        },
+        "Agent B (Heuristic Lift)": {
+          "mean_precision": 0.24000000000000007,
+          "mean_lift": 0.02232836261551968
+        },
+        "Agent C (Evidence Representation)": {
+          "mean_precision": 0.19333333333333338,
+          "mean_lift": 0.01735857773436613
+        },
+        "Agent D (Matched Random)": {
+          "mean_precision": 0.05333333333333333,
+          "mean_lift": -0.0019992060427845774
+        },
+        "Agent E (Counterfactual Inverted)": {
+          "mean_precision": 0.06666666666666667,
+          "mean_lift": -0.01735857773436613
+        }
+      },
+      "c_minus_b_precision_diff": -0.04666666666666669,
+      "winner": "Agent B"
+    }
+  ],
+  "alternative_policies": {
+    "Max Signed Lift": {
+      "mean_precision": 0.25133333333333335,
+      "mean_lift": 0.029364379328083636
+    },
+    "Max Absolute Lift": {
+      "mean_precision": 0.26933333333333337,
+      "mean_lift": 0.00142610139805814
+    },
+    "Max Frequency": {
+      "mean_precision": 0.07333333333333333,
+      "mean_lift": 0.00021172064113027315
+    },
+    "Shrinkage Adjusted Lift": {
+      "mean_precision": 0.25,
+      "mean_lift": 0.029246638430292512
+    },
+    "Threshold + Signed Lift": {
+      "mean_precision": 0.24866666666666665,
+      "mean_lift": 0.029282259471530805
+    }
+  }
+}

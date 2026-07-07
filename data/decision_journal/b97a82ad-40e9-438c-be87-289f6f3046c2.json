@@ -1,0 +1,51 @@
+{
+  "id": "b97a82ad-40e9-438c-be87-289f6f3046c2",
+  "created_at": "2026-07-06T13:18:47.591808+00:00",
+  "prediction_date": "2026-06-29",
+  "evaluation_date": "2026-06-30",
+  "asset": "RELIANCE",
+  "prediction": "lower",
+  "decision": {
+    "id": "d9c446b5-5c65-4cea-aaf7-c71def8c014e",
+    "created_at": "2026-07-06T13:18:47.591796+00:00",
+    "date": "2026-06-29",
+    "prediction_direction": "lower",
+    "action": "short",
+    "allocation_pct": 0.0856,
+    "conviction_score": 0.5048,
+    "reason": "observation coherence vs residual uncertainty"
+  },
+  "allocation": 0.0856,
+  "conviction_score": 0.5048,
+  "decision_reason": "observation coherence vs residual uncertainty",
+  "supporting_lineages": [
+    "49ff0fd6-56bb-44b4-9ce3-9502247d3816"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 0.0,
+  "transition_pressure": 0.3566666666666667,
+  "calibrated_confidence": 0.55,
+  "empirical_confidence": 0.24,
+  "reflection_confidence": 0.461,
+  "regime_confidence": 0.5,
+  "expected_scenarios": [
+    "observation coherence vs residual uncertainty"
+  ],
+  "actual_outcome": "-0.99%",
+  "decision_result": "correct",
+  "pnl": 596.21,
+  "reflection_summary": "The prediction 'lower' was correct. Recommended action: Retain lineage and reinforce principle confidence.",
+  "knowledge_changes": [
+    "theory_created"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.1925,
+    "empirical": 0.048,
+    "principle_support": 0.0,
+    "contradictions": -0.0,
+    "transition_pressure": -0.0357
+  }
+}

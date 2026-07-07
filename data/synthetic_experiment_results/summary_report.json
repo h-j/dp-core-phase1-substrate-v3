@@ -1,0 +1,56 @@
+{
+  "parameters": {
+    "num_seeds": 30,
+    "mock_llm": true
+  },
+  "anova": {
+    "precision": {
+      "F_statistic": 122.2569116751382,
+      "p_value": 1e-16,
+      "df_between": 4,
+      "df_within": 1495,
+      "group_means": {
+        "Agent A (Raw Experience)": 0.15733333333333335,
+        "Agent B (Heuristic Lift)": 0.25133333333333335,
+        "Agent C (Evidence Representation)": 0.21666666666666667,
+        "Agent D (Matched Random)": 0.05333333333333334,
+        "Agent E (Counterfactual Inverted)": 0.10866666666666668
+      }
+    },
+    "mean_lift": {
+      "F_statistic": 140.5975212764905,
+      "p_value": 1e-16,
+      "df_between": 4,
+      "df_within": 1495,
+      "group_means": {
+        "Agent A (Raw Experience)": 0.017493666917144903,
+        "Agent B (Heuristic Lift)": 0.029364379328083636,
+        "Agent C (Evidence Representation)": 0.025152824123576646,
+        "Agent D (Matched Random)": -0.0008971470538422639,
+        "Agent E (Counterfactual Inverted)": -0.025152824123576653
+      }
+    }
+  },
+  "summary": {
+    "Agent A (Raw Experience)": {
+      "mean_precision": 0.15733333333333335,
+      "mean_lift": 0.017493666917144903
+    },
+    "Agent B (Heuristic Lift)": {
+      "mean_precision": 0.25133333333333335,
+      "mean_lift": 0.029364379328083636
+    },
+    "Agent C (Evidence Representation)": {
+      "mean_precision": 0.21666666666666667,
+      "mean_lift": 0.025152824123576646
+    },
+    "Agent D (Matched Random)": {
+      "mean_precision": 0.05333333333333334,
+      "mean_lift": -0.0008971470538422641
+    },
+    "Agent E (Counterfactual Inverted)": {
+      "mean_precision": 0.10866666666666668,
+      "mean_lift": -0.02515282412357665
+    }
+  }
+}
