@@ -1,9 +1,7 @@
 from pathlib import Path
 
 from bootstrap.operational_hypothesis_harness import (
-    OperationalHypothesisHarness,
-    compute_target_day,
-)
+    OperationalHypothesisHarness, compute_target_day)
 
 
 def test_harness_is_deterministic_for_identical_artifacts():
@@ -12,7 +10,10 @@ def test_harness_is_deterministic_for_identical_artifacts():
     first_run = OperationalHypothesisHarness(artifact_path=artifact_path).run()
     second_run = OperationalHypothesisHarness(artifact_path=artifact_path).run()
 
-    assert first_run["formation"]["accepted_hypotheses"] == second_run["formation"]["accepted_hypotheses"]
+    assert (
+        first_run["formation"]["accepted_hypotheses"]
+        == second_run["formation"]["accepted_hypotheses"]
+    )
     assert first_run["hypotheses"] == second_run["hypotheses"]
     assert first_run["evaluation"]["metrics"] == second_run["evaluation"]["metrics"]
 
@@ -43,18 +44,36 @@ def test_duplicate_and_tautology_candidates_are_rejected():
         "hypothesis_id": "dup-1",
         "source_provenance": "day-1",
         "freeze_time": 10,
-        "trigger_predicate": {"field": "volume_state", "operator": "==", "value": "elevated"},
-        "scope_predicates": [{"field": "daily_return_pct", "operator": "<", "value": -0.5}],
-        "expected_effect_predicate": {"field": "return_3d", "operator": ">", "value": 0.0},
+        "trigger_predicate": {
+            "field": "volume_state",
+            "operator": "==",
+            "value": "elevated",
+        },
+        "scope_predicates": [
+            {"field": "daily_return_pct", "operator": "<", "value": -0.5}
+        ],
+        "expected_effect_predicate": {
+            "field": "return_3d",
+            "operator": ">",
+            "value": 0.0,
+        },
         "evaluation_horizon": 2,
     }
     tautology_candidate = {
         "hypothesis_id": "taut-1",
         "source_provenance": "day-2",
         "freeze_time": 10,
-        "trigger_predicate": {"field": "daily_return_pct", "operator": "==", "value": "daily_return_pct"},
+        "trigger_predicate": {
+            "field": "daily_return_pct",
+            "operator": "==",
+            "value": "daily_return_pct",
+        },
         "scope_predicates": [],
-        "expected_effect_predicate": {"field": "return_3d", "operator": ">", "value": 0.0},
+        "expected_effect_predicate": {
+            "field": "return_3d",
+            "operator": ">",
+            "value": 0.0,
+        },
         "evaluation_horizon": 2,
     }
 
@@ -72,8 +91,16 @@ def test_not_applicable_and_inconclusive_remain_distinct():
     artifact_path = Path(__file__).resolve().parents[1] / "data" / "nifty_daily_3y.csv"
     harness = OperationalHypothesisHarness(artifact_path=artifact_path)
 
-    scope_false = harness._evaluate_predicate({"field": "daily_return_pct", "operator": "<", "value": -10.0}, 0, harness.load_replay_artifact())
-    scope_unknown = harness._evaluate_predicate({"field": "does_not_exist", "operator": "==", "value": 1}, 0, harness.load_replay_artifact())
+    scope_false = harness._evaluate_predicate(
+        {"field": "daily_return_pct", "operator": "<", "value": -10.0},
+        0,
+        harness.load_replay_artifact(),
+    )
+    scope_unknown = harness._evaluate_predicate(
+        {"field": "does_not_exist", "operator": "==", "value": 1},
+        0,
+        harness.load_replay_artifact(),
+    )
 
     assert scope_false["result"] == "FALSE"
     assert scope_unknown["result"] == "UNKNOWN"
@@ -87,9 +114,17 @@ def test_unavailable_future_targets_return_inconclusive():
 
     result = harness._evaluate_hypothesis_on_day(
         hypothesis={
-            "trigger_predicate": {"field": "volume_state", "operator": "==", "value": row["volume_state"]},
+            "trigger_predicate": {
+                "field": "volume_state",
+                "operator": "==",
+                "value": row["volume_state"],
+            },
             "scope_predicates": [],
-            "expected_effect_predicate": {"field": "return_3d", "operator": ">", "value": 0.0},
+            "expected_effect_predicate": {
+                "field": "return_3d",
+                "operator": ">",
+                "value": 0.0,
+            },
             "evaluation_horizon": 30,
         },
         day_index=10,

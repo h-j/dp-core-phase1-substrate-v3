@@ -654,9 +654,13 @@ def test_causal_loop_adjustments():
 
     # 2.1 Without prior theory/attribution
     flow.process(DummyAbstraction(), regime_history={})
-    called_prompt_without = flow.client.generate.call_args[0][0]
+    called_prompt_without = flow.client.generate.call_args_list[0][0][0]
     assert "MANDATORY MUTATION GUIDANCE" not in called_prompt_without
     print("✓ Prompt does not contain mutation guidance when prior theory is missing")
+
+    flow.client.generate.reset_mock()
+
+
 
     # 2.2 With prior theory/attribution containing failed components
     prior_theory = Theory(
@@ -686,7 +690,7 @@ def test_causal_loop_adjustments():
         prior_attribution=prior_attr,
         regime_history={},
     )
-    called_prompt_with = flow.client.generate.call_args[0][0]
+    called_prompt_with = flow.client.generate.call_args_list[0][0][0]
     assert "MANDATORY MUTATION GUIDANCE FOR EXISTING THEORY" in called_prompt_with
     assert "Failed Components: volume_confirm" in called_prompt_with
     assert "Passed Components: price_structure" in called_prompt_with

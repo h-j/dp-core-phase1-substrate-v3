@@ -1,0 +1,31 @@
+{
+  "id": "MECH_013",
+  "created_at": "2026-07-11T05:33:51.325504+00:00",
+  "mechanism_id": "MECH_013",
+  "canonical_name": "LIQUIDITY_ABSORPTION",
+  "concept_tags": [
+    "LIQUIDITY_ABSORPTION",
+    "VOLATILITY_COMPRESSION"
+  ],
+  "relation_type": "CONTRADICTS",
+  "first_seen": 40,
+  "last_seen": 40,
+  "days_active": 1,
+  "times_reused": 2,
+  "times_modified": 0,
+  "times_retired": 0,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "prediction_helped": 0,
+  "prediction_harmed": 0,
+  "status": "candidate",
+  "regimes_seen": [
+    "neutral"
+  ],
+  "name": "LIQUIDITY_ABSORPTION",
+  "description": "Asset Liquidity Fade dominates RELIANCE focus and moderate volume",
+  "concept_type": "candidate",
+  "associated_theory_ids": [],
+  "associated_lineages": [],
+  "created_at_step": 40
+}

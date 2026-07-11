@@ -1,13 +1,15 @@
 import os
 import tempfile
 import unittest
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
-from cognition.schemas.knowledge.mechanism import Mechanism
-from cognition.schemas.theory.theory import Theory, TheoryStructured, MechanismComponent, Branch
 from cognition.schemas.confidence.confidence_state import ConfidenceState
-from flows.knowledge_flow.mechanism_engine import match_and_register_in_registry, MechanismEngine
+from cognition.schemas.knowledge.mechanism import Mechanism
+from cognition.schemas.theory.theory import (Branch, MechanismComponent,
+                                             Theory, TheoryStructured)
+from flows.knowledge_flow.mechanism_engine import (
+    MechanismEngine, match_and_register_in_registry)
 from memory.knowledge.knowledge_repository import KnowledgeRepository
 
 
@@ -18,6 +20,7 @@ class TestMechanismRegistryInvariants(unittest.TestCase):
 
     def tearDown(self):
         import shutil
+
         shutil.rmtree(self.temp_dir)
 
     def test_invariant_1_immutable_semantic_proposition(self):
@@ -47,7 +50,9 @@ class TestMechanismRegistryInvariants(unittest.TestCase):
             self.repo.save_mechanism(mech_obj)
 
         reloaded = self.repo.get_mechanism("MECH_001")
-        self.assertEqual(reloaded.description, "Initial stable proposition of trend persistence.")
+        self.assertEqual(
+            reloaded.description, "Initial stable proposition of trend persistence."
+        )
         self.assertEqual(reloaded.concept_tags, ["TREND_PERSISTENCE"])
         self.assertEqual(reloaded.relation_type, "CONTRADICTS")
         self.assertEqual(reloaded.times_modified, 1)
@@ -75,7 +80,7 @@ class TestMechanismRegistryInvariants(unittest.TestCase):
             "component_id": "trend_persistence",
             "description": "Completely different semantic claim about range-bound reversion under tight liquidity.",
             "concept_tags": ["TREND_PERSISTENCE"],
-            "relation_type": "CONTRADICTS"
+            "relation_type": "CONTRADICTS",
         }
 
         mid = match_and_register_in_registry(comp, self.repo, step=2, regime="neutral")
@@ -129,9 +134,11 @@ class TestMechanismRegistryInvariants(unittest.TestCase):
             "component_id": "trend_persistence",
             "description": "Initial description",
             "concept_tags": ["TREND_PERSISTENCE"],
-            "relation_type": "CONTRADICTS"
+            "relation_type": "CONTRADICTS",
         }
-        new_mid = match_and_register_in_registry(comp, self.repo, step=2, regime="neutral")
+        new_mid = match_and_register_in_registry(
+            comp, self.repo, step=2, regime="neutral"
+        )
         self.assertEqual(new_mid, "MECH_002")
 
     def test_invariant_5_semantic_reuse(self):
@@ -151,7 +158,7 @@ class TestMechanismRegistryInvariants(unittest.TestCase):
             "component_id": "trend_persistence",
             "description": "price structure exhibits higher highs and lower lows.",
             "concept_tags": ["TREND_PERSISTENCE"],
-            "relation_type": "CONTRADICTS"
+            "relation_type": "CONTRADICTS",
         }
 
         mid = match_and_register_in_registry(comp, self.repo, step=2, regime="neutral")
@@ -203,7 +210,7 @@ class TestMechanismRegistryInvariants(unittest.TestCase):
             "component_id": "trend_persistence",
             "description": "stable trend persistence mechanism.",
             "concept_tags": ["TREND_PERSISTENCE"],
-            "relation_type": "CONTRADICTS"
+            "relation_type": "CONTRADICTS",
         }
 
         # Match must still successfully reuse MECH_001
@@ -228,8 +235,10 @@ class TestMechanismRegistryInvariants(unittest.TestCase):
         self.repo.save_mechanism(mech)
 
         # Run MechanismEngine daily processing (transition checks)
-        engine = MechanismEngine(knowledge_repo=self.repo, test_mode=False) # production rules mode
-        
+        engine = MechanismEngine(
+            knowledge_repo=self.repo, test_mode=False
+        )  # production rules mode
+
         # We call process_theories to run transitions
         engine.process_theories([], step=6, regime_subtype="neutral")
 

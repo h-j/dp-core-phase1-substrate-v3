@@ -1,0 +1,20 @@
+{
+  "scientific_manifest": "MILESTONE_7_MINIMAL_CAUSAL_LEARNING_LOOP",
+  "primary_seeds": "101 to 150",
+  "total_seeds_evaluated": 50,
+  "pruning_triggered_seeds_count": 2,
+  "pruning_triggered_seeds_list": [
+    131,
+    149
+  ],
+  "condition_c_influence_blocked": {
+    "mean_compiled_candidates": 3.0,
+    "mean_compilation_budget_spent": 30.0,
+    "mean_evidence_budget_spent": 60.0
+  },
+  "condition_d_influence_enabled": {
+    "mean_compiled_candidates": 2.0,
+    "mean_compilation_budget_spent": 20.0,
+    "mean_evidence_budget_spent": 40.0
+  }
+}

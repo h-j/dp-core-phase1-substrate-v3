@@ -1,0 +1,30 @@
+{
+  "id": "MECH_009",
+  "created_at": "2026-07-11T05:25:21.659213+00:00",
+  "mechanism_id": "MECH_009",
+  "canonical_name": "INSTITUTIONAL_ACCUMULATION",
+  "concept_tags": [
+    "INSTITUTIONAL_ACCUMULATION"
+  ],
+  "relation_type": "CO-OCCURS_WITH",
+  "first_seen": 16,
+  "last_seen": 16,
+  "days_active": 1,
+  "times_reused": 3,
+  "times_modified": 0,
+  "times_retired": 0,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "prediction_helped": 0,
+  "prediction_harmed": 0,
+  "status": "candidate",
+  "regimes_seen": [
+    "neutral"
+  ],
+  "name": "INSTITUTIONAL_ACCUMULATION",
+  "description": "RELIANCE focus amidst moderate volatility suggests Asset Selloff may still be influencing market sentiment.",
+  "concept_type": "candidate",
+  "associated_theory_ids": [],
+  "associated_lineages": [],
+  "created_at_step": 16
+}

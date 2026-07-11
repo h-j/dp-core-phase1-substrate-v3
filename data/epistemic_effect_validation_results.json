@@ -1,0 +1,25 @@
+{
+  "start_seed": 151,
+  "end_seed": 350,
+  "evidence_sufficiency_satisfied": true,
+  "epistemic_metric_measured": true,
+  "primary_epistemic_metric": "true_causal_selection_rate",
+  "family_a_stable_confounder": {
+    "triggered_events": 13,
+    "condition_c_selection_rate": 0.15384615384615385,
+    "condition_d_selection_rate": 0.6923076923076923,
+    "selection_rate_diff": 0.5384615384615384,
+    "mean_compilation_budget_saved": 10.0,
+    "mean_evidence_budget_saved": 20.0,
+    "mean_validation_budget_saved": 0.0
+  },
+  "family_b_context_shift": {
+    "triggered_events": 13,
+    "condition_c_selection_rate": 0.7692307692307693,
+    "condition_d_selection_rate": 0.0,
+    "selection_rate_diff": -0.7692307692307693,
+    "mean_compilation_budget_saved": 10.0,
+    "mean_evidence_budget_saved": 20.0,
+    "mean_validation_budget_saved": 0.0
+  }
+}

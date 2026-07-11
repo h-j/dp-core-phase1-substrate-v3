@@ -1,0 +1,37 @@
+{
+  "sequence_a_control": [
+    "ADMITTED_BELIEF",
+    "ADMITTED_BELIEF",
+    "ADMITTED_BELIEF"
+  ],
+  "sequence_b_contradiction": [
+    "WEAKENED_BELIEF",
+    "WEAKENED_BELIEF",
+    "RETIRED_BELIEF"
+  ],
+  "sequence_c_support": [
+    "ADMITTED_BELIEF",
+    "ADMITTED_BELIEF",
+    "ADMITTED_BELIEF"
+  ],
+  "sequence_d_order_sensitivity": {
+    "order_a": "ADMITTED_BELIEF",
+    "order_b": "WEAKENED_BELIEF"
+  },
+  "sequence_e_duplicate_evidence": [
+    "ADMITTED_BELIEF",
+    "ADMITTED_BELIEF"
+  ],
+  "invariants": {
+    "identity_preservation": true,
+    "provenance_completeness": true,
+    "temporal_ordering": true,
+    "idempotency": true,
+    "history_preservation": true,
+    "no_evidence_stability": true,
+    "support_responsiveness": true,
+    "contradiction_responsiveness": true,
+    "sequence_causality": true,
+    "transition_path_auditability": true
+  }
+}

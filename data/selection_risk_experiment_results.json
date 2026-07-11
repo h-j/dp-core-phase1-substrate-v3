@@ -1,0 +1,53 @@
+{
+  "diagnostic_seeds": "1 to 50",
+  "primary_seeds": "51 to 100",
+  "seed_overlap_status": "STRICTLY_SEPARATED",
+  "total_worlds": 50,
+  "num_confounders": 5,
+  "condition_a_baseline": {
+    "admit_rate": 0.04,
+    "decisions": {
+      "DEFER": 47,
+      "ADMIT": 2,
+      "REJECT": 1
+    }
+  },
+  "condition_b_selection_no_filter": {
+    "admit_rate": 0.04,
+    "false_winner_rate": 0.46,
+    "mean_selection_optimism": 0.05310565485021163,
+    "decisions": {
+      "DEFER": 48,
+      "ADMIT": 2
+    },
+    "true_causal_outcomes": {
+      "ADMIT": 2,
+      "DEFER": 25,
+      "REJECT": 0
+    },
+    "confounder_outcomes": {
+      "ADMIT": 0,
+      "DEFER": 23,
+      "REJECT": 0
+    }
+  },
+  "condition_c_selection_with_filter": {
+    "admit_rate": 0.0,
+    "false_winner_rate": 0.46,
+    "mean_selection_optimism": 0.05310565485021163,
+    "decisions": {
+      "DEFER": 47,
+      "REJECT": 3
+    },
+    "true_causal_outcomes": {
+      "ADMIT": 0,
+      "DEFER": 27,
+      "REJECT": 0
+    },
+    "confounder_outcomes": {
+      "ADMIT": 0,
+      "DEFER": 20,
+      "REJECT": 3
+    }
+  }
+}
