@@ -6,6 +6,7 @@ from flows.minimal_learning_cycle.experiment import MLCExperimentRunner
 from flows.minimal_learning_cycle.synthetic_worlds import MLCSyntheticWorld
 from flows.minimal_learning_cycle.measurement import MLCMeasurement
 from flows.minimal_learning_cycle.schemas import LifecycleState
+from flows.minimal_learning_cycle.validity_gates import MLCValidityGates
 
 
 def generate_mock_experiences(belief_record: Dict[str, Any], lift: float, size: int = 200) -> List[Dict[str, Any]]:
@@ -186,7 +187,6 @@ def run_evolution_experiment():
     
     # Order B: Strong Support first (+0.25), then Weak Support (+0.05)
     runner_d2, belief_d2 = get_fresh_belief_runner()
-    # Regenerate mock exps to match the new runner's belief mappings
     e_strong_pos2 = generate_mock_experiences(belief_d2, lift=0.25)
     e_weak2 = generate_mock_experiences(belief_d2, lift=0.05)
     
@@ -196,7 +196,6 @@ def run_evolution_experiment():
     print(f"Order A (Weak -> Strong) Path: ADMITTED -> {state_d1_a1} -> {state_d1_a2}")
     print(f"Order B (Strong -> Weak) Path: ADMITTED -> {state_d2_b1} -> {state_d2_b2}")
     
-    # Verify order sensitivity: different final states under identical multiset
     assert state_d1_a2 == LifecycleState.ADMITTED_BELIEF
     assert state_d2_b2 == LifecycleState.WEAKENED_BELIEF
 
@@ -209,6 +208,23 @@ def run_evolution_experiment():
     assert len(belief_e["evolution_history"]) == 2
     assert belief_e["evolution_history"][1]["from_state"] == LifecycleState.ADMITTED_BELIEF
     assert belief_e["evolution_history"][1]["to_state"] == LifecycleState.ADMITTED_BELIEF
+
+    # 6. COLLECT RUNNER LOGS & RUN VALIDITY GATES
+    all_erc = []
+    all_frozen = []
+    all_dec = []
+    for r in [runner_a, runner_b, runner_c, runner_d1, runner_d2, runner_e]:
+        all_erc.extend(r.erc.logs)
+        all_frozen.extend(r.frozen_candidates)
+        all_dec.extend(r.decisions)
+
+    g1 = MLCValidityGates.verify_gate_1_temporal_isolation(all_erc, all_dec)
+    g7 = MLCValidityGates.verify_gate_7_erc_authorization(all_erc, all_frozen)
+    g8 = MLCValidityGates.verify_gate_8_candidate_immutability(all_frozen)
+
+    assert g1["status"] == "PASS", f"Milestone 6 Gate 1 Temporal Isolation Violation: {g1['evidence']}"
+    assert g7["status"] == "PASS", f"Milestone 6 Gate 7 ERC Authorization Violation: {g7['evidence']}"
+    assert g8["status"] == "PASS", f"Milestone 6 Gate 8 Immutability Violation: {g8['evidence']}"
 
     summary = {
         "sequence_a_control": [state_a1, state_a2, state_a3],
@@ -227,6 +243,11 @@ def run_evolution_experiment():
             "contradiction_responsiveness": True,
             "sequence_causality": True,
             "transition_path_auditability": True
+        },
+        "validity_gates_compliance": {
+            "gate_1": g1,
+            "gate_7": g7,
+            "gate_8": g8
         }
     }
     
@@ -235,6 +256,7 @@ def run_evolution_experiment():
         json.dump(summary, f, indent=2)
         
     print("\n✓ Longitudinal Belief Evolution experiment executed successfully.")
+
 
 if __name__ == "__main__":
     run_evolution_experiment()

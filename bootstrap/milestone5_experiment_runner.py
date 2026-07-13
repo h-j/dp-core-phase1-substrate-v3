@@ -2,6 +2,7 @@ import json
 import os
 from flows.minimal_learning_cycle.experiment import MLCExperimentRunner
 from flows.minimal_learning_cycle.synthetic_worlds import MLCSyntheticWorld
+from flows.minimal_learning_cycle.validity_gates import MLCValidityGates
 
 def run_experiment(num_worlds=50, num_confounders=5):
     # Diagnostic seeds: 1 to 50
@@ -26,6 +27,14 @@ def run_experiment(num_worlds=50, num_confounders=5):
     # Joint tracking for Condition C (Retrospective selection, decision based on Window 3)
     c_causal_outcomes = {"ADMIT": 0, "DEFER": 0, "REJECT": 0}
     c_confounder_outcomes = {"ADMIT": 0, "DEFER": 0, "REJECT": 0}
+
+    # Validity gate log aggregators
+    b_erc_logs = []
+    b_frozen = []
+    b_dec = []
+    c_erc_logs = []
+    c_frozen = []
+    c_dec = []
 
     for seed in range(start_seed, end_seed + 1):
         world = MLCSyntheticWorld.generate_world("C2", seed=seed)
@@ -53,6 +62,10 @@ def run_experiment(num_worlds=50, num_confounders=5):
             b_causal_outcomes[dec_b_val] += 1
         else:
             b_confounder_outcomes[dec_b_val] += 1
+
+        b_erc_logs.extend(runner_b.erc.logs)
+        b_frozen.extend(runner_b.frozen_candidates)
+        b_dec.extend(runner_b.decisions)
             
         # 3. Condition C (Selection, With Prospective Filter)
         runner_c = MLCExperimentRunner()
@@ -72,6 +85,10 @@ def run_experiment(num_worlds=50, num_confounders=5):
         else:
             c_confounder_outcomes[dec_c_val] += 1
 
+        c_erc_logs.extend(runner_c.erc.logs)
+        c_frozen.extend(runner_c.frozen_candidates)
+        c_dec.extend(runner_c.decisions)
+
     total = num_worlds
     
     # Confounding and True winners counts
@@ -84,6 +101,23 @@ def run_experiment(num_worlds=50, num_confounders=5):
     mean_optimism_b = sum(cond_b_optimism) / len(cond_b_optimism)
     mean_optimism_c = sum(cond_c_optimism) / len(cond_c_optimism)
     
+    # 4. RUN VALIDITY GATES FOR WIRED COMPLIANCE
+    g1_b = MLCValidityGates.verify_gate_1_temporal_isolation(b_erc_logs, b_dec)
+    g7_b = MLCValidityGates.verify_gate_7_erc_authorization(b_erc_logs, b_frozen)
+    g8_b = MLCValidityGates.verify_gate_8_candidate_immutability(b_frozen)
+    
+    g1_c = MLCValidityGates.verify_gate_1_temporal_isolation(c_erc_logs, c_dec)
+    g7_c = MLCValidityGates.verify_gate_7_erc_authorization(c_erc_logs, c_frozen)
+    g8_c = MLCValidityGates.verify_gate_8_candidate_immutability(c_frozen)
+    
+    # Enforce gates
+    assert g1_b["status"] == "PASS", f"Condition B Gate 1 Temporal Isolation Violation: {g1_b['evidence']}"
+    assert g7_b["status"] == "PASS", f"Condition B Gate 7 ERC Authorization Violation: {g7_b['evidence']}"
+    assert g8_b["status"] == "PASS", f"Condition B Gate 8 Immutability Violation: {g8_b['evidence']}"
+    assert g1_c["status"] == "PASS", f"Condition C Gate 1 Temporal Isolation Violation: {g1_c['evidence']}"
+    assert g7_c["status"] == "PASS", f"Condition C Gate 7 ERC Authorization Violation: {g7_c['evidence']}"
+    assert g8_c["status"] == "PASS", f"Condition C Gate 8 Immutability Violation: {g8_c['evidence']}"
+
     summary = {
         "diagnostic_seeds": "1 to 50",
         "primary_seeds": f"{start_seed} to {end_seed}",
@@ -109,6 +143,18 @@ def run_experiment(num_worlds=50, num_confounders=5):
             "decisions": {d: cond_c_decisions.count(d) for d in set(cond_c_decisions)},
             "true_causal_outcomes": c_causal_outcomes,
             "confounder_outcomes": c_confounder_outcomes
+        },
+        "validity_gates_compliance": {
+            "condition_b": {
+                "gate_1": g1_b,
+                "gate_7": g7_b,
+                "gate_8": g8_b,
+            },
+            "condition_c": {
+                "gate_1": g1_c,
+                "gate_7": g7_c,
+                "gate_8": g8_c,
+            }
         }
     }
     

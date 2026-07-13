@@ -433,13 +433,66 @@ def test_indeterminate_no_power_target_defined_blocks_closure():
         status=ClaimStatus.INDETERMINATE_NO_POWER_TARGET_DEFINED
     )
     
-    # Assert that instantiating MilestoneScientificClosure with an indeterminate claim raises ValueError
     with pytest.raises(ValueError, match="Scientific Closure Failure for M7_FAIL: Undemonstrated claims: Unverified claim without MME \\(INDETERMINATE_NO_POWER_TARGET_DEFINED\\)"):
         MilestoneScientificClosure(
             milestone_id="M7_FAIL",
             methodology_gates=dummy_gates,
             claims=[indeterminate_claim]
         )
+
+
+def test_wired_gate_1_temporal_isolation_violation():
+    from flows.minimal_learning_cycle.validity_gates import MLCValidityGates
+    
+    # Case 1: Validated candidate exists, and validation request exists in ERC but not authorized
+    erc_logs = [{"resource_type": "VALIDATION", "proposition_id": "prop_1", "authorization_decision": "DENIED"}]
+    decisions = [{"proposition_id": "prop_1", "decision": "ADMIT", "reason_code": "SUFFICIENT_LIFT"}]
+    res = MLCValidityGates.verify_gate_1_temporal_isolation(erc_logs, decisions)
+    assert res["status"] == "FAIL"
+
+    # Case 2: Validation auth log exists, matching validated candidate
+    erc_logs = [{"resource_type": "VALIDATION", "proposition_id": "prop_1", "authorization_decision": "AUTHORIZED"}]
+    res = MLCValidityGates.verify_gate_1_temporal_isolation(erc_logs, decisions)
+    assert res["status"] == "PASS"
+
+
+def test_wired_gate_7_erc_authorization_violation():
+    from flows.minimal_learning_cycle.validity_gates import MLCValidityGates
+    
+    # Case 1: Frozen candidate exists, but no compilation/evidence auth logs exist in ERC
+    frozen_candidates = [{"content_hash": "hash_1", "proposition_definition": {}}]
+    erc_logs = []
+    res = MLCValidityGates.verify_gate_7_erc_authorization(erc_logs, frozen_candidates)
+    assert res["status"] == "FAIL"
+
+    # Case 2: With auth logs
+    erc_logs = [
+        {"resource_type": "COMPILATION", "proposition_id": "prop_1", "authorization_decision": "AUTHORIZED"},
+        {"resource_type": "EVIDENCE", "proposition_id": "prop_1", "authorization_decision": "AUTHORIZED"}
+    ]
+    res = MLCValidityGates.verify_gate_7_erc_authorization(erc_logs, frozen_candidates)
+    assert res["status"] == "PASS"
+
+
+def test_wired_gate_8_candidate_immutability_violation():
+    import hashlib
+    import json
+    from flows.minimal_learning_cycle.validity_gates import MLCValidityGates
+    
+    prop_def = {"proposition_id": "prop_1", "value": 42}
+    serialized = json.dumps(prop_def, sort_keys=True)
+    correct_hash = hashlib.sha256(serialized.encode("utf-8")).hexdigest()
+    
+    # Case 1: Matching hash
+    frozen_candidates = [{"content_hash": correct_hash, "proposition_definition": prop_def}]
+    res = MLCValidityGates.verify_gate_8_candidate_immutability(frozen_candidates)
+    assert res["status"] == "PASS"
+
+    # Case 2: Tampered definition
+    tampered_prop_def = {"proposition_id": "prop_1", "value": 99}
+    frozen_candidates_tampered = [{"content_hash": correct_hash, "proposition_definition": tampered_prop_def}]
+    res = MLCValidityGates.verify_gate_8_candidate_immutability(frozen_candidates_tampered)
+    assert res["status"] == "FAIL"
 
 
 

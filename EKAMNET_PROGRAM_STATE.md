@@ -73,7 +73,7 @@
 ---
 
 ## 7. Milestone 5 Epistemic Selection & Comparison Status
-- **Status**: `MILESTONE_5_SCIENTIFICALLY_COMPLETE_WITHIN_TESTED_SCOPE | GATE_UNVERIFIED_UNDER_v0.5_PENDING_MME_DEFINITION`
+- **Status**: `GATE_ISOLATION_UNVERIFIABLE_RETROACTIVELY | GATE_UNVERIFIED_UNDER_v0.5_PENDING_MME_DEFINITION`
 - **Capabilities Instantiated**:
   - **Pairwise Engine**: Implemented `MLCCompetitionEngine` comparing candidates on compliance, signed validation lift, and complexity.
   - **Runner Integration**: Updated `MLCExperimentRunner.run_lifecycle_with_competition` to compile sibling candidates (one correct, multiple confounding) under a shared group ID, check readiness, evaluate validation, and select the winner based on retrospective Window 2.

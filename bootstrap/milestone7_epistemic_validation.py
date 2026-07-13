@@ -3,6 +3,7 @@ import os
 from typing import Dict, Any, List
 from flows.minimal_learning_cycle.experiment import MLCExperimentRunner
 from flows.minimal_learning_cycle.synthetic_worlds import MLCSyntheticWorld
+from flows.minimal_learning_cycle.validity_gates import MLCValidityGates
 
 def run_experiment_on_range(start_seed: int, end_seed: int) -> Dict[str, Any]:
     print(f"Executing MLC Epistemic Validation on seeds {start_seed} to {end_seed}...")
@@ -27,6 +28,11 @@ def run_experiment_on_range(start_seed: int, end_seed: int) -> Dict[str, Any]:
     family_b_c_val_budget = 0
     family_b_d_val_budget = 0
 
+    # Validity gate log aggregators
+    all_erc = []
+    all_frozen = []
+    all_dec = []
+
     # Evaluated seeds
     for seed in range(start_seed, end_seed + 1):
         world_t0 = MLCSyntheticWorld.generate_world("C2", seed=seed)
@@ -38,6 +44,10 @@ def run_experiment_on_range(start_seed: int, end_seed: int) -> Dict[str, Any]:
             world_t0, num_confounders=2, enable_prospective_filter=True, enable_learning=False
         )
         
+        all_erc.extend(runner_t0.erc.logs)
+        all_frozen.extend(runner_t0.frozen_candidates)
+        all_dec.extend(runner_t0.decisions)
+
         rejected_triggers = runner_t0.belief_memory.get_rejected_or_retired_triggers()
         if not rejected_triggers:
             continue
@@ -55,6 +65,10 @@ def run_experiment_on_range(start_seed: int, end_seed: int) -> Dict[str, Any]:
             world_t0, num_confounders=2, enable_prospective_filter=True, enable_learning=True, bypass_pruning=True
         )
         
+        all_erc.extend(runner_c.erc.logs)
+        all_frozen.extend(runner_c.frozen_candidates)
+        all_dec.extend(runner_c.decisions)
+
         # Condition D (Influence Enabled)
         runner_d = MLCExperimentRunner()
         runner_d.erc.budgets = {"COMPILATION": 1000, "EVIDENCE": 1000, "VALIDATION": 1000}
@@ -63,6 +77,10 @@ def run_experiment_on_range(start_seed: int, end_seed: int) -> Dict[str, Any]:
             world_t0, num_confounders=2, enable_prospective_filter=True, enable_learning=True, bypass_pruning=False
         )
         
+        all_erc.extend(runner_d.erc.logs)
+        all_frozen.extend(runner_d.frozen_candidates)
+        all_dec.extend(runner_d.decisions)
+
         # Epistemic Metric for Family A: Selection of correct causal winner (_c1)
         c1_id = f"PROP_WORLD_C2_SEED_{seed}_c1"
         
@@ -107,6 +125,10 @@ def run_experiment_on_range(start_seed: int, end_seed: int) -> Dict[str, Any]:
                 shift_world, num_confounders=2, enable_prospective_filter=True, enable_learning=True, bypass_pruning=True
             )
             
+            all_erc.extend(runner_b_c.erc.logs)
+            all_frozen.extend(runner_b_c.frozen_candidates)
+            all_dec.extend(runner_b_c.decisions)
+
             # T1 Condition D (Pruning Enabled)
             runner_b_d = MLCExperimentRunner()
             runner_b_d.erc.budgets = {"COMPILATION": 1000, "EVIDENCE": 1000, "VALIDATION": 1000}
@@ -115,6 +137,10 @@ def run_experiment_on_range(start_seed: int, end_seed: int) -> Dict[str, Any]:
                 shift_world, num_confounders=2, enable_prospective_filter=True, enable_learning=True, bypass_pruning=False
             )
             
+            all_erc.extend(runner_b_d.erc.logs)
+            all_frozen.extend(runner_b_d.frozen_candidates)
+            all_dec.extend(runner_b_d.decisions)
+
             # Epistemic Metric for Family B: Selection of the true causal winner
             shift_c1_id = f"PROP_WORLD_C2_SEED_{shift_seed}_c1"
             
@@ -141,13 +167,20 @@ def run_experiment_on_range(start_seed: int, end_seed: int) -> Dict[str, Any]:
     family_b_d_rate = (family_b_d_correct / family_b_triggered) if family_b_triggered > 0 else 0.0
 
     # Primary epistemic metric: true causal selection rate difference
-    # Under Family A, it should be neutral/0 (learning preserves selection rate).
-    # Under Family B, it should degrade (Condition D true selection rate < Condition C selection rate).
     epistemic_metric_diff_a = family_a_d_rate - family_a_c_rate
     epistemic_metric_diff_b = family_b_d_rate - family_b_c_rate
 
-    # Evidence sufficiency check (at least 2 triggered runs per family)
+    # Evidence sufficiency check
     evidence_sufficiency_satisfied = (family_a_triggered >= 2 and family_b_triggered >= 2)
+
+    # 4. RUN VALIDITY GATES FOR WIRED COMPLIANCE
+    g1 = MLCValidityGates.verify_gate_1_temporal_isolation(all_erc, all_dec)
+    g7 = MLCValidityGates.verify_gate_7_erc_authorization(all_erc, all_frozen)
+    g8 = MLCValidityGates.verify_gate_8_candidate_immutability(all_frozen)
+
+    assert g1["status"] == "PASS", f"Milestone 7 Epistemic Validation Gate 1 Temporal Isolation Violation: {g1['evidence']}"
+    assert g7["status"] == "PASS", f"Milestone 7 Epistemic Validation Gate 7 ERC Authorization Violation: {g7['evidence']}"
+    assert g8["status"] == "PASS", f"Milestone 7 Epistemic Validation Gate 8 Immutability Violation: {g8['evidence']}"
 
     return {
         "start_seed": start_seed,
@@ -172,11 +205,15 @@ def run_experiment_on_range(start_seed: int, end_seed: int) -> Dict[str, Any]:
             "mean_compilation_budget_saved": ((family_b_c_comp_budget - family_b_d_comp_budget) / family_b_triggered) if family_b_triggered > 0 else 0.0,
             "mean_evidence_budget_saved": ((family_b_c_ev_budget - family_b_d_ev_budget) / family_b_triggered) if family_b_triggered > 0 else 0.0,
             "mean_validation_budget_saved": ((family_b_c_val_budget - family_b_d_val_budget) / family_b_triggered) if family_b_triggered > 0 else 0.0,
+        },
+        "validity_gates_compliance": {
+            "gate_1": g1,
+            "gate_7": g7,
+            "gate_8": g8
         }
     }
 
 if __name__ == "__main__":
-    # Primary execution (seeds 151 to 350)
     results = run_experiment_on_range(151, 350)
     print("\nPrimary Results (151-350):")
     print(json.dumps(results, indent=2))

@@ -21,5 +21,19 @@
     "mean_compilation_budget_saved": 10.0,
     "mean_evidence_budget_saved": 20.0,
     "mean_validation_budget_saved": 0.0
+  },
+  "validity_gates_compliance": {
+    "gate_1": {
+      "status": "PASS",
+      "evidence": "Prospective filter enabled. Found 252 validation authorizations for 252 validated candidates out of 252 total decisions."
+    },
+    "gate_7": {
+      "status": "PASS",
+      "evidence": "ERC Authorizations: Compilation=730, Evidence=730 for 237 candidates."
+    },
+    "gate_8": {
+      "status": "PASS",
+      "evidence": "SHA-256 hashes of proposition definitions match content_hash records."
+    }
   }
 }

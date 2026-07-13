@@ -33,5 +33,19 @@
     "contradiction_responsiveness": true,
     "sequence_causality": true,
     "transition_path_auditability": true
+  },
+  "validity_gates_compliance": {
+    "gate_1": {
+      "status": "PASS",
+      "evidence": "Prospective filter enabled. Found 6 validation authorizations for 6 validated candidates out of 6 total decisions."
+    },
+    "gate_7": {
+      "status": "PASS",
+      "evidence": "ERC Authorizations: Compilation=6, Evidence=6 for 6 candidates."
+    },
+    "gate_8": {
+      "status": "PASS",
+      "evidence": "SHA-256 hashes of proposition definitions match content_hash records."
+    }
   }
 }

@@ -7,9 +7,9 @@
   "condition_a_baseline": {
     "admit_rate": 0.04,
     "decisions": {
-      "DEFER": 47,
+      "REJECT": 1,
       "ADMIT": 2,
-      "REJECT": 1
+      "DEFER": 47
     }
   },
   "condition_b_selection_no_filter": {
@@ -17,8 +17,8 @@
     "false_winner_rate": 0.46,
     "mean_selection_optimism": 0.05310565485021163,
     "decisions": {
-      "DEFER": 48,
-      "ADMIT": 2
+      "ADMIT": 2,
+      "DEFER": 48
     },
     "true_causal_outcomes": {
       "ADMIT": 2,
@@ -36,8 +36,8 @@
     "false_winner_rate": 0.46,
     "mean_selection_optimism": 0.05310565485021163,
     "decisions": {
-      "DEFER": 47,
-      "REJECT": 3
+      "REJECT": 3,
+      "DEFER": 47
     },
     "true_causal_outcomes": {
       "ADMIT": 0,
@@ -48,6 +48,36 @@
       "ADMIT": 0,
       "DEFER": 20,
       "REJECT": 3
+    }
+  },
+  "validity_gates_compliance": {
+    "condition_b": {
+      "gate_1": {
+        "status": "PASS",
+        "evidence": "Prospective filter disabled. Found 0 validation authorizations for 50 decisions."
+      },
+      "gate_7": {
+        "status": "PASS",
+        "evidence": "ERC Authorizations: Compilation=300, Evidence=300 for 50 candidates."
+      },
+      "gate_8": {
+        "status": "PASS",
+        "evidence": "SHA-256 hashes of proposition definitions match content_hash records."
+      }
+    },
+    "condition_c": {
+      "gate_1": {
+        "status": "PASS",
+        "evidence": "Prospective filter enabled. Found 50 validation authorizations for 50 validated candidates out of 50 total decisions."
+      },
+      "gate_7": {
+        "status": "PASS",
+        "evidence": "ERC Authorizations: Compilation=300, Evidence=300 for 50 candidates."
+      },
+      "gate_8": {
+        "status": "PASS",
+        "evidence": "SHA-256 hashes of proposition definitions match content_hash records."
+      }
     }
   }
 }

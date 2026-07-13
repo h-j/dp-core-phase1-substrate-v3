@@ -2,10 +2,11 @@
   "scientific_manifest": "MILESTONE_7_MINIMAL_CAUSAL_LEARNING_LOOP",
   "primary_seeds": "101 to 150",
   "total_seeds_evaluated": 50,
-  "pruning_triggered_seeds_count": 2,
+  "pruning_triggered_seeds_count": 3,
   "pruning_triggered_seeds_list": [
     131,
-    149
+    149,
+    150
   ],
   "condition_c_influence_blocked": {
     "mean_compiled_candidates": 3.0,
@@ -16,5 +17,19 @@
     "mean_compiled_candidates": 2.0,
     "mean_compilation_budget_spent": 20.0,
     "mean_evidence_budget_spent": 40.0
+  },
+  "validity_gates_compliance": {
+    "gate_1": {
+      "status": "PASS",
+      "evidence": "Prospective filter enabled. Found 150 validation authorizations for 150 validated candidates out of 150 total decisions."
+    },
+    "gate_7": {
+      "status": "PASS",
+      "evidence": "ERC Authorizations: Compilation=447, Evidence=447 for 149 candidates."
+    },
+    "gate_8": {
+      "status": "PASS",
+      "evidence": "SHA-256 hashes of proposition definitions match content_hash records."
+    }
   }
 }
