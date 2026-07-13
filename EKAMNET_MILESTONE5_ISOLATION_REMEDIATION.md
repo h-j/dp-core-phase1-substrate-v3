@@ -13,6 +13,7 @@
   * **No granular data was persisted**: there are no individual seed execution logs, candidate freeze databases, ERC resource log files, or timestamps for Window 3 access.
   * Without seed-by-seed authorization logs and window access records, it is impossible to evaluate Gate 1 (Temporal Isolation) or verify that Window 3 data was not read/leaked before retrospective selection occurred.
 * **Consequence**: The historical Milestone 5 primary run has zero retroactive isolation auditability. Any retroactive check against these empty on-disk logs correctly yields an `INDETERMINATE` gate status.
+* **Version-Control Caveat**: Commit c63e08a confirms file identity as COMMITTED, but does not independently rule out the original run having executed against uncommitted local state at the time.
 
 ---
 
