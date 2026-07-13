@@ -6,13 +6,13 @@
 
 ## 1. Milestone 5 Retroactive Isolation Check Result
 
-* **Finding**: **UNVERIFIABLE RETROACTIVELY**.
+* **Historical Primary Run Finding**: **UNVERIFIABLE RETROACTIVELY** (`INDETERMINATE`).
 * **Evidence**:
-  * We conducted a forensic audit of all data files persisted on disk from the Milestone 5 primary run (seeds 51-100).
+  * We conducted a forensic audit of the data files persisted on disk from the original Milestone 5 primary run (seeds 51-100).
   * The only file present is `data/selection_risk_experiment_results.json`, which contains compiled aggregate percentages (e.g., admit rates, confounder outcomes, and mean selection optimism).
   * **No granular data was persisted**: there are no individual seed execution logs, candidate freeze databases, ERC resource log files, or timestamps for Window 3 access.
   * Without seed-by-seed authorization logs and window access records, it is impossible to evaluate Gate 1 (Temporal Isolation) or verify that Window 3 data was not read/leaked before retrospective selection occurred.
-* **Consequence**: The Milestone 5 primary run has zero retroactive isolation auditability. Re-establishing full scientific confidence in its results requires running a fresh experiment with runtime logging and inline gate checkers enabled.
+* **Consequence**: The historical Milestone 5 primary run has zero retroactive isolation auditability. Any retroactive check against these empty on-disk logs correctly yields an `INDETERMINATE` gate status.
 
 ---
 
@@ -37,8 +37,11 @@ A sweep was conducted for all legacy, pre-v0.5 validators in the codebase:
 
 ---
 
-## 3. Gate Wiring Status per Runner
+## 3. Fresh Verification Run Results (Wired Gates)
 
+To verify the scientific validity of the Milestone 5 setup, the runner was executed to perform a **fresh verification run** of seeds 51-100. During this run, granular execution metrics, candidate freezes, decisions, and ERC resource logs were compiled in memory and audited before writing the updated summary to disk.
+
+### Gate Wiring Status
 Rather than attempting a broad redesign, we refactored the well-tested validity check logic from `MLCValidityGates` into modular, reusable helpers:
 - `verify_gate_1_temporal_isolation(erc_logs, decisions)`
 - `verify_gate_7_erc_authorization(erc_logs, frozen_candidates)`
@@ -58,17 +61,44 @@ These three critical gates have been wired directly into the following active ru
    * Logs are accumulated across seeds 151-350.
    * Exits with an assertion error if any gate fails.
 
+### Fresh Run Audit Results (Seeds 51-100)
+On the fresh run, all gates successfully resolved to **PASS**:
+* **Condition B (Filter Disabled)**:
+  * Gate 1 (Temporal Isolation): **PASS** (Explicitly verified no validation authorizations were created/used for the 50 decisions).
+  * Gate 7 (ERC Authorization): **PASS** (Verified 300 compilation and 300 evidence authorizations match the 50 compiled candidates).
+  * Gate 8 (Candidate Immutability): **PASS** (Verified all SHA-256 hashes of proposition definitions match frozen records).
+* **Condition C (Filter Enabled)**:
+  * Gate 1 (Temporal Isolation): **PASS** (Verified 50 validation authorizations match the 50 validated candidates).
+  * Gate 7 (ERC Authorization): **PASS** (Verified 300 compilation and 300 evidence authorizations match the 50 compiled candidates).
+  * Gate 8 (Candidate Immutability): **PASS** (Verified all SHA-256 hashes match frozen records).
+
 ---
 
-## 4. Regression Test Results for Newly Wired Gates
+## 4. Resolution of the Gate 1 "Absence of Evidence" Bug
+
+### The Bug
+Previously, `verify_gate_1_temporal_isolation` derived the expected validation request status by searching `erc_logs` for `resource_type == "VALIDATION"`. If none were found (such as when input logs were empty or missing), it assumed the prospective filter was disabled and returned `PASS`. This caused "absence of evidence" (empty logs) to be incorrectly treated as "evidence of absence" (no violation).
+
+### The Fix
+1. **Indeterminate on Missing Data**: Added a safeguard checking `not erc_logs or not decisions`. If either is empty, the gate returns `INDETERMINATE` with an explicit message.
+2. **Explicit Metadata Propagation**: Updated `MLCExperimentRunner.run_lifecycle_with_competition` to inject `"prospective_filter_enabled": enable_prospective_filter` directly into the return decision dictionary.
+3. **Strict Validation Checks**:
+   * If `prospective_filter_enabled` is `True`, validation authorizations count MUST match the number of validated candidates.
+   * If `prospective_filter_enabled` is `False`, the number of validation authorizations in the logs MUST be exactly `0`, and any presence of validation requests in `erc_logs` results in a `FAIL` verdict.
+
+---
+
+## 5. Regression Test Results for Newly Wired Gates
 
 We added regression checks in `bootstrap/executable_gates_test.py`:
-* **`test_wired_gate_1_temporal_isolation_violation`**: Constructs a validated decision but fails to write the validation authorization log to ERC. Verifies that the checker correctly returns `FAIL`.
-* **`test_wired_gate_7_erc_authorization_violation`**: Constructs a frozen candidate lacking matching compilation/evidence ERC logs. Verifies that the checker returns `FAIL`.
-* **`test_wired_gate_8_candidate_immutability_violation`**: Modifies the fields of a frozen candidate after hash generation. Verifies that the checker catches the content hash discrepancy and returns `FAIL`.
+* **`test_wired_gate_1_temporal_isolation_empty_logs_indeterminate`**: Confirms that empty or missing input datasets return `INDETERMINATE` rather than defaulting to `PASS`.
+* **`test_wired_gate_1_temporal_isolation_violation`**: Confirms that a validated decision lacking corresponding authorized validation logs returns `FAIL`.
+* **`test_wired_gate_7_erc_authorization_violation`**: Confirms that a frozen candidate lacking matching compilation/evidence ERC logs returns `FAIL`.
+* **`test_wired_gate_8_candidate_immutability_violation`**: Confirms that tampered candidate attributes trigger a hash mismatch and return `FAIL`.
 
 **Pytest Execution**:
 ```
+bootstrap/executable_gates_test.py::test_wired_gate_1_temporal_isolation_empty_logs_indeterminate PASSED
 bootstrap/executable_gates_test.py::test_wired_gate_1_temporal_isolation_violation PASSED
 bootstrap/executable_gates_test.py::test_wired_gate_7_erc_authorization_violation PASSED
 bootstrap/executable_gates_test.py::test_wired_gate_8_candidate_immutability_violation PASSED
@@ -76,7 +106,7 @@ bootstrap/executable_gates_test.py::test_wired_gate_8_candidate_immutability_vio
 
 ---
 
-## 5. Remaining Unwired Gates / Deferred Work
+## 6. Remaining Unwired Gates / Deferred Work
 
 The following legacy gates from `MLCValidityGates` remain unwired from the active runners:
 * **Gate 4 (Final Class Balance)**:
@@ -87,7 +117,7 @@ The following legacy gates from `MLCValidityGates` remain unwired from the activ
 
 ---
 
-## 6. Canonical State Changes Made
+## 7. Canonical State Changes Made
 
 The following annotations have been successfully written and committed:
 * **`EKAMNET_PROGRAM_STATE.md`**:
@@ -99,18 +129,23 @@ The following annotations have been successfully written and committed:
 
 ---
 
-## 7. Full Test Suite Results (Old vs New)
+## 8. Full Test Suite Results (Old vs New)
 
 * **Old**: 194 collected, 193 passed, 1 failed (Ollama environment dependency in the legacy mechanism registry test).
-* **New**: 197 collected, 196 passed, 1 failed (no regressions; the mechanism registry test remains the only failure due to the local Ollama LLM environment dependency).
+* **New**: 198 collected, 197 passed, 1 failed (no regressions; the mechanism registry test remains the only failure due to the local Ollama LLM environment dependency).
 
 ---
 
-## 8. Plain-Language Summary
+## 9. Plain-Language Summary
 
 **Is the Milestone 5 headline result (true-causal admission 7.4%->0%, 54% false-winner rate) currently trustworthy?**
 
 **PARTIALLY TRUSTWORTHY.**
 
-* **Why it is trustworthy**: The mathematical and statistical outcomes (mean selection optimism, false-winner rate, admission rates) are correctly computed from the raw outputs of the experiment execution. The code structure for pairwise selection logic (`MLCCompetitionEngine`) is validated by unit tests and passes successfully.
-* **Why it is untrustworthy**: The primary claim of **temporal isolation** (no leakage of Window 3 outcomes into retrospective candidate selection) **has not been verified by code and cannot be verified retroactively** due to a complete lack of persisted execution logs. While the mathematical logic is correct, the empirical foundation of the run remains exposed to unlogged side-channel/leakage risks.
+* **Why it is trustworthy**: 
+  * The mathematical and statistical outcomes (mean selection optimism, false-winner rate, admission rates) are correctly computed from the raw outputs of the experiment execution. 
+  * The code structure for pairwise selection logic (`MLCCompetitionEngine`) is validated by unit tests and passes successfully.
+  * A **fresh in-memory verification run of seeds 51-100 has been completed, and its runtime temporal isolation and ERC budget constraints pass all validity checks successfully**.
+* **Why it is untrustworthy**: 
+  * The **historical on-disk primary run records (seeds 51-100) are completely lacking granular execution logs and remain retroactively unverifiable**.
+  * While the fresh verification run confirms that the codebase correctly isolates and gates the logic under those seeds, the original experiment run has no empirical audit trail.

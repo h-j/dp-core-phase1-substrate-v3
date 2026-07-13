@@ -707,6 +707,7 @@ class MLCExperimentRunner:
                 {"proposition_id": winner_id, **prospective_res}
             )
             
+        decision_dict["prospective_filter_enabled"] = enable_prospective_filter
         sys_dec = decision_dict["decision"]
         if sys_dec == "ADMIT":
             target_state = LifecycleState.ADMITTED_BELIEF

@@ -495,4 +495,17 @@ def test_wired_gate_8_candidate_immutability_violation():
     assert res["status"] == "FAIL"
 
 
+def test_wired_gate_1_temporal_isolation_empty_logs_indeterminate():
+    from flows.minimal_learning_cycle.validity_gates import MLCValidityGates
+    res1 = MLCValidityGates.verify_gate_1_temporal_isolation([], [])
+    assert res1["status"] == "INDETERMINATE"
+    assert "empty" in res1["evidence"]
+
+    res2 = MLCValidityGates.verify_gate_1_temporal_isolation([{"resource_type": "VALIDATION"}], [])
+    assert res2["status"] == "INDETERMINATE"
+
+    res3 = MLCValidityGates.verify_gate_1_temporal_isolation([], [{"proposition_id": "p"}])
+    assert res3["status"] == "INDETERMINATE"
+
+
 

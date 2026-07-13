@@ -16,13 +16,21 @@ class MLCValidityGates:
         Checked by comparing validation authorizations in ERC logs to validated decisions.
         If the prospective filter was disabled, no validation authorizations should exist.
         """
+        if not erc_logs or not decisions:
+            return {
+                "status": "INDETERMINATE",
+                "evidence": "Insufficient input data: erc_logs or decisions list is empty.",
+            }
+
+        # Check if the prospective filter was enabled (default to True for backward compatibility)
+        filter_enabled = any(d.get("prospective_filter_enabled", True) for d in decisions)
+
         validation_auths = [
             l
             for l in erc_logs
             if l["resource_type"] == "VALIDATION"
             and l["authorization_decision"] == "AUTHORIZED"
         ]
-        has_validation_requests = any(l["resource_type"] == "VALIDATION" for l in erc_logs)
         
         candidates_validated = [
             d
@@ -30,12 +38,18 @@ class MLCValidityGates:
             if d.get("reason_code") not in ["FAILED_READINESS", "FAILED_COMPILATION"]
         ]
         
-        if has_validation_requests:
+        if filter_enabled:
             status = "PASS" if len(validation_auths) == len(candidates_validated) else "FAIL"
             evidence = f"Prospective filter enabled. Found {len(validation_auths)} validation authorizations for {len(candidates_validated)} validated candidates out of {len(decisions)} total decisions."
         else:
-            status = "PASS" if len(validation_auths) == 0 else "FAIL"
-            evidence = f"Prospective filter disabled. Found {len(validation_auths)} validation authorizations for {len(candidates_validated)} decisions."
+            # If prospective filter is disabled, no validation auths should be requested/authorized
+            has_validation_requests = any(l["resource_type"] == "VALIDATION" for l in erc_logs)
+            if has_validation_requests or len(validation_auths) > 0:
+                status = "FAIL"
+                evidence = f"Prospective filter disabled, but found unexpected validation requests/authorizations in ERC logs: {len(validation_auths)} authorized."
+            else:
+                status = "PASS"
+                evidence = f"Prospective filter disabled. Found {len(validation_auths)} validation authorizations."
             
         return {
             "status": status,

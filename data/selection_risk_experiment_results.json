@@ -8,8 +8,8 @@
     "admit_rate": 0.04,
     "decisions": {
       "REJECT": 1,
-      "ADMIT": 2,
-      "DEFER": 47
+      "DEFER": 47,
+      "ADMIT": 2
     }
   },
   "condition_b_selection_no_filter": {
@@ -17,8 +17,8 @@
     "false_winner_rate": 0.46,
     "mean_selection_optimism": 0.05310565485021163,
     "decisions": {
-      "ADMIT": 2,
-      "DEFER": 48
+      "DEFER": 48,
+      "ADMIT": 2
     },
     "true_causal_outcomes": {
       "ADMIT": 2,
@@ -54,7 +54,7 @@
     "condition_b": {
       "gate_1": {
         "status": "PASS",
-        "evidence": "Prospective filter disabled. Found 0 validation authorizations for 50 decisions."
+        "evidence": "Prospective filter disabled. Found 0 validation authorizations."
       },
       "gate_7": {
         "status": "PASS",
