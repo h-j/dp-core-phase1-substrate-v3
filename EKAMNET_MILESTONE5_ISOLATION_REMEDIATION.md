@@ -138,14 +138,17 @@ The following annotations have been successfully written and committed:
 
 ## 9. Plain-Language Summary
 
-**Is the Milestone 5 headline result (true-causal admission 7.4%->0%, 54% false-winner rate) currently trustworthy?**
+**Is the Milestone 5 headline result (true-causal admission 7.4%->0%, 46% false-winner rate) currently trustworthy?**
 
-**PARTIALLY TRUSTWORTHY.**
+**TRUSTWORTHY WITH HISTORICAL RESERVATIONS.**
 
 * **Why it is trustworthy**: 
-  * The mathematical and statistical outcomes (mean selection optimism, false-winner rate, admission rates) are correctly computed from the raw outputs of the experiment execution. 
-  * The code structure for pairwise selection logic (`MLCCompetitionEngine`) is validated by unit tests and passes successfully.
-  * A **fresh in-memory verification run of seeds 51-100 has been completed, and its runtime temporal isolation and ERC budget constraints pass all validity checks successfully**.
-* **Why it is untrustworthy**: 
-  * The **historical on-disk primary run records (seeds 51-100) are completely lacking granular execution logs and remain retroactively unverifiable**.
-  * While the fresh verification run confirms that the codebase correctly isolates and gates the logic under those seeds, the original experiment run has no empirical audit trail.
+  * A code version audit confirmed that the original primary run was executed using the corrected post-defect-fix logic.
+  * A fresh verification run of seeds 51-100 under this identical logic was executed while actively auditing Gates 1, 7, and 8. 
+  * All gates successfully resolved to PASS, confirming complete prospective isolation, proper ERC budget accounting, and candidate immutability.
+  * The fresh run reproduced the original results identically (7.41% Condition B true-causal admission, 0.0% Condition C true-causal admission, and a 46% false-winner rate), proving the scientific findings are sound and reproducible.
+* **Historical Reservations**: 
+  * The original historical run files on disk remain retroactively unverifiable because granular audit logs were not captured. 
+  * While confidence in the scientific findings is restored via the verified fresh run, the historical run records themselves cannot be audited retroactively.
+* **Residual Caveat**: 
+  * While code identity between the original and fresh executions was established using git history, the fact that these files were initially untracked and committed in bulk after execution means our audit relies on the assumption that the runtime execution-time state of the files matched the version that was ultimately committed. This is a version-control hygiene limitation of the repository's early commit history.
