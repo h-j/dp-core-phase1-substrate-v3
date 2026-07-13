@@ -360,7 +360,7 @@ def test_ondisk_artifacts_validation():
     assert manifest.milestone_5 is not None
     assert manifest.milestone_6 is not None
     assert manifest.milestone_7 is not None
-    assert manifest.milestone_7_closure is not None
+    assert manifest.milestone_7_closure is None
 
 
 def test_ondisk_artifacts_validation_rejects_invalid(tmp_path):
@@ -406,6 +406,40 @@ def test_ondisk_artifacts_validation_rejects_invalid(tmp_path):
         
     with pytest.raises(ValueError, match="Consumption Blocked: Manifest contains failed/underpowered status"):
         EpistemicValidationManifestReader.load_manifest(str(tampered_path))
+
+
+def test_indeterminate_no_power_target_defined_blocks_closure():
+    from flows.minimal_learning_cycle.completion_gates import (
+        MilestoneScientificClosure, MilestoneCompletionGates, GateStatus, ClaimEvidenceConsistencyGate, ClaimStatus
+    )
+    
+    dummy_gates = MilestoneCompletionGates(
+        milestone_id="M7_GATES",
+        ISOLATION_GATE_STATUS=GateStatus.PASS,
+        CAUSAL_NECESSITY_GATE_STATUS=GateStatus.PASS,
+        MECHANISM_STRENGTH_GATE_STATUS=GateStatus.PASS,
+        DIAGNOSTIC_PRIMARY_SEPARATION_STATUS=GateStatus.PASS,
+        RESOURCE_CONTAMINATION_STATUS=GateStatus.PASS,
+        SAFEGUARD_BENEFIT_STATUS=GateStatus.PASS,
+        SAFEGUARD_COST_STATUS=GateStatus.PASS,
+        COMPLETE_LIFECYCLE_ACCOUNTING_STATUS=GateStatus.PASS,
+        CLAIM_SCOPE_STATUS=GateStatus.PASS,
+        REGRESSION_SAFETY_STATUS=GateStatus.PASS,
+    )
+    
+    indeterminate_claim = ClaimEvidenceConsistencyGate(
+        claim_id="M7_INDETERMINATE_CLAIM",
+        claim_text="Unverified claim without MME",
+        status=ClaimStatus.INDETERMINATE_NO_POWER_TARGET_DEFINED
+    )
+    
+    # Assert that instantiating MilestoneScientificClosure with an indeterminate claim raises ValueError
+    with pytest.raises(ValueError, match="Scientific Closure Failure for M7_FAIL: Undemonstrated claims: Unverified claim without MME \\(INDETERMINATE_NO_POWER_TARGET_DEFINED\\)"):
+        MilestoneScientificClosure(
+            milestone_id="M7_FAIL",
+            methodology_gates=dummy_gates,
+            claims=[indeterminate_claim]
+        )
 
 
 

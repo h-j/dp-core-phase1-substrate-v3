@@ -400,12 +400,16 @@ class MilestoneScientificClosure(BaseModel):
         undemonstrated = []
         contradicted = []
         for claim in self.claims:
-            if claim.status in (ClaimStatus.CLAIM_NOT_DEMONSTRATED, ClaimStatus.INSUFFICIENTLY_POWERED, ClaimStatus.INCONCLUSIVE):
-                undemonstrated.append(claim.claim_text)
+            if claim.status in (
+                ClaimStatus.CLAIM_NOT_DEMONSTRATED,
+                ClaimStatus.INSUFFICIENTLY_POWERED,
+                ClaimStatus.INCONCLUSIVE,
+                ClaimStatus.CLAIM_INDETERMINATE,
+                ClaimStatus.INDETERMINATE_NO_POWER_TARGET_DEFINED
+            ):
+                undemonstrated.append(f"{claim.claim_text} ({claim.status.value})")
             elif claim.status == ClaimStatus.CLAIM_CONTRADICTED:
                 contradicted.append(claim.claim_text)
-            elif claim.status == ClaimStatus.CLAIM_INDETERMINATE:
-                undemonstrated.append(claim.claim_text + " (INDETERMINATE)")
                 
         errors = []
         if contradicted:

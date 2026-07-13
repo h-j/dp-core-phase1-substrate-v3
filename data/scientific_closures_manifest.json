@@ -98,71 +98,7 @@
     "MILESTONE_SCIENTIFIC_CLOSURE_STATUS": "PASS",
     "VERDICT_INTEGRITY_STATUS": "PASS"
   },
-  "milestone_7_closure": {
-    "milestone_id": "MILESTONE_7_EPISTEMIC_CLOSURE",
-    "methodology_gates": {
-      "milestone_id": "MILESTONE_7_EPISTEMIC_VALIDATION",
-      "ISOLATION_GATE_STATUS": "PASS",
-      "CAUSAL_NECESSITY_GATE_STATUS": "PASS",
-      "MECHANISM_STRENGTH_GATE_STATUS": "PASS",
-      "DIAGNOSTIC_PRIMARY_SEPARATION_STATUS": "PASS",
-      "RESOURCE_CONTAMINATION_STATUS": "PASS",
-      "SAFEGUARD_BENEFIT_STATUS": "NOT_APPLICABLE",
-      "SAFEGUARD_COST_STATUS": "NOT_APPLICABLE",
-      "COMPLETE_LIFECYCLE_ACCOUNTING_STATUS": "PASS",
-      "CLAIM_SCOPE_STATUS": "PASS",
-      "REGRESSION_SAFETY_STATUS": "PASS",
-      "CANONICAL_STATE_CORRECTION_STATUS": "PASS",
-      "REPOSITORY_REALITY_INSPECTION_STATUS": "PASS",
-      "PERSISTENT_PRE_REGISTRATION_STATUS": "PASS",
-      "SEED_OVERLAP_STATUS": "PASS",
-      "FUTURE_DATA_ISOLATION_STATUS": "PASS",
-      "PRIMARY_BEHAVIORAL_METRIC_STATUS": "PASS",
-      "PRIMARY_EPISTEMIC_METRIC_STATUS": "PASS",
-      "PRIMARY_EPISTEMIC_METRIC_MEASUREMENT_STATUS": "PASS",
-      "EVIDENCE_SUFFICIENCY_REQUIREMENT_STATUS": "PASS",
-      "EVIDENCE_SUFFICIENCY_SATISFACTION_STATUS": "PASS",
-      "MEMORY_INFLUENCE_STATUS": "PASS",
-      "CAUSAL_ATTRIBUTION_STATUS": "PASS",
-      "FAMILY_A_RESULT_STATUS": "PASS",
-      "FAMILY_B_RESULT_STATUS": "PASS",
-      "NEGATIVE_MEMORY_OVERGENERALIZATION_STATUS": "PASS",
-      "RESOURCE_METRIC_STATUS": "PASS",
-      "CLAIM_EVIDENCE_GATE_REPAIR_STATUS": "PASS",
-      "CLAIM_EVIDENCE_CONSISTENCY_STATUS": "PASS",
-      "MILESTONE_SCIENTIFIC_CLOSURE_STATUS": "PASS",
-      "VERDICT_INTEGRITY_STATUS": "PASS"
-    },
-    "claims": [
-      {
-        "claim_id": "M7_MINIMAL_CAUSAL_LEARNING",
-        "claim_text": "Minimal causal learning demonstrated - Family A",
-        "status": "INDETERMINATE_NO_POWER_TARGET_DEFINED",
-        "sample_size": null,
-        "observed_diff": null,
-        "ci_lower": null,
-        "ci_upper": null,
-        "n_required": null
-      },
-      {
-        "claim_id": "M7_OVERGENERALIZATION_HARM",
-        "claim_text": "Negative memory overgeneralization demonstrated in Family B.",
-        "status": "INDETERMINATE_NO_POWER_TARGET_DEFINED",
-        "sample_size": null,
-        "observed_diff": null,
-        "ci_lower": null,
-        "ci_upper": null,
-        "n_required": null
-      }
-    ],
-    "primary_epistemic_metric_measured": true,
-    "evidence_sufficiency_satisfied": true,
-    "diagnostic_primary_separation": true,
-    "condition_isolation": true,
-    "causal_necessity_satisfied": true,
-    "claim_evidence_consistency": true,
-    "final_verdict_exceeds_evidence": false
-  },
+  "milestone_7_closure": null,
   "claims": [
     {
       "claim_id": "M5_FALSE_ADMISSION_CLAIM",

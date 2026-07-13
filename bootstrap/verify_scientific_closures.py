@@ -137,20 +137,65 @@ def verify_closures():
         for spec in claims
     ]
 
-    # Create closure verification for Milestone 7
-    m7_closure = MilestoneScientificClosure(
-        milestone_id="MILESTONE_7_EPISTEMIC_CLOSURE",
-        methodology_gates=m7_gates,
-        claims=[evaluated_claims[2], evaluated_claims[3]],
-        primary_epistemic_metric_measured=True,
-        evidence_sufficiency_satisfied=results["evidence_sufficiency_satisfied"],
-        diagnostic_primary_separation=True,
-        condition_isolation=True,
-        causal_necessity_satisfied=True,
-        claim_evidence_consistency=True,
-        final_verdict_exceeds_evidence=False
-    )
-    print("✓ Milestone 7 Scientific Closure Verified.")
+    # Try instantiating Milestone 5 Scientific Closure
+    m5_closure = None
+    try:
+        m5_closure = MilestoneScientificClosure(
+            milestone_id="MILESTONE_5_EPISTEMIC_CLOSURE",
+            methodology_gates=m5_gates,
+            claims=[evaluated_claims[0]],
+            primary_epistemic_metric_measured=True,
+            evidence_sufficiency_satisfied=True,
+            diagnostic_primary_separation=True,
+            condition_isolation=True,
+            causal_necessity_satisfied=True,
+            claim_evidence_consistency=True,
+            final_verdict_exceeds_evidence=False
+        )
+        print("✓ Milestone 5 Scientific Closure Verified.")
+    except ValueError as e:
+        status_name = evaluated_claims[0].status.value
+        print(f"⚠ Milestone 5 Closure: UNVERIFIED — {status_name} (MME not defined, closure not demonstrated).")
+
+    # Try instantiating Milestone 6 Scientific Closure
+    m6_closure = None
+    try:
+        m6_closure = MilestoneScientificClosure(
+            milestone_id="MILESTONE_6_EPISTEMIC_CLOSURE",
+            methodology_gates=m6_gates,
+            claims=[evaluated_claims[1]],
+            primary_epistemic_metric_measured=True,
+            evidence_sufficiency_satisfied=True,
+            diagnostic_primary_separation=True,
+            condition_isolation=True,
+            causal_necessity_satisfied=True,
+            claim_evidence_consistency=True,
+            final_verdict_exceeds_evidence=False
+        )
+        print("✓ Milestone 6 Scientific Closure Verified.")
+    except ValueError as e:
+        status_name = evaluated_claims[1].status.value
+        print(f"⚠ Milestone 6 Closure: UNVERIFIED — {status_name} (MME not defined, closure not demonstrated).")
+
+    # Try instantiating Milestone 7 Scientific Closure
+    m7_closure = None
+    try:
+        m7_closure = MilestoneScientificClosure(
+            milestone_id="MILESTONE_7_EPISTEMIC_CLOSURE",
+            methodology_gates=m7_gates,
+            claims=[evaluated_claims[2], evaluated_claims[3]],
+            primary_epistemic_metric_measured=True,
+            evidence_sufficiency_satisfied=results["evidence_sufficiency_satisfied"],
+            diagnostic_primary_separation=True,
+            condition_isolation=True,
+            causal_necessity_satisfied=True,
+            claim_evidence_consistency=True,
+            final_verdict_exceeds_evidence=False
+        )
+        print("✓ Milestone 7 Scientific Closure Verified.")
+    except ValueError as e:
+        status_names = ", ".join([f"{c.claim_id}: {c.status.value}" for c in evaluated_claims[2:]])
+        print(f"⚠ Milestone 7 Closure: UNVERIFIED — {status_names} (MME not defined, closure not demonstrated).")
 
     # Initialize manifest using the standard EpistemicValidationManifest model
     manifest = EpistemicValidationManifest(
