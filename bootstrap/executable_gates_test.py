@@ -301,4 +301,111 @@ def test_milestone_scientific_closure_validation():
         )
 
 
+def test_power_calculation_variance_source():
+    from flows.minimal_learning_cycle.completion_gates import ClaimSpecification, ClaimType, ClaimEvidenceConsistencyGate
+    
+    spec = ClaimSpecification(
+        claim_id="TEST_POWER_CLAIM",
+        claim_text="Test Power Claim",
+        claim_type=ClaimType.POSITIVE_IMPROVEMENT,
+        minimum_meaningful_effect=0.15
+    )
+    
+    # Results 1: p_c = 0.1, p_d = 0.8
+    res1 = {"sample_size": 13, "condition_c_rate": 0.1, "condition_d_rate": 0.8}
+    gate1 = ClaimEvidenceConsistencyGate.evaluate_claim_consistency(res1, spec)
+    
+    # Results 2: p_c = 0.4, p_d = 0.5
+    res2 = {"sample_size": 13, "condition_c_rate": 0.4, "condition_d_rate": 0.5}
+    gate2 = ClaimEvidenceConsistencyGate.evaluate_claim_consistency(res2, spec)
+    
+    assert gate1.n_required == gate2.n_required
+    assert gate1.n_required == 167  # (1.96 + 0.84)^2 * (0.5*0.5 + 0.65*0.35) / 0.15^2 -> 167
+
+
+def test_dynamic_critical_value_power_scaling():
+    from flows.minimal_learning_cycle.completion_gates import ClaimSpecification, ClaimType, ClaimEvidenceConsistencyGate
+    
+    spec_power_80 = ClaimSpecification(
+        claim_id="TEST_POWER_80",
+        claim_text="Power 80%",
+        claim_type=ClaimType.POSITIVE_IMPROVEMENT,
+        minimum_meaningful_effect=0.15,
+        target_power=0.80
+    )
+    
+    spec_power_90 = ClaimSpecification(
+        claim_id="TEST_POWER_90",
+        claim_text="Power 90%",
+        claim_type=ClaimType.POSITIVE_IMPROVEMENT,
+        minimum_meaningful_effect=0.15,
+        target_power=0.90
+    )
+    
+    res = {"sample_size": 13, "condition_c_rate": 0.1, "condition_d_rate": 0.8}
+    gate_80 = ClaimEvidenceConsistencyGate.evaluate_claim_consistency(res, spec_power_80)
+    gate_90 = ClaimEvidenceConsistencyGate.evaluate_claim_consistency(res, spec_power_90)
+    
+    # Target power 90% requires more sample size than 80%
+    assert gate_90.n_required > gate_80.n_required
+    assert gate_80.n_required == 167
+    assert gate_90.n_required > 167
+
+
+def test_ondisk_artifacts_validation():
+    from flows.minimal_learning_cycle.completion_gates import EpistemicValidationManifestReader
+    # Test loading actual files on disk
+    manifest = EpistemicValidationManifestReader.load_manifest("data/scientific_closures_manifest.json")
+    assert manifest is not None
+    assert manifest.milestone_5 is not None
+    assert manifest.milestone_6 is not None
+    assert manifest.milestone_7 is not None
+    assert manifest.milestone_7_closure is not None
+
+
+def test_ondisk_artifacts_validation_rejects_invalid(tmp_path):
+    import json
+    from flows.minimal_learning_cycle.completion_gates import EpistemicValidationManifestReader
+    
+    # 1. Deliberately tampered JSON (does not conform to schema)
+    invalid_json_path = tmp_path / "tampered_manifest.json"
+    with open(invalid_json_path, "w") as f:
+        json.dump({"random_key": "some_value"}, f)
+        
+    with pytest.raises(ValueError):
+        EpistemicValidationManifestReader.load_manifest(str(invalid_json_path))
+        
+    # 2. Manifest containing a claim with status CLAIM_CONTRADICTED
+    tampered_manifest = {
+        "milestone_5": None,
+        "milestone_6": None,
+        "milestone_7": None,
+        "milestone_7_closure": None,
+        "claims": [
+            {
+                "claim_id": "TAMPERED_CLAIM",
+                "claim_text": "Causal selection rate improvement",
+                "claim_type": "positive_improvement",
+                "minimum_meaningful_effect": 0.05,
+                "expected_baseline_proportion": 0.5,
+                "confidence_level": 0.95,
+                "target_power": 0.80
+            }
+        ],
+        "results": {
+            "sample_size": 1600,
+            "condition_c_rate": 0.5,
+            "condition_d_rate": 0.2,
+            "epistemic_metric_diff": -0.3
+        }
+    }
+    
+    tampered_path = tmp_path / "tampered_contradicted_manifest.json"
+    with open(tampered_path, "w") as f:
+        json.dump(tampered_manifest, f)
+        
+    with pytest.raises(ValueError, match="Consumption Blocked: Manifest contains failed/underpowered status"):
+        EpistemicValidationManifestReader.load_manifest(str(tampered_path))
+
+
 

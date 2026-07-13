@@ -1,6 +1,9 @@
 import json
 from flows.minimal_learning_cycle.completion_gates import (
-    MilestoneCompletionGates, GateStatus, ClaimEvidenceConsistencyGate, MilestoneScientificClosure, ClaimStatus
+    MilestoneCompletionGates, GateStatus, ClaimEvidenceConsistencyGate,
+    MilestoneScientificClosure, ClaimStatus, EpistemicValidationManifest,
+    ValidationStorageManager, EpistemicValidationManifestReader,
+    ClaimSpecification, ClaimType
 )
 
 
@@ -21,7 +24,7 @@ def verify_closures():
         CLAIM_SCOPE_STATUS=GateStatus.PASS,
         REGRESSION_SAFETY_STATUS=GateStatus.PASS,
     )
-    print("✓ Milestone 5 Completion Gates Verified and Passed.")
+    print("✓ Milestone 5 Completion Gates Verified.")
 
     # 2. Evaluate Milestone 6
     m6_gates = MilestoneCompletionGates(
@@ -37,7 +40,7 @@ def verify_closures():
         CLAIM_SCOPE_STATUS=GateStatus.PASS,
         REGRESSION_SAFETY_STATUS=GateStatus.PASS,
     )
-    print("✓ Milestone 6 Completion Gates Verified and Passed.")
+    print("✓ Milestone 6 Completion Gates Verified.")
 
     # 3. Evaluate Milestone 7 (Epistemic Validation)
     m7_gates = MilestoneCompletionGates(
@@ -75,58 +78,98 @@ def verify_closures():
         MILESTONE_SCIENTIFIC_CLOSURE_STATUS=GateStatus.PASS,
         VERDICT_INTEGRITY_STATUS=GateStatus.PASS,
     )
+    print("✓ Milestone 7 Completion Gates Verified.")
 
     # Load experimental outcomes
     with open("data/epistemic_effect_validation_results.json", "r") as f:
         epistemic_results = json.load(f)
 
-    # Format claims consistency gates
-    results_a = {
-        "primary_epistemic_metric": "true_causal_selection_rate",
-        "epistemic_metric_measured": True,
-        "epistemic_metric_diff": epistemic_results["family_a_stable_confounder"]["selection_rate_diff"],
-        "evidence_sufficiency_satisfied": epistemic_results["evidence_sufficiency_satisfied"]
+    # Format all experimental results into a unified structure
+    results = {
+        "family_a": {
+            "sample_size": epistemic_results["family_a_stable_confounder"]["triggered_events"],
+            "condition_c_rate": epistemic_results["family_a_stable_confounder"]["condition_c_selection_rate"],
+            "condition_d_rate": epistemic_results["family_a_stable_confounder"]["condition_d_selection_rate"],
+            "epistemic_metric_diff": epistemic_results["family_a_stable_confounder"]["selection_rate_diff"],
+        },
+        "family_b": {
+            "sample_size": epistemic_results["family_b_context_shift"]["triggered_events"],
+            "condition_c_rate": epistemic_results["family_b_context_shift"]["condition_c_selection_rate"],
+            "condition_d_rate": epistemic_results["family_b_context_shift"]["condition_d_selection_rate"],
+            "epistemic_metric_diff": epistemic_results["family_b_context_shift"]["selection_rate_diff"],
+        },
+        "evidence_sufficiency_satisfied": epistemic_results["evidence_sufficiency_satisfied"],
+        "epistemic_metric_measured": epistemic_results["epistemic_metric_measured"],
+        "primary_epistemic_metric": epistemic_results["primary_epistemic_metric"]
     }
-    
-    claim_a = ClaimEvidenceConsistencyGate.evaluate_minimal_causal_learning(
-        results_a, "Minimal causal learning demonstrated - Family A"
-    )
-    assert claim_a.status == ClaimStatus.CLAIM_SUPPORTED
-    
-    # Negative overgeneralization claim asserts harm (expected: diff < 0.0)
-    # Let's map it into status check
-    harm_observed = epistemic_results["family_b_context_shift"]["selection_rate_diff"] < 0.0
-    claim_b_harm = ClaimEvidenceConsistencyGate(
-        claim_id="M7_OVERGENERALIZATION_HARM",
-        claim_text="Negative memory overgeneralization demonstrated in Family B.",
-        status=ClaimStatus.CLAIM_SUPPORTED if harm_observed else ClaimStatus.CLAIM_NOT_DEMONSTRATED
-    )
-    
+
+    # Define claim specifications for Milestones 5, 6, and 7
+    claims = [
+        ClaimSpecification(
+            claim_id="M5_FALSE_ADMISSION_CLAIM",
+            claim_text="Prospective Validation reduces false admissions",
+            claim_type=ClaimType.POSITIVE_IMPROVEMENT,
+            minimum_meaningful_effect=None
+        ),
+        ClaimSpecification(
+            claim_id="M6_ORDER_SENSITIVITY_CLAIM",
+            claim_text="Accumulated contradiction retires beliefs",
+            claim_type=ClaimType.POSITIVE_IMPROVEMENT,
+            minimum_meaningful_effect=None
+        ),
+        ClaimSpecification(
+            claim_id="M7_MINIMAL_CAUSAL_LEARNING",
+            claim_text="Minimal causal learning demonstrated - Family A",
+            claim_type=ClaimType.POSITIVE_IMPROVEMENT,
+            minimum_meaningful_effect=None
+        ),
+        ClaimSpecification(
+            claim_id="M7_OVERGENERALIZATION_HARM",
+            claim_text="Negative memory overgeneralization demonstrated in Family B.",
+            claim_type=ClaimType.HARM_DEGRADATION,
+            minimum_meaningful_effect=None
+        )
+    ]
+
+    # Evaluate consistency gates
+    evaluated_claims = [
+        ClaimEvidenceConsistencyGate.evaluate_claim_consistency(results, spec)
+        for spec in claims
+    ]
+
+    # Create closure verification for Milestone 7
     m7_closure = MilestoneScientificClosure(
         milestone_id="MILESTONE_7_EPISTEMIC_CLOSURE",
         methodology_gates=m7_gates,
-        claims=[claim_a, claim_b_harm],
+        claims=[evaluated_claims[2], evaluated_claims[3]],
         primary_epistemic_metric_measured=True,
-        evidence_sufficiency_satisfied=epistemic_results["evidence_sufficiency_satisfied"],
+        evidence_sufficiency_satisfied=results["evidence_sufficiency_satisfied"],
         diagnostic_primary_separation=True,
         condition_isolation=True,
         causal_necessity_satisfied=True,
         claim_evidence_consistency=True,
         final_verdict_exceeds_evidence=False
     )
-    print("✓ Milestone 7 Scientific Closure Verified and Passed.")
-    
-    # Dump active status manifest
-    manifest = {
-        "MILESTONE_5_SELECTION_GATES": m5_gates.model_dump(),
-        "MILESTONE_6_BELIEF_EVOLUTION": m6_gates.model_dump(),
-        "MILESTONE_7_EPISTEMIC_VALIDATION": m7_gates.model_dump(),
-        "MILESTONE_7_CLOSURE": m7_closure.model_dump()
-    }
-    with open("data/scientific_closures_manifest.json", "w") as f:
-        json.dump(manifest, f, indent=2)
-        
-    print("\n✓ Verification manifest written to data/scientific_closures_manifest.json.")
+    print("✓ Milestone 7 Scientific Closure Verified.")
+
+    # Initialize manifest using the standard EpistemicValidationManifest model
+    manifest = EpistemicValidationManifest(
+        milestone_5=m5_gates,
+        milestone_6=m6_gates,
+        milestone_7=m7_gates,
+        milestone_7_closure=m7_closure,
+        claims=claims,
+        results=results
+    )
+
+    # Route writing through ValidationStorageManager
+    ValidationStorageManager.save_manifest(manifest, "data/scientific_closures_manifest.json")
+    print("✓ Manifest successfully written using ValidationStorageManager.")
+
+    # Route reading through EpistemicValidationManifestReader to confirm consumption readiness
+    loaded_manifest = EpistemicValidationManifestReader.load_manifest("data/scientific_closures_manifest.json")
+    print("✓ Manifest successfully read and validated using EpistemicValidationManifestReader.")
+
 
 if __name__ == "__main__":
     verify_closures()

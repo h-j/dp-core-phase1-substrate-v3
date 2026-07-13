@@ -1,5 +1,5 @@
 {
-  "MILESTONE_5_SELECTION_GATES": {
+  "milestone_5": {
     "milestone_id": "MILESTONE_5_SELECTION_GATES",
     "ISOLATION_GATE_STATUS": "PASS",
     "CAUSAL_NECESSITY_GATE_STATUS": "PASS",
@@ -32,7 +32,7 @@
     "MILESTONE_SCIENTIFIC_CLOSURE_STATUS": "NOT_APPLICABLE",
     "VERDICT_INTEGRITY_STATUS": "NOT_APPLICABLE"
   },
-  "MILESTONE_6_BELIEF_EVOLUTION": {
+  "milestone_6": {
     "milestone_id": "MILESTONE_6_BELIEF_EVOLUTION",
     "ISOLATION_GATE_STATUS": "PASS",
     "CAUSAL_NECESSITY_GATE_STATUS": "PASS",
@@ -65,7 +65,7 @@
     "MILESTONE_SCIENTIFIC_CLOSURE_STATUS": "NOT_APPLICABLE",
     "VERDICT_INTEGRITY_STATUS": "NOT_APPLICABLE"
   },
-  "MILESTONE_7_EPISTEMIC_VALIDATION": {
+  "milestone_7": {
     "milestone_id": "MILESTONE_7_EPISTEMIC_VALIDATION",
     "ISOLATION_GATE_STATUS": "PASS",
     "CAUSAL_NECESSITY_GATE_STATUS": "PASS",
@@ -98,7 +98,7 @@
     "MILESTONE_SCIENTIFIC_CLOSURE_STATUS": "PASS",
     "VERDICT_INTEGRITY_STATUS": "PASS"
   },
-  "MILESTONE_7_CLOSURE": {
+  "milestone_7_closure": {
     "milestone_id": "MILESTONE_7_EPISTEMIC_CLOSURE",
     "methodology_gates": {
       "milestone_id": "MILESTONE_7_EPISTEMIC_VALIDATION",
@@ -137,12 +137,22 @@
       {
         "claim_id": "M7_MINIMAL_CAUSAL_LEARNING",
         "claim_text": "Minimal causal learning demonstrated - Family A",
-        "status": "CLAIM_SUPPORTED"
+        "status": "INDETERMINATE_NO_POWER_TARGET_DEFINED",
+        "sample_size": null,
+        "observed_diff": null,
+        "ci_lower": null,
+        "ci_upper": null,
+        "n_required": null
       },
       {
         "claim_id": "M7_OVERGENERALIZATION_HARM",
         "claim_text": "Negative memory overgeneralization demonstrated in Family B.",
-        "status": "CLAIM_SUPPORTED"
+        "status": "INDETERMINATE_NO_POWER_TARGET_DEFINED",
+        "sample_size": null,
+        "observed_diff": null,
+        "ci_lower": null,
+        "ci_upper": null,
+        "n_required": null
       }
     ],
     "primary_epistemic_metric_measured": true,
@@ -152,5 +162,102 @@
     "causal_necessity_satisfied": true,
     "claim_evidence_consistency": true,
     "final_verdict_exceeds_evidence": false
-  }
+  },
+  "claims": [
+    {
+      "claim_id": "M5_FALSE_ADMISSION_CLAIM",
+      "claim_text": "Prospective Validation reduces false admissions",
+      "claim_type": "positive_improvement",
+      "minimum_meaningful_effect": null,
+      "expected_baseline_proportion": null,
+      "confidence_level": 0.95,
+      "target_power": 0.8
+    },
+    {
+      "claim_id": "M6_ORDER_SENSITIVITY_CLAIM",
+      "claim_text": "Accumulated contradiction retires beliefs",
+      "claim_type": "positive_improvement",
+      "minimum_meaningful_effect": null,
+      "expected_baseline_proportion": null,
+      "confidence_level": 0.95,
+      "target_power": 0.8
+    },
+    {
+      "claim_id": "M7_MINIMAL_CAUSAL_LEARNING",
+      "claim_text": "Minimal causal learning demonstrated - Family A",
+      "claim_type": "positive_improvement",
+      "minimum_meaningful_effect": null,
+      "expected_baseline_proportion": null,
+      "confidence_level": 0.95,
+      "target_power": 0.8
+    },
+    {
+      "claim_id": "M7_OVERGENERALIZATION_HARM",
+      "claim_text": "Negative memory overgeneralization demonstrated in Family B.",
+      "claim_type": "harm_degradation",
+      "minimum_meaningful_effect": null,
+      "expected_baseline_proportion": null,
+      "confidence_level": 0.95,
+      "target_power": 0.8
+    }
+  ],
+  "results": {
+    "family_a": {
+      "sample_size": 13,
+      "condition_c_rate": 0.15384615384615385,
+      "condition_d_rate": 0.6923076923076923,
+      "epistemic_metric_diff": 0.5384615384615384
+    },
+    "family_b": {
+      "sample_size": 13,
+      "condition_c_rate": 0.7692307692307693,
+      "condition_d_rate": 0.0,
+      "epistemic_metric_diff": -0.7692307692307693
+    },
+    "evidence_sufficiency_satisfied": true,
+    "epistemic_metric_measured": true,
+    "primary_epistemic_metric": "true_causal_selection_rate"
+  },
+  "evaluated_claims": [
+    {
+      "claim_id": "M5_FALSE_ADMISSION_CLAIM",
+      "claim_text": "Prospective Validation reduces false admissions",
+      "status": "INDETERMINATE_NO_POWER_TARGET_DEFINED",
+      "sample_size": null,
+      "observed_diff": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "n_required": null
+    },
+    {
+      "claim_id": "M6_ORDER_SENSITIVITY_CLAIM",
+      "claim_text": "Accumulated contradiction retires beliefs",
+      "status": "INDETERMINATE_NO_POWER_TARGET_DEFINED",
+      "sample_size": null,
+      "observed_diff": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "n_required": null
+    },
+    {
+      "claim_id": "M7_MINIMAL_CAUSAL_LEARNING",
+      "claim_text": "Minimal causal learning demonstrated - Family A",
+      "status": "INDETERMINATE_NO_POWER_TARGET_DEFINED",
+      "sample_size": null,
+      "observed_diff": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "n_required": null
+    },
+    {
+      "claim_id": "M7_OVERGENERALIZATION_HARM",
+      "claim_text": "Negative memory overgeneralization demonstrated in Family B.",
+      "status": "INDETERMINATE_NO_POWER_TARGET_DEFINED",
+      "sample_size": null,
+      "observed_diff": null,
+      "ci_lower": null,
+      "ci_upper": null,
+      "n_required": null
+    }
+  ]
 }

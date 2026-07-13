@@ -15,14 +15,14 @@
 | **Measurement** | Active | Complete | Unverified | `UNVERIFIED` | None | None | None |
 | **Prospective Validation**| Active | Complete | Unverified | `UNVERIFIED` | DGP non-stationarity | None | None |
 | **Epistemic Plurality**| Active | Complete | Code Verified | `LIMITED_EVIDENCE` | Starvation/collapse | None | None |
-| **Selection / Comparison**| Active | Complete | Code Verified | `LIMITED_EVIDENCE` | Winner's Curse | None | None |
-| **Belief Evolution**| Active | Complete | Code Verified | `LIMITED_EVIDENCE` | Arbitrary mutation | None | None |
+| **Selection / Comparison**| Active | Complete | Code Verified (GATE_UNVERIFIED_UNDER_v0.5_PENDING_MME_DEFINITION) | `LIMITED_EVIDENCE` | Winner's Curse | None | None |
+| **Belief Evolution**| Active | Complete | Code Verified (GATE_UNVERIFIED_UNDER_v0.5_PENDING_MME_DEFINITION) | `LIMITED_EVIDENCE` | Arbitrary mutation | None | None |
 | **Lesson Formation**| Active | Complete | Unverified | `UNVERIFIED` | None | None | None |
 | **Principle Formation**| Active | Complete | Unverified | `UNVERIFIED` | None | None | None |
 | **Longitudinal Memory**| Active | Complete | Unverified | `UNVERIFIED` | None | None | None |
 | **Retrieval** | Active | Complete | Code Verified | `LIMITED_EVIDENCE` | Selection bias | None | None |
 | **Future Cognition**| Active | Complete | Code Verified | `LIMITED_EVIDENCE` | None | None | None |
-| **Closed Learning Loop**| Active | Complete | Code Verified | `LIMITED_EVIDENCE` | No epistemic validator metric measured; overgeneralization risk | None | None |
+| **Closed Learning Loop**| Active | Complete | Code Verified (GATE_UNVERIFIED_UNDER_v0.5_PENDING_MME_DEFINITION) | `LIMITED_EVIDENCE` | No epistemic validator metric measured; overgeneralization risk | None | None |
 
 ---
 

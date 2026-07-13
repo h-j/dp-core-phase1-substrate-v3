@@ -73,7 +73,7 @@
 ---
 
 ## 7. Milestone 5 Epistemic Selection & Comparison Status
-- **Status**: `MILESTONE_5_SCIENTIFICALLY_COMPLETE_WITHIN_TESTED_SCOPE`
+- **Status**: `MILESTONE_5_SCIENTIFICALLY_COMPLETE_WITHIN_TESTED_SCOPE | GATE_UNVERIFIED_UNDER_v0.5_PENDING_MME_DEFINITION`
 - **Capabilities Instantiated**:
   - **Pairwise Engine**: Implemented `MLCCompetitionEngine` comparing candidates on compliance, signed validation lift, and complexity.
   - **Runner Integration**: Updated `MLCExperimentRunner.run_lifecycle_with_competition` to compile sibling candidates (one correct, multiple confounding) under a shared group ID, check readiness, evaluate validation, and select the winner based on retrospective Window 2.
@@ -84,7 +84,7 @@
 ---
 
 ## 8. Milestone 6 Longitudinal Belief Evolution Status
-- **Status**: `MILESTONE_6_MINIMAL_LONGITUDINAL_BELIEF_EVOLUTION_DEMONSTRATED_WITH_LIMITED_EVIDENCE`
+- **Status**: `MILESTONE_6_MINIMAL_LONGITUDINAL_BELIEF_EVOLUTION_DEMONSTRATED_WITH_LIMITED_EVIDENCE | GATE_UNVERIFIED_UNDER_v0.5_PENDING_MME_DEFINITION`
 - **Capabilities Instantiated**:
   - **States**: Added `WEAKENED_BELIEF` and `RETIRED_BELIEF` states to the lifecycle schemas.
   - **Memory Update**: Extended `MLCBeliefMemory` with status querying (`get_active_beliefs`) and transition tracking (`update_belief_state`), preserving transition history and provenance.
@@ -92,7 +92,7 @@
   - **Experimental Output**: Proved that multiple temporally ordered evidence events trigger expected state updates (Sequence A Control stable, Sequence B Accumulating Contradiction transitions `ADMITTED -> WEAKENED -> RETIRED`, Sequence C Support stable, Sequence D Order Sensitivity demonstrates different final states under permutation, and Sequence E duplicate events are idempotent).
 
 ## 9. Milestone 7 Minimal Causal Learning Loop Status
-- **Status**: `MILESTONE_7_MINIMAL_CAUSAL_LEARNING_DEMONSTRATED_WITH_MIXED_CONTEXT_DEPENDENT_EPISTEMIC_EFFECT`
+- **Status**: `MILESTONE_7_MINIMAL_CAUSAL_LEARNING_DEMONSTRATED_WITH_MIXED_CONTEXT_DEPENDENT_EPISTEMIC_EFFECT | GATE_UNVERIFIED_UNDER_v0.5_PENDING_MME_DEFINITION`
 - **Capabilities Instantiated**:
   - **Memory query**: Added `get_rejected_or_retired_triggers()` in `belief_memory.py` to retrieve trigger fields of rejected confounders.
   - **Intervention hook**: Added global learning pruning check in candidate compilation of `experiment.py` (applicable to both causal and confounding candidates).
