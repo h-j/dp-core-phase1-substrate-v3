@@ -1834,9 +1834,14 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
 
                         # Construct mutated theory
                         import copy
+                        from datetime import datetime, timezone
+                        from uuid import uuid4
 
                         theory = copy.deepcopy(prior_theory)
                         theory.id = str(uuid4())
+                        if theory.summary_structured:
+                            theory.summary_structured.id = str(uuid4())
+                            theory.summary_structured.created_at = datetime.now(timezone.utc)
 
                         def to_str(val, default="") -> str:
                             if val is None:
