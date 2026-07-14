@@ -1,0 +1,15 @@
+{
+  "id": "4a95f010-4720-4bd6-be1e-8cfc1c923d22",
+  "created_at": "2026-07-01T07:17:15.560262+00:00",
+  "created_at_step": 8,
+  "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "ddde2c51-95df-4930-8a81-ebb7e9c67379"
+  ],
+  "hypothesized_factors": [
+    "expanded",
+    "normal"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

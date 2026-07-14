@@ -1,0 +1,67 @@
+{
+  "id": "668168e9-3286-4ce0-b00c-fbb77e74092d",
+  "created_at": "2026-06-30T05:52:20.321686+00:00",
+  "status": "retired",
+  "statement": "The component expectation 'price_structure' is valid under market conditions where regime subtype and volatility regime are in a state of momentum or range-bound, and volume state is high or normal. The expectation breaks down when the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+  "associated_lineage_ids": [
+    "27e3520c-bb4b-4608-9cc4-bb60e2f4b867",
+    "864b47c8-5552-489e-b984-ce4990d7bdf5",
+    "3154ff9f-f8c9-42ca-8b2b-257c34487bc1",
+    "108f5b92-3987-48d1-847c-bef274534aa6",
+    "8ed9ad77-06a4-44b1-ad50-1a1109731029"
+  ],
+  "supporting_theory_ids": [
+    "27e3520c-bb4b-4608-9cc4-bb60e2f4b867",
+    "864b47c8-5552-489e-b984-ce4990d7bdf5",
+    "3154ff9f-f8c9-42ca-8b2b-257c34487bc1",
+    "108f5b92-3987-48d1-847c-bef274534aa6",
+    "8ed9ad77-06a4-44b1-ad50-1a1109731029"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "c335bf4f-62a7-4c37-8d9d-258abfffa8a9",
+      "created_at": "2026-06-30T05:52:20.321372+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "trend"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "7d298e58-c8c7-49f4-bddb-58e9fbe008fd",
+      "created_at": "2026-06-30T05:52:20.321489+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "volume_state": "low"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 5,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 5.0
+}

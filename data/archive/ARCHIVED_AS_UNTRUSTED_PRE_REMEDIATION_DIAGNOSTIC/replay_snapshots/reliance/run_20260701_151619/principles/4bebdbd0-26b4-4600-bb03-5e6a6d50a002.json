@@ -1,0 +1,92 @@
+{
+  "id": "4bebdbd0-26b4-4600-bb03-5e6a6d50a002",
+  "created_at": "2026-07-02T03:29:49.524046+00:00",
+  "status": "retired",
+  "statement": "Volume confirmation is predictive when participation and volatility are in an expansion confirmed regime, but not in neutral, fatigue, pressure_loaded_range, or liquidity_constrained regimes.",
+  "associated_lineage_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4",
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f",
+    "ef98a193-498c-45ce-a6ce-367538088dc9"
+  ],
+  "supporting_theory_ids": [],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "52bcc2a8-749d-4173-b3c1-d96fad38cafc",
+      "created_at": "2026-07-02T03:29:49.523054+00:00",
+      "target_component": "volume_confirmation",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": [
+          "expansion_confirmed"
+        ],
+        "volatility_regime": null
+      },
+      "empirical_support_count": 11,
+      "empirical_failure_count": 9
+    }
+  ],
+  "confidence": 0.8,
+  "support_count": 11,
+  "contradiction_count": 9,
+  "created_at_step": 19,
+  "revision_history": [
+    {
+      "id": "070d0093-54e0-4dbc-902e-0a2d57fc6e22",
+      "created_at": "2026-07-02T03:29:00.306590+00:00",
+      "revision_step": 19,
+      "previous_statement": "Volume confirmation is predictive when participation and volatility expand together, regardless of the regime subtype.",
+      "updated_statement": "Volume confirmation is predictive when participation and volatility expand together, regardless of the regime subtype, but only in expansion confirmed regimes.",
+      "change_reason": "split from parent principle f3667c62 due to contradictions"
+    },
+    {
+      "id": "f8643e8b-7b17-4643-a984-649ec2762463",
+      "created_at": "2026-07-02T03:29:00.306701+00:00",
+      "revision_step": 19,
+      "previous_statement": "Volume confirmation is predictive when participation and volatility expand together, regardless of the regime subtype.",
+      "updated_statement": "Volume confirmation is not predictive when participation and volatility expand together, regardless of the regime subtype, in neutral, fatigue, pressure_loaded_range, or liquidity_constrained regimes.",
+      "change_reason": "split from parent principle f3667c62 due to contradictions"
+    },
+    {
+      "id": "a77e46c0-4d3d-4a17-a3ea-e30f057f33d3",
+      "created_at": "2026-07-02T03:29:49.523004+00:00",
+      "revision_step": 19,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "Volume confirmation is predictive when participation and volatility are in an expansion confirmed regime, but not in neutral, fatigue, pressure_loaded_range, or liquidity_constrained regimes.",
+      "change_reason": "consolidated via hierarchical merging"
+    }
+  ],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "grounded_mechanism_ids": [],
+  "valid_under": {},
+  "fails_under": {},
+  "competing_principle_ids": [],
+  "maturation_history": [],
+  "grounded_concepts": [],
+  "grounded_relations": {},
+  "supported_concepts": [
+    "INSTITUTIONAL_ACCUMULATION",
+    "VOLATILITY_EXPANSION"
+  ],
+  "supported_relations": [
+    "VOLATILITY_EXPANSION AMPLIFIES context"
+  ],
+  "ontology_version": "1.0.0",
+  "validation_taxonomy_version": "1.0.0",
+  "empirical_support": 0,
+  "cross_asset_support": 0,
+  "usefulness_trend": 0.0,
+  "stability_age": 1,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": -6.193
+}

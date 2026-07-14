@@ -1,0 +1,119 @@
+{
+  "id": "166521db-54d4-42ff-be2f-dd56cdb78ad9",
+  "created_at": "2026-07-02T03:24:52.673956+00:00",
+  "status": "retired",
+  "statement": "Volume confirmation is only predictive when participation and volatility expand together.",
+  "associated_lineage_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4",
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f"
+  ],
+  "supporting_theory_ids": [
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f"
+  ],
+  "contradicting_theory_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "ea1d5495-943a-41ca-94db-8badd493945b",
+      "created_at": "2026-07-02T03:24:52.658759+00:00",
+      "target_component": "volume_confirmation",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "pressure_loaded_range",
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "6e361676-17a0-442d-b063-5229cefdd109",
+      "created_at": "2026-07-02T03:24:52.658862+00:00",
+      "target_component": "volume_confirmation",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "expansion_confirmed",
+        "volatility_regime": "expanded"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 17,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "grounded_mechanism_ids": [],
+  "valid_under": {},
+  "fails_under": {},
+  "competing_principle_ids": [],
+  "maturation_history": [
+    {
+      "id": "426bdd54-06cb-47ce-a34d-8a222455f3aa",
+      "created_at": "2026-07-02T03:25:09.105033+00:00",
+      "step": 17,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 5.0,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "77ef311b-2f1a-417b-a001-75c8e96fa5b3",
+      "created_at": "2026-07-02T03:27:04.310118+00:00",
+      "step": 18,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.95,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    }
+  ],
+  "grounded_concepts": [],
+  "grounded_relations": {},
+  "supported_concepts": [
+    "INSTITUTIONAL_ACCUMULATION",
+    "VOLATILITY_EXPANSION"
+  ],
+  "supported_relations": [
+    "VOLATILITY_EXPANSION AMPLIFIES context"
+  ],
+  "ontology_version": "1.0.0",
+  "validation_taxonomy_version": "1.0.0",
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 1,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 4.95
+}

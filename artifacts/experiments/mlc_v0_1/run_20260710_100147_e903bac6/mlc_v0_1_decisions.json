@@ -1,0 +1,58 @@
+[
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3509,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_A_SEED_42",
+    "world_id": "WORLD_A_SEED_42",
+    "timestamp": 1783657907.9456089,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.3615,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_B_SEED_42",
+    "world_id": "WORLD_B_SEED_42",
+    "timestamp": 1783657907.947638,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_C1_SEED_42",
+    "world_id": "WORLD_C1_SEED_42",
+    "timestamp": 1783657907.9486852
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.0323,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_C2_SEED_42",
+    "world_id": "WORLD_C2_SEED_42",
+    "timestamp": 1783657907.950392,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  }
+]

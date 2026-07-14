@@ -1,0 +1,143 @@
+{
+  "id": "cc3fa687-084d-42f5-8713-37a6ddceeadf",
+  "created_at": "2026-07-03T02:49:59.599337+00:00",
+  "status": "candidate",
+  "statement": "Volume expansion during up days is only predictive when the market regime is neutral and volume state is elevated, suggesting that a strong upward bias in market volume is necessary for volume confirmation to hold.",
+  "associated_lineage_ids": [
+    "efd624f2-4567-4d42-b314-dd6e8fbe55c1",
+    "7be6045e-59a2-4a6d-9134-a21d1aaa7179"
+  ],
+  "supporting_theory_ids": [
+    "efd624f2-4567-4d42-b314-dd6e8fbe55c1"
+  ],
+  "contradicting_theory_ids": [
+    "7be6045e-59a2-4a6d-9134-a21d1aaa7179"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "a77845cb-3e49-40f0-9c7e-a6cacc79562c",
+      "created_at": "2026-07-03T02:49:59.583077+00:00",
+      "target_component": "volume_expansion_revised_3",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "pressure_loaded_range",
+        "volatility_regime": "expanded",
+        "volume_state": null
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "970d87be-68f9-485d-ba94-d32058c8ac6b",
+      "created_at": "2026-07-03T02:49:59.583231+00:00",
+      "target_component": "volume_expansion_revised_3",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "fatigue",
+        "volatility_regime": "compressed",
+        "volume_state": "elevated"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 7,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "grounded_mechanism_ids": [],
+  "valid_under": {},
+  "fails_under": {},
+  "competing_principle_ids": [],
+  "maturation_history": [
+    {
+      "id": "66394893-be23-421e-a977-a894f08da797",
+      "created_at": "2026-07-03T02:49:59.601717+00:00",
+      "step": 7,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 5.0,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "31f603bf-7b5d-441e-8294-498dc756f3a7",
+      "created_at": "2026-07-03T02:51:00.100087+00:00",
+      "step": 8,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.95,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "9abb8309-3ebc-4a1b-a282-c9d3aa0982bd",
+      "created_at": "2026-07-03T02:52:20.950717+00:00",
+      "step": 9,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.9,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    }
+  ],
+  "grounded_concepts": [],
+  "grounded_relations": {},
+  "supported_concepts": [
+    "LIQUIDITY_FADING",
+    "VOLATILITY_EXPANSION",
+    "MOMENTUM",
+    "INSTITUTIONAL_ACCUMULATION",
+    "ASSET_SELLOFF"
+  ],
+  "supported_relations": [
+    "VOLATILITY_EXPANSION CONTRADICTS context"
+  ],
+  "ontology_version": "1.0.0",
+  "validation_taxonomy_version": "1.0.0",
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 3,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 4.85
+}

@@ -1,0 +1,9 @@
+{
+  "id": "6b36f120-fe18-4525-8890-95fd13a02721",
+  "created_at": "2026-07-03T04:38:24.952305+00:00",
+  "open_question_id": "643caa53-10aa-4e00-a6fe-5f1e4efd632d",
+  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'new_momentum_component'",
+  "candidate_data_source": "FII/DII Flows & Order Book Depth",
+  "expected_explanatory_value": "To resolve structural failure of component 'new_momentum_component' under neutral regime",
+  "priority": "HIGH"
+}

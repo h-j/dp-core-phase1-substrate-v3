@@ -1,0 +1,104 @@
+{
+  "id": "ebc578cb-e4d8-4329-8457-8a7cdbad4217",
+  "created_at": "2026-07-02T03:26:47.567283+00:00",
+  "status": "retired",
+  "statement": "Volume confirmation is only predictive when participation and volatility expand together.",
+  "associated_lineage_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4",
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f",
+    "ef98a193-498c-45ce-a6ce-367538088dc9"
+  ],
+  "supporting_theory_ids": [
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f",
+    "ef98a193-498c-45ce-a6ce-367538088dc9"
+  ],
+  "contradicting_theory_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "655396f6-18c9-471c-85f3-ebe35dd84d8f",
+      "created_at": "2026-07-02T03:26:47.561844+00:00",
+      "target_component": "volume_confirmation",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "pressure_loaded_range"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 1
+    },
+    {
+      "id": "de0a9aca-a74d-4182-88bc-3d472218c2e8",
+      "created_at": "2026-07-02T03:26:47.561895+00:00",
+      "target_component": "volume_confirmation",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "expansion_confirmed",
+        "volatility_regime": "expanded"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.0,
+  "support_count": 0,
+  "contradiction_count": 1,
+  "created_at_step": 18,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "grounded_mechanism_ids": [],
+  "valid_under": {},
+  "fails_under": {
+    "pressure_loaded_range": 1
+  },
+  "competing_principle_ids": [],
+  "maturation_history": [
+    {
+      "id": "dfa9cc14-eb01-4237-8aec-d8bbbd04fb6a",
+      "created_at": "2026-07-02T03:27:04.313949+00:00",
+      "step": 18,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 1,
+      "trust_score": 1.0,
+      "accuracy": 0.0,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": false
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations",
+        "+2.00 trust score"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations, +2.00 trust score"
+    }
+  ],
+  "grounded_concepts": [],
+  "grounded_relations": {},
+  "supported_concepts": [
+    "INSTITUTIONAL_ACCUMULATION",
+    "VOLATILITY_EXPANSION"
+  ],
+  "supported_relations": [
+    "VOLATILITY_EXPANSION AMPLIFIES context"
+  ],
+  "ontology_version": "1.0.0",
+  "validation_taxonomy_version": "1.0.0",
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 1.0
+}

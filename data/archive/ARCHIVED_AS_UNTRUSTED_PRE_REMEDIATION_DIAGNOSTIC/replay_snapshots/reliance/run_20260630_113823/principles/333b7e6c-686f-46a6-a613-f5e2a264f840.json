@@ -1,0 +1,67 @@
+{
+  "id": "333b7e6c-686f-46a6-a613-f5e2a264f840",
+  "created_at": "2026-06-30T06:17:15.488289+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where regime subtype and volatility regime are in a state of balance, but breaks down when either momentum or volatility dominates.",
+  "associated_lineage_ids": [
+    "f8136a19-046d-488a-a888-0a1a4e5c6382",
+    "1f3aeb15-0da3-4004-a11f-4b37e02484a0",
+    "409b8635-3561-46d5-b570-c040031e8c1b",
+    "1b108b3e-01df-42cc-840c-576c6d643aba"
+  ],
+  "supporting_theory_ids": [
+    "1b108b3e-01df-42cc-840c-576c6d643aba",
+    "1f3aeb15-0da3-4004-a11f-4b37e02484a0",
+    "409b8635-3561-46d5-b570-c040031e8c1b",
+    "f8136a19-046d-488a-a888-0a1a4e5c6382"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "1ae2047f-7254-49df-89d3-f45ddca739a3",
+      "created_at": "2026-06-30T06:17:15.488062+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "expanded"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "475ff9e6-1d24-401f-9d4e-e0ce219c7bdd",
+      "created_at": "2026-06-30T06:17:15.488180+00:00",
+      "target_component": "price_structure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 4,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 1,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 4.95
+}

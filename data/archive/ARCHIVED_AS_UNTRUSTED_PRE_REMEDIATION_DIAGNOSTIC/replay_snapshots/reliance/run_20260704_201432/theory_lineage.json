@@ -1,0 +1,150 @@
+{
+  "bc43fedf5a8669e0": {
+    "id": "bc43fedf5a8669e0",
+    "lineage_id": "bc43fedf5a8669e0",
+    "created_at_step": 0,
+    "parent_ids": [],
+    "status": "contradicted",
+    "confidence": 0.5,
+    "abstraction": "Reliance is experiencing moderate volatility with a mixed trend, indicating a neutral sector performance and weak short-term momentum.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.461,
+      "theoretical_coherence": 0.2956,
+      "contradiction_pressure": 0.234
+    },
+    "contradictions": [
+      "Structural: Field conflict: Increased volatility leads to  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: Increased volatility... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs never: ignore...; Participation: weakening vs elevated"
+    ],
+    "contradiction_count": 1,
+    "mutation_reason": "continued",
+    "survival_steps": 5,
+    "last_seen_step": 1,
+    "mutation_count": 0,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": [],
+    "predictive_fitness": 0.5,
+    "economic_fitness": 0.5,
+    "generalization_fitness": 0.5,
+    "cross_asset_fitness": 0.5,
+    "longevity_days": 0
+  },
+  "825f24501c94113e": {
+    "id": "825f24501c94113e",
+    "lineage_id": "825f24501c94113e",
+    "created_at_step": 2,
+    "parent_ids": [],
+    "status": "contradicted",
+    "confidence": 0.482,
+    "abstraction": "Weaker short-term momentum and fading asset liquidity suggest a weakening trend, but RELIANCE's leading sector position and moderate delivery volumes indicate some stability. Overall, the market is in a mixed state with no clear direction.",
+    "confidence_state": {
+      "empirical_confidence": 0.482,
+      "regime_confidence": 0.6447,
+      "reflection_confidence": 0.46,
+      "theoretical_coherence": 0.2704,
+      "contradiction_pressure": 0.2557
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: Increased volatility... vs VOLATILITY_EXPANSION...; Low semantic similarity: weak_move && RELIANC... vs VOLATILITY_EXPANSION...; Low semantic similarity: otherwise: demote ME... vs VOLATILITY_EXPANSION...",
+      "Structural: Field conflict: Increased volatility leads to  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: Increased volatility... vs always: observe...; Low semantic similarity: weak_move && RELIANC... vs always: observe...; Low semantic similarity: otherwise: demote ME... vs never: ignore...; Participation: weakening vs elevated"
+    ],
+    "contradiction_count": 2,
+    "mutation_reason": null,
+    "survival_steps": 3,
+    "last_seen_step": 2,
+    "mutation_count": 0,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": [],
+    "predictive_fitness": 0.5,
+    "economic_fitness": 0.5,
+    "generalization_fitness": 0.5,
+    "cross_asset_fitness": 0.5,
+    "longevity_days": 0
+  },
+  "097d3bda7d394423": {
+    "id": "097d3bda7d394423",
+    "lineage_id": "bc43fedf5a8669e0",
+    "created_at_step": 3,
+    "parent_ids": [
+      "bc43fedf5a8669e0"
+    ],
+    "status": "contradicted",
+    "confidence": 0.3825,
+    "abstraction": "Reliance is trading within a compressed range-bound pattern with moderate volume and neutral sector participation, indicating a mixed trend persistence and horizon context.",
+    "confidence_state": {
+      "empirical_confidence": 0.3825,
+      "regime_confidence": 0.6492,
+      "reflection_confidence": 0.4434,
+      "theoretical_coherence": 0.1612,
+      "contradiction_pressure": 0.6571
+    },
+    "contradictions": [
+      "Structural: Field conflict: Increased volatility leads to  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: Increased volatility... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs never: ignore...; Participation: weakening vs elevated",
+      "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: DELIVERY_EXHAUSTION... vs never...; Low semantic similarity: Compressed volatilit... vs weak_move && RELIANC...; Low semantic similarity: volume > 1000 and ga... vs weak_move && RELIANC...; Low semantic similarity: false: demote... vs otherwise: demote ME...",
+      "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: DELIVERY_EXHAUSTION... vs never...; Field conflict: Compressed volatility through  vs VOLATILITY_EXPANSION > 0.5: AD; Low semantic similarity: volume > 1000 and ga... vs VOLATILITY_EXPANSION...; Low semantic similarity: false: demote... vs VOLATILITY_EXPANSION...",
+      "Structural: Low semantic similarity: Compressed volatilit... vs {\n  \"claim\": \"Regime...; Low semantic similarity: DELIVERY_EXHAUSTION... vs never...; Low semantic similarity: Compressed volatilit... vs always: observe...; Low semantic similarity: volume > 1000 and ga... vs always: observe...; Low semantic similarity: false: demote... vs never: ignore..."
+    ],
+    "contradiction_count": 4,
+    "mutation_reason": "semantic_similarity_0.38",
+    "survival_steps": 2,
+    "last_seen_step": 3,
+    "mutation_count": 1,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": [],
+    "predictive_fitness": 0.5,
+    "economic_fitness": 0.5,
+    "generalization_fitness": 0.5,
+    "cross_asset_fitness": 0.5,
+    "longevity_days": 0
+  },
+  "760845a19c371b34": {
+    "id": "760845a19c371b34",
+    "lineage_id": "bc43fedf5a8669e0",
+    "created_at_step": 4,
+    "parent_ids": [
+      "bc43fedf5a8669e0"
+    ],
+    "status": "contradicted",
+    "confidence": 0.0252,
+    "abstraction": "Reliance is trading in a range-bound state with moderate volatility, showing mixed short-term momentum and weak bear participation.",
+    "confidence_state": {
+      "empirical_confidence": 0.0252,
+      "regime_confidence": 0.6548,
+      "reflection_confidence": 0.4279,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 1.0
+    },
+    "contradictions": [
+      "Structural: Field conflict: Increased volatility leads to  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: Increased volatility... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs never: ignore...; Participation: weakening vs elevated",
+      "Structural: Field conflict: Compressed volatility through  vs Compressed volatility through ; Low semantic similarity: MOMENTUM_DAMPENING... vs DELIVERY_EXHAUSTION...; Low semantic similarity: Compressed volatilit... vs volume > 1000 and ga...; Low semantic similarity: volume_spike OR deli... vs volume > 1000 and ga...; Low semantic similarity: otherwise: demote me... vs false: demote...",
+      "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Low semantic similarity: Compressed volatilit... vs weak_move && RELIANC...; Low semantic similarity: volume_spike OR deli... vs weak_move && RELIANC...; Low semantic similarity: otherwise: demote me... vs otherwise: demote ME...",
+      "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Field conflict: Compressed volatility through  vs VOLATILITY_EXPANSION > 0.5: AD; Low semantic similarity: volume_spike OR deli... vs VOLATILITY_EXPANSION...; Low semantic similarity: otherwise: demote me... vs VOLATILITY_EXPANSION...",
+      "Structural: Field conflict: Compressed volatility through  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Low semantic similarity: Compressed volatilit... vs always: observe...; Low semantic similarity: volume_spike OR deli... vs always: observe...; Low semantic similarity: otherwise: demote me... vs never: ignore..."
+    ],
+    "contradiction_count": 5,
+    "mutation_reason": "semantic_similarity_0.46",
+    "survival_steps": 1,
+    "last_seen_step": 4,
+    "mutation_count": 1,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": [],
+    "predictive_fitness": 0.5,
+    "economic_fitness": 0.5,
+    "generalization_fitness": 0.5,
+    "cross_asset_fitness": 0.5,
+    "longevity_days": 0
+  }
+}

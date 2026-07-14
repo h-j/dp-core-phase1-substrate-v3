@@ -1,0 +1,1801 @@
+{
+  "symbol": "RELIANCE",
+  "days": 30,
+  "date_range": "2026-05-15 \u2192 2026-06-25",
+  "execution_hash": "c7b49559f041addcd8eedc74dc42951a5ca383aef117b6dd8005306b0b928ab9",
+  "git_commit": "b311d340c394ae66640035f1339cbae1ab0ef1ea",
+  "llm_version": "llama3.2",
+  "replay_version": "v3.0PersistentReflective",
+  "story_summary": "This replay represents 30 days of experience on RELIANCE. During this period, DP generated 22 experiences, evolved 21 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 2 key market mechanisms while identifying 11 unresolved evidence gap(s).",
+  "metrics": {
+    "accuracy": 28.57142857142857,
+    "knowledge_debt": 0,
+    "memory_usefulness": 0.6950227272727273,
+    "knowledge_coverage": 0.0,
+    "prediction_drift": 0.0,
+    "theory_drift": 0.0
+  },
+  "knowledge_health": {
+    "knowledge_debt_bar": 10,
+    "principle_coverage": 0.0,
+    "reuse_rate": 0.0,
+    "trust": 80.89999999999999
+  },
+  "knowledge_lifecycle": {
+    "candidate": 4,
+    "emerging": 0,
+    "trusted": 0,
+    "canonical": 0,
+    "retired": 88
+  },
+  "timeline": [
+    {
+      "date": "2026-05-15",
+      "theory": "Regime is driven by Absorption; price remains range-bound despite volume expansion.",
+      "prediction": "lower (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-05-18",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and weakening short-term momentum.",
+      "prediction": "uncertain (34%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.089
+    },
+    {
+      "date": "2026-05-19",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and weakening short-term momentum, and a potential shift towards bearish dominance.",
+      "prediction": "lower (78%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.242
+    },
+    {
+      "date": "2026-05-20",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance.",
+      "prediction": "higher (59%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.10336129032258065
+    },
+    {
+      "date": "2026-05-21",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance, with RELIANCE's performance serving as a key indicator of the regime's direction.",
+      "prediction": "uncertain (59%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.2308423780487805
+    },
+    {
+      "date": "2026-05-22",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance, with RELIANCE's performance serving as a key indicator of the regime's direction. However, in this observation, the regime appears to be neutral due to weak upper participation and moderate delivery, suggesting that the absorption mechanism may not be driving the market as strongly as previously thought.",
+      "prediction": "range_bound (26%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.3659292445054945
+    },
+    {
+      "date": "2026-05-25",
+      "theory": "Revised claim: The market regime is experiencing a neutral phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a mixed trend persistence.",
+      "prediction": "range_bound (40%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.15219973479334134
+    },
+    {
+      "date": "2026-05-26",
+      "theory": "Revised claim: The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "prediction": "higher (69%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.21360060606060605
+    },
+    {
+      "date": "2026-06-04",
+      "theory": "Regime is driven by absorption rate failure under neutral regime; price remains range-bound despite volume expansion.",
+      "prediction": "uncertain (50%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.098
+    },
+    {
+      "date": "2026-06-05",
+      "theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening.",
+      "prediction": "lower (63%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.15194413793103448
+    },
+    {
+      "date": "2026-06-08",
+      "theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards bearish sentiment.",
+      "prediction": "uncertain (39%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09452000000000002
+    },
+    {
+      "date": "2026-06-09",
+      "theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards bearish sentiment, with RELIANCE as a key focus.",
+      "prediction": "lower (74%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09344000000000001
+    },
+    {
+      "date": "2026-06-10",
+      "theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards bearish sentiment, with RELIANCE as a key focus. However, the current observation suggests that the regime may be leaning more towards a neutral or mixed state.",
+      "prediction": "lower (66%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.22124256410256413
+    },
+    {
+      "date": "2026-06-11",
+      "theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards bearish sentiment, with RELIANCE as a key focus. However, the current observation suggests that the regime may be leaning more towards a neutral or mixed state, with a reduced likelihood of a sharp shift towards either bullish or bearish sentiment.",
+      "prediction": "range_bound (44%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09464000000000002
+    },
+    {
+      "date": "2026-06-12",
+      "theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards neutral or mixed sentiment, with RELIANCE as a key focus. However, the current observation suggests that the regime may be leaning more towards a neutral state, with reduced likelihood of sharp shifts towards either bullish or bearish sentiment.",
+      "prediction": "higher (53%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0878
+    },
+    {
+      "date": "2026-06-15",
+      "theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards neutral or mixed sentiment, with RELIANCE as a key focus. However, the current observation suggests that the regime may be leaning more towards a neutral state, with reduced likelihood of sharp shifts towards either bullish or bearish sentiment.",
+      "prediction": "lower (59%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08486
+    },
+    {
+      "date": "2026-06-17",
+      "theory": "Regime is driven by passive absorption; price remains range-bound despite volume expansion.",
+      "prediction": "range_bound (45%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.2432
+    },
+    {
+      "date": "2026-06-18",
+      "theory": "Revised claim: Regime is driven by passive absorption, but with a moderating influence from sector-specific events.",
+      "prediction": "range_bound (56%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09680000000000001
+    },
+    {
+      "date": "2026-06-19",
+      "theory": "Revised claim: Regime is driven by passive absorption, but with a moderating influence from sector-specific events and a heightened sensitivity to market sentiment.",
+      "prediction": "lower (77%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.15272000000000002
+    },
+    {
+      "date": "2026-06-22",
+      "theory": "Revised claim: Regime is driven by passive absorption, but with a moderating influence from sector-specific events and a heightened sensitivity to market sentiment, particularly when RELIANCE is involved.",
+      "prediction": "higher (54%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.15320208695652177
+    },
+    {
+      "date": "2026-06-23",
+      "theory": "Revised claim: Regime is driven by passive absorption, but with a moderating influence from sector-specific events and a heightened sensitivity to market sentiment, particularly when RELIANCE is involved. The regime's stability is further influenced by the rate of change in RELIANCE's stock price.",
+      "prediction": "uncertain (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.28158
+    },
+    {
+      "date": "2026-06-25",
+      "theory": "Regime is driven by passive absorption; price remains range-bound despite volume expansion.",
+      "prediction": "range_bound (48%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.28800000000000003
+    }
+  ],
+  "theory_evolution": [
+    {
+      "day": "2026-05-15",
+      "lineage_id": "7d5bd1df33d54234",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-18",
+      "lineage_id": "6a1b37fc85758229",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-19",
+      "lineage_id": "7d5bd1df33d54234",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "close"
+    },
+    {
+      "day": "2026-05-20",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-21",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-22",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-25",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-26",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-04",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-05",
+      "lineage_id": "7d5bd1df33d54234",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-08",
+      "lineage_id": "e57a12ddf574ecba",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-09",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-10",
+      "lineage_id": "7d5bd1df33d54234",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-11",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-12",
+      "lineage_id": "cb02c7e895fd04de",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-15",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-17",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-18",
+      "lineage_id": "85fcb873b1cbc7dc",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-19",
+      "lineage_id": "81bbd4c0a832b0e1",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-22",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-23",
+      "lineage_id": "7d5bd1df33d54234",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-25",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    }
+  ],
+  "world_model": {
+    "narrative": "Baseline world model. No active principles recorded yet.",
+    "regime_constraints": {},
+    "supporting_principles": [],
+    "dominant_mechanisms": [],
+    "active_constraints": [],
+    "supporting_canonical_principles": [],
+    "confidence": 0.5,
+    "stability": "Emerging",
+    "evidence_count": 0,
+    "applicable_regimes": [],
+    "open_questions": [
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate_failure' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate_failure' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate_failure' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      }
+    ],
+    "evidence_gaps": [
+      {
+        "id": "26764b23-f1ae-40b4-b93b-a72c4ce96965",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "453565f3-4ede-4a75-bd60-d320bee088c5",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "a842689b-8c43-436f-9976-1cfddc07f5ce",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "ac591274-00af-4129-830f-151ff8c8ad41",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate_failure'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate_failure' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "a4ed13b8-9708-43d8-9cc1-33cd50a797d5",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate_failure'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate_failure' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "cd09f3e4-2c43-4c77-a15e-58a03c219490",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate_failure'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate_failure' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "c3079ef5-abd6-4f06-8d9a-221ef9cbbe52",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "71b119b2-8169-45e6-b0cb-cee833ab4411",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "c8b989f1-8004-49ad-91f0-063b55c3ea44",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "ce641495-2ef7-4d65-9f75-3aa106212973",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "dc191757-dd62-4b40-ba9a-9045a25bf539",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  "chart_data": {
+    "dates": [
+      "2026-05-15",
+      "2026-05-18",
+      "2026-05-19",
+      "2026-05-20",
+      "2026-05-21",
+      "2026-05-22",
+      "2026-05-25",
+      "2026-05-26",
+      "2026-06-04",
+      "2026-06-05",
+      "2026-06-08",
+      "2026-06-09",
+      "2026-06-10",
+      "2026-06-11",
+      "2026-06-12",
+      "2026-06-15",
+      "2026-06-17",
+      "2026-06-18",
+      "2026-06-19",
+      "2026-06-22",
+      "2026-06-23",
+      "2026-06-25"
+    ],
+    "close": [
+      1330.24951171875,
+      1329.7518310546875,
+      1316.6124267578125,
+      1353.442138671875,
+      1343.388671875,
+      1348.26611328125,
+      1360.7086181640625,
+      1350.0579833984375,
+      1297.699951171875,
+      1291.0,
+      1263.300048828125,
+      1269.199951171875,
+      1258.800048828125,
+      1263.0,
+      1293.0,
+      1307.0,
+      1332.699951171875,
+      1328.0999755859375,
+      1309.5,
+      1326.5,
+      1309.5,
+      1318.0999755859375
+    ],
+    "delivery_pct": [
+      52.70622542240553,
+      52.772687264617005,
+      56.83012384969734,
+      55.77944774355135,
+      56.85982804539001,
+      56.00731254536614,
+      58.75399841973381,
+      54.01985909390693,
+      43.08359003535174,
+      45.236609176003455,
+      45.78056613854481,
+      48.97679369619591,
+      46.66731060742478,
+      51.83285946029091,
+      51.97388150373346,
+      52.26871405201209,
+      53.2234875081348,
+      49.07429394026749,
+      48.674840843739545,
+      46.33526555736112,
+      45.03680902295764,
+      49.37172245725797
+    ],
+    "fii_net": [
+      1760.723423781778,
+      885.5820937261275,
+      -20.073095997743383,
+      -1868.890495355913,
+      833.6131127287114,
+      -2140.9255164018223,
+      -189.10754054643127,
+      -537.2621615773305,
+      -1798.282087632246,
+      751.5401814060695,
+      303.82736210532113,
+      -88.54033016482377,
+      -729.4976841312648,
+      648.7887875734142,
+      -356.06815946510915,
+      -933.2472710708151,
+      1260.4911834109118,
+      -329.64950255039054,
+      -220.8166097429164,
+      1010.1916422542774,
+      301.93764725371153,
+      -377.7727170864493
+    ],
+    "sector_zscore": [
+      -1.333237585488516,
+      -0.911179193241665,
+      -1.2950765579927774,
+      -0.7035546532572983,
+      -1.148795781908429,
+      -1.0067533444256918,
+      -0.9685460933569572,
+      -1.457529997281712,
+      -1.4754884849553973,
+      -1.504584085803136,
+      -1.583210957290614,
+      -1.3522085423633263,
+      -0.7226092289836646,
+      -0.1194651207754426,
+      0.3629265650277729,
+      0.6830852094804629,
+      0.8338494227875765,
+      0.3561311033663766,
+      -0.5960324155177462,
+      0.0027108915672358,
+      0.0369019196757033,
+      1.0840271291382426
+    ]
+  },
+  "decision_traces": [
+    {
+      "step": 0,
+      "date": "2026-05-15",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 65.68418401273081,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [],
+      "novelty_score": 1.0,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Regime is driven by Absorption; price remains range-bound despite volume expansion.. If participation widens above average: favor breakout higher. Else volatility remains compressed: favor range persistence. Unless liquidity evaporates entirely. Falsified if: decisive close below the prior support floor.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "uncertain",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains supported based on the moderate volatility and normal candle participation, which aligns with the theory's expectation of a neutral subtype. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior assumption of strong participation strength. This tension highlights the need for additional confirmation signals to further validate or falsify the theory.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 1,
+      "date": "2026-05-18",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 47.29374361318996,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-15",
+          "similarity": 0.68,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.32,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and weakening short-term momentum.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.34
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 2,
+      "date": "2026-05-19",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 68.63767470123454,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-15",
+          "similarity": 0.988,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.669,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.012,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and weakening short-term momentum, and a potential shift towards bearish dominance.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.779
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype: mixed. The regime remains partially supported, but its falsifiability boundary conditions are met. The observed continuation of moderate volatility and weakening short-term momentum contradicts the theory's claim that price will remain range-bound despite volume expansion. This contradiction is driven by low semantic similarity between the revised claim and the observation of increased volume participation.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 3,
+      "date": "2026-05-20",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "strong_bull",
+        "delivery_pct": 41.570603456242154,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-19",
+          "similarity": 0.675,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.656,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.654,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.325,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.59
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains partially supported, but its falsification is contingent upon additional confirmation signals. The observed continuation of moderate volatility expansion contradicts the prior assumption of decreasing participation strength, which was a key component of the revised claim. This contradiction highlights an unresolved tension in the theory's framework, specifically regarding the relationship between volume expansion and short-term momentum.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 4,
+      "date": "2026-05-21",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 61.11293444355254,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-19",
+          "similarity": 0.982,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.964,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-20",
+          "similarity": 0.668,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.018,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance, with RELIANCE's performance serving as a key indicator of the regime's direction.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.59
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype is falsified based on boundary conditions. The regime's performance, particularly RELIANCE's closing lower amid moderate volatility, contradicts the theory's claim that price remains range-bound despite volume expansion. This contradiction is supported by structural conflicts between the revised claim and observed data, such as low semantic similarity between absorption rate and delivery or sector lagging. One unresolved tension lies in the theory's inability to fully explain the observed analog divergence with 2026-05-19, which had a higher similarity score but lower confidence.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 5,
+      "date": "2026-05-22",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 61.421606512611525,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-18",
+          "similarity": 0.697,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-20",
+          "similarity": 0.655,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.515,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.303,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance, with RELIANCE's performance serving as a key indicator of the regime's direction. However, in this observation, the regime appears to be neutral due to weak upper participation and moderate delivery, suggesting that the absorption mechanism may not be driving the market as strongly as previously thought.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.26
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains partially supported, but its falsification is indicated by the observed weak upper participation and moderate delivery. This contradicts the revised claim that the regime is driven by absorption, as the market's behavior suggests a neutral or mixed state rather than a strong absorption mechanism. The theory's falsifiability boundary conditions are met.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 13.0
+      }
+    },
+    {
+      "step": 6,
+      "date": "2026-05-25",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 61.0271729850283,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-22",
+          "similarity": 0.816,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.672,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.49,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.184,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: The market regime is experiencing a neutral phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a mixed trend persistence.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.4
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype is falsified based on boundary conditions. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's specific falsifiability boundary condition that requires additional confirmation signals. Analog divergence is present, with a similarity of 0.82 to 2026-05-22, but confidence is low (0.00).",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 14.0
+      }
+    },
+    {
+      "step": 7,
+      "date": "2026-05-26",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 44.966978072100105,
+        "volume_state": "normal",
+        "regime_subtype": "pressure_loaded_range"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-25",
+          "similarity": 0.982,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-22",
+          "similarity": 0.804,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.659,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.018,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.689
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Breadth weakness remains unresolved under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 15.0
+      }
+    },
+    {
+      "step": 14,
+      "date": "2026-06-04",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "neutral",
+        "delivery_pct": 35.55283483037098,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-18",
+          "similarity": 0.787,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.694,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-25",
+          "similarity": 0.689,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.213,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Regime is driven by absorption rate failure under neutral regime; price remains range-bound despite volume expansion.. If delivery_pct > 50 AND volume_state = elevated: favor breakout higher. Else sector_zscore < -1.5 OR fii_net / dii_net > 1000 Crores: favor range persistence. Unless liquidity evaporates entirely. Falsified if: decisive close below the prior support floor.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.5
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. Based on the boundary conditions, the theory is falsified. The observed continuation of range-bound prices despite volume expansion contradicts the assumption that a regime driven by absorption rate failure under neutral regime would lead to price volatility. Analog divergence is not present in this observation.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 16.0
+      }
+    },
+    {
+      "step": 15,
+      "date": "2026-06-05",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 50.64704185771566,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-21",
+          "similarity": 0.794,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-19",
+          "similarity": 0.767,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.748,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.206,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.634
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype is falsified based on boundary conditions. The observed continuation, despite moderate volatility, contradicts the revised claim's expectation of price remaining range-bound with increasing volatility and short-term momentum weakening. This contradiction anchors the critique in the theory's specific falsifiability boundary condition regarding absorption rate failure under regime shift. One unresolved tension remains: the neutral Regime Subtype's historical subtype memory suggests a dominant resolution of range_bound, which is inconsistent with the current observation.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 17.0
+      }
+    },
+    {
+      "step": 16,
+      "date": "2026-06-08",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 50.99245255878058,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-05",
+          "similarity": 0.814,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-04",
+          "similarity": 0.655,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-21",
+          "similarity": 0.601,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.186,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.39
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, but with a warning that it requires additional confirmation signals to confirm its validity. The observed continuation of the trend persists under moderate volatility, which contradicts the prior assumption of participation strength. This suggests that the theory's falsifiability boundary condition regarding absorption rate failure during regime shift is not yet met.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 18.0
+      }
+    },
+    {
+      "step": 17,
+      "date": "2026-06-09",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 57.82135193978634,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-04",
+          "similarity": 0.963,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.749,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-08",
+          "similarity": 0.669,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.037,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards bearish sentiment, with RELIANCE as a key focus.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.738
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 20.0
+      }
+    },
+    {
+      "step": 18,
+      "date": "2026-06-10",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 38.32287185047036,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-05",
+          "similarity": 0.957,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-08",
+          "similarity": 0.796,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.76,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.043,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards bearish sentiment, with RELIANCE as a key focus. However, the current observation suggests that the regime may be leaning more towards a neutral or mixed state.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.656
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is Mixed. The regime remains supported based on the boundary conditions, as the observed characteristics (range expanding, gap up, short-term momentum weakening, delivery:moderate, fii:selling, sector:lagging) are within the expected range of a mixed state. However, the theory's falsifiability boundary conditions are not fully met, as the observed characteristics do not strongly contradict the revised claim. The detected 5 contradictions have a total score of 0.22, which is below the threshold for falsification.",
+      "knowledge_updated": {
+        "principles_merged": 3,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 21.0
+      }
+    },
+    {
+      "step": 19,
+      "date": "2026-06-11",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 61.38057909470163,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-09",
+          "similarity": 0.836,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-04",
+          "similarity": 0.798,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-10",
+          "similarity": 0.653,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.164,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards bearish sentiment, with RELIANCE as a key focus. However, the current observation suggests that the regime may be leaning more towards a neutral or mixed state, with a reduced likelihood of a sharp shift towards either bullish or bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.44
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is Neutral. The regime remains supported based on the boundary conditions, as there are no clear indicators of a sharp shift towards either bullish or bearish sentiment. However, the observation suggests that the regime may be leaning more towards a neutral or mixed state, which contradicts the theory's claim that the regime is driven by absorption rate failure under regime shift. One unresolved tension is the discrepancy between the observed weak participation and the prior assumption of strong participation.",
+      "knowledge_updated": {
+        "principles_merged": 3,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 22.0
+      }
+    },
+    {
+      "step": 20,
+      "date": "2026-06-12",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 51.35215207492836,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-20",
+          "similarity": 0.748,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-22",
+          "similarity": 0.7,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.603,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.252,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards neutral or mixed sentiment, with RELIANCE as a key focus. However, the current observation suggests that the regime may be leaning more towards a neutral state, with reduced likelihood of sharp shifts towards either bullish or bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.528
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype. The current observation suggests that the regime may be leaning more towards a neutral state, with reduced likelihood of sharp shifts towards either bullish or bearish sentiment. However, this finding contradicts the revised claim's expectation of increased volatility and short-term momentum weakening. The observed volume expansion and moderate volatility do not align with the theory's prediction of price remaining range-bound despite volume expansion.",
+      "knowledge_updated": {
+        "principles_merged": 3,
+        "principles_generalized": 0,
+        "principles_retired": 1,
+        "principles_restricted": 0,
+        "debt_after": 24.0
+      }
+    },
+    {
+      "step": 21,
+      "date": "2026-06-15",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "neutral",
+        "delivery_pct": 52.46661530017378,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.809,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-22",
+          "similarity": 0.676,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-10",
+          "similarity": 0.668,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.191,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by absorption rate failure under regime shift; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening, and a potential shift towards neutral or mixed sentiment, with RELIANCE as a key focus. However, the current observation suggests that the regime may be leaning more towards a neutral state, with reduced likelihood of sharp shifts towards either bullish or bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.59
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 28.0
+      }
+    },
+    {
+      "step": 23,
+      "date": "2026-06-17",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 52.31004793957095,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-22",
+          "similarity": 0.856,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-15",
+          "similarity": 0.81,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-12",
+          "similarity": 0.797,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.144,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Regime is driven by passive absorption; price remains range-bound despite volume expansion.. If participation widens above average: favor breakout higher. Else volatility remains compressed: favor range persistence. Unless liquidity evaporates entirely. Falsified if: decisive close below the prior support floor.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.45
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The provided structured market observation dimensions validate the theory that a regime is driven by passive absorption, with price remaining range-bound despite volume expansion. The observations suggest that the RELIANCE stock is experiencing a neutral regime subtype, characterized by moderate volatility and selective participation. However, upon closer examination, several contradictions emerge: The analog divergence suggests that the current regime is similar to the one observed on 2026-05-22, with weak participation and moderate liquidity. However, this similarity is not strong enough to confirm the theory's predictions.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 31.0
+      }
+    },
+    {
+      "step": 24,
+      "date": "2026-06-18",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 40.63461125536507,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-17",
+          "similarity": 0.651,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-11",
+          "similarity": 0.631,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-09",
+          "similarity": 0.606,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.349,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by passive absorption, but with a moderating influence from sector-specific events.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.56
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype is falsified based on boundary conditions. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's specific falsifiability boundary condition that requires additional confirmation signals. One unresolved tension is the low semantic similarity between \"Revised claim: Regim...",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 34.0
+      }
+    },
+    {
+      "step": 25,
+      "date": "2026-06-19",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 49.35488659228862,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-08",
+          "similarity": 0.761,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-10",
+          "similarity": 0.591,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.58,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.239,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by passive absorption, but with a moderating influence from sector-specific events and a heightened sensitivity to market sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.771
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype The current regime subtype is neutral, but the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradiction anchors the critique in the theory's specific falsifiability boundary conditions. The detected 5 contradictions with a total score of 0.15 indicate that the theory requires additional confirmation signals to be confirmed. One unresolved tension is the low semantic similarity between the revised claim \"Regime is driven by passive absorption, but with a moderating influence from sector-specific events and a heightened sensitivity to market sentiment\" and the observed RELIANCE traded range expansion.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 35.0
+      }
+    },
+    {
+      "step": 26,
+      "date": "2026-06-22",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 40.76873886828168,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.659,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-20",
+          "similarity": 0.608,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-11",
+          "similarity": 0.606,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.341,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by passive absorption, but with a moderating influence from sector-specific events and a heightened sensitivity to market sentiment, particularly when RELIANCE is involved.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.54
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Theory contradiction remains unresolved.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 39.0
+      }
+    },
+    {
+      "step": 27,
+      "date": "2026-06-23",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 42.115760459281866,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-19",
+          "similarity": 0.982,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-08",
+          "similarity": 0.747,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-10",
+          "similarity": 0.59,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.018,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by passive absorption, but with a moderating influence from sector-specific events and a heightened sensitivity to market sentiment, particularly when RELIANCE is involved. The regime's stability is further influenced by the rate of change in RELIANCE's stock price.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, but with a notable weakness in the observed continuation's testing under volatility expansion. This observation contradicts the theory's falsifiability boundary condition regarding the absorption rate's impact on short-term momentum. Specifically, the observed weak move and weak price action suggest that the regime is not driven solely by passive absorption, as the theory claims.",
+      "knowledge_updated": {
+        "principles_merged": 3,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 42.0
+      }
+    },
+    {
+      "step": 29,
+      "date": "2026-06-25",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-17",
+          "similarity": 0.741,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-22",
+          "similarity": 0.676,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-18",
+          "similarity": 0.631,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.259,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Regime is driven by passive absorption; price remains range-bound despite volume expansion.. If participation widens above average: favor breakout higher. Else volatility remains compressed: favor range persistence. Unless liquidity evaporates entirely. Falsified if: decisive close below the prior support floor.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.48
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The given theory states that a regime is driven by passive absorption, resulting in price remaining range-bound despite volume expansion. However, the observation suggests that the market is not following this pattern, as the price has been trading within a narrow range with compressed volatility. Upon analyzing the data, it appears that the theory's falsifiability boundary conditions are being met. The observed regime subtype is neutral, which contradicts the theory's claim of passive absorption driving the regime.",
+      "knowledge_updated": {
+        "principles_merged": 3,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 45.0
+      }
+    }
+  ],
+  "epistemic_review": {
+    "assumptions_survived": [
+      "The component expectation is valid under market conditions where absorption rate failure is driven by regime shift, and the price remains range-bound despite volume expansion with increasing volatility and short-term momentum weakening.",
+      "The component expectation is valid when volume expansion is positively correlated with market participation and volatility, but breaks down when volume expansion is negatively correlated or when market participation and volatility do not expand together."
+    ],
+    "assumptions_failed": [
+      "The absorption rate component is valid under market conditions characterized by moderate to high volume expansion and volatility, but breaks down when volume expansion occurs without corresponding increases in volatility or participation.",
+      "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, with high/normal volume state. It breaks down when either momentum or volatility dominates, or when the regime subtype shifts to trend or bearish dominance, or when the volume state is low."
+    ],
+    "knowledge_stronger": [
+      "The component expectation 'price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum' is valid under market conditions where the regime is driven by Absorption and participation and volatility expand together, indicating a bullish dominance."
+    ],
+    "knowledge_weaker": [
+      "The absorption rate is valid when volume expansion and volatility are present, but breaks down in the absence of these conditions.",
+      "The component expectation 'price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum' is valid under market conditions where the regime subtype is either 'momentum/range_bound/trend/etc' or all, the volatility regime is either 'compressed/expanded/normal/etc' or all, and the volume state is either 'high/low/normal/etc' or all."
+    ],
+    "world_model_shifts": [
+      "The system's understanding of market conditions has shifted towards recognizing the importance of absorption rate failure driven by regime shift, and the relationship between volume expansion and volatility. Additionally, the system now places more emphasis on the role of participation and volatility in determining price movements.",
+      "The system's world model has become more nuanced in its understanding of regime subtypes and their impact on market behavior."
+    ],
+    "fundamental_uncertainty": [
+      "There remains uncertainty regarding the relationship between volume expansion and short-term momentum, particularly in the absence of corresponding increases in volatility or participation.",
+      "The system still struggles to fully understand the interplay between absorption rate failure, regime shift, and price movements, leaving room for further refinement and exploration."
+    ],
+    "tomorrow_beliefs": [
+      "If the replay restarted tomorrow, the system would believe that the component expectation 'price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum' is valid under market conditions where the regime is driven by Absorption and participation and volatility expand together, indicating a bullish dominance.",
+      "The system would also believe that absorption rate failure driven by regime shift plays a critical role in determining price movements, particularly when combined with volume expansion and volatility."
+    ]
+  }
+}

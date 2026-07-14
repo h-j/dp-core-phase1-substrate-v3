@@ -1,0 +1,56 @@
+{
+  "id": "f8c7fe04-4fae-460f-80c5-39a5bbcbe0ad",
+  "created_at": "2026-06-30T04:18:52.824805+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where regime subtype and volatility regime are in a state of momentum or range-bound, and volume state is high or normal. The expectation breaks down when the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+  "associated_lineage_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7"
+  ],
+  "supporting_theory_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "8b57f149-772e-4fc9-bb69-7483f0d84d05",
+      "created_at": "2026-06-30T04:18:52.824702+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "trend"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "f9bbc61c-fce4-41dd-bab3-f4d1cb1a9b14",
+      "created_at": "2026-06-30T04:18:52.824753+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "volume_state": "low"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 5,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

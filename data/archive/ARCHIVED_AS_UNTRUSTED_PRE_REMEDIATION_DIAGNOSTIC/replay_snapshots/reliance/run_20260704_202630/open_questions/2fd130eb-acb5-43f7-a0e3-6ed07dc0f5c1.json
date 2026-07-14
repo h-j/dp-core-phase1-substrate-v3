@@ -1,0 +1,15 @@
+{
+  "id": "2fd130eb-acb5-43f7-a0e3-6ed07dc0f5c1",
+  "created_at": "2026-07-04T15:40:14.961452+00:00",
+  "created_at_step": 22,
+  "question_text": "Why did component 'price_structure_with_low_volume_and_selling_pressure_v18' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "61f23960-077c-407f-8bf9-ebb6c9db88f2"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "dry"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

@@ -1,0 +1,802 @@
+[
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2001",
+    "zone": "CLEAR",
+    "seed": 2001,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2002",
+    "zone": "CLEAR",
+    "seed": 2002,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2003",
+    "zone": "CLEAR",
+    "seed": 2003,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2004",
+    "zone": "CLEAR",
+    "seed": 2004,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2005",
+    "zone": "CLEAR",
+    "seed": 2005,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2006",
+    "zone": "CLEAR",
+    "seed": 2006,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2007",
+    "zone": "CLEAR",
+    "seed": 2007,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2008",
+    "zone": "CLEAR",
+    "seed": 2008,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2009",
+    "zone": "CLEAR",
+    "seed": 2009,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2010",
+    "zone": "CLEAR",
+    "seed": 2010,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2011",
+    "zone": "CLEAR",
+    "seed": 2011,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2012",
+    "zone": "CLEAR",
+    "seed": 2012,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2013",
+    "zone": "CLEAR",
+    "seed": 2013,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2014",
+    "zone": "CLEAR",
+    "seed": 2014,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2015",
+    "zone": "CLEAR",
+    "seed": 2015,
+    "true_effect": 0.35,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2016",
+    "zone": "CLEAR",
+    "seed": 2016,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2017",
+    "zone": "CLEAR",
+    "seed": 2017,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2018",
+    "zone": "CLEAR",
+    "seed": 2018,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2019",
+    "zone": "CLEAR",
+    "seed": 2019,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2020",
+    "zone": "CLEAR",
+    "seed": 2020,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2021",
+    "zone": "CLEAR",
+    "seed": 2021,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2022",
+    "zone": "CLEAR",
+    "seed": 2022,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2023",
+    "zone": "CLEAR",
+    "seed": 2023,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2024",
+    "zone": "CLEAR",
+    "seed": 2024,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2025",
+    "zone": "CLEAR",
+    "seed": 2025,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2026",
+    "zone": "CLEAR",
+    "seed": 2026,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2027",
+    "zone": "CLEAR",
+    "seed": 2027,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2028",
+    "zone": "CLEAR",
+    "seed": 2028,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2029",
+    "zone": "CLEAR",
+    "seed": 2029,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2030",
+    "zone": "CLEAR",
+    "seed": 2030,
+    "true_effect": -0.35,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2031",
+    "zone": "BOUNDARY",
+    "seed": 2031,
+    "true_effect": -0.08,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2032",
+    "zone": "BOUNDARY",
+    "seed": 2032,
+    "true_effect": -0.08,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2033",
+    "zone": "BOUNDARY",
+    "seed": 2033,
+    "true_effect": -0.08,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2034",
+    "zone": "BOUNDARY",
+    "seed": 2034,
+    "true_effect": -0.08,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2035",
+    "zone": "BOUNDARY",
+    "seed": 2035,
+    "true_effect": -0.08,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2036",
+    "zone": "BOUNDARY",
+    "seed": 2036,
+    "true_effect": -0.08,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2037",
+    "zone": "BOUNDARY",
+    "seed": 2037,
+    "true_effect": -0.08,
+    "ground_truth_decision": "REJECT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2038",
+    "zone": "BOUNDARY",
+    "seed": 2038,
+    "true_effect": -0.04,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2039",
+    "zone": "BOUNDARY",
+    "seed": 2039,
+    "true_effect": -0.04,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2040",
+    "zone": "BOUNDARY",
+    "seed": 2040,
+    "true_effect": -0.04,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2041",
+    "zone": "BOUNDARY",
+    "seed": 2041,
+    "true_effect": -0.04,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2042",
+    "zone": "BOUNDARY",
+    "seed": 2042,
+    "true_effect": -0.04,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2043",
+    "zone": "BOUNDARY",
+    "seed": 2043,
+    "true_effect": -0.04,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2044",
+    "zone": "BOUNDARY",
+    "seed": 2044,
+    "true_effect": -0.04,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2045",
+    "zone": "BOUNDARY",
+    "seed": 2045,
+    "true_effect": 0.0,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2046",
+    "zone": "BOUNDARY",
+    "seed": 2046,
+    "true_effect": 0.0,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2047",
+    "zone": "BOUNDARY",
+    "seed": 2047,
+    "true_effect": 0.0,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2048",
+    "zone": "BOUNDARY",
+    "seed": 2048,
+    "true_effect": 0.0,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2049",
+    "zone": "BOUNDARY",
+    "seed": 2049,
+    "true_effect": 0.0,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2050",
+    "zone": "BOUNDARY",
+    "seed": 2050,
+    "true_effect": 0.0,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2051",
+    "zone": "BOUNDARY",
+    "seed": 2051,
+    "true_effect": 0.0,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2052",
+    "zone": "BOUNDARY",
+    "seed": 2052,
+    "true_effect": 0.05,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2053",
+    "zone": "BOUNDARY",
+    "seed": 2053,
+    "true_effect": 0.05,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2054",
+    "zone": "BOUNDARY",
+    "seed": 2054,
+    "true_effect": 0.05,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2055",
+    "zone": "BOUNDARY",
+    "seed": 2055,
+    "true_effect": 0.05,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2056",
+    "zone": "BOUNDARY",
+    "seed": 2056,
+    "true_effect": 0.05,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2057",
+    "zone": "BOUNDARY",
+    "seed": 2057,
+    "true_effect": 0.05,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2058",
+    "zone": "BOUNDARY",
+    "seed": 2058,
+    "true_effect": 0.05,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2059",
+    "zone": "BOUNDARY",
+    "seed": 2059,
+    "true_effect": 0.05,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2060",
+    "zone": "BOUNDARY",
+    "seed": 2060,
+    "true_effect": 0.12,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2061",
+    "zone": "BOUNDARY",
+    "seed": 2061,
+    "true_effect": 0.12,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2062",
+    "zone": "BOUNDARY",
+    "seed": 2062,
+    "true_effect": 0.12,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2063",
+    "zone": "BOUNDARY",
+    "seed": 2063,
+    "true_effect": 0.12,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2064",
+    "zone": "BOUNDARY",
+    "seed": 2064,
+    "true_effect": 0.12,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2065",
+    "zone": "BOUNDARY",
+    "seed": 2065,
+    "true_effect": 0.12,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2066",
+    "zone": "BOUNDARY",
+    "seed": 2066,
+    "true_effect": 0.12,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2067",
+    "zone": "BOUNDARY",
+    "seed": 2067,
+    "true_effect": 0.16,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2068",
+    "zone": "BOUNDARY",
+    "seed": 2068,
+    "true_effect": 0.16,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2069",
+    "zone": "BOUNDARY",
+    "seed": 2069,
+    "true_effect": 0.16,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2070",
+    "zone": "BOUNDARY",
+    "seed": 2070,
+    "true_effect": 0.16,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2071",
+    "zone": "BOUNDARY",
+    "seed": 2071,
+    "true_effect": 0.16,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2072",
+    "zone": "BOUNDARY",
+    "seed": 2072,
+    "true_effect": 0.16,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2073",
+    "zone": "BOUNDARY",
+    "seed": 2073,
+    "true_effect": 0.16,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2074",
+    "zone": "BOUNDARY",
+    "seed": 2074,
+    "true_effect": 0.2,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2075",
+    "zone": "BOUNDARY",
+    "seed": 2075,
+    "true_effect": 0.2,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2076",
+    "zone": "BOUNDARY",
+    "seed": 2076,
+    "true_effect": 0.2,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2077",
+    "zone": "BOUNDARY",
+    "seed": 2077,
+    "true_effect": 0.2,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2078",
+    "zone": "BOUNDARY",
+    "seed": 2078,
+    "true_effect": 0.2,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2079",
+    "zone": "BOUNDARY",
+    "seed": 2079,
+    "true_effect": 0.2,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2080",
+    "zone": "BOUNDARY",
+    "seed": 2080,
+    "true_effect": 0.2,
+    "ground_truth_decision": "ADMIT",
+    "ground_truth_defer_subtype": null
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2081",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2081,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2082",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2082,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2083",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2083,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2084",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2084,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2085",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2085,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2086",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2086,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2087",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2087,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2088",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2088,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2089",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2089,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2090",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2090,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2091",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2091,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2092",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2092,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2093",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2093,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2094",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2094,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2095",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2095,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2096",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2096,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2097",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2097,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2098",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2098,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2099",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2099,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2100",
+    "zone": "EVIDENCE_LIMITED",
+    "seed": 2100,
+    "true_effect": 0.35,
+    "ground_truth_decision": "DEFER",
+    "ground_truth_defer_subtype": "EVIDENCE_LIMITED"
+  }
+]

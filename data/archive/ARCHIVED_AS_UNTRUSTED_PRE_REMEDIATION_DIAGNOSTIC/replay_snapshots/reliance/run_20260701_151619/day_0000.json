@@ -1,0 +1,223 @@
+{
+  "step": 0,
+  "date": "2026-04-30",
+  "observation": "[volume elevated, range expanding, gap down, volatility expanding, short-term momentum strengthening, delivery:low, fii:buying, sector:neutral, RELIANCE focus, asset rally] candle neutral participation normal (bullish confirmed) RELIANCE closed higher amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is closing higher with moderate volatility, indicating a neutral to bullish trend persistence and mixed horizon context.",
+  "theory": "Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion.",
+  "theory_summary_structured": {
+    "id": "2dc5569c-5be0-49b5-8493-f11dd032d4a9",
+    "created_at": "2026-07-02 03:07:23.821730+00:00",
+    "mechanism": "Liquidity Absorption",
+    "claim": "Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion.",
+    "if_branch": {
+      "id": "6f7768e7-4623-43c4-8934-1961c2fa06b4",
+      "created_at": "2026-07-02 03:07:23.821814+00:00",
+      "condition": "delivery_pct > 50 AND sector_zscore < -1.5",
+      "action": "favor delivery exhaustion"
+    },
+    "else_branch": {
+      "id": "49d7e15d-a92d-4a97-b7da-408e150615a7",
+      "created_at": "2026-07-02 03:07:23.821843+00:00",
+      "condition": "volume_state = elevated AND fii_net > 1000 Crores",
+      "action": "favor price structure persistence"
+    },
+    "unless": "liquidity evaporates entirely",
+    "falsified_if": "price_structure: lower low formed breaking HH/HL sequence",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "94b7310d-f35d-47d3-9c2a-3e809897a20b",
+        "created_at": "2026-07-02 03:07:23.821863+00:00",
+        "component_id": "price_structure",
+        "description": "Price maintains sequence of higher highs and higher lows",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous high, each low > previous low",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE"
+        ],
+        "relation_type": "CO-OCCURS_WITH"
+      },
+      {
+        "id": "e6a88a95-8be7-49a8-a889-fa22b49f7042",
+        "created_at": "2026-07-02 03:07:23.821904+00:00",
+        "component_id": "volume_confirmation",
+        "description": "Volume expands on up days relative to down days",
+        "observable": "volume.daily_ratio",
+        "expected_behavior": "Average volume on up days exceeds average volume on down days",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_EXPANSION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES"
+      },
+      {
+        "id": "a87dcafa-33f2-40b8-a911-db7e7a103c92",
+        "created_at": "2026-07-02 03:07:23.821910+00:00",
+        "component_id": "delivery_exhaustion",
+        "description": "Delivery percentage exceeds 60% on up days",
+        "observable": "delivery_pct",
+        "expected_behavior": ">60%",
+        "dependency": null,
+        "concept_tags": [
+          "DELIVERY_EXHAUSTION"
+        ],
+        "relation_type": "DEPENDS_ON"
+      }
+    ],
+    "falsification_conditions": [
+      "price_structure: lower low formed breaking HH/HL sequence",
+      "volume_confirmation: down-day volume exceeds up-day volume for 3 consecutive sessions"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.175,
+    "regime": 0.5,
+    "reflection": 0.487,
+    "coherence": 0.2915,
+    "contradiction": 0.338
+  },
+  "contradiction": {
+    "score": 0.0,
+    "indicators": [],
+    "llm_contradiction_audit": [],
+    "summary": "Detected 0 contradictions with a total score of 0.00."
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-04-30",
+    "trend": "closed_higher",
+    "volatility_state": "moderate",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.0,
+    "active_theory_count": 3,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [],
+  "decisions": {
+    "baseline": {
+      "date": "2026-04-30",
+      "policy_name": "Baseline",
+      "action": "buy",
+      "conviction": 0.55,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-04-30",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.55,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-04-30",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.55,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.0,
+    "label": "unknown"
+  },
+  "reflection": "Liquidity support remains weakly tested against contradiction pressure.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 1,
+    "avg_usefulness": 0.0,
+    "last_seen": "2026-04-30",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 0,
+      "uncertain": 0
+    },
+    "falsified_count": 0
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 0,
+    "date": "2026-04-30",
+    "contradiction_count": 0,
+    "contradiction_half_life": 0.625,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 1.0,
+    "avg_contradiction_severity": 0.2594625321796339,
+    "highest_contradiction": 0.5295438787185356,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 1,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 2.0,
+    "avg_revival_latency": -4.0,
+    "avg_theory_age": 5.6,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 8,
+    "avg_confidence": 0.175,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 1.0,
+    "grounded_reflection_score": 0.5,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.25,
+    "avg_abstraction_length": 18.0,
+    "compression_ratio": 0.43902439024390244,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 41,
+      "theory_text": "Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion.. If delivery_pct > 50 AND sector_zscore < -1.5: favor delivery exhaustion. Else volume_state = elevated AND fii_net > 1000 Crores: favor price structure persistence. Unless liquidity evaporates entirely. Falsified if: price_structure: lower low formed breaking HH/HL sequence.",
+      "contradiction_text": "Detected 0 contradictions with a total score of 0.00.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-04-30",
+        "trend": "closed_higher",
+        "volatility_state": "moderate",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.0,
+        "active_theory_count": 3,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [],
+      "theory_usefulness": {
+        "score": 0.0,
+        "label": "unknown"
+      }
+    }
+  }
+}

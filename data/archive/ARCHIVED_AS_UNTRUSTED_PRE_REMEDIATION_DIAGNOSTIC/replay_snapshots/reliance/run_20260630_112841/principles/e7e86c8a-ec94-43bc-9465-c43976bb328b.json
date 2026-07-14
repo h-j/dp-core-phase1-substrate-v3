@@ -1,0 +1,110 @@
+{
+  "id": "e7e86c8a-ec94-43bc-9465-c43976bb328b",
+  "created_at": "2026-06-30T07:30:15.883220+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid under market conditions characterized by moderate to high volume expansion and volatility, but breaks down when participation is weak or volatility is compressed.",
+  "associated_lineage_ids": [
+    "961701e7-487e-422b-abfa-747f69f2fb57",
+    "a87b8aa9-faef-4b0e-b6ac-645bf13e899c",
+    "7861ca1c-cb0a-44e6-bcf7-7452756a71ff",
+    "63e76b8b-ce84-4f8d-8c39-db68d11420f2",
+    "8b82c5ad-cf6f-4fc6-9689-119e6c20e873",
+    "b3569634-e8d7-4023-9df0-7e451d2b7918",
+    "23d547b2-b6f9-4bf4-ae38-abaecb058a6e",
+    "13285851-484c-4ca6-bf0c-2c0f09d51185",
+    "2efae82d-00ed-4a3a-9689-a6d1a2ae920e",
+    "273f89ce-2faa-4099-b8af-7ea6e0b2909a",
+    "e0b8503d-7806-444c-8e93-31db14d0f4ff",
+    "7d0bd61c-8c8d-4b6a-abd6-f45b6912e998",
+    "ee482a80-0532-4652-b7ad-0f34427fd84b",
+    "fcaef396-6390-4f14-b111-fd26fe6835ee",
+    "a4f123b3-963f-4918-ba1a-58da656edd03",
+    "478c2004-ceb4-4533-a16f-64ac3a08aec8",
+    "c410bc7e-87ec-4d10-9adb-f019ec5c9568",
+    "9c4f1591-6428-42ea-8411-f6f188b3a3cf",
+    "4777be67-01da-4ed5-88f0-a719b7d1ba0e",
+    "ce4876b6-a38f-4bb2-8a5f-e0e43d043062",
+    "523c0fa8-3ab7-4f6e-97b4-73044af582ab",
+    "70f06eb2-5284-4f5e-9d9e-109a22582745",
+    "653e23dd-f9a2-47c8-a1e0-23d10dab80d1",
+    "26bb03cd-6220-40ae-80b1-b80e5395faf5",
+    "945d6c7c-7eac-4668-9f1e-1dd3ea164cb0",
+    "d98c0cf5-0b20-4238-a45a-3f83be9d1b88"
+  ],
+  "supporting_theory_ids": [
+    "a4f123b3-963f-4918-ba1a-58da656edd03",
+    "b3569634-e8d7-4023-9df0-7e451d2b7918",
+    "961701e7-487e-422b-abfa-747f69f2fb57",
+    "ce4876b6-a38f-4bb2-8a5f-e0e43d043062",
+    "653e23dd-f9a2-47c8-a1e0-23d10dab80d1",
+    "273f89ce-2faa-4099-b8af-7ea6e0b2909a",
+    "2efae82d-00ed-4a3a-9689-a6d1a2ae920e",
+    "478c2004-ceb4-4533-a16f-64ac3a08aec8",
+    "63e76b8b-ce84-4f8d-8c39-db68d11420f2",
+    "c410bc7e-87ec-4d10-9adb-f019ec5c9568",
+    "9c4f1591-6428-42ea-8411-f6f188b3a3cf",
+    "945d6c7c-7eac-4668-9f1e-1dd3ea164cb0",
+    "523c0fa8-3ab7-4f6e-97b4-73044af582ab",
+    "26bb03cd-6220-40ae-80b1-b80e5395faf5",
+    "23d547b2-b6f9-4bf4-ae38-abaecb058a6e",
+    "ee482a80-0532-4652-b7ad-0f34427fd84b",
+    "e0b8503d-7806-444c-8e93-31db14d0f4ff"
+  ],
+  "contradicting_theory_ids": [
+    "fcaef396-6390-4f14-b111-fd26fe6835ee",
+    "13285851-484c-4ca6-bf0c-2c0f09d51185",
+    "d98c0cf5-0b20-4238-a45a-3f83be9d1b88",
+    "a87b8aa9-faef-4b0e-b6ac-645bf13e899c",
+    "7d0bd61c-8c8d-4b6a-abd6-f45b6912e998",
+    "7861ca1c-cb0a-44e6-bcf7-7452756a71ff",
+    "4777be67-01da-4ed5-88f0-a719b7d1ba0e",
+    "8b82c5ad-cf6f-4fc6-9689-119e6c20e873",
+    "70f06eb2-5284-4f5e-9d9e-109a22582745"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "93ce5099-df88-4bbd-8946-dda2640b7808",
+      "created_at": "2026-06-30T07:30:15.883053+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "f726cb39-4ff6-4beb-a19a-6df987b3f887",
+      "created_at": "2026-06-30T07:30:15.883128+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 26,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 5.0
+}

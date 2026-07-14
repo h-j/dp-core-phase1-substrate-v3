@@ -1,0 +1,9 @@
+{
+  "id": "566590e0-6d62-477b-aa30-ca2def40c0fc",
+  "created_at": "2026-07-04T15:37:02.343441+00:00",
+  "open_question_id": "4bf91ef6-8f3f-43f6-98ad-439a10155cbe",
+  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_with_gap_down_and_selling_pressure_v17'",
+  "candidate_data_source": "FII/DII Flows & Order Book Depth",
+  "expected_explanatory_value": "To resolve structural failure of component 'price_structure_with_gap_down_and_selling_pressure_v17' under neutral regime",
+  "priority": "MEDIUM"
+}

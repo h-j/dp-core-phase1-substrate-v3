@@ -1,0 +1,99 @@
+{
+  "id": "556d7381-c0cd-4cde-997d-2cb65d7e499e",
+  "created_at": "2026-06-30T05:15:21.081102+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid under market conditions characterized by moderate to high volume expansion and volatility, but breaks down when participation is weak or volatility is compressed.",
+  "associated_lineage_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "20393347-78f1-4ac3-9043-0ec4129de56a",
+    "1961ac37-b7dd-4c12-b4e7-92d0fd074a51",
+    "94efc9d4-b459-4af7-a86e-5e8286f6217c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "127e8f54-36e7-4cce-bd0e-673b704e0ba4",
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "f31b62bf-d8ea-47a0-a86c-7a00d378af3b",
+    "d6deebaf-d98f-47cf-bab0-2e437d86772e",
+    "f54def3b-73b9-44bf-a622-4251543b727a",
+    "86d5946a-45ea-4f7c-a6cd-597aaf021174",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc",
+    "bba24688-7996-4fe7-849a-d3f8aee009ad",
+    "6d84e58e-3ad2-4c2b-ab1b-5f6f425c3e53",
+    "b5b19d92-345c-4d52-8a14-86aae06dcc0a",
+    "8f0eb97d-a1bc-4ec3-a4d1-4f5ab70fcf8c",
+    "2dfb9ec7-d8cd-477f-9b79-8e68564880db",
+    "4988dc09-a800-4ab5-8eec-d52ebf962e64",
+    "4106cbd3-1c28-4697-b85c-a70b3cb6c6c5",
+    "ea6ef2c5-a71f-492b-b09b-634e4cab3fb6",
+    "ffe5c2c9-687b-4763-9f59-319f1681ce7d",
+    "cb3b0002-67d0-42dc-9bf5-e4ac3bb68f21",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "898521b8-4b81-4f27-abd8-0055015e1332"
+  ],
+  "supporting_theory_ids": [
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc",
+    "cb3b0002-67d0-42dc-9bf5-e4ac3bb68f21",
+    "94efc9d4-b459-4af7-a86e-5e8286f6217c",
+    "8f0eb97d-a1bc-4ec3-a4d1-4f5ab70fcf8c",
+    "b5b19d92-345c-4d52-8a14-86aae06dcc0a",
+    "20393347-78f1-4ac3-9043-0ec4129de56a",
+    "4106cbd3-1c28-4697-b85c-a70b3cb6c6c5",
+    "f54def3b-73b9-44bf-a622-4251543b727a",
+    "2dfb9ec7-d8cd-477f-9b79-8e68564880db",
+    "86d5946a-45ea-4f7c-a6cd-597aaf021174",
+    "898521b8-4b81-4f27-abd8-0055015e1332",
+    "127e8f54-36e7-4cce-bd0e-673b704e0ba4",
+    "ea6ef2c5-a71f-492b-b09b-634e4cab3fb6",
+    "6d84e58e-3ad2-4c2b-ab1b-5f6f425c3e53"
+  ],
+  "contradicting_theory_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f31b62bf-d8ea-47a0-a86c-7a00d378af3b",
+    "bba24688-7996-4fe7-849a-d3f8aee009ad",
+    "d6deebaf-d98f-47cf-bab0-2e437d86772e",
+    "ffe5c2c9-687b-4763-9f59-319f1681ce7d",
+    "1961ac37-b7dd-4c12-b4e7-92d0fd074a51",
+    "4988dc09-a800-4ab5-8eec-d52ebf962e64"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "7e631c54-8828-474b-b52d-4a12619f0d8d",
+      "created_at": "2026-06-30T05:15:21.080100+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "6f57cf3c-5bfb-448a-971f-450ed7e2edf6",
+      "created_at": "2026-06-30T05:15:21.080823+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 26,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

@@ -1,0 +1,21 @@
+{
+  "run_id": "run_20260629_151637",
+  "symbol": "TCS",
+  "downloaded_at": "2026-06-29 15:20:17",
+  "data_sources": [
+    "yfinance (Stock & Index)",
+    "NSE Security Delivery %",
+    "Moneycontrol FII/DII Flows"
+  ],
+  "feature_versions": [
+    "sector_zscore",
+    "sector_percentile",
+    "delivery_pct_5d",
+    "fii_net",
+    "dii_net"
+  ],
+  "replay_version": "v3.0PersistentReflective",
+  "llm_version": "llama3.2",
+  "git_commit": "b311d340c394ae66640035f1339cbae1ab0ef1ea",
+  "execution_hash": "0a4e47263f237b1ad4d4fee129dafacdbe995546859a3575aca74defb662c275"
+}

@@ -1,0 +1,57 @@
+{
+  "experience_id": "exp_841955d7c16351d0_2026-07-01",
+  "lineage_id": "841955d7c16351d0",
+  "theory_family_id": "841955d7c16351d0",
+  "created_at": "2026-07-01",
+  "status": "falsified",
+  "theory_ids": [
+    "67f057ba-7b88-4061-b799-72d566e9743b"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: volume_expansion_rev... vs MECH_002 and MECH_00...; Low semantic similarity: Volume expansion dur... vs volume_expansion_rev...; Low semantic similarity: volume > 0.5: add ne... vs volume_expansion_rev...",
+    "Structural: Low semantic similarity: volume_expansion_rev... vs MECH_002 and MECH_00...; Field conflict: Volume expansion during up day vs volume dry and gap down and de; Low semantic similarity: volume > 0.5: add ne... vs volume dry and gap d...; Low semantic similarity: otherwise: demote... vs otherwise: retain cu...; Trend: continuation vs rejection",
+    "Structural: Low semantic similarity: volume_expansion_rev... vs MECH_002_and_MECH_00...; Low semantic similarity: Volume expansion dur... vs range_expanding_and_...; Low semantic similarity: volume > 0.5: add ne... vs range_expanding_and_...; Low semantic similarity: otherwise: demote... vs otherwise: remove_al..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:extended_higher",
+    "volume:dry",
+    "volatility:compressed",
+    "liquidity:broad_participation",
+    "breadth:mixed",
+    "participation:weak",
+    "momentum:weakening",
+    "subtype:liquidity_constrained",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:leading"
+  ],
+  "theory_subtype": "liquidity_constrained",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-03T08:22:03.145174",
+      "outcome": "falsified",
+      "theory_claim": "Volume expansion during up days is weaker than down days due to asset selloffs, fading liquidity, institutional selling, and short-term momentum weakening, resulting in a neutral market regime charact",
+      "components_passed": [],
+      "components_failed": [
+        "volume_expansion_revised_5"
+      ],
+      "root_cause": "volume_expansion_revised_5",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This theory suggests that during up days, the volume expansion is weaker compared to down days due to several factors:\n\n1. Asset selloffs: When assets are selling, it leads to a decrease in buying activity, resulting in lower volume expansion.\n2. Fading liquidity: As the market becomes more liquid, "
+    }
+  ],
+  "component_failure_counts": {
+    "volume_expansion_revised_5": 1
+  }
+}

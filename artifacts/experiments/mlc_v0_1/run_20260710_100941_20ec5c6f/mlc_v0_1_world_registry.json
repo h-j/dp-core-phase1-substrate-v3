@@ -1,0 +1,22 @@
+[
+  {
+    "world_id": "WORLD_A_SEED_42",
+    "family": "A",
+    "seed": 42
+  },
+  {
+    "world_id": "WORLD_B_SEED_42",
+    "family": "B",
+    "seed": 42
+  },
+  {
+    "world_id": "WORLD_C1_SEED_42",
+    "family": "C1",
+    "seed": 42
+  },
+  {
+    "world_id": "WORLD_C2_SEED_42",
+    "family": "C2",
+    "seed": 42
+  }
+]

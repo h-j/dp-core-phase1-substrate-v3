@@ -1,0 +1,56 @@
+{
+  "experience_id": "exp_3b36618759b8a70e_2026-06-08",
+  "lineage_id": "3b36618759b8a70e",
+  "theory_family_id": "3b36618759b8a70e",
+  "created_at": "2026-06-08",
+  "status": "closed",
+  "theory_ids": [
+    "f94aa0b3-ff1d-4851-8aa0-ef7739168c0a"
+  ],
+  "contradictions": [],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:extended_lower",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:mixed",
+    "participation:normal",
+    "momentum:weakening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:buying",
+    "sector:sector:lagging_strong"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 0,
+  "contradiction_count": 0,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-02T09:06:46.055225",
+      "outcome": "partial",
+      "theory_claim": "The market's trend persistence is driven by a mixed interplay between Liquidity Absorption and Fundamental Analysis, with RELIANCE's dominance leading to a 'pressure-loaded range' where prices are una",
+      "components_passed": [
+        "price_structure",
+        "delivery_exhaustion"
+      ],
+      "components_failed": [
+        "volume_confirmation"
+      ],
+      "root_cause": "volume_confirmation",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This theory appears to be a technical analysis framework used to predict the market's trend persistence and potential shifts in its behavior. Here's a breakdown of why it \"failed\" based on the provided observations:\n\n1. **Volume Confirmation**: The observation that volume is elevated suggests that t"
+    }
+  ],
+  "component_failure_counts": {
+    "volume_confirmation": 1
+  }
+}

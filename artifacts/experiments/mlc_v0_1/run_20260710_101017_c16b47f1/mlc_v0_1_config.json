@@ -1,0 +1,11 @@
+{
+  "admit_threshold": 0.15,
+  "reject_threshold": -0.05,
+  "pre_registered_hypotheses": [
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "H5"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "5b93171f0d1f754c": {
+    "id": "5b93171f0d1f754c",
+    "theory_id": "7c9df2b2b7af0760",
+    "description": "structural: low semantic similarity: the price remains ra... vs delivery_pct > 50 an...; low semantic similarity: volume > 1000 and pr... vs delivery_pct > 50 an...; low semantic similarity: false: retain curren... vs sector_zscore < -1.5...",
+    "created_at_step": 1,
+    "resolved_at_step": 2,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08000000000000002
+  },
+  "409fb9d06e6515b1": {
+    "id": "409fb9d06e6515b1",
+    "theory_id": "34c71ae6be9ae4b1",
+    "description": "structural: low semantic similarity: price_range_bound... vs decisive close below...; low semantic similarity: the market regime is... vs volume > 1000 and pr...; low semantic similarity: volume_elevated: add... vs volume > 1000 and pr...; low semantic similarity: false: retain_price_... vs false: retain curren...; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "28b2f824fd553d84": {
+    "id": "28b2f824fd553d84",
+    "theory_id": "34c71ae6be9ae4b1",
+    "description": "structural: low semantic similarity: price_range_bound... vs decisive close below...; low semantic similarity: the market regime is... vs delivery_pct > 50 an...; low semantic similarity: volume_elevated: add... vs delivery_pct > 50 an...; low semantic similarity: false: retain_price_... vs sector_zscore < -1.5...; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "15391fc1975be46b": {
+    "id": "15391fc1975be46b",
+    "theory_id": "efeca108f036ef3f",
+    "description": "structural: low semantic similarity: the market regime is... vs volume_elevated: add...; low semantic similarity: price_action.daily_s... vs volume_elevated: add...; low semantic similarity: price_action.daily_s... vs false: retain_price_...; semantic contradiction: concept 'volatility_compression' relation is 'co-occurs_with' in current theory but 'contradicts' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'co-occurs_with' in current theory but 'contradicts' in historical theory.; semantic contradiction: concept 'volatility_compression' relation is 'co-occurs_with' in current theory but 'contradicts' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'co-occurs_with' in current theory but 'contradicts' in historical theory.; semantic contradiction: concept 'volatility_compression' relation is 'co-occurs_with' in current theory but 'contradicts' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'co-occurs_with' in current theory but 'contradicts' in historical theory.; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "3e843f2abdc5537c": {
+    "id": "3e843f2abdc5537c",
+    "theory_id": "efeca108f036ef3f",
+    "description": "structural: low semantic similarity: price_range_bound... vs decisive close below...; low semantic similarity: the market regime is... vs volume > 1000 and pr...; low semantic similarity: price_action.daily_s... vs false: retain curren...; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "a62bd0789e6fc18c": {
+    "id": "a62bd0789e6fc18c",
+    "theory_id": "efeca108f036ef3f",
+    "description": "structural: low semantic similarity: price_range_bound... vs decisive close below...; low semantic similarity: the market regime is... vs delivery_pct > 50 an...; low semantic similarity: price_action.daily_s... vs delivery_pct > 50 an...; low semantic similarity: price_action.daily_s... vs sector_zscore < -1.5...; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "e0d7469d770ce578": {
+    "id": "e0d7469d770ce578",
+    "theory_id": "e134c2611dbdd0ea",
+    "description": "structural: low semantic similarity: the moderate absorpt... vs price_action.daily_s...; low semantic similarity: volume_spike: > 1000... vs price_action.daily_s...; low semantic similarity: false: demote... vs price_action.daily_s...; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 1.0
+  },
+  "c4f76a57ab455612": {
+    "id": "c4f76a57ab455612",
+    "theory_id": "e134c2611dbdd0ea",
+    "description": "structural: low semantic similarity: the moderate absorpt... vs volume_elevated: add...; low semantic similarity: volume_spike: > 1000... vs volume_elevated: add...; low semantic similarity: false: demote... vs false: retain_price_...; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 1.0
+  },
+  "4b9a6f978d167d99": {
+    "id": "4b9a6f978d167d99",
+    "theory_id": "e134c2611dbdd0ea",
+    "description": "structural: low semantic similarity: price_range_bound_ex... vs decisive close below...; low semantic similarity: the moderate absorpt... vs volume > 1000 and pr...; low semantic similarity: volume_spike: > 1000... vs volume > 1000 and pr...; low semantic similarity: false: demote... vs false: retain curren...; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_selling' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 1.0
+  },
+  "060ac063f9f95d3e": {
+    "id": "060ac063f9f95d3e",
+    "theory_id": "e134c2611dbdd0ea",
+    "description": "structural: low semantic similarity: the moderate absorpt... vs regime is driven by ...; low semantic similarity: price_range_bound_ex... vs decisive close below...; low semantic similarity: the moderate absorpt... vs delivery_pct > 50 an...; low semantic similarity: volume_spike: > 1000... vs delivery_pct > 50 an...; low semantic similarity: false: demote... vs sector_zscore < -1.5...; semantic contradiction: concept 'volatility_compression' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 1.0
+  }
+}

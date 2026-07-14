@@ -1,0 +1,9 @@
+{
+  "id": "756e836a-8e9a-48c8-af33-00923ad33d15",
+  "created_at": "2026-06-30T05:17:00.905141+00:00",
+  "open_question_id": "87118cf4-dbfe-46d8-b437-1f67cbc68093",
+  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+  "candidate_data_source": "FII/DII Flows & Order Book Depth",
+  "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+  "priority": "HIGH"
+}

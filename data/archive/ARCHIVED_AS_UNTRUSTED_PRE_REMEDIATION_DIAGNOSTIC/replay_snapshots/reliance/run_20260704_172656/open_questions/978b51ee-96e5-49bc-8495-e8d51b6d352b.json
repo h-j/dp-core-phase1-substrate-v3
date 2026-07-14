@@ -1,0 +1,15 @@
+{
+  "id": "978b51ee-96e5-49bc-8495-e8d51b6d352b",
+  "created_at": "2026-07-04T12:34:36.952767+00:00",
+  "created_at_step": 25,
+  "question_text": "Why did component 'price_structure_v20' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "c1136572-6a97-4dd1-9912-9239d6f7e228"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "elevated"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

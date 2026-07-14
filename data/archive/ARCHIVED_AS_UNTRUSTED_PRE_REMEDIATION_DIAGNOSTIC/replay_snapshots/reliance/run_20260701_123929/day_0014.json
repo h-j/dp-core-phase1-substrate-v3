@@ -1,0 +1,350 @@
+{
+  "step": 14,
+  "date": "2026-05-19",
+  "observation": "[volume elevated, range expanding, gap up, short-term momentum weakening, delivery:moderate, fii:neutral, sector:lagging, RELIANCE focus, asset participation surge] candle expansion participation strong (bearish confirmed) RELIANCE closed lower amid moderate volatility but breadth weakened.\nTrend Persistence: 3D: Persistent Lower, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is experiencing a bearish trend with moderate volatility, but the overall market is mixed, indicating a weakening daily trend and range-bound weekly and monthly performance.",
+  "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+  "theory_summary_structured": {
+    "id": "4f7300d6-8928-4185-b78d-d8a0f28e2da3",
+    "created_at": "2026-07-01 07:10:06.908701+00:00",
+    "mechanism": "The revised mechanism posits that Market Sentiment plays a dominant role in shaping the regime. When RELIANCE focus is present, it can override the primary influence of Asset Liquidity Fade, leading to a regime shift. However, when RELIANCE focus is moderate or absent, Asset Liquidity Fade takes precedence.",
+    "claim": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+    "if_branch": {
+      "id": "e4e25943-5532-4f95-b553-574168412260",
+      "created_at": "2026-07-01 07:23:32.180452+00:00",
+      "condition": "Elevated volume and range expansion (>2x average) AND RELIANCE focus present",
+      "action": "Primary influence of Asset Liquidity Fade overridden, leading to a regime shift towards a more bearish sentiment"
+    },
+    "else_branch": {
+      "id": "2adbc527-84b0-4879-a490-a24e8dbb594d",
+      "created_at": "2026-07-01 07:23:32.180559+00:00",
+      "condition": "(Elevated volume and range expansion < 2x average OR RELIANCE focus absent) AND moderate volatility (< 20% daily change)",
+      "action": "Primary influence of Asset Liquidity Fade prevails, with RELIANCE focus having a secondary impact"
+    },
+    "unless": "{'condition': 'Fatigue present (e.g., low FII participation, lagging sectors)', 'action': 'Reduced sensitivity to RELIANCE focus, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade'}",
+    "falsified_if": "Lack of correlation between RELIANCE focus and regime shift in situations with moderate volume and range expansion",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "47e23508-5f7f-4ea2-8dac-14538829ef21",
+        "created_at": "2026-07-01 07:10:06.908899+00:00",
+        "component_id": "liquidity_absorption",
+        "description": "Liquidity is absorbed as price moves up, leading to range-bound trading.",
+        "observable": "volume_state.elevated",
+        "expected_behavior": "Price remains within the established range despite volume expansion.",
+        "dependency": null,
+        "concept_tags": [
+          "LIQUIDITY_ABSORPTION",
+          "VOLATILITY_COMPRESSION"
+        ],
+        "relation_type": "CONTRADICTS"
+      },
+      {
+        "id": "2efe6c1b-1cb2-49c0-8d4d-ba724cd291d3",
+        "created_at": "2026-07-01 07:10:06.908928+00:00",
+        "component_id": "delivery_pct",
+        "description": "Delivery percentage indicates high conviction among investors.",
+        "observable": "delivery_pct.rolling_5day_average",
+        "expected_behavior": ">60%",
+        "dependency": null,
+        "concept_tags": [
+          "DELIVERY_EXHAUSTION"
+        ],
+        "relation_type": "AMPLIFIES"
+      },
+      {
+        "id": "c7ec5836-b774-4abf-ac86-505564ea381c",
+        "created_at": "2026-07-01 07:10:06.908939+00:00",
+        "component_id": "sector_zscore",
+        "description": "Sector Z-score indicates relative strength of the sector.",
+        "observable": "sector_zscore.rolling_20day_relative_strength",
+        "expected_behavior": "< -1.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE"
+        ],
+        "relation_type": "CO-OCCURS_WITH"
+      }
+    ],
+    "falsification_conditions": [
+      "delivery_pct: < 30 AND volume_state = dry",
+      "sector_zscore: > 1.5 OR fii_net/dii_net > 0"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.7917,
+    "reflection": 0.0,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.081,
+    "indicators": [
+      "Structural: Low semantic similarity: Lack of correlation ... vs liquidity_absorption...; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus > 0.7...; Low semantic similarity: Elevated volume and ... vs RELIANCE focus > 0.7...; Low semantic similarity: (Elevated volume and... vs (moderate volatility...",
+      "Structural: Low semantic similarity: Lack of correlation ... vs No evidence of Asset...; Low semantic similarity: Revised claim: Regim... vs Asset Liquidity Fade...",
+      "Structural: Low semantic similarity: Lack of correlation ... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus and m..."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "de1a8cbf-9c1b-4d13-8cbd-41597fe37060",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "5b0dbc18-db05-4e4b-b056-72a800c32266",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "75eef1f1-7aa7-40a0-a193-06e2ca0fe4b3",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 3 contradictions with a total score of 0.08."
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-05-19",
+    "trend": "closed_lower",
+    "volatility_state": "moderate",
+    "sentiment": "risk_off",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.081,
+    "active_theory_count": 15,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-05-18",
+      "similarity": 0.81,
+      "active_theories": [
+        "f4b61f8b40c5502d",
+        "a79b667e09f9e8f3",
+        "99f833606d7db875"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: No regime shift obse... vs liquidity_absorption...; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus > 0.7...",
+        "Structural: Low semantic similarity: No regime shift obse... vs No evidence of Asset...; Low semantic similarity: Revised claim: Regim... vs Asset Liquidity Fade...; Low semantic similarity: Moderate to low RELI... vs Asset Liquidity Fade...",
+        "Structural: Low semantic similarity: No regime shift obse... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus and m..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-14",
+      "similarity": 0.784,
+      "active_theories": [
+        "f4b61f8b40c5502d",
+        "a79b667e09f9e8f3",
+        "99f833606d7db875"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: liquidity_absorption... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus and m...; Low semantic similarity: (moderate volatility... vs RELIANCE focus or vo...",
+        "Structural: Low semantic similarity: liquidity_absorption... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs Asset Liquidity Fade...; Low semantic similarity: RELIANCE focus > 0.7... vs Asset Liquidity Fade...; Low semantic similarity: (moderate volatility... vs RELIANCE is heavily ...",
+        "Structural: Low semantic similarity: liquidity_absorption... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs Asset Liquidity Fade...; Low semantic similarity: RELIANCE focus > 0.7... vs Asset Liquidity Fade...; Low semantic similarity: (moderate volatility... vs No Asset Liquidity F..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-13",
+      "similarity": 0.773,
+      "active_theories": [
+        "f4b61f8b40c5502d",
+        "a79b667e09f9e8f3",
+        "99f833606d7db875"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: No evidence of Asset... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus and m...",
+        "Structural: Low semantic similarity: No evidence of Asset... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs Asset Liquidity Fade...",
+        "Structural: Low semantic similarity: No evidence of Asset... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs Asset Liquidity Fade..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-05-19",
+      "policy_name": "Baseline",
+      "action": "sell",
+      "conviction": 0.746,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-05-19",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.746,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-05-19",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.746,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.20251966666666668,
+    "label": "weak"
+  },
+  "reflection": "The current regime subtype is Neutral. Based on the boundary conditions, the regime remains partially supported. The observed continuation of a bearish sentiment with elevated volume and range expansion does not directly contradict the primary influence of Asset Liquidity Fade, but rather suggests that RELIANCE focus may override this influence in certain situations. However, the lack of sufficient testing under volatility expansion raises concerns about the theory's robustness.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "Analog to 2026-05-18: participation is strong (prior was normal), liquidity is broad_participation (prior was normal), volatility is moderate (prior was normal)",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 14,
+    "avg_usefulness": 0.263,
+    "last_seen": "2026-05-19",
+    "historical_resolution": {
+      "higher": 2,
+      "lower": 5,
+      "range_bound": 6,
+      "uncertain": 0
+    },
+    "falsified_count": 8
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 14,
+    "date": "2026-05-19",
+    "contradiction_count": 3,
+    "contradiction_half_life": 1.02,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9433962264150944,
+    "avg_contradiction_severity": 0.08676415094339623,
+    "highest_contradiction": 0.098,
+    "theory_count": 15,
+    "active_theories": 15,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 14,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 8.0,
+    "longest_surviving_theory": 15,
+    "theory_mutation_count": 30,
+    "avg_confidence": 0.0,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.014705882352941176,
+    "avg_abstraction_length": 26.0,
+    "compression_ratio": 0.5909090909090909,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 44,
+      "theory_text": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "contradiction_text": "Detected 3 contradictions with a total score of 0.08.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "range_bound",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-05-19",
+        "trend": "closed_lower",
+        "volatility_state": "moderate",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.081,
+        "active_theory_count": 15,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-05-18",
+          "similarity": 0.81,
+          "active_theories": [
+            "f4b61f8b40c5502d",
+            "a79b667e09f9e8f3",
+            "99f833606d7db875"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: No regime shift obse... vs liquidity_absorption...; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus > 0.7...",
+            "Structural: Low semantic similarity: No regime shift obse... vs No evidence of Asset...; Low semantic similarity: Revised claim: Regim... vs Asset Liquidity Fade...; Low semantic similarity: Moderate to low RELI... vs Asset Liquidity Fade...",
+            "Structural: Low semantic similarity: No regime shift obse... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus and m..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-14",
+          "similarity": 0.784,
+          "active_theories": [
+            "f4b61f8b40c5502d",
+            "a79b667e09f9e8f3",
+            "99f833606d7db875"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: liquidity_absorption... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus and m...; Low semantic similarity: (moderate volatility... vs RELIANCE focus or vo...",
+            "Structural: Low semantic similarity: liquidity_absorption... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs Asset Liquidity Fade...; Low semantic similarity: RELIANCE focus > 0.7... vs Asset Liquidity Fade...; Low semantic similarity: (moderate volatility... vs RELIANCE is heavily ...",
+            "Structural: Low semantic similarity: liquidity_absorption... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs Asset Liquidity Fade...; Low semantic similarity: RELIANCE focus > 0.7... vs Asset Liquidity Fade...; Low semantic similarity: (moderate volatility... vs No Asset Liquidity F..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-13",
+          "similarity": 0.773,
+          "active_theories": [
+            "f4b61f8b40c5502d",
+            "a79b667e09f9e8f3",
+            "99f833606d7db875"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: No evidence of Asset... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus and m...",
+            "Structural: Low semantic similarity: No evidence of Asset... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs Asset Liquidity Fade...",
+            "Structural: Low semantic similarity: No evidence of Asset... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs Asset Liquidity Fade..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.20251966666666668,
+        "label": "weak"
+      }
+    }
+  }
+}

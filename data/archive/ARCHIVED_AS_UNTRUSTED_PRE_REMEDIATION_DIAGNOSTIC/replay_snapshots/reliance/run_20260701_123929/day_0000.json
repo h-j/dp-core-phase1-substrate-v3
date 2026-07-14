@@ -1,0 +1,223 @@
+{
+  "step": 0,
+  "date": "2026-04-29",
+  "observation": "[volume elevated, range expanding, gap up, volatility expanding, short-term momentum strengthening, delivery:low, fii:selling, sector:neutral, RELIANCE focus, asset rally, asset participation surge] candle strong bull participation strong (bullish confirmed) RELIANCE closed higher amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is experiencing a strong bull run with moderate volatility, as evidenced by elevated volume and range expansion. The trend remains mixed across different time frames, but the overall regime is neutral.",
+  "theory": "Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion.",
+  "theory_summary_structured": {
+    "id": "4f7300d6-8928-4185-b78d-d8a0f28e2da3",
+    "created_at": "2026-07-01 07:10:06.908701+00:00",
+    "mechanism": "Liquidity Absorption",
+    "claim": "Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion.",
+    "if_branch": {
+      "id": "9c138f18-36df-4524-94eb-e1a076b54cc3",
+      "created_at": "2026-07-01 07:10:06.908813+00:00",
+      "condition": "delivery_pct > 50 AND volume_state = elevated",
+      "action": "favor asset rally"
+    },
+    "else_branch": {
+      "id": "d8710bd8-191c-4079-afa1-dc9e578faeec",
+      "created_at": "2026-07-01 07:10:06.908845+00:00",
+      "condition": "sector_zscore < -1.5 OR fii_net/dii_net < 0",
+      "action": "favor neutral sector trend"
+    },
+    "unless": "institutions sell heavily",
+    "falsified_if": "price breaks below the prior support floor and fails to recover within a day",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "47e23508-5f7f-4ea2-8dac-14538829ef21",
+        "created_at": "2026-07-01 07:10:06.908899+00:00",
+        "component_id": "liquidity_absorption",
+        "description": "Liquidity is absorbed as price moves up, leading to range-bound trading.",
+        "observable": "volume_state.elevated",
+        "expected_behavior": "Price remains within the established range despite volume expansion.",
+        "dependency": null,
+        "concept_tags": [
+          "LIQUIDITY_ABSORPTION",
+          "VOLATILITY_COMPRESSION"
+        ],
+        "relation_type": "CONTRADICTS"
+      },
+      {
+        "id": "2efe6c1b-1cb2-49c0-8d4d-ba724cd291d3",
+        "created_at": "2026-07-01 07:10:06.908928+00:00",
+        "component_id": "delivery_pct",
+        "description": "Delivery percentage indicates high conviction among investors.",
+        "observable": "delivery_pct.rolling_5day_average",
+        "expected_behavior": ">60%",
+        "dependency": null,
+        "concept_tags": [
+          "DELIVERY_EXHAUSTION"
+        ],
+        "relation_type": "AMPLIFIES"
+      },
+      {
+        "id": "c7ec5836-b774-4abf-ac86-505564ea381c",
+        "created_at": "2026-07-01 07:10:06.908939+00:00",
+        "component_id": "sector_zscore",
+        "description": "Sector Z-score indicates relative strength of the sector.",
+        "observable": "sector_zscore.rolling_20day_relative_strength",
+        "expected_behavior": "< -1.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE"
+        ],
+        "relation_type": "CO-OCCURS_WITH"
+      }
+    ],
+    "falsification_conditions": [
+      "delivery_pct: < 30 AND volume_state = dry",
+      "sector_zscore: > 1.5 OR fii_net/dii_net > 0"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.292,
+    "regime": 0.514,
+    "reflection": 0.487,
+    "coherence": 0.2956,
+    "contradiction": 0.234
+  },
+  "contradiction": {
+    "score": 0.0,
+    "indicators": [],
+    "llm_contradiction_audit": [],
+    "summary": "Detected 0 contradictions with a total score of 0.00."
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-04-29",
+    "trend": "closed_higher",
+    "volatility_state": "moderate",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.0,
+    "active_theory_count": 1,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [],
+  "decisions": {
+    "baseline": {
+      "date": "2026-04-29",
+      "policy_name": "Baseline",
+      "action": "buy",
+      "conviction": 0.55,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-04-29",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.55,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-04-29",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.55,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.0,
+    "label": "unknown"
+  },
+  "reflection": "Liquidity support remains weakly tested against contradiction pressure.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 1,
+    "avg_usefulness": 0.0,
+    "last_seen": "2026-04-29",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 0,
+      "uncertain": 0
+    },
+    "falsified_count": 0
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 0,
+    "date": "2026-04-29",
+    "contradiction_count": 0,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.0,
+    "highest_contradiction": 0.0,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 0,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 1.0,
+    "longest_surviving_theory": 1,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.292,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 1.0,
+    "grounded_reflection_score": 0.75,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.25,
+    "avg_abstraction_length": 32.0,
+    "compression_ratio": 0.7111111111111111,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 45,
+      "theory_text": "Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion.. If delivery_pct > 50 AND volume_state = elevated: favor asset rally. Else sector_zscore < -1.5 OR fii_net/dii_net < 0: favor neutral sector trend. Unless institutions sell heavily. Falsified if: price breaks below the prior support floor and fails to recover within a day.",
+      "contradiction_text": "Detected 0 contradictions with a total score of 0.00.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-04-29",
+        "trend": "closed_higher",
+        "volatility_state": "moderate",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.0,
+        "active_theory_count": 1,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [],
+      "theory_usefulness": {
+        "score": 0.0,
+        "label": "unknown"
+      }
+    }
+  }
+}

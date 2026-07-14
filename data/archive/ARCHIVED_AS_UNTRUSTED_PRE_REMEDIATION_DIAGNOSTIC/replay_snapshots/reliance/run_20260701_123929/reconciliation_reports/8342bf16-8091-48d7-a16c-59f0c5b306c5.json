@@ -1,0 +1,20 @@
+{
+  "id": "8342bf16-8091-48d7-a16c-59f0c5b306c5",
+  "created_at": "2026-07-01T07:38:39.316647+00:00",
+  "step": 28,
+  "merged_count": 0,
+  "generalized_count": 0,
+  "retired_count": 0,
+  "restricted_count": 0,
+  "knowledge_debt_before": 66.0,
+  "knowledge_debt_after": 66.0,
+  "coverage_before": 0.0,
+  "coverage_after": 0.0,
+  "compression_ratio_before": "29\u219229\u21920\u21923\u21921",
+  "compression_ratio_after": "29\u219229\u21920\u21923\u21921",
+  "summary_text": "Knowledge Reconciliation Summary:\n  \u2022 Merged:       0 candidate(s) collapsed\n  \u2022 Generalized:  0 principle(s) promoted to CANONICAL\n  \u2022 Retired:      0 principle(s) retired\n  \u2022 Restricted:   0 principle(s) restricted/split\n  \u2022 Knowledge Debt: 66.0 \u2192 66.0\n  \u2022 Coverage:      0.0% \u2192 0.0%\n  \u2022 Compression Ratio: 29\u219229\u21920\u21923\u21921 \u2192 29\u219229\u21920\u21923\u21921",
+  "principle_compression_ratio": 0.0,
+  "distillation_efficiency": 0.0,
+  "knowledge_density": 0.0,
+  "canonical_growth_rate": 0.0
+}

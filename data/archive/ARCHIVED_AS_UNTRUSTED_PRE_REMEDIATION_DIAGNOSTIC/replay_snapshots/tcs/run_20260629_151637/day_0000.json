@@ -1,0 +1,197 @@
+{
+  "step": 0,
+  "date": "2026-06-12",
+  "observation": "[volume dry, range expanding, gap up, volatility expanding, delivery:moderate, fii:selling, sector:neutral, TCS focus, asset liquidity fade] candle neutral participation weak (weak move) TCS closed higher amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Neutral market with moderate volatility, TCS driving the trend, and weak participation in trading.",
+  "theory": "Regime is driven by Absorption; price remains range-bound despite moderate volatility and weak participation.",
+  "theory_summary_structured": {
+    "id": "42584efd-d78b-4696-94d4-8d6df9c56efa",
+    "created_at": "2026-06-29 09:47:00.433545+00:00",
+    "mechanism": "Absorption",
+    "claim": "Regime is driven by Absorption; price remains range-bound despite moderate volatility and weak participation.",
+    "if_branch": {
+      "id": "c52c9db0-3ee3-4ebb-abbc-c85394aab3b0",
+      "created_at": "2026-06-29 09:47:00.433656+00:00",
+      "condition": "participation widens above average",
+      "action": "favor breakout higher"
+    },
+    "else_branch": {
+      "id": "75207e80-518f-49b1-985c-1aeb881b956c",
+      "created_at": "2026-06-29 09:47:00.433694+00:00",
+      "condition": "volatility remains compressed",
+      "action": "favor range persistence"
+    },
+    "unless": "liquidity evaporates entirely",
+    "falsified_if": "decisive close below the prior support floor",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "component_id": "absorption_rate",
+        "description": "Price remains range-bound despite moderate volatility and weak participation.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous high, each low < previous low",
+        "dependency": null
+      },
+      {
+        "component_id": "volume_confirmation",
+        "description": "Volume expands on up days relative to down days.",
+        "observable": "volume.daily_ratio",
+        "expected_behavior": "Average volume on up days exceeds average volume on down days",
+        "dependency": null
+      }
+    ],
+    "falsification_conditions": [
+      "absorption_rate: lower low formed breaking HH/HL sequence",
+      "volume_confirmation: down-day volume exceeds up-day volume for 3 consecutive sessions"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.24,
+    "regime": 0.5,
+    "reflection": 0.461,
+    "coherence": 0.2941,
+    "contradiction": 0.273
+  },
+  "contradiction": {
+    "score": 0.0,
+    "indicators": [],
+    "llm_contradiction_audit": [],
+    "summary": "Detected 0 contradictions with a total score of 0.00."
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-06-12",
+    "trend": "closed_higher",
+    "volatility_state": "moderate",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.0,
+    "active_theory_count": 1,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [],
+  "decisions": {
+    "baseline": {
+      "date": "2026-06-12",
+      "policy_name": "Baseline",
+      "action": "buy",
+      "conviction": 0.5,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-06-12",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.5,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-06-12",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.5,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.0,
+    "label": "unknown"
+  },
+  "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 1,
+    "avg_usefulness": 0.0,
+    "last_seen": "2026-06-12",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 0,
+      "uncertain": 0
+    },
+    "falsified_count": 0
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 0,
+    "date": "2026-06-12",
+    "contradiction_count": 0,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.0,
+    "highest_contradiction": 0.0,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 0,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 1.0,
+    "longest_surviving_theory": 1,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.24,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 1.0,
+    "grounded_reflection_score": 0.5,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.14285714285714285,
+    "avg_abstraction_length": 14.0,
+    "compression_ratio": 0.358974358974359,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 39,
+      "theory_text": "Regime is driven by Absorption; price remains range-bound despite moderate volatility and weak participation.. If participation widens above average: favor breakout higher. Else volatility remains compressed: favor range persistence. Unless liquidity evaporates entirely. Falsified if: decisive close below the prior support floor.",
+      "contradiction_text": "Detected 0 contradictions with a total score of 0.00.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-12",
+        "trend": "closed_higher",
+        "volatility_state": "moderate",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.0,
+        "active_theory_count": 1,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [],
+      "theory_usefulness": {
+        "score": 0.0,
+        "label": "unknown"
+      }
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "step": 0,
+  "date": "2026-06-29",
+  "observation": "[volume elevated, range expanding, gap down, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, RELIANCE focus] candle neutral participation normal (normal) RELIANCE closed lower amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is experiencing a mixed trend with moderate volatility, closing lower amid neutral sector performance and selling from FII.",
+  "theory": "{\n  \"claim\": \"Regime is driven by Liquidity Absorption; price remains range-bound despite moderate volatility.\",\n  \"mechanism\": \"Liquidity Absorption\",\n  \"if_branch\": {\"condition\": \"delivery_pct > 50 AND volume_state = elevated\", \"action\": \"favor delivery exhaustion\"},\n  \"else_branch\": {\"condition\": \"sector_zscore < -1.5 OR fii_net < 0\", \"action\": \"favor range persistence\"},\n  \"unless\": \"liquidity evaporates entirely\",\n  \"falsified_if\": \"decisive close below the prior support floor\",\n  \"mechanism_components\": [\n    {\n      \"component_id\": \"delivery_confirmation\",\n      \"description\": \"Delivery percentage exceeds 50% on elevated volume days\",\n      \"observable\": \"price_action.delivery_pct\",\n      \"expected_behavior\": \">50%\",\n      \"dependency\": null,\n      \"concept_tags\": [\"DELIVERY_EXHAUSTION\", \"INSTITUTIONAL_ACCUMULATION\"],\n      \"relation_type\": \"AMPLIFIES\"\n    },\n    {\n      \"component_id\": \"sector_zscore\",\n      \"description\": \"Sector relative strength Z-score is negative\",\n      \"observable\": \"volume.daily_ratio\",\n      \"expected_behavior\": \"<-1.5\",\n      \"dependency\": null,\n      \"concept_tags\": [\"SECTOR_ZSCORE\", \"VOLATILITY_COMPRESSION\"],\n      \"relation_type\": \"CONTRADICTS\"\n    },\n    {\n      \"component_id\": \"fii_net\",\n      \"description\": \"FII net flow is negative\",\n      \"observable\": \"fii_net\",\n      \"expected_behavior\": \"<0\",\n      \"dependency\": null,\n      \"concept_tags\": [\"INSTITUTIONAL_ACCUMULATION\", \"LIQUIDITY_ABSORPTION\"],\n      \"relation_type\": \"DEPENDS_ON\"\n    }\n  ],\n  \"falsification_conditions\": [\n    \"delivery_confirmation: lower low formed breaking HH/HL sequence\",\n    \"sector_zscore: positive sector Z-score for 3 consecutive sessions\",\n    \"fii_net: FII net flow remains positive for 3 consecutive sessions\"\n  ],\n  \"reuse_decision\": \"REJECTED\" }",
+  "theory_summary_structured": null,
+  "confidence": {
+    "empirical": 0.24,
+    "regime": 0.5,
+    "reflection": 0.461,
+    "coherence": 0.2956,
+    "contradiction": 0.234
+  },
+  "contradiction": {
+    "score": 0.0,
+    "indicators": [],
+    "llm_contradiction_audit": [],
+    "summary": "Detected 0 contradictions with a total score of 0.00."
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-06-29",
+    "trend": "closed_lower",
+    "volatility_state": "moderate",
+    "sentiment": "risk_off",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.0,
+    "active_theory_count": 1,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [],
+  "decisions": {
+    "baseline": {
+      "date": "2026-06-29",
+      "policy_name": "Baseline",
+      "action": "sell",
+      "conviction": 0.55,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-06-29",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.55,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-06-29",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.55,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.0,
+    "label": "unknown"
+  },
+  "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 1,
+    "avg_usefulness": 0.0,
+    "last_seen": "2026-06-29",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 0,
+      "uncertain": 0
+    },
+    "falsified_count": 0
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 0,
+    "date": "2026-06-29",
+    "contradiction_count": 0,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.0,
+    "highest_contradiction": 0.0,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 0,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 1.0,
+    "longest_surviving_theory": 1,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.24,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 1.0,
+    "grounded_reflection_score": 0.25,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.14285714285714285,
+    "avg_abstraction_length": 19.0,
+    "compression_ratio": 0.5277777777777778,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 156,
+    "mechanism_count": 0,
+    "conditional_clauses_count": 0,
+    "exceptions_added": 0,
+    "mechanisms_retired_count": 0,
+    "mechanisms_added_count": 0,
+    "mechanisms_modified_count": 0,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 0,
+    "words_after_mutation": 0,
+    "mechanisms_before_mutation": 0,
+    "mechanisms_after_mutation": 0,
+    "extras": {
+      "observation_length": 36,
+      "theory_text": "{\n  \"claim\": \"Regime is driven by Liquidity Absorption; price remains range-bound despite moderate volatility.\",\n  \"mechanism\": \"Liquidity Absorption\",\n  \"if_branch\": {\"condition\": \"delivery_pct > 50 AND volume_state = elevated\", \"action\": \"favor delivery exhaustion\"},\n  \"else_branch\": {\"condition\": \"sector_zscore < -1.5 OR fii_net < 0\", \"action\": \"favor range persistence\"},\n  \"unless\": \"liquidity evaporates entirely\",\n  \"falsified_if\": \"decisive close below the prior support floor\",\n  \"mechanism_components\": [\n    {\n      \"component_id\": \"delivery_confirmation\",\n      \"description\": \"Delivery percentage exceeds 50% on elevated volume days\",\n      \"observable\": \"price_action.delivery_pct\",\n      \"expected_behavior\": \">50%\",\n      \"dependency\": null,\n      \"concept_tags\": [\"DELIVERY_EXHAUSTION\", \"INSTITUTIONAL_ACCUMULATION\"],\n      \"relation_type\": \"AMPLIFIES\"\n    },\n    {\n      \"component_id\": \"sector_zscore\",\n      \"description\": \"Sector relative strength Z-score is negative\",\n      \"observable\": \"volume.daily_ratio\",\n      \"expected_behavior\": \"<-1.5\",\n      \"dependency\": null,\n      \"concept_tags\": [\"SECTOR_ZSCORE\", \"VOLATILITY_COMPRESSION\"],\n      \"relation_type\": \"CONTRADICTS\"\n    },\n    {\n      \"component_id\": \"fii_net\",\n      \"description\": \"FII net flow is negative\",\n      \"observable\": \"fii_net\",\n      \"expected_behavior\": \"<0\",\n      \"dependency\": null,\n      \"concept_tags\": [\"INSTITUTIONAL_ACCUMULATION\", \"LIQUIDITY_ABSORPTION\"],\n      \"relation_type\": \"DEPENDS_ON\"\n    }\n  ],\n  \"falsification_conditions\": [\n    \"delivery_confirmation: lower low formed breaking HH/HL sequence\",\n    \"sector_zscore: positive sector Z-score for 3 consecutive sessions\",\n    \"fii_net: FII net flow remains positive for 3 consecutive sessions\"\n  ],\n  \"reuse_decision\": \"REJECTED\" }",
+      "contradiction_text": "Detected 0 contradictions with a total score of 0.00.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-29",
+        "trend": "closed_lower",
+        "volatility_state": "moderate",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.0,
+        "active_theory_count": 1,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [],
+      "theory_usefulness": {
+        "score": 0.0,
+        "label": "unknown"
+      }
+    }
+  }
+}

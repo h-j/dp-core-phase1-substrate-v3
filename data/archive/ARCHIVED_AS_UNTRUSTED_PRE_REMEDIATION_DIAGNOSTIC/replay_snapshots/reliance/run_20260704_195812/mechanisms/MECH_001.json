@@ -1,0 +1,39 @@
+{
+  "id": "MECH_001",
+  "created_at": "2026-07-04T14:31:01.406048+00:00",
+  "mechanism_id": "MECH_001",
+  "canonical_name": "TREND_PERSISTENCE",
+  "concept_tags": [
+    "TREND_PERSISTENCE",
+    "VOLATILITY_EXPANSION"
+  ],
+  "relation_type": "CONTRADICTS",
+  "first_seen": 1,
+  "last_seen": 4,
+  "days_active": 10,
+  "times_reused": 2,
+  "times_modified": 6,
+  "times_retired": 0,
+  "support_count": 2,
+  "contradiction_count": 2,
+  "prediction_helped": 2,
+  "prediction_harmed": 2,
+  "status": "active",
+  "regimes_seen": [
+    "neutral",
+    "liquidity_constrained"
+  ],
+  "name": "TREND_PERSISTENCE",
+  "description": "Increased volatility leading to expanding price ranges.",
+  "concept_type": "candidate",
+  "associated_theory_ids": [
+    "dab21d11-4dad-4e7e-bdb3-d0c77a88d07c",
+    "ef93d718-52e0-43fd-92e2-99c4d8beb9b4",
+    "5c111cbe-e821-443b-9e40-6a8c82a6147e",
+    "7106cec4-24bd-46e0-a3e3-0b2b078c2f5d"
+  ],
+  "associated_lineages": [
+    "3f0da9dd-6bcf-47ff-a72d-612a2813a769"
+  ],
+  "created_at_step": 1
+}

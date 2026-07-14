@@ -1,0 +1,802 @@
+[
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2001",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2002",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2003",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2004",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2005",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2006",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2007",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2008",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2009",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2010",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2011",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2012",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2013",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2014",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2015",
+    "zone": "CLEAR",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2016",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2017",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2018",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2019",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2020",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2021",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2022",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2023",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2024",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2025",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2026",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2027",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2028",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2029",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2030",
+    "zone": "CLEAR",
+    "true_effect": -0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2031",
+    "zone": "BOUNDARY",
+    "true_effect": -0.08,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2032",
+    "zone": "BOUNDARY",
+    "true_effect": -0.08,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2033",
+    "zone": "BOUNDARY",
+    "true_effect": -0.08,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2034",
+    "zone": "BOUNDARY",
+    "true_effect": -0.08,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2035",
+    "zone": "BOUNDARY",
+    "true_effect": -0.08,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2036",
+    "zone": "BOUNDARY",
+    "true_effect": -0.08,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2037",
+    "zone": "BOUNDARY",
+    "true_effect": -0.08,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2038",
+    "zone": "BOUNDARY",
+    "true_effect": -0.04,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2039",
+    "zone": "BOUNDARY",
+    "true_effect": -0.04,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2040",
+    "zone": "BOUNDARY",
+    "true_effect": -0.04,
+    "h2_paired_diff": -1,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2041",
+    "zone": "BOUNDARY",
+    "true_effect": -0.04,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2042",
+    "zone": "BOUNDARY",
+    "true_effect": -0.04,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2043",
+    "zone": "BOUNDARY",
+    "true_effect": -0.04,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2044",
+    "zone": "BOUNDARY",
+    "true_effect": -0.04,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2045",
+    "zone": "BOUNDARY",
+    "true_effect": 0.0,
+    "h2_paired_diff": -1,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2046",
+    "zone": "BOUNDARY",
+    "true_effect": 0.0,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2047",
+    "zone": "BOUNDARY",
+    "true_effect": 0.0,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2048",
+    "zone": "BOUNDARY",
+    "true_effect": 0.0,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2049",
+    "zone": "BOUNDARY",
+    "true_effect": 0.0,
+    "h2_paired_diff": -1,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2050",
+    "zone": "BOUNDARY",
+    "true_effect": 0.0,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2051",
+    "zone": "BOUNDARY",
+    "true_effect": 0.0,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2052",
+    "zone": "BOUNDARY",
+    "true_effect": 0.05,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2053",
+    "zone": "BOUNDARY",
+    "true_effect": 0.05,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2054",
+    "zone": "BOUNDARY",
+    "true_effect": 0.05,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2055",
+    "zone": "BOUNDARY",
+    "true_effect": 0.05,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2056",
+    "zone": "BOUNDARY",
+    "true_effect": 0.05,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2057",
+    "zone": "BOUNDARY",
+    "true_effect": 0.05,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2058",
+    "zone": "BOUNDARY",
+    "true_effect": 0.05,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 1,
+    "h4_paired_diff": 1
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2059",
+    "zone": "BOUNDARY",
+    "true_effect": 0.05,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2060",
+    "zone": "BOUNDARY",
+    "true_effect": 0.12,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2061",
+    "zone": "BOUNDARY",
+    "true_effect": 0.12,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2062",
+    "zone": "BOUNDARY",
+    "true_effect": 0.12,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2063",
+    "zone": "BOUNDARY",
+    "true_effect": 0.12,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2064",
+    "zone": "BOUNDARY",
+    "true_effect": 0.12,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2065",
+    "zone": "BOUNDARY",
+    "true_effect": 0.12,
+    "h2_paired_diff": -1,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": -1
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2066",
+    "zone": "BOUNDARY",
+    "true_effect": 0.12,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2067",
+    "zone": "BOUNDARY",
+    "true_effect": 0.16,
+    "h2_paired_diff": -1,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2068",
+    "zone": "BOUNDARY",
+    "true_effect": 0.16,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2069",
+    "zone": "BOUNDARY",
+    "true_effect": 0.16,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2070",
+    "zone": "BOUNDARY",
+    "true_effect": 0.16,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2071",
+    "zone": "BOUNDARY",
+    "true_effect": 0.16,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2072",
+    "zone": "BOUNDARY",
+    "true_effect": 0.16,
+    "h2_paired_diff": -1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2073",
+    "zone": "BOUNDARY",
+    "true_effect": 0.16,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2074",
+    "zone": "BOUNDARY",
+    "true_effect": 0.2,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2075",
+    "zone": "BOUNDARY",
+    "true_effect": 0.2,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2076",
+    "zone": "BOUNDARY",
+    "true_effect": 0.2,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2077",
+    "zone": "BOUNDARY",
+    "true_effect": 0.2,
+    "h2_paired_diff": -1,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2078",
+    "zone": "BOUNDARY",
+    "true_effect": 0.2,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2079",
+    "zone": "BOUNDARY",
+    "true_effect": 0.2,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2080",
+    "zone": "BOUNDARY",
+    "true_effect": 0.2,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": -1,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2081",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2082",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2083",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2084",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2085",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2086",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2087",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2088",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2089",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2090",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2091",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2092",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2093",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2094",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2095",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2096",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2097",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2098",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 0,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2099",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2100",
+    "zone": "EVIDENCE_LIMITED",
+    "true_effect": 0.35,
+    "h2_paired_diff": 1,
+    "h3_paired_diff": 0,
+    "h4_paired_diff": 0
+  }
+]

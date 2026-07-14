@@ -1,0 +1,15 @@
+{
+  "id": "ea282d10-814f-43cd-bac3-70380bb1a213",
+  "created_at": "2026-07-13T15:39:16.319410+00:00",
+  "created_at_step": 8,
+  "question_text": "Why did component 'VOLATILITY_EXPANSION_ADJUSTMENT_2' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "b6895bdf-5df0-4a29-a06c-2fe3c269f8bb"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "elevated"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

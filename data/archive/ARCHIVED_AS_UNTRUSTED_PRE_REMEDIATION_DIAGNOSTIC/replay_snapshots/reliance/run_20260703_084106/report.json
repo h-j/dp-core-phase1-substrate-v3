@@ -1,0 +1,498 @@
+{
+  "symbol": "RELIANCE",
+  "days": 5,
+  "date_range": "2026-06-26 \u2192 2026-07-02",
+  "execution_hash": "95f1e67a6960aa91d8880706b92ffb5dd8a9c63790185eb495903320671b5bc0",
+  "git_commit": "9b88a42276268d42f1c0229b11f4c6934893fea9",
+  "llm_version": "llama3.2",
+  "replay_version": "v3.0PersistentReflective",
+  "story_summary": "This replay represents 5 days of experience on RELIANCE. During this period, DP generated 5 experiences, evolved 4 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 2 key market mechanisms while identifying 3 unresolved evidence gap(s).",
+  "metrics": {
+    "accuracy": 25.0,
+    "knowledge_debt": 0,
+    "memory_usefulness": 0.4694666666666667,
+    "knowledge_coverage": 0.0,
+    "prediction_drift": 0.0,
+    "theory_drift": 0.0
+  },
+  "knowledge_health": {
+    "knowledge_debt_bar": 10,
+    "principle_coverage": 0.0,
+    "reuse_rate": 0.0,
+    "trust": 63.800000000000004
+  },
+  "knowledge_lifecycle": {
+    "candidate": 0,
+    "emerging": 0,
+    "trusted": 0,
+    "canonical": 0,
+    "retired": 0
+  },
+  "timeline": [
+    {
+      "date": "2026-06-26",
+      "theory": "Regime is driven by Liquidity Absorption; price remains range-bound despite moderate delivery and sector leading.",
+      "prediction": "range_bound (45%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-29",
+      "theory": "The price remains range-bound due to moderate institutional selling and a weaker accumulation signal, leading to a neutral market regime characterized by moderate liquidity absorption and volume expansion on up days relative to down days.",
+      "prediction": "lower (64%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08000000000000002
+    },
+    {
+      "date": "2026-06-30",
+      "theory": "The market regime is characterized by moderate liquidity absorption and price range expansion driven by institutional selling, indicating a shift in market sentiment towards risk aversion.",
+      "prediction": "lower (56%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 1.0
+    },
+    {
+      "date": "2026-07-01",
+      "theory": "The market regime is characterized by moderate liquidity absorption and price range-bound behavior driven by institutional selling, suggesting a liquidity-constrained environment where sector leading influences are partially offset by reliance on RELIANCE.",
+      "prediction": "higher (22%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 1.0
+    },
+    {
+      "date": "2026-07-02",
+      "theory": "The moderate absorption rate and price range expansion indicate a neutral market regime characterized by a shift in sentiment towards RELIANCE, suggesting that increased reliance on this component drives market behavior.",
+      "prediction": "range_bound (34%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 1.0
+    }
+  ],
+  "theory_evolution": [
+    {
+      "day": "2026-06-26",
+      "lineage_id": "e134c2611dbdd0ea",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-29",
+      "lineage_id": "7c9df2b2b7af0760",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-30",
+      "lineage_id": "7c9df2b2b7af0760",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-07-01",
+      "lineage_id": "efeca108f036ef3f",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-07-02",
+      "lineage_id": "e134c2611dbdd0ea",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "close"
+    }
+  ],
+  "world_model": {
+    "narrative": "Baseline world model. No active principles recorded yet.",
+    "regime_constraints": {},
+    "supporting_principles": [],
+    "dominant_mechanisms": [],
+    "active_constraints": [],
+    "supporting_canonical_principles": [],
+    "confidence": 0.5,
+    "stability": "Emerging",
+    "evidence_count": 0,
+    "applicable_regimes": [],
+    "open_questions": [
+      {
+        "question_text": "Why did component 'price_range_bound' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_range_bound_expansion' fail under liquidity_constrained regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_range_bound_expansion' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "spike"
+        ]
+      }
+    ],
+    "evidence_gaps": [
+      {
+        "id": "2a3898aa-d94b-4972-bb0b-691ee03dadec",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_range_bound'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_range_bound' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "52a4e7a4-eeb8-42a7-8bf6-b9e94ad97675",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_range_bound_expansion'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_range_bound_expansion' under liquidity_constrained regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "eac2ae2c-28a1-4773-b756-1c5e364ff724",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_range_bound_expansion'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_range_bound_expansion' under neutral regime",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  "chart_data": {
+    "dates": [
+      "2026-06-26",
+      "2026-06-29",
+      "2026-06-30",
+      "2026-07-01",
+      "2026-07-02"
+    ],
+    "close": [
+      1318.0999755859375,
+      1301.0,
+      1293.9000244140625,
+      1308.0,
+      1303.5
+    ],
+    "delivery_pct": [
+      50.846841331751065,
+      54.03918975104557,
+      56.96213385214001,
+      56.73048096475415,
+      56.73048096475415
+    ],
+    "fii_net": [
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493
+    ],
+    "sector_zscore": [
+      1.3656951941321915,
+      0.3999481443740225,
+      0.000504859616581,
+      0.7149140667190823,
+      0.4002795751884913
+    ],
+    "equity_curve": [
+      1000000.0,
+      1000000.0,
+      1000572.53,
+      1000572.53,
+      1000572.53
+    ]
+  },
+  "decision_traces": [
+    {
+      "step": 0,
+      "date": "2026-06-26",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "indecision",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [],
+      "novelty_score": 1.0,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Regime is driven by Liquidity Absorption; price remains range-bound despite moderate delivery and sector leading.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.45
+      },
+      "outcome": {
+        "actual_direction": "uncertain",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Liquidity support remains weakly tested against contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 1,
+      "date": "2026-06-29",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "neutral",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-26",
+          "similarity": 0.5,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.5,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The price remains range-bound due to moderate institutional selling and a weaker accumulation signal, leading to a neutral market regime characterized by moderate liquidity absorption and volume expansion on up days relative to down days.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.64
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Market Regime Subtype: Neutral The current regime subtype is neutral, but the observed market conditions contradict the theory's assumptions. The moderate institutional selling and weaker accumulation signal are not supported by the elevated volume, range expansion, and gap down, which indicate a stronger selling pressure. The detected contradictions have a total score of 0.08, indicating that the theory's falsifiability boundary conditions are met. However, the low semantic similarity between certain indicators (e.g., delivery_pct > 50 AN...) suggests that the theory may require additional confirmation signals to be fully validated.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 2,
+      "date": "2026-06-30",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-29",
+          "similarity": 0.99,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-26",
+          "similarity": 0.488,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.01,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is characterized by moderate liquidity absorption and price range expansion driven by institutional selling, indicating a shift in market sentiment towards risk aversion.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.563
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified based on the boundary conditions, as additional confirmation signals indicating a clear decrease in momentum are required to confirm or reject the synthesis. The observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumption. This contradicts the historical subtype memory of lower resolution and average usefulness of 0.10.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 3,
+      "date": "2026-07-01",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "expansion",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "liquidity_constrained"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-29",
+          "similarity": 0.49,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-26",
+          "similarity": 0.488,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.51,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is characterized by moderate liquidity absorption and price range-bound behavior driven by institutional selling, suggesting a liquidity-constrained environment where sector leading influences are partially offset by reliance on RELIANCE.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.221
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is liquidity_constrained. The theory is falsified by the observed contradiction, which includes low semantic similarity between the market regime's characteristics and the observed candle expansion participation weak (weak move) RELIANCE closed higher with volatility compressed. The dialectical synthesis attempts to reconcile this apparent contradiction by suggesting that RELIANCE's mixed trend persistence is indicative of a state of indecision rather than a clear direction. However, this interpretation relies on the assumption that the leading sector position and moderate delivery volumes are sufficient to counteract the weakening trend suggested by weaker short-term momentum and fading asset liquidity.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 5.0
+      }
+    },
+    {
+      "step": 4,
+      "date": "2026-07-02",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "neutral",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-26",
+          "similarity": 0.808,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-07-01",
+          "similarity": 0.56,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-29",
+          "similarity": 0.49,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.192,
+      "reuse_decision": "reused",
+      "generated_theory": "The moderate absorption rate and price range expansion indicate a neutral market regime characterized by a shift in sentiment towards RELIANCE, suggesting that increased reliance on this component drives market behavior.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.34
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Theory contradiction remains unresolved.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 8.0
+      }
+    }
+  ],
+  "epistemic_review": {
+    "assumptions_survived": [],
+    "assumptions_failed": [
+      "Assumption 1: The world is a fixed and predictable place.",
+      "Assumption 2: Human behavior can be fully understood through rational analysis."
+    ],
+    "knowledge_stronger": [],
+    "knowledge_weaker": [
+      "Knowledge about the limitations of human understanding in complex systems.",
+      "Knowledge about the impact of external factors on decision-making processes."
+    ],
+    "world_model_shifts": [
+      "Shift from a deterministic to a probabilistic view of causality.",
+      "Recognition of the importance of context and nuance in decision-making."
+    ],
+    "fundamental_uncertainty": [
+      "The nature of free will and its relationship to determinism.",
+      "The limits of knowledge and understanding in complex systems."
+    ],
+    "tomorrow_beliefs": [
+      "We would believe that the world is inherently uncertain and unpredictable, and that our models must always be subject to revision.",
+      "We would recognize the importance of humility and adaptability in the face of new information and changing circumstances."
+    ]
+  },
+  "paper_trading_summary": {
+    "total_return_pct": 0.0573,
+    "sharpe_ratio": 7.9373,
+    "max_drawdown_pct": 0.0,
+    "directional_accuracy_pct": 20.0,
+    "commitment_accuracy_pct": 50.0,
+    "avg_conviction_score": 0.2784,
+    "final_capital": 1000572.53
+  },
+  "decision_intelligence": {
+    "total_decisions": 5,
+    "executed": 2,
+    "skipped": 3,
+    "high_conviction": 0,
+    "low_conviction": 3,
+    "decision_accuracy_pct": 20.0,
+    "allocation_efficiency": 0.0163,
+    "avg_conviction": 0.2784,
+    "false_high_conviction_pct": 0.0,
+    "false_low_conviction_pct": 0.0,
+    "decision_stability": 0.8097,
+    "top_lineages": [
+      "b2e678f6-c85e-42e2-b711-99a5e736ec80"
+    ],
+    "top_principles": [],
+    "top_memories": [
+      "Regime Analog unknown"
+    ],
+    "top_harmful_contradictions": [
+      "contradiction_on_2026-06-30",
+      "contradiction_on_2026-07-01"
+    ],
+    "knowledge_changes_count": 6,
+    "avoided_bad_trades": 2,
+    "ignored_opportunities": 0
+  }
+}

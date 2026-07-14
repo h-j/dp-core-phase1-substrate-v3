@@ -1,0 +1,37 @@
+{
+  "id": "MECH_002",
+  "created_at": "2026-07-13T15:28:36.518859+00:00",
+  "mechanism_id": "MECH_002",
+  "canonical_name": "VOLATILITY_EXPANSION",
+  "concept_tags": [
+    "VOLATILITY_EXPANSION",
+    "MOMENTUM"
+  ],
+  "relation_type": "AMPLIFIES",
+  "first_seen": 1,
+  "last_seen": 2,
+  "days_active": 3,
+  "times_reused": 0,
+  "times_modified": 1,
+  "times_retired": 0,
+  "support_count": 1,
+  "contradiction_count": 1,
+  "prediction_helped": 1,
+  "prediction_harmed": 1,
+  "status": "active",
+  "regimes_seen": [
+    "neutral",
+    "liquidity_constrained"
+  ],
+  "name": "VOLATILITY_EXPANSION",
+  "description": "Short-term momentum weakening due to increased volatility.",
+  "concept_type": "candidate",
+  "associated_theory_ids": [
+    "c42b98d3-e0ad-494e-b410-bd52b6747ec6",
+    "0a4d6ba1-4e96-4471-8b4a-2389f530d08b"
+  ],
+  "associated_lineages": [
+    "7c039bc0-3c76-46d2-bd4b-5692252341e2"
+  ],
+  "created_at_step": 1
+}

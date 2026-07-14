@@ -1,0 +1,41 @@
+{
+  "H2": {
+    "hypothesis_id": "H2",
+    "observed_mean_difference": 0.51,
+    "observed_variance": 0.393838,
+    "observed_std_dev": 0.6276,
+    "confidence_interval_95": [
+      0.387,
+      0.633
+    ],
+    "power_at_n500": 0.4293,
+    "required_n_for_80_power": 1237,
+    "adequately_powered": false
+  },
+  "H3": {
+    "hypothesis_id": "H3",
+    "observed_mean_difference": -0.01,
+    "observed_variance": 0.232222,
+    "observed_std_dev": 0.4819,
+    "confidence_interval_95": [
+      -0.1045,
+      0.0845
+    ],
+    "power_at_n500": 0.6406,
+    "required_n_for_80_power": 730,
+    "adequately_powered": false
+  },
+  "H4": {
+    "hypothesis_id": "H4",
+    "observed_mean_difference": 0.0,
+    "observed_variance": 0.020202,
+    "observed_std_dev": 0.1421,
+    "confidence_interval_95": [
+      -0.0279,
+      0.0279
+    ],
+    "power_at_n500": 1.0,
+    "required_n_for_80_power": 64,
+    "adequately_powered": true
+  }
+}

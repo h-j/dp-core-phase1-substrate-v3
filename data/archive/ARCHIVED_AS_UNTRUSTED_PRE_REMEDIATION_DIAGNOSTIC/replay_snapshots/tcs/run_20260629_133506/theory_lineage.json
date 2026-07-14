@@ -1,0 +1,58 @@
+{
+  "e45667047db30dd3": {
+    "id": "e45667047db30dd3",
+    "lineage_id": "e45667047db30dd3",
+    "created_at_step": 0,
+    "parent_ids": [],
+    "status": "active",
+    "confidence": 0.5,
+    "abstraction": "The market is experiencing a mixed trend with moderate volatility, as indicated by the closing of TCS higher despite weak short-term momentum. The overall regime remains mixed, and there are signs of asset liquidity fading.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.5,
+      "theoretical_coherence": 0.5,
+      "contradiction_pressure": 0.0
+    },
+    "contradictions": [],
+    "contradiction_count": 0,
+    "mutation_reason": null,
+    "survival_steps": 2,
+    "last_seen_step": 0,
+    "mutation_count": 0,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": []
+  },
+  "3f701dde4ca14d5e": {
+    "id": "3f701dde4ca14d5e",
+    "lineage_id": "3f701dde4ca14d5e",
+    "created_at_step": 1,
+    "parent_ids": [],
+    "status": "contradicted",
+    "confidence": 0.175,
+    "abstraction": "Weaker trend with mixed persistence and a mixed overall regime, indicating a lack of clear direction in the market.",
+    "confidence_state": {
+      "empirical_confidence": 0.175,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.461,
+      "theoretical_coherence": 0.2889,
+      "contradiction_pressure": 0.403
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: candle expansion par... vs decisive close below...; Low semantic similarity: Revised claim: Regim... vs participation widens...; Low semantic similarity: volume dry: price re... vs participation widens...; Field conflict: volatility expanding and short vs volatility remains compressed:"
+    ],
+    "contradiction_count": 1,
+    "mutation_reason": null,
+    "survival_steps": 1,
+    "last_seen_step": 1,
+    "mutation_count": 0,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": []
+  }
+}

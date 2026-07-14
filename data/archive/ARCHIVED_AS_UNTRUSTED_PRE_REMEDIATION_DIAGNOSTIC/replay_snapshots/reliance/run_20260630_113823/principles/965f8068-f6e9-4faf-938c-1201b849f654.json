@@ -1,0 +1,81 @@
+{
+  "id": "965f8068-f6e9-4faf-938c-1201b849f654",
+  "created_at": "2026-06-30T07:05:33.585618+00:00",
+  "status": "retired",
+  "statement": "The absorption rate component is valid under market conditions where the regime is driven by absorption, and its failure leads to a neutral or mixed trend persistence, while being less dominant than previously thought.",
+  "associated_lineage_ids": [
+    "f8136a19-046d-488a-a888-0a1a4e5c6382",
+    "409b8635-3561-46d5-b570-c040031e8c1b",
+    "e23f7dd2-0475-4e72-8635-8172b7f28f7e",
+    "b188975d-b89e-449f-b6c2-7fe9b112117b",
+    "ac34df64-e8b3-4632-af61-dca29950619a",
+    "1b108b3e-01df-42cc-840c-576c6d643aba",
+    "008b80a7-0a76-4264-84ca-4983168b2dcd",
+    "1f3aeb15-0da3-4004-a11f-4b37e02484a0",
+    "e4347671-67c9-41fe-873d-38f3033e15a1",
+    "f7e7b816-3c09-4719-b522-23248df8689f"
+  ],
+  "supporting_theory_ids": [
+    "1f3aeb15-0da3-4004-a11f-4b37e02484a0",
+    "008b80a7-0a76-4264-84ca-4983168b2dcd",
+    "f7e7b816-3c09-4719-b522-23248df8689f",
+    "b188975d-b89e-449f-b6c2-7fe9b112117b",
+    "e4347671-67c9-41fe-873d-38f3033e15a1",
+    "e23f7dd2-0475-4e72-8635-8172b7f28f7e"
+  ],
+  "contradicting_theory_ids": [
+    "1b108b3e-01df-42cc-840c-576c6d643aba",
+    "409b8635-3561-46d5-b570-c040031e8c1b",
+    "f8136a19-046d-488a-a888-0a1a4e5c6382",
+    "ac34df64-e8b3-4632-af61-dca29950619a"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "2a2473a6-b62e-4731-ac07-cec560f4d9c0",
+      "created_at": "2026-06-30T07:05:33.585289+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "expanded"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "e6bd5a0f-81ed-4a2e-95c4-6c28b6c03f14",
+      "created_at": "2026-06-30T07:05:33.585429+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "neutral",
+        "volatility_regime": "compressed",
+        "volume_state": "low"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 24,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 5.0
+}

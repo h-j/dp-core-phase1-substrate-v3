@@ -1,0 +1,234 @@
+{
+  "step": 1,
+  "date": "2023-01-03",
+  "observation": "[volume elevated, gap down, delivery:moderate, fii:buying, sector:lagging, RELIANCE focus] candle neutral participation strong (normal) RELIANCE traded range-bound with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is trading in a neutral to slightly bearish state with moderate buying pressure from FII, indicating a mixed trend persistence and regime.",
+  "theory": "Revised claim: Regime is driven by passive absorption, but with a moderate impact from active buying pressure.",
+  "theory_summary_structured": {
+    "id": "2635e28e-e06e-44d5-a88a-11e21556a6bd",
+    "created_at": "2026-07-01 04:20:19.936051+00:00",
+    "mechanism": "Revised mechanism: The regime is still driven by passive absorption, but the presence of elevated volume and moderate FII buying suggests that there is some level of active buying pressure that is moderating the effect of passive absorption.",
+    "claim": "Revised claim: Regime is driven by passive absorption, but with a moderate impact from active buying pressure.",
+    "if_branch": {
+      "id": "4ef35ac6-7909-4a05-82bf-15aa38f2c087",
+      "created_at": "2026-07-01 04:20:51.789672+00:00",
+      "condition": "volume > 2x average daily volume",
+      "action": "price remains range-bound with volatility compressed"
+    },
+    "else_branch": {
+      "id": "7e2e2531-3c24-4a7d-901e-d3e383ac947e",
+      "created_at": "2026-07-01 04:20:51.789747+00:00",
+      "condition": "FII buying > 50% of total volume",
+      "action": "active buying pressure moderates the effect of passive absorption, leading to a more bullish bias in price movement"
+    },
+    "unless": "sector is not lagging",
+    "falsified_if": "price breaks out above resistance level or below support level",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "component_id": "absorption_rate",
+        "description": "Absorption rate is low, indicating passive absorption.",
+        "observable": "delivery_pct",
+        "expected_behavior": ">60%",
+        "dependency": null
+      },
+      {
+        "component_id": "volume_confirmation",
+        "description": "Volume expands on up days relative to down days, consistent with passive absorption.",
+        "observable": "volume_state",
+        "expected_behavior": "elevated",
+        "dependency": null
+      }
+    ],
+    "falsification_conditions": [
+      "absorption_rate: high absorption rate (>80%)",
+      "volume_confirmation: down-day volume exceeds up-day volume for 3 consecutive sessions"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.501,
+    "reflection": 0.46,
+    "coherence": 0.0,
+    "contradiction": 0.9796
+  },
+  "contradiction": {
+    "score": 0.1661428571428572,
+    "indicators": [
+      "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Field conflict: price breaks out above resista vs decisive close below the prior; Low semantic similarity: Revised claim: Regim... vs participation widens...; Low semantic similarity: volume > 2x average ... vs participation widens...; Low semantic similarity: FII buying > 50% of ... vs volatility remains c..."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "463bf0ec-c37f-492f-9ccb-0941be679043",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 1 contradictions with a total score of 0.17."
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2023-01-03",
+    "trend": "range_bound",
+    "volatility_state": "compressed",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.166,
+    "active_theory_count": 31,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2023-01-02",
+      "similarity": 0.68,
+      "active_theories": [
+        "7d5bd1df33d54234",
+        "6a1b37fc85758229",
+        "beba71b1d3ac52de"
+      ],
+      "contradictions": [],
+      "confidence": 0.24,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2023-01-03",
+      "policy_name": "Baseline",
+      "action": "hold",
+      "conviction": 0.554,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2023-01-03",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.554,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2023-01-03",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.554,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.23386523809523807,
+    "label": "weak"
+  },
+  "reflection": "The validated theory suggests that a regime is driven by passive absorption, but with a moderate impact from active buying pressure. However, the observed data does not strongly support this claim, as the market exhibits strong neutral participation, compressed volatility, and a lack of analog divergence. One detected contradiction with a low semantic similarity score indicates that the revised claim may not accurately capture the underlying dynamics of the regime. Specifically, the theory's assumption about active buying pressure appears to be at odds with the observed data, which shows FII buying below 50% of the volume.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 2,
+    "avg_usefulness": 0.117,
+    "last_seen": "2023-01-03",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 1,
+      "uncertain": 0
+    },
+    "falsified_count": 1
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 1,
+    "date": "2023-01-03",
+    "contradiction_count": 1,
+    "contradiction_half_life": 0.9629629629629629,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9926470588235294,
+    "avg_contradiction_severity": 0.1286477464142544,
+    "highest_contradiction": 0.3659292445054945,
+    "theory_count": 31,
+    "active_theories": 31,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 29,
+    "avg_retirement_age": 1.0,
+    "avg_revival_latency": 3.0,
+    "avg_theory_age": 15.96774193548387,
+    "longest_surviving_theory": 32,
+    "theory_mutation_count": 50,
+    "avg_confidence": 0.12,
+    "confidence_delta": -0.24,
+    "confidence_volatility": 0.12,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.010416666666666666,
+    "avg_abstraction_length": 23.0,
+    "compression_ratio": 0.7419354838709677,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 31,
+      "theory_text": "Revised claim: Regime is driven by passive absorption, but with a moderate impact from active buying pressure.",
+      "contradiction_text": "Detected 1 contradictions with a total score of 0.17.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2023-01-03",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.166,
+        "active_theory_count": 31,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2023-01-02",
+          "similarity": 0.68,
+          "active_theories": [
+            "7d5bd1df33d54234",
+            "6a1b37fc85758229",
+            "beba71b1d3ac52de"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.23386523809523807,
+        "label": "weak"
+      }
+    }
+  }
+}

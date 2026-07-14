@@ -1,0 +1,15 @@
+{
+  "id": "2ac926f8-b1fc-4091-b13d-5bca45557be1",
+  "created_at": "2026-07-01T07:30:04.152435+00:00",
+  "created_at_step": 20,
+  "question_text": "Why did component 'liquidity_absorption' fail under pressure_loaded_range regime?",
+  "source_contradiction_ids": [
+    "1678d5aa-3df5-4acc-937d-d404ea752dd9"
+  ],
+  "hypothesized_factors": [
+    "expanded",
+    "elevated"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

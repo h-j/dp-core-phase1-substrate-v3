@@ -1,0 +1,59 @@
+{
+  "experience_id": "exp_d5f32fbd4106ac4d_2026-05-04",
+  "lineage_id": "d5f32fbd4106ac4d",
+  "theory_family_id": "d5f32fbd4106ac4d",
+  "created_at": "2026-05-04",
+  "status": "closed",
+  "theory_ids": [
+    "d4f82d16-ea62-4510-bbea-13db75d3f477"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: The revised absorpti... vs Regime is driven by ...; Low semantic similarity: The revised absorpti... vs delivery_pct > 50 AN...; Low semantic similarity: volume_state > 0.5 A... vs delivery_pct > 50 AN...; Low semantic similarity: false: do nothing... vs volume_state = eleva...; Volatility: expansion vs stability"
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:closed_higher",
+    "volume:normal",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:normal",
+    "momentum:strengthening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:strong_buy",
+    "sector:sector:leading"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-03T09:51:37.179142",
+      "outcome": "partial",
+      "theory_claim": "The revised absorption rate and price stability mechanisms indicate a causal relationship between liquidity absorption and market stability, suggesting that increased liquidity absorption leads to hig",
+      "components_passed": [
+        "absorption_rate_revision",
+        "price_stability_revision",
+        "absorption_rate_revision"
+      ],
+      "components_failed": [
+        "price_stability_revision"
+      ],
+      "root_cause": "price_stability_revision",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"The revised absorption rate and price stability mechanisms indicate a causal relationship between liquidity absorption and market stability\" failed due to the following reasons:\n\n1. **Neutral participation**: The data indicates that there is no significant participation from neutral part"
+    }
+  ],
+  "component_failure_counts": {
+    "price_stability_revision": 1
+  }
+}

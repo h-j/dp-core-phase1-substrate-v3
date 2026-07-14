@@ -1,0 +1,106 @@
+{
+  "id": "58a53f97-16f1-4024-a8c8-e4e8c3bb9a42",
+  "created_at": "2026-06-30T04:25:40.173724+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid under market conditions characterized by moderate to high volume expansion and volatility, with a potential shift towards range-bound or trend persistence. It breaks down when volume expansion is weak or absent, or when the market transitions out of these regimes without corresponding participation or strengthening short-term momentum.",
+  "associated_lineage_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "f31b62bf-d8ea-47a0-a86c-7a00d378af3b",
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "cb3b0002-67d0-42dc-9bf5-e4ac3bb68f21",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc"
+  ],
+  "supporting_theory_ids": [
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "cb3b0002-67d0-42dc-9bf5-e4ac3bb68f21",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc"
+  ],
+  "contradicting_theory_ids": [
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "f31b62bf-d8ea-47a0-a86c-7a00d378af3b"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "de18c0f2-f8d8-425e-834d-cbfe1adbb953",
+      "created_at": "2026-06-30T04:25:40.172895+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed or failed",
+      "applicability_filter": {
+        "regime_subtype": [
+          "range_bound",
+          null
+        ],
+        "volatility_regime": [
+          "normal",
+          "expanded",
+          "compressed"
+        ],
+        "volume_state": [
+          "high"
+        ]
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 4,
+  "revision_history": [
+    {
+      "id": "da54bdb5-1d5e-4ada-b275-2b61f9077007",
+      "created_at": "2026-06-30T04:19:00.362787+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The absorption rate is valid when the market is in a range-bound regime with moderate to high volatility and sufficient volume participation, but breaks down when the market transitions out of this regime without corresponding participation or when volatility increases without strengthening short-term momentum.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "cac23303-3f1e-4e4e-bb26-107344f57a5f",
+      "created_at": "2026-06-30T04:20:30.113688+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The absorption rate is valid under conditions of moderate to high volume expansion and volatility, but breaks down when either participation or volatility is weak. It is also valid in range-bound regimes with moderate to high volatility and sufficient volume participation, but breaks down when the market transitions out of this regime without corresponding participation or when volatility increases without strengthening short-term momentum.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "776b5efa-577d-48ee-8cd3-5053e760be28",
+      "created_at": "2026-06-30T04:22:12.067670+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The absorption rate is valid under market conditions characterized by moderate to high volume expansion and volatility, with a potential shift towards range-bound or trend persistence. It breaks down when volume expansion is weak or absent, or when the market transitions out of these regimes without corresponding participation or strengthening short-term momentum.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "4b4babf6-3c3f-430e-9f5b-0eedf67e774b",
+      "created_at": "2026-06-30T04:24:05.752598+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The absorption rate is valid under market conditions characterized by moderate to high volume expansion and volatility, with a potential shift towards range-bound or trend persistence. It breaks down when volume expansion is weak or absent, or when the market transitions out of these regimes without corresponding participation or strengthening short-term momentum.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "4380bcc2-3115-495b-adbc-1909b5921565",
+      "created_at": "2026-06-30T04:25:40.171851+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The absorption rate is valid under market conditions characterized by moderate to high volume expansion and volatility, with a potential shift towards range-bound or trend persistence. It breaks down when volume expansion is weak or absent, or when the market transitions out of these regimes without corresponding participation or strengthening short-term momentum.",
+      "change_reason": "consolidated via hierarchical merging"
+    }
+  ],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

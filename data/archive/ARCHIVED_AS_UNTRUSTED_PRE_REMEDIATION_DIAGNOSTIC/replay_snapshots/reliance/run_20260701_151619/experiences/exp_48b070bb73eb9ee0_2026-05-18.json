@@ -1,0 +1,63 @@
+{
+  "experience_id": "exp_48b070bb73eb9ee0_2026-05-18",
+  "lineage_id": "48b070bb73eb9ee0",
+  "theory_family_id": "48b070bb73eb9ee0",
+  "created_at": "2026-05-18",
+  "status": "closed",
+  "theory_ids": [
+    "1b0becc4-d75b-4588-9e24-e64b79904ad7"
+  ],
+  "contradictions": [
+    "Structural: Field conflict: Weakening short-term momentum  vs No significant increase in vol; Low semantic similarity: The market's trend p... vs Moderate to high vol...; Low semantic similarity: RELIANCE is in focus... vs Moderate to high vol...; Field conflict: Liquidity Absorption dominates vs Strong RELIANCE focus and asse",
+    "Structural: Low semantic similarity: Weakening short-term... vs No significant chang...; Low semantic similarity: The market's trend p... vs Moderate volatility ...; Low semantic similarity: RELIANCE is in focus... vs Moderate volatility ...; Low semantic similarity: Liquidity Absorption... vs No significant chang...",
+    "Structural: Field conflict: Weakening short-term momentum  vs {'condition': 'Strong FII sent; Low semantic similarity: The market's trend p... vs Moderate volatility ...; Field conflict: Liquidity Absorption dominates vs Strong FII sentiment and secto",
+    "Structural: Field conflict: Weakening short-term momentum  vs Price structure consistently i; Field conflict: The market's trend persistence vs Moderate to strong RELIANCE fo; Low semantic similarity: Liquidity Absorption... vs No significant RELIA...",
+    "Structural: Low semantic similarity: Weakening short-term... vs {'name': 'Asset Sell...; Low semantic similarity: The market's trend p... vs moderate volatility ...; Low semantic similarity: RELIANCE is in focus... vs moderate volatility ..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:range_bound",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:even_flow",
+    "breadth:weakened",
+    "participation:weak",
+    "momentum:weakening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:buying",
+    "sector:sector:lagging"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-02T08:48:52.146128",
+      "outcome": "partial",
+      "theory_claim": "The market's trend persistence is driven by Liquidity Absorption, but with a weakening of momentum and increasing volatility, leading to a mixed trend persistence. However, the neutral regime subtype ",
+      "components_passed": [
+        "price_structure",
+        "volume_confirmation",
+        "delivery_exhaustion"
+      ],
+      "components_failed": [
+        "price_structure"
+      ],
+      "root_cause": "price_structure",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This theory appears to be analyzing market trends and patterns using technical indicators and statistical methods. Here's a breakdown of the explanation:\n\n1. **Liquidity Absorption**: The theory suggests that the market's trend persistence is driven by liquidity absorption, which implies that invest"
+    }
+  ],
+  "component_failure_counts": {
+    "price_structure": 1
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "002bbb8c80bc20ec": {
+    "id": "002bbb8c80bc20ec",
+    "theory_id": "dfa7678d18ef4f77",
+    "description": "structural: low semantic similarity: relance traded range... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: volume > 50l: price ... vs participation widens...; low semantic similarity: volume <= 50l: price... vs volatility remains c...",
+    "created_at_step": 1,
+    "resolved_at_step": 2,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.089
+  },
+  "bdadbbccdbdf6da9": {
+    "id": "bdadbbccdbdf6da9",
+    "theory_id": "87b289790cbc6f42",
+    "description": "structural: low semantic similarity: sector_rotation > 0.... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: volume_confirmation ... vs participation widens...; low semantic similarity: volume_confirmation ... vs volatility remains c...",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.089
+  },
+  "fb14bbc208f09bdf": {
+    "id": "fb14bbc208f09bdf",
+    "theory_id": "f1451caea68f39d0",
+    "description": "structural: low semantic similarity: price breaks above/b... vs sector_rotation > 0....; field conflict: revised claim: regime is drive vs volume_confirmation > 0.5: abs; low semantic similarity: volume > 2.5sd (stan... vs volume_confirmation ...; low semantic similarity: fii selling pressure... vs volume_confirmation ...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.34217948717948726
+  },
+  "e7829350b9f237cb": {
+    "id": "e7829350b9f237cb",
+    "theory_id": "f1451caea68f39d0",
+    "description": "structural: low semantic similarity: price breaks above/b... vs relance traded range...; low semantic similarity: revised claim: regim... vs volume > 50l: price ...; low semantic similarity: fii selling pressure... vs volume <= 50l: price...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.34217948717948726
+  },
+  "1b8ac23ee048cb11": {
+    "id": "1b8ac23ee048cb11",
+    "theory_id": "f1451caea68f39d0",
+    "description": "structural: low semantic similarity: price breaks above/b... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: volume > 2.5sd (stan... vs participation widens...; low semantic similarity: fii selling pressure... vs volatility remains c...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.34217948717948726
+  },
+  "e02f7bd7648e257c": {
+    "id": "e02f7bd7648e257c",
+    "theory_id": "7d9801eb62e30a64",
+    "description": "structural: low semantic similarity: price breaks out of ... vs price breaks above/b...; low semantic similarity: revised claim: regim... vs volume > 2.5sd (stan...; low semantic similarity: volume > 2x average ... vs volume > 2.5sd (stan...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.33929202127659575
+  },
+  "e7abc16d8cc6bb29": {
+    "id": "e7abc16d8cc6bb29",
+    "theory_id": "7d9801eb62e30a64",
+    "description": "structural: low semantic similarity: price breaks out of ... vs sector_rotation > 0....; field conflict: revised claim: regime is drive vs volume_confirmation > 0.5: abs; low semantic similarity: volume > 2x average ... vs volume_confirmation ...; low semantic similarity: weakening of absorpt... vs volume_confirmation ...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.33929202127659575
+  },
+  "2ba2bfa6f5fb47ec": {
+    "id": "2ba2bfa6f5fb47ec",
+    "theory_id": "7d9801eb62e30a64",
+    "description": "structural: low semantic similarity: price breaks out of ... vs relance traded range...; low semantic similarity: revised claim: regim... vs volume > 50l: price ...; low semantic similarity: weakening of absorpt... vs volume <= 50l: price...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.33929202127659575
+  },
+  "936cc343c2679fa0": {
+    "id": "936cc343c2679fa0",
+    "theory_id": "7d9801eb62e30a64",
+    "description": "structural: low semantic similarity: revised claim: regim... vs regime is driven by ...; low semantic similarity: price breaks out of ... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: volume > 2x average ... vs participation widens...; low semantic similarity: weakening of absorpt... vs volatility remains c...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.33929202127659575
+  }
+}

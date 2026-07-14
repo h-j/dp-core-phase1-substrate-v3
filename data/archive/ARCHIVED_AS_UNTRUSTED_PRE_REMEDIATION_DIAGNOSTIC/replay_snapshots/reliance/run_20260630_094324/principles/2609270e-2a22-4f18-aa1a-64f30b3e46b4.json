@@ -1,0 +1,69 @@
+{
+  "id": "2609270e-2a22-4f18-aa1a-64f30b3e46b4",
+  "created_at": "2026-06-30T04:27:00.451495+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid under market conditions characterized by moderate to high volume expansion and volatility, with a potential shift towards range-bound or trend persistence, but breaks down when participation is weak or volatility is compressed.",
+  "associated_lineage_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "f31b62bf-d8ea-47a0-a86c-7a00d378af3b",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "cb3b0002-67d0-42dc-9bf5-e4ac3bb68f21",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "94efc9d4-b459-4af7-a86e-5e8286f6217c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc"
+  ],
+  "supporting_theory_ids": [
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc",
+    "cb3b0002-67d0-42dc-9bf5-e4ac3bb68f21",
+    "94efc9d4-b459-4af7-a86e-5e8286f6217c"
+  ],
+  "contradicting_theory_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f31b62bf-d8ea-47a0-a86c-7a00d378af3b"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "ead52a4b-301b-4938-abb8-76dcf10c1fb0",
+      "created_at": "2026-06-30T04:27:00.450863+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "8095a0ee-2bff-47b6-9437-ce4bbc1dd8ce",
+      "created_at": "2026-06-30T04:27:00.451323+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volume_state": "low"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 10,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

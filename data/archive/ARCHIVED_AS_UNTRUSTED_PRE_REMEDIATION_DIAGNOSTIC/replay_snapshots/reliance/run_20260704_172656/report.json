@@ -1,0 +1,2744 @@
+{
+  "symbol": "RELIANCE",
+  "days": 30,
+  "date_range": "2026-05-25 \u2192 2026-07-03",
+  "execution_hash": "cbcfbe869ede1e0befb7a6d50019a0ab2d6fe44447f182da7e3dc620b258307c",
+  "git_commit": "cda3a9a885f877f58dbe7a781e4049fea66c7852",
+  "llm_version": "llama3.2",
+  "replay_version": "v3.0PersistentReflective",
+  "story_summary": "This replay represents 30 days of experience on RELIANCE. During this period, DP generated 30 experiences, evolved 29 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 16 key market mechanisms while identifying 32 unresolved evidence gap(s).",
+  "metrics": {
+    "accuracy": 20.689655172413794,
+    "knowledge_debt": 0,
+    "memory_usefulness": 0.6735555555555556,
+    "knowledge_coverage": 0.0,
+    "prediction_drift": 0.0,
+    "theory_drift": 0.0
+  },
+  "knowledge_health": {
+    "knowledge_debt_bar": 10,
+    "principle_coverage": 0.0,
+    "reuse_rate": 0.0,
+    "trust": 64.60000000000001
+  },
+  "knowledge_lifecycle": {
+    "candidate": 0,
+    "emerging": 0,
+    "trusted": 0,
+    "canonical": 0,
+    "retired": 0
+  },
+  "timeline": [
+    {
+      "date": "2026-05-25",
+      "theory": "Regime is driven by Liquidity Absorption; price remains range-bound despite moderate volatility.",
+      "prediction": "uncertain (26%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-05-26",
+      "theory": "The RELIANCE's price structure exhibits a sequence of higher highs and higher lows when trading range-bound, but this pattern is disrupted by increased volatility, suggesting that volume confirmation mechanisms play a causal role in modulating market behavior under pressure-loaded range conditions.",
+      "prediction": "higher (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 1.0
+    },
+    {
+      "date": "2026-05-27",
+      "theory": "The RELIANCE price structure exhibits increased volatility and momentum when trading range-bound, leading to a causal relationship between range-bound conditions and heightened market instability.",
+      "prediction": "range_bound (44%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 1.0
+    },
+    {
+      "date": "2026-05-28",
+      "theory": "The price structure of RELIANCE exhibits increased volatility and momentum when trading range-bound, as evidenced by a higher average daily volume on up days compared to down days during this regime subtype.",
+      "prediction": "range_bound (22%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.7362000000000001
+    },
+    {
+      "date": "2026-05-29",
+      "theory": "The price structure of RELIANCE exhibits a sequence of higher highs and lower lows, with increased volatility and momentum when trading range-bound, and compression when short-term momentum weakens.",
+      "prediction": "lower (56%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 1.0
+    },
+    {
+      "date": "2026-06-01",
+      "theory": "Price sequence exhibits increased volatility and momentum when RELIANCE is trading range-bound, suggesting a causal relationship between market regime subtype (neutral) and price behavior.",
+      "prediction": "range_bound (26%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 1.0
+    },
+    {
+      "date": "2026-06-02",
+      "theory": "Price sequence exhibits increased volatility and momentum when RELIANCE is trading range-bound, suggesting a causal relationship between market regime subtype (neutral) and price behavior.",
+      "prediction": "lower (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.089
+    },
+    {
+      "date": "2026-06-03",
+      "theory": "Price structure exhibits increased volatility and momentum when RELIANCE is trading range-bound, causing each day's high to exceed the previous low, while compressing when short-term momentum weakens.",
+      "prediction": "uncertain (50%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0806
+    },
+    {
+      "date": "2026-06-04",
+      "theory": "Price sequence exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, causing daily highs to exceed previous lows, while compressing in periods of short-term momentum weakening.",
+      "prediction": "uncertain (50%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09638000000000002
+    },
+    {
+      "date": "2026-06-05",
+      "theory": "Price sequence exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, causing daily highs to exceed previous lows, while compressing in periods of short-term momentum weakening.",
+      "prediction": "lower (63%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09447500000000002
+    },
+    {
+      "date": "2026-06-08",
+      "theory": "Price sequence exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, causing daily highs to exceed previous lows, while compressing in periods of short-term momentum weakening.",
+      "prediction": "uncertain (39%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09420000000000002
+    },
+    {
+      "date": "2026-06-09",
+      "theory": "Price sequence exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, causing daily highs to exceed previous lows, whereas in other conditions, daily highs are less than previous highs.",
+      "prediction": "range_bound (62%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.07334000000000002
+    },
+    {
+      "date": "2026-06-10",
+      "theory": "Price structure exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, shifting towards compression upon short-term momentum weakening.",
+      "prediction": "lower (58%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.3900215053763441
+    },
+    {
+      "date": "2026-06-11",
+      "theory": "Price structure exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, shifting towards compression upon short-term momentum weakening.",
+      "prediction": "range_bound (30%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.40327688172043014
+    },
+    {
+      "date": "2026-06-12",
+      "theory": "Price structure exhibits moderate volatility and momentum when RELIANCE is trading within a range-bound pattern, shifting towards compression upon short-term momentum weakening.",
+      "prediction": "higher (46%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.35345000000000004
+    },
+    {
+      "date": "2026-06-15",
+      "theory": "Price structure exhibits moderate volatility and momentum when RELIANCE is trading within a range-bound pattern, shifting towards compression upon short-term momentum weakening.",
+      "prediction": "lower (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.3306125000000001
+    },
+    {
+      "date": "2026-06-16",
+      "theory": "Reliance's price structure exhibits moderate volatility and momentum when trading within a range-bound pattern, driven by the presence of FIIs, leading to increased selling pressure that shifts the price towards compression.",
+      "prediction": "higher (81%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08738000000000001
+    },
+    {
+      "date": "2026-06-17",
+      "theory": "Reliance's price structure exhibits moderate volatility and momentum when trading within a range-bound pattern, driven by the presence of FIIs, leading to increased selling pressure that shifts the price towards compression.",
+      "prediction": "range_bound (45%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08765
+    },
+    {
+      "date": "2026-06-18",
+      "theory": "Reliance Industries' price structure exhibits moderate volatility and momentum when trading within a range-bound pattern, with increased selling pressure from FIIs potentially shifting towards compression.",
+      "prediction": "range_bound (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.1914072727272727
+    },
+    {
+      "date": "2026-06-19",
+      "theory": "The presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure within range-bound patterns.",
+      "prediction": "uncertain (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.31516564102564104
+    },
+    {
+      "date": "2026-06-22",
+      "theory": "The presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure and moderate volatility within range-bound patterns.",
+      "prediction": "higher (46%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.3211951219512195
+    },
+    {
+      "date": "2026-06-23",
+      "theory": "The presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure within range-bound patterns.",
+      "prediction": "lower (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.326974358974359
+    },
+    {
+      "date": "2026-06-24",
+      "theory": "The presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure within range-bound patterns.",
+      "prediction": "higher (46%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.34241025641025646
+    },
+    {
+      "date": "2026-06-25",
+      "theory": "The presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure compression, leading to increased selling pressure and moderate volatility in a range-bound pattern.",
+      "prediction": "range_bound (26%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.39482857142857153
+    },
+    {
+      "date": "2026-06-26",
+      "theory": "The price structure of Reliance Industries exhibits limited volatility and weak momentum when trading within a range-bound pattern, with daily highs greater than previous lows or less than previous highs.",
+      "prediction": "range_bound (45%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08366000000000001
+    },
+    {
+      "date": "2026-06-29",
+      "theory": "The price structure exhibits limited volatility and weak momentum when trading within a range-bound pattern, primarily influenced by Reliance Industries' trading activity.",
+      "prediction": "lower (64%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08072
+    },
+    {
+      "date": "2026-06-30",
+      "theory": "Price structure volatility and momentum are influenced by Reliance Industries trading within range-bound patterns, leading to daily highs exceeding previous lows or highs when RELIANCE is in a range-bound pattern.",
+      "prediction": "lower (70%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.07388
+    },
+    {
+      "date": "2026-07-01",
+      "theory": "Price movements in liquidity-constrained markets are influenced by range-bound patterns and Reliance Industries' trading activity, leading to increased volatility and momentum when daily highs deviate from previous lows or highs.",
+      "prediction": "higher (54%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08498
+    },
+    {
+      "date": "2026-07-02",
+      "theory": "The price structure exhibits increased volatility and strong momentum when trading within a range-bound pattern, primarily influenced by Reliance Industries' market activity.",
+      "prediction": "range_bound (48%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.3719141312741313
+    },
+    {
+      "date": "2026-07-03",
+      "theory": "Price structure volatility and momentum are influenced by Reliance Industries' trading within range-bound patterns, leading to increased price movements in a liquidity-constrained market regime.",
+      "prediction": "range_bound (49%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.16262
+    }
+  ],
+  "theory_evolution": [
+    {
+      "day": "2026-05-25",
+      "lineage_id": "5c9c1c4a9f2d9328",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-26",
+      "lineage_id": "5c9c1c4a9f2d9328",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "none"
+    },
+    {
+      "day": "2026-05-27",
+      "lineage_id": "5c9c1c4a9f2d9328",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-28",
+      "lineage_id": "5c9c1c4a9f2d9328",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-29",
+      "lineage_id": "5c9c1c4a9f2d9328",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-01",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-02",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-03",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-04",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-05",
+      "lineage_id": "e27c63e63ce89e1b",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-08",
+      "lineage_id": "e27c63e63ce89e1b",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-09",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-10",
+      "lineage_id": "e27c63e63ce89e1b",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-11",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-12",
+      "lineage_id": "7af14ece91534f79",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-15",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-16",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-17",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-18",
+      "lineage_id": "474cbbfd8973caca",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-19",
+      "lineage_id": "59f0a35cf4fd80c8",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-22",
+      "lineage_id": "991ed0ccab5ade82",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-23",
+      "lineage_id": "e27c63e63ce89e1b",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-24",
+      "lineage_id": "7af14ece91534f79",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-25",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-26",
+      "lineage_id": "811594fd4f4a4227",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-29",
+      "lineage_id": "e27c63e63ce89e1b",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-30",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-07-01",
+      "lineage_id": "cb5d9a087cbeb07e",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-07-02",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-07-03",
+      "lineage_id": "1da5100c06b9fae7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    }
+  ],
+  "world_model": {
+    "narrative": "Baseline world model. No active principles recorded yet.",
+    "regime_constraints": {},
+    "supporting_principles": [],
+    "dominant_mechanisms": [],
+    "active_constraints": [],
+    "supporting_canonical_principles": [],
+    "confidence": 0.5,
+    "stability": "Emerging",
+    "evidence_count": 0,
+    "applicable_regimes": [],
+    "open_questions": [
+      {
+        "question_text": "Why did component 'volume_confirmation' fail under pressure_loaded_range regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v2' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "spike"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v2' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "spike"
+        ]
+      },
+      {
+        "question_text": "Why did component 'new_volume_confirmation' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "spike"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v3' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v4' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v4' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v4' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v4' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v4' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v9' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v9' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v9' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v9' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v9' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v9' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v9' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v9' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v9' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v10' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v11' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v12' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v13' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v13' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v14' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v14' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v15' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v17' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v17' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v17' fail under fatigue regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v20' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v20' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v22' fail under liquidity_constrained regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure_v23' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "spike"
+        ]
+      }
+    ],
+    "evidence_gaps": [
+      {
+        "id": "d486d3b8-901f-480a-9a7e-9aa3fa249eaf",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v2'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v2' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "f0e80d74-2c8b-4ed9-b6a6-ac27fa37eb73",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v2'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v2' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "607b9de1-af40-40ff-afb5-729d91414ccf",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v3'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v3' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "4d3d904c-dd0f-4185-8456-fdd7b614f375",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v4'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v4' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "06559379-49c7-4f03-8333-fa1524bbfd24",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v4'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v4' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "a255f3e2-515c-474e-8287-c514c50db6fb",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v4'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v4' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "d7413be1-2e55-4b5e-8d58-53c021508d49",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v4'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v4' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "66aaf595-f0bc-43bb-9892-afc48e41ccf2",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v4'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v4' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "f3decc5d-e48c-42c3-b64b-8654a92c07ee",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v9'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v9' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "163c76c7-cbf1-4ca4-b935-c72b740c6b3f",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v9'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v9' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "1d989db4-f2ac-476e-a32b-1fbcf4668e20",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v9'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v9' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "bcb2c88b-c60d-4814-8491-b672c99ab74a",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v9'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v9' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "c01f4096-a947-419c-86f1-a9700daf71bb",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v9'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v9' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "9ffa2b16-0919-4898-91e2-2a5f31354539",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v9'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v9' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "a7de160c-d675-4083-8717-db713c4b28af",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v9'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v9' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "ecc68adf-7599-4f06-9301-486c1e616e9d",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v9'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v9' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "32f288e2-9c0e-4355-aff7-fde755ad05f2",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v9'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v9' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "6978facb-084e-4aed-8975-feb474d0e13d",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v10'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v10' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "e239265c-78d8-49d7-be17-3848d5fe6e30",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v11'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v11' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "b5ef96b0-96b5-49c9-9543-4fb724663dfd",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v12'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v12' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "601d32fe-25e0-4cf7-a681-193e91f08e26",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v13'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v13' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "d3b10382-b740-405f-985c-4172a24a9c9b",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v13'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v13' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "d515def1-f569-4563-9e6f-fb2495d4b7ff",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v14'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v14' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "06661084-d690-4acb-ab58-b0fe97c08b06",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v14'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v14' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "266d12c2-7061-41f1-82c9-66e78caeedb6",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v15'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v15' under neutral regime",
+        "priority": "MEDIUM"
+      },
+      {
+        "id": "0726caac-98a1-456d-8719-0fe24c516b1c",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v17'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v17' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "3878e182-5250-4015-8c84-c5fa93faf347",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v17'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v17' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "fa8ac4e7-3186-421e-ab4d-e26df590eae7",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v17'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v17' under fatigue regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "5fc24b9e-7589-4383-aa83-59299a5cdb38",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v20'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v20' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "ce928404-e389-48ff-8478-acf25337ecd8",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v20'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v20' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "b7599346-8ff1-45d3-b566-4e6e68befba9",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v22'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v22' under liquidity_constrained regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "c78e4b76-c2f7-4113-871d-787f61926dbc",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v23'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v23' under neutral regime",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  "chart_data": {
+    "dates": [
+      "2026-05-25",
+      "2026-05-26",
+      "2026-05-27",
+      "2026-05-28",
+      "2026-05-29",
+      "2026-06-01",
+      "2026-06-02",
+      "2026-06-03",
+      "2026-06-04",
+      "2026-06-05",
+      "2026-06-08",
+      "2026-06-09",
+      "2026-06-10",
+      "2026-06-11",
+      "2026-06-12",
+      "2026-06-15",
+      "2026-06-16",
+      "2026-06-17",
+      "2026-06-18",
+      "2026-06-19",
+      "2026-06-22",
+      "2026-06-23",
+      "2026-06-24",
+      "2026-06-25",
+      "2026-06-26",
+      "2026-06-29",
+      "2026-06-30",
+      "2026-07-01",
+      "2026-07-02",
+      "2026-07-03"
+    ],
+    "close": [
+      1360.7086181640625,
+      1350.0579833984375,
+      1344.2845458984375,
+      1344.2845458984375,
+      1315.119384765625,
+      1313.9249267578125,
+      1308.5498046875,
+      1307.15625,
+      1297.699951171875,
+      1291.0,
+      1263.300048828125,
+      1269.199951171875,
+      1258.800048828125,
+      1263.0,
+      1293.0,
+      1307.0,
+      1328.800048828125,
+      1332.699951171875,
+      1328.0999755859375,
+      1309.5,
+      1326.5,
+      1309.5,
+      1313.5999755859375,
+      1318.0999755859375,
+      1318.0999755859375,
+      1301.0,
+      1293.9000244140625,
+      1308.0,
+      1303.5,
+      1304.0
+    ],
+    "delivery_pct": [
+      58.75399841973381,
+      54.01985909390693,
+      54.98000982649471,
+      51.42673347546638,
+      47.11880140383549,
+      44.56790035604459,
+      43.942547571930746,
+      44.64233360695972,
+      43.08359003535174,
+      45.236609176003455,
+      45.78056613854481,
+      48.97679369619591,
+      46.66731060742478,
+      51.83285946029091,
+      51.97388150373346,
+      52.26871405201209,
+      50.42605229031468,
+      53.2234875081348,
+      49.07429394026749,
+      48.674840843739545,
+      46.33526555736112,
+      45.03680902295764,
+      46.15254851538015,
+      49.37172245725797,
+      50.846841331751065,
+      54.03918975104557,
+      56.96213385214001,
+      56.73048096475415,
+      56.73048096475415,
+      56.73048096475415
+    ],
+    "fii_net": [
+      -189.10754054643127,
+      -537.2621615773305,
+      193.4017965123835,
+      476.502952043554,
+      -385.2677365383244,
+      1497.2505366193468,
+      -22.906524066059625,
+      544.2134630385839,
+      -1798.282087632246,
+      751.5401814060695,
+      303.82736210532113,
+      -88.54033016482377,
+      -729.4976841312648,
+      648.7887875734142,
+      -356.06815946510915,
+      -933.2472710708151,
+      35.66826771662844,
+      1260.4911834109118,
+      -329.64950255039054,
+      -220.8166097429164,
+      1010.1916422542774,
+      301.93764725371153,
+      -80.50963185138922,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493
+    ],
+    "sector_zscore": [
+      -0.9685460933549984,
+      -1.4575299972790214,
+      -1.9771661643230451,
+      -1.716873004188446,
+      -1.6777178583189558,
+      -1.1186277013518358,
+      -1.1343680301785504,
+      -1.095250252973567,
+      -1.475488484952448,
+      -1.5045840857995711,
+      -1.5832109572866042,
+      -1.3522085423595231,
+      -0.7226092289813764,
+      -0.1194651207750068,
+      0.3629265650263689,
+      0.6830852094775073,
+      1.0191553626227536,
+      0.8338494227834109,
+      0.3561311033644178,
+      -0.596032415513925,
+      0.0027108915672136,
+      0.0369019196753691,
+      0.9244168921129876,
+      1.5307451887137768,
+      1.3656951941225852,
+      0.3999481443712532,
+      0.0005048596165774,
+      0.7149140667142546,
+      0.4002795751855658,
+      0.3520834388724258
+    ],
+    "equity_curve": [
+      1000000.0,
+      1000000.0,
+      1000000.0,
+      1000000.0,
+      1000000.0,
+      1000000.0,
+      1000000.0,
+      999870.87,
+      999870.87,
+      999870.87,
+      1000511.52,
+      1000511.52,
+      1000511.52,
+      1000004.19,
+      1000004.19,
+      999365.57,
+      998280.6,
+      997990.41,
+      997990.41,
+      997990.41,
+      997990.41,
+      996771.93,
+      996107.84,
+      995908.73,
+      995908.73,
+      995908.73,
+      996474.07,
+      995645.18,
+      995021.46,
+      995021.46
+    ]
+  },
+  "decision_traces": [
+    {
+      "step": 0,
+      "date": "2026-05-25",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 61.0271729850283,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [],
+      "novelty_score": 1.0,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Regime is driven by Liquidity Absorption; price remains range-bound despite moderate volatility.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.26
+      },
+      "outcome": {
+        "actual_direction": "uncertain",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype. One unresolved tension is the discrepancy between the observed moderate volatility and the predicted range-bound price despite liquidity absorption. This tension remains unaddressed, as it contradicts the theory's specific falsifiability boundary conditions. The uncertainty pressure in this validation is moderate, with a score of 0.00 detected contradictions.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 1,
+      "date": "2026-05-26",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 44.966978072100105,
+        "volume_state": "normal",
+        "regime_subtype": "pressure_loaded_range"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-25",
+          "similarity": 1.0,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.0,
+      "reuse_decision": "reused",
+      "generated_theory": "The RELIANCE's price structure exhibits a sequence of higher highs and higher lows when trading range-bound, but this pattern is disrupted by increased volatility, suggesting that volume confirmation mechanisms play a causal role in modulating market behavior under pressure-loaded range conditions.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is pressure_loaded_range. The theory's falsifiability boundary conditions are met, as the observed data does not provide additional confirmation signals beyond what is already included in the theory's framework. The regime remains supported under the given boundary conditions, but the observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This contradicts the historical theory where 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in contrast to the current theory where it is 'DAMPENS'.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 2,
+      "date": "2026-05-27",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 46.371357119181106,
+        "volume_state": "normal",
+        "regime_subtype": "pressure_loaded_range"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-25",
+          "similarity": 0.68,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.56,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.32,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The RELIANCE price structure exhibits increased volatility and momentum when trading range-bound, leading to a causal relationship between range-bound conditions and heightened market instability.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.44
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The RELIANCE price structure exhibits increased volatility and momentum when trading range-bound, leading to a causal relationship between range-bound conditions and heightened market instability. However, the current observation does not support this theory as it is observed that Reliance's price closes below the rejection high with decreasing volume. This contradicts the theory's falsifiability boundary condition, which requires additional confirmation signals. The detected contradictions include low semantic similarity between the RELIANCE price structure and the regime subtype, as well as semantic contradictions related to institutional accumulation and volatility expansion.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 2.0
+      }
+    },
+    {
+      "step": 3,
+      "date": "2026-05-28",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "indecision",
+        "delivery_pct": 43.34655268841085,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-25",
+          "similarity": 0.784,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-27",
+          "similarity": 0.764,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.712,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.216,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The price structure of RELIANCE exhibits increased volatility and momentum when trading range-bound, as evidenced by a higher average daily volume on up days compared to down days during this regime subtype.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.22
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is \"Mixed\" with a neutral trend persistence. The theory's falsifiability boundary conditions are met, as the system acknowledges that further confirmation signals are required to fully understand the underlying dynamics. The regime remains supported based on the replay validation results, which show moderate similarity (0.78-0.76) and confidence (0.24-0.05) with prior subtype history. The detected contradictions do not falsify the theory, as they can be reconciled through a dialectical synthesis that acknowledges the complexity of the relationship between trend persistence and regime characteristics.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 5.0
+      }
+    },
+    {
+      "step": 4,
+      "date": "2026-05-29",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 39.88194615445707,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-25",
+          "similarity": 0.655,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.535,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.345,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The price structure of RELIANCE exhibits a sequence of higher highs and lower lows, with increased volatility and momentum when trading range-bound, and compression when short-term momentum weakens.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.56
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as Reliance closes lower amid moderate volatility within a range-bound trading environment. The observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This contradicts the theory's falsifiability boundary condition that requires additional confirmation signals to falsify the theory.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 6.0
+      }
+    },
+    {
+      "step": 5,
+      "date": "2026-06-01",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "strong_bear",
+        "delivery_pct": 48.27266774607381,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-25",
+          "similarity": 0.696,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.624,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-29",
+          "similarity": 0.584,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.304,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price sequence exhibits increased volatility and momentum when RELIANCE is trading range-bound, suggesting a causal relationship between market regime subtype (neutral) and price behavior.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.262
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified based on the boundary conditions, as additional confirmation signals are needed to definitively determine the nature of Reliance's trend persistence. The observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumption. This contradicts the theory that requires additional confirmation signals for falsification.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 11.0
+      }
+    },
+    {
+      "step": 6,
+      "date": "2026-06-02",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 41.840214151530866,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-01",
+          "similarity": 0.584,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-29",
+          "similarity": 0.572,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-25",
+          "similarity": 0.504,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.416,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price sequence exhibits increased volatility and momentum when RELIANCE is trading range-bound, suggesting a causal relationship between market regime subtype (neutral) and price behavior.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 14.0
+      }
+    },
+    {
+      "step": 7,
+      "date": "2026-06-03",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 49.87028729432598,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-25",
+          "similarity": 0.695,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-02",
+          "similarity": 0.669,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-01",
+          "similarity": 0.588,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.305,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price structure exhibits increased volatility and momentum when RELIANCE is trading range-bound, causing each day's high to exceed the previous low, while compressing when short-term momentum weakens.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.5
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The provided theory validation exercise assesses the reliability of a market observation dimension that predicts increased price structure volatility and momentum when RELIANCE is trading range-bound. The analysis reveals several contradictions, which indicate that the theory may not be entirely accurate. One major contradiction lies in the observed continuation, where the assumption of prior participation strength is contradicted by insufficiently tested continuation under volatility expansion. This suggests that the theory's predictions are not consistently supported across different market conditions.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 20.0
+      }
+    },
+    {
+      "step": 8,
+      "date": "2026-06-04",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "neutral",
+        "delivery_pct": 35.55283483037098,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-03",
+          "similarity": 0.85,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-25",
+          "similarity": 0.67,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-01",
+          "similarity": 0.562,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.15,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price sequence exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, causing daily highs to exceed previous lows, while compressing in periods of short-term momentum weakening.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.5
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Contradictions are detected, with low semantic similarity between certain theory components and price action indicators. However, these contradictions do not significantly impact the validation outcome. The analog divergence to 2026-06-03 is noted, but its implications on the current regime subtype remain unclear. One unresolved tension arises from the observed continuation of RELIANCE's price sequence under volatility expansion, which contradicts prior participation strength assumptions.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 23.0
+      }
+    },
+    {
+      "step": 9,
+      "date": "2026-06-05",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 50.64704185771566,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-04",
+          "similarity": 0.668,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-02",
+          "similarity": 0.617,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-01",
+          "similarity": 0.521,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.332,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price sequence exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, causing daily highs to exceed previous lows, while compressing in periods of short-term momentum weakening.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.634
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The provided structured market observation dimensions validate the theory that price sequence exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, causing daily highs to exceed previous lows. However, upon closer examination, several contradictions emerge, which challenge the theory's falsifiability. One major contradiction lies in the low semantic similarity between \"Price sequence exhib... vs price_action.daily_s...\" and other similar statements.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 24.0
+      }
+    },
+    {
+      "step": 10,
+      "date": "2026-06-08",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 50.99245255878058,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-05",
+          "similarity": 0.807,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-29",
+          "similarity": 0.664,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-04",
+          "similarity": 0.643,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.193,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price sequence exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, causing daily highs to exceed previous lows, while compressing in periods of short-term momentum weakening.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.39
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The theory validation using structured market observation dimensions suggests that the RELIANCE price sequence exhibits increased volatility and momentum when trading within a range-bound pattern, causing daily highs to exceed previous lows. However, the current observation does not support this theory, as the RELIANCE closed lower amid moderate volatility. The observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This contradicts the theory's falsifiability boundary conditions, which require additional confirmation signals.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 25.0
+      }
+    },
+    {
+      "step": 11,
+      "date": "2026-06-09",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 57.82135193978634,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-04",
+          "similarity": 0.951,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-03",
+          "similarity": 0.788,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-08",
+          "similarity": 0.669,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.049,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price sequence exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, causing daily highs to exceed previous lows, whereas in other conditions, daily highs are less than previous highs.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.615
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified based on the observed continuation, which remains insufficiently tested under volatility expansion. This contradicts the prior assumption of strong participation strength during range-bound conditions. The detected 5 contradictions with a total score of 0.07 further support this conclusion.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 26.0
+      }
+    },
+    {
+      "step": 12,
+      "date": "2026-06-10",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 38.32287185047036,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-05",
+          "similarity": 0.964,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-08",
+          "similarity": 0.796,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-09",
+          "similarity": 0.671,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.036,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price structure exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, shifting towards compression upon short-term momentum weakening.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.581
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The provided structured market observation dimensions validate the theory that price structure exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, shifting towards compression upon short-term momentum weakening. The observations align with the theory's predictions, indicating that RELIANCE is trading in a range-bound manner with moderate volatility. However, the detected 5 contradictions suggest that the theory requires additional confirmation signals to be definitively confirmed. Specifically, the low semantic similarity between \"Price structure exhibits increased volatility and momentum\" and \"price_action.daily_structure =\" indicates a potential field conflict.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 27.0
+      }
+    },
+    {
+      "step": 13,
+      "date": "2026-06-11",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 61.38057909470163,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-09",
+          "similarity": 0.839,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-04",
+          "similarity": 0.786,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-25",
+          "similarity": 0.76,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.161,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price structure exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, shifting towards compression upon short-term momentum weakening.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.3
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The provided structured market observation dimensions validate the theory that price structure exhibits increased volatility and momentum when RELIANCE trades within a range-bound pattern, shifting towards compression upon short-term momentum weakening. The observations align with the theory's predictions, including moderate volatility, mixed trend persistence, and neutral regime subtype. However, the detected contradictions suggest that the theory may not be entirely accurate. The low semantic similarity between the observed price structure and the predicted price action daily structure indicates a potential mismatch in the underlying assumptions of the two theories.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 38.0
+      }
+    },
+    {
+      "step": 14,
+      "date": "2026-06-12",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 51.35215207492836,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-11",
+          "similarity": 0.516,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-10",
+          "similarity": 0.505,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-09",
+          "similarity": 0.5,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.484,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price structure exhibits moderate volatility and momentum when RELIANCE is trading within a range-bound pattern, shifting towards compression upon short-term momentum weakening.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.46
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 41.0
+      }
+    },
+    {
+      "step": 15,
+      "date": "2026-06-15",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "neutral",
+        "delivery_pct": 52.46661530017378,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.778,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-10",
+          "similarity": 0.648,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-05",
+          "similarity": 0.646,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.222,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price structure exhibits moderate volatility and momentum when RELIANCE is trading within a range-bound pattern, shifting towards compression upon short-term momentum weakening.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.554
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 44.0
+      }
+    },
+    {
+      "step": 16,
+      "date": "2026-06-16",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "expansion",
+        "delivery_pct": 48.60804313129929,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.945,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-15",
+          "similarity": 0.78,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-09",
+          "similarity": 0.481,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.055,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Reliance's price structure exhibits moderate volatility and momentum when trading within a range-bound pattern, driven by the presence of FIIs, leading to increased selling pressure that shifts the price towards compression.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.812
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The provided structured market observation dimensions validate the theory that Reliance's price structure exhibits moderate volatility and momentum when trading within a range-bound pattern, driven by the presence of FIIs. The observations suggest that the price is shifting towards compression due to increased selling pressure. However, upon closer examination, several contradictions emerge: The analog divergence indicates a similarity with the 2026-06-12 observation, which had a broad participation and moderate volatility. However, this does not necessarily validate or invalidate the current observation.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 47.0
+      }
+    },
+    {
+      "step": 17,
+      "date": "2026-06-17",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 52.31004793957095,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-16",
+          "similarity": 0.81,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-15",
+          "similarity": 0.768,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-12",
+          "similarity": 0.753,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.19,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Reliance's price structure exhibits moderate volatility and momentum when trading within a range-bound pattern, driven by the presence of FIIs, leading to increased selling pressure that shifts the price towards compression.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.45
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 50.0
+      }
+    },
+    {
+      "step": 18,
+      "date": "2026-06-18",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 40.63461125536507,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-17",
+          "similarity": 0.669,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-09",
+          "similarity": 0.596,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-11",
+          "similarity": 0.582,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.331,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Reliance Industries' price structure exhibits moderate volatility and momentum when trading within a range-bound pattern, with increased selling pressure from FIIs potentially shifting towards compression.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 53.0
+      }
+    },
+    {
+      "step": 19,
+      "date": "2026-06-19",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 49.35488659228862,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-08",
+          "similarity": 0.749,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-02",
+          "similarity": 0.709,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-29",
+          "similarity": 0.64,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.251,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure within range-bound patterns.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.546
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The provided structured market observation dimensions validate the theory that the presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure within range-bound patterns. The observations suggest a mixed trend persistence, with moderate volatility and neutral regime subtype. However, upon closer examination, several contradictions emerge, indicating that the theory is not entirely supported by the data. Specifically: The presence of FIIs and Reliance Industries' short-term momentum weakening does not seem to be strongly correlated with price compression, as indicated by the low semantic similarity between these factors and the daily structure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 54.0
+      }
+    },
+    {
+      "step": 20,
+      "date": "2026-06-22",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 40.76873886828168,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-16",
+          "similarity": 0.672,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-12",
+          "similarity": 0.615,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-09",
+          "similarity": 0.571,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.328,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure and moderate volatility within range-bound patterns.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.46
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The provided theory validation exercise assesses the validity of a specific market observation dimension, which posits that the presence of FIIs (Foreign Institutional Investors) and Reliance Industries' short-term momentum weakening leads to a shift in price structure towards compression, resulting in increased selling pressure and moderate volatility within range-bound patterns. Upon analyzing the given data, it appears that the theory is partially supported. The observation indicates that the market exhibited weak participation, moderate volatility, and a neutral sector focus, which aligns with the predicted regime subtype of \"neutral.\" However, there are some contradictions detected, including field conflicts and low semantic similarities between certain variables. The validation exercise reveals that the theory's falsifiability boundary conditions have been met, as the observed data does not provide sufficient evidence to support or refute the theory.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 59.0
+      }
+    },
+    {
+      "step": 21,
+      "date": "2026-06-23",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 42.115760459281866,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-19",
+          "similarity": 0.974,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-08",
+          "similarity": 0.747,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-02",
+          "similarity": 0.707,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.026,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure within range-bound patterns.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The observed market conditions suggest that the presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure within range-bound patterns. However, upon closer examination, several contradictions emerge. The current regime subtype is neutral, but this classification may be challenged by the detected 3 contradictions with a total score of 0.33. Specifically, the low semantic similarity between \"price_action.daily_structure\" and \"price_structure_v14:...\" indicates a potential conflict in the theory's underlying assumptions.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 60.0
+      }
+    },
+    {
+      "step": 22,
+      "date": "2026-06-24",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 57.8887454016835,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-22",
+          "similarity": 0.769,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-02",
+          "similarity": 0.609,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-09",
+          "similarity": 0.571,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.231,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure within range-bound patterns.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.46
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The provided structured market observation dimensions validate the theory that the presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure within range-bound patterns. The observations suggest a neutral regime subtype, with moderate volatility and weak participation. However, two contradictions were detected, which suggests that the theory may not be entirely supported by the data. The contradictions are related to the semantic similarity between the presence of FIIs and price_action.daily_structure, as well as the low semantic similarity between price_action.daily_s...",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 63.0
+      }
+    },
+    {
+      "step": 23,
+      "date": "2026-06-25",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "fatigue"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-17",
+          "similarity": 0.787,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-24",
+          "similarity": 0.639,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-25",
+          "similarity": 0.62,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.213,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure compression, leading to increased selling pressure and moderate volatility in a range-bound pattern.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.26
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 66.0
+      }
+    },
+    {
+      "step": 24,
+      "date": "2026-06-26",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "indecision",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-18",
+          "similarity": 0.796,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-17",
+          "similarity": 0.732,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-25",
+          "similarity": 0.657,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.204,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The price structure of Reliance Industries exhibits limited volatility and weak momentum when trading within a range-bound pattern, with daily highs greater than previous lows or less than previous highs.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.45
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The validation of Reliance Industries' price structure using structured market observation dimensions reveals a mixed outcome. The theory's regime subtype is neutral, but the observed data indicates that the price structure exhibits limited volatility and weak momentum when trading within a range-bound pattern. Contradictions were detected with a total score of 0.08, indicating that the theory requires additional confirmation signals to be fully validated. Specifically, the low semantic similarity between the theory's statement on price structure and the observed volume data suggests that the theory may not accurately capture the market dynamics.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 69.0
+      }
+    },
+    {
+      "step": 25,
+      "date": "2026-06-29",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "neutral",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-08",
+          "similarity": 0.889,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-23",
+          "similarity": 0.783,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-19",
+          "similarity": 0.76,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.111,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The price structure exhibits limited volatility and weak momentum when trading within a range-bound pattern, primarily influenced by Reliance Industries' trading activity.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.64
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 70.0
+      }
+    },
+    {
+      "step": 26,
+      "date": "2026-06-30",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-05",
+          "similarity": 0.889,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-10",
+          "similarity": 0.853,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-29",
+          "similarity": 0.81,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.111,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price structure volatility and momentum are influenced by Reliance Industries trading within range-bound patterns, leading to daily highs exceeding previous lows or highs when RELIANCE is in a range-bound pattern.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.697
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory's falsifiability boundary conditions are met, as the observed data does not provide additional confirmation signals beyond what is already included in the theory's structure. The regime remains supported based on the boundary conditions, but the observed continuation under volatility expansion contradicts the prior participation strength assumption. This tension highlights a weakness in the theory that requires further testing.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 74.0
+      }
+    },
+    {
+      "step": 27,
+      "date": "2026-07-01",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "expansion",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "liquidity_constrained"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-16",
+          "similarity": 0.57,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-22",
+          "similarity": 0.566,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-12",
+          "similarity": 0.538,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.43,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price movements in liquidity-constrained markets are influenced by range-bound patterns and Reliance Industries' trading activity, leading to increased volatility and momentum when daily highs deviate from previous lows or highs.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.54
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The validation of the theory using structured market observation dimensions reveals both support and contradiction. The observed data suggests that the theory's predictions are partially supported, as the Reliance Industries' trading activity led to increased volatility and momentum when daily highs deviated from previous lows or highs. However, there are also contradictions that need to be addressed. One major contradiction is the low semantic similarity between the theory's prediction of price movements in liquidity-constrained markets being influenced by range-bound patterns and Reliance Industries' trading activity, and the observed data showing a volume greater than 1000000.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 75.0
+      }
+    },
+    {
+      "step": 28,
+      "date": "2026-07-02",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "neutral",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-25",
+          "similarity": 0.58,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-03",
+          "similarity": 0.57,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-11",
+          "similarity": 0.532,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.42,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The price structure exhibits increased volatility and strong momentum when trading within a range-bound pattern, primarily influenced by Reliance Industries' market activity.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.48
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 78.0
+      }
+    },
+    {
+      "step": 29,
+      "date": "2026-07-03",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "strong_bear",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "liquidity_constrained"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-07-02",
+          "similarity": 0.815,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-07-01",
+          "similarity": 0.657,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-26",
+          "similarity": 0.62,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.185,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Price structure volatility and momentum are influenced by Reliance Industries' trading within range-bound patterns, leading to increased price movements in a liquidity-constrained market regime.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.49
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The validation of Reliance Industries' trading within range-bound patterns, leading to increased price movements in a liquidity-constrained market regime, is partially supported by the observation. The compressed volatility and weak participation in the strong bear candle suggest that the theory's premise may hold true under certain conditions. However, several contradictions were detected, including low semantic similarity between \"price structure volatility\" and volume > 1000000, which indicates that the theory's focus on price structure volatility may not be directly applicable to high-volume trades. Additionally, the lack of strong participation in the candle and the compressed volatility suggest that the liquidity-constrained market regime assumption may not be universally applicable.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 81.0
+      }
+    }
+  ],
+  "epistemic_review": {
+    "assumptions_survived": [],
+    "assumptions_failed": [
+      "Assumption 1: The world is a fixed and predictable place.",
+      "Assumption 2: Human behavior can be fully understood through rational analysis."
+    ],
+    "knowledge_stronger": [],
+    "knowledge_weaker": [
+      "Knowledge about the limitations of human understanding in complex systems.",
+      "Knowledge about the impact of external factors on decision-making processes."
+    ],
+    "world_model_shifts": [
+      "Shift from a deterministic to a probabilistic view of causality.",
+      "Recognition of the importance of context and nuance in decision-making."
+    ],
+    "fundamental_uncertainty": [
+      "The nature of free will and its relationship to determinism.",
+      "The limits of knowledge and understanding in complex systems."
+    ],
+    "tomorrow_beliefs": [
+      "We would believe that the world is inherently uncertain and unpredictable, and that our understanding of it is always subject to revision.",
+      "We would recognize the importance of humility and adaptability in the face of new information and changing circumstances."
+    ]
+  },
+  "paper_trading_summary": {
+    "total_return_pct": -0.4979,
+    "sharpe_ratio": -6.5263,
+    "max_drawdown_pct": 0.5487,
+    "directional_accuracy_pct": 16.6667,
+    "commitment_accuracy_pct": 21.0526,
+    "avg_conviction_score": 0.372,
+    "final_capital": 995021.46
+  },
+  "decision_intelligence": {
+    "total_decisions": 30,
+    "executed": 19,
+    "skipped": 11,
+    "high_conviction": 0,
+    "low_conviction": 14,
+    "decision_accuracy_pct": 16.67,
+    "allocation_efficiency": -0.0074,
+    "avg_conviction": 0.372,
+    "false_high_conviction_pct": 0.0,
+    "false_low_conviction_pct": 14.29,
+    "decision_stability": 0.8888,
+    "top_lineages": [
+      "25a2a265-5faa-4d94-804f-18e35b0b7946"
+    ],
+    "top_principles": [],
+    "top_memories": [
+      "Regime Analog unknown"
+    ],
+    "top_harmful_contradictions": [
+      "contradiction_on_2026-05-26",
+      "contradiction_on_2026-05-29",
+      "contradiction_on_2026-06-01"
+    ],
+    "knowledge_changes_count": 34,
+    "avoided_bad_trades": 4,
+    "ignored_opportunities": 1
+  }
+}

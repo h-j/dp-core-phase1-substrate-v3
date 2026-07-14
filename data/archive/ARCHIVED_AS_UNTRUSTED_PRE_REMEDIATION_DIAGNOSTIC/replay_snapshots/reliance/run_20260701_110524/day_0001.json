@@ -1,0 +1,230 @@
+{
+  "step": 1,
+  "date": "2026-06-25",
+  "observation": "[volume dry, gap up, delivery:moderate, fii:selling, sector:leading_strong, RELIANCE focus, asset liquidity fade] candle rejection upper participation weak (normal) RELIANCE traded range-bound amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Concise Abstraction:\n\nReliance is trading in a range-bound manner with moderate volatility, indicating a mixed trend persistence and regime.",
+  "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with a weakening of the absorption mechanism leading to fatigue.",
+  "theory_summary_structured": {
+    "id": "aaba154d-578b-4ec1-b70a-cd86e3496349",
+    "created_at": "2026-07-01 05:35:48.265699+00:00",
+    "mechanism": "revised mechanism: The regime is driven by an initial surge in absorption, which initially keeps prices within a tight range. However, as the market continues to expand and the absorption mechanism weakens, the price begins to break out of this range, indicating a shift towards a new regime.",
+    "claim": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with a weakening of the absorption mechanism leading to fatigue.",
+    "if_branch": {
+      "id": "ec5147ea-a979-456d-a443-474eaa702e70",
+      "created_at": "2026-07-01 05:36:23.974138+00:00",
+      "condition": "volume > 50L",
+      "action": "price remains range-bound"
+    },
+    "else_branch": {
+      "id": "e9f7003b-66e5-4e77-958a-63f0950003d0",
+      "created_at": "2026-07-01 05:36:23.974225+00:00",
+      "condition": "volume <= 50L",
+      "action": "price begins to break out of the range, indicating a weakening of the absorption mechanism"
+    },
+    "unless": "fii:selling > 20%",
+    "falsified_if": "RELANCE traded range-bound amid moderate volatility and no clear indication of a new trend direction",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "component_id": "price_structure",
+        "description": "Price maintains sequence of higher highs and higher lows",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous high, each low > previous low",
+        "dependency": null
+      },
+      {
+        "component_id": "volume_confirmation",
+        "description": "Volume expands on up days relative to down days",
+        "observable": "volume.daily_ratio",
+        "expected_behavior": "Average volume on up days exceeds average volume on down days",
+        "dependency": null
+      }
+    ],
+    "falsification_conditions": [
+      "price_structure: lower low formed breaking HH/HL sequence",
+      "volume_confirmation: down-day volume exceeds up-day volume for 3 consecutive sessions"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.501,
+    "reflection": 0.4039,
+    "coherence": 0.0,
+    "contradiction": 0.8796
+  },
+  "contradiction": {
+    "score": 0.089,
+    "indicators": [
+      "Structural: Low semantic similarity: RELANCE traded range... vs decisive close below...; Low semantic similarity: Revised claim: Regim... vs participation widens...; Low semantic similarity: volume > 50L: price ... vs participation widens...; Low semantic similarity: volume <= 50L: price... vs volatility remains c..."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "879bab11-b5e0-44ec-9bcc-3418b54c617d",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 1 contradictions with a total score of 0.09."
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-06-25",
+    "trend": "range_bound",
+    "volatility_state": "moderate",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.089,
+    "active_theory_count": 2,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-06-24",
+      "similarity": 0.68,
+      "active_theories": [
+        "3333380867b5f28d"
+      ],
+      "contradictions": [],
+      "confidence": 0.24,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-06-25",
+      "policy_name": "Baseline",
+      "action": "hold",
+      "conviction": 0.4,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-06-25",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.4,
+      "reason": "Skipped low confidence",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-06-25",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.4,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.1708366666666667,
+    "label": "weak"
+  },
+  "reflection": "Theory contradiction remains unresolved.",
+  "regime_subtype": "fatigue",
+  "falsifiability_conditions": [
+    "momentum re-accelerates despite weak participation"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "fatigue",
+    "seen_count": 1,
+    "avg_usefulness": 0.171,
+    "last_seen": "2026-06-25",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 1,
+      "uncertain": 0
+    },
+    "falsified_count": 1
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 1,
+    "date": "2026-06-25",
+    "contradiction_count": 1,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.089,
+    "highest_contradiction": 0.089,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 1.5,
+    "longest_surviving_theory": 2,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.12,
+    "confidence_delta": -0.24,
+    "confidence_volatility": 0.12,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 1.0,
+    "grounded_reflection_score": 0.25,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.5,
+    "memory_reference_count": 0,
+    "critique_density": 0.25,
+    "avg_abstraction_length": 19.0,
+    "compression_ratio": 0.5428571428571428,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 35,
+      "theory_text": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with a weakening of the absorption mechanism leading to fatigue.",
+      "contradiction_text": "Detected 1 contradictions with a total score of 0.09.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-25",
+        "trend": "range_bound",
+        "volatility_state": "moderate",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.089,
+        "active_theory_count": 2,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-24",
+          "similarity": 0.68,
+          "active_theories": [
+            "3333380867b5f28d"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.1708366666666667,
+        "label": "weak"
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "6c6073b6-c7a6-4fc8-8940-8533a5764b7d",
+  "created_at": "2026-06-30T07:02:31.018934+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where absorption rate failure is present and the regime is in a state of momentum or range-bound, but not when the regime shifts towards neutral or mixed sentiment.",
+  "associated_lineage_ids": [
+    "bc4f5626-1ab1-44e1-80be-e2a248c1387e",
+    "43d9ca98-30e2-47ce-86bc-81c00aef28a6",
+    "155d8691-995f-42e3-b1d1-187029849a60",
+    "12321cc6-4316-46d4-8ef7-f917970d3be3",
+    "4c070abf-ee5d-4203-9c70-a60dc761e6e5",
+    "b24c91bc-7d24-4487-9e35-6c1c1a8fdf36",
+    "5fd904df-21b4-4726-af6b-ab734b4498d7"
+  ],
+  "supporting_theory_ids": [
+    "12321cc6-4316-46d4-8ef7-f917970d3be3",
+    "b24c91bc-7d24-4487-9e35-6c1c1a8fdf36",
+    "155d8691-995f-42e3-b1d1-187029849a60",
+    "4c070abf-ee5d-4203-9c70-a60dc761e6e5"
+  ],
+  "contradicting_theory_ids": [
+    "bc4f5626-1ab1-44e1-80be-e2a248c1387e",
+    "43d9ca98-30e2-47ce-86bc-81c00aef28a6",
+    "5fd904df-21b4-4726-af6b-ab734b4498d7"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "da709957-be59-4fe1-85fc-b3b7e606b6d4",
+      "created_at": "2026-06-30T07:02:31.018284+00:00",
+      "target_component": "absorption_rate_failure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "neutral"
+      },
+      "empirical_support_count": 3,
+      "empirical_failure_count": 12
+    },
+    {
+      "id": "c1e88a50-4485-464a-b83f-6a0c9e125ddb",
+      "created_at": "2026-06-30T07:02:31.018381+00:00",
+      "target_component": "absorption_rate_failure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "volatility_regime": "normal"
+      },
+      "empirical_support_count": 5,
+      "empirical_failure_count": 3
+    }
+  ],
+  "confidence": 0.34782608695652173,
+  "support_count": 8,
+  "contradiction_count": 15,
+  "created_at_step": 23,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 8,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": -47.0
+}

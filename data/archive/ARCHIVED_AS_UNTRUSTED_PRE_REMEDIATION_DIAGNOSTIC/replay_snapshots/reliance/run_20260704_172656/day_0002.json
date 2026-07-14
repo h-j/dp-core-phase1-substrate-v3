@@ -1,0 +1,318 @@
+{
+  "step": 2,
+  "date": "2026-05-27",
+  "observation": "[volume elevated, gap down, volatility expanding, delivery:moderate, fii:buying, sector:lagging_strong, RELIANCE focus] candle rejection upper participation normal (normal) RELIANCE traded range-bound with stable volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is trading in a range-bound manner with stable volatility, exhibiting mixed trend persistence and regime characteristics across different time horizons.",
+  "theory": "The RELIANCE price structure exhibits increased volatility and momentum when trading range-bound, leading to a causal relationship between range-bound conditions and heightened market instability.",
+  "theory_summary_structured": {
+    "id": "24299e40-0ce7-4f0b-8142-cfb186c7c60c",
+    "created_at": "2026-07-04 11:57:28.206132+00:00",
+    "mechanism": "Liquidity Absorption",
+    "claim": "The RELIANCE price structure exhibits increased volatility and momentum when trading range-bound, leading to a causal relationship between range-bound conditions and heightened market instability.",
+    "if_branch": {
+      "id": "52e7f8b8-6527-4485-9f16-2b676c0d650e",
+      "created_at": "2026-07-04 11:59:32.747022+00:00",
+      "condition": "RELIANCE trading range-bound and volatility expanding",
+      "action": "Promote price_structure_v2 mechanism"
+    },
+    "else_branch": {
+      "id": "2d13a8ba-a22c-428d-be9f-3f2de4069e05",
+      "created_at": "2026-07-04 11:59:32.747109+00:00",
+      "condition": "RELIANCE not trading range-bound",
+      "action": "Promote volume_confirmation_v2 mechanism"
+    },
+    "unless": "liquidity evaporates entirely",
+    "falsified_if": "decisive close below the prior support floor",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "9b265e07-1b8d-451b-8eef-6b6b486b10ca",
+        "created_at": "2026-07-04 11:59:29.659313+00:00",
+        "component_id": "volume_confirmation_v2",
+        "description": "Volume expands on up days relative to down days, but with a twist: when RELIANCE is trading range-bound, the volume confirmation mechanism becomes less reliable and exhibits increased institutional accumulation.",
+        "observable": "volume.daily_ratio",
+        "expected_behavior": "Average volume on up days exceeds average volume on down days (when RELIANCE is not trading range-bound) or Average volume on up days < average volume on down days (when RELIANCE is trading range-bound)",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_EXPANSION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "DAMPENS",
+        "mechanism_id": "MECH_002"
+      },
+      {
+        "id": "51abc2c5-173f-4d8f-affc-9f56f43e4429",
+        "created_at": "2026-07-04 11:58:21.089661+00:00",
+        "component_id": "price_structure",
+        "description": "Price maintains sequence of higher highs and higher lows, but with a twist: when RELIANCE is trading range-bound, the price structure becomes more volatile.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous high, each low < previous low (when RELIANCE is trading range-bound) or Each day's high > previous high, each low > previous low (otherwise)",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_001"
+      },
+      {
+        "id": "316ea5b1-fb8b-4ad9-bc3b-98f642d10fea",
+        "created_at": "2026-07-04 11:59:29.664376+00:00",
+        "component_id": "price_structure_v2",
+        "description": "Price maintains sequence of higher highs and higher lows, but with a twist: when RELIANCE is trading range-bound, the price structure becomes more volatile and exhibits increased momentum.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous high, each low < previous low (when RELIANCE is trading range-bound) or Each day's high > previous high, each low > previous low (otherwise)",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "MOMENTUM"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_001"
+      }
+    ],
+    "falsification_conditions": [
+      "price_structure: RELIANCE trading range-bound and volatility expanding",
+      "volume_confirmation: RELIANCE not trading range-bound"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.05,
+    "regime": 0.508,
+    "reflection": 0.4102,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 1.0,
+    "indicators": [
+      "Structural: Low semantic similarity: The RELIANCE price s... vs RELIANCE trading ran...",
+      "Structural: Low semantic similarity: The RELIANCE price s... vs Regime is driven by ...; Low semantic similarity: The RELIANCE price s... vs delivery_pct > 50 AN...; Low semantic similarity: RELIANCE trading ran... vs delivery_pct > 50 AN...; Low semantic similarity: RELIANCE not trading... vs sector_zscore < -1.5...; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "a8fd4864-cd4b-4d59-a256-7f2d787aa6fc",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "d8a7229d-7b90-4614-9b04-0a3ba0b0c981",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 2 contradictions with a total score of 1.00."
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-05-27",
+    "trend": "range_bound",
+    "volatility_state": "stable",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 1.0,
+    "active_theory_count": 2,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-05-25",
+      "similarity": 0.68,
+      "active_theories": [
+        "5c9c1c4a9f2d9328"
+      ],
+      "contradictions": [],
+      "confidence": 0.24,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-26",
+      "similarity": 0.56,
+      "active_theories": [
+        "5c9c1c4a9f2d9328"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: The RELIANCE's price... vs Regime is driven by ...; Low semantic similarity: The RELIANCE's price... vs delivery_pct > 50 AN...; Low semantic similarity: RELIANCE trading ran... vs delivery_pct > 50 AN...; Low semantic similarity: RELIANCE not trading... vs sector_zscore < -1.5...; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+      ],
+      "confidence": 0.126,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-05-27",
+      "policy_name": "Baseline",
+      "action": "hold",
+      "conviction": 0.44,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-05-27",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.44,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-05-27",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.44,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.0,
+    "label": "failed"
+  },
+  "reflection": "The RELIANCE price structure exhibits increased volatility and momentum when trading range-bound, leading to a causal relationship between range-bound conditions and heightened market instability. However, the current observation does not support this theory as it is observed that Reliance's price closes below the rejection high with decreasing volume. This contradicts the theory's falsifiability boundary condition, which requires additional confirmation signals. The detected contradictions include low semantic similarity between the RELIANCE price structure and the regime subtype, as well as semantic contradictions related to institutional accumulation and volatility expansion.",
+  "regime_subtype": "pressure_loaded_range",
+  "falsifiability_conditions": [
+    "price closes above rejection high with stable volume",
+    "volatility contracts below average"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "pressure_loaded_range",
+    "seen_count": 2,
+    "avg_usefulness": 0.052,
+    "last_seen": "2026-05-27",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 2,
+      "uncertain": 0
+    },
+    "falsified_count": 1
+  },
+  "dialectical_triggered": true,
+  "dialectical_synthesis": {
+    "shared_premise": "Reliance is trading in a range-bound manner with moderate volatility, exhibiting mixed trend persistence and regime characteristics.",
+    "conflict": "The active theories contradict each other on the driving force behind Reliance's trading behavior, with some attributing it to institutional accumulation and others to volatility expansion.",
+    "synthesis": "A more nuanced understanding of Reliance's behavior is needed, acknowledging that both institutional accumulation and volatility expansion may be contributing factors. The pressure-loaded range regime suggests a complex interplay between these forces. Further analysis is required to determine the relative importance of each factor.",
+    "falsified_if": "Reliance's price closes below the rejection high with decreasing volume",
+    "validation": {
+      "valid": true,
+      "quality": 0.8,
+      "issues": []
+    }
+  },
+  "metrics": {
+    "step": 2,
+    "date": "2026-05-27",
+    "contradiction_count": 2,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.3333333333333333,
+    "avg_contradiction_severity": 1.0,
+    "highest_contradiction": 1.0,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.0,
+    "longest_surviving_theory": 3,
+    "theory_mutation_count": 1,
+    "avg_confidence": 0.1388,
+    "confidence_delta": -0.19,
+    "confidence_volatility": 0.07806117259346458,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.5,
+    "memory_reference_count": 0,
+    "critique_density": 0.03409090909090909,
+    "avg_abstraction_length": 21.0,
+    "compression_ratio": 0.6176470588235294,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 24,
+    "mechanism_count": 3,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 0,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 41,
+    "words_after_mutation": 24,
+    "mechanisms_before_mutation": 2,
+    "mechanisms_after_mutation": 3,
+    "extras": {
+      "observation_length": 34,
+      "theory_text": "The RELIANCE price structure exhibits increased volatility and momentum when trading range-bound, leading to a causal relationship between range-bound conditions and heightened market instability.",
+      "contradiction_text": "Detected 2 contradictions with a total score of 1.00.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-05-27",
+        "trend": "range_bound",
+        "volatility_state": "stable",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 1.0,
+        "active_theory_count": 2,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-05-25",
+          "similarity": 0.68,
+          "active_theories": [
+            "5c9c1c4a9f2d9328"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.56,
+          "active_theories": [
+            "5c9c1c4a9f2d9328"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The RELIANCE's price... vs Regime is driven by ...; Low semantic similarity: The RELIANCE's price... vs delivery_pct > 50 AN...; Low semantic similarity: RELIANCE trading ran... vs delivery_pct > 50 AN...; Low semantic similarity: RELIANCE not trading... vs sector_zscore < -1.5...; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+          ],
+          "confidence": 0.126,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.0,
+        "label": "failed"
+      }
+    }
+  }
+}

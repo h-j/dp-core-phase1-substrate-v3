@@ -1,0 +1,168 @@
+{
+  "id": "dc664cbd-f78c-40e3-899c-48dea2621a8a",
+  "created_at": "2026-06-30T04:58:26.780605+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+  "associated_lineage_ids": [
+    "bba24688-7996-4fe7-849a-d3f8aee009ad",
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "f31b62bf-d8ea-47a0-a86c-7a00d378af3b",
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "d6deebaf-d98f-47cf-bab0-2e437d86772e",
+    "4106cbd3-1c28-4697-b85c-a70b3cb6c6c5",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "20393347-78f1-4ac3-9043-0ec4129de56a",
+    "f54def3b-73b9-44bf-a622-4251543b727a",
+    "cb3b0002-67d0-42dc-9bf5-e4ac3bb68f21",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "b5b19d92-345c-4d52-8a14-86aae06dcc0a",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "8f0eb97d-a1bc-4ec3-a4d1-4f5ab70fcf8c",
+    "94efc9d4-b459-4af7-a86e-5e8286f6217c",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc"
+  ],
+  "supporting_theory_ids": [
+    "bba24688-7996-4fe7-849a-d3f8aee009ad",
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "f31b62bf-d8ea-47a0-a86c-7a00d378af3b",
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "d6deebaf-d98f-47cf-bab0-2e437d86772e",
+    "4106cbd3-1c28-4697-b85c-a70b3cb6c6c5",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "f54def3b-73b9-44bf-a622-4251543b727a",
+    "cb3b0002-67d0-42dc-9bf5-e4ac3bb68f21",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "b5b19d92-345c-4d52-8a14-86aae06dcc0a",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc"
+  ],
+  "contradicting_theory_ids": [
+    "94efc9d4-b459-4af7-a86e-5e8286f6217c",
+    "8f0eb97d-a1bc-4ec3-a4d1-4f5ab70fcf8c",
+    "20393347-78f1-4ac3-9043-0ec4129de56a"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "b74afb7b-1300-4040-8d6e-0cc0b8d0b77c",
+      "created_at": "2026-06-30T04:58:26.780104+00:00",
+      "target_component": "price_structure",
+      "expected_status": "passed or failed",
+      "applicability_filter": {
+        "regime_subtype": "consolidated value or null if generic",
+        "volatility_regime": "consolidated value or null if generic"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 4,
+  "revision_history": [
+    {
+      "id": "d8ee8f60-0426-41fd-bc00-309dabd17108",
+      "created_at": "2026-06-30T04:19:08.435441+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with high or normal volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "eb3baf1f-5994-483b-a61e-e26841489656",
+      "created_at": "2026-06-30T04:20:39.086235+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "111045be-2fb2-4b76-b1c0-2c84c4c9d9a0",
+      "created_at": "2026-06-30T04:23:56.986719+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "a2c63e53-9284-41c0-bc56-a4689d393ef6",
+      "created_at": "2026-06-30T04:25:31.234692+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "49f174cf-e201-49d8-9466-12217bb39b17",
+      "created_at": "2026-06-30T04:27:25.409626+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "9dbe5f05-0b52-4f1a-8dfa-b47a21941908",
+      "created_at": "2026-06-30T04:29:18.454185+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "c32d4571-44bd-4cc2-ae2d-e2aed7067e51",
+      "created_at": "2026-06-30T04:31:21.182890+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "8f9616eb-b708-47e6-b8c7-0a2d7c597f00",
+      "created_at": "2026-06-30T04:33:06.310492+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "edaef2d7-b633-4868-bad4-df6b7273bc28",
+      "created_at": "2026-06-30T04:34:51.424185+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "801f6bac-459b-419a-87df-a29441e24df7",
+      "created_at": "2026-06-30T04:54:38.530504+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "b204c206-5067-418b-80a3-b650f4a854d9",
+      "created_at": "2026-06-30T04:56:34.647175+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "64e65aa6-0f0a-4493-a0d4-f633b6708fe2",
+      "created_at": "2026-06-30T04:58:26.780053+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    }
+  ],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

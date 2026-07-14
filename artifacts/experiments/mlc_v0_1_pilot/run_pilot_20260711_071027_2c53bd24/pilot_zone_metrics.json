@@ -1,0 +1,42 @@
+{
+  "pooled": {
+    "total_worlds": 100,
+    "epistemic_worlds": 100,
+    "mlc_accuracy": 0.86,
+    "b2_accuracy": 0.87,
+    "b3_accuracy": 0.35,
+    "b4_accuracy": 1.0,
+    "mlc_vs_b2_difference": -0.01,
+    "mlc_vs_b3_difference": 0.51
+  },
+  "clear_zone": {
+    "total_worlds": 30,
+    "epistemic_worlds": 30,
+    "mlc_accuracy": 1.0,
+    "b2_accuracy": 1.0,
+    "b3_accuracy": 0.3333,
+    "b4_accuracy": 1.0,
+    "mlc_vs_b2_difference": 0.0,
+    "mlc_vs_b3_difference": 0.6667
+  },
+  "boundary_zone": {
+    "total_worlds": 50,
+    "epistemic_worlds": 50,
+    "mlc_accuracy": 0.72,
+    "b2_accuracy": 0.74,
+    "b3_accuracy": 0.34,
+    "b4_accuracy": 1.0,
+    "mlc_vs_b2_difference": -0.02,
+    "mlc_vs_b3_difference": 0.38
+  },
+  "evidence_limited_zone": {
+    "total_worlds": 20,
+    "epistemic_worlds": 20,
+    "mlc_accuracy": 1.0,
+    "b2_accuracy": 1.0,
+    "b3_accuracy": 0.4,
+    "b4_accuracy": 1.0,
+    "mlc_vs_b2_difference": 0.0,
+    "mlc_vs_b3_difference": 0.6
+  }
+}

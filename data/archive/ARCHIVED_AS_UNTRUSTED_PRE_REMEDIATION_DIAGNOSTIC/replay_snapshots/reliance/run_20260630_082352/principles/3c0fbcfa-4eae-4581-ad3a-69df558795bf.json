@@ -1,0 +1,71 @@
+{
+  "id": "3c0fbcfa-4eae-4581-ad3a-69df558795bf",
+  "created_at": "2026-06-30T03:11:43.815670+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where the regime is driven by Absorption, and price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum.",
+  "associated_lineage_ids": [
+    "c2390607-3979-4dd7-8b36-5d409e008c26",
+    "d8349ead-72b5-489d-8ee9-489ae38c5400",
+    "44f8fc63-90c2-4a44-9636-7c90dfcb9e53",
+    "e2179981-8e61-401a-95c3-e891052f0b00",
+    "da1263aa-73c7-4158-8f85-e1e05ce616b0",
+    "5f17ce93-9a41-4d17-8a12-57b086a5fdd0",
+    "09f94250-73fe-4a4d-a06d-3c5e91f05fcc",
+    "c72fc413-eabc-42dd-b151-4ca5bfcc07ec",
+    "d1f340af-40a8-4894-93f1-f514bfd1b259",
+    "8f1060ba-31a8-4ced-9f63-b5f5ac4b6984",
+    "2a395408-5fd1-4b70-b23c-1744acef3573",
+    "4802256e-e3d6-411c-b269-73a0c6932dad"
+  ],
+  "supporting_theory_ids": [
+    "da1263aa-73c7-4158-8f85-e1e05ce616b0",
+    "4802256e-e3d6-411c-b269-73a0c6932dad",
+    "c2390607-3979-4dd7-8b36-5d409e008c26",
+    "2a395408-5fd1-4b70-b23c-1744acef3573",
+    "09f94250-73fe-4a4d-a06d-3c5e91f05fcc",
+    "44f8fc63-90c2-4a44-9636-7c90dfcb9e53",
+    "d1f340af-40a8-4894-93f1-f514bfd1b259",
+    "d8349ead-72b5-489d-8ee9-489ae38c5400",
+    "c72fc413-eabc-42dd-b151-4ca5bfcc07ec",
+    "5f17ce93-9a41-4d17-8a12-57b086a5fdd0"
+  ],
+  "contradicting_theory_ids": [
+    "e2179981-8e61-401a-95c3-e891052f0b00",
+    "8f1060ba-31a8-4ced-9f63-b5f5ac4b6984"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "4f06788a-9530-4702-bd10-2a08f677dbcf",
+      "created_at": "2026-06-30T03:11:43.814249+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "05e5d9a4-138b-44d6-9dc6-f043fc4817a3",
+      "created_at": "2026-06-30T03:11:43.815525+00:00",
+      "target_component": "price_structure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 12,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

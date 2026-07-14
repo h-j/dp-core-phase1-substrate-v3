@@ -1,0 +1,86 @@
+{
+  "id": "700603d1-d621-4ce3-9a89-dd49ab6cb193",
+  "created_at": "2026-06-29T09:42:57.000552+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid when the regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion. The component expectation breaks down when the regime shifts towards Absorption or increased volatility without corresponding volume expansion.",
+  "associated_lineage_ids": [
+    "b65c957e-3c7c-4145-bce8-08ea08dda7c7",
+    "ac3a4a49-7e99-461c-871e-7ac286f3c235",
+    "400e0ccf-639d-4677-b64c-d22acfec7f9f",
+    "d9395b8a-5d9b-4535-85d4-a15b5500ec23",
+    "cc1f03e1-20a7-4e1d-8c58-1e6982765dcc",
+    "3bae75ed-b978-421b-a098-efad75b6df5f",
+    "b141c7b7-80db-44d8-b7bd-db2474a080f8"
+  ],
+  "supporting_theory_ids": [
+    "3bae75ed-b978-421b-a098-efad75b6df5f",
+    "b141c7b7-80db-44d8-b7bd-db2474a080f8",
+    "ac3a4a49-7e99-461c-871e-7ac286f3c235"
+  ],
+  "contradicting_theory_ids": [
+    "400e0ccf-639d-4677-b64c-d22acfec7f9f",
+    "d9395b8a-5d9b-4535-85d4-a15b5500ec23",
+    "b65c957e-3c7c-4145-bce8-08ea08dda7c7",
+    "cc1f03e1-20a7-4e1d-8c58-1e6982765dcc"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "aca5b630-b72a-424c-aba3-c6687874e796",
+      "created_at": "2026-06-29T09:42:57.000517+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed or failed",
+      "applicability_filter": {
+        "regime_subtype": [
+          "momentum",
+          "range_bound"
+        ],
+        "volatility_regime": [
+          "compressed",
+          "expanded"
+        ],
+        "volume_state": [
+          "high",
+          "low"
+        ]
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 4,
+  "revision_history": [
+    {
+      "id": "d2c73f89-7804-40ab-a96d-e7a79e4e1ad1",
+      "created_at": "2026-06-29T09:39:20.358053+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The absorption rate is valid when the regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion. The absorption rate breaks down when the regime shifts towards Absorption or increased RELIANCE focus.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "806e587a-9639-4182-a3eb-c241b6939f0b",
+      "created_at": "2026-06-29T09:40:59.609098+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The absorption rate is valid when the regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion. The absorption rate breaks down when the regime shifts towards Absorption or increased RELIANCE focus.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "e289cbc4-0054-4f98-8101-47234cef06c9",
+      "created_at": "2026-06-29T09:42:57.000485+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The absorption rate is valid when the regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion. The component expectation breaks down when the regime shifts towards Absorption or increased volatility without corresponding volume expansion.",
+      "change_reason": "consolidated via hierarchical merging"
+    }
+  ],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

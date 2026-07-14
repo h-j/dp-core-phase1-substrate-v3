@@ -1,0 +1,3668 @@
+{
+  "symbol": "RELIANCE",
+  "days": 45,
+  "date_range": "2026-04-29 \u2192 2026-06-30",
+  "execution_hash": "610c290c7f97e30bee2cd701855b169f229f7105175ecb76199b8c78932d8b3f",
+  "git_commit": "9b88a42276268d42f1c0229b11f4c6934893fea9",
+  "llm_version": "llama3.2",
+  "replay_version": "v3.0PersistentReflective",
+  "story_summary": "This replay represents 45 days of experience on RELIANCE. During this period, DP generated 45 experiences, evolved 27 theories, extracted 5 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 3 key market mechanisms while identifying 27 unresolved evidence gap(s).",
+  "metrics": {
+    "accuracy": 27.27272727272727,
+    "knowledge_debt": 0,
+    "memory_usefulness": 0.7684592592592593,
+    "knowledge_coverage": 0.0,
+    "prediction_drift": 0.0,
+    "theory_drift": 0.0
+  },
+  "knowledge_health": {
+    "knowledge_debt_bar": 10,
+    "principle_coverage": 0.0,
+    "reuse_rate": 17.77777777777778,
+    "trust": 54.6
+  },
+  "knowledge_lifecycle": {
+    "candidate": 2,
+    "emerging": 0,
+    "trusted": 0,
+    "canonical": 0,
+    "retired": 1
+  },
+  "timeline": [
+    {
+      "date": "2026-04-29",
+      "theory": "Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion.",
+      "prediction": "higher (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-04-30",
+      "theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a secondary influence of Market Sentiment.",
+      "prediction": "higher (80%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.098
+    },
+    {
+      "date": "2026-05-01",
+      "theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a secondary influence of Market Sentiment, and a tertiary consideration of Asset Liquidity Fade.",
+      "prediction": "range_bound (45%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09665000000000001
+    },
+    {
+      "date": "2026-05-04",
+      "theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a secondary influence of Market Sentiment and a tertiary consideration of Asset Liquidity Fade, which becomes more pronounced in times of high market volatility.",
+      "prediction": "higher (62%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09620000000000001
+    },
+    {
+      "date": "2026-05-05",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a secondary influence of Asset Liquidity Fade and a tertiary consideration of Liquidity Absorption, which becomes more pronounced in times of high market volatility.",
+      "prediction": "higher (64%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09620000000000001
+    },
+    {
+      "date": "2026-05-06",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a secondary influence of Asset Liquidity Fade and a tertiary consideration of Liquidity Absorption, which becomes more pronounced in times of high market volatility. However, when Asset Liquidity Fade is present, its impact on the regime shifts from secondary to primary.",
+      "prediction": "lower (54%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09464000000000002
+    },
+    {
+      "date": "2026-05-07",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a secondary influence of Asset Liquidity Fade and a tertiary consideration of Liquidity Absorption. However, when Asset Liquidity Fade is present, its impact on the regime shifts from secondary to primary, but only in situations where market volatility exceeds moderate levels.",
+      "prediction": "uncertain (54%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0878
+    },
+    {
+      "date": "2026-05-08",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when Asset Liquidity Fade is present, its impact on the regime shifts from primary to secondary, but only in situations where market volatility exceeds moderate levels.",
+      "prediction": "range_bound (44%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0878
+    },
+    {
+      "date": "2026-05-11",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when Asset Liquidity Fade is present, its impact on the regime shifts from primary to secondary, but only in situations where market volatility exceeds moderate levels. Additionally, if RELIANCE is heavily focused, it can override the primary influence of Asset Liquidity Fade.",
+      "prediction": "lower (62%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08366000000000001
+    },
+    {
+      "date": "2026-05-12",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels.",
+      "prediction": "lower (77%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.07832
+    },
+    {
+      "date": "2026-05-13",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (44%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0806
+    },
+    {
+      "date": "2026-05-14",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "lower (75%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08750000000000001
+    },
+    {
+      "date": "2026-05-15",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "prediction": "lower (73%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0818
+    },
+    {
+      "date": "2026-05-18",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "prediction": "range_bound (52%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0815
+    },
+    {
+      "date": "2026-05-19",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "prediction": "lower (75%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.081
+    },
+    {
+      "date": "2026-05-20",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "prediction": "higher (59%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.069
+    },
+    {
+      "date": "2026-05-21",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "prediction": "uncertain (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.049
+    },
+    {
+      "date": "2026-05-22",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "prediction": "range_bound (40%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-05-25",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "prediction": "range_bound (40%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-05-26",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "higher (70%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-05-27",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (63%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-05-28",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (49%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-05-29",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "lower (73%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-01",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (49%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-02",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "lower (66%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-03",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (56%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-04",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (56%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-05",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "lower (68%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-08",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "uncertain (39%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-09",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (62%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-10",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "lower (72%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-11",
+      "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (44%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-12",
+      "theory": "Revised claim: The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "higher (56%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-15",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "lower (62%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-16",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "higher (84%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-17",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (45%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-18",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (56%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-19",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "uncertain (65%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-22",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "higher (57%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-23",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "uncertain (59%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-24",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "higher (53%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-25",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (48%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-26",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "range_bound (45%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-29",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "lower (74%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-30",
+      "theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "prediction": "lower (77%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    }
+  ],
+  "theory_evolution": [
+    {
+      "day": "2026-04-29",
+      "lineage_id": "f4b61f8b40c5502d",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-04-30",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-01",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-04",
+      "lineage_id": "bef165a27dea1c32",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-05",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-06",
+      "lineage_id": "8c6524b0763498d6",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-07",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-08",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-11",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-12",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-13",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-14",
+      "lineage_id": "10700f71c2e35220",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-15",
+      "lineage_id": "10700f71c2e35220",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-18",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-19",
+      "lineage_id": "10700f71c2e35220",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-20",
+      "lineage_id": "95fe4d7a81e8abe2",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-21",
+      "lineage_id": "efee410f89e3bffe",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-22",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-25",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-26",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-27",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-28",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-29",
+      "lineage_id": "1998e6fdd7d960da",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-01",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-02",
+      "lineage_id": "61fe96c37d423b50",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-03",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-04",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-05",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-08",
+      "lineage_id": "377671f7632f4666",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-09",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-10",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "close"
+    },
+    {
+      "day": "2026-06-11",
+      "lineage_id": "a7951c40c373378b",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-12",
+      "lineage_id": "24fc410838f6a1f4",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-15",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-16",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-17",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-18",
+      "lineage_id": "2f4ea7a8ededb857",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-19",
+      "lineage_id": "9a292b05d7919a9c",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-22",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "close"
+    },
+    {
+      "day": "2026-06-23",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "none"
+    },
+    {
+      "day": "2026-06-24",
+      "lineage_id": "662a15eba850257b",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-25",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-26",
+      "lineage_id": "a79b667e09f9e8f3",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "close"
+    },
+    {
+      "day": "2026-06-29",
+      "lineage_id": "98e4e4f609479307",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-30",
+      "lineage_id": "98e4e4f609479307",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    }
+  ],
+  "world_model": {
+    "narrative": "Baseline world model. No active principles recorded yet.",
+    "regime_constraints": {},
+    "supporting_principles": [],
+    "dominant_mechanisms": [],
+    "active_constraints": [],
+    "supporting_canonical_principles": [],
+    "confidence": 0.5,
+    "stability": "Emerging",
+    "evidence_count": 0,
+    "applicable_regimes": [],
+    "open_questions": [
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under fatigue regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under pressure_loaded_range regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "spike"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under fatigue regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'liquidity_absorption' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      }
+    ],
+    "evidence_gaps": [
+      {
+        "id": "fd7b6411-f665-4bf4-9d0d-4ed70a49ac2f",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "469bb450-35b8-4e1e-a1fd-f81a289c3ce0",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "ce99cd13-e28d-4c30-91f8-1d50eca8757a",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "647ab6ac-9092-4358-b415-2aaffe2fb145",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "20e9aefe-b683-4e11-958e-398564cecdbf",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "276826ad-9be6-4704-a31b-321e44e934af",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "0714ba04-efae-4d1f-8d94-f69a4356cde0",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under fatigue regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "6c3d3047-896a-428d-a5fb-978340464f47",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "cc7e2fd1-c4ec-4213-ad86-38e36c4585ab",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "8bdb6766-3025-4679-9e3e-b3a6e753884c",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "a2baf51e-d3d7-4a48-b5c3-4acf08ae6be1",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "69ab6860-6b44-49a6-8b54-0be13671c639",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under pressure_loaded_range regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "6b1c87d7-7583-450b-8ce4-35271fe2a0b4",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "a0bf40ac-b14f-4afe-a0af-1b576ffa0f3b",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "89699ef7-a3d5-41c2-840c-272735e158db",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "cbced6b8-0953-4484-96e8-a7f18ef71c37",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "81e492fd-875a-431c-b256-def353d25866",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "602140a4-2780-43eb-94b6-df9ac6cd216b",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "b1da44e9-f96d-49c9-b437-27bf5bd8c67c",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "8368cb7a-53ec-4477-818a-5f4335a1d9a1",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "2a43de07-a5e9-4c1e-98b2-cdcebd206a6b",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "4a1d858e-1374-4c74-bbc7-cec3dcc85317",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "dc4fb6f4-8c9e-44e8-bee3-e4522240c29c",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "bf570fb0-99e8-41df-96bc-d527ba4849c5",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "17a1c1ca-212a-46f4-9634-e1ccbd40f90b",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "bcab13eb-b6fc-4811-8e8a-d6ffa664584b",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under fatigue regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "76602fd9-4130-4673-9708-3f3d29822c8e",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  "chart_data": {
+    "dates": [
+      "2026-04-29",
+      "2026-04-30",
+      "2026-05-01",
+      "2026-05-04",
+      "2026-05-05",
+      "2026-05-06",
+      "2026-05-07",
+      "2026-05-08",
+      "2026-05-11",
+      "2026-05-12",
+      "2026-05-13",
+      "2026-05-14",
+      "2026-05-15",
+      "2026-05-18",
+      "2026-05-19",
+      "2026-05-20",
+      "2026-05-21",
+      "2026-05-22",
+      "2026-05-25",
+      "2026-05-26",
+      "2026-05-27",
+      "2026-05-28",
+      "2026-05-29",
+      "2026-06-01",
+      "2026-06-02",
+      "2026-06-03",
+      "2026-06-04",
+      "2026-06-05",
+      "2026-06-08",
+      "2026-06-09",
+      "2026-06-10",
+      "2026-06-11",
+      "2026-06-12",
+      "2026-06-15",
+      "2026-06-16",
+      "2026-06-17",
+      "2026-06-18",
+      "2026-06-19",
+      "2026-06-22",
+      "2026-06-23",
+      "2026-06-24",
+      "2026-06-25",
+      "2026-06-26",
+      "2026-06-29",
+      "2026-06-30"
+    ],
+    "close": [
+      1418.83984375,
+      1424.215087890625,
+      1424.215087890625,
+      1456.3663330078125,
+      1456.864013671875,
+      1431.2823486328125,
+      1429.590087890625,
+      1428.5947265625,
+      1381.81103515625,
+      1357.722412109375,
+      1352.54638671875,
+      1355.5325927734375,
+      1330.24951171875,
+      1329.7518310546875,
+      1316.6124267578125,
+      1353.442138671875,
+      1343.388671875,
+      1348.26611328125,
+      1360.7086181640625,
+      1350.0579833984375,
+      1344.2845458984375,
+      1344.2845458984375,
+      1315.119384765625,
+      1313.9249267578125,
+      1308.5498046875,
+      1307.15625,
+      1297.699951171875,
+      1291.0,
+      1263.300048828125,
+      1269.199951171875,
+      1258.800048828125,
+      1263.0,
+      1293.0,
+      1307.0,
+      1328.800048828125,
+      1332.699951171875,
+      1328.0999755859375,
+      1309.5,
+      1326.5,
+      1309.5,
+      1313.5999755859375,
+      1318.0999755859375,
+      1318.0999755859375,
+      1301.0,
+      1293.9000244140625
+    ],
+    "delivery_pct": [
+      43.868969158765914,
+      44.457691141580185,
+      48.698246892737664,
+      48.47033992399551,
+      53.05203015334364,
+      49.719993679785325,
+      50.68762630141581,
+      49.7052819946292,
+      50.83412416027132,
+      47.47198391100047,
+      49.136938178842115,
+      50.18343162935072,
+      52.70622542240553,
+      52.772687264617005,
+      56.83012384969734,
+      55.77944774355135,
+      56.85982804539001,
+      56.00731254536614,
+      58.75399841973381,
+      54.01985909390693,
+      54.98000982649471,
+      51.42673347546638,
+      47.11880140383549,
+      44.56790035604459,
+      43.942547571930746,
+      44.64233360695972,
+      43.08359003535174,
+      45.236609176003455,
+      45.78056613854481,
+      48.97679369619591,
+      46.66731060742478,
+      51.83285946029091,
+      51.97388150373346,
+      52.26871405201209,
+      50.42605229031468,
+      53.2234875081348,
+      49.07429394026749,
+      48.674840843739545,
+      46.33526555736112,
+      45.03680902295764,
+      46.15254851538015,
+      49.37172245725797,
+      50.846841331751065,
+      54.03918975104557,
+      56.96213385214001
+    ],
+    "fii_net": [
+      -639.4777244112415,
+      159.8045247242409,
+      1085.0898918686637,
+      1730.3010308595233,
+      2032.7334301292565,
+      1168.9045577333327,
+      370.770931967963,
+      907.9943796338916,
+      -587.901129200937,
+      1128.2123550423084,
+      2233.3233170635044,
+      781.2629099886915,
+      1760.723423781778,
+      885.5820937261275,
+      -20.073095997743383,
+      -1868.890495355913,
+      833.6131127287114,
+      -2140.9255164018223,
+      -189.10754054643127,
+      -537.2621615773305,
+      193.4017965123835,
+      476.502952043554,
+      -385.2677365383244,
+      1497.2505366193468,
+      -22.906524066059625,
+      544.2134630385839,
+      -1798.282087632246,
+      751.5401814060695,
+      303.82736210532113,
+      -88.54033016482377,
+      -729.4976841312648,
+      648.7887875734142,
+      -356.06815946510915,
+      -933.2472710708151,
+      35.66826771662844,
+      1260.4911834109118,
+      -329.64950255039054,
+      -220.8166097429164,
+      1010.1916422542774,
+      301.93764725371153,
+      -80.50963185138922,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493
+    ],
+    "sector_zscore": [
+      -0.4874832667932651,
+      -0.2255180366006313,
+      -0.123444984147593,
+      0.5354155461103942,
+      0.6227921008515646,
+      0.2522657767643884,
+      0.018002954221305,
+      0.4285383374504197,
+      -0.1329284311040621,
+      -0.3226825586943253,
+      -0.7748718198590597,
+      -0.8957297071732081,
+      -1.3332375854850682,
+      -0.9111791932393758,
+      -1.2950765579898027,
+      -0.7035546532557208,
+      -1.1487957819058587,
+      -1.0067533444233023,
+      -0.9685460933546698,
+      -1.457529997278573,
+      -1.977166164322561,
+      -1.716873004188077,
+      -1.6777178583186405,
+      -1.1186277013515975,
+      -1.1343680301782673,
+      -1.0952502529732608,
+      -1.4754884849520258,
+      -1.504584085799072,
+      -1.583210957286053,
+      -1.3522085423590091,
+      -0.7226092289810707,
+      -0.119465120774949,
+      0.3629265650261832,
+      0.6830852094771181,
+      1.0191553626221743,
+      0.8338494227828644,
+      0.3561311033641635,
+      -0.5960324155134318,
+      0.0027108915672107,
+      0.0369019196753262,
+      0.9244168921119584,
+      1.5307451887122805,
+      1.3656951941213304,
+      0.3999481443708889,
+      0.0005048596165921
+    ]
+  },
+  "decision_traces": [
+    {
+      "step": 0,
+      "date": "2026-04-29",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "strong_bull",
+        "delivery_pct": 55.15939501555553,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [],
+      "novelty_score": 1.0,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion.. If delivery_pct > 50 AND volume_state = elevated: favor asset rally. Else sector_zscore < -1.5 OR fii_net/dii_net < 0: favor neutral sector trend. Unless institutions sell heavily. Falsified if: price breaks below the prior support floor and fails to recover within a day.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "uncertain",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Liquidity support remains weakly tested against contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 1,
+      "date": "2026-04-30",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 45.64040257366378,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-04-29",
+          "similarity": 1.0,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.0,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a secondary influence of Market Sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.804
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype: neutral The regime remains supported, but with a notable tension. The observed continuation of the trend, despite elevated volume and expanding range, is not sufficiently tested under moderate volatility. This contradicts the prior assumption of participation strength, which was previously broad but now appears to be normal. This finding highlights a weakness in the theory's ability to capture the nuances of market behavior during periods of moderate volatility.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 2,
+      "date": "2026-05-01",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "indecision",
+        "delivery_pct": 57.981936581389874,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-04-30",
+          "similarity": 0.628,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-04-29",
+          "similarity": 0.604,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.372,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a secondary influence of Market Sentiment, and a tertiary consideration of Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.45
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype: neutral The regime remains supported, but with a caveat. The observed characteristics of range-bound trading with stable volatility contradict the primary influence of Liquidity Absorption on the regime's dynamics. Specifically, the secondary influence of Market Sentiment seems to be driving the current trend, as evidenced by the strengthening short-term momentum and strong Buy FII sentiment. However, this finding is not entirely unfalsifiable, as it relies on a single observation and does not provide conclusive evidence against the theory.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 3,
+      "date": "2026-05-04",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "strong_bull",
+        "delivery_pct": 41.31722357392194,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-04-30",
+          "similarity": 0.795,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-04-29",
+          "similarity": 0.771,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-01",
+          "similarity": 0.628,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.205,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a secondary influence of Market Sentiment and a tertiary consideration of Asset Liquidity Fade, which becomes more pronounced in times of high market volatility.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.623
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the observed data, but with a caveat that it requires additional confirmation signals to be fully confirmed. The theory's falsifiability boundary conditions are met, as the detected contradictions total 0.10, which falls within the acceptable range of 0-0.20. However, the low semantic similarity between the revised claim and Liquidity Absorption suggests that the theory may not be entirely accurate.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 4,
+      "date": "2026-05-05",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "neutral",
+        "delivery_pct": 65.1611930221871,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-04",
+          "similarity": 0.668,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-01",
+          "similarity": 0.656,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-04-29",
+          "similarity": 0.643,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.332,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a secondary influence of Asset Liquidity Fade and a tertiary consideration of Liquidity Absorption, which becomes more pronounced in times of high market volatility.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.64
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this observation already includes. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's claim that liquidity absorption becomes more pronounced in times of high market volatility.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 5,
+      "date": "2026-05-06",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 38.4992126477639,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-04",
+          "similarity": 0.655,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-04-30",
+          "similarity": 0.63,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-04-29",
+          "similarity": 0.606,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.345,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a secondary influence of Asset Liquidity Fade and a tertiary consideration of Liquidity Absorption, which becomes more pronounced in times of high market volatility. However, when Asset Liquidity Fade is present, its impact on the regime shifts from secondary to primary.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.54
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 11.0
+      }
+    },
+    {
+      "step": 6,
+      "date": "2026-05-07",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 50.47856568181622,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-05",
+          "similarity": 0.696,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-06",
+          "similarity": 0.529,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-04",
+          "similarity": 0.503,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.304,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a secondary influence of Asset Liquidity Fade and a tertiary consideration of Liquidity Absorption. However, when Asset Liquidity Fade is present, its impact on the regime shifts from secondary to primary, but only in situations where market volatility exceeds moderate levels.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.537
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this observation already includes. The observed continuation remains insufficiently tested under moderate volatility, contradicting the prior participation strength assumption. This contradicts the theory's claim that Asset Liquidity Fade's impact shifts from secondary to primary when market volatility exceeds moderate levels.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 14.0
+      }
+    },
+    {
+      "step": 7,
+      "date": "2026-05-08",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "neutral",
+        "delivery_pct": 53.070215047456784,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-07",
+          "similarity": 0.709,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-05",
+          "similarity": 0.683,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-06",
+          "similarity": 0.656,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.291,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when Asset Liquidity Fade is present, its impact on the regime shifts from primary to secondary, but only in situations where market volatility exceeds moderate levels.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.44
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype is supported by the observation. However, the regime's falsifiability boundary conditions are not met due to the lack of additional confirmation signals. The observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. The theory's specific falsifiability boundary conditions require that Asset Liquidity Fade has a significant impact on the regime when market volatility exceeds moderate levels.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 17.0
+      }
+    },
+    {
+      "step": 8,
+      "date": "2026-05-11",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 46.96143440213259,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-06",
+          "similarity": 0.682,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-07",
+          "similarity": 0.654,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-08",
+          "similarity": 0.527,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.318,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when Asset Liquidity Fade is present, its impact on the regime shifts from primary to secondary, but only in situations where market volatility exceeds moderate levels. Additionally, if RELIANCE is heavily focused, it can override the primary influence of Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.623
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype. The regime is falsified based on the observed contradiction between the primary influence of Asset Liquidity Fade and the secondary consideration of Volatility Expansion. The detected 5 contradictions with a total score of 0.08 indicate that the theory's specific falsifiability boundary conditions are not met. One unresolved tension remains: the relationship between RELIANCE focus and Asset Liquidity Fade.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 18.0
+      }
+    },
+    {
+      "step": 9,
+      "date": "2026-05-12",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 48.35049177583288,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-11",
+          "similarity": 0.85,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-06",
+          "similarity": 0.671,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-08",
+          "similarity": 0.517,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.15,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.771
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype: mixed The regime is falsified based on the observed contradiction between the primary influence of Asset Liquidity Fade and the secondary consideration of RELIANCE focus, which overrides the primary influence even in situations with moderate market volatility. This contradicts the theory's claim that Market Sentiment drives the regime. Analog divergence is present, as the current participation strength (strong) differs from prior observations (normal). However, this does not provide sufficient confirmation to support or refute the theory.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 21.0
+      }
+    },
+    {
+      "step": 10,
+      "date": "2026-05-13",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 46.82398398697209,
+        "volume_state": "normal",
+        "regime_subtype": "fatigue"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-12",
+          "similarity": 0.811,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-08",
+          "similarity": 0.684,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-07",
+          "similarity": 0.672,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.189,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.44
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is Regime Subtype: fatigue. The regime remains supported based on the boundary conditions, as the RELIANCE focus overrides the primary influence of Asset Liquidity Fade even in situations where market volatility exceeds moderate levels. The observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This contradicts the theory's falsifiability boundary condition that requires additional confirmation signals.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 22.0
+      }
+    },
+    {
+      "step": 11,
+      "date": "2026-05-14",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 55.71103293435928,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-13",
+          "similarity": 0.99,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-12",
+          "similarity": 0.798,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-08",
+          "similarity": 0.672,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.01,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.746
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is Neutral. Based on the boundary conditions, the theory's falsifiability boundary conditions are met. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory that RELIANCE focus can override Asset Liquidity Fade even in situations where market volatility exceeds moderate levels.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 25.0
+      }
+    },
+    {
+      "step": 12,
+      "date": "2026-05-15",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 65.68418401273081,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-12",
+          "similarity": 0.826,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-11",
+          "similarity": 0.812,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-14",
+          "similarity": 0.669,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.174,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.73
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype. The current regime subtype is neutral, but the observed continuation remains insufficiently tested under volatility expansion. This contradicts the prior assumption of participation strength, which suggests that RELIANCE focus can override Asset Liquidity Fade even in situations with moderate market volatility. The detected 5 contradictions indicate a need for additional confirmation signals to validate the theory.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 26.0
+      }
+    },
+    {
+      "step": 13,
+      "date": "2026-05-18",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 47.29374361318996,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-14",
+          "similarity": 0.977,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-13",
+          "similarity": 0.965,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-12",
+          "similarity": 0.773,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.023,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.52
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 30.0
+      }
+    },
+    {
+      "step": 14,
+      "date": "2026-05-19",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 68.63767470123454,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-18",
+          "similarity": 0.81,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-14",
+          "similarity": 0.784,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-13",
+          "similarity": 0.773,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.19,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.746
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is Neutral. Based on the boundary conditions, the regime remains partially supported. The observed continuation of a bearish sentiment with elevated volume and range expansion does not directly contradict the primary influence of Asset Liquidity Fade, but rather suggests that RELIANCE focus may override this influence in certain situations. However, the lack of sufficient testing under volatility expansion raises concerns about the theory's robustness.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 33.0
+      }
+    },
+    {
+      "step": 15,
+      "date": "2026-05-20",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "strong_bull",
+        "delivery_pct": 41.570603456242154,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-04",
+          "similarity": 0.748,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-11",
+          "similarity": 0.591,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-04-30",
+          "similarity": 0.568,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.252,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.59
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is Neutral. The regime remains supported based on the boundary conditions, as there are no clear indicators of a shift towards a more bearish sentiment or a regime change. The observed continuation under volatility expansion contradicts the prior participation strength assumption, which suggests that RELIANCE focus can override Asset Liquidity Fade even in situations with moderate market volatility. This contradiction highlights an unresolved tension in the theory's framework.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 36.0
+      }
+    },
+    {
+      "step": 16,
+      "date": "2026-05-21",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 61.11293444355254,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-19",
+          "similarity": 0.833,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-11",
+          "similarity": 0.719,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-20",
+          "similarity": 0.664,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.167,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains supported based on the observed RELIANCE focus, despite moderate market volatility. However, this finding is partially contradicted by the observation of a strong bear candle with normal divergence, suggesting that Asset Liquidity Fade may still be influencing the market sentiment. The theory's falsifiability boundary conditions are not met in this case.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 39.0
+      }
+    },
+    {
+      "step": 17,
+      "date": "2026-05-22",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 61.421606512611525,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-08",
+          "similarity": 0.749,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-06",
+          "similarity": 0.709,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.673,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.251,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.4
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as there are no clear indicators of a shift towards a more bearish sentiment or a significant override of Asset Liquidity Fade by RELIANCE focus. However, the observed continuation under volatility expansion contradicts the prior assumption of participation strength, which suggests that the theory's falsifiability boundary conditions have not been fully tested. This indicates a weakness in the theory's ability to predict behavior under certain market conditions.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 42.0
+      }
+    },
+    {
+      "step": 18,
+      "date": "2026-05-25",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 61.0271729850283,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-22",
+          "similarity": 0.86,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-08",
+          "similarity": 0.749,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-05",
+          "similarity": 0.748,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.14,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.4
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as there are no clear indicators of a shift towards a more bearish sentiment or a significant override of Asset Liquidity Fade by RELIANCE focus. However, the observed continuation under volatility expansion contradicts the prior assumption of participation strength, which may indicate that the theory's falsifiability boundary conditions need to be reevaluated. The analog divergence to 2026-05-22 suggests that the current regime may not be as robust as previously thought.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 43.0
+      }
+    },
+    {
+      "step": 19,
+      "date": "2026-05-26",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 44.966978072100105,
+        "volume_state": "normal",
+        "regime_subtype": "pressure_loaded_range"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-25",
+          "similarity": 1.0,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-05",
+          "similarity": 0.811,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-08",
+          "similarity": 0.774,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.0,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.697
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 44.0
+      }
+    },
+    {
+      "step": 20,
+      "date": "2026-05-27",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 46.371357119181106,
+        "volume_state": "normal",
+        "regime_subtype": "pressure_loaded_range"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-01",
+          "similarity": 0.696,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-25",
+          "similarity": 0.68,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.68,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.304,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.634
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is pressure_loaded_range. The regime remains supported based on the observed data, as the RELIANCE focus does not seem to override the primary influence of Asset Liquidity Fade in this specific situation. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This contradicts the theory's falsifiability boundary conditions, which require additional confirmation signals.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 45.0
+      }
+    },
+    {
+      "step": 21,
+      "date": "2026-05-28",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "indecision",
+        "delivery_pct": 43.34655268841085,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-27",
+          "similarity": 0.836,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-01",
+          "similarity": 0.695,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-07",
+          "similarity": 0.604,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.164,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.49
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as there are no clear indicators of a shift towards a more bearish sentiment or a regime shift towards a different subtype. The observed continuation under volatility expansion contradicts the prior assumption of participation strength, which suggests that the theory's falsifiability boundary conditions have been met. However, further testing is needed to confirm this finding.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 48.0
+      }
+    },
+    {
+      "step": 22,
+      "date": "2026-05-29",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 39.88194615445707,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-12",
+          "similarity": 0.891,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-11",
+          "similarity": 0.762,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.75,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.109,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.73
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as the observed market conditions (moderate volatility, strong bear participation) align with the theory's expectations for a neutral regime subtype. However, the observed continuation under volatility expansion contradicts prior assumptions about participation strength, which may indicate an unresolved tension in the theory. Specifically, the theory's falsifiability boundary condition requires additional confirmation signals to be detected, and the current observation does not provide sufficient evidence to support or refute this assumption.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 49.0
+      }
+    },
+    {
+      "step": 23,
+      "date": "2026-06-01",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "strong_bear",
+        "delivery_pct": 48.27266774607381,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-13",
+          "similarity": 0.758,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-14",
+          "similarity": 0.747,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.746,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.242,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.49
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 52.0
+      }
+    },
+    {
+      "step": 24,
+      "date": "2026-06-02",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 41.840214151530866,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-29",
+          "similarity": 0.771,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-04-30",
+          "similarity": 0.708,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-14",
+          "similarity": 0.707,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.229,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.664
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory's falsifiability boundary conditions are met, as there are no additional confirmation signals required for the theory to be falsified. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This indicates a weakness in the theory that requires further testing and validation.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 55.0
+      }
+    },
+    {
+      "step": 25,
+      "date": "2026-06-03",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 49.87028729432598,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-07",
+          "similarity": 0.799,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-13",
+          "similarity": 0.75,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.75,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.201,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.56
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 58.0
+      }
+    },
+    {
+      "step": 26,
+      "date": "2026-06-04",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "neutral",
+        "delivery_pct": 35.55283483037098,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-07",
+          "similarity": 0.927,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-03",
+          "similarity": 0.86,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-25",
+          "similarity": 0.72,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.073,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.563
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as the observed characteristics align with the predicted range-bound trading scenario. However, the lack of sufficient testing under volatility expansion raises concerns about the theory's robustness in such situations. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 61.0
+      }
+    },
+    {
+      "step": 27,
+      "date": "2026-06-05",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 50.64704185771566,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-21",
+          "similarity": 0.882,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-19",
+          "similarity": 0.746,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-11",
+          "similarity": 0.719,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.118,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.681
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "However, the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's falsifiability boundary condition that requires additional confirmation signals. Analog divergence is present, with a similarity of 0.88 to 2026-05-21 and confidence of 0.00. The observed candle (strong_bear) diverges from the predicted regime subtype (neutral), indicating a potential tension in the theory's predictions.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 62.0
+      }
+    },
+    {
+      "step": 28,
+      "date": "2026-06-08",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 50.99245255878058,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-11",
+          "similarity": 0.899,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-29",
+          "similarity": 0.811,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-05",
+          "similarity": 0.796,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.101,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.39
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains supported based on the observed RELIANCE focus, moderate volume, and range-bound trading. However, this is partially contradicted by the observed expansion participation and divergence, which suggests a weakening trend persistence. The theory's falsifiability boundary conditions are met, as additional confirmation signals are required to confirm or refute the neutral regime subtype.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 65.0
+      }
+    },
+    {
+      "step": 29,
+      "date": "2026-06-09",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 57.82135193978634,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-04",
+          "similarity": 0.988,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-07",
+          "similarity": 0.939,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-03",
+          "similarity": 0.848,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.012,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.615
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 66.0
+      }
+    },
+    {
+      "step": 30,
+      "date": "2026-06-10",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 38.32287185047036,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-05",
+          "similarity": 1.0,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-21",
+          "similarity": 0.894,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-08",
+          "similarity": 0.808,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.0,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.722
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as the observed candle rejection upper participation normal and moderate volatility align with the theory's expectations for a neutral regime subtype. However, the observed RELIANCE focus and asset selloff contradict the theory's primary influence of Asset Liquidity Fade, particularly in situations where market volatility exceeds moderate levels. This tension suggests that the relationship between RELIANCE and Asset Liquidity Fade may be more nuanced than initially proposed by the theory.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 67.0
+      }
+    },
+    {
+      "step": 31,
+      "date": "2026-06-11",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 61.38057909470163,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-04",
+          "similarity": 0.848,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-09",
+          "similarity": 0.848,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-28",
+          "similarity": 0.808,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.152,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.44
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as there are no clear indicators of a shift towards a more bearish sentiment or a regime change. However, the observed continuation under volatility expansion contradicts the prior assumption of participation strength, indicating a need for further testing. This contradiction highlights the weakness in the theory's ability to capture the relationship between RELIANCE focus and Asset Liquidity Fade under conditions of elevated volume and range expansion.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 70.0
+      }
+    },
+    {
+      "step": 32,
+      "date": "2026-06-12",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 51.35215207492836,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-04",
+          "similarity": 0.823,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-06",
+          "similarity": 0.757,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-20",
+          "similarity": 0.744,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.177,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.563
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 72.0
+      }
+    },
+    {
+      "step": 33,
+      "date": "2026-06-15",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "neutral",
+        "delivery_pct": 52.46661530017378,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.82,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-06",
+          "similarity": 0.771,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-22",
+          "similarity": 0.72,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.18,
+      "reuse_decision": "reused",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.615
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 75.0
+      }
+    },
+    {
+      "step": 34,
+      "date": "2026-06-16",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "expansion",
+        "delivery_pct": 48.60804313129929,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.988,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-04",
+          "similarity": 0.823,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-15",
+          "similarity": 0.82,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.012,
+      "reuse_decision": "reused",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.836
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as the observed characteristics align with the theory's expectations for a neutral regime subtype. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This contradicts the theory's falsifiability boundary condition that requires additional confirmation signals.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 78.0
+      }
+    },
+    {
+      "step": 35,
+      "date": "2026-06-17",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 52.31004793957095,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-22",
+          "similarity": 0.9,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-25",
+          "similarity": 0.86,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.86,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.1,
+      "reuse_decision": "reused",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.45
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as there are no clear indicators of a shift towards a more bearish sentiment or a regime shift towards a different subtype. Analog divergence is present, with similarity scores of 0.90 for 2026-05-22 and 0.86 for both 2026-05-25 and 2026-05-26. However, the confidence level remains at 0.00, indicating that the analog divergence does not provide sufficient evidence to support or refute the theory.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 81.0
+      }
+    },
+    {
+      "step": 36,
+      "date": "2026-06-18",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 40.63461125536507,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-27",
+          "similarity": 0.86,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-28",
+          "similarity": 0.86,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-01",
+          "similarity": 0.836,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.14,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.56
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory's falsifiability boundary conditions are met, as there are no additional confirmation signals required for validation. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. One unresolved tension arises from the fact that RELIANCE focus can override Asset Liquidity Fade even in situations with moderate market volatility, which is not explicitly addressed by the current observation.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 84.0
+      }
+    },
+    {
+      "step": 37,
+      "date": "2026-06-19",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 49.35488659228862,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-29",
+          "similarity": 0.988,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-12",
+          "similarity": 0.903,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-08",
+          "similarity": 0.86,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.012,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.651
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains supported by the presence of RELIANCE focus, despite moderate volatility. However, the observed asset selloff and surge in delivery volume suggest that the primary influence of Asset Liquidity Fade may be overridden in this scenario. This contradicts the theory's assumption that RELIANCE focus would override Asset Liquidity Fade only under specific conditions.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 85.0
+      }
+    },
+    {
+      "step": 38,
+      "date": "2026-06-22",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 40.76873886828168,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-20",
+          "similarity": 0.752,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-04",
+          "similarity": 0.708,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-12",
+          "similarity": 0.708,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.248,
+      "reuse_decision": "reused",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.57
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The provided structured market observation dimensions validate the theory that the regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade. However, the validation also highlights some limitations and potential contradictions. One key finding is that the observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This suggests that the theory may need to be refined or expanded to account for situations where market conditions are characterized by elevated volume and range expansion.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 88.0
+      }
+    },
+    {
+      "step": 39,
+      "date": "2026-06-23",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 42.115760459281866,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-29",
+          "similarity": 0.939,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-19",
+          "similarity": 0.939,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-12",
+          "similarity": 0.885,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.061,
+      "reuse_decision": "reused",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.59
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as the observed candle characteristics (strong bear participation, normal divergence, moderate volatility) align with the predicted regime subtype of neutral. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior assumption of participation strength. This contradicts the theory's falsifiability boundary condition that requires additional confirmation signals.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 89.0
+      }
+    },
+    {
+      "step": 40,
+      "date": "2026-06-24",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 57.8887454016835,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-22",
+          "similarity": 0.82,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-04-29",
+          "similarity": 0.72,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-04-30",
+          "similarity": 0.696,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.18,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.53
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as the observed RELIANCE focus and moderate volume do not override the primary influence of Asset Liquidity Fade. However, this observation contradicts prior participation strength assumptions under volatility expansion. This contradiction highlights a weakness in the theory's falsifiability boundary conditions, specifically regarding the relationship between RELIANCE focus and Asset Liquidity Fade under elevated volume and range expansion.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 92.0
+      }
+    },
+    {
+      "step": 41,
+      "date": "2026-06-25",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "fatigue"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-25",
+          "similarity": 1.0,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 1.0,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-17",
+          "similarity": 0.86,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.0,
+      "reuse_decision": "reused",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.48
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 93.0
+      }
+    },
+    {
+      "step": 42,
+      "date": "2026-06-26",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "indecision",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-01",
+          "similarity": 0.835,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-18",
+          "similarity": 0.824,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-17",
+          "similarity": 0.796,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.165,
+      "reuse_decision": "reused",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.45
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as there are no clear indicators of a shift towards a more bearish sentiment or a significant override of Asset Liquidity Fade by RELIANCE focus. However, the observed continuation under volatility expansion contradicts the prior assumption of participation strength, which may indicate an unresolved tension in the theory. Specifically, the theory's falsifiability boundary conditions require additional confirmation signals to validate its predictions.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 96.0
+      }
+    },
+    {
+      "step": 43,
+      "date": "2026-06-29",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "neutral",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-08",
+          "similarity": 0.975,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-11",
+          "similarity": 0.89,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-23",
+          "similarity": 0.86,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.025,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.738
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 97.0
+      }
+    },
+    {
+      "step": 44,
+      "date": "2026-06-30",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-05",
+          "similarity": 1.0,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-10",
+          "similarity": 0.988,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-21",
+          "similarity": 0.894,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.0,
+      "reuse_decision": "reused",
+      "generated_theory": "The regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when RELIANCE is heavily focused, its impact can override the primary influence of Asset Liquidity Fade, even in situations where market volatility exceeds moderate levels. Additionally, in cases of fatigue, the regime's sensitivity to RELIANCE focus may be reduced, leading to a more nuanced interpretation of the relationship between RELIANCE and Asset Liquidity Fade. Furthermore, when RELIANCE is heavily focused and market conditions are characterized by elevated volume and range expansion, the primary influence of Asset Liquidity Fade is overridden, resulting in a regime shift towards a more bearish sentiment. However, if RELIANCE focus is accompanied by moderate to high volume and range-bound trading, the regime's sensitivity to RELIANCE focus may be reduced, leading to a mixed interpretation of the relationship between RELIANCE and Asset Liquidity Fade.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.771
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 100.0
+      }
+    }
+  ],
+  "epistemic_review": {
+    "assumptions_survived": [],
+    "assumptions_failed": [
+      "The component expectation is valid when market conditions are characterized by a combination of high volume and moderate to low volatility, but breaks down when either volume or volatility exceeds these thresholds.",
+      "The component expectation is valid under market conditions where Asset Liquidity Fade and RELIANCE focus are both present, with the primary influence of Asset Liquidity Fade overriding RELIANCE focus in situations where moderate to high volatility exists."
+    ],
+    "knowledge_stronger": [],
+    "knowledge_weaker": [
+      "Asset Liquidity Fade has a primary influence on market sentiment, but its impact can be overridden by RELIANCE focus in situations with elevated volume and range expansion."
+    ],
+    "world_model_shifts": "The replay simulation revealed that the system's understanding of Asset Liquidity Fade and RELIANCE focus is more nuanced than initially thought. The primary influence of Asset Liquidity Fade on market sentiment is indeed significant, but its impact can be overridden by RELIANCE focus in situations with elevated volume and range expansion.",
+    "fundamental_uncertainty": [
+      "The system remains uncertain about the optimal balance between Asset Liquidity Fade and RELIANCE focus in different market conditions."
+    ],
+    "tomorrow_beliefs": "If the replay restarted tomorrow, the system would believe that the relationship between Asset Liquidity Fade and RELIANCE focus is more complex and context-dependent than initially thought. The system would also recognize the importance of considering fatigue and its impact on sensitivity to RELIANCE focus."
+  }
+}

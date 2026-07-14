@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DP Replay Report - TCS</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f8fafc;
+        }
+        .apple-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .apple-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-8 border-b border-slate-200">
+            <div>
+                <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-700 bg-indigo-50 rounded-full">Cognitive Replay Report</span>
+                <h1 class="text-4xl font-bold tracking-tight text-slate-900 mt-2">TCS Replay</h1>
+                <p class="text-sm text-slate-500 mt-1">Date Range: <span class="font-medium text-slate-700">2026-06-24 → 2026-06-25</span> | Duration: <span class="font-medium text-slate-700">2 Days</span></p>
+            </div>
+            <div class="mt-4 md:mt-0 flex flex-col items-end text-xs text-slate-500 space-y-1">
+                <div>Execution Hash: <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono text-slate-700 text-[10px]">1b848ad125c75d9f...</code></div>
+                <div>Git Commit: <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono text-slate-700 text-[10px]">b311d340</code></div>
+                <div>LLM Version: <span class="font-medium text-slate-700">llama3.2</span></div>
+                <div>Replay Version: <span class="font-medium text-slate-700">v3.0PersistentReflective</span></div>
+            </div>
+        </div>
+
+        <!-- Narrative Section -->
+        <div class="mt-8 p-6 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 border border-indigo-100 rounded-3xl">
+            <h2 class="text-lg font-semibold text-slate-900 mb-2 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Replay Story
+            </h2>
+            <p class="text-slate-600 leading-relaxed text-base">
+                This replay represents 2 days of experience on TCS. During this period, DP generated 2 experiences, evolved 2 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 1 key market mechanisms while identifying 0 unresolved evidence gap(s).
+            </p>
+        </div>
+
+        <!-- Metric Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-6 gap-4 mt-8">
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Accuracy</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">0.0%</div>
+                <div class="text-[10px] text-slate-500 mt-1">Prediction success</div>
+            </div>
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Knowledge Debt</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">0</div>
+                <div class="text-[10px] text-slate-500 mt-1">Unreconciled issues</div>
+            </div>
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Memory Hit Rate</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">39.8%</div>
+                <div class="text-[10px] text-slate-500 mt-1">Retrieval efficiency</div>
+            </div>
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Coverage</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">0.0%</div>
+                <div class="text-[10px] text-slate-500 mt-1">Theory explanation</div>
+            </div>
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Prediction Drift</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">0.0%</div>
+                <div class="text-[10px] text-slate-500 mt-1">Bias shift frequency</div>
+            </div>
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Theory Drift</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">0.0%</div>
+                <div class="text-[10px] text-slate-500 mt-1">Structural mutations</div>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="apple-card p-6 mt-8">
+            <h2 class="text-lg font-semibold text-slate-900 mb-4">Market Close Price & Enriched Data Overlays</h2>
+            <div class="h-96 w-full">
+                <canvas id="replayChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Main Splits -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+            
+            <!-- Left 2 Cols: Replay Timeline -->
+            <div class="lg:col-span-2 space-y-8">
+                <div class="apple-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-semibold text-slate-900">Replay Timeline</h2>
+                        <input type="text" id="timelineSearch" placeholder="Search timeline..." class="px-3 py-1.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-slate-100 text-sm" id="timelineTable">
+                            <thead>
+                                <tr class="text-slate-400 text-left font-medium">
+                                    <th class="py-3 px-2">Day/Date</th>
+                                    <th class="py-3 px-2">Theory</th>
+                                    <th class="py-3 px-2">Prediction</th>
+                                    <th class="py-3 px-2 text-center">Outcome</th>
+                                    <th class="py-3 px-2">Used Knowledge</th>
+                                    <th class="py-3 px-2 text-center">Contradiction</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-50">
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 0<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-24</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Regime is driven by Absorption; price remains range-bound despite volume expansion.">Regime is driven by Absorption; price remains range-bound despite volume expansion.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            uncertain (31%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-emerald-100 text-emerald-800 ">
+                                            0.00
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 1<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-25</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening.">Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            uncertain (35%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-amber-100 text-amber-800
+                                            ">
+                                            0.25
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Theory Evolution -->
+                <div class="apple-card p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-4">Theory Evolution Families</h2>
+                    
+                    <div class="space-y-6">
+                        
+                        <div class="border border-slate-100 rounded-xl p-4 bg-slate-50/50">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-xs font-semibold text-indigo-700">Family ID: 3f701dde4ca1...</span>
+                                <span class="text-xs text-slate-400">1 step(s)</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 items-center">
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-emerald-600
+                                            ">
+                                            create
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-25</span>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="border border-slate-100 rounded-xl p-4 bg-slate-50/50">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-xs font-semibold text-indigo-700">Family ID: e45667047db3...</span>
+                                <span class="text-xs text-slate-400">1 step(s)</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 items-center">
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-emerald-600
+                                            ">
+                                            create
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-24</span>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Right Column: Knowledge Health & World Model -->
+            <div class="space-y-8">
+                
+                <!-- Knowledge Health Progress Bars -->
+                <div class="apple-card p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-6">Knowledge Health</h2>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span class="text-slate-500">Knowledge Debt Pressure</span>
+                                <span class="text-slate-700 font-semibold">10%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-indigo-600 h-2 rounded-full" style="width: 10%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span class="text-slate-500">Principle Coverage</span>
+                                <span class="text-slate-700 font-semibold">0.0%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-emerald-500 h-2 rounded-full" style="width: 0.0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span class="text-slate-500">Knowledge Reuse Rate</span>
+                                <span class="text-slate-700 font-semibold">0.0%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 0.0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span class="text-slate-500">Explanatory Calibration (Trust)</span>
+                                <span class="text-slate-700 font-semibold">60.0%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 60.0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Knowledge Lifecycle -->
+                <div class="apple-card p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-4">Knowledge Lifecycle</h2>
+                    <div class="grid grid-cols-5 gap-1 text-center">
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-xs text-slate-400 font-medium">Cand</div>
+                            <div class="text-lg font-bold text-slate-800 mt-1">0</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-xs text-slate-400 font-medium">Emerg</div>
+                            <div class="text-lg font-bold text-slate-800 mt-1">0</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-xs text-slate-400 font-medium">Trust</div>
+                            <div class="text-lg font-bold text-slate-800 mt-1">0</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-xs text-slate-400 font-medium">Canon</div>
+                            <div class="text-lg font-bold text-slate-800 mt-1">0</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-xs text-slate-400 font-medium">Retire</div>
+                            <div class="text-lg font-bold text-slate-800 mt-1">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- World Model Section -->
+                <div class="apple-card p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                        Current World Model
+                    </h2>
+                    <div class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Baseline world model. No active principles recorded yet.
+                    </div>
+                    
+                    
+                </div>
+
+                <!-- Evidence Gaps -->
+                <div class="apple-card p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        Evidence Gap Registry
+                    </h2>
+                    
+                    <div class="text-xs text-slate-400">No unresolved evidence gaps.</div>
+                    
+                </div>
+
+                <!-- Open Questions -->
+                <div class="apple-card p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Open Questions
+                    </h2>
+                    
+                    <div class="text-xs text-slate-400">No active open questions.</div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Appendix -->
+        <div class="apple-card p-6 mt-8">
+            <h2 class="text-lg font-semibold text-slate-900 mb-4">Appendix & Metadata</h2>
+            <div class="flex flex-wrap gap-4">
+                <button onclick="toggleJsonModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 transition-colors text-slate-700 font-medium text-sm rounded-xl">
+                    View Raw JSON Data
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="jsonModal" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[80vh] flex flex-col p-6 shadow-2xl border border-slate-100">
+                <div class="flex justify-between items-center pb-4 border-b border-slate-100">
+                    <h3 class="text-lg font-semibold text-slate-950">Raw report.json data</h3>
+                    <button onclick="toggleJsonModal()" class="text-slate-400 hover:text-slate-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div class="overflow-y-auto flex-1 mt-4 p-4 bg-slate-950 rounded-2xl">
+                    <pre class="text-xs font-mono text-emerald-400 leading-normal">{
+  "symbol": "TCS",
+  "days": 2,
+  "date_range": "2026-06-24 \u2192 2026-06-25",
+  "execution_hash": "1b848ad125c75d9f336a4bc947b300aefeabed899144f1af552e64fd56fba24d",
+  "git_commit": "b311d340c394ae66640035f1339cbae1ab0ef1ea",
+  "llm_version": "llama3.2",
+  "replay_version": "v3.0PersistentReflective",
+  "story_summary": "This replay represents 2 days of experience on TCS. During this period, DP generated 2 experiences, evolved 2 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 1 key market mechanisms while identifying 0 unresolved evidence gap(s).",
+  "metrics": {
+    "accuracy": 0.0,
+    "knowledge_debt": 0,
+    "memory_usefulness": 0.398,
+    "knowledge_coverage": 0.0,
+    "prediction_drift": 0.0,
+    "theory_drift": 0.0
+  },
+  "knowledge_health": {
+    "knowledge_debt_bar": 10,
+    "principle_coverage": 0.0,
+    "reuse_rate": 0.0,
+    "trust": 60.0
+  },
+  "knowledge_lifecycle": {
+    "candidate": 0,
+    "emerging": 0,
+    "trusted": 0,
+    "canonical": 0,
+    "retired": 0
+  },
+  "timeline": [
+    {
+      "date": "2026-06-24",
+      "theory": "Regime is driven by Absorption; price remains range-bound despite volume expansion.",
+      "prediction": "uncertain (31%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-25",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening.",
+      "prediction": "uncertain (35%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.25233333333333335
+    }
+  ],
+  "theory_evolution": [
+    {
+      "day": "2026-06-24",
+      "lineage_id": "e45667047db30dd3",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-25",
+      "lineage_id": "3f701dde4ca14d5e",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    }
+  ],
+  "world_model": {
+    "narrative": "Baseline world model. No active principles recorded yet.",
+    "supporting_principles": [],
+    "open_questions": [],
+    "evidence_gaps": []
+  },
+  "chart_data": {
+    "dates": [
+      "2026-06-24",
+      "2026-06-25"
+    ],
+    "close": [
+      2109.0,
+      2094.699951171875
+    ],
+    "delivery_pct": [
+      46.15254851538015,
+      49.37172245725797
+    ],
+    "fii_net": [
+      -80.50963185138922,
+      -377.7727170864493
+    ],
+    "sector_zscore": [
+      -0.3995852463460314,
+      -0.8875092205220168
+    ]
+  }
+}</pre>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Chart Configuration Script -->
+    <script>
+        const chartData = {"dates": ["2026-06-24", "2026-06-25"], "close": [2109.0, 2094.699951171875], "delivery_pct": [46.15254851538015, 49.37172245725797], "fii_net": [-80.50963185138922, -377.7727170864493], "sector_zscore": [-0.3995852463460314, -0.8875092205220168]};
+        
+        const ctx = document.getElementById('replayChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: chartData.dates,
+                datasets: [
+                    {
+                        label: 'Close Price (Primary)',
+                        data: chartData.close,
+                        borderColor: 'rgb(79, 70, 229)',
+                        backgroundColor: 'rgba(79, 70, 229, 0.05)',
+                        borderWidth: 2,
+                        yAxisID: 'y_price',
+                        tension: 0.15,
+                        fill: true
+                    },
+                    {
+                        label: 'Delivery % (Rolling 5d)',
+                        data: chartData.delivery_pct,
+                        borderColor: 'rgb(16, 185, 129)',
+                        borderDash: [5, 5],
+                        borderWidth: 1.5,
+                        yAxisID: 'y_percent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Sector RS Z-score (Rolling 20d)',
+                        data: chartData.sector_zscore,
+                        borderColor: 'rgb(245, 158, 11)',
+                        borderWidth: 1.5,
+                        yAxisID: 'y_zscore',
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                family: 'Outfit'
+                            }
+                        }
+                    },
+                    y_price: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Close Price (₹)',
+                            color: '#4f46e5',
+                            font: {
+                                family: 'Outfit',
+                                weight: '500'
+                            }
+                        },
+                        grid: {
+                            color: '#f1f5f9'
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                family: 'Outfit'
+                            }
+                        }
+                    },
+                    y_percent: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        min: 0,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Delivery %',
+                            color: '#10b981',
+                            font: {
+                                family: 'Outfit',
+                                weight: '500'
+                            }
+                        },
+                        grid: {
+                            drawOnChartArea: false, // only want the grid lines for one axis
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                family: 'Outfit'
+                            }
+                        }
+                    },
+                    y_zscore: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        min: -3,
+                        max: 3,
+                        title: {
+                            display: true,
+                            text: 'Relative Strength Z-score',
+                            color: '#f59e0b',
+                            font: {
+                                family: 'Outfit',
+                                weight: '500'
+                            }
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                family: 'Outfit'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                family: 'Outfit',
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Search Filter for table
+        document.getElementById('timelineSearch').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('.timeline-row');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    row.classList.remove('hidden');
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+        });
+
+        // Modal Toggle
+        function toggleJsonModal() {
+            const modal = document.getElementById('jsonModal');
+            modal.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

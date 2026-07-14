@@ -1,0 +1,466 @@
+{
+  "step": 19,
+  "date": "2026-05-28",
+  "observation": "[volume dry, range narrow, volatility expanding, short-term momentum weakening, delivery:moderate, fii:buying, sector:lagging_strong, RELIANCE focus, asset liquidity fade] candle indecision participation weak (normal) RELIANCE traded range-bound with stable volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is trading in a range-bound manner with stable volatility, showing mixed trend persistence and regime characteristics across different time horizons.",
+  "theory": "The current market regime is characterized by mixed trend persistence with balanced behavior, where prices exhibit a moderate degree of volatility and trend stability, with a causal relationship between price movements and underlying economic conditions.",
+  "theory_summary_structured": {
+    "id": "4db587fa-8e20-458a-b772-397f45019dea",
+    "created_at": "2026-07-03 04:19:14.926926+00:00",
+    "mechanism": "Liquidity Absorption",
+    "claim": "The current market regime is characterized by mixed trend persistence with balanced behavior, where prices exhibit a moderate degree of volatility and trend stability, with a causal relationship between price movements and underlying economic conditions.",
+    "if_branch": {
+      "id": "e3e9df87-5f5c-4655-ac4f-43efac4e4c2f",
+      "created_at": "2026-07-03 04:44:39.976116+00:00",
+      "condition": "trend_persistence_unstable",
+      "action": "promote"
+    },
+    "else_branch": {
+      "id": "0edf3dfe-4ba8-4317-8919-8e0d819c883d",
+      "created_at": "2026-07-03 04:44:39.976160+00:00",
+      "condition": "trend_persistence_balanced",
+      "action": "demote"
+    },
+    "unless": "liquidity evaporates entirely",
+    "falsified_if": "new_momentum_component",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "96f4f313-4465-449e-b333-5fffc3f4a7e8",
+        "created_at": "2026-07-03 04:44:34.394911+00:00",
+        "component_id": "trend_persistence_balanced",
+        "description": "Mechanism component to reflect the observed mixed trend persistence with balanced behavior.",
+        "observable": "short_term_momentum",
+        "expected_behavior": "> -0.5 and < 0.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_003"
+      },
+      {
+        "id": "375b59b7-b3a9-41d7-a381-bd319d8c1d83",
+        "created_at": "2026-07-03 04:44:34.401467+00:00",
+        "component_id": "trend_persistence_balanced",
+        "description": "Mechanism component to reflect the observed mixed trend persistence with balanced behavior.",
+        "observable": "short_term_momentum",
+        "expected_behavior": "> -0.5 and < 0.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_003"
+      },
+      {
+        "id": "2e3aa1ba-3c45-45e0-b883-72b90223cc7f",
+        "created_at": "2026-07-03 04:44:34.401925+00:00",
+        "component_id": "trend_persistence_balanced",
+        "description": "Mechanism component to reflect the observed mixed trend persistence with balanced behavior.",
+        "observable": "short_term_momentum",
+        "expected_behavior": "> -0.5 and < 0.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_003"
+      },
+      {
+        "id": "4bbf6711-5348-466a-a1a2-89df99f4029b",
+        "created_at": "2026-07-03 04:44:34.402261+00:00",
+        "component_id": "trend_persistence_balanced",
+        "description": "Mechanism component to reflect the observed mixed trend persistence with balanced behavior.",
+        "observable": "short_term_momentum",
+        "expected_behavior": "> -0.5 and < 0.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_003"
+      },
+      {
+        "id": "8165fa1f-287d-4833-90f8-7d61d1e55e57",
+        "created_at": "2026-07-03 04:44:34.402586+00:00",
+        "component_id": "trend_persistence_balanced",
+        "description": "Mechanism component to reflect the observed mixed trend persistence with balanced behavior.",
+        "observable": "short_term_momentum",
+        "expected_behavior": "> -0.5 and < 0.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_003"
+      },
+      {
+        "id": "51f625a2-6688-4f34-a016-747d585b78fa",
+        "created_at": "2026-07-03 04:44:34.402893+00:00",
+        "component_id": "trend_persistence_balanced",
+        "description": "Mechanism component to reflect the observed mixed trend persistence with balanced behavior.",
+        "observable": "short_term_momentum",
+        "expected_behavior": "> -0.5 and < 0.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_003"
+      },
+      {
+        "id": "cf1d3dd2-aac0-45fc-b46b-e61bd8c4beaf",
+        "created_at": "2026-07-03 04:44:34.403195+00:00",
+        "component_id": "trend_persistence_balanced",
+        "description": "Mechanism component to reflect the observed mixed trend persistence with balanced behavior.",
+        "observable": "short_term_momentum",
+        "expected_behavior": "> -0.5 and < 0.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_003"
+      },
+      {
+        "id": "3f7185df-c68d-4551-84e9-5d9358fd9fcb",
+        "created_at": "2026-07-03 04:44:34.403478+00:00",
+        "component_id": "trend_persistence_balanced",
+        "description": "Mechanism component to reflect the observed mixed trend persistence with balanced behavior.",
+        "observable": "short_term_momentum",
+        "expected_behavior": "> -0.5 and < 0.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_003"
+      },
+      {
+        "id": "5f3f87ee-ee60-4eda-9f11-3fa5f15e1672",
+        "created_at": "2026-07-03 04:44:34.403789+00:00",
+        "component_id": "trend_persistence_balanced",
+        "description": "Mechanism component to reflect the observed mixed trend persistence with balanced behavior.",
+        "observable": "short_term_momentum",
+        "expected_behavior": "> -0.5 and < 0.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_003"
+      },
+      {
+        "id": "a89ec0b2-fb39-4c44-8308-b255f7dcefb6",
+        "created_at": "2026-07-03 04:44:35.649941+00:00",
+        "component_id": "trend_persistence_unstable",
+        "description": "Mechanism component to reflect the observed mixed trend persistence with unstable behavior.",
+        "observable": "trend_persistence",
+        "expected_behavior": "> -0.5 and < 1.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_003"
+      }
+    ],
+    "falsification_conditions": [],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.6861,
+    "reflection": 0.0,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.07400000000000001,
+    "indicators": [
+      "Structural: Low semantic similarity: The current market r... vs trend_persistence_un...",
+      "Structural: Low semantic similarity: The current market r... vs short_term_momentum ...; Low semantic similarity: trend_persistence_un... vs short_term_momentum ...; Low semantic similarity: trend_persistence_ba... vs true: remove..."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "243bf68a-64ce-47a5-8cff-ec7501ee581b",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "9cc30a81-2d09-4e1a-8ebe-4213ca09c487",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 2 contradictions with a total score of 0.07."
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-05-28",
+    "trend": "range_bound",
+    "volatility_state": "stable",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.074,
+    "active_theory_count": 4,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-05-27",
+      "similarity": 0.764,
+      "active_theories": [
+        "649cef6098f03461",
+        "efc83def50915385"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: The current market r... vs trend_persistence_un...",
+        "Structural: Low semantic similarity: The current market r... vs short_term_momentum ...; Low semantic similarity: trend_persistence_un... vs short_term_momentum ...; Low semantic similarity: trend_persistence_ba... vs true: remove...",
+        "Structural: Low semantic similarity: The current market r... vs The market regime is...; Low semantic similarity: new_momentum_compone... vs short_term_momentum ...; Low semantic similarity: The current market r... vs volume > 5000000 and...; Low semantic similarity: trend_persistence_un... vs volume > 5000000 and...; Low semantic similarity: trend_persistence_ba... vs false: demote mechan...; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory."
+      ],
+      "confidence": 0.05,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-01",
+      "similarity": 0.683,
+      "active_theories": [
+        "e134c2611dbdd0ea"
+      ],
+      "contradictions": [],
+      "confidence": 0.24,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-08",
+      "similarity": 0.642,
+      "active_theories": [
+        "e134c2611dbdd0ea",
+        "cacd7c0f74a230a3",
+        "b51b0807ee283b5a"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: volume > 1000 and ra... vs short_term_momentum ...; Low semantic similarity: true: retain... vs false: retain moment...",
+        "Structural: Low semantic similarity: The revised rate of ... vs neutral_market_regim...; Low semantic similarity: volume > 1000 and ra... vs neutral_market_regim...; Low semantic similarity: true: retain... vs mixed_market_regime:...; Volatility: expansion vs stability",
+        "Structural: Low semantic similarity: The revised rate of ... vs range_expanding_and_...; Low semantic similarity: volume > 1000 and ra... vs range_expanding_and_...; Low semantic similarity: true: retain... vs sector_leading: prom...; Volatility: expansion vs stability"
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-05-28",
+      "policy_name": "Baseline",
+      "action": "hold",
+      "conviction": 0.49,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-05-28",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.49,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-05-28",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.49,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.17822,
+    "label": "weak"
+  },
+  "reflection": "Neutral Regime Subtype. The current regime subtype is falsified based on boundary conditions. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradiction requires additional confirmation signals to validate the theory's falsifiability.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 17,
+    "avg_usefulness": 0.173,
+    "last_seen": "2026-05-28",
+    "historical_resolution": {
+      "higher": 2,
+      "lower": 6,
+      "range_bound": 8,
+      "uncertain": 0
+    },
+    "falsified_count": 9
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 19,
+    "date": "2026-05-28",
+    "contradiction_count": 2,
+    "contradiction_half_life": 1.103448275862069,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 1,
+    "contradiction_resolution_rate": 0.9666666666666667,
+    "avg_contradiction_severity": 0.6466320000000001,
+    "highest_contradiction": 1.0,
+    "theory_count": 4,
+    "active_theories": 4,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 1,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 3.0,
+    "avg_revival_latency": 2.5,
+    "avg_theory_age": 3.5789473684210527,
+    "longest_surviving_theory": 9,
+    "theory_mutation_count": 23,
+    "avg_confidence": 0.015000000000000001,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0229128784747792,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 0.75,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.05128205128205128,
+    "avg_abstraction_length": 21.0,
+    "compression_ratio": 0.5384615384615384,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 35,
+    "mechanism_count": 10,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 0,
+    "mechanisms_added_count": 0,
+    "mechanisms_modified_count": 0,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 0,
+    "words_after_mutation": 0,
+    "mechanisms_before_mutation": 0,
+    "mechanisms_after_mutation": 0,
+    "extras": {
+      "observation_length": 39,
+      "theory_text": "The current market regime is characterized by mixed trend persistence with balanced behavior, where prices exhibit a moderate degree of volatility and trend stability, with a causal relationship between price movements and underlying economic conditions.",
+      "contradiction_text": "Detected 2 contradictions with a total score of 0.07.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-05-28",
+        "trend": "range_bound",
+        "volatility_state": "stable",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.074,
+        "active_theory_count": 4,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-05-27",
+          "similarity": 0.764,
+          "active_theories": [
+            "649cef6098f03461",
+            "efc83def50915385"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The current market r... vs trend_persistence_un...",
+            "Structural: Low semantic similarity: The current market r... vs short_term_momentum ...; Low semantic similarity: trend_persistence_un... vs short_term_momentum ...; Low semantic similarity: trend_persistence_ba... vs true: remove...",
+            "Structural: Low semantic similarity: The current market r... vs The market regime is...; Low semantic similarity: new_momentum_compone... vs short_term_momentum ...; Low semantic similarity: The current market r... vs volume > 5000000 and...; Low semantic similarity: trend_persistence_un... vs volume > 5000000 and...; Low semantic similarity: trend_persistence_ba... vs false: demote mechan...; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'LIQUIDITY_ABSORPTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory."
+          ],
+          "confidence": 0.05,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-01",
+          "similarity": 0.683,
+          "active_theories": [
+            "e134c2611dbdd0ea"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-08",
+          "similarity": 0.642,
+          "active_theories": [
+            "e134c2611dbdd0ea",
+            "cacd7c0f74a230a3",
+            "b51b0807ee283b5a"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: volume > 1000 and ra... vs short_term_momentum ...; Low semantic similarity: true: retain... vs false: retain moment...",
+            "Structural: Low semantic similarity: The revised rate of ... vs neutral_market_regim...; Low semantic similarity: volume > 1000 and ra... vs neutral_market_regim...; Low semantic similarity: true: retain... vs mixed_market_regime:...; Volatility: expansion vs stability",
+            "Structural: Low semantic similarity: The revised rate of ... vs range_expanding_and_...; Low semantic similarity: volume > 1000 and ra... vs range_expanding_and_...; Low semantic similarity: true: retain... vs sector_leading: prom...; Volatility: expansion vs stability"
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.17822,
+        "label": "weak"
+      }
+    }
+  }
+}

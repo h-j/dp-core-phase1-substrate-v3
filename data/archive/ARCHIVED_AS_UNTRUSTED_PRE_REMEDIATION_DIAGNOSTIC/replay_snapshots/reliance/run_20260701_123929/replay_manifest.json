@@ -1,0 +1,21 @@
+{
+  "run_id": "run_20260701_123929",
+  "symbol": "RELIANCE",
+  "downloaded_at": "2026-07-01 13:25:58",
+  "data_sources": [
+    "yfinance (Stock & Index)",
+    "NSE Security Delivery %",
+    "Moneycontrol FII/DII Flows"
+  ],
+  "feature_versions": [
+    "sector_zscore",
+    "sector_percentile",
+    "delivery_pct_5d",
+    "fii_net",
+    "dii_net"
+  ],
+  "replay_version": "v3.0PersistentReflective",
+  "llm_version": "llama3.2",
+  "git_commit": "9b88a42276268d42f1c0229b11f4c6934893fea9",
+  "execution_hash": "782f4dc7e5a272f023ff13329ddeecbb72153923a93b6484135065b41fa7637d"
+}

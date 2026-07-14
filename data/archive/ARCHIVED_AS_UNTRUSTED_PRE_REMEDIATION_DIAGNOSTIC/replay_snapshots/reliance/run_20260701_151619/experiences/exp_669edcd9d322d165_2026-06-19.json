@@ -1,0 +1,37 @@
+{
+  "experience_id": "exp_669edcd9d322d165_2026-06-19",
+  "lineage_id": "669edcd9d322d165",
+  "theory_family_id": "669edcd9d322d165",
+  "created_at": "2026-06-19",
+  "status": "closed",
+  "theory_ids": [
+    "696f6a96-6caf-4fc4-851a-5616ac21c838"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: price breaks above/b... vs decisive close above...; Low semantic similarity: Revised claim: Regim... vs sector_zscore > 0.5:...; Low semantic similarity: volume > 2x average ... vs sector_zscore > 0.5:...; Low semantic similarity: short-term momentum ... vs delivery_pct < 40: f..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:closed_lower",
+    "volume:elevated",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:strong",
+    "momentum:weakening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:lagging"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 0,
+  "causal_events": [],
+  "component_failure_counts": {}
+}

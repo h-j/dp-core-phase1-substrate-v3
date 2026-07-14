@@ -1,0 +1,65 @@
+{
+  "id": "dd44175e-a913-49fc-8359-8f8eaac87ff4",
+  "created_at": "2026-06-30T06:43:59.935746+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where absorption rate failure is driven by regime shift, and the price remains range-bound despite volume expansion with increasing volatility and short-term momentum weakening.",
+  "associated_lineage_ids": [
+    "12321cc6-4316-46d4-8ef7-f917970d3be3",
+    "4c070abf-ee5d-4203-9c70-a60dc761e6e5",
+    "155d8691-995f-42e3-b1d1-187029849a60",
+    "b24c91bc-7d24-4487-9e35-6c1c1a8fdf36"
+  ],
+  "supporting_theory_ids": [
+    "12321cc6-4316-46d4-8ef7-f917970d3be3",
+    "b24c91bc-7d24-4487-9e35-6c1c1a8fdf36",
+    "155d8691-995f-42e3-b1d1-187029849a60",
+    "4c070abf-ee5d-4203-9c70-a60dc761e6e5"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "5c533af2-4d1a-4b81-b328-9c6128c94e50",
+      "created_at": "2026-06-30T06:43:59.935399+00:00",
+      "target_component": "absorption_rate_failure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "trend"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "e79064de-a6c0-49dc-91de-6df29183b83d",
+      "created_at": "2026-06-30T06:43:59.935563+00:00",
+      "target_component": "absorption_rate_failure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "volatility_regime": "normal"
+      },
+      "empirical_support_count": 4,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 1.0,
+  "support_count": 4,
+  "contradiction_count": 0,
+  "created_at_step": 18,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 4,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 9.0
+}

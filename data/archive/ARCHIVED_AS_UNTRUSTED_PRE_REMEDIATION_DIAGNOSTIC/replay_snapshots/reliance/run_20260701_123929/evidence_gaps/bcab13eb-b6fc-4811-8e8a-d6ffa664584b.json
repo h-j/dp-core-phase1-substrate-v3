@@ -1,0 +1,9 @@
+{
+  "id": "bcab13eb-b6fc-4811-8e8a-d6ffa664584b",
+  "created_at": "2026-07-01T07:52:48.027335+00:00",
+  "open_question_id": "824bbe8b-5bc5-428a-bb85-3a6c3bcbeb08",
+  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
+  "candidate_data_source": "FII/DII Flows & Order Book Depth",
+  "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under fatigue regime",
+  "priority": "HIGH"
+}

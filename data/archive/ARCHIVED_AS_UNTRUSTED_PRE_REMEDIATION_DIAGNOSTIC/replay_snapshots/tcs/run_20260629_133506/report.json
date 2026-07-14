@@ -1,0 +1,97 @@
+{
+  "symbol": "TCS",
+  "days": 2,
+  "date_range": "2026-06-24 \u2192 2026-06-25",
+  "execution_hash": "1b848ad125c75d9f336a4bc947b300aefeabed899144f1af552e64fd56fba24d",
+  "git_commit": "b311d340c394ae66640035f1339cbae1ab0ef1ea",
+  "llm_version": "llama3.2",
+  "replay_version": "v3.0PersistentReflective",
+  "story_summary": "This replay represents 2 days of experience on TCS. During this period, DP generated 2 experiences, evolved 2 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 1 key market mechanisms while identifying 0 unresolved evidence gap(s).",
+  "metrics": {
+    "accuracy": 0.0,
+    "knowledge_debt": 0,
+    "memory_usefulness": 0.398,
+    "knowledge_coverage": 0.0,
+    "prediction_drift": 0.0,
+    "theory_drift": 0.0
+  },
+  "knowledge_health": {
+    "knowledge_debt_bar": 10,
+    "principle_coverage": 0.0,
+    "reuse_rate": 0.0,
+    "trust": 60.0
+  },
+  "knowledge_lifecycle": {
+    "candidate": 0,
+    "emerging": 0,
+    "trusted": 0,
+    "canonical": 0,
+    "retired": 0
+  },
+  "timeline": [
+    {
+      "date": "2026-06-24",
+      "theory": "Regime is driven by Absorption; price remains range-bound despite volume expansion.",
+      "prediction": "uncertain (31%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-25",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening.",
+      "prediction": "uncertain (35%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.25233333333333335
+    }
+  ],
+  "theory_evolution": [
+    {
+      "day": "2026-06-24",
+      "lineage_id": "e45667047db30dd3",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-25",
+      "lineage_id": "3f701dde4ca14d5e",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    }
+  ],
+  "world_model": {
+    "narrative": "Baseline world model. No active principles recorded yet.",
+    "supporting_principles": [],
+    "open_questions": [],
+    "evidence_gaps": []
+  },
+  "chart_data": {
+    "dates": [
+      "2026-06-24",
+      "2026-06-25"
+    ],
+    "close": [
+      2109.0,
+      2094.699951171875
+    ],
+    "delivery_pct": [
+      46.15254851538015,
+      49.37172245725797
+    ],
+    "fii_net": [
+      -80.50963185138922,
+      -377.7727170864493
+    ],
+    "sector_zscore": [
+      -0.3995852463460314,
+      -0.8875092205220168
+    ]
+  }
+}

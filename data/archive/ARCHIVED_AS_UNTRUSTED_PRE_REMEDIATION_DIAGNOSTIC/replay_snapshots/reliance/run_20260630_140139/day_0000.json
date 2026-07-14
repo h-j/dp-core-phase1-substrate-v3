@@ -1,0 +1,197 @@
+{
+  "step": 0,
+  "date": "2023-01-02",
+  "observation": "[volatility compressed, delivery:moderate, fii:strong_sell, sector:neutral, RELIANCE focus] candle strong bull participation normal (normal) RELIANCE closed higher with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance stock shows strong bull participation with compressed volatility, closing higher but maintaining a neutral sector focus and mixed trend persistence across different time horizons.",
+  "theory": "Regime is driven by passive absorption; price remains range-bound despite volume expansion.",
+  "theory_summary_structured": {
+    "id": "2635e28e-e06e-44d5-a88a-11e21556a6bd",
+    "created_at": "2026-07-01 04:20:19.936051+00:00",
+    "mechanism": "passive absorption",
+    "claim": "Regime is driven by passive absorption; price remains range-bound despite volume expansion.",
+    "if_branch": {
+      "id": "eba5ac78-e121-4275-ad96-65486b5ea299",
+      "created_at": "2026-07-01 04:20:19.936166+00:00",
+      "condition": "participation widens above average",
+      "action": "favor breakout higher"
+    },
+    "else_branch": {
+      "id": "77a194e2-f6b2-4afd-a696-28c162ec4f47",
+      "created_at": "2026-07-01 04:20:19.936219+00:00",
+      "condition": "volatility remains compressed",
+      "action": "favor range persistence"
+    },
+    "unless": "liquidity evaporates entirely",
+    "falsified_if": "decisive close below the prior support floor",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "component_id": "absorption_rate",
+        "description": "Absorption rate is low, indicating passive absorption.",
+        "observable": "delivery_pct",
+        "expected_behavior": ">60%",
+        "dependency": null
+      },
+      {
+        "component_id": "volume_confirmation",
+        "description": "Volume expands on up days relative to down days, consistent with passive absorption.",
+        "observable": "volume_state",
+        "expected_behavior": "elevated",
+        "dependency": null
+      }
+    ],
+    "falsification_conditions": [
+      "absorption_rate: high absorption rate (>80%)",
+      "volume_confirmation: down-day volume exceeds up-day volume for 3 consecutive sessions"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.24,
+    "regime": 0.5,
+    "reflection": 0.487,
+    "coherence": 0.2956,
+    "contradiction": 0.234
+  },
+  "contradiction": {
+    "score": 0.0,
+    "indicators": [],
+    "llm_contradiction_audit": [],
+    "summary": "Detected 0 contradictions with a total score of 0.00."
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2023-01-02",
+    "trend": "closed_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.0,
+    "active_theory_count": 30,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [],
+  "decisions": {
+    "baseline": {
+      "date": "2023-01-02",
+      "policy_name": "Baseline",
+      "action": "buy",
+      "conviction": 0.55,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2023-01-02",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.55,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2023-01-02",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.55,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.0,
+    "label": "unknown"
+  },
+  "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions of a compressed critique, as the theory's falsifiability boundary conditions are met with no contradictions detected. One unresolved tension remains: the insufficient testing of observed continuation under volatility expansion. The theory's falsifiability boundary conditions highlight the need for further investigation into this aspect.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 1,
+    "avg_usefulness": 0.0,
+    "last_seen": "2023-01-02",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 0,
+      "uncertain": 0
+    },
+    "falsified_count": 0
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 0,
+    "date": "2023-01-02",
+    "contradiction_count": 0,
+    "contradiction_half_life": 0.9629629629629629,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 1.0,
+    "avg_contradiction_severity": 0.1283700048533018,
+    "highest_contradiction": 0.3659292445054945,
+    "theory_count": 30,
+    "active_theories": 30,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 28,
+    "avg_retirement_age": 1.0,
+    "avg_revival_latency": 3.0,
+    "avg_theory_age": 15.466666666666667,
+    "longest_surviving_theory": 31,
+    "theory_mutation_count": 46,
+    "avg_confidence": 0.24,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.017241379310344827,
+    "avg_abstraction_length": 25.0,
+    "compression_ratio": 0.8333333333333334,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 30,
+      "theory_text": "Regime is driven by passive absorption; price remains range-bound despite volume expansion.. If participation widens above average: favor breakout higher. Else volatility remains compressed: favor range persistence. Unless liquidity evaporates entirely. Falsified if: decisive close below the prior support floor.",
+      "contradiction_text": "Detected 0 contradictions with a total score of 0.00.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2023-01-02",
+        "trend": "closed_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.0,
+        "active_theory_count": 30,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [],
+      "theory_usefulness": {
+        "score": 0.0,
+        "label": "unknown"
+      }
+    }
+  }
+}

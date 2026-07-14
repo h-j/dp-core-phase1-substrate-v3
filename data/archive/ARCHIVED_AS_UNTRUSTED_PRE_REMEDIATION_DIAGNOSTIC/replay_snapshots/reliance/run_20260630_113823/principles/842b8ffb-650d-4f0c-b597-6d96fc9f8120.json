@@ -1,0 +1,66 @@
+{
+  "id": "842b8ffb-650d-4f0c-b597-6d96fc9f8120",
+  "created_at": "2026-06-30T07:32:28.251834+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid when volume expansion is positively correlated with market participation and volatility, but breaks down when volume expansion is negatively correlated or when market participation and volatility do not expand together.",
+  "associated_lineage_ids": [
+    "e23f7dd2-0475-4e72-8635-8172b7f28f7e",
+    "fe1776ae-4034-45eb-922f-b9da1ec8f38c",
+    "406884ae-b852-4f57-8da7-5c393989aa3c"
+  ],
+  "supporting_theory_ids": [
+    "e23f7dd2-0475-4e72-8635-8172b7f28f7e",
+    "406884ae-b852-4f57-8da7-5c393989aa3c",
+    "fe1776ae-4034-45eb-922f-b9da1ec8f38c"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "6e1b1c0b-c311-467a-920d-6094aa8643b9",
+      "created_at": "2026-06-30T07:32:28.251769+00:00",
+      "target_component": "volume_expansion",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "337ed2ba-9bc3-4804-b14f-ff5c14511191",
+      "created_at": "2026-06-30T07:32:28.251802+00:00",
+      "target_component": "volume_expansion",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volatility_regime": "expanded",
+        "volume_state": "normal"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 26,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 5.0
+}

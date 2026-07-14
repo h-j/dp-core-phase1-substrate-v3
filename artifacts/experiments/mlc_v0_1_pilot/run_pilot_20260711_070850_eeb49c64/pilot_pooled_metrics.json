@@ -1,0 +1,10 @@
+{
+  "total_worlds": 100,
+  "epistemic_worlds": 100,
+  "mlc_accuracy": 0.86,
+  "b2_accuracy": 0.87,
+  "b3_accuracy": 0.35,
+  "b4_accuracy": 1.0,
+  "mlc_vs_b2_difference": -0.01,
+  "mlc_vs_b3_difference": 0.51
+}

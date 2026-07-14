@@ -1,0 +1,63 @@
+{
+  "id": "5f58b5f3-afc5-48ec-a33c-882b7c3c9f55",
+  "created_at": "2026-06-30T06:39:14.446026+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where regime shift is driven by absorption rate failure, and the price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening.",
+  "associated_lineage_ids": [
+    "12321cc6-4316-46d4-8ef7-f917970d3be3",
+    "155d8691-995f-42e3-b1d1-187029849a60",
+    "b24c91bc-7d24-4487-9e35-6c1c1a8fdf36"
+  ],
+  "supporting_theory_ids": [
+    "12321cc6-4316-46d4-8ef7-f917970d3be3",
+    "b24c91bc-7d24-4487-9e35-6c1c1a8fdf36",
+    "155d8691-995f-42e3-b1d1-187029849a60"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "a45ab512-413d-4091-a1b0-4dce6c68127e",
+      "created_at": "2026-06-30T06:39:14.444388+00:00",
+      "target_component": "absorption_rate_failure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "trend"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "427c24f4-93fe-47db-8e21-cd269d791070",
+      "created_at": "2026-06-30T06:39:14.445896+00:00",
+      "target_component": "absorption_rate_failure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "volatility_regime": "expanded"
+      },
+      "empirical_support_count": 8,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 1.0,
+  "support_count": 8,
+  "contradiction_count": 0,
+  "created_at_step": 17,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 8,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 13.0
+}

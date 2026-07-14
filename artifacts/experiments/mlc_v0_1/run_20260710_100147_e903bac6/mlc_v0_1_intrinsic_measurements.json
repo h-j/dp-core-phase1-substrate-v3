@@ -1,0 +1,54 @@
+[
+  {
+    "proposition_id": "PROP_WORLD_A_SEED_42",
+    "activation_count": 198,
+    "support_count": 167,
+    "contradiction_count": 31,
+    "inconclusive_count": 0,
+    "sample_adequacy": true,
+    "coverage": 0.495,
+    "stability": 0.9936,
+    "complexity": 1.0,
+    "equivalence": false,
+    "redundancy": false
+  },
+  {
+    "proposition_id": "PROP_WORLD_B_SEED_42",
+    "activation_count": 198,
+    "support_count": 27,
+    "contradiction_count": 171,
+    "inconclusive_count": 0,
+    "sample_adequacy": true,
+    "coverage": 0.495,
+    "stability": 0.971,
+    "complexity": 1.0,
+    "equivalence": false,
+    "redundancy": false
+  },
+  {
+    "proposition_id": "PROP_WORLD_C1_SEED_42",
+    "activation_count": 4,
+    "support_count": 2,
+    "contradiction_count": 2,
+    "inconclusive_count": 0,
+    "sample_adequacy": false,
+    "coverage": 0.01,
+    "stability": 0.3333,
+    "complexity": 1.0,
+    "equivalence": false,
+    "redundancy": false
+  },
+  {
+    "proposition_id": "PROP_WORLD_C2_SEED_42",
+    "activation_count": 198,
+    "support_count": 103,
+    "contradiction_count": 95,
+    "inconclusive_count": 0,
+    "sample_adequacy": true,
+    "coverage": 0.495,
+    "stability": 0.9426,
+    "complexity": 1.0,
+    "equivalence": false,
+    "redundancy": false
+  }
+]

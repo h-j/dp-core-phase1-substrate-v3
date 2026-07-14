@@ -1,0 +1,145 @@
+{
+  "experience_id": "exp_e27c63e63ce89e1b_2026-06-05",
+  "lineage_id": "e27c63e63ce89e1b",
+  "theory_family_id": "e27c63e63ce89e1b",
+  "created_at": "2026-06-05",
+  "status": "falsified",
+  "theory_ids": [
+    "6559f486-2efb-4d8e-9c15-cf05048c1bf7",
+    "ceb60a62-0741-438b-ab83-1f5703cd6aac",
+    "203899eb-6aea-44c0-9a92-a288858cc75b",
+    "61f23960-077c-407f-8bf9-ebb6c9db88f2",
+    "0349bc84-19dd-4a81-a3f6-14d972cecb70"
+  ],
+  "contradictions": [
+    "Structural: Field conflict: Price sequence is influenced b vs The price sequence of higher h; Low semantic similarity: Price sequence is in... vs range_expanding: rem...; Low semantic similarity: price_action.daily_s... vs range_expanding: rem...; Low semantic similarity: true: retain mechani... vs volatility_expanding...; Trend: continuation vs rejection",
+    "Structural: Low semantic similarity: Price sequence is in... vs elevated_volume > 0....; Low semantic similarity: price_action.daily_s... vs elevated_volume > 0....; Low semantic similarity: true: retain mechani... vs false: demote...",
+    "Structural: Field conflict: Price sequence is influenced b vs The price structure maintains ; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume > 1000 and RE...; Low semantic similarity: price_action.daily_s... vs volume > 1000 and RE...; Low semantic similarity: true: retain mechani... vs otherwise: no action...; Trend: continuation vs rejection",
+    "Structural: Field conflict: Price sequence is influenced b vs Price structure exhibits seque; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume dry and RELIA...; Low semantic similarity: price_action.daily_s... vs volume dry and RELIA...; Trend: continuation vs rejection",
+    "Structural: Field conflict: Price sequence is influenced b vs The current market regime is c; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume_expansion_wit...; Low semantic similarity: price_action.daily_s... vs volume_expansion_wit...; Low semantic similarity: true: retain mechani... vs otherwise: demote me...; Trend: continuation vs rejection",
+    "Structural: Field conflict: Price sequence is influenced b vs The price sequence of higher h; Low semantic similarity: Price sequence is in... vs range_expanding: rem...; Low semantic similarity: volume_dry and range... vs range_expanding: rem...; Low semantic similarity: true: remove mechani... vs volatility_expanding...; Trend: continuation vs rejection",
+    "Structural: Low semantic similarity: Price sequence is in... vs elevated_volume > 0....; Low semantic similarity: volume_dry and range... vs elevated_volume > 0....; Low semantic similarity: true: remove mechani... vs false: demote...",
+    "Structural: Field conflict: Price sequence is influenced b vs The price structure maintains ; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume > 1000 and RE...; Low semantic similarity: volume_dry and range... vs volume > 1000 and RE...; Low semantic similarity: true: remove mechani... vs otherwise: no action...; Trend: continuation vs rejection",
+    "Structural: Field conflict: Price sequence is influenced b vs Price structure exhibits seque; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume dry and RELIA...; Low semantic similarity: volume_dry and range... vs volume dry and RELIA...; Low semantic similarity: true: remove mechani... vs otherwise: retain or...; Trend: continuation vs rejection",
+    "Structural: Low semantic similarity: Price sequence is in... vs volume > 1000 and RE...; Low semantic similarity: price_action.daily_s... vs volume > 1000 and RE...; Low semantic similarity: true: retain MECH_00... vs otherwise: demote me...",
+    "Structural: Low semantic similarity: Price sequence is in... vs volume_dry and range...; Low semantic similarity: price_action.daily_s... vs volume_dry and range...; Low semantic similarity: true: retain MECH_00... vs true: remove mechani...",
+    "Structural: Low semantic similarity: Price sequence is in... vs price_action.daily_s...",
+    "Structural: Low semantic similarity: Price sequence is in... vs range_expanding: rem...; Low semantic similarity: true: retain MECH_00... vs volatility_expanding...",
+    "Structural: Low semantic similarity: Price sequence is in... vs elevated_volume > 0....; Low semantic similarity: price_action.daily_s... vs elevated_volume > 0....; Low semantic similarity: true: retain MECH_00... vs false: demote...",
+    "Structural: Low semantic similarity: Each day's high is l... vs The current market r...; Low semantic similarity: price_structure_with... vs price_structure_with...; Low semantic similarity: Each day's high is l... vs volume dry and range...; Field conflict: range_expanding_and_short_term vs volume dry and range expanding; Low semantic similarity: otherwise: demote... vs otherwise: remove me...",
+    "Structural: Low semantic similarity: price_structure_with... vs ...; Low semantic similarity: Each day's high is l... vs price_action.daily_s...; Low semantic similarity: range_expanding_and_... vs price_action.daily_s...; Low semantic similarity: otherwise: demote... vs price_action.daily_s...",
+    "Structural: Low semantic similarity: Each day's high is l... vs The RELIANCE's price...; Low semantic similarity: price_structure_with... vs ...; Low semantic similarity: Each day's high is l... vs price_action.daily_s...; Low semantic similarity: range_expanding_and_... vs price_action.daily_s...; Low semantic similarity: otherwise: demote... vs true: retain existin...",
+    "Structural: Low semantic similarity: Each day's high is l... vs Price sequence is in...; Low semantic similarity: price_structure_with... vs ...; Low semantic similarity: Each day's high is l... vs volume > 500000 and ...; Low semantic similarity: range_expanding_and_... vs volume > 500000 and ...",
+    "Structural: Low semantic similarity: The RELIANCE's price... vs volume < 1000000 and...",
+    "Structural: Low semantic similarity: The RELIANCE's price... vs asset_selloff: add n...; Low semantic similarity: volume > 1000 and RE... vs asset_selloff: add n...; Low semantic similarity: otherwise: promote e... vs no new evidence: ret...",
+    "Structural: Low semantic similarity: The RELIANCE's price... vs Each day's high is l...; Low semantic similarity: The RELIANCE's price... vs range_expanding_and_...; Low semantic similarity: volume > 1000 and RE... vs range_expanding_and_...; Low semantic similarity: otherwise: promote e... vs otherwise: demote...",
+    "Structural: Low semantic similarity: price_structure_with... vs price_structure_with...; Low semantic similarity: The RELIANCE's price... vs volume dry and range...; Low semantic similarity: volume > 1000 and RE... vs volume dry and range..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.25
+  },
+  "regime_context": [
+    "trend:closed_lower",
+    "volume:normal",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:mixed",
+    "participation:normal",
+    "momentum:weakening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:buying",
+    "sector:sector:lagging_strong"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 4,
+  "contradiction_count": 5,
+  "validation_count": 1,
+  "falsification_count": 3,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T20:45:41.550000",
+      "outcome": "partial",
+      "theory_claim": "Price sequence is influenced by RELIANCE's trading range-bound status, with increased volatility and emphasis on delivery and asset liquidity fade, leading to a greater likelihood of higher highs and ",
+      "components_passed": [
+        "price_structure_with_modified_range_bound_reliance_v5",
+        "price_structure_with_modified_range_bound_reliance_v5",
+        "price_structure_with_modified_range_bound_reliance_v5",
+        "price_structure_with_modified_range_bound_reliance_v7"
+      ],
+      "components_failed": [
+        "price_structure_with_modified_range_bound_reliance_v5"
+      ],
+      "root_cause": "price_structure_with_modified_range_bound_reliance_v5",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This appears to be a technical analysis report or a trading strategy failure notification. Here's a breakdown of why the theory \"Price sequence is influenced by RELIANCE's trading range-bound status, with increased volatility and emphasis on delivery and asset liquidity fade, leading to a greater li"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T20:54:02.723491",
+      "outcome": "partial",
+      "theory_claim": "Price sequence is influenced by RELIANCE's trading range-bound status, where volatility and persistence increase, driven by FII buying, sector performance, delivery, and asset liquidity fade.",
+      "components_passed": [
+        "price_structure_with_modified_range_bound_reliance_v10",
+        "price_structure_with_modified_range_bound_reliance_v10",
+        "price_structure_with_modified_range_bound_reliance_v10",
+        "price_structure_with_modified_range_bound_reliance_v10",
+        "price_structure_with_modified_range_bound_reliance_v8",
+        "price_structure_with_modified_range_bound_reliance_v9"
+      ],
+      "components_failed": [
+        "price_structure_with_modified_range_bound_reliance_v10"
+      ],
+      "root_cause": "price_structure_with_modified_range_bound_reliance_v10",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Price sequence is influenced by RELIANCE's trading range-bound status, where volatility and persistence increase, driven by FII buying, sector performance, delivery, and asset liquidity fade\" failed because it did not accurately predict the price movement of Reliance.\n\nHere are some reas"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T21:09:58.873334",
+      "outcome": "falsified",
+      "theory_claim": "Each day's high is less than the previous high when RELIANCE experiences a gap-down and moderate volatility, or each day's low is greater than the previous low otherwise, with an emphasis on the latte",
+      "components_passed": [],
+      "components_failed": [
+        "price_structure_with_low_volume_and_selling_pressure_v18",
+        "price_structure_with_low_volume_and_selling_pressure_v18",
+        "price_structure_with_low_volume_and_selling_pressure_v18",
+        "price_structure_with_low_volume_and_selling_pressure_v18"
+      ],
+      "root_cause": "price_structure_with_low_volume_and_selling_pressure_v18",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory in question suggests that when RELIANCE experiences a gap-down and moderate volatility, each day's high is less than the previous high. However, this theory failed to predict the outcome of the recent trading session.\n\nLet's break down the factors mentioned:\n\n1. **Delivery: Moderate**: Th"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T21:15:16.258960",
+      "outcome": "falsified",
+      "theory_claim": "The RELIANCE's price structure exhibits a gap-down and moderate volatility-induced selling pressure mechanism, where daily highs are inversely correlated with previous highs and lows are positively co",
+      "components_passed": [],
+      "components_failed": [
+        "price_structure_with_low_volume_and_selling_pressure_v20",
+        "price_structure_with_low_volume_and_selling_pressure_v21"
+      ],
+      "root_cause": "price_structure_with_low_volume_and_selling_pressure_v20",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"The RELIANCE's price structure exhibits a gap-down and moderate volatility-induced selling pressure mechanism, where daily highs are inversely correlated with previous highs and lows are positively correlated with previous lows\" failed to predict the closing price of Reliance due to seve"
+    }
+  ],
+  "component_failure_counts": {
+    "price_structure_with_modified_range_bound_reliance_v5": 1,
+    "price_structure_with_modified_range_bound_reliance_v10": 1,
+    "price_structure_with_low_volume_and_selling_pressure_v18": 4,
+    "price_structure_with_low_volume_and_selling_pressure_v20": 1,
+    "price_structure_with_low_volume_and_selling_pressure_v21": 1
+  }
+}

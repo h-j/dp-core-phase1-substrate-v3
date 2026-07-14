@@ -1,0 +1,15 @@
+{
+  "id": "824bbe8b-5bc5-428a-bb85-3a6c3bcbeb08",
+  "created_at": "2026-07-01T07:52:48.025121+00:00",
+  "created_at_step": 41,
+  "question_text": "Why did component 'liquidity_absorption' fail under fatigue regime?",
+  "source_contradiction_ids": [
+    "81e2392d-3b2a-49b6-83e6-7fa71c58233b"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "dry"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

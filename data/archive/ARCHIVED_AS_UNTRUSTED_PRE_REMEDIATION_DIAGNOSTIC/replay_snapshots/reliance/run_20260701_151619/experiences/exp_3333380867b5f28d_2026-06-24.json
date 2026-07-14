@@ -1,0 +1,84 @@
+{
+  "experience_id": "exp_3333380867b5f28d_2026-06-24",
+  "lineage_id": "3333380867b5f28d",
+  "theory_family_id": "3333380867b5f28d",
+  "created_at": "2026-06-24",
+  "status": "closed",
+  "theory_ids": [
+    "f4d524e9-36ee-429f-82d8-8bc8e24ba23e",
+    "d029ed4b-8d7d-41ce-b95b-0b2f8310ab33",
+    "b79ba3c3-47e2-4809-97a9-38c8a4509b4d"
+  ],
+  "contradictions": [
+    "Structural: Field conflict: Revised claim: Regime is drive vs Revised claim: Regime is drive; Field conflict: Price Structure Influence (PSI vs Range expansion > 2%, Short-te; Low semantic similarity: Revised claim: Regim... vs Short-term momentum ...; Low semantic similarity: RELIANCE focus > 0.7... vs Short-term momentum ...; Low semantic similarity: RELIANCE focus <= 0.... vs Short-term momentum ...; Participation: weakening vs elevated",
+    "Structural: Field conflict: Revised claim: Regime is drive vs Revised claim: Regime is drive; Field conflict: Revised claim: Regime is drive vs Moderate volatility (fii:stron; Low semantic similarity: RELIANCE focus > 0.7... vs Moderate volatility ...; Low semantic similarity: RELIANCE focus <= 0.... vs Weak move with weak ...; Participation: weakening vs elevated",
+    "Structural: Field conflict: Revised claim: Regime is drive vs Revised claim: Regime is drive; Low semantic similarity: Price Structure Infl... vs price breaks above/b...; Low semantic similarity: Revised claim: Regim... vs volume > 2x average ...; Low semantic similarity: RELIANCE focus > 0.7... vs volume > 2x average ...; Low semantic similarity: RELIANCE focus <= 0.... vs short-term momentum ...; Participation: weakening vs elevated",
+    "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: Price Structure Infl... vs decisive close above...; Low semantic similarity: Revised claim: Regim... vs sector_zscore > 0.5:...; Low semantic similarity: RELIANCE focus > 0.7... vs sector_zscore > 0.5:...; Low semantic similarity: RELIANCE focus <= 0.... vs delivery_pct < 40: f...",
+    "Structural: Low semantic similarity: mixed trend persiste... vs Significant increase...; Field conflict: Revised claim: Regime is drive vs Moderate to high volume and st; Low semantic similarity: moderate volatility ... vs Moderate to high vol...; Low semantic similarity: moderate volatility ... vs Low to moderate volu...",
+    "Structural: Low semantic similarity: mixed trend persiste... vs delivery:moderate, s...; Low semantic similarity: Revised claim: Regim... vs volume > 50% of aver...; Low semantic similarity: moderate volatility ... vs volume > 50% of aver...; Low semantic similarity: moderate volatility ... vs short-term momentum ...",
+    "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: mixed trend persiste... vs price_structure: low...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: moderate volatility ... vs delivery_pct > 50 AN...; Low semantic similarity: moderate volatility ... vs volume_state = eleva...",
+    "Structural: Low semantic similarity: {'name': 'Asset Sell... vs Significant increase...; Field conflict: The market's trend persistence vs Moderate to high volume and st; Low semantic similarity: moderate volatility ... vs Moderate to high vol...; Low semantic similarity: moderate volatility ... vs Low to moderate volu..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:closed_higher",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:weak",
+    "momentum:flat",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:neutral",
+    "sector:sector:leading"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 2,
+  "contradiction_count": 3,
+  "validation_count": 0,
+  "falsification_count": 2,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-01T15:17:33.994592",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by Liquidity Absorption; price remains range-bound despite moderate volatility.",
+      "components_passed": [
+        "price_structure"
+      ],
+      "components_failed": [
+        "volume_confirmation"
+      ],
+      "root_cause": "volume_confirmation",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by Liquidity Absorption; price remains range-bound despite moderate volatility\" failed to accurately predict the market behavior based on the provided observations.\n\nHere's a breakdown of why this theory might not have held up:\n\n1. **Low volume**: The observation mention"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-02T08:38:08.218341",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "price_structure",
+        "delivery_exhaustion"
+      ],
+      "components_failed": [
+        "volume_confirmation"
+      ],
+      "root_cause": "volume_confirmation",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion\" failed to predict the observed market behavior due to several reasons:\n\n1. **Volume dry**: The observation that volume was dry (i.e., low trading activity) contradicts the theory's assumption th"
+    }
+  ],
+  "component_failure_counts": {
+    "volume_confirmation": 2
+  }
+}

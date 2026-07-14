@@ -1,0 +1,95 @@
+{
+  "id": "93e91952-c70c-46ae-81fe-e1cf811008d9",
+  "created_at": "2026-07-02T03:29:00.306524+00:00",
+  "status": "retired",
+  "statement": "Volume confirmation is predictive when participation and volatility expand together, regardless of the regime subtype, but only in expansion confirmed regimes.",
+  "associated_lineage_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4",
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f",
+    "ef98a193-498c-45ce-a6ce-367538088dc9"
+  ],
+  "supporting_theory_ids": [],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "6ebb95bd-0402-4315-aed7-2980d0f53839",
+      "created_at": "2026-07-02T03:29:00.306138+00:00",
+      "target_component": "volume_confirmation",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": [
+          "expansion_confirmed"
+        ]
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 19,
+  "revision_history": [
+    {
+      "id": "070d0093-54e0-4dbc-902e-0a2d57fc6e22",
+      "created_at": "2026-07-02T03:29:00.306590+00:00",
+      "revision_step": 19,
+      "previous_statement": "Volume confirmation is predictive when participation and volatility expand together, regardless of the regime subtype.",
+      "updated_statement": "Volume confirmation is predictive when participation and volatility expand together, regardless of the regime subtype, but only in expansion confirmed regimes.",
+      "change_reason": "split from parent principle f3667c62 due to contradictions"
+    }
+  ],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "grounded_mechanism_ids": [],
+  "valid_under": {},
+  "fails_under": {},
+  "competing_principle_ids": [],
+  "maturation_history": [
+    {
+      "id": "8465c442-5253-4e84-84db-848a71530a6e",
+      "created_at": "2026-07-02T03:29:43.405471+00:00",
+      "step": 19,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 5.0,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    }
+  ],
+  "grounded_concepts": [],
+  "grounded_relations": {},
+  "supported_concepts": [
+    "INSTITUTIONAL_ACCUMULATION",
+    "VOLATILITY_EXPANSION"
+  ],
+  "supported_relations": [
+    "VOLATILITY_EXPANSION AMPLIFIES context"
+  ],
+  "ontology_version": "1.0.0",
+  "validation_taxonomy_version": "1.0.0",
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 5.0
+}

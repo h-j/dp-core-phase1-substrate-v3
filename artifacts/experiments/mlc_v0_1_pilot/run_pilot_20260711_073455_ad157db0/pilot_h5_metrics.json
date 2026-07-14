@@ -1,0 +1,23 @@
+{
+  "defer_precision": 0.8431,
+  "defer_recall": 0.8776,
+  "evidence_limited_subtype_accuracy": 1.0,
+  "effect_ambiguity_subtype_accuracy": 0.7931,
+  "confusion_matrix": {
+    "actual_admit": {
+      "predicted_admit": 23,
+      "predicted_reject": 0,
+      "predicted_defer": 6
+    },
+    "actual_reject": {
+      "predicted_admit": 0,
+      "predicted_reject": 20,
+      "predicted_defer": 2
+    },
+    "actual_defer": {
+      "predicted_admit": 2,
+      "predicted_reject": 4,
+      "predicted_defer": 43
+    }
+  }
+}

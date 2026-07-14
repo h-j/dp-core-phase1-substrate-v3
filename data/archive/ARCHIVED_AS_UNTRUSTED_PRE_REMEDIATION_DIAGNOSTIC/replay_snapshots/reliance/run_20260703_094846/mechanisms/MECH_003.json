@@ -1,0 +1,58 @@
+{
+  "id": "MECH_003",
+  "created_at": "2026-07-03T04:21:23.002941+00:00",
+  "mechanism_id": "MECH_003",
+  "canonical_name": "LIQUIDITY_ABSORPTION_REVISION",
+  "concept_tags": [
+    "TREND_PERSISTENCE",
+    "VOLATILITY_EXPANSION",
+    "LIQUIDITY_ABSORPTION",
+    "INSTITUTIONAL_ACCUMULATION"
+  ],
+  "relation_type": "CONTRADICTS",
+  "first_seen": 2,
+  "last_seen": 22,
+  "days_active": 104,
+  "times_reused": 17,
+  "times_modified": 85,
+  "times_retired": 3,
+  "support_count": 31,
+  "contradiction_count": 72,
+  "prediction_helped": 31,
+  "prediction_harmed": 72,
+  "status": "retired",
+  "regimes_seen": [
+    "neutral",
+    "fatigue",
+    "pressure_loaded_range"
+  ],
+  "name": "LIQUIDITY_ABSORPTION_REVISION",
+  "description": "Mechanism component to reflect the observed mixed trend persistence with balanced behavior.",
+  "concept_type": "candidate",
+  "associated_theory_ids": [
+    "fa2b6657-5292-4c2c-ac65-3d8899ae7e86",
+    "ce242ed4-32fc-40b6-ab45-91cdefa8befc",
+    "5863186e-6894-437f-a552-a76f061ec03f",
+    "9e95c819-7a59-471d-8ebc-75b5180a6544",
+    "bba91af1-f6d7-4802-ba5e-4f1c53101fc1",
+    "7232860b-f875-45b6-ace8-8c2fa113c607",
+    "c65386a7-05c9-461d-bfc1-41fa392efddb",
+    "2b28d4e9-68a1-4b5c-866d-07e449594946",
+    "ab8721e9-2c94-4ab8-b6be-5ce4c6c37468",
+    "5d608351-ca7c-44a7-ba3e-363247c84021",
+    "1a03959e-46ab-4bcf-afde-fbcfa71a810a",
+    "b63917d7-4bc4-49ca-ba2d-b86dac591ff2",
+    "9cc30a81-2d09-4e1a-8ebe-4213ca09c487",
+    "859ecb10-269c-49d0-a389-b1bd1837387a",
+    "243bf68a-64ce-47a5-8cff-ec7501ee581b",
+    "5a1d521b-8a65-4439-adcb-7fd713cf5387",
+    "ec3d09e6-903a-45df-a1b9-b5af7def2c59",
+    "215061f0-896e-4d23-afd8-92bd061a9558",
+    "d3a3d39e-965b-4fd2-9006-548610a1ae34",
+    "a310f4d9-293f-4b34-a434-b5d0bf674d1a"
+  ],
+  "associated_lineages": [
+    "a18adea1-f1c7-44a4-becd-43910aa343f1"
+  ],
+  "created_at_step": 2
+}

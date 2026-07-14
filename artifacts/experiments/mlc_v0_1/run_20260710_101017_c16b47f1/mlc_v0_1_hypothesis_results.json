@@ -1,0 +1,207 @@
+{
+  "H1": {
+    "hypothesis_id": "H1",
+    "scientific_question": "Did MLC v0.1 execute the intended epistemic lifecycle without violating architectural validity gates?",
+    "status": "PASS",
+    "metrics": {
+      "validity_gates": {
+        "GATE_1": {
+          "status": "PASS",
+          "evidence": "Found 3 validation authorizations for 3 validated candidates out of 4 total decisions."
+        },
+        "GATE_2": {
+          "status": "PASS",
+          "evidence": "Family B worlds verify true comparative effect <= REJECT_THRESHOLD."
+        },
+        "GATE_3": {
+          "status": "PASS",
+          "evidence": "Thresholds are frozen and ordered: REJECT=-0.05 < ADMIT=0.15."
+        },
+        "GATE_4": {
+          "status": "PASS",
+          "evidence": "Family representation counts: {'A': 1, 'C2': 1, 'B': 1, 'C1': 1}."
+        },
+        "GATE_5": {
+          "status": "PASS",
+          "evidence": "Contradiction definitions found in all 3 frozen candidates."
+        },
+        "GATE_6A": {
+          "status": "PASS",
+          "evidence": "Compilation and Attribution use identical imports from measurement.py."
+        },
+        "GATE_6B": {
+          "status": "PASS",
+          "evidence": "Window 2 and Window 3 share the compute_metrics function in measurement.py."
+        },
+        "GATE_6C": {
+          "status": "PASS",
+          "evidence": "B2 utilizes same frozen candidate objects as MLC."
+        },
+        "GATE_7": {
+          "status": "PASS",
+          "evidence": "ERC Authorizations: Compilation=4, Evidence=4 for 3 candidates."
+        },
+        "GATE_8": {
+          "status": "PASS",
+          "evidence": "SHA-256 hashes of proposition definitions match content_hash records."
+        },
+        "GATE_9": {
+          "status": "PASS",
+          "evidence": "Verified 4 epistemic decisions are in [ADMIT, REJECT, DEFER] and 0 pre-epistemic rejections are distinct."
+        },
+        "GATE_10": {
+          "status": "PASS",
+          "evidence": "All decisions map 1-to-1 with persisted belief memory records."
+        }
+      }
+    },
+    "baseline": null,
+    "comparison": null,
+    "sample_size": 4,
+    "excluded_record_count": 0,
+    "statistical_metadata": {},
+    "interpretation": "All 10 validity gates passed.",
+    "limitations": "Fidelity check passed.",
+    "pooled_false_admission": null,
+    "false_admit_reject": null,
+    "false_admit_evidence_limited": null,
+    "false_admit_effect_ambiguous": null,
+    "defer_precision": null,
+    "defer_recall": null,
+    "target_status": null
+  },
+  "H2": {
+    "hypothesis_id": "H2",
+    "scientific_question": "Does MLC v0.1 provide decision value above the matched random baseline?",
+    "status": "INCONCLUSIVE",
+    "metrics": {
+      "mlc_accuracy": 1.0,
+      "b3_accuracy": 0.25
+    },
+    "baseline": {
+      "b3_matched_random_accuracy": 0.25
+    },
+    "comparison": {
+      "accuracy_lift_over_random": 0.75
+    },
+    "sample_size": 4,
+    "excluded_record_count": 0,
+    "statistical_metadata": {
+      "significance_alpha": null,
+      "minimum_lift_effect": null
+    },
+    "interpretation": "Significance criteria and effect size thresholds are unresolved.",
+    "limitations": "Assumes uniform random baseline choice distribution.",
+    "pooled_false_admission": null,
+    "false_admit_reject": null,
+    "false_admit_evidence_limited": null,
+    "false_admit_effect_ambiguous": null,
+    "defer_precision": null,
+    "defer_recall": null,
+    "target_status": null
+  },
+  "H3": {
+    "hypothesis_id": "H3",
+    "scientific_question": "Does prospective validation improve decision accuracy over the matched retrospective-only B2 ablation?",
+    "status": "INCONCLUSIVE",
+    "metrics": {
+      "mlc_accuracy": 1.0,
+      "b2_accuracy": 1.0
+    },
+    "baseline": {
+      "b2_retro_accuracy": 1.0
+    },
+    "comparison": {
+      "accuracy_lift_over_b2": 0.0
+    },
+    "sample_size": 4,
+    "excluded_record_count": 0,
+    "statistical_metadata": {
+      "minimum_lift_effect": null
+    },
+    "interpretation": "Accuracy comparison criteria are unresolved.",
+    "limitations": "Oracle evaluation treats C1 and C2 as collapsed DEFER decisions.",
+    "pooled_false_admission": null,
+    "false_admit_reject": null,
+    "false_admit_evidence_limited": null,
+    "false_admit_effect_ambiguous": null,
+    "defer_precision": null,
+    "defer_recall": null,
+    "target_status": null
+  },
+  "H4": {
+    "hypothesis_id": "H4",
+    "scientific_question": "Does prospective validation reduce catastrophic false admission relative to B2?",
+    "status": "INCONCLUSIVE",
+    "metrics": {
+      "mlc_pooled_rate": 0.0,
+      "b2_pooled_rate": 0.0
+    },
+    "baseline": {
+      "b2_pooled_rate": 0.0
+    },
+    "comparison": {
+      "pooled_reduction": 0.0
+    },
+    "sample_size": 4,
+    "excluded_record_count": 0,
+    "statistical_metadata": {
+      "minimum_lift_effect": null
+    },
+    "interpretation": "Safety comparison criteria are unresolved.",
+    "limitations": "Decomposition counts are subject to seeds and world registry definitions.",
+    "pooled_false_admission": {
+      "mlc_count": 0,
+      "mlc_rate": 0.0,
+      "b2_count": 0,
+      "b2_rate": 0.0
+    },
+    "false_admit_reject": {
+      "mlc_count": 0,
+      "mlc_rate": 0.0,
+      "b2_count": 0,
+      "b2_rate": 0.0
+    },
+    "false_admit_evidence_limited": {
+      "mlc_count": 0,
+      "mlc_rate": 0.0,
+      "b2_count": 0,
+      "b2_rate": 0.0
+    },
+    "false_admit_effect_ambiguous": {
+      "mlc_count": 0,
+      "mlc_rate": 0.0,
+      "b2_count": 0,
+      "b2_rate": 0.0
+    },
+    "defer_precision": null,
+    "defer_recall": null,
+    "target_status": null
+  },
+  "H5": {
+    "hypothesis_id": "H5",
+    "scientific_question": "Does MLC correctly identify propositions that should remain deferred?",
+    "status": "INCONCLUSIVE",
+    "metrics": {
+      "defer_precision": 1.0,
+      "defer_recall": 1.0
+    },
+    "baseline": null,
+    "comparison": null,
+    "sample_size": 4,
+    "excluded_record_count": 0,
+    "statistical_metadata": {
+      "precision_target": null,
+      "recall_target": null
+    },
+    "interpretation": "Defer calibration targets are unresolved.",
+    "limitations": "Assumes clean C1/C2 separation in DGP.",
+    "pooled_false_admission": null,
+    "false_admit_reject": null,
+    "false_admit_evidence_limited": null,
+    "false_admit_effect_ambiguous": null,
+    "defer_precision": 1.0,
+    "defer_recall": 1.0,
+    "target_status": "PROVISIONAL"
+  }
+}

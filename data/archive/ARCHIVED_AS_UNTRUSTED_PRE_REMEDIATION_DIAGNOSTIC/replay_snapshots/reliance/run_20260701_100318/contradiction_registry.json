@@ -1,0 +1,72 @@
+{
+  "663086c5bbc58e2b": {
+    "id": "663086c5bbc58e2b",
+    "theory_id": "98d842ea061d549a",
+    "description": "structural: low semantic similarity: trend persistence: 3... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: volume dry and range... vs participation widens...; low semantic similarity: fii: strong_buy and ... vs volatility remains c...",
+    "created_at_step": 1,
+    "resolved_at_step": 2,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.089
+  },
+  "bb64737c4bb3163e": {
+    "id": "bb64737c4bb3163e",
+    "theory_id": "f2cca7fa84e5cfbc",
+    "description": "structural: low semantic similarity: {'condition': 'no sh... vs trend persistence: 3...; low semantic similarity: revised claim: regim... vs volume dry and range...; low semantic similarity: moderate to high fii... vs volume dry and range...; field conflict: short-term momentum weakness a vs fii: strong_buy and sector: ne",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.22985714285714284
+  },
+  "dfb54531b5893ba8": {
+    "id": "dfb54531b5893ba8",
+    "theory_id": "f2cca7fa84e5cfbc",
+    "description": "structural: low semantic similarity: {'condition': 'no sh... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: moderate to high fii... vs participation widens...; low semantic similarity: short-term momentum ... vs volatility remains c...",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.22985714285714284
+  },
+  "dee74252d8d5abd7": {
+    "id": "dee74252d8d5abd7",
+    "theory_id": "77514420273345d7",
+    "description": "structural: low semantic similarity: price_range_boundary... vs trend persistence: 3...; low semantic similarity: revised claim: regim... vs volume dry and range...; low semantic similarity: moderate volatility ... vs volume dry and range...; low semantic similarity: moderate volatility ... vs fii: strong_buy and ...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.089
+  },
+  "dc813fb27863b17d": {
+    "id": "dc813fb27863b17d",
+    "theory_id": "77514420273345d7",
+    "description": "structural: low semantic similarity: price_range_boundary... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: moderate volatility ... vs participation widens...; low semantic similarity: moderate volatility ... vs volatility remains c...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.089
+  },
+  "b2e8e382321f2d9b": {
+    "id": "b2e8e382321f2d9b",
+    "theory_id": "97fc47c9467e185e",
+    "description": "structural: low semantic similarity: revised claim: regim... vs volume dry and range...; field conflict: volume > 1000000 and fii:selli vs volume dry and range expanding; low semantic similarity: reliance traded abov... vs fii: strong_buy and ...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.2034409090909091
+  },
+  "9372caf91ad9291c": {
+    "id": "9372caf91ad9291c",
+    "theory_id": "97fc47c9467e185e",
+    "description": "structural: low semantic similarity: trend persistence: 3... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: volume > 1000000 and... vs participation widens...; low semantic similarity: reliance traded abov... vs volatility remains c...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.2034409090909091
+  }
+}

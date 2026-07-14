@@ -1,0 +1,15 @@
+{
+  "id": "af5ae096-27e2-43d6-9983-b90fa08530c4",
+  "created_at": "2026-07-01T07:00:03.114030+00:00",
+  "created_at_step": 1,
+  "question_text": "Why did component 'volume_confirmation' fail under fatigue regime?",
+  "source_contradiction_ids": [
+    "10f286eb-fd1d-4a06-bd88-60404818f4f1"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "dry"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

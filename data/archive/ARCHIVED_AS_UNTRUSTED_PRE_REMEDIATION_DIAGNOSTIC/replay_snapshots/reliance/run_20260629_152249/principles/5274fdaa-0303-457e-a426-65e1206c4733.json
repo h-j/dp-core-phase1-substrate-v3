@@ -1,0 +1,57 @@
+{
+  "id": "5274fdaa-0303-457e-a426-65e1206c4733",
+  "created_at": "2026-06-29T09:56:45.402390+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid when the regime is driven by a moderate reliance focus, and its predictive power breaks down in scenarios where the regime shifts towards increased absorption or reduced reliance.",
+  "associated_lineage_ids": [
+    "a965f939-114a-4987-a2dc-1519bc6c4d6d",
+    "92c4b11d-fa62-4f5f-a495-88b825355538",
+    "81948f9e-8448-47c4-9c5d-0b55043f9bd4",
+    "82681e0c-e55e-4663-94a9-0dadb59326cd"
+  ],
+  "supporting_theory_ids": [
+    "a965f939-114a-4987-a2dc-1519bc6c4d6d"
+  ],
+  "contradicting_theory_ids": [
+    "81948f9e-8448-47c4-9c5d-0b55043f9bd4",
+    "82681e0c-e55e-4663-94a9-0dadb59326cd",
+    "92c4b11d-fa62-4f5f-a495-88b825355538"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "ff3fd259-48c9-40b8-8db2-6a5601b8ad7c",
+      "created_at": "2026-06-29T09:56:45.401423+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "expanded"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "05a79df2-3aa4-43f3-9ac4-0974afacb44e",
+      "created_at": "2026-06-29T09:56:45.402195+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volume_state": "low"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 4,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

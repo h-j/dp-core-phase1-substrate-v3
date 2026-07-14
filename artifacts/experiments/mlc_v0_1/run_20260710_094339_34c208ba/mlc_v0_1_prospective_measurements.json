@@ -1,0 +1,32 @@
+[
+  {
+    "proposition_id": "PROP_WORLD_A_SEED_42",
+    "candidate_effect": 0.9027,
+    "control_effect": 0.5517,
+    "comparative_effect": 0.3509,
+    "prospective_adequacy": "PASS",
+    "prospective_coverage": "PASS",
+    "active_count": 226,
+    "control_count": 174
+  },
+  {
+    "proposition_id": "PROP_WORLD_B_SEED_42",
+    "candidate_effect": 0.1903,
+    "control_effect": 0.5517,
+    "comparative_effect": -0.3615,
+    "prospective_adequacy": "PASS",
+    "prospective_coverage": "PASS",
+    "active_count": 226,
+    "control_count": 174
+  },
+  {
+    "proposition_id": "PROP_WORLD_C2_SEED_42",
+    "candidate_effect": 0.5841,
+    "control_effect": 0.5517,
+    "comparative_effect": 0.0323,
+    "prospective_adequacy": "PASS",
+    "prospective_coverage": "PASS",
+    "active_count": 226,
+    "control_count": 174
+  }
+]

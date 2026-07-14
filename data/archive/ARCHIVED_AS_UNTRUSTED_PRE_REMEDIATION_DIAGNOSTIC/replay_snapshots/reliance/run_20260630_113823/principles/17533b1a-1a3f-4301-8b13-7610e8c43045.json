@@ -1,0 +1,63 @@
+{
+  "id": "17533b1a-1a3f-4301-8b13-7610e8c43045",
+  "created_at": "2026-06-30T07:28:05.716838+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where volume expansion is synchronized with increased participation and volatility, but breaks down when volume expansion occurs independently of these factors.",
+  "associated_lineage_ids": [
+    "e23f7dd2-0475-4e72-8635-8172b7f28f7e",
+    "406884ae-b852-4f57-8da7-5c393989aa3c"
+  ],
+  "supporting_theory_ids": [
+    "e23f7dd2-0475-4e72-8635-8172b7f28f7e",
+    "406884ae-b852-4f57-8da7-5c393989aa3c"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "d52e2321-237e-4fd3-9692-c7e42950c140",
+      "created_at": "2026-06-30T07:28:05.716603+00:00",
+      "target_component": "volume_expansion",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "618fce02-8f28-4a94-88f8-ef65c36419a1",
+      "created_at": "2026-06-30T07:28:05.716731+00:00",
+      "target_component": "volume_expansion",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volatility_regime": "expanded"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 25,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 1,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 4.95
+}

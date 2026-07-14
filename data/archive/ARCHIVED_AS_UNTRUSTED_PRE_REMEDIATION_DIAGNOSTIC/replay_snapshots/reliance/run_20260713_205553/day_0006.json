@@ -1,0 +1,345 @@
+{
+  "step": 6,
+  "date": "2026-07-07",
+  "observation": "[volume elevated, range expanding, delivery:moderate, fii:selling, sector:leading, RELIANCE focus] candle expansion participation normal (bearish confirmed) RELIANCE closed lower with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is experiencing a bearish trend with moderate to high volatility, indicating a potential reversal in the stock's upward momentum. The overall market sentiment remains mixed, and there is no clear indication of a strong direction for the RELIANCE stock.",
+  "theory": "In a neutral market regime, adjusted volatility expansion mechanisms lead to reduced price ranges, implying that increased market uncertainty contracts price variability in liquidity-constrained environments.",
+  "theory_summary_structured": {
+    "id": "5cb3bc75-f0b9-4883-928e-0736d01c715e",
+    "created_at": "2026-07-13 15:27:58.336830+00:00",
+    "mechanism": "",
+    "claim": "In a neutral market regime, adjusted volatility expansion mechanisms lead to reduced price ranges, implying that increased market uncertainty contracts price variability in liquidity-constrained environments.",
+    "if_branch": {
+      "id": "81a7df5a-dc93-49f2-a458-79b1c56e96c2",
+      "created_at": "2026-07-13 15:35:41.056455+00:00",
+      "condition": "liquidity_constrained_market_regime",
+      "action": "promote_VOLATILITY_EXPANSION_ADJUSTMENT_2"
+    },
+    "else_branch": {
+      "id": "a7e95b5d-8f40-4c07-bbc8-8e2b0e29957c",
+      "created_at": "2026-07-13 15:35:41.056517+00:00",
+      "condition": "not_liquidity_constrained_market_regime",
+      "action": "demote_VOLATILITY_COMPRESSION"
+    },
+    "unless": "",
+    "falsified_if": "MECH_001",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "818edc44-c666-43c9-ac05-44837de83ffc",
+        "created_at": "2026-07-13 15:35:38.973385+00:00",
+        "component_id": "VOLATILITY_EXPANSION_ADJUSTMENT_2",
+        "description": "Adjusted volatility expansion leading to reduced price ranges in a liquidity-constrained market regime.",
+        "observable": "VOLATILITY_EXPANSION_ADJUSTMENT",
+        "expected_behavior": "PRICE_RANGE_CONTRACTING",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_COMPRESSION"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_004"
+      }
+    ],
+    "falsification_conditions": [
+      "VOLATILITY_COMPRESSION: volatility_expansion",
+      "VOLATILITY_EXPANSION_ADJUSTMENT: price_range_contracting"
+    ],
+    "reuse_decision": null,
+    "trigger_definition": null,
+    "target_definition": null,
+    "scope_definition": null,
+    "expected_direction": null,
+    "contradiction_definition": null,
+    "mechanism_type": null,
+    "causal_direction": null,
+    "driver": null,
+    "mediator_or_process": null,
+    "target_effect": null
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.6646,
+    "reflection": 0.3961,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.34060170486060426,
+    "indicators": [
+      "Structural: Field conflict: In a neutral market regime, ad vs Compressed volatility through ; Low semantic similarity: MECH_001... vs MOMENTUM_DAMPENING...; Low semantic similarity: In a neutral market ... vs market_conditions:le...; Low semantic similarity: liquidity_constraine... vs market_conditions:le...",
+      "Structural: Field conflict: In a neutral market regime, ad vs Compressed volatility through ; Low semantic similarity: MECH_001... vs MOMENTUM_DAMPENING...; Low semantic similarity: In a neutral market ... vs volume_spike OR deli...; Low semantic similarity: liquidity_constraine... vs volume_spike OR deli...; Low semantic similarity: not_liquidity_constr... vs false: demote mechan...",
+      "Structural: Field conflict: In a neutral market regime, ad vs Compressed volatility through ; Low semantic similarity: MECH_001... vs DELIVERY_EXHAUSTION...; Low semantic similarity: In a neutral market ... vs volume > 1000 and ga...; Low semantic similarity: liquidity_constraine... vs volume > 1000 and ga...; Low semantic similarity: not_liquidity_constr... vs false: demote...; Volatility: expansion vs stability",
+      "Structural: Low semantic similarity: In a neutral market ... vs Increased volatility...; Low semantic similarity: MECH_001... vs never...; Low semantic similarity: In a neutral market ... vs weak_move && RELIANC...; Low semantic similarity: liquidity_constraine... vs weak_move && RELIANC...; Low semantic similarity: not_liquidity_constr... vs otherwise: demote ME...",
+      "Structural: Low semantic similarity: In a neutral market ... vs Increased volatility...; Low semantic similarity: MECH_001... vs never...; Low semantic similarity: In a neutral market ... vs VOLATILITY_EXPANSION...; Low semantic similarity: liquidity_constraine... vs VOLATILITY_EXPANSION...; Field conflict: not_liquidity_constrained_mark vs VOLATILITY_EXPANSION <= 0.5: R"
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "a1e1e936-df47-4480-928c-bd748c058839",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "c74bfb31-fcaa-4ff4-8caa-162542a5fe6e",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "d4ce5d8c-9c2f-43d6-af32-ae4604bfba91",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "0a4d6ba1-4e96-4471-8b4a-2389f530d08b",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "c42b98d3-e0ad-494e-b410-bd52b6747ec6",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 5 contradictions with a total score of 0.34."
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "mixed",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-07-07",
+    "trend": "closed_lower",
+    "volatility_state": "compressed",
+    "sentiment": "risk_off",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.341,
+    "active_theory_count": 6,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-06-29",
+      "similarity": 0.63,
+      "active_theories": [
+        "bc43fedf5a8669e0"
+      ],
+      "contradictions": [],
+      "confidence": 0.24,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-07-06",
+      "similarity": 0.628,
+      "active_theories": [
+        "bc43fedf5a8669e0",
+        "825f24501c94113e",
+        "097d3bda7d394423"
+      ],
+      "contradictions": [
+        "Structural: Field conflict: Compressed volatility through  vs Compressed volatility through ; Low semantic similarity: MOMENTUM_DAMPENING... vs DELIVERY_EXHAUSTION...; Low semantic similarity: Compressed volatilit... vs volume > 1000 and ga...; Low semantic similarity: market_conditions:le... vs volume > 1000 and ga...; Low semantic similarity: market_conditions:li... vs false: demote...",
+        "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Low semantic similarity: Compressed volatilit... vs weak_move && RELIANC...; Field conflict: market_conditions:leading_stro vs weak_move && RELIANCE_focus: p; Low semantic similarity: market_conditions:li... vs otherwise: demote ME...",
+        "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Field conflict: Compressed volatility through  vs VOLATILITY_EXPANSION > 0.5: AD; Low semantic similarity: market_conditions:le... vs VOLATILITY_EXPANSION...; Low semantic similarity: market_conditions:li... vs VOLATILITY_EXPANSION..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-06-30",
+      "similarity": 0.586,
+      "active_theories": [
+        "bc43fedf5a8669e0"
+      ],
+      "contradictions": [
+        "Structural: Field conflict: Increased volatility leads to  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: Increased volatility... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs never: ignore...; Participation: weakening vs elevated"
+      ],
+      "confidence": 0.482,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-07-07",
+      "policy_name": "Baseline",
+      "action": "buy",
+      "conviction": 0.651,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-07-07",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.651,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-07-07",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.651,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.24915095826400036,
+    "label": "weak"
+  },
+  "reflection": "The observed market conditions contradict the theory's prediction that adjusted volatility expansion mechanisms lead to reduced price ranges in a neutral market regime. Specifically, the elevated volume, moderate delivery, leading sector focus, and RELIANCE focus suggest a strong bullish sentiment, which is inconsistent with the expected contraction of price variability. The detected contradictions have a total score of 0.34, indicating that the theory's falsifiability boundary conditions are not met. The regime subtype remains neutral, but this does not necessarily imply that the theory is supported.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 4,
+    "avg_usefulness": 0.143,
+    "last_seen": "2026-07-07",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 2,
+      "range_bound": 1,
+      "uncertain": 0
+    },
+    "falsified_count": 2
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 6,
+    "date": "2026-07-07",
+    "contradiction_count": 5,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.7368421052631579,
+    "avg_contradiction_severity": 0.3887910085584932,
+    "highest_contradiction": 0.43108995093069424,
+    "theory_count": 6,
+    "active_theories": 6,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 6,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 3.6666666666666665,
+    "longest_surviving_theory": 7,
+    "theory_mutation_count": 3,
+    "avg_confidence": 0.16138571428571427,
+    "confidence_delta": -0.24,
+    "confidence_volatility": 0.19069341458830438,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 5.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.5,
+    "memory_reference_count": 0,
+    "critique_density": 0.023529411764705882,
+    "avg_abstraction_length": 40.0,
+    "compression_ratio": 1.25,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 25,
+    "mechanism_count": 1,
+    "conditional_clauses_count": 2,
+    "exceptions_added": 0,
+    "mechanisms_retired_count": 2,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 0,
+    "mechanism_stability": 0.0,
+    "words_before_mutation": 23,
+    "words_after_mutation": 25,
+    "mechanisms_before_mutation": 4,
+    "mechanisms_after_mutation": 1,
+    "extras": {
+      "observation_length": 32,
+      "theory_text": "In a neutral market regime, adjusted volatility expansion mechanisms lead to reduced price ranges, implying that increased market uncertainty contracts price variability in liquidity-constrained environments.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 0.34.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "mixed",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-07-07",
+        "trend": "closed_lower",
+        "volatility_state": "compressed",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.341,
+        "active_theory_count": 6,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-29",
+          "similarity": 0.63,
+          "active_theories": [
+            "bc43fedf5a8669e0"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-07-06",
+          "similarity": 0.628,
+          "active_theories": [
+            "bc43fedf5a8669e0",
+            "825f24501c94113e",
+            "097d3bda7d394423"
+          ],
+          "contradictions": [
+            "Structural: Field conflict: Compressed volatility through  vs Compressed volatility through ; Low semantic similarity: MOMENTUM_DAMPENING... vs DELIVERY_EXHAUSTION...; Low semantic similarity: Compressed volatilit... vs volume > 1000 and ga...; Low semantic similarity: market_conditions:le... vs volume > 1000 and ga...; Low semantic similarity: market_conditions:li... vs false: demote...",
+            "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Low semantic similarity: Compressed volatilit... vs weak_move && RELIANC...; Field conflict: market_conditions:leading_stro vs weak_move && RELIANCE_focus: p; Low semantic similarity: market_conditions:li... vs otherwise: demote ME...",
+            "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Field conflict: Compressed volatility through  vs VOLATILITY_EXPANSION > 0.5: AD; Low semantic similarity: market_conditions:le... vs VOLATILITY_EXPANSION...; Low semantic similarity: market_conditions:li... vs VOLATILITY_EXPANSION..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-30",
+          "similarity": 0.586,
+          "active_theories": [
+            "bc43fedf5a8669e0"
+          ],
+          "contradictions": [
+            "Structural: Field conflict: Increased volatility leads to  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: Increased volatility... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs never: ignore...; Participation: weakening vs elevated"
+          ],
+          "confidence": 0.482,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.24915095826400036,
+        "label": "weak"
+      }
+    }
+  }
+}

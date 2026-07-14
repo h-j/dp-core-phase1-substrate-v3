@@ -1,0 +1,9 @@
+{
+  "id": "607b9de1-af40-40ff-afb5-729d91414ccf",
+  "created_at": "2026-07-04T12:05:27.784470+00:00",
+  "open_question_id": "7a72ffdc-8c4a-45c5-9ee1-9e465db94853",
+  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_v3'",
+  "candidate_data_source": "FII/DII Flows & Order Book Depth",
+  "expected_explanatory_value": "To resolve structural failure of component 'price_structure_v3' under neutral regime",
+  "priority": "HIGH"
+}

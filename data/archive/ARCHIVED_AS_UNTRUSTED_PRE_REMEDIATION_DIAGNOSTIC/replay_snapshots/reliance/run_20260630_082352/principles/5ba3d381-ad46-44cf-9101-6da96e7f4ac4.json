@@ -1,0 +1,74 @@
+{
+  "id": "5ba3d381-ad46-44cf-9101-6da96e7f4ac4",
+  "created_at": "2026-06-30T03:11:24.968329+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid under market conditions characterized by moderate to high volume expansion and volatility, with a trend persistence that leans towards range-bound or bullish dominance.",
+  "associated_lineage_ids": [
+    "c2390607-3979-4dd7-8b36-5d409e008c26",
+    "e2179981-8e61-401a-95c3-e891052f0b00",
+    "44f8fc63-90c2-4a44-9636-7c90dfcb9e53",
+    "d8349ead-72b5-489d-8ee9-489ae38c5400",
+    "da1263aa-73c7-4158-8f85-e1e05ce616b0",
+    "5f17ce93-9a41-4d17-8a12-57b086a5fdd0",
+    "09f94250-73fe-4a4d-a06d-3c5e91f05fcc",
+    "c72fc413-eabc-42dd-b151-4ca5bfcc07ec",
+    "d1f340af-40a8-4894-93f1-f514bfd1b259",
+    "8f1060ba-31a8-4ced-9f63-b5f5ac4b6984",
+    "2a395408-5fd1-4b70-b23c-1744acef3573",
+    "4802256e-e3d6-411c-b269-73a0c6932dad"
+  ],
+  "supporting_theory_ids": [
+    "4802256e-e3d6-411c-b269-73a0c6932dad",
+    "09f94250-73fe-4a4d-a06d-3c5e91f05fcc",
+    "44f8fc63-90c2-4a44-9636-7c90dfcb9e53",
+    "d1f340af-40a8-4894-93f1-f514bfd1b259",
+    "c72fc413-eabc-42dd-b151-4ca5bfcc07ec",
+    "e2179981-8e61-401a-95c3-e891052f0b00",
+    "8f1060ba-31a8-4ced-9f63-b5f5ac4b6984"
+  ],
+  "contradicting_theory_ids": [
+    "da1263aa-73c7-4158-8f85-e1e05ce616b0",
+    "c2390607-3979-4dd7-8b36-5d409e008c26",
+    "2a395408-5fd1-4b70-b23c-1744acef3573",
+    "d8349ead-72b5-489d-8ee9-489ae38c5400",
+    "5f17ce93-9a41-4d17-8a12-57b086a5fdd0"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "f7293b40-aa54-4324-9aea-32be95dbf3c2",
+      "created_at": "2026-06-30T03:11:24.967076+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "5a8dc23b-ea54-49a9-a994-2b708750ced6",
+      "created_at": "2026-06-30T03:11:24.968208+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": [
+          "range_bound",
+          "bullish"
+        ]
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 12,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

@@ -1,0 +1,61 @@
+{
+  "id": "0dbe1e69-c163-4a95-85a2-1dd074ea3c82",
+  "created_at": "2026-06-30T04:18:38.235070+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid when the market is in a range-bound regime with increasing volatility and moderate short-term momentum, but breaks down when volume expansion occurs without corresponding participation or when volatility increases without strengthening short-term momentum.",
+  "associated_lineage_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7"
+  ],
+  "supporting_theory_ids": [
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7"
+  ],
+  "contradicting_theory_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "043b3a75-b4a0-4c43-9781-23e8f26ace63",
+      "created_at": "2026-06-30T04:18:38.234937+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "compressed",
+        "volume_state": "high"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "28592862-7a6e-4e0c-b71d-e73bc8d465a1",
+      "created_at": "2026-06-30T04:18:38.234996+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volatility_regime": "expanded",
+        "volume_state": "normal"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 5,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

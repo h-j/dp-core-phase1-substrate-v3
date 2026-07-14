@@ -1,0 +1,85 @@
+{
+  "id": "07465dce-96c2-487d-9f2f-9f97981eb2c1",
+  "created_at": "2026-06-30T03:04:24.222789+00:00",
+  "status": "retired",
+  "statement": "The component expectation 'price_structure' is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+  "associated_lineage_ids": [
+    "c2390607-3979-4dd7-8b36-5d409e008c26",
+    "d8349ead-72b5-489d-8ee9-489ae38c5400",
+    "44f8fc63-90c2-4a44-9636-7c90dfcb9e53",
+    "da1263aa-73c7-4158-8f85-e1e05ce616b0",
+    "09f94250-73fe-4a4d-a06d-3c5e91f05fcc",
+    "d1f340af-40a8-4894-93f1-f514bfd1b259",
+    "2a395408-5fd1-4b70-b23c-1744acef3573",
+    "4802256e-e3d6-411c-b269-73a0c6932dad"
+  ],
+  "supporting_theory_ids": [
+    "c2390607-3979-4dd7-8b36-5d409e008c26",
+    "d8349ead-72b5-489d-8ee9-489ae38c5400",
+    "44f8fc63-90c2-4a44-9636-7c90dfcb9e53",
+    "da1263aa-73c7-4158-8f85-e1e05ce616b0",
+    "09f94250-73fe-4a4d-a06d-3c5e91f05fcc",
+    "d1f340af-40a8-4894-93f1-f514bfd1b259",
+    "2a395408-5fd1-4b70-b23c-1744acef3573",
+    "4802256e-e3d6-411c-b269-73a0c6932dad"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "3b451c1e-c0ef-49b1-a109-024fbbccc2dd",
+      "created_at": "2026-06-30T03:04:24.222749+00:00",
+      "target_component": "price_structure",
+      "expected_status": "passed or failed",
+      "applicability_filter": {
+        "regime_subtype": "consolidated value or null if generic",
+        "volatility_regime": "consolidated value or null if generic"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 4,
+  "revision_history": [
+    {
+      "id": "02e07ac8-68cf-40da-ab57-39cda13d4c0c",
+      "created_at": "2026-06-30T02:59:33.440623+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation 'price_structure' is valid under market conditions where regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with high or normal volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "86a0cf88-f747-46ed-a4dd-c0e8f179386e",
+      "created_at": "2026-06-30T03:01:02.038273+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation 'price_structure' is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "b8418c9f-7bfc-4b53-9362-0eab29444d5b",
+      "created_at": "2026-06-30T03:02:38.618253+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation 'price_structure' is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "d7d786c6-dab1-44ea-bc85-498855f77289",
+      "created_at": "2026-06-30T03:04:24.222712+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation 'price_structure' is valid under market conditions where the regime subtype and volatility regime are in a state of balance, momentum, or range-bound, with moderate volume state. The expectation breaks down when either momentum or volatility dominates, the regime subtype shifts to trend or bearish dominance, or when the volume state is low.",
+      "change_reason": "consolidated via hierarchical merging"
+    }
+  ],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

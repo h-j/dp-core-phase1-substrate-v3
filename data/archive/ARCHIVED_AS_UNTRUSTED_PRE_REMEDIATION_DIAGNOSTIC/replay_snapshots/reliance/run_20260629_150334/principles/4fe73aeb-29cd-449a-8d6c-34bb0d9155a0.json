@@ -1,0 +1,56 @@
+{
+  "id": "4fe73aeb-29cd-449a-8d6c-34bb0d9155a0",
+  "created_at": "2026-06-29T09:37:45.295491+00:00",
+  "status": "retired",
+  "statement": "The component expectation 'price_range_bound' is valid under market conditions where regime subtype is momentum or trend, and volatility regime is compressed or normal, while volume state can be high, low, or normal.",
+  "associated_lineage_ids": [
+    "400e0ccf-639d-4677-b64c-d22acfec7f9f",
+    "b141c7b7-80db-44d8-b7bd-db2474a080f8",
+    "b65c957e-3c7c-4145-bce8-08ea08dda7c7",
+    "cc1f03e1-20a7-4e1d-8c58-1e6982765dcc"
+  ],
+  "supporting_theory_ids": [
+    "b65c957e-3c7c-4145-bce8-08ea08dda7c7",
+    "cc1f03e1-20a7-4e1d-8c58-1e6982765dcc",
+    "400e0ccf-639d-4677-b64c-d22acfec7f9f",
+    "b141c7b7-80db-44d8-b7bd-db2474a080f8"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "5aa196a9-cacd-433f-8ef9-8739a7a49a6f",
+      "created_at": "2026-06-29T09:37:45.295234+00:00",
+      "target_component": "price_range_bound",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "9dd0e5eb-0a77-42cb-be38-1a232933cebd",
+      "created_at": "2026-06-29T09:37:45.295350+00:00",
+      "target_component": "price_range_bound",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "trend",
+        "volatility_regime": "expanded"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 4,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

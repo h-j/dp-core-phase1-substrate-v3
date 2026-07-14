@@ -1,0 +1,162 @@
+{
+  "2cb2bbe68a65aa79": {
+    "id": "2cb2bbe68a65aa79",
+    "theory_id": "98d842ea061d549a",
+    "description": "structural: low semantic similarity: the revised rate of ... vs regime is driven by ...; low semantic similarity: the revised rate of ... vs participation widens...; low semantic similarity: volume_expansion_rev... vs participation widens...; low semantic similarity: false: ... vs volatility remains c...",
+    "created_at_step": 1,
+    "resolved_at_step": 2,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.089
+  },
+  "e09191e76af21911": {
+    "id": "e09191e76af21911",
+    "theory_id": "77514420273345d7",
+    "description": "structural: low semantic similarity: mech_002_and_mech_00... vs decisive close below...; low semantic similarity: volume expansion dur... vs volume_expansion_rev...; low semantic similarity: range_expanding_and_... vs volume_expansion_rev...; low semantic similarity: otherwise: remove_al... vs false: ...; participation: weakening vs elevated",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.7762
+  },
+  "4a84bcfefa34b45c": {
+    "id": "4a84bcfefa34b45c",
+    "theory_id": "77514420273345d7",
+    "description": "structural: low semantic similarity: volume expansion dur... vs regime is driven by ...; low semantic similarity: mech_002_and_mech_00... vs decisive close below...; low semantic similarity: volume expansion dur... vs participation widens...; low semantic similarity: range_expanding_and_... vs participation widens...; low semantic similarity: otherwise: remove_al... vs volatility remains c...; semantic contradiction: concept 'volatility_expansion' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_accumulation' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.7762
+  },
+  "092edb6f83849958": {
+    "id": "092edb6f83849958",
+    "theory_id": "a96d698c18bfc34e",
+    "description": "structural: low semantic similarity: volume expansion dur... vs range_expanding_and_...; field conflict: volume dry and gap down and de vs range_expanding_and_short_term; trend: continuation vs rejection",
+    "created_at_step": 4,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.82515
+  },
+  "9540c897e8ef51eb": {
+    "id": "9540c897e8ef51eb",
+    "theory_id": "a96d698c18bfc34e",
+    "description": "structural: low semantic similarity: volume expansion dur... vs the revised rate of ...; low semantic similarity: mech_002 and mech_00... vs decisive close below...; low semantic similarity: volume expansion dur... vs volume_expansion_rev...; low semantic similarity: volume dry and gap d... vs volume_expansion_rev...; low semantic similarity: otherwise: retain cu... vs false: ...; trend: continuation vs rejection; participation: weakening vs elevated",
+    "created_at_step": 4,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.82515
+  },
+  "eed733729708e866": {
+    "id": "eed733729708e866",
+    "theory_id": "a96d698c18bfc34e",
+    "description": "structural: low semantic similarity: volume expansion dur... vs regime is driven by ...; low semantic similarity: mech_002 and mech_00... vs decisive close below...; low semantic similarity: volume expansion dur... vs participation widens...; low semantic similarity: volume dry and gap d... vs participation widens...; low semantic similarity: otherwise: retain cu... vs volatility remains c...; semantic contradiction: concept 'volatility_expansion' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'institutional_accumulation' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 4,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.82515
+  },
+  "028dbdba00819f34": {
+    "id": "028dbdba00819f34",
+    "theory_id": "8ec4e67140dd7f80",
+    "description": "structural: low semantic similarity: volume expansion dur... vs volume dry and gap d...; low semantic similarity: volume_expansion_rev... vs volume dry and gap d...; low semantic similarity: otherwise: demote... vs otherwise: retain cu...; trend: continuation vs rejection",
+    "created_at_step": 6,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.35216
+  },
+  "daec7d6e5370e08f": {
+    "id": "daec7d6e5370e08f",
+    "theory_id": "8ec4e67140dd7f80",
+    "description": "structural: low semantic similarity: volume expansion dur... vs range_expanding_and_...; low semantic similarity: volume_expansion_rev... vs range_expanding_and_...; low semantic similarity: otherwise: demote... vs otherwise: remove_al...",
+    "created_at_step": 6,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.35216
+  },
+  "5146288b88c83f0b": {
+    "id": "5146288b88c83f0b",
+    "theory_id": "8ec4e67140dd7f80",
+    "description": "structural: low semantic similarity: volume expansion dur... vs the revised rate of ...; low semantic similarity: mech_002 and mech_00... vs decisive close below...; low semantic similarity: volume expansion dur... vs volume_expansion_rev...; low semantic similarity: volume_expansion_rev... vs volume_expansion_rev...; low semantic similarity: otherwise: demote... vs false: ...; participation: weakening vs elevated",
+    "created_at_step": 6,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.35216
+  },
+  "e3f5d0e1e3d002a0": {
+    "id": "e3f5d0e1e3d002a0",
+    "theory_id": "7734b00caead9ca1",
+    "description": "structural: low semantic similarity: volume_expansion_rev... vs mech_002 and mech_00...; low semantic similarity: volume expansion dur... vs volume_expansion_rev...; low semantic similarity: volume > 0.5: add ne... vs volume_expansion_rev...",
+    "created_at_step": 7,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.605095744680851
+  },
+  "d6b2f4a7ad7ff293": {
+    "id": "d6b2f4a7ad7ff293",
+    "theory_id": "7734b00caead9ca1",
+    "description": "structural: low semantic similarity: volume_expansion_rev... vs mech_002 and mech_00...; field conflict: volume expansion during up day vs volume dry and gap down and de; low semantic similarity: volume > 0.5: add ne... vs volume dry and gap d...; low semantic similarity: otherwise: demote... vs otherwise: retain cu...; trend: continuation vs rejection",
+    "created_at_step": 7,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.605095744680851
+  },
+  "9e1cc392370a15b5": {
+    "id": "9e1cc392370a15b5",
+    "theory_id": "7734b00caead9ca1",
+    "description": "structural: low semantic similarity: volume_expansion_rev... vs mech_002_and_mech_00...; low semantic similarity: volume expansion dur... vs range_expanding_and_...; low semantic similarity: volume > 0.5: add ne... vs range_expanding_and_...; low semantic similarity: otherwise: demote... vs otherwise: remove_al...",
+    "created_at_step": 7,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.605095744680851
+  },
+  "1d38b6a4461f651c": {
+    "id": "1d38b6a4461f651c",
+    "theory_id": "7734b00caead9ca1",
+    "description": "structural: low semantic similarity: volume_expansion_rev... vs decisive close below...; low semantic similarity: volume expansion dur... vs volume_expansion_rev...; low semantic similarity: otherwise: demote... vs false: ...; participation: weakening vs elevated",
+    "created_at_step": 7,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.5979276595744681
+  },
+  "4dfcf5b3a73ebcf8": {
+    "id": "4dfcf5b3a73ebcf8",
+    "theory_id": "2454d139dc95756a",
+    "description": "structural: low semantic similarity: volume expansion dur... vs volume > 0.5: add ne...; low semantic similarity: : ... vs volume > 0.5: add ne...; low semantic similarity: : ... vs otherwise: demote...",
+    "created_at_step": 9,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.08792
+  },
+  "3b10b1c6dcdbb03c": {
+    "id": "3b10b1c6dcdbb03c",
+    "theory_id": "2454d139dc95756a",
+    "description": "structural: low semantic similarity: volume_expansion_rev... vs mech_002 and mech_00...; low semantic similarity: volume expansion dur... vs volume_expansion_rev...; low semantic similarity: : ... vs volume_expansion_rev...; low semantic similarity: : ... vs otherwise: demote...",
+    "created_at_step": 9,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.08792
+  },
+  "8f5897761b8ed565": {
+    "id": "8f5897761b8ed565",
+    "theory_id": "2454d139dc95756a",
+    "description": "structural: low semantic similarity: volume_expansion_rev... vs mech_002 and mech_00...; low semantic similarity: volume expansion dur... vs volume dry and gap d...; low semantic similarity: : ... vs volume dry and gap d...; low semantic similarity: : ... vs otherwise: retain cu...",
+    "created_at_step": 9,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.08792
+  }
+}

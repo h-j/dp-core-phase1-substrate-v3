@@ -1,0 +1,9 @@
+{
+  "id": "85cda805-ffd3-46ba-bb3d-99f3162a5261",
+  "created_at": "2026-07-13T15:34:57.187525+00:00",
+  "open_question_id": "25c386bf-604c-47e0-8f48-5f0d4846a1c0",
+  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'VOLATILITY_COMPRESSION'",
+  "candidate_data_source": "FII/DII Flows & Order Book Depth",
+  "expected_explanatory_value": "To resolve structural failure of component 'VOLATILITY_COMPRESSION' under liquidity_constrained regime",
+  "priority": "HIGH"
+}

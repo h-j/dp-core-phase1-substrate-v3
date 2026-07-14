@@ -1,0 +1,368 @@
+{
+  "step": 7,
+  "date": "2026-05-08",
+  "observation": "[volume dry, range expanding, gap down, volatility expanding, short-term momentum weakening, delivery:moderate, fii:buying, sector:neutral, RELIANCE focus, asset liquidity fade] candle neutral participation weak (weak move) RELIANCE traded range-bound amid moderate volatility and breadth strengthened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is trading in a range-bound environment with moderate volatility and strengthened breadth, indicating a mixed trend persistence and overall regime.",
+  "theory": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when Asset Liquidity Fade is present, its impact on the regime shifts from primary to secondary, but only in situations where market volatility exceeds moderate levels.",
+  "theory_summary_structured": {
+    "id": "4f7300d6-8928-4185-b78d-d8a0f28e2da3",
+    "created_at": "2026-07-01 07:10:06.908701+00:00",
+    "mechanism": "The model assumes that Market Sentiment drives the regime, with Asset Liquidity Fade having a primary influence when volatility is high. Volatility Expansion and Range Boundaries are considered secondary factors that can modify the regime's behavior.",
+    "claim": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when Asset Liquidity Fade is present, its impact on the regime shifts from primary to secondary, but only in situations where market volatility exceeds moderate levels.",
+    "if_branch": {
+      "id": "a6abc2f0-09af-4499-822b-307d40418883",
+      "created_at": "2026-07-01 07:16:00.322435+00:00",
+      "condition": "Asset Liquidity Fade present and market volatility > moderate levels",
+      "action": "Primary influence of Asset Liquidity Fade on the regime"
+    },
+    "else_branch": {
+      "id": "5f211124-028b-46c6-b423-b3ee7d0b04aa",
+      "created_at": "2026-07-01 07:16:00.322503+00:00",
+      "condition": "No Asset Liquidity Fade or market volatility <= moderate levels",
+      "action": "Market Sentiment drives the regime, with Volatility Expansion and Range Boundaries as secondary considerations"
+    },
+    "unless": "Volatility Expansion present",
+    "falsified_if": "Asset Liquidity Fade has a primary influence on the regime when volatility is low or absent",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "47e23508-5f7f-4ea2-8dac-14538829ef21",
+        "created_at": "2026-07-01 07:10:06.908899+00:00",
+        "component_id": "liquidity_absorption",
+        "description": "Liquidity is absorbed as price moves up, leading to range-bound trading.",
+        "observable": "volume_state.elevated",
+        "expected_behavior": "Price remains within the established range despite volume expansion.",
+        "dependency": null,
+        "concept_tags": [
+          "LIQUIDITY_ABSORPTION",
+          "VOLATILITY_COMPRESSION"
+        ],
+        "relation_type": "CONTRADICTS"
+      },
+      {
+        "id": "2efe6c1b-1cb2-49c0-8d4d-ba724cd291d3",
+        "created_at": "2026-07-01 07:10:06.908928+00:00",
+        "component_id": "delivery_pct",
+        "description": "Delivery percentage indicates high conviction among investors.",
+        "observable": "delivery_pct.rolling_5day_average",
+        "expected_behavior": ">60%",
+        "dependency": null,
+        "concept_tags": [
+          "DELIVERY_EXHAUSTION"
+        ],
+        "relation_type": "AMPLIFIES"
+      },
+      {
+        "id": "c7ec5836-b774-4abf-ac86-505564ea381c",
+        "created_at": "2026-07-01 07:10:06.908939+00:00",
+        "component_id": "sector_zscore",
+        "description": "Sector Z-score indicates relative strength of the sector.",
+        "observable": "sector_zscore.rolling_20day_relative_strength",
+        "expected_behavior": "< -1.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE"
+        ],
+        "relation_type": "CO-OCCURS_WITH"
+      }
+    ],
+    "falsification_conditions": [
+      "delivery_pct: < 30 AND volume_state = dry",
+      "sector_zscore: > 1.5 OR fii_net/dii_net > 0"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.6546,
+    "reflection": 0.1828,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.0878,
+    "indicators": [
+      "Structural: Low semantic similarity: Asset Liquidity Fade... vs Volatility > 3 std d...; Low semantic similarity: Revised claim: Regim... vs Market Sentiment > 0...; Low semantic similarity: No Asset Liquidity F... vs Market Sentiment <= ...",
+      "Structural: Low semantic similarity: Asset Liquidity Fade... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs Market Sentiment > 0...; Low semantic similarity: Asset Liquidity Fade... vs Market Sentiment > 0...; Low semantic similarity: No Asset Liquidity F... vs Asset Liquidity Fade...",
+      "Structural: Low semantic similarity: Asset Liquidity Fade... vs liquidity_absorption...; Low semantic similarity: Revised claim: Regim... vs moderate_volatility:...; Low semantic similarity: Asset Liquidity Fade... vs moderate_volatility:...; Low semantic similarity: No Asset Liquidity F... vs normal_volatility: M...",
+      "Structural: Low semantic similarity: Asset Liquidity Fade... vs {'type': 'RegimeSubt...; Low semantic similarity: Revised claim: Regim... vs {'type': 'LiquidityA...; Low semantic similarity: Asset Liquidity Fade... vs {'type': 'LiquidityA...; Low semantic similarity: No Asset Liquidity F... vs {'type': 'LiquidityA...",
+      "Structural: Low semantic similarity: Asset Liquidity Fade... vs {'condition': 'Regim...; Low semantic similarity: Revised claim: Regim... vs Liquidity Absorption...; Low semantic similarity: Asset Liquidity Fade... vs Liquidity Absorption...; Low semantic similarity: No Asset Liquidity F... vs Asset Liquidity Fade..."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "ad616751-2a51-4bfc-a67e-12f4a6da2dd6",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "122d4957-b12b-4d9c-9e01-760e6b9b6ab0",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "a2a28d05-5bd8-46e1-add1-2a46b7add46a",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "464c088e-dd5e-4ae5-b7df-4b4c9e4ccbb2",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "890f15d4-8448-4fa4-a555-59651109d7c6",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 5 contradictions with a total score of 0.09."
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-05-08",
+    "trend": "range_bound",
+    "volatility_state": "moderate",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.088,
+    "active_theory_count": 8,
+    "breadth_proxy": "strengthened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-05-07",
+      "similarity": 0.709,
+      "active_theories": [
+        "f4b61f8b40c5502d",
+        "a79b667e09f9e8f3",
+        "99f833606d7db875"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: Volatility > 3 std d... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs Market Sentiment > 0...; Low semantic similarity: Market Sentiment <= ... vs Asset Liquidity Fade...",
+        "Structural: Low semantic similarity: Volatility > 3 std d... vs liquidity_absorption...; Low semantic similarity: Revised claim: Regim... vs moderate_volatility:...; Low semantic similarity: Market Sentiment > 0... vs moderate_volatility:...; Low semantic similarity: Market Sentiment <= ... vs normal_volatility: M...",
+        "Structural: Low semantic similarity: Volatility > 3 std d... vs {'type': 'RegimeSubt...; Low semantic similarity: Revised claim: Regim... vs {'type': 'LiquidityA...; Low semantic similarity: Market Sentiment > 0... vs {'type': 'LiquidityA...; Low semantic similarity: Market Sentiment <= ... vs {'type': 'LiquidityA..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-05",
+      "similarity": 0.683,
+      "active_theories": [
+        "f4b61f8b40c5502d",
+        "a79b667e09f9e8f3",
+        "99f833606d7db875"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: liquidity_absorption... vs {'condition': 'Regim...; Low semantic similarity: Revised claim: Regim... vs Liquidity Absorption...; Low semantic similarity: moderate_volatility:... vs Liquidity Absorption...; Low semantic similarity: normal_volatility: M... vs Asset Liquidity Fade...",
+        "Structural: Low semantic similarity: liquidity_absorption... vs Regime subtype remai...; Low semantic similarity: Revised claim: Regim... vs Volume expansion > 2...; Low semantic similarity: moderate_volatility:... vs Volume expansion > 2...; Low semantic similarity: normal_volatility: M... vs Short-term momentum ...",
+        "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: liquidity_absorption... vs price breaks below t...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: moderate_volatility:... vs delivery_pct > 50 AN...; Low semantic similarity: normal_volatility: M... vs sector_zscore < -1.5..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-06",
+      "similarity": 0.656,
+      "active_theories": [
+        "f4b61f8b40c5502d",
+        "a79b667e09f9e8f3",
+        "99f833606d7db875"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: Asset Liquidity Fade... vs liquidity_absorption...; Low semantic similarity: Revised claim: Regim... vs moderate_volatility:...; Low semantic similarity: Market Sentiment > 0... vs moderate_volatility:...; Low semantic similarity: Asset Liquidity Fade... vs normal_volatility: M...",
+        "Structural: Low semantic similarity: Asset Liquidity Fade... vs {'type': 'RegimeSubt...; Low semantic similarity: Revised claim: Regim... vs {'type': 'LiquidityA...; Low semantic similarity: Market Sentiment > 0... vs {'type': 'LiquidityA...; Low semantic similarity: Asset Liquidity Fade... vs {'type': 'LiquidityA...",
+        "Structural: Low semantic similarity: Asset Liquidity Fade... vs {'condition': 'Regim...; Low semantic similarity: Revised claim: Regim... vs Liquidity Absorption...; Low semantic similarity: Asset Liquidity Fade... vs Asset Liquidity Fade..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-05-08",
+      "policy_name": "Baseline",
+      "action": "hold",
+      "conviction": 0.44,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-05-08",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.44,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-05-08",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.44,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.17176733333333333,
+    "label": "weak"
+  },
+  "reflection": "Neutral Regime Subtype is supported by the observation. However, the regime's falsifiability boundary conditions are not met due to the lack of additional confirmation signals. The observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. The theory's specific falsifiability boundary conditions require that Asset Liquidity Fade has a significant impact on the regime when market volatility exceeds moderate levels.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 8,
+    "avg_usefulness": 0.22,
+    "last_seen": "2026-05-08",
+    "historical_resolution": {
+      "higher": 2,
+      "lower": 1,
+      "range_bound": 4,
+      "uncertain": 0
+    },
+    "falsified_count": 5
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 7,
+    "date": "2026-05-08",
+    "contradiction_count": 5,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.7916666666666666,
+    "avg_contradiction_severity": 0.0924875,
+    "highest_contradiction": 0.098,
+    "theory_count": 8,
+    "active_theories": 8,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 7,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 4.5,
+    "longest_surviving_theory": 8,
+    "theory_mutation_count": 10,
+    "avg_confidence": 0.0884,
+    "confidence_delta": -0.292,
+    "confidence_volatility": 0.12132650163917197,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.015873015873015872,
+    "avg_abstraction_length": 21.0,
+    "compression_ratio": 0.4666666666666667,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 45,
+      "theory_text": "Revised claim: Regime is driven by Market Sentiment, with a primary influence of Asset Liquidity Fade and secondary considerations of Volatility Expansion and Range Boundaries. However, when Asset Liquidity Fade is present, its impact on the regime shifts from primary to secondary, but only in situations where market volatility exceeds moderate levels.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 0.09.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-05-08",
+        "trend": "range_bound",
+        "volatility_state": "moderate",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.088,
+        "active_theory_count": 8,
+        "breadth_proxy": "strengthened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-05-07",
+          "similarity": 0.709,
+          "active_theories": [
+            "f4b61f8b40c5502d",
+            "a79b667e09f9e8f3",
+            "99f833606d7db875"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Volatility > 3 std d... vs Asset Liquidity Fade...; Low semantic similarity: Revised claim: Regim... vs Market Sentiment > 0...; Low semantic similarity: Market Sentiment <= ... vs Asset Liquidity Fade...",
+            "Structural: Low semantic similarity: Volatility > 3 std d... vs liquidity_absorption...; Low semantic similarity: Revised claim: Regim... vs moderate_volatility:...; Low semantic similarity: Market Sentiment > 0... vs moderate_volatility:...; Low semantic similarity: Market Sentiment <= ... vs normal_volatility: M...",
+            "Structural: Low semantic similarity: Volatility > 3 std d... vs {'type': 'RegimeSubt...; Low semantic similarity: Revised claim: Regim... vs {'type': 'LiquidityA...; Low semantic similarity: Market Sentiment > 0... vs {'type': 'LiquidityA...; Low semantic similarity: Market Sentiment <= ... vs {'type': 'LiquidityA..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-05",
+          "similarity": 0.683,
+          "active_theories": [
+            "f4b61f8b40c5502d",
+            "a79b667e09f9e8f3",
+            "99f833606d7db875"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: liquidity_absorption... vs {'condition': 'Regim...; Low semantic similarity: Revised claim: Regim... vs Liquidity Absorption...; Low semantic similarity: moderate_volatility:... vs Liquidity Absorption...; Low semantic similarity: normal_volatility: M... vs Asset Liquidity Fade...",
+            "Structural: Low semantic similarity: liquidity_absorption... vs Regime subtype remai...; Low semantic similarity: Revised claim: Regim... vs Volume expansion > 2...; Low semantic similarity: moderate_volatility:... vs Volume expansion > 2...; Low semantic similarity: normal_volatility: M... vs Short-term momentum ...",
+            "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: liquidity_absorption... vs price breaks below t...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: moderate_volatility:... vs delivery_pct > 50 AN...; Low semantic similarity: normal_volatility: M... vs sector_zscore < -1.5..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-06",
+          "similarity": 0.656,
+          "active_theories": [
+            "f4b61f8b40c5502d",
+            "a79b667e09f9e8f3",
+            "99f833606d7db875"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Asset Liquidity Fade... vs liquidity_absorption...; Low semantic similarity: Revised claim: Regim... vs moderate_volatility:...; Low semantic similarity: Market Sentiment > 0... vs moderate_volatility:...; Low semantic similarity: Asset Liquidity Fade... vs normal_volatility: M...",
+            "Structural: Low semantic similarity: Asset Liquidity Fade... vs {'type': 'RegimeSubt...; Low semantic similarity: Revised claim: Regim... vs {'type': 'LiquidityA...; Low semantic similarity: Market Sentiment > 0... vs {'type': 'LiquidityA...; Low semantic similarity: Asset Liquidity Fade... vs {'type': 'LiquidityA...",
+            "Structural: Low semantic similarity: Asset Liquidity Fade... vs {'condition': 'Regim...; Low semantic similarity: Revised claim: Regim... vs Liquidity Absorption...; Low semantic similarity: Asset Liquidity Fade... vs Asset Liquidity Fade..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.17176733333333333,
+        "label": "weak"
+      }
+    }
+  }
+}

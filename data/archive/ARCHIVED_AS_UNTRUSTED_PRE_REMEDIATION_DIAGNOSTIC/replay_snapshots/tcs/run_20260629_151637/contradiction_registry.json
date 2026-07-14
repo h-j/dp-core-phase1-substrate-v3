@@ -1,0 +1,102 @@
+{
+  "0085f4618831aa5f": {
+    "id": "0085f4618831aa5f",
+    "theory_id": "8dbf5df254fcca1c",
+    "description": "structural: low semantic similarity: price breaks out of ... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: volatility > 2.5 sta... vs participation widens...; low semantic similarity: volatility <= 2.5 st... vs volatility remains c...",
+    "created_at_step": 1,
+    "resolved_at_step": 2,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.089
+  },
+  "87e1153ecd5f46a7": {
+    "id": "87e1153ecd5f46a7",
+    "theory_id": "343a9a9b90dc0c48",
+    "description": "structural: field conflict: tcs closes lower or asset rall vs price breaks out of the establ; low semantic similarity: revised claim: regim... vs volatility > 2.5 sta...; low semantic similarity: volume_confirmation ... vs volatility > 2.5 sta...; low semantic similarity: volume_confirmation ... vs volatility <= 2.5 st...",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.14787173913043478
+  },
+  "2b5cdf62ed962a86": {
+    "id": "2b5cdf62ed962a86",
+    "theory_id": "343a9a9b90dc0c48",
+    "description": "structural: low semantic similarity: tcs closes lower or ... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: volume_confirmation ... vs participation widens...; low semantic similarity: volume_confirmation ... vs volatility remains c...",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.14787173913043478
+  },
+  "dcf8c200118700fc": {
+    "id": "dcf8c200118700fc",
+    "theory_id": "d74df9bc0c39fb8d",
+    "description": "structural: low semantic similarity: regime subtype remai... vs tcs closes lower or ...; low semantic similarity: tcs closed higher am... vs volume_confirmation ...; low semantic similarity: tcs gap up or expand... vs volume_confirmation ...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.21445454545454545
+  },
+  "6d73a5a8939e18ee": {
+    "id": "6d73a5a8939e18ee",
+    "theory_id": "d74df9bc0c39fb8d",
+    "description": "structural: low semantic similarity: regime subtype remai... vs price breaks out of ...; low semantic similarity: revised claim: regim... vs volatility > 2.5 sta...; low semantic similarity: tcs closed higher am... vs volatility > 2.5 sta...; low semantic similarity: tcs gap up or expand... vs volatility <= 2.5 st...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.21445454545454545
+  },
+  "fdb073df88af5e54": {
+    "id": "fdb073df88af5e54",
+    "theory_id": "d74df9bc0c39fb8d",
+    "description": "structural: low semantic similarity: regime subtype remai... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: tcs closed higher am... vs participation widens...; field conflict: tcs gap up or expanding range vs volatility remains compressed:",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.21445454545454545
+  },
+  "6d1937dcc599d2b5": {
+    "id": "6d1937dcc599d2b5",
+    "theory_id": "ad406513a74a33b6",
+    "description": "structural: low semantic similarity: gap up or down > 1% ... vs regime subtype remai...; low semantic similarity: revised claim: regim... vs tcs closed higher am...; low semantic similarity: volume > 2x normal: ... vs tcs closed higher am...; low semantic similarity: short-term momentum ... vs tcs gap up or expand...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.0845
+  },
+  "9cbec88cb6d662d9": {
+    "id": "9cbec88cb6d662d9",
+    "theory_id": "ad406513a74a33b6",
+    "description": "structural: low semantic similarity: gap up or down > 1% ... vs tcs closes lower or ...; low semantic similarity: short-term momentum ... vs volume_confirmation ...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.0845
+  },
+  "c47d6234975bbaca": {
+    "id": "c47d6234975bbaca",
+    "theory_id": "ad406513a74a33b6",
+    "description": "structural: low semantic similarity: gap up or down > 1% ... vs price breaks out of ...; low semantic similarity: revised claim: regim... vs volatility > 2.5 sta...; low semantic similarity: volume > 2x normal: ... vs volatility > 2.5 sta...; low semantic similarity: short-term momentum ... vs volatility <= 2.5 st...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.0845
+  },
+  "f141f120860fb8f3": {
+    "id": "f141f120860fb8f3",
+    "theory_id": "ad406513a74a33b6",
+    "description": "structural: low semantic similarity: gap up or down > 1% ... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: volume > 2x normal: ... vs participation widens...; low semantic similarity: short-term momentum ... vs volatility remains c...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.0845
+  }
+}

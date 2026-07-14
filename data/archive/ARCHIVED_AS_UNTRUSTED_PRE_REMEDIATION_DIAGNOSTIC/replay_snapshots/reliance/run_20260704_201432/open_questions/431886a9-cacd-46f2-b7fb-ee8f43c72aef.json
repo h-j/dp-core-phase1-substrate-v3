@@ -1,0 +1,15 @@
+{
+  "id": "431886a9-cacd-46f2-b7fb-ee8f43c72aef",
+  "created_at": "2026-07-04T14:50:53.775174+00:00",
+  "created_at_step": 3,
+  "question_text": "Why did component 'MOMENTUM_DAMPENING' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "41e759a1-3bff-4d3d-8970-899554aab3b4"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "spike"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

@@ -1,0 +1,90 @@
+{
+  "id": "5c836271-505a-44c8-8e7d-17e86ae2b2b6",
+  "created_at": "2026-06-30T06:29:40.737883+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where the regime is driven by Absorption, and price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum.",
+  "associated_lineage_ids": [
+    "961701e7-487e-422b-abfa-747f69f2fb57",
+    "a87b8aa9-faef-4b0e-b6ac-645bf13e899c",
+    "fcaef396-6390-4f14-b111-fd26fe6835ee",
+    "13285851-484c-4ca6-bf0c-2c0f09d51185",
+    "7861ca1c-cb0a-44e6-bcf7-7452756a71ff",
+    "a4f123b3-963f-4918-ba1a-58da656edd03",
+    "2efae82d-00ed-4a3a-9689-a6d1a2ae920e",
+    "478c2004-ceb4-4533-a16f-64ac3a08aec8",
+    "273f89ce-2faa-4099-b8af-7ea6e0b2909a",
+    "653e23dd-f9a2-47c8-a1e0-23d10dab80d1",
+    "7d0bd61c-8c8d-4b6a-abd6-f45b6912e998",
+    "b3569634-e8d7-4023-9df0-7e451d2b7918",
+    "ce4876b6-a38f-4bb2-8a5f-e0e43d043062",
+    "d98c0cf5-0b20-4238-a45a-3f83be9d1b88"
+  ],
+  "supporting_theory_ids": [
+    "fcaef396-6390-4f14-b111-fd26fe6835ee",
+    "a4f123b3-963f-4918-ba1a-58da656edd03",
+    "13285851-484c-4ca6-bf0c-2c0f09d51185",
+    "d98c0cf5-0b20-4238-a45a-3f83be9d1b88",
+    "b3569634-e8d7-4023-9df0-7e451d2b7918",
+    "961701e7-487e-422b-abfa-747f69f2fb57",
+    "ce4876b6-a38f-4bb2-8a5f-e0e43d043062",
+    "a87b8aa9-faef-4b0e-b6ac-645bf13e899c",
+    "653e23dd-f9a2-47c8-a1e0-23d10dab80d1",
+    "7d0bd61c-8c8d-4b6a-abd6-f45b6912e998",
+    "7861ca1c-cb0a-44e6-bcf7-7452756a71ff",
+    "478c2004-ceb4-4533-a16f-64ac3a08aec8"
+  ],
+  "contradicting_theory_ids": [
+    "273f89ce-2faa-4099-b8af-7ea6e0b2909a",
+    "2efae82d-00ed-4a3a-9689-a6d1a2ae920e"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "00bd02ea-d53d-4e45-955e-6dead04719f9",
+      "created_at": "2026-06-30T06:29:40.737639+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "compressed",
+        "volume_state": "low"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "123ca276-0582-433d-81b5-ab9149d5c5eb",
+      "created_at": "2026-06-30T06:29:40.737737+00:00",
+      "target_component": "price_structure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volatility_regime": "expanded",
+        "volume_state": "high"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 14,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 5.0
+}

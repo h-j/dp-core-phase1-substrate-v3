@@ -1,0 +1,61 @@
+{
+  "id": "e501e006-edac-42f7-ac9f-e25a0718ccc7",
+  "created_at": "2026-06-30T04:21:45.834953+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid under market conditions characterized by moderate to high volume expansion and volatility, with a potential shift towards range-bound or trend persistence, but breaks down when volume expansion is weak or absent.",
+  "associated_lineage_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc"
+  ],
+  "supporting_theory_ids": [
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc"
+  ],
+  "contradicting_theory_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "532049e5-e7d0-4ac3-9ffa-13913a6bd9a6",
+      "created_at": "2026-06-30T04:21:45.833224+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "ac56396c-390e-4414-9141-8a48da26b965",
+      "created_at": "2026-06-30T04:21:45.834853+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 7,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

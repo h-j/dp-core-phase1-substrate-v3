@@ -75,6 +75,19 @@ class TheoryStructured(CognitionBase):
     falsification_conditions: List[str] = Field(default_factory=list)
     reuse_decision: Optional[str] = None
 
+    # Strategy B experimental fields:
+    trigger_definition: Optional[Dict[str, Any]] = None
+    target_definition: Optional[Dict[str, Any]] = None
+    scope_definition: Optional[List[Dict[str, Any]]] = None
+    expected_direction: Optional[float] = None
+    contradiction_definition: Optional[Dict[str, Any]] = None
+    mechanism_type: Optional[str] = None
+    causal_direction: Optional[str] = None
+    driver: Optional[str] = None
+    mediator_or_process: Optional[str] = None
+    target_effect: Optional[str] = None
+
+
 
 class Theory(CognitionBase):
     lineage_id: str
@@ -88,3 +101,5 @@ class Theory(CognitionBase):
     regime_continuity_score: float = 0.0
     analog_divergence_claim: str = ""
     regime_description: str = ""
+    alternative_group_id: Optional[str] = None
+

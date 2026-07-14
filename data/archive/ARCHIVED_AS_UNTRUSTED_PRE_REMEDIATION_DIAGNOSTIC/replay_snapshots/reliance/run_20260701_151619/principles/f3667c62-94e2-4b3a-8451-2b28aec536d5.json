@@ -1,0 +1,117 @@
+{
+  "id": "f3667c62-94e2-4b3a-8451-2b28aec536d5",
+  "created_at": "2026-07-02T03:27:11.645335+00:00",
+  "status": "retired",
+  "statement": "Volume confirmation is predictive when participation and volatility expand together, regardless of the regime subtype.",
+  "associated_lineage_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4",
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f",
+    "ef98a193-498c-45ce-a6ce-367538088dc9"
+  ],
+  "supporting_theory_ids": [
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f",
+    "ef98a193-498c-45ce-a6ce-367538088dc9"
+  ],
+  "contradicting_theory_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "990191ae-643e-4657-a039-0b682a1acdf6",
+      "created_at": "2026-07-02T03:27:11.644855+00:00",
+      "target_component": "volume_confirmation",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": [
+          "neutral",
+          "fatigue",
+          "pressure_loaded_range",
+          "pressure_loaded",
+          "liquidity_constrained",
+          "expansion_confirmed"
+        ],
+        "volatility_regime": [
+          "compressed",
+          "expanded",
+          "normal"
+        ]
+      },
+      "empirical_support_count": 10,
+      "empirical_failure_count": 10
+    }
+  ],
+  "confidence": 0.5263157894736842,
+  "support_count": 10,
+  "contradiction_count": 9,
+  "created_at_step": 17,
+  "revision_history": [
+    {
+      "id": "a68ea86e-30a1-49dd-9f3a-9c7fd1074d60",
+      "created_at": "2026-07-02T03:27:11.644566+00:00",
+      "revision_step": 17,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "Volume confirmation is predictive when participation and volatility expand together, regardless of the regime subtype.",
+      "change_reason": "consolidated via hierarchical merging"
+    }
+  ],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "grounded_mechanism_ids": [],
+  "valid_under": {
+    "neutral": 9,
+    "pressure_loaded_range": 1
+  },
+  "fails_under": {
+    "neutral": 7,
+    "fatigue": 1,
+    "pressure_loaded_range": 1
+  },
+  "competing_principle_ids": [],
+  "maturation_history": [
+    {
+      "id": "22e766ca-fed0-42fb-a374-8e1a26b91eca",
+      "created_at": "2026-07-02T03:28:50.294483+00:00",
+      "step": 18,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 10,
+      "contradiction_count": 9,
+      "trust_score": -3.05,
+      "accuracy": 0.5263157894736842,
+      "promotion_criteria": {
+        "support_met": true,
+        "trust_score_met": false
+      },
+      "promotion_requirements_remaining": [
+        "+6.05 trust score"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +6.05 trust score"
+    }
+  ],
+  "grounded_concepts": [],
+  "grounded_relations": {},
+  "supported_concepts": [
+    "INSTITUTIONAL_ACCUMULATION",
+    "VOLATILITY_EXPANSION"
+  ],
+  "supported_relations": [
+    "VOLATILITY_EXPANSION AMPLIFIES context"
+  ],
+  "ontology_version": "1.0.0",
+  "validation_taxonomy_version": "1.0.0",
+  "empirical_support": 10,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 2,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": -3.1
+}

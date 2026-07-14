@@ -1,0 +1,63 @@
+{
+  "experience_id": "exp_efeca108f036ef3f_2026-07-01",
+  "lineage_id": "efeca108f036ef3f",
+  "theory_family_id": "efeca108f036ef3f",
+  "created_at": "2026-07-01",
+  "status": "closed",
+  "theory_ids": [
+    "1e50c2b2-bfd1-48a3-9c56-c19826dcafad"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: The market regime is... vs volume_elevated: add...; Low semantic similarity: price_action.daily_s... vs volume_elevated: add...; Low semantic similarity: price_action.daily_s... vs false: retain_price_...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+    "Structural: Low semantic similarity: price_range_bound... vs decisive close below...; Low semantic similarity: The market regime is... vs volume > 1000 and pr...; Low semantic similarity: price_action.daily_s... vs false: retain curren...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+    "Structural: Low semantic similarity: price_range_bound... vs decisive close below...; Low semantic similarity: The market regime is... vs delivery_pct > 50 AN...; Low semantic similarity: price_action.daily_s... vs delivery_pct > 50 AN...; Low semantic similarity: price_action.daily_s... vs sector_zscore < -1.5...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:extended_higher",
+    "volume:dry",
+    "volatility:compressed",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:weak",
+    "momentum:weakening",
+    "subtype:liquidity_constrained",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:leading"
+  ],
+  "theory_subtype": "liquidity_constrained",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-03T08:47:30.400355",
+      "outcome": "partial",
+      "theory_claim": "The market regime is characterized by moderate liquidity absorption and price range-bound behavior driven by institutional selling, suggesting a liquidity-constrained environment where sector leading ",
+      "components_passed": [
+        "absorption_rate",
+        "price_range_bound_expansion",
+        "price_range_bound_expansion",
+        "price_range_bound_expansion",
+        "price_range_bound_expansion_with_reliance"
+      ],
+      "components_failed": [
+        "price_range_bound_expansion"
+      ],
+      "root_cause": "price_range_bound_expansion",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This theory appears to be a market analysis framework that attempts to predict the behavior of financial markets based on various indicators and observations. The specific theory mentioned is \"The market regime is characterized by moderate liquidity absorption and price range-bound behavior driven b"
+    }
+  ],
+  "component_failure_counts": {
+    "price_range_bound_expansion": 1
+  }
+}

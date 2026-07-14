@@ -1,0 +1,346 @@
+{
+  "step": 7,
+  "date": "2026-06-30",
+  "observation": "[volume elevated, range expanding, gap up, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, RELIANCE focus] candle strong bear participation normal (normal) RELIANCE closed lower amid moderate volatility.\nTrend Persistence: 3D: Persistent Lower, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is closing lower with moderate volatility, indicating a mixed trend and neutral sector performance.",
+  "theory": "Volume expansion during up days is weaker than down days due to asset selloffs, fading liquidity, institutional selling, and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+  "theory_summary_structured": {
+    "id": "edd3dfe5-3c90-4fa3-ac90-c53ac6171574",
+    "created_at": "2026-07-03 02:40:58.350729+00:00",
+    "mechanism": "passive absorption",
+    "claim": "Volume expansion during up days is weaker than down days due to asset selloffs, fading liquidity, institutional selling, and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+    "if_branch": {
+      "id": "f44e5c53-9b28-487f-82b0-1da2746443f4",
+      "created_at": "2026-07-03 02:49:14.269021+00:00",
+      "condition": "volume > 0.5",
+      "action": "add new mechanism"
+    },
+    "else_branch": {
+      "id": "237723e5-3aeb-4489-8c1c-70570a1041ad",
+      "created_at": "2026-07-03 02:49:14.269097+00:00",
+      "condition": "otherwise",
+      "action": "demote"
+    },
+    "unless": "liquidity evaporates entirely",
+    "falsified_if": "volume_expansion_revised_3",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "76dd8f6d-6372-4d87-b5dd-919ccfb1b737",
+        "created_at": "2026-07-03 02:49:11.642821+00:00",
+        "component_id": "volume_expansion_revised_5",
+        "description": "Revised rate of volume expansion during up days, accounting for the impact of momentum and delivery exhaustion, with a stronger downward bias due to asset selloffs, fading liquidity, and institutional selling. Additionally, considering the role of short-term momentum weakening in driving volatility.",
+        "observable": "volume.daily_ratio",
+        "expected_behavior": "Volume expands on up days relative to down days, but with an even weaker upward bias due to asset selloffs, fading liquidity, institutional selling, and short-term momentum weakening",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_EXPANSION",
+          "MOMENTUM",
+          "INSTITUTIONAL_ACCUMULATION",
+          "ASSET_SELLOFF",
+          "LIQUIDITY_FADING",
+          "SHORT_TERM_MOMENTUM_WEAKENING"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_008"
+      }
+    ],
+    "falsification_conditions": [
+      "MECH_006: volume > 0.5"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.5348,
+    "reflection": 0.0884,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.5979276595744681,
+    "indicators": [
+      "Structural: Low semantic similarity: volume_expansion_rev... vs MECH_002 and MECH_00...; Low semantic similarity: Volume expansion dur... vs volume_expansion_rev...; Low semantic similarity: volume > 0.5: add ne... vs volume_expansion_rev...",
+      "Structural: Low semantic similarity: volume_expansion_rev... vs MECH_002 and MECH_00...; Field conflict: Volume expansion during up day vs volume dry and gap down and de; Low semantic similarity: volume > 0.5: add ne... vs volume dry and gap d...; Low semantic similarity: otherwise: demote... vs otherwise: retain cu...; Trend: continuation vs rejection",
+      "Structural: Low semantic similarity: volume_expansion_rev... vs MECH_002 and MECH_00...; Field conflict: Volume expansion during up day vs volume dry and gap down and de; Low semantic similarity: volume > 0.5: add ne... vs volume dry and gap d...; Low semantic similarity: otherwise: demote... vs otherwise: retain cu...; Trend: continuation vs rejection",
+      "Structural: Low semantic similarity: volume_expansion_rev... vs MECH_002_and_MECH_00...; Low semantic similarity: Volume expansion dur... vs range_expanding_and_...; Low semantic similarity: volume > 0.5: add ne... vs range_expanding_and_...; Low semantic similarity: otherwise: demote... vs otherwise: remove_al...",
+      "Structural: Low semantic similarity: volume_expansion_rev... vs decisive close below...; Low semantic similarity: Volume expansion dur... vs volume_expansion_rev...; Low semantic similarity: otherwise: demote... vs false: ...; Participation: weakening vs elevated"
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "7be6045e-59a2-4a6d-9134-a21d1aaa7179",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "3d9b9087-b851-405c-9fc4-e2e70616a2ce",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "e520344a-27a5-4286-b442-eb2a01744a36",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "7d3996dc-f769-47fc-81f7-b14008e07d68",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "837f74a4-e88e-41b1-91f5-010de2d3a702",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 5 contradictions with a total score of 0.60."
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "mixed",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-06-30",
+    "trend": "closed_lower",
+    "volatility_state": "moderate",
+    "sentiment": "risk_off",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.598,
+    "active_theory_count": 3,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-06-19",
+      "similarity": 0.848,
+      "active_theories": [
+        "f2cca7fa84e5cfbc"
+      ],
+      "contradictions": [],
+      "confidence": 0.24,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-06-29",
+      "similarity": 0.778,
+      "active_theories": [
+        "5caf200459842377",
+        "8ec4e67140dd7f80"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: Volume expansion dur... vs volume dry and gap d...; Low semantic similarity: volume_expansion_rev... vs volume dry and gap d...; Low semantic similarity: otherwise: demote... vs otherwise: retain cu...; Trend: continuation vs rejection",
+        "Structural: Low semantic similarity: Volume expansion dur... vs volume dry and gap d...; Low semantic similarity: volume_expansion_rev... vs volume dry and gap d...; Low semantic similarity: otherwise: demote... vs otherwise: retain cu...; Trend: continuation vs rejection",
+        "Structural: Low semantic similarity: Volume expansion dur... vs range_expanding_and_...; Low semantic similarity: volume_expansion_rev... vs range_expanding_and_...; Low semantic similarity: otherwise: demote... vs otherwise: remove_al..."
+      ],
+      "confidence": 0.05,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-06-23",
+      "similarity": 0.657,
+      "active_theories": [
+        "f2cca7fa84e5cfbc"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: The revised rate of ... vs Regime is driven by ...; Low semantic similarity: The revised rate of ... vs participation widens...; Low semantic similarity: volume_expansion_rev... vs participation widens...; Low semantic similarity: false: ... vs volatility remains c..."
+      ],
+      "confidence": 0.274,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-06-30",
+      "policy_name": "Baseline",
+      "action": "sell",
+      "conviction": 0.49,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-06-30",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.49,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-06-30",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.49,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.2488541943262411,
+    "label": "weak"
+  },
+  "reflection": "Liquidity support remains weakly tested against contradiction pressure.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "Analog to 2026-06-19: liquidity is broad_participation (prior was normal), volatility is moderate (prior was normal)",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 7,
+    "avg_usefulness": 0.177,
+    "last_seen": "2026-06-30",
+    "historical_resolution": {
+      "higher": 2,
+      "lower": 3,
+      "range_bound": 1,
+      "uncertain": 0
+    },
+    "falsified_count": 2
+  },
+  "dialectical_triggered": true,
+  "dialectical_synthesis": {
+    "shared_premise": "Reliance's trend persistence and historical lessons learned suggest a mixed trend with stable volatility, indicating indecision participation.",
+    "conflict": "The active theories on Reliance's trend, however, present conflicting views: one suggests a neutral to bearish trend with moderate volatility, while the other indicates a range-bound daily trend with strengthening weekly momentum.",
+    "synthesis": "A reconciled view is that Reliance's trend is characterized by indecision participation and stable volatility, but with a weakening short-term momentum. This mixed trend is likely driven by sector-neutral performance and moderate delivery volumes. The conflicting views on the trend's direction can be attributed to differing time horizons and varying degrees of market participation.",
+    "falsified_if": "Reliance closes significantly higher or lower than its current price within the next trading day, indicating a decisive close above or below its recent range.",
+    "validation": {
+      "valid": true,
+      "quality": 0.8,
+      "issues": []
+    }
+  },
+  "metrics": {
+    "step": 7,
+    "date": "2026-06-30",
+    "contradiction_count": 4,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.6923076923076923,
+    "avg_contradiction_severity": 0.5819262029459902,
+    "highest_contradiction": 0.82515,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 3,
+    "avg_retirement_age": 1.75,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.4285714285714284,
+    "longest_surviving_theory": 5,
+    "theory_mutation_count": 2,
+    "avg_confidence": 0.076775,
+    "confidence_delta": -0.24,
+    "confidence_volatility": 0.10643685628108339,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 1.0,
+    "grounded_reflection_score": 0.25,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.25,
+    "avg_abstraction_length": 15.0,
+    "compression_ratio": 0.39473684210526316,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 33,
+    "mechanism_count": 1,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 2,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 0.0,
+    "words_before_mutation": 32,
+    "words_after_mutation": 33,
+    "mechanisms_before_mutation": 2,
+    "mechanisms_after_mutation": 1,
+    "extras": {
+      "observation_length": 38,
+      "theory_text": "Volume expansion during up days is weaker than down days due to asset selloffs, fading liquidity, institutional selling, and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 0.60.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "mixed",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-30",
+        "trend": "closed_lower",
+        "volatility_state": "moderate",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.598,
+        "active_theory_count": 3,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-19",
+          "similarity": 0.848,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-29",
+          "similarity": 0.778,
+          "active_theories": [
+            "5caf200459842377",
+            "8ec4e67140dd7f80"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Volume expansion dur... vs volume dry and gap d...; Low semantic similarity: volume_expansion_rev... vs volume dry and gap d...; Low semantic similarity: otherwise: demote... vs otherwise: retain cu...; Trend: continuation vs rejection",
+            "Structural: Low semantic similarity: Volume expansion dur... vs volume dry and gap d...; Low semantic similarity: volume_expansion_rev... vs volume dry and gap d...; Low semantic similarity: otherwise: demote... vs otherwise: retain cu...; Trend: continuation vs rejection",
+            "Structural: Low semantic similarity: Volume expansion dur... vs range_expanding_and_...; Low semantic similarity: volume_expansion_rev... vs range_expanding_and_...; Low semantic similarity: otherwise: demote... vs otherwise: remove_al..."
+          ],
+          "confidence": 0.05,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-23",
+          "similarity": 0.657,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The revised rate of ... vs Regime is driven by ...; Low semantic similarity: The revised rate of ... vs participation widens...; Low semantic similarity: volume_expansion_rev... vs participation widens...; Low semantic similarity: false: ... vs volatility remains c..."
+          ],
+          "confidence": 0.274,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.2488541943262411,
+        "label": "weak"
+      }
+    }
+  }
+}

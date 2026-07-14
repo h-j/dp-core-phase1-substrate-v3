@@ -1,0 +1,195 @@
+{
+  "experience_id": "exp_d21d4682b5fc1613_2026-06-02",
+  "lineage_id": "d21d4682b5fc1613",
+  "theory_family_id": "d21d4682b5fc1613",
+  "created_at": "2026-06-02",
+  "status": "closed",
+  "theory_ids": [
+    "cfae41aa-eb90-41e0-a141-a2bdacefbe93",
+    "be822bc3-78bf-4724-ad72-75ae3603bbfc",
+    "ac900cb9-7393-4b12-8acf-896032fe11dd"
+  ],
+  "contradictions": [
+    "Structural: Field conflict: The price structure maintains  vs Price structure exhibits seque; Low semantic similarity: The price structure ... vs volume dry and RELIA...; Low semantic similarity: otherwise: no action... vs otherwise: retain or...; Trend: continuation vs rejection",
+    "Structural: Field conflict: The price structure maintains  vs The current market regime is c; Low semantic similarity: The price structure ... vs volume_expansion_wit...; Low semantic similarity: otherwise: no action... vs otherwise: demote me...; Trend: continuation vs rejection; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.",
+    "Structural: Low semantic similarity: The price structure ... vs The RELIANCE's tradi...; Low semantic similarity: The price structure ... vs volume_expansion_wit...; Low semantic similarity: otherwise: no action... vs price_structure_with...; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.",
+    "Structural: Low semantic similarity: The price structure ... vs The RELIANCE's tradi...; Low semantic similarity: The price structure ... vs RELIANCE trading ran...; Low semantic similarity: volume > 1000 and RE... vs RELIANCE trading ran...; Low semantic similarity: otherwise: no action... vs RELIANCE not trading...; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.",
+    "Structural: Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume > 1000 and RE...; Low semantic similarity: elevated_volume > 0.... vs volume > 1000 and RE...; Low semantic similarity: false: demote... vs otherwise: no action...",
+    "Structural: Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume dry and RELIA...; Low semantic similarity: elevated_volume > 0.... vs volume dry and RELIA...; Low semantic similarity: false: demote... vs otherwise: retain or...",
+    "Structural: Low semantic similarity: Price sequence is in... vs The current market r...; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume_expansion_wit...; Low semantic similarity: elevated_volume > 0.... vs volume_expansion_wit...; Low semantic similarity: false: demote... vs otherwise: demote me...",
+    "Structural: Low semantic similarity: Price sequence is in... vs The RELIANCE's tradi...; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume_expansion_wit...; Low semantic similarity: elevated_volume > 0.... vs volume_expansion_wit...; Low semantic similarity: false: demote... vs price_structure_with...",
+    "Structural: Low semantic similarity: The price sequence o... vs elevated_volume > 0....; Low semantic similarity: range_expanding: rem... vs elevated_volume > 0....; Low semantic similarity: volatility_expanding... vs false: demote...",
+    "Structural: Field conflict: The price sequence of higher h vs The price structure maintains ; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: The price sequence o... vs volume > 1000 and RE...; Low semantic similarity: range_expanding: rem... vs volume > 1000 and RE...; Low semantic similarity: volatility_expanding... vs otherwise: no action...; Trend: continuation vs rejection",
+    "Structural: Field conflict: The price sequence of higher h vs Price structure exhibits seque; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: The price sequence o... vs volume dry and RELIA...; Low semantic similarity: range_expanding: rem... vs volume dry and RELIA...; Low semantic similarity: volatility_expanding... vs otherwise: retain or...; Trend: continuation vs rejection",
+    "Structural: Field conflict: The price sequence of higher h vs The current market regime is c; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: The price sequence o... vs volume_expansion_wit...; Low semantic similarity: range_expanding: rem... vs volume_expansion_wit...; Trend: continuation vs rejection; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.375
+  },
+  "regime_context": [
+    "trend:closed_higher",
+    "volume:elevated",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:weakened",
+    "participation:strong",
+    "momentum:weakening",
+    "subtype:neutral",
+    "delivery:delivery:low",
+    "fii:fii:neutral",
+    "sector:sector:lagging"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 2,
+  "contradiction_count": 3,
+  "validation_count": 3,
+  "falsification_count": 5,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T20:38:53.661323",
+      "outcome": "partial",
+      "theory_claim": "The price structure maintains sequence of higher highs and lower lows, but when RELIANCE is trading range-bound, volatility increases due to FII buying and sector performance, leading to a greater emp",
+      "components_passed": [
+        "price_structure_with_modified_range_bound_reliance_v3",
+        "price_structure_with_modified_range_bound_reliance"
+      ],
+      "components_failed": [
+        "price_structure_with_modified_range_bound_reliance_v3"
+      ],
+      "root_cause": "price_structure_with_modified_range_bound_reliance_v3",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This theory appears to have failed due to several reasons:\n\n1. **Range expanding**: The data shows that the trading range is expanding, which contradicts the theory's assumption of a \"trading range-bound\" scenario.\n2. **Volatility increasing**: Despite the reliance being traded in a range-bound mann"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T20:51:42.645238",
+      "outcome": "falsified",
+      "theory_claim": "Price sequence is influenced by RELIANCE's trading range-bound status, where volatility and persistence are modulated by FII buying, sector performance, delivery, and asset liquidity fade, leading to ",
+      "components_passed": [],
+      "components_failed": [
+        "price_structure_with_modified_range_bound_reliance_v7",
+        "price_structure_with_modified_range_bound_reliance_v7",
+        "price_structure_with_modified_range_bound_reliance_v7",
+        "price_structure_with_modified_range_bound_reliance_v7",
+        "price_structure_with_modified_range_bound_reliance_v8"
+      ],
+      "root_cause": "price_structure_with_modified_range_bound_reliance_v7",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Price sequence is influenced by RELIANCE's trading range-bound status, where volatility and persistence are modulated by FII buying, sector performance, delivery, and asset liquidity fade, leading to a greater emphasis on upward momentum\" failed because the observed data does not support"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T20:55:49.947688",
+      "outcome": "falsified",
+      "theory_claim": "Price sequence is influenced by RELIANCE's trading range-bound status, where volatility and persistence are modulated by FII buying, sector performance, delivery, and asset liquidity fade, leading to ",
+      "components_passed": [],
+      "components_failed": [
+        "price_structure_with_modified_range_bound_reliance_v8",
+        "price_structure_with_modified_range_bound_reliance_v9",
+        "price_structure_with_modified_range_bound_reliance_v11"
+      ],
+      "root_cause": "price_structure_with_modified_range_bound_reliance_v8",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Price sequence is influenced by RELIANCE's trading range-bound status, where volatility and persistence are modulated by FII buying, sector performance, delivery, and asset liquidity fade, leading to a greater emphasis on upward momentum\" failed because it did not accurately predict the "
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T21:01:28.595723",
+      "outcome": "falsified",
+      "theory_claim": "Price sequence is influenced by RELIANCE's gap-up and moderate volatility, leading to increased price volatility and short-term momentum strengthening, with a greater emphasis on upward price movement",
+      "components_passed": [],
+      "components_failed": [
+        "price_structure_with_modified_range_bound_reliance_v14",
+        "price_structure_with_gap_up_and_short_term_momentum_v14"
+      ],
+      "root_cause": "price_structure_with_modified_range_bound_reliance_v14",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This appears to be a technical analysis report or a trading strategy evaluation result. Here's a breakdown of why the theory \"Price sequence is influenced by RELIANCE's gap-up and moderate volatility, leading to increased price volatility and short-term momentum strengthening, with a greater emphasi"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T21:03:22.465661",
+      "outcome": "falsified",
+      "theory_claim": "Price sequence is influenced by RELIANCE's gap-up and moderate volatility, leading to increased price volatility and emphasis on short-term momentum strengthening, resulting in a modified price struct",
+      "components_passed": [],
+      "components_failed": [
+        "price_structure_with_modified_range_bound_reliance_v15",
+        "price_structure_with_gap_up_and_short_term_momentum_v14",
+        "price_structure_with_modified_range_bound_reliance_v15"
+      ],
+      "root_cause": "price_structure_with_modified_range_bound_reliance_v15",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This theory appears to have failed because it predicted a specific price structure and volatility characteristics, but the observed data did not match these expectations. Here's a breakdown of why the theory might have failed:\n\n1. **Gap-down instead of gap-up**: The theory predicted that Reliance's "
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T21:12:16.552113",
+      "outcome": "validated",
+      "theory_claim": "The price structure exhibits a self-reinforcing pattern where daily highs and lows are inversely related to sector performance, delivery, FII selling, and asset liquidity fade, leading to a neutral ma",
+      "components_passed": [
+        "price_structure_with_low_volume_and_selling_pressure_v19"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T21:17:07.315211",
+      "outcome": "falsified",
+      "theory_claim": "The current market regime is characterized by a price structure influenced by low volume and selling pressure, where RELIANCE's performance drives the relationship between daily highs and lows, with a",
+      "components_passed": [],
+      "components_failed": [
+        "price_structure_with_low_volume_and_selling_pressure_v21",
+        "price_structure_with_low_volume_and_selling_pressure_v22"
+      ],
+      "root_cause": "price_structure_with_low_volume_and_selling_pressure_v21",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This theory failed because it predicted a specific price structure influenced by low volume and selling pressure, but the actual market behavior did not match these expectations. Here are some reasons why:\n\n1. **Low volume**: The observation states that \"volume dry\", which means there was little tra"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T21:20:21.131678",
+      "outcome": "validated",
+      "theory_claim": "The price structure is influenced by high volume and bullish sentiment, where each day's high exceeds previous highs, except during RELANCE gap-ups when lows also increase, driven by FII buying, secto",
+      "components_passed": [
+        "price_structure_with_high_volume_and_bullish_sentiment_v24"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    }
+  ],
+  "component_failure_counts": {
+    "price_structure_with_modified_range_bound_reliance_v3": 1,
+    "price_structure_with_modified_range_bound_reliance_v7": 4,
+    "price_structure_with_modified_range_bound_reliance_v8": 2,
+    "price_structure_with_modified_range_bound_reliance_v9": 1,
+    "price_structure_with_modified_range_bound_reliance_v11": 1,
+    "price_structure_with_modified_range_bound_reliance_v14": 1,
+    "price_structure_with_gap_up_and_short_term_momentum_v14": 2,
+    "price_structure_with_modified_range_bound_reliance_v15": 2,
+    "price_structure_with_low_volume_and_selling_pressure_v21": 1,
+    "price_structure_with_low_volume_and_selling_pressure_v22": 1
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "symbol": "TCS",
+  "days": 10,
+  "date_range": "2026-06-12 \u2192 2026-06-25",
+  "execution_hash": "7d40359cd34adce2b8d66ff1206ea85321f87304a36d6ae4274c1bddaf9e31a1",
+  "git_commit": "b311d340c394ae66640035f1339cbae1ab0ef1ea",
+  "llm_version": "llama3.2",
+  "replay_version": "v3.0PersistentReflective",
+  "story_summary": "This replay represents 10 days of experience on TCS. During this period, DP generated 5 experiences, evolved 5 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 0 evolving world model(s), and reduced uncertainty in 3 key market mechanisms while identifying 0 unresolved evidence gap(s).",
+  "metrics": {
+    "accuracy": 0.0,
+    "knowledge_debt": 0,
+    "memory_usefulness": 0.5543666666666667,
+    "knowledge_coverage": 0.0,
+    "prediction_drift": 0.0,
+    "theory_drift": 0.0
+  },
+  "knowledge_health": {
+    "knowledge_debt_bar": 10,
+    "principle_coverage": 0.0,
+    "reuse_rate": 0.0,
+    "trust": 60.0
+  },
+  "knowledge_lifecycle": {
+    "candidate": 0,
+    "emerging": 0,
+    "trusted": 0,
+    "canonical": 0,
+    "retired": 0
+  },
+  "timeline": [
+    {
+      "date": "2026-06-12",
+      "theory": "Regime is driven by Absorption; price remains range-bound despite moderate volatility and weak participation.",
+      "prediction": "higher (50%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-15",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite moderate volatility and weak participation, but with a growing risk of breakout.",
+      "prediction": "uncertain (51%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.089
+    },
+    {
+      "date": "2026-06-16",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite moderate volatility and weak participation, but with a growing risk of breakout, and increasing volume confirmation.",
+      "prediction": "higher (59%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.14787173913043478
+    },
+    {
+      "date": "2026-06-17",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite moderate volatility and weak participation, but with a growing risk of breakout, and increasing volume confirmation. However, the regime's neutral subtype suggests a potential shift towards a more bullish trend.",
+      "prediction": "higher (62%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.21445454545454545
+    },
+    {
+      "date": "2026-06-18",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite moderate volatility and weak participation, but with a growing risk of breakout, increasing volume confirmation, and a neutral regime subtype indicating a potential shift towards a more bullish trend.",
+      "prediction": "higher (66%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0845
+    }
+  ],
+  "theory_evolution": [
+    {
+      "day": "2026-06-12",
+      "lineage_id": "9731f4bfe6cc302b",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-15",
+      "lineage_id": "8dbf5df254fcca1c",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-16",
+      "lineage_id": "343a9a9b90dc0c48",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-17",
+      "lineage_id": "343a9a9b90dc0c48",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-18",
+      "lineage_id": "8dbf5df254fcca1c",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    }
+  ],
+  "world_model": {
+    "narrative": "No world model generated yet.",
+    "supporting_principles": [],
+    "open_questions": [
+      {
+        "question_text": "Why did component 'volume_confirmation' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'volume_confirmation' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "elevated"
+        ]
+      }
+    ],
+    "evidence_gaps": []
+  },
+  "chart_data": {
+    "dates": [
+      "2026-06-12",
+      "2026-06-15",
+      "2026-06-16",
+      "2026-06-17",
+      "2026-06-18"
+    ],
+    "close": [
+      2161.39990234375,
+      2162.0,
+      2199.0,
+      2223.0,
+      2203.300048828125
+    ],
+    "delivery_pct": [
+      51.97388150373346,
+      52.26871405201209,
+      50.42605229031468,
+      53.2234875081348,
+      49.07429394026749
+    ],
+    "fii_net": [
+      -356.06815946510915,
+      -933.2472710708151,
+      35.66826771662844,
+      1260.4911834109118,
+      -329.64950255039054
+    ],
+    "sector_zscore": [
+      0.0473230455287307,
+      -0.3918392311667367,
+      -0.3829224372156449,
+      -0.197235970132421,
+      0.0414693482709102
+    ]
+  }
+}

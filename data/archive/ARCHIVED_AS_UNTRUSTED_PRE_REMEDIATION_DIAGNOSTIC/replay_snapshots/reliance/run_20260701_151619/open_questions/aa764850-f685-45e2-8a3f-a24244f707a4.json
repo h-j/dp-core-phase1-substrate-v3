@@ -1,0 +1,15 @@
+{
+  "id": "aa764850-f685-45e2-8a3f-a24244f707a4",
+  "created_at": "2026-07-02T03:28:50.189341+00:00",
+  "created_at_step": 19,
+  "question_text": "Why did component 'volume_confirmation' fail under pressure_loaded_range regime?",
+  "source_contradiction_ids": [
+    "ef98a193-498c-45ce-a6ce-367538088dc9"
+  ],
+  "hypothesized_factors": [
+    "expanded",
+    "elevated"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

@@ -1,0 +1,26 @@
+{
+  "b1_decisions": {
+    "WORLD_A_SEED_42": "ADMIT",
+    "WORLD_B_SEED_42": "ADMIT",
+    "WORLD_C1_SEED_42": "ADMIT",
+    "WORLD_C2_SEED_42": "ADMIT"
+  },
+  "b2_decisions": {
+    "WORLD_A_SEED_42": "ADMIT",
+    "WORLD_B_SEED_42": "REJECT",
+    "WORLD_C1_SEED_42": "DEFER",
+    "WORLD_C2_SEED_42": "DEFER"
+  },
+  "b3_decisions": {
+    "WORLD_A_SEED_42": "REJECT",
+    "WORLD_B_SEED_42": "REJECT",
+    "WORLD_C1_SEED_42": "REJECT",
+    "WORLD_C2_SEED_42": "REJECT"
+  },
+  "b4_decisions": {
+    "WORLD_A_SEED_42": "ADMIT",
+    "WORLD_B_SEED_42": "REJECT",
+    "WORLD_C1_SEED_42": "DEFER",
+    "WORLD_C2_SEED_42": "DEFER"
+  }
+}

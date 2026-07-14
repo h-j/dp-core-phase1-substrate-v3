@@ -1,0 +1,15 @@
+{
+  "id": "fcce80ff-baa2-4f6f-9300-3cac95c0fffd",
+  "created_at": "2026-07-03T04:32:34.541300+00:00",
+  "created_at_step": 11,
+  "question_text": "Why did component 'momentum_absorption_rate_revision_revised_with_institutional_accumulation_updated' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "ab8721e9-2c94-4ab8-b6be-5ce4c6c37468"
+  ],
+  "hypothesized_factors": [
+    "expanded",
+    "dry"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

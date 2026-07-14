@@ -1,0 +1,9 @@
+{
+  "id": "c0a6b134-2626-4312-a57b-42afcf5f5a58",
+  "created_at": "2026-07-03T04:32:34.543854+00:00",
+  "open_question_id": "fcce80ff-baa2-4f6f-9300-3cac95c0fffd",
+  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'momentum_absorption_rate_revision_revised_with_institutional_accumulation_updated'",
+  "candidate_data_source": "FII/DII Flows & Order Book Depth",
+  "expected_explanatory_value": "To resolve structural failure of component 'momentum_absorption_rate_revision_revised_with_institutional_accumulation_updated' under neutral regime",
+  "priority": "HIGH"
+}

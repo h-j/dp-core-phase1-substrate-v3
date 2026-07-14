@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DP Replay Report - RELIANCE</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f8fafc;
+        }
+        .apple-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .apple-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-8 border-b border-slate-200">
+            <div>
+                <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-700 bg-indigo-50 rounded-full">Cognitive Replay Report</span>
+                <h1 class="text-4xl font-bold tracking-tight text-slate-900 mt-2">RELIANCE Replay</h1>
+                <p class="text-sm text-slate-500 mt-1">Date Range: <span class="font-medium text-slate-700">2026-06-12 → 2026-06-25</span> | Duration: <span class="font-medium text-slate-700">10 Days</span></p>
+            </div>
+            <div class="mt-4 md:mt-0 flex flex-col items-end text-xs text-slate-500 space-y-1">
+                <div>Execution Hash: <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono text-slate-700 text-[10px]">afff6681b93a745a...</code></div>
+                <div>Git Commit: <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono text-slate-700 text-[10px]">b311d340</code></div>
+                <div>LLM Version: <span class="font-medium text-slate-700">llama3.2</span></div>
+                <div>Replay Version: <span class="font-medium text-slate-700">v3.0PersistentReflective</span></div>
+            </div>
+        </div>
+
+        <!-- Narrative Section -->
+        <div class="mt-8 p-6 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 border border-indigo-100 rounded-3xl">
+            <h2 class="text-lg font-semibold text-slate-900 mb-2 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Replay Story
+            </h2>
+            <p class="text-slate-600 leading-relaxed text-base">
+                This replay represents 10 days of experience on RELIANCE. During this period, DP generated 10 experiences, evolved 9 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 3 key market mechanisms while identifying 8 unresolved evidence gap(s).
+            </p>
+        </div>
+
+        <!-- Metric Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-6 gap-4 mt-8">
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Accuracy</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">11.1%</div>
+                <div class="text-[10px] text-slate-500 mt-1">Prediction success</div>
+            </div>
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Knowledge Debt</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">0</div>
+                <div class="text-[10px] text-slate-500 mt-1">Unreconciled issues</div>
+            </div>
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Memory Hit Rate</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">57.3%</div>
+                <div class="text-[10px] text-slate-500 mt-1">Retrieval efficiency</div>
+            </div>
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Coverage</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">0.0%</div>
+                <div class="text-[10px] text-slate-500 mt-1">Theory explanation</div>
+            </div>
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Prediction Drift</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">0.0%</div>
+                <div class="text-[10px] text-slate-500 mt-1">Bias shift frequency</div>
+            </div>
+            <div class="apple-card p-5">
+                <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Theory Drift</div>
+                <div class="text-2xl font-bold text-slate-900 mt-2">0.0%</div>
+                <div class="text-[10px] text-slate-500 mt-1">Structural mutations</div>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="apple-card p-6 mt-8">
+            <h2 class="text-lg font-semibold text-slate-900 mb-4">Market Close Price & Enriched Data Overlays</h2>
+            <div class="h-96 w-full">
+                <canvas id="replayChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Main Splits -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+            
+            <!-- Left 2 Cols: Replay Timeline -->
+            <div class="lg:col-span-2 space-y-8">
+                <div class="apple-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-semibold text-slate-900">Replay Timeline</h2>
+                        <input type="text" id="timelineSearch" placeholder="Search timeline..." class="px-3 py-1.5 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-slate-100 text-sm" id="timelineTable">
+                            <thead>
+                                <tr class="text-slate-400 text-left font-medium">
+                                    <th class="py-3 px-2">Day/Date</th>
+                                    <th class="py-3 px-2">Theory</th>
+                                    <th class="py-3 px-2">Prediction</th>
+                                    <th class="py-3 px-2 text-center">Outcome</th>
+                                    <th class="py-3 px-2">Used Knowledge</th>
+                                    <th class="py-3 px-2 text-center">Contradiction</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-50">
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 0<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-12</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Regime is driven by Absorption; price remains range-bound despite volume expansion.">Regime is driven by Absorption; price remains range-bound despite volume expansion.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            higher (55%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-emerald-100 text-emerald-800 ">
+                                            0.00
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 1<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-15</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with a moderate shift towards leading sector participation.">Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with a moderate shift towards leading sector participation.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            lower (55%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-amber-100 text-amber-800
+                                            ">
+                                            0.26
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 2<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-16</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, with a moderate shift towards leading sector participation and increased RELIANCE focus.">Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, with a moderate shift towards leading sector participation and increased RELIANCE focus.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            higher (75%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-emerald-100 text-emerald-800 ">
+                                            0.09
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 3<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-17</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, with a moderate shift towards leading sector participation and increased RELIANCE focus, but with reduced reliance on absorption rate as a primary driver.">Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, with a moderate shift towards leading sector participation and increased RELIANCE focus, but with reduced reliance on absorption rate as a primary driver.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            range_bound (45%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-emerald-100 text-emerald-800 ">
+                                            0.09
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 4<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-18</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Revised claim: Regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion, and leading sector participation playing a secondary role.">Revised claim: Regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion, and leading sector participation playing a secondary role.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            range_bound (52%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-emerald-100 text-emerald-800 ">
+                                            0.09
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 5<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-19</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Revised claim: Regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion, but leading sector participation playing a more significant role than initially assumed.">Revised claim: Regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion, but leading sector participation playing a more significant role than initially assumed.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            uncertain (58%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-amber-100 text-amber-800
+                                            ">
+                                            0.20
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 6<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-22</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed.">Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            higher (50%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-amber-100 text-amber-800
+                                            ">
+                                            0.22
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 7<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-23</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening.">Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            lower (55%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-rose-100 text-rose-800
+                                            ">
+                                            0.43
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 8<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-24</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening, and the market's behavior indicates a shift towards reduced asset liquidity.">Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening, and the market's behavior indicates a shift towards reduced asset liquidity.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            higher (49%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-amber-100 text-amber-800
+                                            ">
+                                            0.34
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-slate-50/50 transition-colors timeline-row">
+                                    <td class="py-4 px-2 whitespace-nowrap font-medium text-slate-900">
+                                        Day 9<br>
+                                        <span class="text-xs font-normal text-slate-400">2026-06-25</span>
+                                    </td>
+                                    <td class="py-4 px-2 max-w-xs truncate text-slate-600" title="Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening, and the market's behavior indicates a shift towards reduced asset liquidity.">Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening, and the market's behavior indicates a shift towards reduced asset liquidity.</td>
+                                    <td class="py-4 px-2 whitespace-nowrap">
+                                        <span class="px-2 py-0.5 rounded text-xs font-medium 
+                                             bg-slate-100 text-slate-700 ">
+                                            range_bound (52%)
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-center whitespace-nowrap text-slate-500">N/A</td>
+                                    <td class="py-4 px-2 text-slate-600 font-medium text-xs">Experience Only</td>
+                                    <td class="py-4 px-2 text-center">
+                                        <span class="px-2 py-0.5 rounded text-xs font-semibold
+                                             bg-emerald-100 text-emerald-800 ">
+                                            0.09
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Theory Evolution -->
+                <div class="apple-card p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-4">Theory Evolution Families</h2>
+                    
+                    <div class="space-y-6">
+                        
+                        <div class="border border-slate-100 rounded-xl p-4 bg-slate-50/50">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-xs font-semibold text-indigo-700">Family ID: 2467af6dc800...</span>
+                                <span class="text-xs text-slate-400">4 step(s)</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 items-center">
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-emerald-600
+                                            ">
+                                            create
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-12</span>
+                                    </div>
+                                    
+                                    <svg class="w-4 h-4 mx-1 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-blue-600
+                                            ">
+                                            attach
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-15</span>
+                                    </div>
+                                    
+                                    <svg class="w-4 h-4 mx-1 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-blue-600
+                                            ">
+                                            attach
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-17</span>
+                                    </div>
+                                    
+                                    <svg class="w-4 h-4 mx-1 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-rose-600
+                                            ">
+                                            close
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-22</span>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="border border-slate-100 rounded-xl p-4 bg-slate-50/50">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-xs font-semibold text-indigo-700">Family ID: 415099d7255a...</span>
+                                <span class="text-xs text-slate-400">1 step(s)</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 items-center">
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-emerald-600
+                                            ">
+                                            create
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-18</span>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="border border-slate-100 rounded-xl p-4 bg-slate-50/50">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-xs font-semibold text-indigo-700">Family ID: 701ca49dc45b...</span>
+                                <span class="text-xs text-slate-400">2 step(s)</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 items-center">
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-emerald-600
+                                            ">
+                                            create
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-23</span>
+                                    </div>
+                                    
+                                    <svg class="w-4 h-4 mx-1 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-blue-600
+                                            ">
+                                            attach
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-24</span>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="border border-slate-100 rounded-xl p-4 bg-slate-50/50">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-xs font-semibold text-indigo-700">Family ID: 8f3865e7bea9...</span>
+                                <span class="text-xs text-slate-400">1 step(s)</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 items-center">
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-emerald-600
+                                            ">
+                                            create
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-25</span>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="border border-slate-100 rounded-xl p-4 bg-slate-50/50">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-xs font-semibold text-indigo-700">Family ID: 94abb11ebbc9...</span>
+                                <span class="text-xs text-slate-400">1 step(s)</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 items-center">
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-emerald-600
+                                            ">
+                                            create
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-16</span>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="border border-slate-100 rounded-xl p-4 bg-slate-50/50">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="font-mono text-xs font-semibold text-indigo-700">Family ID: c04ed78e63a2...</span>
+                                <span class="text-xs text-slate-400">1 step(s)</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 items-center">
+                                
+                                <div class="flex items-center">
+                                    <div class="px-2.5 py-1 text-xs rounded-lg border flex flex-col items-center bg-white border-slate-200">
+                                        <span class="font-semibold capitalize
+                                             text-emerald-600
+                                            ">
+                                            create
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 font-medium">2026-06-19</span>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Right Column: Knowledge Health & World Model -->
+            <div class="space-y-8">
+                
+                <!-- Knowledge Health Progress Bars -->
+                <div class="apple-card p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-6">Knowledge Health</h2>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span class="text-slate-500">Knowledge Debt Pressure</span>
+                                <span class="text-slate-700 font-semibold">10%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-indigo-600 h-2 rounded-full" style="width: 10%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span class="text-slate-500">Principle Coverage</span>
+                                <span class="text-slate-700 font-semibold">0.0%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-emerald-500 h-2 rounded-full" style="width: 0.0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span class="text-slate-500">Knowledge Reuse Rate</span>
+                                <span class="text-slate-700 font-semibold">0.0%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 0.0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span class="text-slate-500">Explanatory Calibration (Trust)</span>
+                                <span class="text-slate-700 font-semibold">42.8%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 42.800000000000004%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Knowledge Lifecycle -->
+                <div class="apple-card p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-4">Knowledge Lifecycle</h2>
+                    <div class="grid grid-cols-5 gap-1 text-center">
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-xs text-slate-400 font-medium">Cand</div>
+                            <div class="text-lg font-bold text-slate-800 mt-1">0</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-xs text-slate-400 font-medium">Emerg</div>
+                            <div class="text-lg font-bold text-slate-800 mt-1">0</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-xs text-slate-400 font-medium">Trust</div>
+                            <div class="text-lg font-bold text-slate-800 mt-1">0</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-xs text-slate-400 font-medium">Canon</div>
+                            <div class="text-lg font-bold text-slate-800 mt-1">0</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-xs text-slate-400 font-medium">Retire</div>
+                            <div class="text-lg font-bold text-slate-800 mt-1">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- World Model Section -->
+                <div class="apple-card p-6 bg-gradient-to-br from-indigo-50/30 to-purple-50/30">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-3 flex items-center justify-between">
+                        <span class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                            Matured World Model
+                        </span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-800">
+                            Emerging
+                        </span>
+                    </h2>
+                    <div class="text-slate-600 text-sm leading-relaxed mb-4">
+                        Baseline world model. No active principles recorded yet.
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-2 text-center text-xs mb-4">
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-slate-400 font-medium">Confidence</div>
+                            <div class="text-base font-bold text-slate-800 mt-1">50.0%</div>
+                        </div>
+                        <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                            <div class="text-slate-400 font-medium">Evidence Count</div>
+                            <div class="text-base font-bold text-slate-800 mt-1">0</div>
+                        </div>
+                    </div>
+
+                    
+
+                    
+
+                    
+                    
+                    
+                </div>
+
+                <!-- Evidence Gaps -->
+                <div class="apple-card p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        Evidence Gap Registry
+                    </h2>
+                    
+                    <div class="space-y-3">
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 hover:border-slate-200 transition-colors bg-slate-50/50">
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono text-slate-400">ID: a4cf1c45</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold 
+                                     bg-rose-100 text-rose-800
+                                    ">
+                                    HIGH
+                                </span>
+                            </div>
+                            <div class="text-slate-800 font-medium mt-1">Order book imbalance and detailed participation dynamics for 'absorption_rate'</div>
+                            <div class="text-slate-400">Source: FII/DII Flows & Order Book Depth</div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 hover:border-slate-200 transition-colors bg-slate-50/50">
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono text-slate-400">ID: 6c7d0a20</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold 
+                                     bg-rose-100 text-rose-800
+                                    ">
+                                    HIGH
+                                </span>
+                            </div>
+                            <div class="text-slate-800 font-medium mt-1">Order book imbalance and detailed participation dynamics for 'absorption_rate'</div>
+                            <div class="text-slate-400">Source: FII/DII Flows & Order Book Depth</div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 hover:border-slate-200 transition-colors bg-slate-50/50">
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono text-slate-400">ID: af361063</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold 
+                                     bg-rose-100 text-rose-800
+                                    ">
+                                    HIGH
+                                </span>
+                            </div>
+                            <div class="text-slate-800 font-medium mt-1">Order book imbalance and detailed participation dynamics for 'absorption_rate'</div>
+                            <div class="text-slate-400">Source: FII/DII Flows & Order Book Depth</div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 hover:border-slate-200 transition-colors bg-slate-50/50">
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono text-slate-400">ID: dc5c0925</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold 
+                                     bg-rose-100 text-rose-800
+                                    ">
+                                    HIGH
+                                </span>
+                            </div>
+                            <div class="text-slate-800 font-medium mt-1">Order book imbalance and detailed participation dynamics for 'price_range_bound'</div>
+                            <div class="text-slate-400">Source: FII/DII Flows & Order Book Depth</div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 hover:border-slate-200 transition-colors bg-slate-50/50">
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono text-slate-400">ID: 6b561fe9</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold 
+                                     bg-rose-100 text-rose-800
+                                    ">
+                                    HIGH
+                                </span>
+                            </div>
+                            <div class="text-slate-800 font-medium mt-1">Order book imbalance and detailed participation dynamics for 'absorption_rate'</div>
+                            <div class="text-slate-400">Source: FII/DII Flows & Order Book Depth</div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 hover:border-slate-200 transition-colors bg-slate-50/50">
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono text-slate-400">ID: 8ef736d5</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold 
+                                     bg-rose-100 text-rose-800
+                                    ">
+                                    HIGH
+                                </span>
+                            </div>
+                            <div class="text-slate-800 font-medium mt-1">Order book imbalance and detailed participation dynamics for 'price_range_bound'</div>
+                            <div class="text-slate-400">Source: FII/DII Flows & Order Book Depth</div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 hover:border-slate-200 transition-colors bg-slate-50/50">
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono text-slate-400">ID: df6d18d2</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold 
+                                     bg-rose-100 text-rose-800
+                                    ">
+                                    HIGH
+                                </span>
+                            </div>
+                            <div class="text-slate-800 font-medium mt-1">Order book imbalance and detailed participation dynamics for 'absorption_rate'</div>
+                            <div class="text-slate-400">Source: FII/DII Flows & Order Book Depth</div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 hover:border-slate-200 transition-colors bg-slate-50/50">
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono text-slate-400">ID: 919c5b89</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold 
+                                     bg-rose-100 text-rose-800
+                                    ">
+                                    HIGH
+                                </span>
+                            </div>
+                            <div class="text-slate-800 font-medium mt-1">Order book imbalance and detailed participation dynamics for 'absorption_rate'</div>
+                            <div class="text-slate-400">Source: FII/DII Flows & Order Book Depth</div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+
+                <!-- Open Questions -->
+                <div class="apple-card p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Open Questions
+                    </h2>
+                    
+                    <div class="space-y-3">
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 bg-slate-50/50">
+                            <div class="text-slate-800 font-medium">Why did component 'absorption_rate' fail under neutral regime?</div>
+                            <div class="text-slate-400">Hypothesized Factors: <span class="text-slate-600 font-mono">normal, normal</span></div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 bg-slate-50/50">
+                            <div class="text-slate-800 font-medium">Why did component 'absorption_rate' fail under neutral regime?</div>
+                            <div class="text-slate-400">Hypothesized Factors: <span class="text-slate-600 font-mono">normal, elevated</span></div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 bg-slate-50/50">
+                            <div class="text-slate-800 font-medium">Why did component 'absorption_rate' fail under neutral regime?</div>
+                            <div class="text-slate-400">Hypothesized Factors: <span class="text-slate-600 font-mono">normal, dry</span></div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 bg-slate-50/50">
+                            <div class="text-slate-800 font-medium">Why did component 'price_range_bound' fail under neutral regime?</div>
+                            <div class="text-slate-400">Hypothesized Factors: <span class="text-slate-600 font-mono">normal, elevated</span></div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 bg-slate-50/50">
+                            <div class="text-slate-800 font-medium">Why did component 'absorption_rate' fail under neutral regime?</div>
+                            <div class="text-slate-400">Hypothesized Factors: <span class="text-slate-600 font-mono">normal, dry</span></div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 bg-slate-50/50">
+                            <div class="text-slate-800 font-medium">Why did component 'price_range_bound' fail under neutral regime?</div>
+                            <div class="text-slate-400">Hypothesized Factors: <span class="text-slate-600 font-mono">normal, normal</span></div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 bg-slate-50/50">
+                            <div class="text-slate-800 font-medium">Why did component 'absorption_rate' fail under neutral regime?</div>
+                            <div class="text-slate-400">Hypothesized Factors: <span class="text-slate-600 font-mono">normal, dry</span></div>
+                        </div>
+                        
+                        <div class="border border-slate-100 p-3 rounded-lg text-xs space-y-1 bg-slate-50/50">
+                            <div class="text-slate-800 font-medium">Why did component 'absorption_rate' fail under neutral regime?</div>
+                            <div class="text-slate-400">Hypothesized Factors: <span class="text-slate-600 font-mono">normal, normal</span></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Epistemic Review Section -->
+        
+
+        <!-- Appendix -->
+        <div class="apple-card p-6 mt-8">
+            <h2 class="text-lg font-semibold text-slate-900 mb-4">Appendix & Metadata</h2>
+            <div class="flex flex-wrap gap-4">
+                <button onclick="toggleJsonModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 transition-colors text-slate-700 font-medium text-sm rounded-xl">
+                    View Raw JSON Data
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="jsonModal" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[80vh] flex flex-col p-6 shadow-2xl border border-slate-100">
+                <div class="flex justify-between items-center pb-4 border-b border-slate-100">
+                    <h3 class="text-lg font-semibold text-slate-950">Raw report.json data</h3>
+                    <button onclick="toggleJsonModal()" class="text-slate-400 hover:text-slate-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div class="overflow-y-auto flex-1 mt-4 p-4 bg-slate-950 rounded-2xl">
+                    <pre class="text-xs font-mono text-emerald-400 leading-normal">{
+  "symbol": "RELIANCE",
+  "days": 10,
+  "date_range": "2026-06-12 \u2192 2026-06-25",
+  "execution_hash": "afff6681b93a745af60f4c8ee24ddd5b2262c954077818ec51bcbe4a5d336791",
+  "git_commit": "b311d340c394ae66640035f1339cbae1ab0ef1ea",
+  "llm_version": "llama3.2",
+  "replay_version": "v3.0PersistentReflective",
+  "story_summary": "This replay represents 10 days of experience on RELIANCE. During this period, DP generated 10 experiences, evolved 9 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 3 key market mechanisms while identifying 8 unresolved evidence gap(s).",
+  "metrics": {
+    "accuracy": 11.11111111111111,
+    "knowledge_debt": 0,
+    "memory_usefulness": 0.5732666666666667,
+    "knowledge_coverage": 0.0,
+    "prediction_drift": 0.0,
+    "theory_drift": 0.0
+  },
+  "knowledge_health": {
+    "knowledge_debt_bar": 10,
+    "principle_coverage": 0.0,
+    "reuse_rate": 0.0,
+    "trust": 42.800000000000004
+  },
+  "knowledge_lifecycle": {
+    "candidate": 0,
+    "emerging": 0,
+    "trusted": 0,
+    "canonical": 0,
+    "retired": 0
+  },
+  "timeline": [
+    {
+      "date": "2026-06-12",
+      "theory": "Regime is driven by Absorption; price remains range-bound despite volume expansion.",
+      "prediction": "higher (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-15",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with a moderate shift towards leading sector participation.",
+      "prediction": "lower (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.2632857142857143
+    },
+    {
+      "date": "2026-06-16",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, with a moderate shift towards leading sector participation and increased RELIANCE focus.",
+      "prediction": "higher (75%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.089
+    },
+    {
+      "date": "2026-06-17",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, with a moderate shift towards leading sector participation and increased RELIANCE focus, but with reduced reliance on absorption rate as a primary driver.",
+      "prediction": "range_bound (45%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08700000000000001
+    },
+    {
+      "date": "2026-06-18",
+      "theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion, and leading sector participation playing a secondary role.",
+      "prediction": "range_bound (52%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.089
+    },
+    {
+      "date": "2026-06-19",
+      "theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion, but leading sector participation playing a more significant role than initially assumed.",
+      "prediction": "uncertain (58%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.20092900432900432
+    },
+    {
+      "date": "2026-06-22",
+      "theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed.",
+      "prediction": "higher (50%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.21615555555555555
+    },
+    {
+      "date": "2026-06-23",
+      "theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening.",
+      "prediction": "lower (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.4260460348162476
+    },
+    {
+      "date": "2026-06-24",
+      "theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening, and the market's behavior indicates a shift towards reduced asset liquidity.",
+      "prediction": "higher (49%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.3390885714285715
+    },
+    {
+      "date": "2026-06-25",
+      "theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening, and the market's behavior indicates a shift towards reduced asset liquidity.",
+      "prediction": "range_bound (52%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.089
+    }
+  ],
+  "theory_evolution": [
+    {
+      "day": "2026-06-12",
+      "lineage_id": "2467af6dc8008509",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-15",
+      "lineage_id": "2467af6dc8008509",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-16",
+      "lineage_id": "94abb11ebbc985b2",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-17",
+      "lineage_id": "2467af6dc8008509",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-18",
+      "lineage_id": "415099d7255a9af5",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-19",
+      "lineage_id": "c04ed78e63a2b65b",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-22",
+      "lineage_id": "2467af6dc8008509",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "close"
+    },
+    {
+      "day": "2026-06-23",
+      "lineage_id": "701ca49dc45bcd4d",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-24",
+      "lineage_id": "701ca49dc45bcd4d",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-25",
+      "lineage_id": "8f3865e7bea9dff7",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": true,
+      "experience_action": "create"
+    }
+  ],
+  "world_model": {
+    "narrative": "Baseline world model. No active principles recorded yet.",
+    "regime_constraints": {},
+    "supporting_principles": [],
+    "dominant_mechanisms": [],
+    "active_constraints": [],
+    "supporting_canonical_principles": [],
+    "confidence": 0.5,
+    "stability": "Emerging",
+    "evidence_count": 0,
+    "applicable_regimes": [],
+    "open_questions": [
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_range_bound' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_range_bound' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      }
+    ],
+    "evidence_gaps": [
+      {
+        "id": "a4cf1c45-bd83-4ce0-a2fe-e6d294d623bc",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "6c7d0a20-8831-4e29-a9c9-560313b3ac5e",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "af361063-0c0e-4ee8-af39-aeb246bf3d8b",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "dc5c0925-14ae-4024-9cc7-43ec383d7722",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_range_bound'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_range_bound' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "6b561fe9-076c-495d-81fb-b7bac5305c7f",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "8ef736d5-b0a2-4992-bf92-a7809ec7b2be",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_range_bound'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_range_bound' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "df6d18d2-fa83-44d9-b9d7-36cafc4d4566",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "919c5b89-48e9-4fa7-bdd0-17973a2e1d4c",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  "chart_data": {
+    "dates": [
+      "2026-06-12",
+      "2026-06-15",
+      "2026-06-16",
+      "2026-06-17",
+      "2026-06-18",
+      "2026-06-19",
+      "2026-06-22",
+      "2026-06-23",
+      "2026-06-24",
+      "2026-06-25"
+    ],
+    "close": [
+      1293.0,
+      1307.0,
+      1328.800048828125,
+      1332.699951171875,
+      1328.0999755859375,
+      1309.5,
+      1326.5,
+      1309.5,
+      1313.5999755859375,
+      1318.0999755859375
+    ],
+    "delivery_pct": [
+      51.97388150373346,
+      52.26871405201209,
+      50.42605229031468,
+      53.2234875081348,
+      49.07429394026749,
+      48.674840843739545,
+      46.33526555736112,
+      45.03680902295764,
+      46.15254851538015,
+      49.37172245725797
+    ],
+    "fii_net": [
+      -356.06815946510915,
+      -933.2472710708151,
+      35.66826771662844,
+      1260.4911834109118,
+      -329.64950255039054,
+      -220.8166097429164,
+      1010.1916422542774,
+      301.93764725371153,
+      -80.50963185138922,
+      -377.7727170864493
+    ],
+    "sector_zscore": [
+      0.3629265650277729,
+      0.6830852094804629,
+      1.0191553626271497,
+      0.8338494227875765,
+      0.3561311033663766,
+      -0.5960324155177462,
+      0.0027108915672358,
+      0.0369019196757033,
+      0.9244168921209854,
+      1.0840271291382426
+    ]
+  },
+  "decision_traces": [
+    {
+      "step": 0,
+      "date": "2026-06-12",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 51.35215207492836,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [],
+      "novelty_score": 1.0,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Regime is driven by Absorption; price remains range-bound despite volume expansion.. If participation widens above average: favor breakout higher. Else volatility remains compressed: favor range persistence. Unless liquidity evaporates entirely. Falsified if: decisive close below the prior support floor.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "uncertain",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains supported based on the moderate volatility and neutral participation, which aligns with the theory's expectation of a range-bound price despite volume expansion. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior assumption of strong participation strength. This tension highlights the need for additional confirmation signals to further validate the theory.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 1,
+      "date": "2026-06-15",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "neutral",
+        "delivery_pct": 52.46661530017378,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.68,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.32,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with a moderate shift towards leading sector participation.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Participation tension remains weakly evidenced against caution signals.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 2,
+      "date": "2026-06-16",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "expansion",
+        "delivery_pct": 48.60804313129929,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.808,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-15",
+          "similarity": 0.648,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.192,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, with a moderate shift towards leading sector participation and increased RELIANCE focus.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.746
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype The regime remains partially supported, but its falsification is indicated by the observed contradiction between the absorption-driven claim and the moderate shift towards leading sector participation. The low semantic similarity between the revised claim's absorption rate > 1 and the moderate volatility statement suggests a potential issue with the theory's ability to capture the nuances of market behavior. The analog divergence to 2026-06-12 highlights the importance of considering historical context and revisiting previous observations. However, this does not necessarily imply that the current regime subtype is incorrect, but rather that it may require further refinement or adjustment.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 3,
+      "date": "2026-06-17",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 52.31004793957095,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-16",
+          "similarity": 0.669,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-12",
+          "similarity": 0.655,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-15",
+          "similarity": 0.636,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.331,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, with a moderate shift towards leading sector participation and increased RELIANCE focus, but with reduced reliance on absorption rate as a primary driver.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.45
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype The regime remains partially supported, but its falsification is indicated by the observed contradiction in absorption rate semantics. The revised claim's reliance on absorption rate as a primary driver is challenged by the low semantic similarity between \"absorption rate remains above 1\" and other indicators. One unresolved tension arises from the incongruence between the theory's neutral regime subtype and the observed moderate volatility, which contradicts the expectation of normal candle participation. This discrepancy warrants further investigation to determine its implications for the theory's validity.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 4,
+      "date": "2026-06-18",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 40.63461125536507,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-17",
+          "similarity": 0.67,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-16",
+          "similarity": 0.617,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-12",
+          "similarity": 0.603,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.33,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion, and leading sector participation playing a secondary role.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.52
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified based on the observed contradictions, particularly with regards to the absorption rate and volume dryness indicators. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the revised claim that price remains range-bound despite volume expansion.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 5,
+      "date": "2026-06-19",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 49.35488659228862,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-17",
+          "similarity": 0.517,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-16",
+          "similarity": 0.504,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-12",
+          "similarity": 0.49,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.483,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion, but leading sector participation playing a more significant role than initially assumed.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.581
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype The regime remains partially supported, but its falsifiability boundary conditions are not fully met. The observed continuation of moderate RELIANCE focus with price range-bound despite volume expansion contradicts the initial assumption that sector participation would play a more significant role. One unresolved tension is the low semantic similarity between the revised claim's \"Regime is driven by a moderate RELIANCE focus\" and the observation's \"volume elevated, range expanding.\" This discrepancy highlights the need for additional confirmation signals to further validate or falsify the theory. The observed continuation remains insufficiently tested under volatility expansion, which contradicts prior participation strength assumptions.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 11.0
+      }
+    },
+    {
+      "step": 6,
+      "date": "2026-06-22",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 40.76873886828168,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-16",
+          "similarity": 0.672,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-17",
+          "similarity": 0.645,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-19",
+          "similarity": 0.516,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.328,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.5
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified based on the observed contradiction between the predicted moderate reliance focus and the actual strong buying in FII, which exceeds the expected asset liquidity fade. One unresolved tension remains: the theory's assumption that sector participation plays a more significant role than initially assumed contradicts the observed weak move and weak upper participation. This weakness statement is directly related to the theory's falsifiability boundary conditions.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 14.0
+      }
+    },
+    {
+      "step": 7,
+      "date": "2026-06-23",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 42.115760459281866,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-19",
+          "similarity": 0.937,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-22",
+          "similarity": 0.538,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-15",
+          "similarity": 0.52,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.063,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The critique anchors in the theory's specific falsifiability boundary conditions, which require further confirmation signals to confirm or refute this hypothesis. The Dialectical Synthesis provides a reconciliation of prior conflict by acknowledging that while RELIANCE's strong buying pressure is driving moderate volatility, the weakening short-term momentum and neutral sector outlook suggest a mixed trend with potential for a shift towards a more bearish trend. The specific trade-off or boundary that enables the synthesis is the moderate delivery of results, which suggests a weakening reliance on RELIANCE. This trade-off allows for a narrow claim to be synthesized without overextending into broad resolution.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 17.0
+      }
+    },
+    {
+      "step": 8,
+      "date": "2026-06-24",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 57.8887454016835,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-22",
+          "similarity": 0.782,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-12",
+          "similarity": 0.708,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-17",
+          "similarity": 0.645,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.218,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening, and the market's behavior indicates a shift towards reduced asset liquidity.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.49
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype The regime remains partially supported, but its falsifiability boundary conditions are met. The observed continuation of moderate results contradicts the initial assumption that sector participation plays a more significant role than initially assumed. This contradiction is detected through structural low semantic similarity between the revised claim and volume expansion > 0. One unresolved tension lies in the weak move and weak participation, which do not align with the expected FII buying strength < strong buy.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 20.0
+      }
+    },
+    {
+      "step": 9,
+      "date": "2026-06-25",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-18",
+          "similarity": 0.644,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-17",
+          "similarity": 0.517,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-16",
+          "similarity": 0.489,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.356,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening, and the market's behavior indicates a shift towards reduced asset liquidity.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.52
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The provided structured market observation dimensions validate the revised claim of a moderate RELIANCE focus, but with some caveats. The observations suggest that price volatility has increased, sector participation is more significant than initially assumed, and the recent delivery of moderate results indicates a weakening reliance on RELIANCE. However, the detected contradictions highlight areas where the theory requires additional confirmation signals. Specifically, the low semantic similarity between absorption_rate < 0...",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 23.0
+      }
+    }
+  ],
+  "epistemic_review": {
+    "assumptions_survived": [],
+    "assumptions_failed": [
+      "Assumption 1: The world is a fixed and predictable place.",
+      "Assumption 2: Human behavior can be fully understood through rational analysis."
+    ],
+    "knowledge_stronger": [],
+    "knowledge_weaker": [
+      "Knowledge about the limitations of human understanding in complex systems.",
+      "Knowledge about the impact of external factors on decision-making processes."
+    ],
+    "world_model_shifts": [
+      "Shift from a deterministic to a probabilistic view of causality.",
+      "Recognition of the importance of context and nuance in decision-making."
+    ],
+    "fundamental_uncertainty": [
+      "The nature of free will and its relationship to determinism.",
+      "The limits of knowledge and understanding in complex systems."
+    ],
+    "tomorrow_beliefs": [
+      "We would believe that the world is inherently uncertain and unpredictable, and that our models must always be subject to revision.",
+      "We would recognize the importance of humility and adaptability in the face of new information and changing circumstances."
+    ]
+  }
+}</pre>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Explainability Drawer -->
+    <div id="drawer" class="fixed inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-l border-slate-100 flex flex-col hidden">
+        <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+            <div>
+                <h3 class="text-lg font-bold text-slate-900" id="drawerTitle">Day X Trace</h3>
+                <span class="text-xs text-slate-500" id="drawerDate">YYYY-MM-DD</span>
+            </div>
+            <button id="closeDrawer" class="text-slate-400 hover:text-slate-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6 space-y-6 text-sm">
+            <!-- Step-by-Step Cognitive Storyline -->
+            <div class="space-y-4">
+                <div class="border-l-2 border-slate-200 pl-4 relative">
+                    <div class="absolute -left-[6px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                    <h4 class="font-semibold text-slate-800">1. Today's Market</h4>
+                    <p class="text-slate-500 text-xs mt-1" id="drawerMarket">Loading...</p>
+                </div>
+                <div class="border-l-2 border-slate-200 pl-4 relative">
+                    <div class="absolute -left-[6px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                    <h4 class="font-semibold text-slate-800">2. What DP Noticed</h4>
+                    <p class="text-slate-500 text-xs mt-1" id="drawerNoticed">Loading...</p>
+                </div>
+                <div class="border-l-2 border-slate-200 pl-4 relative">
+                    <div class="absolute -left-[6px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                    <h4 class="font-semibold text-slate-800">3. What DP Remembered</h4>
+                    <p class="text-slate-500 text-xs mt-1 whitespace-pre-line" id="drawerRemembered">Loading...</p>
+                </div>
+                <div class="border-l-2 border-slate-200 pl-4 relative">
+                    <div class="absolute -left-[6px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                    <h4 class="font-semibold text-slate-800">4. What DP Believed</h4>
+                    <p class="text-slate-500 text-xs mt-1" id="drawerBelieved">Loading...</p>
+                </div>
+                <div class="border-l-2 border-slate-200 pl-4 relative">
+                    <div class="absolute -left-[6px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                    <h4 class="font-semibold text-slate-800">5. Why DP Predicted</h4>
+                    <p class="text-slate-500 text-xs mt-1 whitespace-pre-line" id="drawerPredicted">Loading...</p>
+                </div>
+                <div class="border-l-2 border-slate-200 pl-4 relative">
+                    <div class="absolute -left-[6px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                    <h4 class="font-semibold text-slate-800">6. What Actually Happened</h4>
+                    <p class="text-slate-500 text-xs mt-1" id="drawerHappened">Loading...</p>
+                </div>
+                <div class="border-l-2 border-slate-200 pl-4 relative">
+                    <div class="absolute -left-[6px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                    <h4 class="font-semibold text-slate-800">7. How DP Changed</h4>
+                    <p class="text-slate-500 text-xs mt-1 whitespace-pre-line" id="drawerChanged">Loading...</p>
+                </div>
+            </div>
+            
+            <div id="drawerProvenance" class="hidden border-t border-slate-100 pt-4">
+                <h4 class="font-semibold text-slate-800 mb-2">Provenance / Lineage Traversal</h4>
+                <div class="bg-slate-50 p-3 rounded-lg text-[10px] font-mono text-slate-500 max-h-48 overflow-y-auto space-y-1.5" id="provenanceChainText">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Drawer Overlay -->
+    <div id="drawerOverlay" class="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40 hidden"></div>
+
+    <!-- Chart Configuration Script -->
+    <script>
+        const chartData = {"dates": ["2026-06-12", "2026-06-15", "2026-06-16", "2026-06-17", "2026-06-18", "2026-06-19", "2026-06-22", "2026-06-23", "2026-06-24", "2026-06-25"], "close": [1293.0, 1307.0, 1328.800048828125, 1332.699951171875, 1328.0999755859375, 1309.5, 1326.5, 1309.5, 1313.5999755859375, 1318.0999755859375], "delivery_pct": [51.97388150373346, 52.26871405201209, 50.42605229031468, 53.2234875081348, 49.07429394026749, 48.674840843739545, 46.33526555736112, 45.03680902295764, 46.15254851538015, 49.37172245725797], "fii_net": [-356.06815946510915, -933.2472710708151, 35.66826771662844, 1260.4911834109118, -329.64950255039054, -220.8166097429164, 1010.1916422542774, 301.93764725371153, -80.50963185138922, -377.7727170864493], "sector_zscore": [0.3629265650277729, 0.6830852094804629, 1.0191553626271497, 0.8338494227875765, 0.3561311033663766, -0.5960324155177462, 0.0027108915672358, 0.0369019196757033, 0.9244168921209854, 1.0840271291382426]};
+        const traces = [{"step": 0, "date": "2026-06-12", "observation": {"trend_state": "closed_higher", "candle_type": "neutral", "delivery_pct": 51.35215207492836, "volume_state": "normal", "regime_subtype": "neutral"}, "memory_retrieved": [], "novelty_score": 1.0, "reuse_decision": "generated_new", "generated_theory": "Regime is driven by Absorption; price remains range-bound despite volume expansion.. If participation widens above average: favor breakout higher. Else volatility remains compressed: favor range persistence. Unless liquidity evaporates entirely. Falsified if: decisive close below the prior support floor.", "applied_principles": [], "world_model_constraints": {}, "prediction": {"direction": "higher", "confidence": 0.55}, "outcome": {"actual_direction": "uncertain", "direction_score": 0.0, "invalidation_triggered": false}, "reflection": "Neutral Regime Subtype. The regime remains supported based on the moderate volatility and neutral participation, which aligns with the theory's expectation of a range-bound price despite volume expansion. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior assumption of strong participation strength. This tension highlights the need for additional confirmation signals to further validate the theory.", "knowledge_updated": {"principles_merged": 0, "principles_generalized": 0, "principles_retired": 0, "principles_restricted": 0, "debt_after": 0.0}}, {"step": 1, "date": "2026-06-15", "observation": {"trend_state": "closed_lower", "candle_type": "neutral", "delivery_pct": 52.46661530017378, "volume_state": "normal", "regime_subtype": "neutral"}, "memory_retrieved": [{"date": "2026-06-12", "similarity": 0.68, "actual_direction": "range_bound"}], "novelty_score": 0.32, "reuse_decision": "generated_new", "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with a moderate shift towards leading sector participation.", "applied_principles": [], "world_model_constraints": {}, "prediction": {"direction": "lower", "confidence": 0.55}, "outcome": {"actual_direction": "lower", "direction_score": 0.0, "invalidation_triggered": true}, "reflection": "Participation tension remains weakly evidenced against caution signals.", "knowledge_updated": {"principles_merged": 0, "principles_generalized": 0, "principles_retired": 0, "principles_restricted": 0, "debt_after": 0.0}}, {"step": 2, "date": "2026-06-16", "observation": {"trend_state": "extended_higher", "candle_type": "expansion", "delivery_pct": 48.60804313129929, "volume_state": "normal", "regime_subtype": "neutral"}, "memory_retrieved": [{"date": "2026-06-12", "similarity": 0.808, "actual_direction": "range_bound"}, {"date": "2026-06-15", "similarity": 0.648, "actual_direction": "range_bound"}], "novelty_score": 0.192, "reuse_decision": "generated_new", "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, with a moderate shift towards leading sector participation and increased RELIANCE focus.", "applied_principles": [], "world_model_constraints": {}, "prediction": {"direction": "higher", "confidence": 0.746}, "outcome": {"actual_direction": "higher", "direction_score": 0.0, "invalidation_triggered": true}, "reflection": "Neutral Regime Subtype The regime remains partially supported, but its falsification is indicated by the observed contradiction between the absorption-driven claim and the moderate shift towards leading sector participation. The low semantic similarity between the revised claim's absorption rate > 1 and the moderate volatility statement suggests a potential issue with the theory's ability to capture the nuances of market behavior. The analog divergence to 2026-06-12 highlights the importance of considering historical context and revisiting previous observations. However, this does not necessarily imply that the current regime subtype is incorrect, but rather that it may require further refinement or adjustment.", "knowledge_updated": {"principles_merged": 0, "principles_generalized": 0, "principles_retired": 0, "principles_restricted": 0, "debt_after": 0.0}}, {"step": 3, "date": "2026-06-17", "observation": {"trend_state": "range_bound", "candle_type": "rejection_lower", "delivery_pct": 52.31004793957095, "volume_state": "normal", "regime_subtype": "neutral"}, "memory_retrieved": [{"date": "2026-06-16", "similarity": 0.669, "actual_direction": "range_bound"}, {"date": "2026-06-12", "similarity": 0.655, "actual_direction": "range_bound"}, {"date": "2026-06-15", "similarity": 0.636, "actual_direction": "range_bound"}], "novelty_score": 0.331, "reuse_decision": "generated_new", "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, with a moderate shift towards leading sector participation and increased RELIANCE focus, but with reduced reliance on absorption rate as a primary driver.", "applied_principles": [], "world_model_constraints": {}, "prediction": {"direction": "range_bound", "confidence": 0.45}, "outcome": {"actual_direction": "range_bound", "direction_score": 0.0, "invalidation_triggered": true}, "reflection": "Neutral Regime Subtype The regime remains partially supported, but its falsification is indicated by the observed contradiction in absorption rate semantics. The revised claim's reliance on absorption rate as a primary driver is challenged by the low semantic similarity between \"absorption rate remains above 1\" and other indicators. One unresolved tension arises from the incongruence between the theory's neutral regime subtype and the observed moderate volatility, which contradicts the expectation of normal candle participation. This discrepancy warrants further investigation to determine its implications for the theory's validity.", "knowledge_updated": {"principles_merged": 0, "principles_generalized": 0, "principles_retired": 0, "principles_restricted": 0, "debt_after": 0.0}}, {"step": 4, "date": "2026-06-18", "observation": {"trend_state": "range_bound", "candle_type": "rejection_lower", "delivery_pct": 40.63461125536507, "volume_state": "normal", "regime_subtype": "neutral"}, "memory_retrieved": [{"date": "2026-06-17", "similarity": 0.67, "actual_direction": "range_bound"}, {"date": "2026-06-16", "similarity": 0.617, "actual_direction": "range_bound"}, {"date": "2026-06-12", "similarity": 0.603, "actual_direction": "range_bound"}], "novelty_score": 0.33, "reuse_decision": "generated_new", "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion, and leading sector participation playing a secondary role.", "applied_principles": [], "world_model_constraints": {}, "prediction": {"direction": "range_bound", "confidence": 0.52}, "outcome": {"actual_direction": "range_bound", "direction_score": 1.0, "invalidation_triggered": false}, "reflection": "The current regime subtype is neutral. The theory is falsified based on the observed contradictions, particularly with regards to the absorption rate and volume dryness indicators. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the revised claim that price remains range-bound despite volume expansion.", "knowledge_updated": {"principles_merged": 0, "principles_generalized": 0, "principles_retired": 0, "principles_restricted": 0, "debt_after": 0.0}}, {"step": 5, "date": "2026-06-19", "observation": {"trend_state": "extended_lower", "candle_type": "expansion", "delivery_pct": 49.35488659228862, "volume_state": "normal", "regime_subtype": "neutral"}, "memory_retrieved": [{"date": "2026-06-17", "similarity": 0.517, "actual_direction": "range_bound"}, {"date": "2026-06-16", "similarity": 0.504, "actual_direction": "range_bound"}, {"date": "2026-06-12", "similarity": 0.49, "actual_direction": "range_bound"}], "novelty_score": 0.483, "reuse_decision": "generated_new", "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price remaining range-bound despite volume expansion, but leading sector participation playing a more significant role than initially assumed.", "applied_principles": [], "world_model_constraints": {}, "prediction": {"direction": "uncertain", "confidence": 0.581}, "outcome": {"actual_direction": "lower", "direction_score": 0.5, "invalidation_triggered": true}, "reflection": "Neutral Regime Subtype The regime remains partially supported, but its falsifiability boundary conditions are not fully met. The observed continuation of moderate RELIANCE focus with price range-bound despite volume expansion contradicts the initial assumption that sector participation would play a more significant role. One unresolved tension is the low semantic similarity between the revised claim's \"Regime is driven by a moderate RELIANCE focus\" and the observation's \"volume elevated, range expanding.\" This discrepancy highlights the need for additional confirmation signals to further validate or falsify the theory. The observed continuation remains insufficiently tested under volatility expansion, which contradicts prior participation strength assumptions.", "knowledge_updated": {"principles_merged": 0, "principles_generalized": 0, "principles_retired": 0, "principles_restricted": 0, "debt_after": 11.0}}, {"step": 6, "date": "2026-06-22", "observation": {"trend_state": "extended_higher", "candle_type": "rejection_upper", "delivery_pct": 40.76873886828168, "volume_state": "normal", "regime_subtype": "neutral"}, "memory_retrieved": [{"date": "2026-06-16", "similarity": 0.672, "actual_direction": "range_bound"}, {"date": "2026-06-17", "similarity": 0.645, "actual_direction": "range_bound"}, {"date": "2026-06-19", "similarity": 0.516, "actual_direction": "range_bound"}], "novelty_score": 0.328, "reuse_decision": "reused", "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed.", "applied_principles": [], "world_model_constraints": {}, "prediction": {"direction": "higher", "confidence": 0.5}, "outcome": {"actual_direction": "higher", "direction_score": 0.0, "invalidation_triggered": false}, "reflection": "The current regime subtype is neutral. The theory is falsified based on the observed contradiction between the predicted moderate reliance focus and the actual strong buying in FII, which exceeds the expected asset liquidity fade. One unresolved tension remains: the theory's assumption that sector participation plays a more significant role than initially assumed contradicts the observed weak move and weak upper participation. This weakness statement is directly related to the theory's falsifiability boundary conditions.", "knowledge_updated": {"principles_merged": 0, "principles_generalized": 0, "principles_retired": 0, "principles_restricted": 0, "debt_after": 14.0}}, {"step": 7, "date": "2026-06-23", "observation": {"trend_state": "extended_lower", "candle_type": "strong_bear", "delivery_pct": 42.115760459281866, "volume_state": "normal", "regime_subtype": "neutral"}, "memory_retrieved": [{"date": "2026-06-19", "similarity": 0.937, "actual_direction": "range_bound"}, {"date": "2026-06-22", "similarity": 0.538, "actual_direction": "range_bound"}, {"date": "2026-06-15", "similarity": 0.52, "actual_direction": "range_bound"}], "novelty_score": 0.063, "reuse_decision": "generated_new", "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening.", "applied_principles": [], "world_model_constraints": {}, "prediction": {"direction": "lower", "confidence": 0.55}, "outcome": {"actual_direction": "lower", "direction_score": 0.0, "invalidation_triggered": true}, "reflection": "The critique anchors in the theory's specific falsifiability boundary conditions, which require further confirmation signals to confirm or refute this hypothesis. The Dialectical Synthesis provides a reconciliation of prior conflict by acknowledging that while RELIANCE's strong buying pressure is driving moderate volatility, the weakening short-term momentum and neutral sector outlook suggest a mixed trend with potential for a shift towards a more bearish trend. The specific trade-off or boundary that enables the synthesis is the moderate delivery of results, which suggests a weakening reliance on RELIANCE. This trade-off allows for a narrow claim to be synthesized without overextending into broad resolution.", "knowledge_updated": {"principles_merged": 0, "principles_generalized": 0, "principles_retired": 0, "principles_restricted": 0, "debt_after": 17.0}}, {"step": 8, "date": "2026-06-24", "observation": {"trend_state": "closed_higher", "candle_type": "neutral", "delivery_pct": 57.8887454016835, "volume_state": "normal", "regime_subtype": "neutral"}, "memory_retrieved": [{"date": "2026-06-22", "similarity": 0.782, "actual_direction": "range_bound"}, {"date": "2026-06-12", "similarity": 0.708, "actual_direction": "range_bound"}, {"date": "2026-06-17", "similarity": 0.645, "actual_direction": "range_bound"}], "novelty_score": 0.218, "reuse_decision": "generated_new", "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening, and the market's behavior indicates a shift towards reduced asset liquidity.", "applied_principles": [], "world_model_constraints": {}, "prediction": {"direction": "higher", "confidence": 0.49}, "outcome": {"actual_direction": "higher", "direction_score": 0.0, "invalidation_triggered": true}, "reflection": "Neutral Regime Subtype The regime remains partially supported, but its falsifiability boundary conditions are met. The observed continuation of moderate results contradicts the initial assumption that sector participation plays a more significant role than initially assumed. This contradiction is detected through structural low semantic similarity between the revised claim and volume expansion > 0. One unresolved tension lies in the weak move and weak participation, which do not align with the expected FII buying strength < strong buy.", "knowledge_updated": {"principles_merged": 0, "principles_generalized": 0, "principles_retired": 0, "principles_restricted": 0, "debt_after": 20.0}}, {"step": 9, "date": "2026-06-25", "observation": {"trend_state": "range_bound", "candle_type": "rejection_upper", "delivery_pct": 56.73048096475415, "volume_state": "normal", "regime_subtype": "neutral"}, "memory_retrieved": [{"date": "2026-06-18", "similarity": 0.644, "actual_direction": "range_bound"}, {"date": "2026-06-17", "similarity": 0.517, "actual_direction": "range_bound"}, {"date": "2026-06-16", "similarity": 0.489, "actual_direction": "range_bound"}], "novelty_score": 0.356, "reuse_decision": "generated_new", "generated_theory": "Revised claim: Regime is driven by a moderate RELIANCE focus, with price exhibiting increased volatility and sector participation playing a more significant role than initially assumed. However, the recent delivery of moderate results suggests that the reliance on RELIANCE may be weakening, and the market's behavior indicates a shift towards reduced asset liquidity.", "applied_principles": [], "world_model_constraints": {}, "prediction": {"direction": "range_bound", "confidence": 0.52}, "outcome": {"actual_direction": "range_bound", "direction_score": 0.0, "invalidation_triggered": true}, "reflection": "The provided structured market observation dimensions validate the revised claim of a moderate RELIANCE focus, but with some caveats. The observations suggest that price volatility has increased, sector participation is more significant than initially assumed, and the recent delivery of moderate results indicates a weakening reliance on RELIANCE. However, the detected contradictions highlight areas where the theory requires additional confirmation signals. Specifically, the low semantic similarity between absorption_rate < 0...", "knowledge_updated": {"principles_merged": 0, "principles_generalized": 0, "principles_retired": 0, "principles_restricted": 0, "debt_after": 23.0}}];
+        
+        const ctx = document.getElementById('replayChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: chartData.dates,
+                datasets: [
+                    {
+                        label: 'Close Price (Primary)',
+                        data: chartData.close,
+                        borderColor: 'rgb(79, 70, 229)',
+                        backgroundColor: 'rgba(79, 70, 229, 0.05)',
+                        borderWidth: 2,
+                        yAxisID: 'y_price',
+                        tension: 0.15,
+                        fill: true
+                    },
+                    {
+                        label: 'Delivery % (Rolling 5d)',
+                        data: chartData.delivery_pct,
+                        borderColor: 'rgb(16, 185, 129)',
+                        borderDash: [5, 5],
+                        borderWidth: 1.5,
+                        yAxisID: 'y_percent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Sector RS Z-score (Rolling 20d)',
+                        data: chartData.sector_zscore,
+                        borderColor: 'rgb(245, 158, 11)',
+                        borderWidth: 1.5,
+                        yAxisID: 'y_zscore',
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                family: 'Outfit'
+                            }
+                        }
+                    },
+                    y_price: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Close Price (₹)',
+                            color: '#4f46e5',
+                            font: {
+                                family: 'Outfit',
+                                weight: '500'
+                            }
+                        },
+                        grid: {
+                            color: '#f1f5f9'
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                family: 'Outfit'
+                            }
+                        }
+                    },
+                    y_percent: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        min: 0,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Delivery %',
+                            color: '#10b981',
+                            font: {
+                                family: 'Outfit',
+                                weight: '500'
+                            }
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                family: 'Outfit'
+                            }
+                        }
+                    },
+                    y_zscore: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        min: -3,
+                        max: 3,
+                        title: {
+                            display: true,
+                            text: 'Relative Strength Z-score',
+                            color: '#f59e0b',
+                            font: {
+                                family: 'Outfit',
+                                weight: '500'
+                            }
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: {
+                                family: 'Outfit'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                family: 'Outfit',
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Search Filter for table
+        document.getElementById('timelineSearch').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('.timeline-row');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    row.classList.remove('hidden');
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+        });
+
+        // Modal Toggle
+        function toggleJsonModal() {
+            const modal = document.getElementById('jsonModal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Add click events to table rows
+        document.addEventListener('DOMContentLoaded', () => {
+            const rows = document.querySelectorAll('.timeline-row');
+            rows.forEach((row, index) => {
+                row.style.cursor = 'pointer';
+                row.addEventListener('click', () => {
+                    openDrawer(index);
+                });
+            });
+            
+            document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
+            document.getElementById('drawerOverlay').addEventListener('click', closeDrawer);
+        });
+
+        function openDrawer(index) {
+            const trace = traces[index];
+            if (!trace) return;
+
+            document.getElementById('drawerTitle').innerText = `Day ${trace.step} Cognitive Trace`;
+            document.getElementById('drawerDate').innerText = trace.date;
+            
+            // 1. Today's Market
+            document.getElementById('drawerMarket').innerText = `Candle Type: ${trace.observation.candle_type} | Volume: ${trace.observation.volume_state} | Regime Subtype: ${trace.observation.regime_subtype}`;
+            
+            // 2. What DP Noticed
+            document.getElementById('drawerNoticed').innerText = `Trend state was ${trace.observation.trend_state} with delivery percentage at ${trace.observation.delivery_pct.toFixed(1)}%.`;
+            
+            // 3. What DP Remembered
+            if (trace.memory_retrieved && trace.memory_retrieved.length > 0) {
+                const memList = trace.memory_retrieved.map(m => `- ${m.date} (similarity: ${(m.similarity * 100).toFixed(0)}%, direction: ${m.actual_direction})`).join('\n');
+                document.getElementById('drawerRemembered').innerText = `Retrieved similar days:\n${memList}\nNovelty Score: ${trace.novelty_score.toFixed(3)}`;
+            } else {
+                document.getElementById('drawerRemembered').innerText = `Retrieved 0 similar prior days (Novelty Score: ${trace.novelty_score.toFixed(3)}).`;
+            }
+            
+            // 4. What DP Believed
+            document.getElementById('drawerBelieved').innerText = trace.generated_theory || "Baseline Theory";
+            
+            // 5. Why DP Predicted
+            let predText = `Direction expectation: ${trace.prediction.direction} with confidence ${(trace.prediction.confidence * 100).toFixed(0)}%.`;
+            if (trace.applied_principles && trace.applied_principles.length > 0) {
+                const pText = trace.applied_principles.map(p => `"${p.statement}" (${p.status}, trust: ${p.trust_score.toFixed(1)})`).join('\n');
+                predText += `\n\nApplied Principles:\n${pText}`;
+            }
+            if (trace.world_model_constraints && Object.keys(trace.world_model_constraints).length > 0) {
+                predText += `\n\nWorld Model Constraints:\n- Blocked Bias = ${trace.world_model_constraints.blocked_bias || 'None'}\n- Max Confidence Override = ${(trace.world_model_constraints.max_confidence * 100).toFixed(0)}%`;
+            }
+            document.getElementById('drawerPredicted').innerText = predText;
+            
+            // 6. What Actually Happened
+            document.getElementById('drawerHappened').innerText = `Actual price direction was ${trace.outcome.actual_direction} (Direction Score: ${trace.outcome.direction_score.toFixed(1)}, Invalidation Triggered: ${trace.outcome.invalidation_triggered}).`;
+            
+            // 7. How DP Changed
+            const change = trace.knowledge_updated;
+            document.getElementById('drawerChanged').innerText = `Principles collapsed/merged: ${change.principles_merged} | generalized: ${change.principles_generalized} | retired: ${change.principles_retired} | restricted: ${change.principles_restricted}\nPost-step Knowledge Debt: ${change.debt_after.toFixed(1)}`;
+
+            // Provenance chain section
+            const provText = [];
+            provText.push(`Observation [obs_${trace.date}]`);
+            provText.push(`  └─ explains ➔ Theory [${trace.generated_theory.substring(0, 30)}...]`);
+            if (trace.applied_principles && trace.applied_principles.length > 0) {
+                trace.applied_principles.forEach(p => {
+                    provText.push(`      ├─ supported_by ➔ Principle [${p.id.substring(0,8)}]`);
+                    provText.push(`      └─ influences ➔ WorldModel`);
+                });
+            }
+            provText.push(`          └─ constrains ➔ Prediction [${trace.prediction.direction}]`);
+            provText.push(`              └─ scores ➔ Outcome [${trace.outcome.actual_direction}]`);
+            
+            document.getElementById('provenanceChainText').innerText = provText.join('\n');
+            document.getElementById('drawerProvenance').classList.remove('hidden');
+
+            document.getElementById('drawer').classList.remove('hidden');
+            document.getElementById('drawerOverlay').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('drawer').style.transform = 'translateX(0)';
+            }, 50);
+        }
+
+        function closeDrawer() {
+            document.getElementById('drawer').style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                document.getElementById('drawer').classList.add('hidden');
+                document.getElementById('drawerOverlay').classList.add('hidden');
+            }, 300);
+        }
+    </script>
+</body>
+</html>

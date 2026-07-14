@@ -1,0 +1,22 @@
+{
+  "pre_registered_hypotheses": [
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "H5"
+  ],
+  "admit_threshold": 0.15,
+  "reject_threshold": -0.05,
+  "pilot_size": 100,
+  "primary_size": 500,
+  "zone_composition": {
+    "clear": 30,
+    "boundary": 50,
+    "evidence_limited": 20
+  },
+  "minimum_meaningful_effect_percentage_points": 5.0,
+  "minimum_meaningful_effect_absolute": 0.05,
+  "power_target": 0.8,
+  "multiple_comparisons_policy": "No family-wise multiplicity correction will be applied across H2, H3, and H4. Reason: H2, H3, and H4 are separate, fixed, pre-registered, non-adaptive scientific questions. They are not selected after observing results. Each hypothesis must therefore be interpreted independently using its pre-registered comparison and uncertainty interval."
+}

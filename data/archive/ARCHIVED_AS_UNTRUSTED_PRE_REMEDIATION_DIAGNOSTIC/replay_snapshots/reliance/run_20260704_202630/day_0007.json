@@ -1,0 +1,336 @@
+{
+  "step": 7,
+  "date": "2026-06-03",
+  "observation": "[range expanding, volatility expanding, delivery:low, fii:buying, sector:lagging, RELIANCE focus] candle rejection lower participation normal (normal) RELIANCE traded range-bound amid moderate volatility but breadth weakened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is trading in a range-bound manner with moderate volatility, indicating a mixed trend persistence and overall regime.",
+  "theory": "Price sequence is influenced by RELIANCE trading range-bound volatility, where daily highs exceed previous highs and lows decrease, but with a greater emphasis on delivery and asset liquidity fade when compared to non-range bound conditions.",
+  "theory_summary_structured": {
+    "id": "2fecd9ed-1180-4ed0-93bb-5c04c12ec90a",
+    "created_at": "2026-07-04 14:57:01.403141+00:00",
+    "mechanism": "Liquidity Absorption",
+    "claim": "Price sequence is influenced by RELIANCE trading range-bound volatility, where daily highs exceed previous highs and lows decrease, but with a greater emphasis on delivery and asset liquidity fade when compared to non-range bound conditions.",
+    "if_branch": {
+      "id": "663b1659-7f77-465a-a852-2ca1e728f6bf",
+      "created_at": "2026-07-04 15:08:34.374594+00:00",
+      "condition": "elevated_volume > 0.5",
+      "action": "promote"
+    },
+    "else_branch": {
+      "id": "ac3f0cb4-b7ce-458b-bf4a-b6f6c0010068",
+      "created_at": "2026-07-04 15:08:34.374656+00:00",
+      "condition": "false",
+      "action": "demote"
+    },
+    "unless": "liquidity evaporates entirely",
+    "falsified_if": "price_structure_with_modified_range_bound_reliance_v3",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "66aeab89-773d-425e-b53c-85ef398c209b",
+        "created_at": "2026-07-04 15:08:31.467013+00:00",
+        "component_id": "price_structure_with_modified_range_bound_reliance_v4",
+        "description": "Price maintains sequence of higher highs and lower lows, but with a modified twist: when RELIANCE is trading range-bound, the price structure becomes more volatile and less persistent, taking into account additional factors such as FII buying and sector performance. The new mechanism incorporates a stronger emphasis on delivery and asset liquidity fade.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous high, each low < previous low (when RELIANCE is trading range-bound) or Each day's high > previous high, each low > previous low (otherwise) with a greater emphasis on the latter, considering factors like delivery, FII buying, and sector performance.",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "DELIVERY_EXHAUSTION",
+          "FII_BUYING",
+          "SECTOR_PERFORMANCE"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_006"
+      }
+    ],
+    "falsification_conditions": [
+      "MECH_005: elevated_volume > 0.5",
+      "MECH_006: range_expanding"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.05,
+    "regime": 0.5487,
+    "reflection": 0.1573,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.09692,
+    "indicators": [
+      "Structural: Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume > 1000 and RE...; Low semantic similarity: elevated_volume > 0.... vs volume > 1000 and RE...; Low semantic similarity: false: demote... vs otherwise: no action...",
+      "Structural: Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume dry and RELIA...; Low semantic similarity: elevated_volume > 0.... vs volume dry and RELIA...; Low semantic similarity: false: demote... vs otherwise: retain or...",
+      "Structural: Low semantic similarity: Price sequence is in... vs The current market r...; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume_expansion_wit...; Low semantic similarity: elevated_volume > 0.... vs volume_expansion_wit...; Low semantic similarity: false: demote... vs otherwise: demote me...",
+      "Structural: Low semantic similarity: Price sequence is in... vs The current market r...; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume_expansion_wit...; Low semantic similarity: elevated_volume > 0.... vs volume_expansion_wit...; Low semantic similarity: false: demote... vs otherwise: demote me...",
+      "Structural: Low semantic similarity: Price sequence is in... vs The RELIANCE's tradi...; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume_expansion_wit...; Low semantic similarity: elevated_volume > 0.... vs volume_expansion_wit...; Low semantic similarity: false: demote... vs price_structure_with..."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "cfae41aa-eb90-41e0-a141-a2bdacefbe93",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "7a92defb-312d-4b61-b411-96a08911605b",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "161534e0-a18b-400c-a7d9-e9b88effe871",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "d1e1a355-56c6-44ed-9e32-5e75c0047757",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "c4fcc8ce-584f-4f81-82e9-6ab7e8bf8805",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 5 contradictions with a total score of 0.10."
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-06-03",
+    "trend": "range_bound",
+    "volatility_state": "moderate",
+    "sentiment": "uncertain",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.097,
+    "active_theory_count": 4,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-05-25",
+      "similarity": 0.708,
+      "active_theories": [
+        "5c9c1c4a9f2d9328"
+      ],
+      "contradictions": [],
+      "confidence": 0.24,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-06-01",
+      "similarity": 0.6,
+      "active_theories": [
+        "5c9c1c4a9f2d9328",
+        "4a066f5fe69ac15e"
+      ],
+      "contradictions": [
+        "Structural: Field conflict: Price structure exhibits seque vs The current market regime is c; Low semantic similarity: Price structure exhi... vs volume_expansion_wit...; Trend: continuation vs rejection; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.",
+        "Structural: Field conflict: Price structure exhibits seque vs The current market regime is c; Low semantic similarity: Price structure exhi... vs volume_expansion_wit...; Trend: continuation vs rejection; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.",
+        "Structural: Low semantic similarity: Price structure exhi... vs The RELIANCE's tradi...; Low semantic similarity: Price structure exhi... vs volume_expansion_wit...; Low semantic similarity: otherwise: retain or... vs price_structure_with...; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory."
+      ],
+      "confidence": 0.05,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-26",
+      "similarity": 0.588,
+      "active_theories": [
+        "5c9c1c4a9f2d9328"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: The RELIANCE's tradi... vs Regime is driven by ...; Low semantic similarity: The RELIANCE's tradi... vs delivery_pct > 50 AN...; Low semantic similarity: RELIANCE trading ran... vs delivery_pct > 50 AN...; Low semantic similarity: RELIANCE not trading... vs sector_zscore < -1.5...; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+      ],
+      "confidence": 0.126,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-06-03",
+      "policy_name": "Baseline",
+      "action": "hold",
+      "conviction": 0.5,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-06-03",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.5,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-06-03",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.5,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.27709426666666664,
+    "label": "weak"
+  },
+  "reflection": "The theory of RELIANCE trading range-bound volatility is partially supported by the structured market observation dimensions. The observed candle rejection lower participation normal (normal) RELIANCE traded range-bound amid moderate volatility but breadth weakened, aligns with the theory's emphasis on delivery and asset liquidity fade. However, the detected 5 contradictions with a total score of 0.10 indicate that the theory is not entirely supported. Specifically, the low semantic similarity between \"price_structure_with...\" and \"decisive close below...\", as well as other similar instances, suggest that the theory's language may be unclear or inconsistent.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 6,
+    "avg_usefulness": 0.123,
+    "last_seen": "2026-06-03",
+    "historical_resolution": {
+      "higher": 1,
+      "lower": 1,
+      "range_bound": 3,
+      "uncertain": 0
+    },
+    "falsified_count": 4
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 7,
+    "date": "2026-06-03",
+    "contradiction_count": 4,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.7777777777777778,
+    "avg_contradiction_severity": 0.7993155555555556,
+    "highest_contradiction": 1.0,
+    "theory_count": 4,
+    "active_theories": 4,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 1,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 1.5,
+    "avg_revival_latency": 1.0,
+    "avg_theory_age": 2.5714285714285716,
+    "longest_surviving_theory": 6,
+    "theory_mutation_count": 5,
+    "avg_confidence": 0.07705000000000001,
+    "confidence_delta": -0.19,
+    "confidence_volatility": 0.06944722816642865,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 7.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.022222222222222223,
+    "avg_abstraction_length": 18.0,
+    "compression_ratio": 0.5142857142857142,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 35,
+    "mechanism_count": 1,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 2,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 0.0,
+    "words_before_mutation": 37,
+    "words_after_mutation": 35,
+    "mechanisms_before_mutation": 2,
+    "mechanisms_after_mutation": 1,
+    "extras": {
+      "observation_length": 35,
+      "theory_text": "Price sequence is influenced by RELIANCE trading range-bound volatility, where daily highs exceed previous highs and lows decrease, but with a greater emphasis on delivery and asset liquidity fade when compared to non-range bound conditions.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 0.10.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-03",
+        "trend": "range_bound",
+        "volatility_state": "moderate",
+        "sentiment": "uncertain",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.097,
+        "active_theory_count": 4,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-05-25",
+          "similarity": 0.708,
+          "active_theories": [
+            "5c9c1c4a9f2d9328"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-01",
+          "similarity": 0.6,
+          "active_theories": [
+            "5c9c1c4a9f2d9328",
+            "4a066f5fe69ac15e"
+          ],
+          "contradictions": [
+            "Structural: Field conflict: Price structure exhibits seque vs The current market regime is c; Low semantic similarity: Price structure exhi... vs volume_expansion_wit...; Trend: continuation vs rejection; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.",
+            "Structural: Field conflict: Price structure exhibits seque vs The current market regime is c; Low semantic similarity: Price structure exhi... vs volume_expansion_wit...; Trend: continuation vs rejection; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'FII_BUYING' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'SECTOR_PERFORMANCE' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'DELIVERY_EXHAUSTION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.",
+            "Structural: Low semantic similarity: Price structure exhi... vs The RELIANCE's tradi...; Low semantic similarity: Price structure exhi... vs volume_expansion_wit...; Low semantic similarity: otherwise: retain or... vs price_structure_with...; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'AMPLIFIES' in current theory but 'DAMPENS' in historical theory."
+          ],
+          "confidence": 0.05,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.588,
+          "active_theories": [
+            "5c9c1c4a9f2d9328"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The RELIANCE's tradi... vs Regime is driven by ...; Low semantic similarity: The RELIANCE's tradi... vs delivery_pct > 50 AN...; Low semantic similarity: RELIANCE trading ran... vs delivery_pct > 50 AN...; Low semantic similarity: RELIANCE not trading... vs sector_zscore < -1.5...; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+          ],
+          "confidence": 0.126,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.27709426666666664,
+        "label": "weak"
+      }
+    }
+  }
+}

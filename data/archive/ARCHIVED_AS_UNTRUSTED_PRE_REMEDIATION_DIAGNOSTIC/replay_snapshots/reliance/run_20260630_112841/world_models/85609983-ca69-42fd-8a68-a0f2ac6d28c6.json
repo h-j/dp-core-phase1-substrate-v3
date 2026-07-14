@@ -1,0 +1,15 @@
+{
+  "id": "85609983-ca69-42fd-8a68-a0f2ac6d28c6",
+  "created_at": "2026-06-30T06:04:26.245146+00:00",
+  "step": 5,
+  "narrative_summary": "Baseline world model. No active principles recorded yet.",
+  "active_principle_ids": [],
+  "regime_constraints": {},
+  "dominant_mechanisms": [],
+  "active_constraints": [],
+  "supporting_canonical_principles": [],
+  "confidence": 0.5,
+  "stability": "Emerging",
+  "evidence_count": 0,
+  "applicable_regimes": []
+}

@@ -1,0 +1,118 @@
+[
+  {
+    "proposition_id": "PROP_WORLD_A_SEED_42",
+    "source_hypothesis_id": "HYP_WORLD_A_SEED_42",
+    "trigger_definition": {
+      "field": "VAR_1",
+      "operator": "==",
+      "value": 1,
+      "lag": 0
+    },
+    "target_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_B"
+    },
+    "scope_definition": [],
+    "expected_direction": 1.0,
+    "contradiction_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_A"
+    },
+    "specificity_definition": {
+      "type": "deterministic"
+    },
+    "complexity_cost": 1.0,
+    "generation_source": "deterministic_compilation",
+    "creation_timestamp": 1783658417.302965,
+    "lifecycle_state": "ADMITTED_BELIEF"
+  },
+  {
+    "proposition_id": "PROP_WORLD_B_SEED_42",
+    "source_hypothesis_id": "HYP_WORLD_B_SEED_42",
+    "trigger_definition": {
+      "field": "VAR_1",
+      "operator": "==",
+      "value": 1,
+      "lag": 0
+    },
+    "target_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_B"
+    },
+    "scope_definition": [],
+    "expected_direction": 1.0,
+    "contradiction_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_A"
+    },
+    "specificity_definition": {
+      "type": "deterministic"
+    },
+    "complexity_cost": 1.0,
+    "generation_source": "deterministic_compilation",
+    "creation_timestamp": 1783658417.304617,
+    "lifecycle_state": "REJECTED_PROPOSITION"
+  },
+  {
+    "proposition_id": "PROP_WORLD_C1_SEED_42",
+    "source_hypothesis_id": "HYP_WORLD_C1_SEED_42",
+    "trigger_definition": {
+      "field": "VAR_1",
+      "operator": "==",
+      "value": 1,
+      "lag": 0
+    },
+    "target_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_B"
+    },
+    "scope_definition": [],
+    "expected_direction": 1.0,
+    "contradiction_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_A"
+    },
+    "specificity_definition": {
+      "type": "deterministic"
+    },
+    "complexity_cost": 1.0,
+    "generation_source": "deterministic_compilation",
+    "creation_timestamp": 1783658417.3067641,
+    "lifecycle_state": "DEFERRED_PROPOSITION"
+  },
+  {
+    "proposition_id": "PROP_WORLD_C2_SEED_42",
+    "source_hypothesis_id": "HYP_WORLD_C2_SEED_42",
+    "trigger_definition": {
+      "field": "VAR_1",
+      "operator": "==",
+      "value": 1,
+      "lag": 0
+    },
+    "target_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_B"
+    },
+    "scope_definition": [],
+    "expected_direction": 1.0,
+    "contradiction_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_A"
+    },
+    "specificity_definition": {
+      "type": "deterministic"
+    },
+    "complexity_cost": 1.0,
+    "generation_source": "deterministic_compilation",
+    "creation_timestamp": 1783658417.307806,
+    "lifecycle_state": "DEFERRED_PROPOSITION"
+  }
+]

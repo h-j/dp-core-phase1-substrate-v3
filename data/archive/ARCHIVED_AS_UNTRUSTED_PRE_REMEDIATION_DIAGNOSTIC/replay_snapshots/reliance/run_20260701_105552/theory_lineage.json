@@ -1,0 +1,311 @@
+{
+  "2467af6dc8008509": {
+    "id": "2467af6dc8008509",
+    "lineage_id": "2467af6dc8008509",
+    "created_at_step": 0,
+    "parent_ids": [],
+    "status": "contradicted",
+    "confidence": 0.5,
+    "abstraction": "Mixed trend with moderate volatility, driven by RELIANCE's strong buying pressure and fading asset liquidity.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5074,
+      "reflection_confidence": 0.3013,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 1.0
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: price_range_bound... vs price breaks out of ...; Low semantic similarity: Revised claim: Regim... vs volume elevated, ran...; Low semantic similarity: volume_expansion > 0... vs volume elevated, ran...; Low semantic similarity: FII_buying_strength ... vs asset participation ...",
+      "Structural: Low semantic similarity: price_range_bound... vs Absorption rate > 0....; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus > 0.5...; Low semantic similarity: volume_expansion > 0... vs RELIANCE focus > 0.5...; Low semantic similarity: FII_buying_strength ... vs RELIANCE focus <= 0....",
+      "Structural: Low semantic similarity: price_range_bound... vs absorption rate rema...; Low semantic similarity: Revised claim: Regim... vs volume dry and gap u...; Low semantic similarity: volume_expansion > 0... vs volume dry and gap u...; Field conflict: FII_buying_strength < strong_b vs candle rejection lower partici",
+      "Structural: Low semantic similarity: price_range_bound... vs absorption_rate > 1....; Low semantic similarity: Revised claim: Regim... vs absorption_rate > 0....; Low semantic similarity: FII_buying_strength ... vs absorption_rate <= 0...",
+      "Structural: Low semantic similarity: price_range_bound... vs Significant deviatio...; Low semantic similarity: Revised claim: Regim... vs Moderate volatility ...; Low semantic similarity: volume_expansion > 0... vs Moderate volatility ...; Low semantic similarity: FII_buying_strength ... vs Normal candle partic..."
+    ],
+    "contradiction_count": 5,
+    "mutation_reason": "continued",
+    "survival_steps": 10,
+    "last_seen_step": 6,
+    "mutation_count": 0,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": []
+  },
+  "c764f8c92beb2c75": {
+    "id": "c764f8c92beb2c75",
+    "lineage_id": "2467af6dc8008509",
+    "created_at_step": 1,
+    "parent_ids": [
+      "2467af6dc8008509"
+    ],
+    "status": "retired",
+    "confidence": 0.175,
+    "abstraction": "Reliance is closing lower with moderate volatility, indicating a mixed trend persistence and overall regime.",
+    "confidence_state": {
+      "empirical_confidence": 0.175,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.487,
+      "theoretical_coherence": 0.2889,
+      "contradiction_pressure": 0.403
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: Significant deviatio... vs decisive close below...; Low semantic similarity: Revised claim: Regim... vs participation widens...; Low semantic similarity: Moderate volatility ... vs participation widens...; Field conflict: Normal candle participation an vs volatility remains compressed:"
+    ],
+    "contradiction_count": 1,
+    "mutation_reason": "semantic_similarity_0.81",
+    "survival_steps": 6,
+    "last_seen_step": 6,
+    "mutation_count": 1,
+    "retired_at_step": 6,
+    "last_retired_step": 6,
+    "revival_count": 0,
+    "retirement_ages": [
+      5
+    ],
+    "revival_latencies": []
+  },
+  "94abb11ebbc985b2": {
+    "id": "94abb11ebbc985b2",
+    "lineage_id": "94abb11ebbc985b2",
+    "created_at_step": 2,
+    "parent_ids": [],
+    "status": "retired",
+    "confidence": 0.0,
+    "abstraction": "Reliance is showing bullish signs with a moderate to high-volume gap-up and leading sector performance, but trend persistence remains mixed across different time frames.",
+    "confidence_state": {
+      "empirical_confidence": 0.0,
+      "regime_confidence": 0.501,
+      "reflection_confidence": 0.4575,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 1.0
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: absorption_rate > 1.... vs Significant deviatio...; Low semantic similarity: Revised claim: Regim... vs Moderate volatility ...; Low semantic similarity: absorption_rate > 0.... vs Moderate volatility ...; Low semantic similarity: absorption_rate <= 0... vs Normal candle partic...",
+      "Structural: Low semantic similarity: absorption_rate > 1.... vs decisive close below...; Low semantic similarity: Revised claim: Regim... vs participation widens...; Low semantic similarity: absorption_rate > 0.... vs participation widens...; Low semantic similarity: absorption_rate <= 0... vs volatility remains c..."
+    ],
+    "contradiction_count": 2,
+    "mutation_reason": null,
+    "survival_steps": 5,
+    "last_seen_step": 6,
+    "mutation_count": 0,
+    "retired_at_step": 6,
+    "last_retired_step": 6,
+    "revival_count": 0,
+    "retirement_ages": [
+      4
+    ],
+    "revival_latencies": []
+  },
+  "642c511cf614f8fc": {
+    "id": "642c511cf614f8fc",
+    "lineage_id": "2467af6dc8008509",
+    "created_at_step": 3,
+    "parent_ids": [
+      "2467af6dc8008509"
+    ],
+    "status": "revived",
+    "confidence": 0.0,
+    "abstraction": "Reliance is trading in a range-bound manner with moderate volatility, indicating a mixed trend persistence and regime.",
+    "confidence_state": {
+      "empirical_confidence": 0.0,
+      "regime_confidence": 0.502,
+      "reflection_confidence": 0.4275,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 1.0
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: absorption rate rema... vs absorption_rate > 1....; Low semantic similarity: Revised claim: Regim... vs absorption_rate > 0....; Low semantic similarity: volume dry and gap u... vs absorption_rate > 0....; Low semantic similarity: candle rejection low... vs absorption_rate <= 0...",
+      "Structural: Low semantic similarity: absorption rate rema... vs Significant deviatio...; Low semantic similarity: Revised claim: Regim... vs Moderate volatility ...; Low semantic similarity: candle rejection low... vs Normal candle partic...",
+      "Structural: Low semantic similarity: absorption rate rema... vs decisive close below...; Low semantic similarity: Revised claim: Regim... vs participation widens...; Low semantic similarity: volume dry and gap u... vs participation widens...; Low semantic similarity: candle rejection low... vs volatility remains c..."
+    ],
+    "contradiction_count": 3,
+    "mutation_reason": "semantic_similarity_0.63",
+    "survival_steps": 4,
+    "last_seen_step": 9,
+    "mutation_count": 1,
+    "retired_at_step": null,
+    "last_retired_step": 6,
+    "revival_count": 1,
+    "retirement_ages": [
+      3
+    ],
+    "revival_latencies": [
+      3
+    ]
+  },
+  "415099d7255a9af5": {
+    "id": "415099d7255a9af5",
+    "lineage_id": "415099d7255a9af5",
+    "created_at_step": 4,
+    "parent_ids": [],
+    "status": "retired",
+    "confidence": 0.0,
+    "abstraction": "Mixed trend with moderate momentum and neutral sector performance, indicating a stable but volatile trading environment.",
+    "confidence_state": {
+      "empirical_confidence": 0.0,
+      "regime_confidence": 0.503,
+      "reflection_confidence": 0.3975,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 1.0
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: Absorption rate > 0.... vs absorption rate rema...; Low semantic similarity: Revised claim: Regim... vs volume dry and gap u...; Low semantic similarity: RELIANCE focus > 0.5... vs volume dry and gap u...; Low semantic similarity: RELIANCE focus <= 0.... vs candle rejection low...",
+      "Structural: Low semantic similarity: Absorption rate > 0.... vs absorption_rate > 1....; Low semantic similarity: Revised claim: Regim... vs absorption_rate > 0....; Low semantic similarity: RELIANCE focus > 0.5... vs absorption_rate > 0....; Low semantic similarity: RELIANCE focus <= 0.... vs absorption_rate <= 0...",
+      "Structural: Low semantic similarity: Absorption rate > 0.... vs Significant deviatio...; Low semantic similarity: Revised claim: Regim... vs Moderate volatility ...; Low semantic similarity: RELIANCE focus > 0.5... vs Moderate volatility ...; Low semantic similarity: RELIANCE focus <= 0.... vs Normal candle partic...",
+      "Structural: Low semantic similarity: Absorption rate > 0.... vs decisive close below...; Low semantic similarity: Revised claim: Regim... vs participation widens...; Low semantic similarity: RELIANCE focus > 0.5... vs participation widens...; Low semantic similarity: RELIANCE focus <= 0.... vs volatility remains c..."
+    ],
+    "contradiction_count": 4,
+    "mutation_reason": null,
+    "survival_steps": 3,
+    "last_seen_step": 6,
+    "mutation_count": 0,
+    "retired_at_step": 6,
+    "last_retired_step": 6,
+    "revival_count": 0,
+    "retirement_ages": [
+      2
+    ],
+    "revival_latencies": []
+  },
+  "c04ed78e63a2b65b": {
+    "id": "c04ed78e63a2b65b",
+    "lineage_id": "c04ed78e63a2b65b",
+    "created_at_step": 5,
+    "parent_ids": [],
+    "status": "retired",
+    "confidence": 0.0,
+    "abstraction": "Weakening trend with moderate volatility, breadth weakened, and a surge in asset participation, indicating a bearish confirmation.",
+    "confidence_state": {
+      "empirical_confidence": 0.0,
+      "regime_confidence": 0.5047,
+      "reflection_confidence": 0.3231,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 1.0
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: price breaks out of ... vs Absorption rate > 0....; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus > 0.5...; Low semantic similarity: volume elevated, ran... vs RELIANCE focus > 0.5...; Low semantic similarity: asset participation ... vs RELIANCE focus <= 0....",
+      "Structural: Low semantic similarity: price breaks out of ... vs absorption rate rema...; Low semantic similarity: Revised claim: Regim... vs volume dry and gap u...; Field conflict: volume elevated, range expandi vs volume dry and gap up with sho; Low semantic similarity: asset participation ... vs candle rejection low...",
+      "Structural: Low semantic similarity: price breaks out of ... vs absorption_rate > 1....; Low semantic similarity: Revised claim: Regim... vs absorption_rate > 0....; Low semantic similarity: volume elevated, ran... vs absorption_rate > 0....; Low semantic similarity: asset participation ... vs absorption_rate <= 0...",
+      "Structural: Low semantic similarity: price breaks out of ... vs Significant deviatio...; Low semantic similarity: Revised claim: Regim... vs Moderate volatility ...; Field conflict: volume elevated, range expandi vs Moderate volatility and leadin; Low semantic similarity: asset participation ... vs Normal candle partic...",
+      "Structural: Low semantic similarity: price breaks out of ... vs decisive close below...; Low semantic similarity: Revised claim: Regim... vs participation widens...; Low semantic similarity: volume elevated, ran... vs participation widens...; Low semantic similarity: asset participation ... vs volatility remains c..."
+    ],
+    "contradiction_count": 5,
+    "mutation_reason": null,
+    "survival_steps": 2,
+    "last_seen_step": 6,
+    "mutation_count": 0,
+    "retired_at_step": 6,
+    "last_retired_step": 6,
+    "revival_count": 0,
+    "retirement_ages": [
+      1
+    ],
+    "revival_latencies": []
+  },
+  "701ca49dc45bcd4d": {
+    "id": "701ca49dc45bcd4d",
+    "lineage_id": "701ca49dc45bcd4d",
+    "created_at_step": 7,
+    "parent_ids": [],
+    "status": "contradicted",
+    "confidence": 0.4085,
+    "abstraction": "Weakening short-term momentum and moderate volatility with a neutral sector outlook, indicating a mixed trend persistence and overall regime.",
+    "confidence_state": {
+      "empirical_confidence": 0.4085,
+      "regime_confidence": 0.5123,
+      "reflection_confidence": 0.2555,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 1.0
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: price volatility dec... vs price_range_bound...; Low semantic similarity: Revised claim: Regim... vs volume_expansion > 0...; Low semantic similarity: delivery > moderate:... vs volume_expansion > 0...; Low semantic similarity: delivery = moderate:... vs FII_buying_strength ...",
+      "Structural: Low semantic similarity: price volatility dec... vs price breaks out of ...; Low semantic similarity: Revised claim: Regim... vs volume elevated, ran...; Low semantic similarity: delivery > moderate:... vs volume elevated, ran...; Low semantic similarity: delivery = moderate:... vs asset participation ...",
+      "Structural: Low semantic similarity: price volatility dec... vs Absorption rate > 0....; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus > 0.5...; Low semantic similarity: delivery > moderate:... vs RELIANCE focus > 0.5...; Low semantic similarity: delivery = moderate:... vs RELIANCE focus <= 0....",
+      "Structural: Low semantic similarity: price volatility dec... vs absorption rate rema...; Field conflict: Revised claim: Regime is drive vs volume dry and gap up with sho; Field conflict: delivery > moderate: update RE vs volume dry and gap up with sho; Low semantic similarity: delivery = moderate:... vs candle rejection low...",
+      "Structural: Low semantic similarity: price volatility dec... vs absorption_rate > 1....; Low semantic similarity: Revised claim: Regim... vs absorption_rate > 0....; Low semantic similarity: delivery > moderate:... vs absorption_rate > 0....; Low semantic similarity: delivery = moderate:... vs absorption_rate <= 0..."
+    ],
+    "contradiction_count": 5,
+    "mutation_reason": null,
+    "survival_steps": 3,
+    "last_seen_step": 7,
+    "mutation_count": 0,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": []
+  },
+  "1835eab1dbd6cf24": {
+    "id": "1835eab1dbd6cf24",
+    "lineage_id": "701ca49dc45bcd4d",
+    "created_at_step": 8,
+    "parent_ids": [
+      "701ca49dc45bcd4d"
+    ],
+    "status": "contradicted",
+    "confidence": 0.0,
+    "abstraction": "Reliance stock shows moderate price movement with neutral participation, indicating a weak trend persistence and mixed regime.",
+    "confidence_state": {
+      "empirical_confidence": 0.0,
+      "regime_confidence": 0.5154,
+      "reflection_confidence": 0.1958,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 1.0
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: price volatility dec... vs price_range_bound...; Low semantic similarity: Revised claim: Regim... vs volume_expansion > 0...; Low semantic similarity: delivery > moderate:... vs volume_expansion > 0...; Low semantic similarity: delivery = moderate:... vs FII_buying_strength ...",
+      "Structural: Low semantic similarity: price volatility dec... vs price breaks out of ...; Low semantic similarity: Revised claim: Regim... vs volume elevated, ran...; Low semantic similarity: delivery > moderate:... vs volume elevated, ran...; Low semantic similarity: delivery = moderate:... vs asset participation ...",
+      "Structural: Low semantic similarity: price volatility dec... vs Absorption rate > 0....; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus > 0.5...; Low semantic similarity: delivery > moderate:... vs RELIANCE focus > 0.5...; Low semantic similarity: delivery = moderate:... vs RELIANCE focus <= 0....",
+      "Structural: Low semantic similarity: price volatility dec... vs absorption rate rema...; Field conflict: Revised claim: Regime is drive vs volume dry and gap up with sho; Field conflict: delivery > moderate: update RE vs volume dry and gap up with sho; Low semantic similarity: delivery = moderate:... vs candle rejection low...",
+      "Structural: Low semantic similarity: price volatility dec... vs absorption_rate > 1....; Low semantic similarity: Revised claim: Regim... vs absorption_rate > 0....; Low semantic similarity: delivery > moderate:... vs absorption_rate > 0....; Low semantic similarity: delivery = moderate:... vs absorption_rate <= 0...",
+      "Structural: Low semantic similarity: price_range_bound... vs price volatility dec...; Low semantic similarity: Revised claim: Regim... vs delivery > moderate:...; Low semantic similarity: moderate delivery an... vs delivery > moderate:...; Low semantic similarity: weak move and weak p... vs delivery = moderate:...",
+      "Structural: Low semantic similarity: Revised claim: Regim... vs volume_expansion > 0...; Low semantic similarity: moderate delivery an... vs volume_expansion > 0...; Field conflict: weak move and weak participati vs FII_buying_strength < strong_b",
+      "Structural: Low semantic similarity: price_range_bound... vs price breaks out of ...; Low semantic similarity: Revised claim: Regim... vs volume elevated, ran...; Low semantic similarity: moderate delivery an... vs volume elevated, ran...; Low semantic similarity: weak move and weak p... vs asset participation ...",
+      "Structural: Low semantic similarity: price_range_bound... vs Absorption rate > 0....; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus > 0.5...; Low semantic similarity: moderate delivery an... vs RELIANCE focus > 0.5...; Low semantic similarity: weak move and weak p... vs RELIANCE focus <= 0....",
+      "Structural: Low semantic similarity: price_range_bound... vs absorption rate rema...; Field conflict: Revised claim: Regime is drive vs volume dry and gap up with sho; Low semantic similarity: moderate delivery an... vs volume dry and gap u...; Low semantic similarity: weak move and weak p... vs candle rejection low..."
+    ],
+    "contradiction_count": 10,
+    "mutation_reason": "semantic_similarity_0.40",
+    "survival_steps": 2,
+    "last_seen_step": 8,
+    "mutation_count": 1,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": []
+  },
+  "8f3865e7bea9dff7": {
+    "id": "8f3865e7bea9dff7",
+    "lineage_id": "8f3865e7bea9dff7",
+    "created_at_step": 9,
+    "parent_ids": [],
+    "status": "contradicted",
+    "confidence": 0.0,
+    "abstraction": "Reliance is trading in a range-bound manner with compressed volatility and moderate delivery, indicating a neutral to slightly bullish trend.",
+    "confidence_state": {
+      "empirical_confidence": 0.0,
+      "regime_confidence": 0.5168,
+      "reflection_confidence": 0.1692,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 1.0
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: absorption_rate < 0.... vs price volatility dec...; Low semantic similarity: Revised claim: Regim... vs delivery > moderate:...; Low semantic similarity: volume > nan: sector... vs delivery > moderate:...; Low semantic similarity: volume <= nan: price... vs delivery = moderate:...",
+      "Structural: Low semantic similarity: absorption_rate < 0.... vs price_range_bound...; Low semantic similarity: Revised claim: Regim... vs volume_expansion > 0...; Low semantic similarity: volume > nan: sector... vs volume_expansion > 0...; Low semantic similarity: volume <= nan: price... vs FII_buying_strength ...",
+      "Structural: Low semantic similarity: absorption_rate < 0.... vs price breaks out of ...; Low semantic similarity: Revised claim: Regim... vs volume elevated, ran...; Low semantic similarity: volume > nan: sector... vs volume elevated, ran...; Low semantic similarity: volume <= nan: price... vs asset participation ...",
+      "Structural: Low semantic similarity: absorption_rate < 0.... vs Absorption rate > 0....; Low semantic similarity: Revised claim: Regim... vs RELIANCE focus > 0.5...; Low semantic similarity: volume > nan: sector... vs RELIANCE focus > 0.5...; Low semantic similarity: volume <= nan: price... vs RELIANCE focus <= 0...."
+    ],
+    "contradiction_count": 4,
+    "mutation_reason": null,
+    "survival_steps": 1,
+    "last_seen_step": 9,
+    "mutation_count": 0,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": []
+  }
+}

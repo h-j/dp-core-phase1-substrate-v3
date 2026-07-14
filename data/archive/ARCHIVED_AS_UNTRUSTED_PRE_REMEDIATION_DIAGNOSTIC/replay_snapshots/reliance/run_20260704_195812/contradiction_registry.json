@@ -1,0 +1,102 @@
+{
+  "48584fd991286805": {
+    "id": "48584fd991286805",
+    "theory_id": "bc43fedf5a8669e0",
+    "description": "structural: field conflict: increased volatility leads to vs { \"claim\": \"regime is driven; low semantic similarity: increased volatility... vs always: observe...; low semantic similarity: volatility_expansion... vs always: observe...; low semantic similarity: volatility_expansion... vs never: ignore...; participation: weakening vs elevated",
+    "created_at_step": 1,
+    "resolved_at_step": 2,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3651785714285714
+  },
+  "749f3ec806aa72b6": {
+    "id": "749f3ec806aa72b6",
+    "theory_id": "825f24501c94113e",
+    "description": "structural: low semantic similarity: increased volatility... vs volatility_expansion...; low semantic similarity: weak_move && relianc... vs volatility_expansion...; low semantic similarity: otherwise: demote me... vs volatility_expansion...",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3209864864864865
+  },
+  "144943ee9bd6b23f": {
+    "id": "144943ee9bd6b23f",
+    "theory_id": "825f24501c94113e",
+    "description": "structural: field conflict: increased volatility leads to vs { \"claim\": \"regime is driven; low semantic similarity: increased volatility... vs always: observe...; low semantic similarity: weak_move && relianc... vs always: observe...; low semantic similarity: otherwise: demote me... vs never: ignore...; participation: weakening vs elevated",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3209864864864865
+  },
+  "910d43af9072a1f5": {
+    "id": "910d43af9072a1f5",
+    "theory_id": "097d3bda7d394423",
+    "description": "structural: field conflict: compressed volatility through vs increased volatility leads to ; low semantic similarity: delivery_exhaustion... vs never...; low semantic similarity: compressed volatilit... vs weak_move && relianc...; low semantic similarity: volume > 1000 and ga... vs weak_move && relianc...; low semantic similarity: false: demote... vs otherwise: demote me...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.42804982882041703
+  },
+  "65fb4f63ad6425dc": {
+    "id": "65fb4f63ad6425dc",
+    "theory_id": "097d3bda7d394423",
+    "description": "structural: field conflict: compressed volatility through vs increased volatility leads to ; low semantic similarity: delivery_exhaustion... vs never...; field conflict: compressed volatility through vs volatility_expansion > 0.5: ad; low semantic similarity: volume > 1000 and ga... vs volatility_expansion...; low semantic similarity: false: demote... vs volatility_expansion...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.42804982882041703
+  },
+  "5cfde6b58e3af1f6": {
+    "id": "5cfde6b58e3af1f6",
+    "theory_id": "097d3bda7d394423",
+    "description": "structural: low semantic similarity: compressed volatilit... vs { \"claim\": \"regime...; low semantic similarity: delivery_exhaustion... vs never...; low semantic similarity: compressed volatilit... vs always: observe...; low semantic similarity: volume > 1000 and ga... vs always: observe...; low semantic similarity: false: demote... vs never: ignore...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.42804982882041703
+  },
+  "59d1c76d91399bdb": {
+    "id": "59d1c76d91399bdb",
+    "theory_id": "1367cf072a5eb3f6",
+    "description": "structural: low semantic similarity: momentum_dampening... vs delivery_exhaustion...; low semantic similarity: compressed volatilit... vs volume > 1000 and ga...; low semantic similarity: volume_spike or deli... vs volume > 1000 and ga...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.4095641096979333
+  },
+  "de230c22d453dc3b": {
+    "id": "de230c22d453dc3b",
+    "theory_id": "1367cf072a5eb3f6",
+    "description": "structural: field conflict: compressed volatility through vs increased volatility leads to ; low semantic similarity: momentum_dampening... vs never...; low semantic similarity: compressed volatilit... vs weak_move && relianc...; low semantic similarity: volume_spike or deli... vs weak_move && relianc...; low semantic similarity: true: demote... vs otherwise: demote me...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.4095641096979333
+  },
+  "8feb6c9b785c2d08": {
+    "id": "8feb6c9b785c2d08",
+    "theory_id": "1367cf072a5eb3f6",
+    "description": "structural: field conflict: compressed volatility through vs increased volatility leads to ; low semantic similarity: momentum_dampening... vs never...; field conflict: compressed volatility through vs volatility_expansion > 0.5: ad; low semantic similarity: volume_spike or deli... vs volatility_expansion...; low semantic similarity: true: demote... vs volatility_expansion...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.4095641096979333
+  },
+  "951b0ba54e1acf39": {
+    "id": "951b0ba54e1acf39",
+    "theory_id": "1367cf072a5eb3f6",
+    "description": "structural: low semantic similarity: compressed volatilit... vs { \"claim\": \"regime...; low semantic similarity: momentum_dampening... vs never...; low semantic similarity: compressed volatilit... vs always: observe...; low semantic similarity: volume_spike or deli... vs always: observe...; low semantic similarity: true: demote... vs never: ignore...",
+    "created_at_step": 4,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.4095641096979333
+  }
+}

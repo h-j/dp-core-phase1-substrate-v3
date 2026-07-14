@@ -1,0 +1,77 @@
+{
+  "id": "c197a2d8-2aac-40b3-a297-6d3116a35679",
+  "created_at": "2026-06-30T04:34:19.292380+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid under market conditions characterized by moderate to high volume expansion and volatility, with a potential shift towards bearish dominance or trend persistence leaning towards bearish sentiment. The component expectation breaks down when volume expansion occurs without corresponding increases in participation and volatility.",
+  "associated_lineage_ids": [
+    "bba24688-7996-4fe7-849a-d3f8aee009ad",
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "f31b62bf-d8ea-47a0-a86c-7a00d378af3b",
+    "d6deebaf-d98f-47cf-bab0-2e437d86772e",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "cb3b0002-67d0-42dc-9bf5-e4ac3bb68f21",
+    "b5b19d92-345c-4d52-8a14-86aae06dcc0a",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "94efc9d4-b459-4af7-a86e-5e8286f6217c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "8f0eb97d-a1bc-4ec3-a4d1-4f5ab70fcf8c",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc"
+  ],
+  "supporting_theory_ids": [
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "f09adceb-e95c-4108-a0c2-e11fb0575bb7",
+    "5b198def-da08-41a1-ab4e-191efc81d9be",
+    "76be416e-7a06-43a6-88d6-e2d1bdcd0dfc",
+    "cb3b0002-67d0-42dc-9bf5-e4ac3bb68f21",
+    "94efc9d4-b459-4af7-a86e-5e8286f6217c",
+    "8f0eb97d-a1bc-4ec3-a4d1-4f5ab70fcf8c",
+    "b5b19d92-345c-4d52-8a14-86aae06dcc0a"
+  ],
+  "contradicting_theory_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "f31b62bf-d8ea-47a0-a86c-7a00d378af3b",
+    "bba24688-7996-4fe7-849a-d3f8aee009ad",
+    "d6deebaf-d98f-47cf-bab0-2e437d86772e"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "01b9bc52-c4b5-4b94-9b74-9afaf10c20aa",
+      "created_at": "2026-06-30T04:34:19.292254+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "4f93a626-38ad-42fe-9fb6-638851e2d7a9",
+      "created_at": "2026-06-30T04:34:19.292302+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volume_state": "low"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 14,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

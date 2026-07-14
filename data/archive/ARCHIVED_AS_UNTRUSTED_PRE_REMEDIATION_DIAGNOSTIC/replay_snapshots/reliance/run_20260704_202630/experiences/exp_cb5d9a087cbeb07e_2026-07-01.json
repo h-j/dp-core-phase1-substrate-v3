@@ -1,0 +1,60 @@
+{
+  "experience_id": "exp_cb5d9a087cbeb07e_2026-07-01",
+  "lineage_id": "cb5d9a087cbeb07e",
+  "theory_family_id": "cb5d9a087cbeb07e",
+  "created_at": "2026-07-01",
+  "status": "falsified",
+  "theory_ids": [
+    "f37ce323-7d6d-4963-a627-a31c14c4a868"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: The price structure ... vs volume > 1000: retai...; Low semantic similarity: elevated_volume > 0.... vs volume > 1000: retai...; Low semantic similarity: otherwise: demote_ex... vs false: remove...",
+    "Structural: Low semantic similarity: The price structure ... vs volume > 1000 and RE...",
+    "Structural: Low semantic similarity: The price structure ... vs volume < 1000000 and...",
+    "Structural: Low semantic similarity: The price structure ... vs asset_selloff: add n...; Low semantic similarity: elevated_volume > 0.... vs asset_selloff: add n...; Low semantic similarity: otherwise: demote_ex... vs no new evidence: ret..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:extended_higher",
+    "volume:dry",
+    "volatility:compressed",
+    "liquidity:selective",
+    "breadth:mixed",
+    "participation:weak",
+    "momentum:weakening",
+    "subtype:liquidity_constrained",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:leading"
+  ],
+  "theory_subtype": "liquidity_constrained",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T21:18:38.179199",
+      "outcome": "falsified",
+      "theory_claim": "The price structure exhibits a liquidity-constrained regime where daily highs and lows are inversely related to RELIANCE's performance, with an emphasis on high-low reversals under moderate volatility",
+      "components_passed": [
+        "price_structure_with_low_volume_and_selling_pressure_v23"
+      ],
+      "components_failed": [
+        "price_structure_with_low_volume_and_selling_pressure_v23"
+      ],
+      "root_cause": "price_structure_with_low_volume_and_selling_pressure_v23",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"The price structure exhibits a liquidity-constrained regime where daily highs and lows are inversely related to RELIANCE's performance...\" failed given the observed data because it did not accurately predict the market behavior.\n\nHere's why:\n\n1. **Volume spike**: The observed data shows "
+    }
+  ],
+  "component_failure_counts": {
+    "price_structure_with_low_volume_and_selling_pressure_v23": 1
+  }
+}

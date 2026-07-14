@@ -1,0 +1,15 @@
+{
+  "id": "359bf9f4-7126-4920-89ff-c85ddcabb19a",
+  "created_at": "2026-07-03T04:21:47.298273+00:00",
+  "created_at_step": 2,
+  "question_text": "Why did component 'price_stability_revision' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "d4f82d16-ea62-4510-bbea-13db75d3f477"
+  ],
+  "hypothesized_factors": [
+    "expanded",
+    "normal"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

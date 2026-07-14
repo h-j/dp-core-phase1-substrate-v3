@@ -1,0 +1,97 @@
+{
+  "experience_id": "exp_bc43fedf5a8669e0_2026-06-29",
+  "lineage_id": "bc43fedf5a8669e0",
+  "theory_family_id": "bc43fedf5a8669e0",
+  "created_at": "2026-06-29",
+  "status": "validated",
+  "theory_ids": [
+    "2ef4e793-6100-433b-b439-04615bd95c3b",
+    "8acc3559-c938-4dea-bad7-fe4ecdb56f4c",
+    "3f7e06cb-8206-4bba-845c-0cbd4709cbe9"
+  ],
+  "contradictions": [
+    "Structural: Field conflict: Increased volatility leads to  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: Increased volatility... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs never: ignore...; Participation: weakening vs elevated",
+    "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: DELIVERY_EXHAUSTION... vs never...; Low semantic similarity: Compressed volatilit... vs weak_move && RELIANC...; Low semantic similarity: volume > 1000 and ga... vs weak_move && RELIANC...; Low semantic similarity: false: demote... vs otherwise: demote ME...",
+    "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: DELIVERY_EXHAUSTION... vs never...; Field conflict: Compressed volatility through  vs VOLATILITY_EXPANSION > 0.5: AD; Low semantic similarity: volume > 1000 and ga... vs VOLATILITY_EXPANSION...; Low semantic similarity: false: demote... vs VOLATILITY_EXPANSION...",
+    "Structural: Low semantic similarity: Compressed volatilit... vs {\n  \"claim\": \"Regime...; Low semantic similarity: DELIVERY_EXHAUSTION... vs never...; Low semantic similarity: Compressed volatilit... vs always: observe...; Low semantic similarity: volume > 1000 and ga... vs always: observe...; Low semantic similarity: false: demote... vs never: ignore...",
+    "Structural: Field conflict: Compressed volatility through  vs Compressed volatility through ; Low semantic similarity: MOMENTUM_DAMPENING... vs DELIVERY_EXHAUSTION...; Low semantic similarity: Compressed volatilit... vs volume > 1000 and ga...; Low semantic similarity: volume_spike OR deli... vs volume > 1000 and ga...; Low semantic similarity: otherwise: demote me... vs false: demote...",
+    "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Low semantic similarity: Compressed volatilit... vs weak_move && RELIANC...; Low semantic similarity: volume_spike OR deli... vs weak_move && RELIANC...; Low semantic similarity: otherwise: demote me... vs otherwise: demote ME...",
+    "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Field conflict: Compressed volatility through  vs VOLATILITY_EXPANSION > 0.5: AD; Low semantic similarity: volume_spike OR deli... vs VOLATILITY_EXPANSION...; Low semantic similarity: otherwise: demote me... vs VOLATILITY_EXPANSION...",
+    "Structural: Field conflict: Compressed volatility through  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Low semantic similarity: Compressed volatilit... vs always: observe...; Low semantic similarity: volume_spike OR deli... vs always: observe...; Low semantic similarity: otherwise: demote me... vs never: ignore..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.6666666666666666
+  },
+  "regime_context": [
+    "trend:closed_lower",
+    "volume:elevated",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:normal",
+    "momentum:weakening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 2,
+  "contradiction_count": 3,
+  "validation_count": 2,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T20:17:39.599517",
+      "outcome": "validated",
+      "theory_claim": "{\n  \"claim\": \"Regime is driven by Liquidity Absorption; price remains range-bound despite moderate volatility.\",\n  \"mechanism\": \"Liquidity Absorption\",\n  \"if_branch\": {\"condition\": \"delivery_pct > 50 ",
+      "components_passed": [],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T20:18:57.055800",
+      "outcome": "partial",
+      "theory_claim": "Increased volatility leads to expanding price ranges, weakening short-term momentum, and ultimately resulting in lower prices due to delivery exhaustion.",
+      "components_passed": [
+        "VOLATILITY_EXPANSION",
+        "MOMENTUM_DAMPENING"
+      ],
+      "components_failed": [
+        "DELIVERY_EXHAUSTION"
+      ],
+      "root_cause": "DELIVERY_EXHAUSTION",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Increased volatility leads to expanding price ranges, weakening short-term momentum, and ultimately resulting in lower prices due to delivery exhaustion\" failed given the observed data.\n\nHere's a breakdown of why:\n\n1. **Volume was dry**: This suggests that there wasn't much buying or sel"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T20:22:18.368385",
+      "outcome": "validated",
+      "theory_claim": "Compressed volatility through repeated compression mechanisms leads to reduced price ranges in a neutral market regime, resulting in contracting price ranges and potentially stabilizing market dynamic",
+      "components_passed": [
+        "VOLATILITY_COMPRESSION",
+        "VOLATILITY_COMPRESSION",
+        "VOLATILITY_COMPRESSION"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    }
+  ],
+  "component_failure_counts": {
+    "DELIVERY_EXHAUSTION": 1
+  }
+}

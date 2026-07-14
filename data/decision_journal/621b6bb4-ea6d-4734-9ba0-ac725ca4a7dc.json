@@ -1,0 +1,51 @@
+{
+  "id": "621b6bb4-ea6d-4734-9ba0-ac725ca4a7dc",
+  "created_at": "2026-07-14T12:05:11.213617+00:00",
+  "prediction_date": "2026-07-07",
+  "evaluation_date": "2026-07-08",
+  "asset": "RELIANCE",
+  "prediction": "higher",
+  "decision": {
+    "id": "114aa35f-65d5-4043-b6e1-f96c4bdf4052",
+    "created_at": "2026-07-14T12:05:11.213610+00:00",
+    "date": "2026-07-07",
+    "prediction_direction": "higher",
+    "action": "long",
+    "allocation_pct": 0.0856,
+    "conviction_score": 0.5048,
+    "reason": "observation coherence vs residual uncertainty"
+  },
+  "allocation": 0.0856,
+  "conviction_score": 0.5048,
+  "decision_reason": "observation coherence vs residual uncertainty",
+  "supporting_lineages": [
+    "3ae16804654fd11f"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 0.0,
+  "transition_pressure": 0.3566666666666667,
+  "calibrated_confidence": 0.55,
+  "empirical_confidence": 0.24,
+  "reflection_confidence": 0.461,
+  "regime_confidence": 0.5,
+  "expected_scenarios": [
+    "observation coherence vs residual uncertainty"
+  ],
+  "actual_outcome": "-1.63%",
+  "decision_result": "incorrect",
+  "pnl": -1646.41,
+  "reflection_summary": "The prediction 'higher' was incorrect (actual return: -1.63%). Recommended action: Trigger lineage mutation and open an evidence gap to reconcile contradiction.",
+  "knowledge_changes": [
+    "theory_created"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.1925,
+    "empirical": 0.048,
+    "principle_support": 0.0,
+    "contradictions": -0.0,
+    "transition_pressure": -0.0357
+  }
+}

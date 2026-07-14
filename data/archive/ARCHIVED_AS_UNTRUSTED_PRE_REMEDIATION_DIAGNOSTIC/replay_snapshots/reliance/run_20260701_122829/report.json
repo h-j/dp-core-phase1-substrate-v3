@@ -1,0 +1,439 @@
+{
+  "symbol": "RELIANCE",
+  "days": 5,
+  "date_range": "2026-06-24 \u2192 2026-06-30",
+  "execution_hash": "ad6819f3f6563fcfe9cfbb57f02e59903d78348c34c2c005fdbe84234e1c6fc4",
+  "git_commit": "9b88a42276268d42f1c0229b11f4c6934893fea9",
+  "llm_version": "llama3.2",
+  "replay_version": "v3.0PersistentReflective",
+  "story_summary": "This replay represents 5 days of experience on RELIANCE. During this period, DP generated 5 experiences, evolved 5 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 2 key market mechanisms while identifying 1 unresolved evidence gap(s).",
+  "metrics": {
+    "accuracy": 25.0,
+    "knowledge_debt": 0,
+    "memory_usefulness": 0.5227333333333334,
+    "knowledge_coverage": 0.0,
+    "prediction_drift": 0.0,
+    "theory_drift": 0.0
+  },
+  "knowledge_health": {
+    "knowledge_debt_bar": 10,
+    "principle_coverage": 0.0,
+    "reuse_rate": 0.0,
+    "trust": 78.2
+  },
+  "knowledge_lifecycle": {
+    "candidate": 0,
+    "emerging": 0,
+    "trusted": 0,
+    "canonical": 0,
+    "retired": 0
+  },
+  "timeline": [
+    {
+      "date": "2026-06-24",
+      "theory": "Regime is driven by Liquidity Absorption; price remains range-bound despite moderate volatility.",
+      "prediction": "higher (53%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-25",
+      "theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening effect due to fatigue.",
+      "prediction": "uncertain (26%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.098
+    },
+    {
+      "date": "2026-06-26",
+      "theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening effect due to fatigue.",
+      "prediction": "range_bound (45%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.098
+    },
+    {
+      "date": "2026-06-29",
+      "theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening effect due to fatigue and increased market sentiment.",
+      "prediction": "lower (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09620000000000001
+    },
+    {
+      "date": "2026-06-30",
+      "theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening effect due to fatigue and increased market sentiment, exacerbated by sector-specific factors.",
+      "prediction": "lower (66%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.09447500000000002
+    }
+  ],
+  "theory_evolution": [
+    {
+      "day": "2026-06-24",
+      "lineage_id": "3333380867b5f28d",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-25",
+      "lineage_id": "dfa7678d18ef4f77",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-26",
+      "lineage_id": "dfa7678d18ef4f77",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-29",
+      "lineage_id": "dfa7678d18ef4f77",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-30",
+      "lineage_id": "dfa7678d18ef4f77",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    }
+  ],
+  "world_model": {
+    "narrative": "Baseline world model. No active principles recorded yet.",
+    "regime_constraints": {},
+    "supporting_principles": [],
+    "dominant_mechanisms": [],
+    "active_constraints": [],
+    "supporting_canonical_principles": [],
+    "confidence": 0.5,
+    "stability": "Emerging",
+    "evidence_count": 0,
+    "applicable_regimes": [],
+    "open_questions": [
+      {
+        "question_text": "Why did component 'volume_confirmation' fail under fatigue regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      }
+    ],
+    "evidence_gaps": [
+      {
+        "id": "4406e82a-5a9a-4838-b3cf-f34be2a241df",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure' under neutral regime",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  "chart_data": {
+    "dates": [
+      "2026-06-24",
+      "2026-06-25",
+      "2026-06-26",
+      "2026-06-29",
+      "2026-06-30"
+    ],
+    "close": [
+      1313.5999755859375,
+      1318.0999755859375,
+      1318.0999755859375,
+      1301.0,
+      1293.9000244140625
+    ],
+    "delivery_pct": [
+      46.15254851538015,
+      49.37172245725797,
+      50.846841331751065,
+      54.03918975104557,
+      56.96213385214001
+    ],
+    "fii_net": [
+      -80.50963185138922,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493
+    ],
+    "sector_zscore": [
+      0.9244168921119584,
+      1.5307451887122805,
+      1.3656951941213304,
+      0.3999481443708889,
+      0.0005048596165921
+    ]
+  },
+  "decision_traces": [
+    {
+      "step": 0,
+      "date": "2026-06-24",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 57.8887454016835,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [],
+      "novelty_score": 1.0,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Regime is driven by Liquidity Absorption; price remains range-bound despite moderate volatility.. If sector leading: favor delivery confirmation. Else volume dry: favor range persistence. Unless Reliance focus weakens. Falsified if: decisive close above the prior resistance floor.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.53
+      },
+      "outcome": {
+        "actual_direction": "uncertain",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains supported based on the boundary conditions, as there are no additional confirmation signals required for falsification. The observed continuation of the neutral regime subtype is insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. One unresolved tension remains: the lack of clear evidence for the regime's persistence under moderate volatility.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 1,
+      "date": "2026-06-25",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "fatigue"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-24",
+          "similarity": 0.68,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.32,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening effect due to fatigue.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.26
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is Fatigue. One unresolved tension is the low semantic similarity between the revised claim and the observed candle rejection upper participation weak (normal) RELIANCE traded range-bound amid moderate volatility. The theory's falsifiability boundary conditions require additional confirmation signals, which this observation does not provide. The uncertainty pressure is moderate, with a confidence score of 0.24 for the regime memory from 2026-06-24.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 2,
+      "date": "2026-06-26",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "indecision",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-25",
+          "similarity": 0.668,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-24",
+          "similarity": 0.604,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.332,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening effect due to fatigue.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.45
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains supported based on the boundary conditions, as the observed candle indecision and stable volatility align with the revised claim of Liquidity Absorption driving the regime. However, the detected 0.10 contradictions indicate a need for additional confirmation signals to further validate the theory. One unresolved tension is the lack of clear evidence for fatigue's weakening effect on the regime.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 3,
+      "date": "2026-06-29",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "neutral",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-25",
+          "similarity": 0.656,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-24",
+          "similarity": 0.655,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-26",
+          "similarity": 0.488,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.344,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening effect due to fatigue and increased market sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The regime remains supported based on the boundary conditions, as it meets the criteria for a neutral subtype. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's falsifiability boundary condition.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 4,
+      "date": "2026-06-30",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-29",
+          "similarity": 0.808,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-24",
+          "similarity": 0.643,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-25",
+          "similarity": 0.643,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.192,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening effect due to fatigue and increased market sentiment, exacerbated by sector-specific factors.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.664
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype is falsified based on boundary conditions. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's claim that regime is driven by Liquidity Absorption with a weakening effect due to fatigue and increased market sentiment, exacerbated by sector-specific factors. The detected analog divergence to 2026-06-29 suggests that the current regime subtype may not be representative of the broader market trend.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    }
+  ],
+  "epistemic_review": {
+    "assumptions_survived": [],
+    "assumptions_failed": [
+      "Assumption 1: The world is a fixed and predictable place.",
+      "Assumption 2: Human behavior can be fully understood through rational analysis."
+    ],
+    "knowledge_stronger": [],
+    "knowledge_weaker": [
+      "Knowledge about the limitations of human understanding in complex systems.",
+      "Knowledge about the impact of external factors on decision-making processes."
+    ],
+    "world_model_shifts": [
+      "Shift from a deterministic to a probabilistic view of causality.",
+      "Recognition of the importance of context and nuance in decision-making."
+    ],
+    "fundamental_uncertainty": [
+      "The nature of free will and its relationship to determinism.",
+      "The limits of knowledge and understanding in complex systems."
+    ],
+    "tomorrow_beliefs": [
+      "We would believe that the world is inherently uncertain and unpredictable, and that our models must always be subject to revision.",
+      "We would recognize the importance of humility and adaptability in the face of new information and changing circumstances."
+    ]
+  }
+}

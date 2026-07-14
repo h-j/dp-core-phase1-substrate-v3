@@ -1,0 +1,9 @@
+{
+  "id": "1d42b4f1-03d9-4bc0-a03c-f88e9bc70abb",
+  "created_at": "2026-07-04T15:22:01.538317+00:00",
+  "open_question_id": "e7310e4b-16ec-40ef-8121-962000a92ec2",
+  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure_with_modified_range_bound_reliance_v7'",
+  "candidate_data_source": "FII/DII Flows & Order Book Depth",
+  "expected_explanatory_value": "To resolve structural failure of component 'price_structure_with_modified_range_bound_reliance_v7' under neutral regime",
+  "priority": "HIGH"
+}

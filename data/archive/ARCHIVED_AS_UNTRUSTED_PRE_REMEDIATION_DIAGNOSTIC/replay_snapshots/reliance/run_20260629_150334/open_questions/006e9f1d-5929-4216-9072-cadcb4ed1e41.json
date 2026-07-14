@@ -1,0 +1,15 @@
+{
+  "id": "006e9f1d-5929-4216-9072-cadcb4ed1e41",
+  "created_at": "2026-06-29T09:45:47.495408+00:00",
+  "created_at_step": 9,
+  "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "e4f73d6a-7e35-41ef-b01e-d04f1a45b48c"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "normal"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

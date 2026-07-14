@@ -1,0 +1,61 @@
+{
+  "experience_id": "exp_cacd7c0f74a230a3_2026-05-06",
+  "lineage_id": "cacd7c0f74a230a3",
+  "theory_family_id": "cacd7c0f74a230a3",
+  "created_at": "2026-05-06",
+  "status": "closed",
+  "theory_ids": [
+    "ce242ed4-32fc-40b6-ab45-91cdefa8befc"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: The current market r... vs range_expanding_and_...; Low semantic similarity: neutral_market_regim... vs range_expanding_and_...; Low semantic similarity: mixed_market_regime:... vs sector_leading: prom...; Volatility: expansion vs stability; Semantic Contradiction: Concept 'MOMENTUM' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.",
+    "Structural: Low semantic similarity: The current market r... vs The revised absorpti...; Low semantic similarity: price_stability_revi... vs decisive close below...; Low semantic similarity: The current market r... vs volume_state > 0.5 A...; Low semantic similarity: neutral_market_regim... vs volume_state > 0.5 A...; Low semantic similarity: mixed_market_regime:... vs false: do nothing...",
+    "Structural: Low semantic similarity: The current market r... vs Regime is driven by ...; Low semantic similarity: price_stability_revi... vs decisive close below...; Low semantic similarity: The current market r... vs delivery_pct > 50 AN...; Low semantic similarity: neutral_market_regim... vs delivery_pct > 50 AN...; Low semantic similarity: mixed_market_regime:... vs volume_state = eleva...; Volatility: expansion vs stability"
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:extended_lower",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:weak",
+    "momentum:flat",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:strong_buy",
+    "sector:sector:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-03T09:54:16.597222",
+      "outcome": "partial",
+      "theory_claim": "The current market regime is characterized by a revised price stability mechanism (>55) and a momentum absorption rate revision (>0.5), indicating a neutral regime where institutional accumulation inf",
+      "components_passed": [
+        "price_stability_revision",
+        "momentum_absorption_rate_revision_revised",
+        "momentum_absorption_rate_revision_revised"
+      ],
+      "components_failed": [
+        "price_stability_revision"
+      ],
+      "root_cause": "price_stability_revision",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"The current market regime is characterized by a revised price stability mechanism (>55) and a momentum absorption rate revision (>0.5), indicating a neutral regime where institutional accumulation influences liquidity absorption\" failed because the observed data does not support this cha"
+    }
+  ],
+  "component_failure_counts": {
+    "price_stability_revision": 1
+  }
+}

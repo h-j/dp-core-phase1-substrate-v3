@@ -1,0 +1,9 @@
+{
+  "id": "2a3898aa-d94b-4972-bb0b-691ee03dadec",
+  "created_at": "2026-07-03T03:13:06.522754+00:00",
+  "open_question_id": "38de1c99-6968-4b35-ac0c-1d728377f287",
+  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_range_bound'",
+  "candidate_data_source": "FII/DII Flows & Order Book Depth",
+  "expected_explanatory_value": "To resolve structural failure of component 'price_range_bound' under neutral regime",
+  "priority": "HIGH"
+}

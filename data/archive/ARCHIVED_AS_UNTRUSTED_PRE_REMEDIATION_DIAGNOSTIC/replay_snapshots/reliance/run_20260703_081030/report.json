@@ -1,0 +1,857 @@
+{
+  "symbol": "RELIANCE",
+  "days": 10,
+  "date_range": "2026-06-19 \u2192 2026-07-02",
+  "execution_hash": "fce597f2f300dc9c3bed70bea5edb64f3487549f7777969462ded496ce3fd509",
+  "git_commit": "9b88a42276268d42f1c0229b11f4c6934893fea9",
+  "llm_version": "llama3.2",
+  "replay_version": "v3.0PersistentReflective",
+  "story_summary": "This replay represents 10 days of experience on RELIANCE. During this period, DP generated 10 experiences, evolved 9 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 5 key market mechanisms while identifying 2 unresolved evidence gap(s).",
+  "metrics": {
+    "accuracy": 22.22222222222222,
+    "knowledge_debt": 0,
+    "memory_usefulness": 0.5259,
+    "knowledge_coverage": 0.0,
+    "prediction_drift": 0.0,
+    "theory_drift": 0.0
+  },
+  "knowledge_health": {
+    "knowledge_debt_bar": 10,
+    "principle_coverage": 0.0,
+    "reuse_rate": 0.0,
+    "trust": 51.9
+  },
+  "knowledge_lifecycle": {
+    "candidate": 1,
+    "emerging": 0,
+    "trusted": 0,
+    "canonical": 0,
+    "retired": 0
+  },
+  "timeline": [
+    {
+      "date": "2026-06-19",
+      "theory": "Regime is driven by passive absorption; price remains range-bound despite volume expansion.",
+      "prediction": "uncertain (58%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-06-22",
+      "theory": "The revised rate of volume expansion during up days (MECH_002) and absorption rate revision (MECH_003) jointly cause a stronger upward bias in price movements, leading to a neutral market regime characterized by range-bound trading with increasing institutional buying.",
+      "prediction": "higher (54%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.089
+    },
+    {
+      "date": "2026-06-23",
+      "theory": "The revised rate of volume expansion during up days (MECH_002) and absorption rate revision (MECH_003) jointly cause a stronger upward bias in price movements, leading to a neutral market regime characterized by range-bound trading with increasing institutional buying.",
+      "prediction": "uncertain (51%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.089
+    },
+    {
+      "date": "2026-06-24",
+      "theory": "Volume expansion during up days is weaker than down days due to asset selloff and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+      "prediction": "higher (33%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.7762
+    },
+    {
+      "date": "2026-06-25",
+      "theory": "Volume expansion during up days is weaker than down days due to asset selloff and fading liquidity, leading to a downward bias in price movements, consistent with fatigue regime behavior.",
+      "prediction": "range_bound (17%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.82515
+    },
+    {
+      "date": "2026-06-26",
+      "theory": "Volume expansion during up days is weaker than down days due to asset selloff and fading liquidity, leading to a downward bias in price movements, consistent with fatigue regime behavior.",
+      "prediction": "range_bound (22%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.82515
+    },
+    {
+      "date": "2026-06-29",
+      "theory": "Volume expansion during up days is negatively correlated with asset selloff and fading liquidity, suggesting that these factors contribute to a weaker upward bias in market volume, potentially leading to increased volatility.",
+      "prediction": "lower (59%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.35216
+    },
+    {
+      "date": "2026-06-30",
+      "theory": "Volume expansion during up days is weaker than down days due to asset selloffs, fading liquidity, institutional selling, and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+      "prediction": "lower (49%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.5979276595744681
+    },
+    {
+      "date": "2026-07-01",
+      "theory": "Volume expansion during up days is weaker than down days due to asset selloffs, fading liquidity, institutional selling, and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+      "prediction": "higher (25%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.605095744680851
+    },
+    {
+      "date": "2026-07-02",
+      "theory": "Volume expansion during up days is neutralized by asset selloffs and fading liquidity, resulting in a volume-expansion-neutral bias that influences market behavior.",
+      "prediction": "range_bound (58%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08792
+    }
+  ],
+  "theory_evolution": [
+    {
+      "day": "2026-06-19",
+      "lineage_id": "f2cca7fa84e5cfbc",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-22",
+      "lineage_id": "98d842ea061d549a",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-23",
+      "lineage_id": "f2cca7fa84e5cfbc",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "close"
+    },
+    {
+      "day": "2026-06-24",
+      "lineage_id": "77514420273345d7",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-25",
+      "lineage_id": "77514420273345d7",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-26",
+      "lineage_id": "5caf200459842377",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-29",
+      "lineage_id": "8ec4e67140dd7f80",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-30",
+      "lineage_id": "8ec4e67140dd7f80",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-07-01",
+      "lineage_id": "841955d7c16351d0",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-07-02",
+      "lineage_id": "8ec4e67140dd7f80",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    }
+  ],
+  "world_model": {
+    "narrative": "Baseline world model. No active principles recorded yet.",
+    "regime_constraints": {},
+    "supporting_principles": [],
+    "dominant_mechanisms": [],
+    "active_constraints": [],
+    "supporting_canonical_principles": [],
+    "confidence": 0.5,
+    "stability": "Emerging",
+    "evidence_count": 0,
+    "applicable_regimes": [],
+    "open_questions": [
+      {
+        "question_text": "Why did component 'volume_expansion_revised' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate_revised' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'volume_expansion_revised' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate_revised' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'volume_expansion_revised_2' fail under fatigue regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'volume_expansion_revised_3' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'volume_expansion_revised_5' fail under liquidity_constrained regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'volume_expansion_revised_5' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "spike"
+        ]
+      }
+    ],
+    "evidence_gaps": [
+      {
+        "id": "58ca5ee7-78e3-4e4f-85d3-ed8114af8cf1",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate_revised'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate_revised' under neutral regime",
+        "priority": "MEDIUM"
+      },
+      {
+        "id": "9a3d6efd-f1fd-4564-8c41-a469d375b212",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate_revised'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate_revised' under neutral regime",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  "chart_data": {
+    "dates": [
+      "2026-06-19",
+      "2026-06-22",
+      "2026-06-23",
+      "2026-06-24",
+      "2026-06-25",
+      "2026-06-26",
+      "2026-06-29",
+      "2026-06-30",
+      "2026-07-01",
+      "2026-07-02"
+    ],
+    "close": [
+      1309.5,
+      1326.5,
+      1309.5,
+      1313.5999755859375,
+      1318.0999755859375,
+      1318.0999755859375,
+      1301.0,
+      1293.9000244140625,
+      1308.0,
+      1303.5
+    ],
+    "delivery_pct": [
+      48.674840843739545,
+      46.33526555736112,
+      45.03680902295764,
+      46.15254851538015,
+      49.37172245725797,
+      50.846841331751065,
+      54.03918975104557,
+      56.96213385214001,
+      56.73048096475415,
+      56.73048096475415
+    ],
+    "fii_net": [
+      -220.8166097429164,
+      1010.1916422542774,
+      301.93764725371153,
+      -80.50963185138922,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493,
+      -377.7727170864493
+    ],
+    "sector_zscore": [
+      -0.5960324155177462,
+      0.0027108915672358,
+      0.0369019196757033,
+      0.9244168921209854,
+      1.5307451887253285,
+      1.3656951941321915,
+      0.3999481443740225,
+      0.000504859616581,
+      0.7149140667190823,
+      0.4002795751884913
+    ],
+    "equity_curve": [
+      1000000.0,
+      1000000.0,
+      998608.66,
+      998608.66,
+      998608.66,
+      998608.66,
+      998608.66,
+      999119.19,
+      998499.38,
+      998092.16
+    ]
+  },
+  "decision_traces": [
+    {
+      "step": 0,
+      "date": "2026-06-19",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 49.35488659228862,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [],
+      "novelty_score": 1.0,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Regime is driven by passive absorption; price remains range-bound despite volume expansion.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.581
+      },
+      "outcome": {
+        "actual_direction": "uncertain",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains supported based on the moderate volatility, but its persistence is questionable due to the insufficient testing of observed continuation under volatility expansion. This contradicts the theory's assumption that passive absorption drives the regime, as the observed volume expansion and range-bound price suggest a more dynamic market behavior. The lack of prior subtype history and no analog divergence further complicates the assessment.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 1,
+      "date": "2026-06-22",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 40.76873886828168,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-19",
+          "similarity": 0.68,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.32,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The revised rate of volume expansion during up days (MECH_002) and absorption rate revision (MECH_003) jointly cause a stronger upward bias in price movements, leading to a neutral market regime characterized by range-bound trading with increasing institutional buying.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.54
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Market Regime Subtype: Mixed. The regime remains partially supported, but the observed continuation under moderate volatility expansion contradicts the prior assumption of strong participation. This contradiction is driven by low semantic similarity between the revised rate of volume expansion and participation widening, as well as between volume expansion revision and volatility remaining unchanged. The detected 1 contradiction with a total score of 0.09 indicates that the theory's falsifiability boundary conditions are not fully met.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 2,
+      "date": "2026-06-23",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 42.115760459281866,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-19",
+          "similarity": 0.784,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-22",
+          "similarity": 0.667,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.216,
+      "reuse_decision": "reused",
+      "generated_theory": "The revised rate of volume expansion during up days (MECH_002) and absorption rate revision (MECH_003) jointly cause a stronger upward bias in price movements, leading to a neutral market regime characterized by range-bound trading with increasing institutional buying.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.51
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Market Regime Subtype: neutral The regime remains supported based on the boundary conditions, as the observed market behavior aligns with the predicted characteristics of a neutral market regime. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This contradiction is driven by low semantic similarity between the revised rate of volume expansion and the regime's driving factors, as well as between volume expansion revision and participation widening. The detected 1 contradiction with a total score of 0.09 indicates that the theory requires additional confirmation signals to be fully validated.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 3,
+      "date": "2026-06-24",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 57.8887454016835,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-22",
+          "similarity": 0.977,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-19",
+          "similarity": 0.68,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-23",
+          "similarity": 0.669,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.023,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Volume expansion during up days is weaker than down days due to asset selloff and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.33
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The observed moderate price movement and neutral participation suggest that RELIANCE's stock performance is not driven by weakening short-term momentum or moderate volatility, contradicting the expectation of a decisive close below the opening price. This contradicts the theory's falsifiability boundary conditions, which require additional confirmation signals. The Dialectical Synthesis attempts to reconcile this conflict by suggesting that other factors, such as institutional accumulation or sector-wide trends, may be influencing RELIANCE's stock behavior.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 4,
+      "date": "2026-06-25",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "fatigue"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-22",
+          "similarity": 0.669,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-19",
+          "similarity": 0.668,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-23",
+          "similarity": 0.657,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.331,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Volume expansion during up days is weaker than down days due to asset selloff and fading liquidity, leading to a downward bias in price movements, consistent with fatigue regime behavior.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.168
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is Mixed. The theory's falsifiability boundary conditions are met, as the detected contradictions total a score of 0.83, indicating that the theory requires additional confirmation signals to be confirmed or rejected. The regime remains supported by the boundary condition that Reliance's price movement accelerates significantly despite weak participation. This aligns with the theory's prediction of a downward bias in price movements during up days due to asset selloff and fading liquidity.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 10.0
+      }
+    },
+    {
+      "step": 5,
+      "date": "2026-06-26",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "indecision",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-25",
+          "similarity": 0.465,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.535,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Volume expansion during up days is weaker than down days due to asset selloff and fading liquidity, leading to a downward bias in price movements, consistent with fatigue regime behavior.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.22
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Liquidity support remains weakly tested against contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 13.0
+      }
+    },
+    {
+      "step": 6,
+      "date": "2026-06-29",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "neutral",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-23",
+          "similarity": 0.849,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-19",
+          "similarity": 0.68,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-22",
+          "similarity": 0.517,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.151,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Volume expansion during up days is negatively correlated with asset selloff and fading liquidity, suggesting that these factors contribute to a weaker upward bias in market volume, potentially leading to increased volatility.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.59
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this observation already includes. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's prediction that volume expansion during up days is negatively correlated with asset selloff and fading liquidity, potentially leading to increased volatility.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 14.0
+      }
+    },
+    {
+      "step": 7,
+      "date": "2026-06-30",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-19",
+          "similarity": 0.848,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-29",
+          "similarity": 0.778,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-23",
+          "similarity": 0.657,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.152,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Volume expansion during up days is weaker than down days due to asset selloffs, fading liquidity, institutional selling, and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.49
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Liquidity support remains weakly tested against contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 17.0
+      }
+    },
+    {
+      "step": 8,
+      "date": "2026-07-01",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "expansion",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "liquidity_constrained"
+      },
+      "memory_retrieved": [],
+      "novelty_score": 1.0,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Volume expansion during up days is weaker than down days due to asset selloffs, fading liquidity, institutional selling, and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.252
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is liquidity_constrained. The theory is falsified based on the boundary conditions, as the trend direction changes from strengthening to weakening or vice versa within the next 5 trading days. This contradicts the neutral market regime characterized by reduced upward bias. Analog divergence is not present in this validation.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 19.0
+      }
+    },
+    {
+      "step": 9,
+      "date": "2026-07-02",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "neutral",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-25",
+          "similarity": 0.544,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-07-01",
+          "similarity": 0.467,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.456,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Volume expansion during up days is neutralized by asset selloffs and fading liquidity, resulting in a volume-expansion-neutral bias that influences market behavior.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.58
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The detected 5 contradictions with a total score of 0.09 indicate that the theory's falsifiability boundary conditions are not fully met. Specifically, the low semantic similarity between \"volume expansion dur...\" and \"volume > 0.5: add ne...\" suggests that the theory may need additional confirmation signals to be confirmed. The historical subtype memory indicates that the neutral regime subtype has been seen 7 times with a dominant resolution of lower, and an average usefulness of 0.18. However, this information is considered secondary context and should not influence the reflection on the current observation.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 22.0
+      }
+    }
+  ],
+  "epistemic_review": {
+    "assumptions_survived": [],
+    "assumptions_failed": [
+      "Volume expansion during up days is only predictive when the market regime is neutral and volume state is elevated, suggesting that a strong upward bias in market volume is necessary for volume confirmation to hold."
+    ],
+    "knowledge_stronger": [],
+    "knowledge_weaker": [],
+    "world_model_shifts": "",
+    "fundamental_uncertainty": [
+      "The relationship between market regime and volume expansion remains uncertain, with potential implications for predictive models."
+    ],
+    "tomorrow_beliefs": [
+      "If the replay restarted tomorrow, we would believe that the system's understanding of market dynamics is more nuanced and context-dependent, with a greater emphasis on considering multiple factors beyond just volume state."
+    ]
+  },
+  "paper_trading_summary": {
+    "total_return_pct": -0.1908,
+    "sharpe_ratio": -6.204,
+    "max_drawdown_pct": 0.1908,
+    "directional_accuracy_pct": 20.0,
+    "commitment_accuracy_pct": 25.0,
+    "avg_conviction_score": 0.3032,
+    "final_capital": 998092.16
+  },
+  "decision_intelligence": {
+    "total_decisions": 10,
+    "executed": 4,
+    "skipped": 6,
+    "high_conviction": 0,
+    "low_conviction": 6,
+    "decision_accuracy_pct": 20.0,
+    "allocation_efficiency": -0.0112,
+    "avg_conviction": 0.3032,
+    "false_high_conviction_pct": 0.0,
+    "false_low_conviction_pct": 16.67,
+    "decision_stability": 0.8406,
+    "top_lineages": [
+      "179faf2e-24ca-4990-8a29-7c0800423bcd"
+    ],
+    "top_principles": [],
+    "top_memories": [
+      "Regime Analog unknown"
+    ],
+    "top_harmful_contradictions": [
+      "contradiction_on_2026-06-26",
+      "contradiction_on_2026-06-24",
+      "contradiction_on_2026-07-01"
+    ],
+    "knowledge_changes_count": 11,
+    "avoided_bad_trades": 2,
+    "ignored_opportunities": 1
+  }
+}

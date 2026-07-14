@@ -1,0 +1,85 @@
+{
+  "experience_id": "exp_7af14ece91534f79_2026-06-12",
+  "lineage_id": "7af14ece91534f79",
+  "theory_family_id": "7af14ece91534f79",
+  "created_at": "2026-06-12",
+  "status": "active",
+  "theory_ids": [
+    "8e877cbd-63b1-4525-845e-4018dc602a5e",
+    "ce99a971-9532-41bd-bc9b-71fba2b80de3"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: ... vs ...; Low semantic similarity: Price structure exhi... vs : ...; Low semantic similarity: : ... vs : ...; Low semantic similarity: : ... vs : ...",
+    "Structural: Low semantic similarity: ... vs price_structure_v4...; Low semantic similarity: Price structure exhi... vs price_action.daily_s...; Low semantic similarity: : ... vs price_action.daily_s...; Low semantic similarity: : ... vs true: ...",
+    "Structural: Low semantic similarity: ... vs price_structure_v4...; Field conflict: Price structure exhibits moder vs price_action.daily_structure =; Low semantic similarity: : ... vs price_action.daily_s...; Low semantic similarity: : ... vs true: ...",
+    "Structural: Field conflict: The presence of FIIs and Relia vs price_action.daily_structure =; Low semantic similarity: price_action.daily_s... vs price_action.daily_s...; Low semantic similarity: price_action.daily_s... vs price_action.daily_s...",
+    "Structural: Low semantic similarity: The presence of FIIs... vs price_structure_v14:...; Low semantic similarity: price_action.daily_s... vs price_structure_v14:...; Low semantic similarity: price_action.daily_s... vs price_structure_v13:..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:extended_higher",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:strengthened",
+    "participation:weak",
+    "momentum:strengthening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 1,
+  "contradiction_count": 2,
+  "validation_count": 0,
+  "falsification_count": 2,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T17:49:36.303166",
+      "outcome": "falsified",
+      "theory_claim": "Price structure exhibits moderate volatility and momentum when RELIANCE is trading within a range-bound pattern, shifting towards compression upon short-term momentum weakening.",
+      "components_passed": [
+        "price_structure_v12"
+      ],
+      "components_failed": [
+        "price_structure_v12"
+      ],
+      "root_cause": "price_structure_v12",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This appears to be a technical analysis report or a trading strategy failure notification. I'll break down the explanation:\n\n**Theory:** The theory suggests that when Reliance is trading within a range-bound pattern, its price structure exhibits moderate volatility and momentum. However, if short-te"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T18:01:30.267889",
+      "outcome": "partial",
+      "theory_claim": "The presence of FIIs and Reliance Industries' short-term momentum weakening causes price structure to shift towards compression, leading to increased selling pressure within range-bound patterns.",
+      "components_passed": [
+        "price_structure_v17",
+        "price_structure_v17",
+        "price_structure_v17",
+        "price_structure_v17",
+        "price_structure_v17",
+        "price_structure_v18"
+      ],
+      "components_failed": [
+        "price_structure_v17"
+      ],
+      "root_cause": "price_structure_v17",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory in question suggests that when there is a weakening of short-term momentum due to the presence of Foreign Institutional Investors (FIIs) and Reliance Industries, it leads to a shift in the price structure towards compression, resulting in increased selling pressure within range-bound patt"
+    }
+  ],
+  "component_failure_counts": {
+    "price_structure_v12": 1,
+    "price_structure_v17": 1
+  }
+}

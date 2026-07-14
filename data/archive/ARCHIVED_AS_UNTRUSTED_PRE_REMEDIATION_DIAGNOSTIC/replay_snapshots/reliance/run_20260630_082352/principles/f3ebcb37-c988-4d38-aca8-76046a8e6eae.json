@@ -1,0 +1,65 @@
+{
+  "id": "f3ebcb37-c988-4d38-aca8-76046a8e6eae",
+  "created_at": "2026-06-30T03:03:54.930191+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid under market conditions characterized by moderate to high volume expansion and volatility, with a potential shift towards range-bound or trend persistence, but breaks down when participation is weak or volatility is compressed.",
+  "associated_lineage_ids": [
+    "c2390607-3979-4dd7-8b36-5d409e008c26",
+    "d8349ead-72b5-489d-8ee9-489ae38c5400",
+    "44f8fc63-90c2-4a44-9636-7c90dfcb9e53",
+    "da1263aa-73c7-4158-8f85-e1e05ce616b0",
+    "09f94250-73fe-4a4d-a06d-3c5e91f05fcc",
+    "d1f340af-40a8-4894-93f1-f514bfd1b259",
+    "2a395408-5fd1-4b70-b23c-1744acef3573",
+    "4802256e-e3d6-411c-b269-73a0c6932dad"
+  ],
+  "supporting_theory_ids": [
+    "4802256e-e3d6-411c-b269-73a0c6932dad",
+    "09f94250-73fe-4a4d-a06d-3c5e91f05fcc",
+    "44f8fc63-90c2-4a44-9636-7c90dfcb9e53",
+    "d1f340af-40a8-4894-93f1-f514bfd1b259"
+  ],
+  "contradicting_theory_ids": [
+    "da1263aa-73c7-4158-8f85-e1e05ce616b0",
+    "c2390607-3979-4dd7-8b36-5d409e008c26",
+    "2a395408-5fd1-4b70-b23c-1744acef3573",
+    "d8349ead-72b5-489d-8ee9-489ae38c5400"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "e2e8605c-abfb-4ac2-b931-86b71ecfab0e",
+      "created_at": "2026-06-30T03:03:54.928735+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "465143c2-ac05-4b3d-b4e9-6b7ff813584a",
+      "created_at": "2026-06-30T03:03:54.929934+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volume_state": "low"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 8,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

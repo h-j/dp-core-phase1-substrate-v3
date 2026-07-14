@@ -1,0 +1,59 @@
+{
+  "experience_id": "exp_811594fd4f4a4227_2026-06-26",
+  "lineage_id": "811594fd4f4a4227",
+  "theory_family_id": "811594fd4f4a4227",
+  "created_at": "2026-06-26",
+  "status": "falsified",
+  "theory_ids": [
+    "c1136572-6a97-4dd1-9912-9239d6f7e228"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: The price structure ... vs volume > 500000: ret...; Low semantic similarity: volume > 500000 and ... vs volume > 500000: ret...; Low semantic similarity: true: retain MECH_00... vs false: remove...",
+    "Structural: Low semantic similarity: The price structure ... vs The presence of FIIs...; Low semantic similarity: volume > 500000 and ... vs price_action.daily_s...; Low semantic similarity: true: retain MECH_00... vs price_action.daily_s...",
+    "Structural: Low semantic similarity: The price structure ... vs The presence of FIIs...; Low semantic similarity: The price structure ... vs price_action.daily_s...; Low semantic similarity: volume > 500000 and ... vs price_action.daily_s...; Low semantic similarity: true: retain MECH_00... vs price_action.daily_s...",
+    "Structural: Low semantic similarity: The price structure ... vs The presence of FIIs...; Low semantic similarity: The price structure ... vs volume > 1000000 and...; Low semantic similarity: volume > 500000 and ... vs volume > 1000000 and...; Low semantic similarity: true: retain MECH_00... vs false: remove_mechan..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:range_bound",
+    "volume:dry",
+    "volatility:stable",
+    "liquidity:selective",
+    "breadth:strengthened",
+    "participation:weak",
+    "momentum:strengthening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:leading"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-04T18:04:15.341281",
+      "outcome": "falsified",
+      "theory_claim": "The price structure of Reliance Industries exhibits limited volatility and weak momentum when trading within a range-bound pattern, with daily highs greater than previous lows or less than previous hi",
+      "components_passed": [],
+      "components_failed": [
+        "price_structure_v20",
+        "price_structure_v20"
+      ],
+      "root_cause": "price_structure_v20",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"The price structure of Reliance Industries exhibits limited volatility and weak momentum when trading within a range-bound pattern, with daily highs greater than previous lows or less than previous highs\" failed because the observed data does not support this hypothesis.\n\nHere's why:\n\n1."
+    }
+  ],
+  "component_failure_counts": {
+    "price_structure_v20": 2
+  }
+}

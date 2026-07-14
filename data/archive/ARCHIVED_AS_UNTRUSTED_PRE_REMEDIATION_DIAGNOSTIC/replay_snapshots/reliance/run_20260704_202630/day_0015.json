@@ -1,0 +1,368 @@
+{
+  "step": 15,
+  "date": "2026-06-15",
+  "observation": "[range expanding, gap up, short-term momentum strengthening, delivery:moderate, fii:selling, sector:leading, RELIANCE focus] candle neutral participation normal (normal) RELIANCE closed lower amid moderate volatility and breadth strengthened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is closing lower with moderate volatility and strengthened breadth, indicating a mixed trend persistence and overall regime.",
+  "theory": "Price structure exhibits sequence of higher highs and lower lows, modified by RELIANCE's gap-up and moderate volatility, where daily high > previous high and low > previous low, with increased emphasis on short-term momentum strengthening.",
+  "theory_summary_structured": {
+    "id": "2fecd9ed-1180-4ed0-93bb-5c04c12ec90a",
+    "created_at": "2026-07-04 14:57:01.403141+00:00",
+    "mechanism": "Liquidity Absorption",
+    "claim": "Price structure exhibits sequence of higher highs and lower lows, modified by RELIANCE's gap-up and moderate volatility, where daily high > previous high and low > previous low, with increased emphasis on short-term momentum strengthening.",
+    "if_branch": {
+      "id": "16f6c8d4-be76-4958-a1d1-39aa31c0b402",
+      "created_at": "2026-07-04 15:27:04.640792+00:00",
+      "condition": "",
+      "action": ""
+    },
+    "else_branch": {
+      "id": "8296a477-fc09-4ade-8f6d-936a8d678324",
+      "created_at": "2026-07-04 15:27:04.640825+00:00",
+      "condition": "",
+      "action": ""
+    },
+    "unless": "",
+    "falsified_if": "",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "38bb1543-ecb4-4492-8dd0-32d3e9c219f4",
+        "created_at": "2026-07-04 15:27:01.626221+00:00",
+        "component_id": "price_structure_with_modified_range_bound_reliance_v13",
+        "description": "Price maintains sequence of higher highs and lower lows, but with a modified twist: when RELIANCE is experiencing a gap-up and moderate volatility, the price structure becomes more volatile and less persistent, taking into account additional factors such as FII selling, sector performance, delivery, and asset liquidity fade. The new mechanism incorporates a stronger emphasis on short-term momentum strengthening.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous high, each low < previous low (when RELIANCE is experiencing a gap-up and moderate volatility) or Each day's high > previous high, each low > previous low (otherwise) with a greater emphasis on the latter, considering factors like delivery, FII selling, and sector performance.",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "DELIVERY_EXHAUSTION",
+          "FII_SELLING",
+          "SECTOR_PERFORMANCE",
+          "MOMENTUM_STRENGTHENING"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_008"
+      }
+    ],
+    "falsification_conditions": [
+      "price_structure_with_modified_range_bound_reliance_v8: RELIANCE is trading within a defined range"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.5766,
+    "reflection": 0.0,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.6523700952380952,
+    "indicators": [
+      "Structural: Low semantic similarity: ... vs price_structure_with...; Low semantic similarity: Price structure exhi... vs price_structure_with...; Low semantic similarity: : ... vs price_structure_with...; Low semantic similarity: : ... vs price_structure_with...",
+      "Structural: Low semantic similarity: Price structure exhi... vs Price sequence is in...; Low semantic similarity: ... vs price_structure_with...; Field conflict: Price structure exhibits seque vs range_expanding OR gap_up OR s; Low semantic similarity: : ... vs range_expanding OR g...; Low semantic similarity: : ... vs true: retain mechani...; Trend: continuation vs rejection",
+      "Structural: Low semantic similarity: Price structure exhi... vs Price sequence is in...; Low semantic similarity: ... vs price_structure_with...; Low semantic similarity: Price structure exhi... vs price_action.daily_s...; Low semantic similarity: : ... vs price_action.daily_s...; Low semantic similarity: : ... vs true: retain MECH_00...",
+      "Structural: Low semantic similarity: Price structure exhi... vs Price sequence is in...; Low semantic similarity: ... vs price_structure_with...; Low semantic similarity: Price structure exhi... vs volume > 1000 and RE...; Low semantic similarity: : ... vs volume > 1000 and RE...; Low semantic similarity: : ... vs otherwise: demote me...; Trend: continuation vs rejection",
+      "Structural: Field conflict: Price structure exhibits seque vs Price sequence is influenced b; Low semantic similarity: ... vs price_structure_with...; Field conflict: Price structure exhibits seque vs volume_dry and range_expanding; Low semantic similarity: : ... vs volume_dry and range...; Low semantic similarity: : ... vs true: remove mechani...; Trend: continuation vs rejection"
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "ef61c60c-d1d8-413f-8c89-0c782ebe0593",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "efc7aeee-96a3-48af-a047-3ba4d13ea2af",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "203899eb-6aea-44c0-9a92-a288858cc75b",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "2ac7bc41-4073-42d7-8faf-bd967e6ba27d",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "ceb60a62-0741-438b-ab83-1f5703cd6aac",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 5 contradictions with a total score of 0.65."
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "mixed",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-06-15",
+    "trend": "closed_lower",
+    "volatility_state": "moderate",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.652,
+    "active_theory_count": 12,
+    "breadth_proxy": "strengthened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-06-12",
+      "similarity": 0.81,
+      "active_theories": [
+        "5c9c1c4a9f2d9328",
+        "1d746879a0dbefac",
+        "4a066f5fe69ac15e"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: Price sequence is in... vs range_expanding OR g...; Low semantic similarity: price_structure_with... vs range_expanding OR g...; Low semantic similarity: price_structure_with... vs true: retain mechani...",
+        "Structural: Low semantic similarity: Price sequence is in... vs Price sequence is in...; Low semantic similarity: Price sequence is in... vs price_action.daily_s...; Low semantic similarity: price_structure_with... vs price_action.daily_s...; Low semantic similarity: price_structure_with... vs true: retain MECH_00...",
+        "Structural: Low semantic similarity: Price sequence is in... vs volume > 1000 and RE...; Low semantic similarity: price_structure_with... vs otherwise: demote me..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-06-10",
+      "similarity": 0.673,
+      "active_theories": [
+        "5c9c1c4a9f2d9328",
+        "1d746879a0dbefac",
+        "9e20d59a32962123"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: Price sequence is in... vs volume > 1000 and RE...; Low semantic similarity: price_action.daily_s... vs volume > 1000 and RE...; Low semantic similarity: true: retain MECH_00... vs otherwise: demote me...",
+        "Structural: Low semantic similarity: Price sequence is in... vs volume_dry and range...; Low semantic similarity: price_action.daily_s... vs volume_dry and range...; Low semantic similarity: true: retain MECH_00... vs true: remove mechani...",
+        "Structural: Low semantic similarity: Price sequence is in... vs price_action.daily_s..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-06-05",
+      "similarity": 0.582,
+      "active_theories": [
+        "1d746879a0dbefac",
+        "9e20d59a32962123",
+        "133aac53f82cd010"
+      ],
+      "contradictions": [
+        "Structural: Field conflict: Price sequence is influenced b vs The price sequence of higher h; Low semantic similarity: Price sequence is in... vs range_expanding: rem...; Low semantic similarity: price_action.daily_s... vs range_expanding: rem...; Low semantic similarity: true: retain mechani... vs volatility_expanding...; Trend: continuation vs rejection",
+        "Structural: Low semantic similarity: Price sequence is in... vs elevated_volume > 0....; Low semantic similarity: price_action.daily_s... vs elevated_volume > 0....; Low semantic similarity: true: retain mechani... vs false: demote...",
+        "Structural: Field conflict: Price sequence is influenced b vs The price structure maintains ; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume > 1000 and RE...; Low semantic similarity: price_action.daily_s... vs volume > 1000 and RE...; Low semantic similarity: true: retain mechani... vs otherwise: no action...; Trend: continuation vs rejection"
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-06-15",
+      "policy_name": "Baseline",
+      "action": "hold",
+      "conviction": 0.27,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-06-15",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.27,
+      "reason": "Skipped low confidence",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-06-15",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.27,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.19897857904761904,
+    "label": "weak"
+  },
+  "reflection": "The current regime subtype is neutral. The theory's falsifiability boundary conditions are met, as the observed data does not provide sufficient evidence to support or refute the theory. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. Analog divergence is present, with a similarity of 0.81 to 2026-06-12 and confidence 0.00.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "Analog to 2026-06-12: liquidity is broad_participation (prior was normal), volatility is moderate (prior was normal)",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 14,
+    "avg_usefulness": 0.143,
+    "last_seen": "2026-06-15",
+    "historical_resolution": {
+      "higher": 2,
+      "lower": 5,
+      "range_bound": 6,
+      "uncertain": 0
+    },
+    "falsified_count": 9
+  },
+  "dialectical_triggered": true,
+  "dialectical_synthesis": {
+    "shared_premise": "Reliance is trading in a range-bound manner with moderate volatility, exhibiting mixed trend persistence and regime characteristics.",
+    "conflict": "The active theories diverge on the interpretation of Reliance's trend persistence and overall regime, with some suggesting a strong bearish trend and others indicating a weak short-term momentum.",
+    "synthesis": "Reliance is trading in a range-bound manner with moderate volatility, characterized by mixed trend persistence and a neutral overall regime. This suggests that Reliance is experiencing a period of consolidation rather than a clear directional trend. The mixed trend persistence indicates that the stock's price action is being driven by both bullish and bearish forces, resulting in a neutral overall regime.",
+    "falsified_if": "Reliance closes significantly higher or lower than its current range-bound price level, indicating a shift in trend persistence and overall regime.",
+    "validation": {
+      "valid": true,
+      "quality": 0.8,
+      "issues": []
+    }
+  },
+  "metrics": {
+    "step": 15,
+    "date": "2026-06-15",
+    "contradiction_count": 5,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9090909090909091,
+    "avg_contradiction_severity": 0.5375399343871498,
+    "highest_contradiction": 1.0,
+    "theory_count": 12,
+    "active_theories": 12,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 8,
+    "avg_retirement_age": 2.3,
+    "avg_revival_latency": 2.142857142857143,
+    "avg_theory_age": 5.133333333333334,
+    "longest_surviving_theory": 11,
+    "theory_mutation_count": 19,
+    "avg_confidence": 0.01,
+    "confidence_delta": -0.05,
+    "confidence_volatility": 0.02,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 6.0,
+    "grounded_reflection_score": 0.25,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.017543859649122806,
+    "avg_abstraction_length": 18.0,
+    "compression_ratio": 0.4864864864864865,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 35,
+    "mechanism_count": 1,
+    "conditional_clauses_count": 0,
+    "exceptions_added": 0,
+    "mechanisms_retired_count": 4,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 0.0,
+    "words_before_mutation": 29,
+    "words_after_mutation": 35,
+    "mechanisms_before_mutation": 1,
+    "mechanisms_after_mutation": 1,
+    "extras": {
+      "observation_length": 37,
+      "theory_text": "Price structure exhibits sequence of higher highs and lower lows, modified by RELIANCE's gap-up and moderate volatility, where daily high > previous high and low > previous low, with increased emphasis on short-term momentum strengthening.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 0.65.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "mixed",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-06-15",
+        "trend": "closed_lower",
+        "volatility_state": "moderate",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.652,
+        "active_theory_count": 12,
+        "breadth_proxy": "strengthened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.81,
+          "active_theories": [
+            "5c9c1c4a9f2d9328",
+            "1d746879a0dbefac",
+            "4a066f5fe69ac15e"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Price sequence is in... vs range_expanding OR g...; Low semantic similarity: price_structure_with... vs range_expanding OR g...; Low semantic similarity: price_structure_with... vs true: retain mechani...",
+            "Structural: Low semantic similarity: Price sequence is in... vs Price sequence is in...; Low semantic similarity: Price sequence is in... vs price_action.daily_s...; Low semantic similarity: price_structure_with... vs price_action.daily_s...; Low semantic similarity: price_structure_with... vs true: retain MECH_00...",
+            "Structural: Low semantic similarity: Price sequence is in... vs volume > 1000 and RE...; Low semantic similarity: price_structure_with... vs otherwise: demote me..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-10",
+          "similarity": 0.673,
+          "active_theories": [
+            "5c9c1c4a9f2d9328",
+            "1d746879a0dbefac",
+            "9e20d59a32962123"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Price sequence is in... vs volume > 1000 and RE...; Low semantic similarity: price_action.daily_s... vs volume > 1000 and RE...; Low semantic similarity: true: retain MECH_00... vs otherwise: demote me...",
+            "Structural: Low semantic similarity: Price sequence is in... vs volume_dry and range...; Low semantic similarity: price_action.daily_s... vs volume_dry and range...; Low semantic similarity: true: retain MECH_00... vs true: remove mechani...",
+            "Structural: Low semantic similarity: Price sequence is in... vs price_action.daily_s..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-05",
+          "similarity": 0.582,
+          "active_theories": [
+            "1d746879a0dbefac",
+            "9e20d59a32962123",
+            "133aac53f82cd010"
+          ],
+          "contradictions": [
+            "Structural: Field conflict: Price sequence is influenced b vs The price sequence of higher h; Low semantic similarity: Price sequence is in... vs range_expanding: rem...; Low semantic similarity: price_action.daily_s... vs range_expanding: rem...; Low semantic similarity: true: retain mechani... vs volatility_expanding...; Trend: continuation vs rejection",
+            "Structural: Low semantic similarity: Price sequence is in... vs elevated_volume > 0....; Low semantic similarity: price_action.daily_s... vs elevated_volume > 0....; Low semantic similarity: true: retain mechani... vs false: demote...",
+            "Structural: Field conflict: Price sequence is influenced b vs The price structure maintains ; Low semantic similarity: price_structure_with... vs decisive close below...; Low semantic similarity: Price sequence is in... vs volume > 1000 and RE...; Low semantic similarity: price_action.daily_s... vs volume > 1000 and RE...; Low semantic similarity: true: retain mechani... vs otherwise: no action...; Trend: continuation vs rejection"
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.19897857904761904,
+        "label": "weak"
+      }
+    }
+  }
+}

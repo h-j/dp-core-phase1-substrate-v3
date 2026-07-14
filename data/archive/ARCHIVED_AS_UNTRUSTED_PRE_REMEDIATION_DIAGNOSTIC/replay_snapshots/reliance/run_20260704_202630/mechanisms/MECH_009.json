@@ -1,0 +1,46 @@
+{
+  "id": "MECH_009",
+  "created_at": "2026-07-04T15:29:02.793104+00:00",
+  "mechanism_id": "MECH_009",
+  "canonical_name": "TREND_PERSISTENCE",
+  "concept_tags": [
+    "TREND_PERSISTENCE",
+    "VOLATILITY_EXPANSION",
+    "DELIVERY_EXHAUSTION",
+    "FII_SELLING",
+    "SECTOR_PERFORMANCE",
+    "MOMENTUM_STRENGTHENING"
+  ],
+  "relation_type": "AMPLIFIES",
+  "first_seen": 16,
+  "last_seen": 29,
+  "days_active": 8,
+  "times_reused": 2,
+  "times_modified": 3,
+  "times_retired": 1,
+  "support_count": 2,
+  "contradiction_count": 4,
+  "prediction_helped": 2,
+  "prediction_harmed": 4,
+  "status": "retired",
+  "regimes_seen": [
+    "neutral",
+    "liquidity_constrained"
+  ],
+  "name": "TREND_PERSISTENCE",
+  "description": "Price structure with gap up and short-term momentum strengthening, taking into account additional factors such as FII selling, sector performance, delivery, and asset liquidity fade.",
+  "concept_type": "candidate",
+  "associated_theory_ids": [
+    "f69972e2-55f5-4e57-b992-d84da778777b",
+    "c9777e64-ae60-4092-8925-4a4fc5bdd69a",
+    "8ebb5776-297d-409d-9463-23f951bb1924",
+    "1f9b2cd8-4ff6-4e3a-b1c5-0f375bdefb4c",
+    "0349bc84-19dd-4a81-a3f6-14d972cecb70",
+    "c1ed938e-37cb-4402-a50c-1beba2bf7a31",
+    "72c485da-ccaf-478d-9c17-23d546044b77"
+  ],
+  "associated_lineages": [
+    "1f592e91-4fd5-461c-981b-83bddf2cbb48"
+  ],
+  "created_at_step": 16
+}

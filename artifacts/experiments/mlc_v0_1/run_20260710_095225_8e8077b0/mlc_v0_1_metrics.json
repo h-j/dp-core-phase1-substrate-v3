@@ -1,0 +1,21 @@
+{
+  "overall_decision_accuracy": 1.0,
+  "b2_decision_accuracy": 1.0,
+  "mlc_vs_b2_accuracy_difference": 0.0,
+  "catastrophic_false_admission_rate": 0.0,
+  "b2_catastrophic_false_admission_rate": 0.0,
+  "mlc_vs_b2_catastrophic_false_admission_difference": 0.0,
+  "false_rejection_rate": 0.0,
+  "mlc_vs_b2_matched_decision_difference": 0,
+  "defer_precision": 1.0,
+  "defer_recall": 1.0,
+  "compilation_rejection_count": 0,
+  "erc_utilization": {
+    "compilation_consumed": 40,
+    "evidence_consumed": 80,
+    "validation_consumed": 90
+  },
+  "mean_evidence_activations": 198.0,
+  "mean_coverage": 0.495,
+  "mean_adequacy_pass_rate": 1.0
+}

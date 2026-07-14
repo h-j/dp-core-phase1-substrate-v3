@@ -1,0 +1,315 @@
+{
+  "step": 28,
+  "date": "2026-06-09",
+  "observation": "[volume elevated, range expanding, gap up, short-term momentum weakening, delivery:moderate, fii:neutral, sector:lagging, RELIANCE focus] candle rejection lower participation strong (normal) RELIANCE traded range-bound amid moderate volatility.\nTrend Persistence: 3D: Persistent Lower, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is trading in a range-bound environment with moderate volatility, indicating a mixed trend persistence and overall regime.",
+  "theory": "The market's trend persistence is driven by a mixed interplay between Liquidity Absorption and Fundamental Analysis, with RELIANCE's dominance leading to a 'pressure-loaded range' where prices are unable to break out, but the recent bearish confirmation suggests a shift towards a more neutral regime.",
+  "theory_summary_structured": {
+    "id": "2dc5569c-5be0-49b5-8493-f11dd032d4a9",
+    "created_at": "2026-07-02 03:07:23.821730+00:00",
+    "mechanism": "Revised mechanism: The market's trend persistence is driven by a mixed interplay between Liquidity Absorption and Fundamental Analysis. RELIANCE's dominance leads to a 'pressure-loaded range', but the recent bearish confirmation indicates a weakening of its influence, allowing for a shift towards a more neutral regime.",
+    "claim": "The market's trend persistence is driven by a mixed interplay between Liquidity Absorption and Fundamental Analysis, with RELIANCE's dominance leading to a 'pressure-loaded range' where prices are unable to break out, but the recent bearish confirmation suggests a shift towards a more neutral regime.",
+    "if_branch": {
+      "id": "93e5bb69-85fb-46e2-aae6-2e422c40f678",
+      "created_at": "2026-07-02 03:36:36.021023+00:00",
+      "condition": "volume > 500k and gap up > 0.5% and short-term momentum < -20%",
+      "action": "RELIANCE's dominance is confirmed, leading to a 'pressure-loaded range'."
+    },
+    "else_branch": {
+      "id": "1ef83a2f-2052-487b-a3aa-8fb41635ec71",
+      "created_at": "2026-07-02 03:36:36.021101+00:00",
+      "condition": "volume < 200k or short-term momentum > 10%",
+      "action": "The recent bearish confirmation suggests a weakening of RELIANCE's influence, allowing for a shift towards a more neutral regime."
+    },
+    "unless": "fii > 0.7 or sector > 0.5",
+    "falsified_if": "delivery < 50k or RELIANCE traded range-bound amid moderate volatility",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "94b7310d-f35d-47d3-9c2a-3e809897a20b",
+        "created_at": "2026-07-02 03:07:23.821863+00:00",
+        "component_id": "price_structure",
+        "description": "Price maintains sequence of higher highs and higher lows",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous high, each low > previous low",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE"
+        ],
+        "relation_type": "CO-OCCURS_WITH"
+      },
+      {
+        "id": "e6a88a95-8be7-49a8-a889-fa22b49f7042",
+        "created_at": "2026-07-02 03:07:23.821904+00:00",
+        "component_id": "volume_confirmation",
+        "description": "Volume expands on up days relative to down days",
+        "observable": "volume.daily_ratio",
+        "expected_behavior": "Average volume on up days exceeds average volume on down days",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_EXPANSION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES"
+      },
+      {
+        "id": "a87dcafa-33f2-40b8-a911-db7e7a103c92",
+        "created_at": "2026-07-02 03:07:23.821910+00:00",
+        "component_id": "delivery_exhaustion",
+        "description": "Delivery percentage exceeds 60% on up days",
+        "observable": "delivery_pct",
+        "expected_behavior": ">60%",
+        "dependency": null,
+        "concept_tags": [
+          "DELIVERY_EXHAUSTION"
+        ],
+        "relation_type": "DEPENDS_ON"
+      }
+    ],
+    "falsification_conditions": [
+      "price_structure: lower low formed breaking HH/HL sequence",
+      "volume_confirmation: down-day volume exceeds up-day volume for 3 consecutive sessions"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.863,
+    "reflection": 0.0,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.0,
+    "indicators": [],
+    "llm_contradiction_audit": [],
+    "summary": "Detected 0 contradictions with a total score of 0.00."
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-06-09",
+    "trend": "range_bound",
+    "volatility_state": "moderate",
+    "sentiment": "uncertain",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.0,
+    "active_theory_count": 21,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-06-04",
+      "similarity": 0.952,
+      "active_theories": [
+        "dfa7678d18ef4f77",
+        "87b289790cbc6f42",
+        "ca47592b86186811"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: volume_confirmation ... vs volume_confirmation ...; Low semantic similarity: The market's trend p... vs volume_confirmation ...; Low semantic similarity: volume_confirmation ... vs volume_confirmation ...; Low semantic similarity: volume_confirmation ... vs RELANCE focus or sec..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-07",
+      "similarity": 0.857,
+      "active_theories": [
+        "3333380867b5f28d",
+        "dfa7678d18ef4f77",
+        "87b289790cbc6f42"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: No change in RELIANC... vs Significant increase...; Field conflict: Revised claim: Regime is drive vs Moderate to high volume and st; Low semantic similarity: volume_confirmation:... vs Moderate to high vol...; Low semantic similarity: RELIANCE focus and m... vs Low to moderate volu...",
+        "Structural: Low semantic similarity: No change in RELIANC... vs Significant increase...; Field conflict: Revised claim: Regime is drive vs Moderate to high volume and st; Low semantic similarity: volume_confirmation:... vs Moderate to high vol...; Low semantic similarity: RELIANCE focus and m... vs Low to moderate volu...",
+        "Structural: Low semantic similarity: No change in RELIANC... vs delivery:moderate, s...; Low semantic similarity: Revised claim: Regim... vs volume > 50% of aver...; Low semantic similarity: volume_confirmation:... vs volume > 50% of aver...; Low semantic similarity: RELIANCE focus and m... vs short-term momentum ..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-06-03",
+      "similarity": 0.787,
+      "active_theories": [
+        "dfa7678d18ef4f77",
+        "87b289790cbc6f42",
+        "3b35c81d67a26344"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: price_structure != '... vs volume_confirmation ...; Low semantic similarity: The market's trend p... vs volume_confirmation ...; Low semantic similarity: delivery < 0.5 AND v... vs volume_confirmation ...; Low semantic similarity: delivery >= 0.5 OR v... vs RELANCE focus or sec...",
+        "Structural: Low semantic similarity: price_structure != '... vs If the RELIANCE focu...; Low semantic similarity: The market's trend p... vs Current observation ...; Low semantic similarity: delivery < 0.5 AND v... vs Current observation ...; Low semantic similarity: delivery >= 0.5 OR v... vs Current observation ..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-06-09",
+      "policy_name": "Baseline",
+      "action": "hold",
+      "conviction": 0.615,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-06-09",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.615,
+      "reason": "High conviction criteria met",
+      "allowed": true
+    },
+    "breakout": {
+      "date": "2026-06-09",
+      "policy_name": "Breakout Discipline",
+      "action": "sell",
+      "conviction": 0.615,
+      "reason": "Breakout policy criteria met",
+      "allowed": true
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.53675,
+    "label": "useful"
+  },
+  "reflection": "Neutral Regime Subtype. The current regime subtype is neutral, but the recent bearish confirmation suggests a shift towards a more neutral regime. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's falsifiability boundary conditions, indicating that additional confirmation signals are required to validate the theory.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "Analog to 2026-06-04: participation is strong (prior was normal), liquidity is ample_with_strength (prior was normal), volatility is moderate (prior was normal)",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 26,
+    "avg_usefulness": 0.269,
+    "last_seen": "2026-06-09",
+    "historical_resolution": {
+      "higher": 3,
+      "lower": 9,
+      "range_bound": 13,
+      "uncertain": 0
+    },
+    "falsified_count": 16
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 28,
+    "date": "2026-06-09",
+    "contradiction_count": 0,
+    "contradiction_half_life": 0.9512195121951219,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 1.0,
+    "avg_contradiction_severity": 0.3637799361629706,
+    "highest_contradiction": 0.8958611535770596,
+    "theory_count": 21,
+    "active_theories": 21,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 10,
+    "avg_retirement_age": 3.4,
+    "avg_revival_latency": 7.083333333333333,
+    "avg_theory_age": 8.5,
+    "longest_surviving_theory": 24,
+    "theory_mutation_count": 28,
+    "avg_confidence": 0.0,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.03571428571428571,
+    "avg_abstraction_length": 18.0,
+    "compression_ratio": 0.47368421052631576,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 38,
+      "theory_text": "The market's trend persistence is driven by a mixed interplay between Liquidity Absorption and Fundamental Analysis, with RELIANCE's dominance leading to a 'pressure-loaded range' where prices are unable to break out, but the recent bearish confirmation suggests a shift towards a more neutral regime.",
+      "contradiction_text": "Detected 0 contradictions with a total score of 0.00.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-06-09",
+        "trend": "range_bound",
+        "volatility_state": "moderate",
+        "sentiment": "uncertain",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.0,
+        "active_theory_count": 21,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-04",
+          "similarity": 0.952,
+          "active_theories": [
+            "dfa7678d18ef4f77",
+            "87b289790cbc6f42",
+            "ca47592b86186811"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: volume_confirmation ... vs volume_confirmation ...; Low semantic similarity: The market's trend p... vs volume_confirmation ...; Low semantic similarity: volume_confirmation ... vs volume_confirmation ...; Low semantic similarity: volume_confirmation ... vs RELANCE focus or sec..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-07",
+          "similarity": 0.857,
+          "active_theories": [
+            "3333380867b5f28d",
+            "dfa7678d18ef4f77",
+            "87b289790cbc6f42"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: No change in RELIANC... vs Significant increase...; Field conflict: Revised claim: Regime is drive vs Moderate to high volume and st; Low semantic similarity: volume_confirmation:... vs Moderate to high vol...; Low semantic similarity: RELIANCE focus and m... vs Low to moderate volu...",
+            "Structural: Low semantic similarity: No change in RELIANC... vs Significant increase...; Field conflict: Revised claim: Regime is drive vs Moderate to high volume and st; Low semantic similarity: volume_confirmation:... vs Moderate to high vol...; Low semantic similarity: RELIANCE focus and m... vs Low to moderate volu...",
+            "Structural: Low semantic similarity: No change in RELIANC... vs delivery:moderate, s...; Low semantic similarity: Revised claim: Regim... vs volume > 50% of aver...; Low semantic similarity: volume_confirmation:... vs volume > 50% of aver...; Low semantic similarity: RELIANCE focus and m... vs short-term momentum ..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-03",
+          "similarity": 0.787,
+          "active_theories": [
+            "dfa7678d18ef4f77",
+            "87b289790cbc6f42",
+            "3b35c81d67a26344"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: price_structure != '... vs volume_confirmation ...; Low semantic similarity: The market's trend p... vs volume_confirmation ...; Low semantic similarity: delivery < 0.5 AND v... vs volume_confirmation ...; Low semantic similarity: delivery >= 0.5 OR v... vs RELANCE focus or sec...",
+            "Structural: Low semantic similarity: price_structure != '... vs If the RELIANCE focu...; Low semantic similarity: The market's trend p... vs Current observation ...; Low semantic similarity: delivery < 0.5 AND v... vs Current observation ...; Low semantic similarity: delivery >= 0.5 OR v... vs Current observation ..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.53675,
+        "label": "useful"
+      }
+    }
+  }
+}

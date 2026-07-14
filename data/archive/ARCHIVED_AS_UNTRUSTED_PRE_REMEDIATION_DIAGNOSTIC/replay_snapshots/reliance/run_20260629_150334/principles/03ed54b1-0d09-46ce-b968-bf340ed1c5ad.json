@@ -1,0 +1,73 @@
+{
+  "id": "03ed54b1-0d09-46ce-b968-bf340ed1c5ad",
+  "created_at": "2026-06-29T09:41:06.555186+00:00",
+  "status": "retired",
+  "statement": "The component expectation 'price_range_bound' is valid under market conditions where regime subtype is momentum, trend, or range-bound, and volatility regime is compressed or normal, while volume state can be high, low, or normal.",
+  "associated_lineage_ids": [
+    "b65c957e-3c7c-4145-bce8-08ea08dda7c7",
+    "ac3a4a49-7e99-461c-871e-7ac286f3c235",
+    "400e0ccf-639d-4677-b64c-d22acfec7f9f",
+    "d9395b8a-5d9b-4535-85d4-a15b5500ec23",
+    "cc1f03e1-20a7-4e1d-8c58-1e6982765dcc",
+    "b141c7b7-80db-44d8-b7bd-db2474a080f8"
+  ],
+  "supporting_theory_ids": [
+    "b65c957e-3c7c-4145-bce8-08ea08dda7c7",
+    "400e0ccf-639d-4677-b64c-d22acfec7f9f",
+    "d9395b8a-5d9b-4535-85d4-a15b5500ec23",
+    "cc1f03e1-20a7-4e1d-8c58-1e6982765dcc",
+    "b141c7b7-80db-44d8-b7bd-db2474a080f8"
+  ],
+  "contradicting_theory_ids": [
+    "ac3a4a49-7e99-461c-871e-7ac286f3c235"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "c21d22ea-984f-45eb-b342-48eb0e0d5417",
+      "created_at": "2026-06-29T09:41:06.555145+00:00",
+      "target_component": "price_range_bound",
+      "expected_status": "passed or failed",
+      "applicability_filter": {
+        "regime_subtype": [
+          "momentum",
+          "trend",
+          "range-bound"
+        ],
+        "volatility_regime": [
+          "compressed",
+          "normal"
+        ]
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 4,
+  "revision_history": [
+    {
+      "id": "e660bf1c-9dea-47ff-a297-22d0c150260e",
+      "created_at": "2026-06-29T09:39:27.397703+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation 'price_range_bound' is valid under market conditions where regime subtype is momentum, trend, or range-bound, and volatility regime is compressed or normal, while volume state can be high, low, or normal.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "bffe75ef-5179-4d8b-9570-6ee03f5a1684",
+      "created_at": "2026-06-29T09:41:06.555108+00:00",
+      "revision_step": 4,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation 'price_range_bound' is valid under market conditions where regime subtype is momentum, trend, or range-bound, and volatility regime is compressed or normal, while volume state can be high, low, or normal.",
+      "change_reason": "consolidated via hierarchical merging"
+    }
+  ],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

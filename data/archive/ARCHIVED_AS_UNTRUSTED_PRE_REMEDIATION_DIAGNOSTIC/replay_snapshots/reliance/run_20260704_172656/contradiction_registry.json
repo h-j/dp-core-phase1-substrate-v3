@@ -1,0 +1,802 @@
+{
+  "0da314119d6ae495": {
+    "id": "0da314119d6ae495",
+    "theory_id": "5c9c1c4a9f2d9328",
+    "description": "structural: low semantic similarity: the reliance's price... vs regime is driven by ...; low semantic similarity: the reliance's price... vs delivery_pct > 50 an...; low semantic similarity: reliance trading ran... vs delivery_pct > 50 an...; low semantic similarity: reliance not trading... vs sector_zscore < -1.5...; semantic contradiction: concept 'institutional_accumulation' relation is 'dampens' in current theory but 'amplifies' in historical theory.; semantic contradiction: concept 'volatility_expansion' relation is 'dampens' in current theory but 'amplifies' in historical theory.; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 1,
+    "resolved_at_step": 2,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "ecaf34d173bc3458": {
+    "id": "ecaf34d173bc3458",
+    "theory_id": "fc6f4056c5e92db5",
+    "description": "structural: low semantic similarity: the reliance price s... vs reliance trading ran...",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "d925ccce26f5a6d6": {
+    "id": "d925ccce26f5a6d6",
+    "theory_id": "fc6f4056c5e92db5",
+    "description": "structural: low semantic similarity: the reliance price s... vs regime is driven by ...; low semantic similarity: the reliance price s... vs delivery_pct > 50 an...; low semantic similarity: reliance trading ran... vs delivery_pct > 50 an...; low semantic similarity: reliance not trading... vs sector_zscore < -1.5...; semantic contradiction: concept 'institutional_accumulation' relation is 'dampens' in current theory but 'amplifies' in historical theory.; semantic contradiction: concept 'volatility_expansion' relation is 'dampens' in current theory but 'amplifies' in historical theory.; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "c132a39a73273046": {
+    "id": "c132a39a73273046",
+    "theory_id": "f167a11f8f366f7a",
+    "description": "structural: low semantic similarity: elevated_volume > 2.... vs decisive close below...; low semantic similarity: the price structure ... vs reliance trading ran...; low semantic similarity: elevated_volume > 2.... vs reliance trading ran...; low semantic similarity: gap_down or expandin... vs reliance not trading...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.7362000000000001
+  },
+  "3eefeb8a23100619": {
+    "id": "3eefeb8a23100619",
+    "theory_id": "f167a11f8f366f7a",
+    "description": "structural: low semantic similarity: the price structure ... vs regime is driven by ...; low semantic similarity: elevated_volume > 2.... vs decisive close below...; low semantic similarity: the price structure ... vs delivery_pct > 50 an...; low semantic similarity: elevated_volume > 2.... vs delivery_pct > 50 an...; low semantic similarity: gap_down or expandin... vs sector_zscore < -1.5...; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.7362000000000001
+  },
+  "e5857ae576fc3808": {
+    "id": "e5857ae576fc3808",
+    "theory_id": "57544b1ae63e0ca2",
+    "description": "structural: field conflict: the price structure of relianc vs the price structure of relianc; low semantic similarity: the price structure ... vs elevated_volume > 2....; low semantic similarity: new_price_structure_... vs elevated_volume > 2....; low semantic similarity: new_price_structure_... vs gap_down or expandin...; trend: continuation vs rejection",
+    "created_at_step": 4,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "a1f3040f92df8e71": {
+    "id": "a1f3040f92df8e71",
+    "theory_id": "57544b1ae63e0ca2",
+    "description": "structural: low semantic similarity: elevated_volume > 2.... vs decisive close below...; field conflict: the price structure of relianc vs reliance trading range-bound a; low semantic similarity: new_price_structure_... vs reliance not trading...",
+    "created_at_step": 4,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "635ce10f26dd64a4": {
+    "id": "635ce10f26dd64a4",
+    "theory_id": "57544b1ae63e0ca2",
+    "description": "structural: field conflict: the price structure of relianc vs the reliance's price structure; low semantic similarity: elevated_volume > 2.... vs decisive close below...; low semantic similarity: the price structure ... vs reliance trading ran...; trend: continuation vs rejection",
+    "created_at_step": 4,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "c7863e49febac4f0": {
+    "id": "c7863e49febac4f0",
+    "theory_id": "57544b1ae63e0ca2",
+    "description": "structural: low semantic similarity: the price structure ... vs regime is driven by ...; low semantic similarity: elevated_volume > 2.... vs decisive close below...; low semantic similarity: the price structure ... vs delivery_pct > 50 an...; low semantic similarity: new_price_structure_... vs delivery_pct > 50 an...; low semantic similarity: new_price_structure_... vs sector_zscore < -1.5...; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 4,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "d4bd19aa41cb0781": {
+    "id": "d4bd19aa41cb0781",
+    "theory_id": "1da5100c06b9fae7",
+    "description": "structural: low semantic similarity: price_action.daily_s... vs elevated_volume > 2....; low semantic similarity: price sequence exhib... vs new_price_structure_...; low semantic similarity: price_action.daily_s... vs new_price_structure_...; low semantic similarity: price_action.daily_s... vs new_price_structure_...",
+    "created_at_step": 5,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 2,
+    "severity": 1.0
+  },
+  "6b39a1734c82b7ed": {
+    "id": "6b39a1734c82b7ed",
+    "theory_id": "1da5100c06b9fae7",
+    "description": "structural: low semantic similarity: price_action.daily_s... vs elevated_volume > 2....; low semantic similarity: price sequence exhib... vs elevated_volume > 2....; low semantic similarity: price_action.daily_s... vs elevated_volume > 2....; low semantic similarity: price_action.daily_s... vs gap_down or expandin...",
+    "created_at_step": 5,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 2,
+    "severity": 1.0
+  },
+  "b172dd3abb91d36e": {
+    "id": "b172dd3abb91d36e",
+    "theory_id": "1da5100c06b9fae7",
+    "description": "structural: low semantic similarity: price_action.daily_s... vs decisive close below...; low semantic similarity: price sequence exhib... vs reliance trading ran...; low semantic similarity: price_action.daily_s... vs reliance trading ran...; low semantic similarity: price_action.daily_s... vs reliance not trading...",
+    "created_at_step": 5,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 2,
+    "severity": 1.0
+  },
+  "5522ff85158785bf": {
+    "id": "5522ff85158785bf",
+    "theory_id": "1da5100c06b9fae7",
+    "description": "structural: low semantic similarity: price sequence exhib... vs regime is driven by ...; low semantic similarity: price_action.daily_s... vs decisive close below...; low semantic similarity: price sequence exhib... vs delivery_pct > 50 an...; low semantic similarity: price_action.daily_s... vs delivery_pct > 50 an...; low semantic similarity: price_action.daily_s... vs sector_zscore < -1.5...; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.; semantic contradiction: concept 'trend_persistence' relation is 'contradicts' in current theory but 'co-occurs_with' in historical theory.",
+    "created_at_step": 5,
+    "resolved_at_step": 6,
+    "status": "resolved",
+    "age": 1,
+    "severity": 1.0
+  },
+  "4cb0a8dfec7cbfcb": {
+    "id": "4cb0a8dfec7cbfcb",
+    "theory_id": "7a911cdd5b8872a8",
+    "description": "structural: low semantic similarity: price_structure_v4... vs price_action.daily_s...; low semantic similarity: price structure exhi... vs price_action.daily_s...",
+    "created_at_step": 7,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.0806
+  },
+  "cbe99328b64115de": {
+    "id": "cbe99328b64115de",
+    "theory_id": "7a911cdd5b8872a8",
+    "description": "structural: low semantic similarity: price_structure_v4... vs elevated_volume > 2....; low semantic similarity: price_action.daily_s... vs new_price_structure_...; low semantic similarity: price_action.daily_s... vs new_price_structure_...",
+    "created_at_step": 7,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.0806
+  },
+  "13dbf968ff537ca6": {
+    "id": "13dbf968ff537ca6",
+    "theory_id": "7a911cdd5b8872a8",
+    "description": "structural: low semantic similarity: price_structure_v4... vs elevated_volume > 2....; low semantic similarity: price structure exhi... vs elevated_volume > 2....; low semantic similarity: price_action.daily_s... vs elevated_volume > 2....; low semantic similarity: price_action.daily_s... vs gap_down or expandin...",
+    "created_at_step": 7,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.0806
+  },
+  "aa0ca635f58fb798": {
+    "id": "aa0ca635f58fb798",
+    "theory_id": "7a911cdd5b8872a8",
+    "description": "structural: low semantic similarity: price_structure_v4... vs decisive close below...; low semantic similarity: price structure exhi... vs reliance trading ran...; low semantic similarity: price_action.daily_s... vs reliance not trading...",
+    "created_at_step": 7,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.0806
+  },
+  "be8b129229f2a266": {
+    "id": "be8b129229f2a266",
+    "theory_id": "863ca42300a76f78",
+    "description": "structural: low semantic similarity: price sequence exhib... vs price_action.daily_s...; low semantic similarity: range_expanding: pro... vs price_action.daily_s...; low semantic similarity: false: demote... vs price_action.daily_s...",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.09638000000000002
+  },
+  "67db4eabdea64262": {
+    "id": "67db4eabdea64262",
+    "theory_id": "863ca42300a76f78",
+    "description": "structural: low semantic similarity: price sequence exhib... vs price sequence exhib...; low semantic similarity: price_structure_v4... vs price_action.daily_s...; low semantic similarity: price sequence exhib... vs price_action.daily_s...; low semantic similarity: range_expanding: pro... vs price_action.daily_s...; low semantic similarity: false: demote... vs price_action.daily_s...",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.09638000000000002
+  },
+  "3c5c4edb5ca36537": {
+    "id": "3c5c4edb5ca36537",
+    "theory_id": "863ca42300a76f78",
+    "description": "structural: low semantic similarity: price_structure_v4... vs elevated_volume > 2....; low semantic similarity: price sequence exhib... vs new_price_structure_...; low semantic similarity: range_expanding: pro... vs new_price_structure_...; low semantic similarity: false: demote... vs new_price_structure_...",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.09638000000000002
+  },
+  "501da7aef0ef6919": {
+    "id": "501da7aef0ef6919",
+    "theory_id": "863ca42300a76f78",
+    "description": "structural: low semantic similarity: price sequence exhib... vs the price structure ...; low semantic similarity: price_structure_v4... vs elevated_volume > 2....; low semantic similarity: price sequence exhib... vs elevated_volume > 2....; low semantic similarity: range_expanding: pro... vs elevated_volume > 2....; low semantic similarity: false: demote... vs gap_down or expandin...",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.09638000000000002
+  },
+  "d3887c1c22147159": {
+    "id": "d3887c1c22147159",
+    "theory_id": "e27c63e63ce89e1b",
+    "description": "structural: low semantic similarity: price sequence exhib... vs price_action.daily_s...; low semantic similarity: true: ... vs price_action.daily_s...",
+    "created_at_step": 9,
+    "resolved_at_step": 12,
+    "status": "resolved",
+    "age": 3,
+    "severity": 0.09447500000000002
+  },
+  "5105b1d90a1dd978": {
+    "id": "5105b1d90a1dd978",
+    "theory_id": "e27c63e63ce89e1b",
+    "description": "structural: low semantic similarity: price sequence exhib... vs price sequence exhib...; low semantic similarity: price_structure_v4... vs price_action.daily_s...; low semantic similarity: price sequence exhib... vs price_action.daily_s...; low semantic similarity: price_action.daily_s... vs price_action.daily_s...; low semantic similarity: true: ... vs price_action.daily_s...",
+    "created_at_step": 9,
+    "resolved_at_step": 11,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.09447500000000002
+  },
+  "b8c58d7e6a082a3e": {
+    "id": "b8c58d7e6a082a3e",
+    "theory_id": "e27c63e63ce89e1b",
+    "description": "structural: low semantic similarity: price_structure_v4... vs elevated_volume > 2....; low semantic similarity: price sequence exhib... vs new_price_structure_...; low semantic similarity: price_action.daily_s... vs new_price_structure_...; low semantic similarity: true: ... vs new_price_structure_...",
+    "created_at_step": 9,
+    "resolved_at_step": 10,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.09447500000000002
+  },
+  "350c2fbe4d92ba3f": {
+    "id": "350c2fbe4d92ba3f",
+    "theory_id": "0f402fab6f3be868",
+    "description": "structural: low semantic similarity: price sequence exhib... vs price_action.daily_s...",
+    "created_at_step": 11,
+    "resolved_at_step": 12,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.07334000000000002
+  },
+  "123290a91cdb7322": {
+    "id": "123290a91cdb7322",
+    "theory_id": "0f402fab6f3be868",
+    "description": "structural: low semantic similarity: price sequence exhib... vs range_expanding: pro...; low semantic similarity: price_action.daily_s... vs range_expanding: pro...; low semantic similarity: true: ... vs false: demote...",
+    "created_at_step": 11,
+    "resolved_at_step": 12,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.07334000000000002
+  },
+  "3c9215117b3fde6d": {
+    "id": "3c9215117b3fde6d",
+    "theory_id": "0f402fab6f3be868",
+    "description": "structural: low semantic similarity: price_structure_v4... vs price_action.daily_s...; low semantic similarity: price sequence exhib... vs price_action.daily_s...; low semantic similarity: true: ... vs price_action.daily_s...",
+    "created_at_step": 11,
+    "resolved_at_step": 12,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.07334000000000002
+  },
+  "05d74a8542ced0c5": {
+    "id": "05d74a8542ced0c5",
+    "theory_id": "b25d7f3dc0cd190e",
+    "description": "structural: low semantic similarity: price structure exhi... vs price_action.daily_s...",
+    "created_at_step": 12,
+    "resolved_at_step": 13,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3900215053763441
+  },
+  "df9aa31a39ca3766": {
+    "id": "df9aa31a39ca3766",
+    "theory_id": "b25d7f3dc0cd190e",
+    "description": "structural: field conflict: price structure exhibits incre vs price_action.daily_structure =",
+    "created_at_step": 12,
+    "resolved_at_step": 13,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3900215053763441
+  },
+  "4270077f8f644d37": {
+    "id": "4270077f8f644d37",
+    "theory_id": "b25d7f3dc0cd190e",
+    "description": "structural: field conflict: price structure exhibits incre vs range_expanding: promote; low semantic similarity: price_action.daily_s... vs range_expanding: pro...; low semantic similarity: true: ... vs false: demote...",
+    "created_at_step": 12,
+    "resolved_at_step": 13,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3900215053763441
+  },
+  "338b26d6d76bcaa6": {
+    "id": "338b26d6d76bcaa6",
+    "theory_id": "b25d7f3dc0cd190e",
+    "description": "structural: field conflict: price structure exhibits incre vs price_action.daily_structure =; low semantic similarity: true: ... vs price_action.daily_s...",
+    "created_at_step": 12,
+    "resolved_at_step": 13,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3900215053763441
+  },
+  "bf4afb40d31c9076": {
+    "id": "bf4afb40d31c9076",
+    "theory_id": "35b93cb562256ffa",
+    "description": "structural: low semantic similarity: ... vs price_structure_v4...; low semantic similarity: price structure exhi... vs price_action.daily_s...; low semantic similarity: : ... vs price_action.daily_s...; low semantic similarity: : ... vs true: ...",
+    "created_at_step": 13,
+    "resolved_at_step": 15,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.40327688172043014
+  },
+  "244a1ad7cf06c3f2": {
+    "id": "244a1ad7cf06c3f2",
+    "theory_id": "35b93cb562256ffa",
+    "description": "structural: low semantic similarity: ... vs price_structure_v4...; field conflict: price structure exhibits incre vs price_action.daily_structure =; low semantic similarity: : ... vs price_action.daily_s...; low semantic similarity: : ... vs true: ...",
+    "created_at_step": 13,
+    "resolved_at_step": 14,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.40327688172043014
+  },
+  "ddf1bc71ae908fc9": {
+    "id": "ddf1bc71ae908fc9",
+    "theory_id": "35b93cb562256ffa",
+    "description": "structural: low semantic similarity: ... vs price_structure_v4...; field conflict: price structure exhibits incre vs range_expanding: promote; low semantic similarity: : ... vs range_expanding: pro...; low semantic similarity: : ... vs false: demote...",
+    "created_at_step": 13,
+    "resolved_at_step": 14,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.40327688172043014
+  },
+  "a01a9deb3daafdeb": {
+    "id": "a01a9deb3daafdeb",
+    "theory_id": "7af14ece91534f79",
+    "description": "structural: low semantic similarity: ... vs ...; low semantic similarity: price structure exhi... vs : ...; low semantic similarity: : ... vs : ...; low semantic similarity: : ... vs : ...",
+    "created_at_step": 14,
+    "resolved_at_step": 15,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.35345000000000004
+  },
+  "c84bf5a08aaebf12": {
+    "id": "c84bf5a08aaebf12",
+    "theory_id": "7af14ece91534f79",
+    "description": "structural: low semantic similarity: ... vs price_structure_v4...; field conflict: price structure exhibits moder vs price_action.daily_structure =; low semantic similarity: : ... vs price_action.daily_s...; low semantic similarity: : ... vs true: ...",
+    "created_at_step": 14,
+    "resolved_at_step": 15,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.35345000000000004
+  },
+  "4e82968da1307c74": {
+    "id": "4e82968da1307c74",
+    "theory_id": "e9cd301cbce2532c",
+    "description": "structural: low semantic similarity: price_structure_v11... vs ...; low semantic similarity: price structure exhi... vs : ...; low semantic similarity: : ... vs : ...; low semantic similarity: : ... vs : ...",
+    "created_at_step": 15,
+    "resolved_at_step": 16,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3306125000000001
+  },
+  "d9e41eda00795a29": {
+    "id": "d9e41eda00795a29",
+    "theory_id": "e9cd301cbce2532c",
+    "description": "structural: low semantic similarity: price structure exhi... vs price_action.daily_s...; low semantic similarity: : ... vs price_action.daily_s...; low semantic similarity: : ... vs true: ...",
+    "created_at_step": 15,
+    "resolved_at_step": 16,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3306125000000001
+  },
+  "11ffd06e98976af9": {
+    "id": "11ffd06e98976af9",
+    "theory_id": "e9cd301cbce2532c",
+    "description": "structural: field conflict: price structure exhibits moder vs price_action.daily_structure =; low semantic similarity: : ... vs price_action.daily_s...; low semantic similarity: : ... vs true: ...",
+    "created_at_step": 15,
+    "resolved_at_step": 16,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3306125000000001
+  },
+  "58acd4ae86d2dbc6": {
+    "id": "58acd4ae86d2dbc6",
+    "theory_id": "6e6b2412dfde4b3a",
+    "description": "structural: low semantic similarity: reliance's price str... vs : ...; low semantic similarity: price_structure_v14:... vs : ...; low semantic similarity: price_structure_v13:... vs : ...",
+    "created_at_step": 16,
+    "resolved_at_step": 18,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.08765
+  },
+  "ce9ecca92376c22b": {
+    "id": "ce9ecca92376c22b",
+    "theory_id": "6e6b2412dfde4b3a",
+    "description": "structural: low semantic similarity: price_structure_v12... vs ...; low semantic similarity: reliance's price str... vs : ...; low semantic similarity: price_structure_v14:... vs : ...; low semantic similarity: price_structure_v13:... vs : ...",
+    "created_at_step": 16,
+    "resolved_at_step": 18,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.08765
+  },
+  "13c6c6a14d9dc82f": {
+    "id": "13c6c6a14d9dc82f",
+    "theory_id": "6e6b2412dfde4b3a",
+    "description": "structural: low semantic similarity: reliance's price str... vs price_action.daily_s...; low semantic similarity: price_structure_v14:... vs price_action.daily_s...; low semantic similarity: price_structure_v13:... vs true: ...",
+    "created_at_step": 16,
+    "resolved_at_step": 18,
+    "status": "resolved",
+    "age": 2,
+    "severity": 0.08765
+  },
+  "9f56ec176966e6d8": {
+    "id": "9f56ec176966e6d8",
+    "theory_id": "474cbbfd8973caca",
+    "description": "structural: low semantic similarity: reliance industries'... vs price_structure_v14:...; low semantic similarity: price_action.daily_s... vs price_structure_v14:...; field conflict: price_action.daily_structure ! vs price_structure_v13: reliance",
+    "created_at_step": 18,
+    "resolved_at_step": 19,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.1914072727272727
+  },
+  "9deceb5240f40f49": {
+    "id": "9deceb5240f40f49",
+    "theory_id": "474cbbfd8973caca",
+    "description": "structural: low semantic similarity: reliance industries'... vs : ...; low semantic similarity: price_action.daily_s... vs : ...; low semantic similarity: price_action.daily_s... vs : ...",
+    "created_at_step": 18,
+    "resolved_at_step": 19,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.1914072727272727
+  },
+  "9ff51e87fdb36983": {
+    "id": "9ff51e87fdb36983",
+    "theory_id": "474cbbfd8973caca",
+    "description": "structural: low semantic similarity: price_structure_v12... vs ...; low semantic similarity: reliance industries'... vs : ...; low semantic similarity: price_action.daily_s... vs : ...; low semantic similarity: price_action.daily_s... vs : ...",
+    "created_at_step": 18,
+    "resolved_at_step": 19,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.1914072727272727
+  },
+  "bbb1c7c3dd50d9c9": {
+    "id": "bbb1c7c3dd50d9c9",
+    "theory_id": "59f0a35cf4fd80c8",
+    "description": "structural: field conflict: the presence of fiis and relia vs price_action.daily_structure =; low semantic similarity: volume > 1000000 and... vs price_action.daily_s...; low semantic similarity: false: remove_mechan... vs price_action.daily_s...",
+    "created_at_step": 19,
+    "resolved_at_step": 20,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.31516564102564104
+  },
+  "9a272eaa6a3798c0": {
+    "id": "9a272eaa6a3798c0",
+    "theory_id": "59f0a35cf4fd80c8",
+    "description": "structural: low semantic similarity: the presence of fiis... vs price_structure_v14:...; low semantic similarity: volume > 1000000 and... vs price_structure_v14:...; low semantic similarity: false: remove_mechan... vs price_structure_v13:...",
+    "created_at_step": 19,
+    "resolved_at_step": 20,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.31516564102564104
+  },
+  "73698714ac5efbdc": {
+    "id": "73698714ac5efbdc",
+    "theory_id": "59f0a35cf4fd80c8",
+    "description": "structural: low semantic similarity: the presence of fiis... vs : ...; low semantic similarity: volume > 1000000 and... vs : ...; low semantic similarity: false: remove_mechan... vs : ...",
+    "created_at_step": 19,
+    "resolved_at_step": 20,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.31516564102564104
+  },
+  "1d68f2c14a04851e": {
+    "id": "1d68f2c14a04851e",
+    "theory_id": "59f0a35cf4fd80c8",
+    "description": "structural: low semantic similarity: price_structure_v12... vs ...; low semantic similarity: the presence of fiis... vs : ...; low semantic similarity: volume > 1000000 and... vs : ...; low semantic similarity: false: remove_mechan... vs : ...",
+    "created_at_step": 19,
+    "resolved_at_step": 20,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.31516564102564104
+  },
+  "a29dbe65b6d09ac4": {
+    "id": "a29dbe65b6d09ac4",
+    "theory_id": "991ed0ccab5ade82",
+    "description": "structural: field conflict: the presence of fiis and relia vs price_action.daily_structure =; low semantic similarity: price_action.daily_s... vs price_action.daily_s...; low semantic similarity: price_action.daily_s... vs price_action.daily_s...",
+    "created_at_step": 20,
+    "resolved_at_step": 23,
+    "status": "resolved",
+    "age": 3,
+    "severity": 0.34241025641025646
+  },
+  "a7eb01c31e8d0c18": {
+    "id": "a7eb01c31e8d0c18",
+    "theory_id": "991ed0ccab5ade82",
+    "description": "structural: low semantic similarity: the presence of fiis... vs price_structure_v14:...; low semantic similarity: price_action.daily_s... vs price_structure_v14:...; low semantic similarity: price_action.daily_s... vs price_structure_v13:...",
+    "created_at_step": 20,
+    "resolved_at_step": 23,
+    "status": "resolved",
+    "age": 3,
+    "severity": 0.34241025641025646
+  },
+  "de708ed6f6494c1a": {
+    "id": "de708ed6f6494c1a",
+    "theory_id": "991ed0ccab5ade82",
+    "description": "structural: low semantic similarity: the presence of fiis... vs : ...; low semantic similarity: price_action.daily_s... vs : ...; low semantic similarity: price_action.daily_s... vs : ...",
+    "created_at_step": 20,
+    "resolved_at_step": 21,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3211951219512195
+  },
+  "fb698ba57ccc42ed": {
+    "id": "fb698ba57ccc42ed",
+    "theory_id": "e2424d373403189f",
+    "description": "structural: field conflict: the presence of fiis and relia vs price_action.daily_structure =; low semantic similarity: volume > 500000: ret... vs price_action.daily_s...; low semantic similarity: false: remove... vs price_action.daily_s...",
+    "created_at_step": 23,
+    "resolved_at_step": 24,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.39482857142857153
+  },
+  "140c060e7dbe3297": {
+    "id": "140c060e7dbe3297",
+    "theory_id": "e2424d373403189f",
+    "description": "structural: field conflict: the presence of fiis and relia vs volume > 1000000 and range_exp; low semantic similarity: volume > 500000: ret... vs volume > 1000000 and...",
+    "created_at_step": 23,
+    "resolved_at_step": 24,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.39482857142857153
+  },
+  "63c2a66beb3f4003": {
+    "id": "63c2a66beb3f4003",
+    "theory_id": "811594fd4f4a4227",
+    "description": "structural: low semantic similarity: the price structure ... vs volume > 500000: ret...; low semantic similarity: volume > 500000 and ... vs volume > 500000: ret...; low semantic similarity: true: retain mech_00... vs false: remove...",
+    "created_at_step": 24,
+    "resolved_at_step": 25,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08366000000000001
+  },
+  "d01a59fe85ed6dee": {
+    "id": "d01a59fe85ed6dee",
+    "theory_id": "811594fd4f4a4227",
+    "description": "structural: low semantic similarity: the price structure ... vs the presence of fiis...; low semantic similarity: volume > 500000 and ... vs price_action.daily_s...; low semantic similarity: true: retain mech_00... vs price_action.daily_s...",
+    "created_at_step": 24,
+    "resolved_at_step": 25,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08366000000000001
+  },
+  "45bae146d61d9c70": {
+    "id": "45bae146d61d9c70",
+    "theory_id": "811594fd4f4a4227",
+    "description": "structural: low semantic similarity: the price structure ... vs the presence of fiis...; low semantic similarity: the price structure ... vs price_action.daily_s...; low semantic similarity: volume > 500000 and ... vs price_action.daily_s...; low semantic similarity: true: retain mech_00... vs price_action.daily_s...",
+    "created_at_step": 24,
+    "resolved_at_step": 25,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08366000000000001
+  },
+  "5dc1dfa45bd2bd91": {
+    "id": "5dc1dfa45bd2bd91",
+    "theory_id": "811594fd4f4a4227",
+    "description": "structural: low semantic similarity: the price structure ... vs the presence of fiis...; low semantic similarity: the price structure ... vs volume > 1000000 and...; low semantic similarity: volume > 500000 and ... vs volume > 1000000 and...; low semantic similarity: true: retain mech_00... vs false: remove_mechan...",
+    "created_at_step": 24,
+    "resolved_at_step": 25,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08366000000000001
+  },
+  "f9202003e4b351ac": {
+    "id": "f9202003e4b351ac",
+    "theory_id": "f08af0e0cee208f7",
+    "description": "structural: low semantic similarity: the price structure ... vs volume > 500000 and ...; low semantic similarity: volume > 1000000 and... vs volume > 500000 and ...; low semantic similarity: false: retain curren... vs true: retain mech_00...",
+    "created_at_step": 25,
+    "resolved_at_step": 26,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08072
+  },
+  "bbc6e6614003ff29": {
+    "id": "bbc6e6614003ff29",
+    "theory_id": "f08af0e0cee208f7",
+    "description": "structural: low semantic similarity: the price structure ... vs volume > 500000: ret...; low semantic similarity: volume > 1000000 and... vs volume > 500000: ret...; low semantic similarity: false: retain curren... vs false: remove...",
+    "created_at_step": 25,
+    "resolved_at_step": 26,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08072
+  },
+  "3f63d58992d08584": {
+    "id": "3f63d58992d08584",
+    "theory_id": "f08af0e0cee208f7",
+    "description": "structural: low semantic similarity: the price structure ... vs the presence of fiis...; low semantic similarity: false: retain curren... vs price_action.daily_s...",
+    "created_at_step": 25,
+    "resolved_at_step": 26,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08072
+  },
+  "03fd132190801bfc": {
+    "id": "03fd132190801bfc",
+    "theory_id": "f08af0e0cee208f7",
+    "description": "structural: low semantic similarity: the price structure ... vs the presence of fiis...; low semantic similarity: the price structure ... vs price_action.daily_s...; low semantic similarity: volume > 1000000 and... vs price_action.daily_s...; low semantic similarity: false: retain curren... vs price_action.daily_s...",
+    "created_at_step": 25,
+    "resolved_at_step": 26,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08072
+  },
+  "562957cccd0248b9": {
+    "id": "562957cccd0248b9",
+    "theory_id": "d5781436830d88ab",
+    "description": "structural: low semantic similarity: price structure vola... vs volume > 1000000 and...",
+    "created_at_step": 26,
+    "resolved_at_step": 27,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.07388
+  },
+  "2c68a0997af4f339": {
+    "id": "2c68a0997af4f339",
+    "theory_id": "d5781436830d88ab",
+    "description": "structural: low semantic similarity: price structure vola... vs volume > 500000 and ...; low semantic similarity: volume > 1000000 and... vs volume > 500000 and ...; low semantic similarity: false: retain existi... vs true: retain mech_00...",
+    "created_at_step": 26,
+    "resolved_at_step": 27,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.07388
+  },
+  "4a5ce671b7be4d80": {
+    "id": "4a5ce671b7be4d80",
+    "theory_id": "d5781436830d88ab",
+    "description": "structural: low semantic similarity: price structure vola... vs volume > 500000: ret...; low semantic similarity: volume > 1000000 and... vs volume > 500000: ret...; low semantic similarity: false: retain existi... vs false: remove...",
+    "created_at_step": 26,
+    "resolved_at_step": 27,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.07388
+  },
+  "091b81fa441adb8a": {
+    "id": "091b81fa441adb8a",
+    "theory_id": "d5781436830d88ab",
+    "description": "structural: low semantic similarity: price structure vola... vs the presence of fiis...; low semantic similarity: volume > 1000000 and... vs price_action.daily_s...; low semantic similarity: false: retain existi... vs price_action.daily_s...",
+    "created_at_step": 26,
+    "resolved_at_step": 27,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.07388
+  },
+  "8d288fa8682372f6": {
+    "id": "8d288fa8682372f6",
+    "theory_id": "cb5d9a087cbeb07e",
+    "description": "structural: low semantic similarity: price movements in l... vs volume > 1000000 and...; low semantic similarity: volume_dry and gap_u... vs volume > 1000000 and...",
+    "created_at_step": 27,
+    "resolved_at_step": 28,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08498
+  },
+  "4a0091cc1cd2877e": {
+    "id": "4a0091cc1cd2877e",
+    "theory_id": "cb5d9a087cbeb07e",
+    "description": "structural: low semantic similarity: price movements in l... vs volume > 500000 and ...; low semantic similarity: volume_dry and gap_u... vs volume > 500000 and ...; low semantic similarity: otherwise: retain ex... vs true: retain mech_00...",
+    "created_at_step": 27,
+    "resolved_at_step": 28,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08498
+  },
+  "72ec4c584ccc24be": {
+    "id": "72ec4c584ccc24be",
+    "theory_id": "cb5d9a087cbeb07e",
+    "description": "structural: low semantic similarity: price movements in l... vs the presence of fiis...; low semantic similarity: price movements in l... vs volume > 500000: ret...; low semantic similarity: volume_dry and gap_u... vs volume > 500000: ret...; low semantic similarity: otherwise: retain ex... vs false: remove...",
+    "created_at_step": 27,
+    "resolved_at_step": 28,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08498
+  },
+  "3d9c441b2a657403": {
+    "id": "3d9c441b2a657403",
+    "theory_id": "cb5d9a087cbeb07e",
+    "description": "structural: low semantic similarity: price movements in l... vs the presence of fiis...; low semantic similarity: price movements in l... vs price_action.daily_s...; low semantic similarity: volume_dry and gap_u... vs price_action.daily_s...; low semantic similarity: otherwise: retain ex... vs price_action.daily_s...",
+    "created_at_step": 27,
+    "resolved_at_step": 28,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.08498
+  },
+  "4bf91c9b16e86f27": {
+    "id": "4bf91c9b16e86f27",
+    "theory_id": "d4c26f05958bf2eb",
+    "description": "structural: field conflict: the price structure exhibits i vs volume_dry and gap_up and shor; low semantic similarity: volume > 1000000 and... vs volume_dry and gap_u...; low semantic similarity: otherwise: do nothin... vs otherwise: retain ex...",
+    "created_at_step": 28,
+    "resolved_at_step": 29,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3719141312741313
+  },
+  "7d7b75ef6b5b6f0a": {
+    "id": "7d7b75ef6b5b6f0a",
+    "theory_id": "d4c26f05958bf2eb",
+    "description": "structural: low semantic similarity: the price structure ... vs volume > 1000000 and...; low semantic similarity: otherwise: do nothin... vs false: retain existi...",
+    "created_at_step": 28,
+    "resolved_at_step": 29,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3719141312741313
+  },
+  "359b11065456abca": {
+    "id": "359b11065456abca",
+    "theory_id": "d4c26f05958bf2eb",
+    "description": "structural: field conflict: the price structure exhibits i vs the price structure exhibits l; low semantic similarity: the price structure ... vs volume > 1000000 and...; low semantic similarity: otherwise: do nothin... vs false: retain curren...; participation: weakening vs elevated",
+    "created_at_step": 28,
+    "resolved_at_step": 29,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3719141312741313
+  },
+  "da28e75150c935ad": {
+    "id": "da28e75150c935ad",
+    "theory_id": "d4c26f05958bf2eb",
+    "description": "structural: field conflict: the price structure exhibits i vs the price structure of relianc; low semantic similarity: the price structure ... vs volume > 500000 and ...; low semantic similarity: volume > 1000000 and... vs volume > 500000 and ...; low semantic similarity: otherwise: do nothin... vs true: retain mech_00...; participation: weakening vs elevated",
+    "created_at_step": 28,
+    "resolved_at_step": 29,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3719141312741313
+  },
+  "5c18213de594dc1e": {
+    "id": "5c18213de594dc1e",
+    "theory_id": "d4c26f05958bf2eb",
+    "description": "structural: field conflict: the price structure exhibits i vs the presence of fiis and relia; low semantic similarity: the price structure ... vs volume > 500000: ret...; low semantic similarity: volume > 1000000 and... vs volume > 500000: ret...; low semantic similarity: otherwise: do nothin... vs false: remove...; participation: weakening vs elevated",
+    "created_at_step": 28,
+    "resolved_at_step": 29,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3719141312741313
+  },
+  "54286fc80ce4310a": {
+    "id": "54286fc80ce4310a",
+    "theory_id": "8c4b287626d0e45a",
+    "description": "structural: low semantic similarity: price structure vola... vs volume > 1000000 and...; low semantic similarity: price_action.daily_s... vs volume > 1000000 and...; low semantic similarity: price_action.daily_s... vs otherwise: do nothin...",
+    "created_at_step": 29,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.16262
+  },
+  "b2ef0277bb30a282": {
+    "id": "b2ef0277bb30a282",
+    "theory_id": "8c4b287626d0e45a",
+    "description": "structural: low semantic similarity: price structure vola... vs volume_dry and gap_u...; field conflict: price_action.daily_structure = vs volume_dry and gap_up and shor; low semantic similarity: price_action.daily_s... vs otherwise: retain ex...",
+    "created_at_step": 29,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.16262
+  },
+  "6c78c2e0308aa982": {
+    "id": "6c78c2e0308aa982",
+    "theory_id": "8c4b287626d0e45a",
+    "description": "structural: low semantic similarity: price structure vola... vs volume > 1000000 and...; low semantic similarity: price_action.daily_s... vs volume > 1000000 and...; low semantic similarity: price_action.daily_s... vs false: retain existi...",
+    "created_at_step": 29,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.16262
+  },
+  "9de1c912b8b71502": {
+    "id": "9de1c912b8b71502",
+    "theory_id": "8c4b287626d0e45a",
+    "description": "structural: low semantic similarity: price structure vola... vs volume > 1000000 and...; low semantic similarity: price_action.daily_s... vs volume > 1000000 and...; low semantic similarity: price_action.daily_s... vs false: retain curren...",
+    "created_at_step": 29,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.16262
+  },
+  "a7bdc7dd8f854948": {
+    "id": "a7bdc7dd8f854948",
+    "theory_id": "8c4b287626d0e45a",
+    "description": "structural: low semantic similarity: price structure vola... vs the price structure ...; low semantic similarity: price structure vola... vs volume > 500000 and ...; low semantic similarity: price_action.daily_s... vs volume > 500000 and ...; low semantic similarity: price_action.daily_s... vs true: retain mech_00...",
+    "created_at_step": 29,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.16262
+  }
+}

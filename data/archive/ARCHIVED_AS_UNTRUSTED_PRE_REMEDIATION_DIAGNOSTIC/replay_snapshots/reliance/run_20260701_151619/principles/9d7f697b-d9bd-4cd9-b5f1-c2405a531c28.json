@@ -1,0 +1,406 @@
+{
+  "id": "9d7f697b-d9bd-4cd9-b5f1-c2405a531c28",
+  "created_at": "2026-07-02T03:26:34.934437+00:00",
+  "status": "candidate",
+  "statement": "The component expectation is valid when the market's trend persistence is driven by Liquidity Absorption, and the relationship between liquidity absorption and trend persistence is being re-evaluated due to moderate increase in delivery volume and strong sell pressure from FII. The expectation breaks down when the neutral regime subtype suggests a potential shift in causal attribution towards increased reliance on fundamental analysis.",
+  "associated_lineage_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4",
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f",
+    "ef98a193-498c-45ce-a6ce-367538088dc9"
+  ],
+  "supporting_theory_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4",
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f",
+    "ef98a193-498c-45ce-a6ce-367538088dc9"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "4d4511b8-201a-415d-8970-1ba43306f3e0",
+      "created_at": "2026-07-02T03:26:34.929205+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "pressure_loaded_range",
+        "volatility_regime": "compressed",
+        "volume_state": "dry"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "c56426ca-333d-4c23-aa60-db46474ac1a5",
+      "created_at": "2026-07-02T03:26:34.929264+00:00",
+      "target_component": "price_structure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "fatigue",
+        "volatility_regime": "normal",
+        "volume_state": "spike"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 18,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "grounded_mechanism_ids": [],
+  "valid_under": {},
+  "fails_under": {},
+  "competing_principle_ids": [],
+  "maturation_history": [
+    {
+      "id": "874b2e4d-0fed-4602-ac99-2dd80ba84d20",
+      "created_at": "2026-07-02T03:27:04.313367+00:00",
+      "step": 18,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 5.0,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "161101f7-a489-445d-9bbd-f492a54278e8",
+      "created_at": "2026-07-02T03:28:50.293693+00:00",
+      "step": 19,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.95,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "ad7da4d6-75b7-47d0-af90-2a6ed97b4192",
+      "created_at": "2026-07-02T03:29:43.403606+00:00",
+      "step": 20,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.9,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "467661bf-db82-4778-aeb0-eaab6523f90f",
+      "created_at": "2026-07-02T03:30:50.571378+00:00",
+      "step": 21,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.85,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "f8e6c8f0-d75c-4553-8c95-0ff61843b56d",
+      "created_at": "2026-07-02T03:31:57.974390+00:00",
+      "step": 22,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.8,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "067bd98d-61d4-498b-a758-dedfeb91bd81",
+      "created_at": "2026-07-02T03:32:57.236586+00:00",
+      "step": 23,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.75,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "883a3810-2cdc-4a92-b141-b0fd09d5a92f",
+      "created_at": "2026-07-02T03:33:49.685262+00:00",
+      "step": 24,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.7,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "e872f434-f486-4d77-ba1c-703784847b91",
+      "created_at": "2026-07-02T03:34:27.711623+00:00",
+      "step": 25,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.65,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "de896dfb-76d3-4933-aa5f-6391deed7a92",
+      "created_at": "2026-07-02T03:35:24.050259+00:00",
+      "step": 26,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.6,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "90f060d6-fbb8-4de9-be27-2d9f3fe4f9e7",
+      "created_at": "2026-07-02T03:36:05.064526+00:00",
+      "step": 27,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.55,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "1017df06-b4dd-482f-9388-aaf49efeb1da",
+      "created_at": "2026-07-02T03:37:07.071956+00:00",
+      "step": 28,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.5,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "93dd19d7-4796-4d3e-8248-c9d211ca0eb2",
+      "created_at": "2026-07-02T03:38:06.137474+00:00",
+      "step": 29,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.45,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "93834582-9435-43d2-a123-b21d4afd42a8",
+      "created_at": "2026-07-02T03:39:04.277774+00:00",
+      "step": 30,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.4,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "e1457b38-62c2-44f2-b58a-12ece7242de5",
+      "created_at": "2026-07-02T03:39:59.807677+00:00",
+      "step": 31,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.35,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "6bfb22cc-e935-4144-9f97-cd34eca28983",
+      "created_at": "2026-07-02T03:40:58.871422+00:00",
+      "step": 32,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.3,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "4187b760-c6f2-488a-aa1b-ffa3ea9bccd2",
+      "created_at": "2026-07-02T03:41:39.938666+00:00",
+      "step": 33,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.25,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    },
+    {
+      "id": "28972a34-7532-4d48-aa5d-ecb45e0d303e",
+      "created_at": "2026-07-02T03:42:46.156664+00:00",
+      "step": 34,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 0,
+      "contradiction_count": 0,
+      "trust_score": 4.2,
+      "accuracy": 0.5,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+3 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +3 validating observations"
+    }
+  ],
+  "grounded_concepts": [],
+  "grounded_relations": {},
+  "supported_concepts": [
+    "TREND_PERSISTENCE"
+  ],
+  "supported_relations": [
+    "TREND_PERSISTENCE CO-OCCURS_WITH context"
+  ],
+  "ontology_version": "1.0.0",
+  "validation_taxonomy_version": "1.0.0",
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 17,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 4.15
+}

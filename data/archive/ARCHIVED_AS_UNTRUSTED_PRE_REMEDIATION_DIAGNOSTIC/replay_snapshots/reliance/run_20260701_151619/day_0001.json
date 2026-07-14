@@ -1,0 +1,260 @@
+{
+  "step": 1,
+  "date": "2026-05-01",
+  "observation": "[volume dry, range narrow, volatility expanding, short-term momentum strengthening, delivery:moderate, fii:strong_buy, sector:neutral, RELIANCE focus, asset liquidity fade] candle indecision participation weak (normal) RELIANCE traded range-bound with stable volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is trading in a range-bound manner with stable volatility, indicating indecision and mixed trend persistence across different time horizons.",
+  "theory": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening of momentum and increasing volatility.",
+  "theory_summary_structured": {
+    "id": "2dc5569c-5be0-49b5-8493-f11dd032d4a9",
+    "created_at": "2026-07-02 03:07:23.821730+00:00",
+    "mechanism": "Revised mechanism: As liquidity absorption increases, the price range expands, but short-term momentum weakens due to decreasing order flow and increasing market uncertainty.",
+    "claim": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening of momentum and increasing volatility.",
+    "if_branch": {
+      "id": "70fd1f47-ccba-428d-b54b-80a3f00eb206",
+      "created_at": "2026-07-02 03:07:58.149821+00:00",
+      "condition": "volume > 50% of average daily volume",
+      "action": "price range expands"
+    },
+    "else_branch": {
+      "id": "8765241a-cb47-45e4-b1bd-d92dd594674b",
+      "created_at": "2026-07-02 03:07:58.149875+00:00",
+      "condition": "short-term momentum strengthening",
+      "action": "price range remains stable"
+    },
+    "unless": "{'condition': 'volatility expanding (e.g., RSI > 70)', 'action': 'regime shifts to more volatile regime'}",
+    "falsified_if": "delivery:moderate, sector:neutral, RELIANCE focus, asset liquidity fade",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "94b7310d-f35d-47d3-9c2a-3e809897a20b",
+        "created_at": "2026-07-02 03:07:23.821863+00:00",
+        "component_id": "price_structure",
+        "description": "Price maintains sequence of higher highs and higher lows",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous high, each low > previous low",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE"
+        ],
+        "relation_type": "CO-OCCURS_WITH"
+      },
+      {
+        "id": "e6a88a95-8be7-49a8-a889-fa22b49f7042",
+        "created_at": "2026-07-02 03:07:23.821904+00:00",
+        "component_id": "volume_confirmation",
+        "description": "Volume expands on up days relative to down days",
+        "observable": "volume.daily_ratio",
+        "expected_behavior": "Average volume on up days exceeds average volume on down days",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_EXPANSION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "AMPLIFIES"
+      },
+      {
+        "id": "a87dcafa-33f2-40b8-a911-db7e7a103c92",
+        "created_at": "2026-07-02 03:07:23.821910+00:00",
+        "component_id": "delivery_exhaustion",
+        "description": "Delivery percentage exceeds 60% on up days",
+        "observable": "delivery_pct",
+        "expected_behavior": ">60%",
+        "dependency": null,
+        "concept_tags": [
+          "DELIVERY_EXHAUSTION"
+        ],
+        "relation_type": "DEPENDS_ON"
+      }
+    ],
+    "falsification_conditions": [
+      "price_structure: lower low formed breaking HH/HL sequence",
+      "volume_confirmation: down-day volume exceeds up-day volume for 3 consecutive sessions"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.501,
+    "reflection": 0.3383,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.098,
+    "indicators": [
+      "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: delivery:moderate, s... vs price_structure: low...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: volume > 50% of aver... vs delivery_pct > 50 AN...; Low semantic similarity: short-term momentum ... vs volume_state = eleva..."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "d029ed4b-8d7d-41ce-b95b-0b2f8310ab33",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 1 contradictions with a total score of 0.10."
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-05-01",
+    "trend": "range_bound",
+    "volatility_state": "stable",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.098,
+    "active_theory_count": 5,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-04-30",
+      "similarity": 0.616,
+      "active_theories": [
+        "3333380867b5f28d",
+        "7d9801eb62e30a64",
+        "2291e922d7def468"
+      ],
+      "contradictions": [],
+      "confidence": 0.175,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-05-01",
+      "policy_name": "Baseline",
+      "action": "hold",
+      "conviction": 0.45,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-05-01",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.45,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-05-01",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.45,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.15285666666666667,
+    "label": "weak"
+  },
+  "reflection": "Neutral Regime Subtype. The regime remains supported based on the boundary conditions, as the observed characteristics align with the revised claim of a weakening momentum and increasing volatility. However, the insufficient testing under volatility expansion raises concerns about the theory's robustness in this context. One unresolved tension is the contradiction between the detected 0.10 score and the low semantic similarity between certain indicators (e.g., delivery:moderate vs price_structure: low).",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 2,
+    "avg_usefulness": 0.076,
+    "last_seen": "2026-05-01",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 1,
+      "uncertain": 0
+    },
+    "falsified_count": 1
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 1,
+    "date": "2026-05-01",
+    "contradiction_count": 1,
+    "contradiction_half_life": 0.625,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9411764705882353,
+    "avg_contradiction_severity": 0.24996473616906723,
+    "highest_contradiction": 0.5295438787185356,
+    "theory_count": 5,
+    "active_theories": 5,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 1,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 2.0,
+    "avg_revival_latency": -3.5,
+    "avg_theory_age": 5.454545454545454,
+    "longest_surviving_theory": 12,
+    "theory_mutation_count": 8,
+    "avg_confidence": 0.0875,
+    "confidence_delta": -0.175,
+    "confidence_volatility": 0.0875,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 7.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.029411764705882353,
+    "avg_abstraction_length": 20.0,
+    "compression_ratio": 0.5128205128205128,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 39,
+      "theory_text": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening of momentum and increasing volatility.",
+      "contradiction_text": "Detected 1 contradictions with a total score of 0.10.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-05-01",
+        "trend": "range_bound",
+        "volatility_state": "stable",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.098,
+        "active_theory_count": 5,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-04-30",
+          "similarity": 0.616,
+          "active_theories": [
+            "3333380867b5f28d",
+            "7d9801eb62e30a64",
+            "2291e922d7def468"
+          ],
+          "contradictions": [],
+          "confidence": 0.175,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.15285666666666667,
+        "label": "weak"
+      }
+    }
+  }
+}

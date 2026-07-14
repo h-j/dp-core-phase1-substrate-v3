@@ -1,0 +1,336 @@
+{
+  "step": 4,
+  "date": "2026-05-05",
+  "observation": "[range expanding, gap down, volatility expanding, short-term momentum strengthening, delivery:moderate, fii:strong_buy, sector:leading, RELIANCE focus] candle neutral participation normal (normal) RELIANCE traded range-bound amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is trading in a range-bound state with moderate volatility, indicating a mixed trend persistence and overall regime.",
+  "theory": "Revised claim: Regime is driven by Market Sentiment, with a secondary influence of Asset Liquidity Fade and a tertiary consideration of Liquidity Absorption, which becomes more pronounced in times of high market volatility.",
+  "theory_summary_structured": {
+    "id": "4f7300d6-8928-4185-b78d-d8a0f28e2da3",
+    "created_at": "2026-07-01 07:10:06.908701+00:00",
+    "mechanism": "The regime shifts from a liquidity-driven state to a sentiment-driven state when market conditions become volatile, causing asset liquidity fade to take hold. In this scenario, liquidity absorption plays a secondary role in shaping the regime.",
+    "claim": "Revised claim: Regime is driven by Market Sentiment, with a secondary influence of Asset Liquidity Fade and a tertiary consideration of Liquidity Absorption, which becomes more pronounced in times of high market volatility.",
+    "if_branch": {
+      "id": "b5b80eb2-ea8c-4c07-99bc-dc6302ffab23",
+      "created_at": "2026-07-01 07:13:11.887058+00:00",
+      "condition": "moderate_volatility",
+      "action": "Asset Liquidity Fade becomes more pronounced"
+    },
+    "else_branch": {
+      "id": "5dfbfde1-7309-4fcb-9b41-c77bdd594ea5",
+      "created_at": "2026-07-01 07:13:11.887121+00:00",
+      "condition": "normal_volatility",
+      "action": "Market Sentiment drives the regime"
+    },
+    "unless": "high_market_volatility",
+    "falsified_if": "liquidity_absorption_drives_regime",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "47e23508-5f7f-4ea2-8dac-14538829ef21",
+        "created_at": "2026-07-01 07:10:06.908899+00:00",
+        "component_id": "liquidity_absorption",
+        "description": "Liquidity is absorbed as price moves up, leading to range-bound trading.",
+        "observable": "volume_state.elevated",
+        "expected_behavior": "Price remains within the established range despite volume expansion.",
+        "dependency": null,
+        "concept_tags": [
+          "LIQUIDITY_ABSORPTION",
+          "VOLATILITY_COMPRESSION"
+        ],
+        "relation_type": "CONTRADICTS"
+      },
+      {
+        "id": "2efe6c1b-1cb2-49c0-8d4d-ba724cd291d3",
+        "created_at": "2026-07-01 07:10:06.908928+00:00",
+        "component_id": "delivery_pct",
+        "description": "Delivery percentage indicates high conviction among investors.",
+        "observable": "delivery_pct.rolling_5day_average",
+        "expected_behavior": ">60%",
+        "dependency": null,
+        "concept_tags": [
+          "DELIVERY_EXHAUSTION"
+        ],
+        "relation_type": "AMPLIFIES"
+      },
+      {
+        "id": "c7ec5836-b774-4abf-ac86-505564ea381c",
+        "created_at": "2026-07-01 07:10:06.908939+00:00",
+        "component_id": "sector_zscore",
+        "description": "Sector Z-score indicates relative strength of the sector.",
+        "observable": "sector_zscore.rolling_20day_relative_strength",
+        "expected_behavior": "< -1.5",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE"
+        ],
+        "relation_type": "CO-OCCURS_WITH"
+      }
+    ],
+    "falsification_conditions": [
+      "delivery_pct: < 30 AND volume_state = dry",
+      "sector_zscore: > 1.5 OR fii_net/dii_net > 0"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.6493,
+    "reflection": 0.3534,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.09620000000000001,
+    "indicators": [
+      "Structural: Low semantic similarity: liquidity_absorption... vs {'condition': 'Regim...; Low semantic similarity: Revised claim: Regim... vs Liquidity Absorption...; Low semantic similarity: moderate_volatility:... vs Liquidity Absorption...; Low semantic similarity: normal_volatility: M... vs Asset Liquidity Fade...",
+      "Structural: Low semantic similarity: liquidity_absorption... vs Regime subtype remai...; Low semantic similarity: Revised claim: Regim... vs Volume expansion > 2...; Low semantic similarity: moderate_volatility:... vs Volume expansion > 2...; Low semantic similarity: normal_volatility: M... vs Short-term momentum ...",
+      "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: liquidity_absorption... vs price breaks below t...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: moderate_volatility:... vs delivery_pct > 50 AN...; Low semantic similarity: normal_volatility: M... vs sector_zscore < -1.5..."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "890f15d4-8448-4fa4-a555-59651109d7c6",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "c2284a3a-4462-408c-a69b-7d76ad7f64e6",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "c090d162-e598-48ef-923d-17a4f9a23383",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 3 contradictions with a total score of 0.10."
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "strengthening",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-05-05",
+    "trend": "range_bound",
+    "volatility_state": "moderate",
+    "sentiment": "cautiously_positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.096,
+    "active_theory_count": 5,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-05-04",
+      "similarity": 0.668,
+      "active_theories": [
+        "f4b61f8b40c5502d",
+        "a79b667e09f9e8f3",
+        "99f833606d7db875"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: {'type': 'RegimeSubt... vs {'condition': 'Regim...; Low semantic similarity: Revised claim: Regim... vs Liquidity Absorption...; Low semantic similarity: {'type': 'LiquidityA... vs Liquidity Absorption...; Low semantic similarity: {'type': 'LiquidityA... vs Asset Liquidity Fade...",
+        "Structural: Low semantic similarity: {'type': 'RegimeSubt... vs Regime subtype remai...; Low semantic similarity: Revised claim: Regim... vs Volume expansion > 2...; Low semantic similarity: {'type': 'LiquidityA... vs Volume expansion > 2...; Low semantic similarity: {'type': 'LiquidityA... vs Short-term momentum ...",
+        "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: {'type': 'RegimeSubt... vs price breaks below t...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: {'type': 'LiquidityA... vs delivery_pct > 50 AN...; Low semantic similarity: {'type': 'LiquidityA... vs sector_zscore < -1.5..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-01",
+      "similarity": 0.656,
+      "active_theories": [
+        "f4b61f8b40c5502d",
+        "a79b667e09f9e8f3",
+        "99f833606d7db875"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: {'condition': 'Regim... vs Regime subtype remai...; Low semantic similarity: Revised claim: Regim... vs Volume expansion > 2...; Low semantic similarity: Liquidity Absorption... vs Volume expansion > 2...; Low semantic similarity: Asset Liquidity Fade... vs Short-term momentum ...",
+        "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: {'condition': 'Regim... vs price breaks below t...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: Liquidity Absorption... vs delivery_pct > 50 AN...; Low semantic similarity: Asset Liquidity Fade... vs sector_zscore < -1.5..."
+      ],
+      "confidence": 0.141,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-04-29",
+      "similarity": 0.643,
+      "active_theories": [
+        "f4b61f8b40c5502d"
+      ],
+      "contradictions": [],
+      "confidence": 0.292,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-05-05",
+      "policy_name": "Baseline",
+      "action": "buy",
+      "conviction": 0.64,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-05-05",
+      "policy_name": "High Conviction",
+      "action": "buy",
+      "conviction": 0.64,
+      "reason": "High conviction criteria met",
+      "allowed": true
+    },
+    "breakout": {
+      "date": "2026-05-05",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.64,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.3131693333333333,
+    "label": "weak"
+  },
+  "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this observation already includes. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's claim that liquidity absorption becomes more pronounced in times of high market volatility.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 5,
+    "avg_usefulness": 0.257,
+    "last_seen": "2026-05-05",
+    "historical_resolution": {
+      "higher": 2,
+      "lower": 0,
+      "range_bound": 2,
+      "uncertain": 0
+    },
+    "falsified_count": 3
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 4,
+    "date": "2026-05-05",
+    "contradiction_count": 3,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.6666666666666666,
+    "avg_contradiction_severity": 0.0965,
+    "highest_contradiction": 0.098,
+    "theory_count": 5,
+    "active_theories": 5,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 4,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 3.0,
+    "longest_surviving_theory": 5,
+    "theory_mutation_count": 3,
+    "avg_confidence": 0.14144,
+    "confidence_delta": -0.292,
+    "confidence_volatility": 0.12668944075967814,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.03773584905660377,
+    "avg_abstraction_length": 18.0,
+    "compression_ratio": 0.5,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 36,
+      "theory_text": "Revised claim: Regime is driven by Market Sentiment, with a secondary influence of Asset Liquidity Fade and a tertiary consideration of Liquidity Absorption, which becomes more pronounced in times of high market volatility.",
+      "contradiction_text": "Detected 3 contradictions with a total score of 0.10.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "strengthening",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-05-05",
+        "trend": "range_bound",
+        "volatility_state": "moderate",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.096,
+        "active_theory_count": 5,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-05-04",
+          "similarity": 0.668,
+          "active_theories": [
+            "f4b61f8b40c5502d",
+            "a79b667e09f9e8f3",
+            "99f833606d7db875"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: {'type': 'RegimeSubt... vs {'condition': 'Regim...; Low semantic similarity: Revised claim: Regim... vs Liquidity Absorption...; Low semantic similarity: {'type': 'LiquidityA... vs Liquidity Absorption...; Low semantic similarity: {'type': 'LiquidityA... vs Asset Liquidity Fade...",
+            "Structural: Low semantic similarity: {'type': 'RegimeSubt... vs Regime subtype remai...; Low semantic similarity: Revised claim: Regim... vs Volume expansion > 2...; Low semantic similarity: {'type': 'LiquidityA... vs Volume expansion > 2...; Low semantic similarity: {'type': 'LiquidityA... vs Short-term momentum ...",
+            "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: {'type': 'RegimeSubt... vs price breaks below t...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: {'type': 'LiquidityA... vs delivery_pct > 50 AN...; Low semantic similarity: {'type': 'LiquidityA... vs sector_zscore < -1.5..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-01",
+          "similarity": 0.656,
+          "active_theories": [
+            "f4b61f8b40c5502d",
+            "a79b667e09f9e8f3",
+            "99f833606d7db875"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: {'condition': 'Regim... vs Regime subtype remai...; Low semantic similarity: Revised claim: Regim... vs Volume expansion > 2...; Low semantic similarity: Liquidity Absorption... vs Volume expansion > 2...; Low semantic similarity: Asset Liquidity Fade... vs Short-term momentum ...",
+            "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: {'condition': 'Regim... vs price breaks below t...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: Liquidity Absorption... vs delivery_pct > 50 AN...; Low semantic similarity: Asset Liquidity Fade... vs sector_zscore < -1.5..."
+          ],
+          "confidence": 0.141,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-04-29",
+          "similarity": 0.643,
+          "active_theories": [
+            "f4b61f8b40c5502d"
+          ],
+          "contradictions": [],
+          "confidence": 0.292,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.3131693333333333,
+        "label": "weak"
+      }
+    }
+  }
+}

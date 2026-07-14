@@ -1,0 +1,104 @@
+{
+  "id": "cc5d9dd6-3d61-4b43-a4a5-617d27ff1b69",
+  "created_at": "2026-07-02T03:27:04.303917+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid when the market is in a regime subtype of 'pressure_loaded_range' or 'fatigue', and the volatility regime is 'expanded'. The expectation breaks down when the volume state is 'dry' or 'elevated'.",
+  "associated_lineage_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4",
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f",
+    "ef98a193-498c-45ce-a6ce-367538088dc9"
+  ],
+  "supporting_theory_ids": [
+    "0c674acf-aff5-4b5d-a2d8-554b1610ddb4",
+    "c32fc533-cb55-428e-b2a6-52bdae5d822f",
+    "ef98a193-498c-45ce-a6ce-367538088dc9"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "5d614e61-d130-41ee-9032-08cb376b9458",
+      "created_at": "2026-07-02T03:27:04.299868+00:00",
+      "target_component": "delivery_exhaustion",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "neutral",
+        "volatility_regime": "compressed",
+        "volume_state": "dry"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "8009b1ea-3d49-40c2-8b49-7807a38ff73b",
+      "created_at": "2026-07-02T03:27:04.299932+00:00",
+      "target_component": "delivery_exhaustion",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "pressure_loaded_range",
+        "volatility_regime": "expanded",
+        "volume_state": "elevated"
+      },
+      "empirical_support_count": 1,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 1.0,
+  "support_count": 1,
+  "contradiction_count": 0,
+  "created_at_step": 18,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "grounded_mechanism_ids": [],
+  "valid_under": {
+    "pressure_loaded_range": 1
+  },
+  "fails_under": {},
+  "competing_principle_ids": [],
+  "maturation_history": [
+    {
+      "id": "20e49c8d-c318-4dd2-b74b-f3d67666c3cf",
+      "created_at": "2026-07-02T03:27:04.314498+00:00",
+      "step": 18,
+      "status_before": "candidate",
+      "status_after": "candidate",
+      "support_count": 1,
+      "contradiction_count": 0,
+      "trust_score": 6.0,
+      "accuracy": 1.0,
+      "promotion_criteria": {
+        "support_met": false,
+        "trust_score_met": true
+      },
+      "promotion_requirements_remaining": [
+        "+2 validating observations"
+      ],
+      "reason": "Gated at CANDIDATE: remaining requirements: +2 validating observations"
+    }
+  ],
+  "grounded_concepts": [],
+  "grounded_relations": {},
+  "supported_concepts": [
+    "DELIVERY_EXHAUSTION"
+  ],
+  "supported_relations": [
+    "DELIVERY_EXHAUSTION DEPENDS_ON context"
+  ],
+  "ontology_version": "1.0.0",
+  "validation_taxonomy_version": "1.0.0",
+  "empirical_support": 1,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 6.0
+}

@@ -1,0 +1,15 @@
+{
+  "id": "32cacdb3-b3f8-4dd1-9168-0050b05add05",
+  "created_at": "2026-07-01T04:35:07.127765+00:00",
+  "created_at_step": 2,
+  "question_text": "Why did component 'price_range_boundary' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "4257ecff-edf2-4dd1-96b6-234298f84429"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "normal"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

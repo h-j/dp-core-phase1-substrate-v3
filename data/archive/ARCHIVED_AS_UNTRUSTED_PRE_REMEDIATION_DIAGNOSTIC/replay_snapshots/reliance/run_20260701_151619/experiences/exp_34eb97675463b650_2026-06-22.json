@@ -1,0 +1,59 @@
+{
+  "experience_id": "exp_34eb97675463b650_2026-06-22",
+  "lineage_id": "34eb97675463b650",
+  "theory_family_id": "34eb97675463b650",
+  "created_at": "2026-06-22",
+  "status": "closed",
+  "theory_ids": [
+    "41316b4e-3948-4e6f-832b-c9eacbd8fe8a"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Strong price structu... vs price breaks above/b...; Low semantic similarity: Revised claim: Regim... vs volume > 2x average ...; Low semantic similarity: Moderate volatility ... vs volume > 2x average ...; Low semantic similarity: Weak move with weak ... vs short-term momentum ...",
+    "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: Strong price structu... vs decisive close above...; Low semantic similarity: Revised claim: Regim... vs sector_zscore > 0.5:...; Low semantic similarity: Moderate volatility ... vs sector_zscore > 0.5:...; Low semantic similarity: Weak move with weak ... vs delivery_pct < 40: f..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:extended_higher",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:weak",
+    "momentum:flat",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:strong_buy",
+    "sector:sector:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-02T08:35:12.274985",
+      "outcome": "partial",
+      "theory_claim": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening short-term momentum component and increased price structure influence.",
+      "components_passed": [
+        "liquidity_absorption",
+        "price_structure"
+      ],
+      "components_failed": [
+        "price_structure"
+      ],
+      "root_cause": "price_structure",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Revised claim: Regime is driven by Liquidity Absorption, but with a weakening short-term momentum component and increased price structure influence\" failed to accurately predict the market behavior based on the provided observations.\n\nHere's why:\n\n1. **Range expanding**: The observation "
+    }
+  ],
+  "component_failure_counts": {
+    "price_structure": 1
+  }
+}

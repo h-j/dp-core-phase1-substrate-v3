@@ -1,0 +1,15 @@
+{
+  "id": "428f953d-32a0-4f60-b3be-6cd288587c75",
+  "created_at": "2026-07-04T15:07:23.793997+00:00",
+  "created_at_step": 6,
+  "question_text": "Why did component 'price_structure_with_range_bound_reliance_v3' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "7a92defb-312d-4b61-b411-96a08911605b"
+  ],
+  "hypothesized_factors": [
+    "expanded",
+    "elevated"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

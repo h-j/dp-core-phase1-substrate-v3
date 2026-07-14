@@ -1,0 +1,75 @@
+{
+  "id": "6465c708-603d-48d8-bc43-d0e8b64a2584",
+  "created_at": "2026-06-30T07:31:47.342230+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where the regime is driven by absorption, and price remains range-bound despite volume expansion, with increasing volatility and strengthening short-term momentum.",
+  "associated_lineage_ids": [
+    "f8136a19-046d-488a-a888-0a1a4e5c6382",
+    "409b8635-3561-46d5-b570-c040031e8c1b",
+    "b188975d-b89e-449f-b6c2-7fe9b112117b",
+    "ac34df64-e8b3-4632-af61-dca29950619a",
+    "1b108b3e-01df-42cc-840c-576c6d643aba",
+    "008b80a7-0a76-4264-84ca-4983168b2dcd",
+    "1f3aeb15-0da3-4004-a11f-4b37e02484a0",
+    "e4347671-67c9-41fe-873d-38f3033e15a1",
+    "f7e7b816-3c09-4719-b522-23248df8689f"
+  ],
+  "supporting_theory_ids": [
+    "1b108b3e-01df-42cc-840c-576c6d643aba",
+    "1f3aeb15-0da3-4004-a11f-4b37e02484a0",
+    "409b8635-3561-46d5-b570-c040031e8c1b",
+    "f8136a19-046d-488a-a888-0a1a4e5c6382",
+    "008b80a7-0a76-4264-84ca-4983168b2dcd",
+    "f7e7b816-3c09-4719-b522-23248df8689f",
+    "b188975d-b89e-449f-b6c2-7fe9b112117b",
+    "e4347671-67c9-41fe-873d-38f3033e15a1",
+    "ac34df64-e8b3-4632-af61-dca29950619a"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "c5bcc7e1-a7fe-4cf3-b2ad-46d3a25e0b06",
+      "created_at": "2026-06-30T07:31:47.342164+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "3bec1d88-87f5-4d5a-9447-25109d6e7a54",
+      "created_at": "2026-06-30T07:31:47.342199+00:00",
+      "target_component": "price_structure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 26,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 5.0
+}

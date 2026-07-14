@@ -1,0 +1,329 @@
+{
+  "step": 25,
+  "date": "2026-06-19",
+  "observation": "[volume elevated, range expanding, short-term momentum weakening, delivery:moderate, fii:selling, sector:lagging, RELIANCE focus, asset selloff, asset participation surge] candle expansion participation strong (bearish confirmed) RELIANCE closed lower amid moderate volatility but breadth weakened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Weakening trend with moderate volatility, breadth weakened, and a surge in asset participation, indicating a bearish confirmation.",
+  "theory": "Revised claim: Regime is driven by passive absorption, but with a moderating influence from sector-specific events and a heightened sensitivity to market sentiment.",
+  "theory_summary_structured": {
+    "id": "984b94c5-ef0d-487e-a181-aa01230eacdf",
+    "created_at": "2026-06-30 07:00:02.591549+00:00",
+    "mechanism": "revised mechanism: The regime is characterized by a dominant trend of passive absorption, where the market absorbs new information without significant resistance. However, when sector-specific events or changes in market sentiment occur, this absorption is moderated, leading to a shift in the regime's dynamics.",
+    "claim": "Revised claim: Regime is driven by passive absorption, but with a moderating influence from sector-specific events and a heightened sensitivity to market sentiment.",
+    "if_branch": {
+      "id": "c66fb23a-ef9d-406a-9e86-da68e53d2608",
+      "created_at": "2026-06-30 07:16:32.635746+00:00",
+      "condition": "volume > 2x average and range expansion > 1x average",
+      "action": "sector-specific event detected; moderate to strong moderating influence"
+    },
+    "else_branch": {
+      "id": "7e61386f-5071-4781-abcb-eb65a8a37397",
+      "created_at": "2026-06-30 07:16:32.635807+00:00",
+      "condition": "short-term momentum weakening and delivery:moderate",
+      "action": "passive absorption dominant; regime remains stable"
+    },
+    "unless": "{'condition': 'asset selloff > 1x average or asset participation surge > 2x average', 'action': 'market sentiment shifts significantly; regime becomes more sensitive to sector-specific events'}",
+    "falsified_if": "regime subtype is not neutral, trend persistence is consistently strong or weak over multiple time frames (3D, 5D, 10D)",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "component_id": "absorption_rate",
+        "description": "Absorption rate is low, indicating passive absorption.",
+        "observable": "delivery_pct",
+        "expected_behavior": ">60%",
+        "dependency": null
+      },
+      {
+        "component_id": "volume_expansion",
+        "description": "Volume expansion indicates a lack of conviction in the current trend.",
+        "observable": "volume_state",
+        "expected_behavior": "dry or elevated",
+        "dependency": null
+      }
+    ],
+    "falsification_conditions": [
+      "absorption_rate: high absorption rate (>80%) with low volume expansion"
+    ],
+    "reuse_decision": "REUSED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.5519,
+    "reflection": 0.3531,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.15272000000000002,
+    "indicators": [
+      "Structural: Field conflict: regime subtype is not neutral, vs price continues to gap down de; Low semantic similarity: Revised claim: Regim... vs RELIANCE traded rang...; Low semantic similarity: volume > 2x average ... vs RELIANCE traded rang...; Low semantic similarity: short-term momentum ... vs RELIANCE traded outs...",
+      "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: regime subtype is no... vs decisive close below...; Low semantic similarity: Revised claim: Regim... vs participation widens...; Low semantic similarity: volume > 2x average ... vs participation widens...; Low semantic similarity: short-term momentum ... vs volatility remains c...",
+      "Structural: Low semantic similarity: Revised claim: Regim... vs The market regime is...; Low semantic similarity: regime subtype is no... vs absorption_rate cons...; Low semantic similarity: Revised claim: Regim... vs recent gap up and ex...; Low semantic similarity: volume > 2x average ... vs recent gap up and ex...; Low semantic similarity: short-term momentum ... vs no significant chang...",
+      "Structural: Low semantic similarity: Revised claim: Regim... vs Revised claim: Regim...; Low semantic similarity: regime subtype is no... vs regime_shift_towards...; Low semantic similarity: Revised claim: Regim... vs absorption_rate_fail...; Low semantic similarity: volume > 2x average ... vs absorption_rate_fail...; Low semantic similarity: short-term momentum ... vs absorption_rate_fail...",
+      "Structural: Low semantic similarity: Revised claim: Regim... vs Revised claim: Regim...; Low semantic similarity: regime subtype is no... vs sharp_shift_towards_...; Low semantic similarity: Revised claim: Regim... vs volume_expansion > 0...; Low semantic similarity: volume > 2x average ... vs volume_expansion > 0...; Low semantic similarity: short-term momentum ... vs RELIANCE_focus && mo..."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "e23f7dd2-0475-4e72-8635-8172b7f28f7e",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "ac34df64-e8b3-4632-af61-dca29950619a",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "26bb03cd-6220-40ae-80b1-b80e5395faf5",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "5fd904df-21b4-4726-af6b-ab734b4498d7",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "43d9ca98-30e2-47ce-86bc-81c00aef28a6",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 5 contradictions with a total score of 0.15."
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "mixed",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-06-19",
+    "trend": "extended_lower",
+    "volatility_state": "moderate",
+    "sentiment": "risk_off",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.153,
+    "active_theory_count": 18,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-06-08",
+      "similarity": 0.761,
+      "active_theories": [
+        "7d5bd1df33d54234",
+        "6a1b37fc85758229",
+        "beba71b1d3ac52de"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: price breaks out of ... vs price remains range-...; Low semantic similarity: absorption rate fail... vs absorption rate fail...; Low semantic similarity: bearish sentiment ga... vs regime shift with in...",
+        "Structural: Low semantic similarity: price breaks out of ... vs decisive close below...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: absorption rate fail... vs delivery_pct > 50 AN...; Low semantic similarity: bearish sentiment ga... vs sector_zscore < -1.5...",
+        "Structural: Low semantic similarity: Revised claim: Regim... vs The market regime is...; Low semantic similarity: price breaks out of ... vs price structure has ...; Low semantic similarity: Revised claim: Regim... vs volume > 5000000 AND...; Low semantic similarity: absorption rate fail... vs volume > 5000000 AND...; Low semantic similarity: bearish sentiment ga... vs delivery:low OR fii:..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-06-10",
+      "similarity": 0.591,
+      "active_theories": [
+        "7d5bd1df33d54234",
+        "6a1b37fc85758229",
+        "beba71b1d3ac52de"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: The RELIANCE stock p... vs price breaks out of ...; Low semantic similarity: Revised claim: Regim... vs volume > 2x average ...; Low semantic similarity: RELIENCE stock is ex... vs volume > 2x average ...; Low semantic similarity: RELIENCE stock is no... vs RELIANCE is trading ...",
+        "Structural: Low semantic similarity: The RELIANCE stock p... vs price breaks out of ...; Low semantic similarity: Revised claim: Regim... vs absorption rate fail...; Low semantic similarity: RELIENCE stock is ex... vs absorption rate fail...; Low semantic similarity: RELIENCE stock is no... vs bearish sentiment ga...",
+        "Structural: Low semantic similarity: The RELIANCE stock p... vs price remains range-...; Low semantic similarity: Revised claim: Regim... vs absorption rate fail...; Low semantic similarity: RELIENCE stock is ex... vs absorption rate fail..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-15",
+      "similarity": 0.58,
+      "active_theories": [
+        "7d5bd1df33d54234"
+      ],
+      "contradictions": [],
+      "confidence": 0.24,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-06-19",
+      "policy_name": "Baseline",
+      "action": "sell",
+      "conviction": 0.771,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-06-19",
+      "policy_name": "High Conviction",
+      "action": "sell",
+      "conviction": 0.771,
+      "reason": "High conviction criteria met",
+      "allowed": true
+    },
+    "breakout": {
+      "date": "2026-06-19",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.771,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.5278182666666665,
+    "label": "useful"
+  },
+  "reflection": "Neutral Regime Subtype The current regime subtype is neutral, but the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradiction anchors the critique in the theory's specific falsifiability boundary conditions. The detected 5 contradictions with a total score of 0.15 indicate that the theory requires additional confirmation signals to be confirmed. One unresolved tension is the low semantic similarity between the revised claim \"Regime is driven by passive absorption, but with a moderating influence from sector-specific events and a heightened sensitivity to market sentiment\" and the observed RELIANCE traded range expansion.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 24,
+    "avg_usefulness": 0.232,
+    "last_seen": "2026-06-19",
+    "historical_resolution": {
+      "higher": 2,
+      "lower": 7,
+      "range_bound": 8,
+      "uncertain": 0
+    },
+    "falsified_count": 12
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 25,
+    "date": "2026-06-19",
+    "contradiction_count": 5,
+    "contradiction_half_life": 1.4666666666666666,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9375,
+    "avg_contradiction_severity": 0.15701168525160084,
+    "highest_contradiction": 0.3659292445054945,
+    "theory_count": 18,
+    "active_theories": 18,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 17,
+    "avg_retirement_age": 1.0,
+    "avg_revival_latency": 3.0,
+    "avg_theory_age": 9.444444444444445,
+    "longest_surviving_theory": 19,
+    "theory_mutation_count": 23,
+    "avg_confidence": 0.01716,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.05148,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 5.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.5,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.030612244897959183,
+    "avg_abstraction_length": 17.0,
+    "compression_ratio": 0.3953488372093023,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 43,
+      "theory_text": "Revised claim: Regime is driven by passive absorption, but with a moderating influence from sector-specific events and a heightened sensitivity to market sentiment.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 0.15.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "mixed",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-06-19",
+        "trend": "extended_lower",
+        "volatility_state": "moderate",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.153,
+        "active_theory_count": 18,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-08",
+          "similarity": 0.761,
+          "active_theories": [
+            "7d5bd1df33d54234",
+            "6a1b37fc85758229",
+            "beba71b1d3ac52de"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: price breaks out of ... vs price remains range-...; Low semantic similarity: absorption rate fail... vs absorption rate fail...; Low semantic similarity: bearish sentiment ga... vs regime shift with in...",
+            "Structural: Low semantic similarity: price breaks out of ... vs decisive close below...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: absorption rate fail... vs delivery_pct > 50 AN...; Low semantic similarity: bearish sentiment ga... vs sector_zscore < -1.5...",
+            "Structural: Low semantic similarity: Revised claim: Regim... vs The market regime is...; Low semantic similarity: price breaks out of ... vs price structure has ...; Low semantic similarity: Revised claim: Regim... vs volume > 5000000 AND...; Low semantic similarity: absorption rate fail... vs volume > 5000000 AND...; Low semantic similarity: bearish sentiment ga... vs delivery:low OR fii:..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-10",
+          "similarity": 0.591,
+          "active_theories": [
+            "7d5bd1df33d54234",
+            "6a1b37fc85758229",
+            "beba71b1d3ac52de"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The RELIANCE stock p... vs price breaks out of ...; Low semantic similarity: Revised claim: Regim... vs volume > 2x average ...; Low semantic similarity: RELIENCE stock is ex... vs volume > 2x average ...; Low semantic similarity: RELIENCE stock is no... vs RELIANCE is trading ...",
+            "Structural: Low semantic similarity: The RELIANCE stock p... vs price breaks out of ...; Low semantic similarity: Revised claim: Regim... vs absorption rate fail...; Low semantic similarity: RELIENCE stock is ex... vs absorption rate fail...; Low semantic similarity: RELIENCE stock is no... vs bearish sentiment ga...",
+            "Structural: Low semantic similarity: The RELIANCE stock p... vs price remains range-...; Low semantic similarity: Revised claim: Regim... vs absorption rate fail...; Low semantic similarity: RELIENCE stock is ex... vs absorption rate fail..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.58,
+          "active_theories": [
+            "7d5bd1df33d54234"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.5278182666666665,
+        "label": "useful"
+      }
+    }
+  }
+}

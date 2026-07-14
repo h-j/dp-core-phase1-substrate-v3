@@ -1,0 +1,22 @@
+[
+  {
+    "world_id": "WORLD_A_SEED_42",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_B_SEED_42",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_C1_SEED_42",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_C2_SEED_42",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  }
+]

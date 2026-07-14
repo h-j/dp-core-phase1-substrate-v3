@@ -1,0 +1,36 @@
+{
+  "id": "MECH_003",
+  "created_at": "2026-07-03T03:11:42.805011+00:00",
+  "mechanism_id": "MECH_003",
+  "canonical_name": "VOLATILITY_EXPANSION",
+  "concept_tags": [
+    "VOLATILITY_EXPANSION",
+    "WEAK_INSTITUTIONAL_ACCUMULATION"
+  ],
+  "relation_type": "AMPLIFIES",
+  "first_seen": 0,
+  "last_seen": 1,
+  "days_active": 3,
+  "times_reused": 0,
+  "times_modified": 1,
+  "times_retired": 1,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "prediction_helped": 0,
+  "prediction_harmed": 1,
+  "status": "retired",
+  "regimes_seen": [
+    "neutral"
+  ],
+  "name": "VOLATILITY_EXPANSION",
+  "description": "Volume expands on up days relative to down days, but with a weaker institutional accumulation signal.",
+  "concept_type": "candidate",
+  "associated_theory_ids": [
+    "90e81c6b-010e-4e2d-8ab2-2b49a15df4b8",
+    "6dca5574-e9b5-4163-8dc4-d211a92b6026"
+  ],
+  "associated_lineages": [
+    "b2e678f6-c85e-42e2-b711-99a5e736ec80"
+  ],
+  "created_at_step": 0
+}

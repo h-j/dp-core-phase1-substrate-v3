@@ -1,0 +1,153 @@
+{
+  "e134c2611dbdd0ea": {
+    "id": "e134c2611dbdd0ea",
+    "lineage_id": "e134c2611dbdd0ea",
+    "created_at_step": 0,
+    "parent_ids": [],
+    "status": "contradicted",
+    "confidence": 0.5,
+    "abstraction": "Reliance is trading within a compressed range-bound pattern with moderate volume and neutral sector participation, indicating a mixed trend persistence and horizon context.",
+    "confidence_state": {
+      "empirical_confidence": 0.5,
+      "regime_confidence": 0.5148,
+      "reflection_confidence": 0.3464,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 1.0
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: The moderate absorpt... vs price_action.daily_s...; Low semantic similarity: volume_spike: > 1000... vs price_action.daily_s...; Low semantic similarity: false: demote... vs price_action.daily_s...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Low semantic similarity: The moderate absorpt... vs volume_elevated: add...; Low semantic similarity: volume_spike: > 1000... vs volume_elevated: add...; Low semantic similarity: false: demote... vs false: retain_price_...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Low semantic similarity: price_range_bound_ex... vs decisive close below...; Low semantic similarity: The moderate absorpt... vs volume > 1000 and pr...; Low semantic similarity: volume_spike: > 1000... vs volume > 1000 and pr...; Low semantic similarity: false: demote... vs false: retain curren...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Low semantic similarity: The moderate absorpt... vs Regime is driven by ...; Low semantic similarity: price_range_bound_ex... vs decisive close below...; Low semantic similarity: The moderate absorpt... vs delivery_pct > 50 AN...; Low semantic similarity: volume_spike: > 1000... vs delivery_pct > 50 AN...; Low semantic similarity: false: demote... vs sector_zscore < -1.5...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+    ],
+    "contradiction_count": 4,
+    "mutation_reason": "continued",
+    "survival_steps": 5,
+    "last_seen_step": 4,
+    "mutation_count": 0,
+    "retired_at_step": null,
+    "last_retired_step": null,
+    "revival_count": 0,
+    "retirement_ages": [],
+    "revival_latencies": [],
+    "predictive_fitness": 0.5,
+    "economic_fitness": 0.5,
+    "generalization_fitness": 0.5,
+    "cross_asset_fitness": 0.5,
+    "longevity_days": 0
+  },
+  "7c9df2b2b7af0760": {
+    "id": "7c9df2b2b7af0760",
+    "lineage_id": "7c9df2b2b7af0760",
+    "created_at_step": 1,
+    "parent_ids": [],
+    "status": "retired",
+    "confidence": 0.24,
+    "abstraction": "Reliance is experiencing a mixed trend with moderate volatility, closing lower amid neutral sector performance and selling from FII.",
+    "confidence_state": {
+      "empirical_confidence": 0.24,
+      "regime_confidence": 0.5,
+      "reflection_confidence": 0.435,
+      "theoretical_coherence": 0.2915,
+      "contradiction_pressure": 0.338
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: The price remains ra... vs delivery_pct > 50 AN...; Low semantic similarity: volume > 1000 and pr... vs delivery_pct > 50 AN...; Low semantic similarity: false: retain curren... vs sector_zscore < -1.5..."
+    ],
+    "contradiction_count": 1,
+    "mutation_reason": null,
+    "survival_steps": 2,
+    "last_seen_step": 2,
+    "mutation_count": 0,
+    "retired_at_step": 2,
+    "last_retired_step": 2,
+    "revival_count": 0,
+    "retirement_ages": [
+      1
+    ],
+    "revival_latencies": [],
+    "predictive_fitness": 0.5,
+    "economic_fitness": 0.5,
+    "generalization_fitness": 0.5,
+    "cross_asset_fitness": 0.5,
+    "longevity_days": 0
+  },
+  "34c71ae6be9ae4b1": {
+    "id": "34c71ae6be9ae4b1",
+    "lineage_id": "7c9df2b2b7af0760",
+    "created_at_step": 2,
+    "parent_ids": [
+      "7c9df2b2b7af0760"
+    ],
+    "status": "retired",
+    "confidence": 0.0,
+    "abstraction": "Reliance is closing lower with moderate volatility, indicating a mixed trend and decreasing momentum.",
+    "confidence_state": {
+      "empirical_confidence": 0.0,
+      "regime_confidence": 0.5056,
+      "reflection_confidence": 0.4206,
+      "theoretical_coherence": 0.0519,
+      "contradiction_pressure": 0.6078
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: The price remains ra... vs delivery_pct > 50 AN...; Low semantic similarity: volume > 1000 and pr... vs delivery_pct > 50 AN...; Low semantic similarity: false: retain curren... vs sector_zscore < -1.5...",
+      "Structural: Low semantic similarity: price_range_bound... vs decisive close below...; Low semantic similarity: The market regime is... vs volume > 1000 and pr...; Low semantic similarity: volume_elevated: add... vs volume > 1000 and pr...; Low semantic similarity: false: retain_price_... vs false: retain curren...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Low semantic similarity: price_range_bound... vs decisive close below...; Low semantic similarity: The market regime is... vs delivery_pct > 50 AN...; Low semantic similarity: volume_elevated: add... vs delivery_pct > 50 AN...; Low semantic similarity: false: retain_price_... vs sector_zscore < -1.5...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+    ],
+    "contradiction_count": 3,
+    "mutation_reason": "semantic_similarity_0.50",
+    "survival_steps": 2,
+    "last_seen_step": 3,
+    "mutation_count": 1,
+    "retired_at_step": 3,
+    "last_retired_step": 3,
+    "revival_count": 0,
+    "retirement_ages": [
+      1
+    ],
+    "revival_latencies": [],
+    "predictive_fitness": 0.5,
+    "economic_fitness": 0.5,
+    "generalization_fitness": 0.5,
+    "cross_asset_fitness": 0.5,
+    "longevity_days": 0
+  },
+  "efeca108f036ef3f": {
+    "id": "efeca108f036ef3f",
+    "lineage_id": "efeca108f036ef3f",
+    "created_at_step": 3,
+    "parent_ids": [],
+    "status": "retired",
+    "confidence": 0.0,
+    "abstraction": "Weaker short-term momentum and fading asset liquidity suggest a weakening trend, but RELIANCE's leading sector position and moderate delivery volumes indicate some stability. Overall, the market is in a mixed state with no clear direction.",
+    "confidence_state": {
+      "empirical_confidence": 0.0,
+      "regime_confidence": 0.5115,
+      "reflection_confidence": 0.3965,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 0.8964
+    },
+    "contradictions": [
+      "Structural: Low semantic similarity: The market regime is... vs volume_elevated: add...; Low semantic similarity: price_action.daily_s... vs volume_elevated: add...; Low semantic similarity: price_action.daily_s... vs false: retain_price_...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Low semantic similarity: price_range_bound... vs decisive close below...; Low semantic similarity: The market regime is... vs volume > 1000 and pr...; Low semantic similarity: price_action.daily_s... vs false: retain curren...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Low semantic similarity: price_range_bound... vs decisive close below...; Low semantic similarity: The market regime is... vs delivery_pct > 50 AN...; Low semantic similarity: price_action.daily_s... vs delivery_pct > 50 AN...; Low semantic similarity: price_action.daily_s... vs sector_zscore < -1.5...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+    ],
+    "contradiction_count": 3,
+    "mutation_reason": null,
+    "survival_steps": 2,
+    "last_seen_step": 4,
+    "mutation_count": 0,
+    "retired_at_step": 4,
+    "last_retired_step": 4,
+    "revival_count": 0,
+    "retirement_ages": [
+      1
+    ],
+    "revival_latencies": [],
+    "predictive_fitness": 0.5,
+    "economic_fitness": 0.5,
+    "generalization_fitness": 0.5,
+    "cross_asset_fitness": 0.5,
+    "longevity_days": 0
+  }
+}

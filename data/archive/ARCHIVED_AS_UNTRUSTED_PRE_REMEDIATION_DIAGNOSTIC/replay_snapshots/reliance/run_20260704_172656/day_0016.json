@@ -1,0 +1,380 @@
+{
+  "step": 16,
+  "date": "2026-06-16",
+  "observation": "[volume elevated, range expanding, gap up, short-term momentum strengthening, delivery:moderate, fii:neutral, sector:leading, RELIANCE focus] candle expansion participation normal (bullish confirmed) RELIANCE closed higher amid moderate volatility and breadth strengthened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance stock is showing bullish signs with moderate volatility and strengthened breadth, indicating a mixed trend persistence and horizon context.",
+  "theory": "Reliance's price structure exhibits moderate volatility and momentum when trading within a range-bound pattern, driven by the presence of FIIs, leading to increased selling pressure that shifts the price towards compression.",
+  "theory_summary_structured": {
+    "id": "24299e40-0ce7-4f0b-8142-cfb186c7c60c",
+    "created_at": "2026-07-04 11:57:28.206132+00:00",
+    "mechanism": "Liquidity Absorption",
+    "claim": "Reliance's price structure exhibits moderate volatility and momentum when trading within a range-bound pattern, driven by the presence of FIIs, leading to increased selling pressure that shifts the price towards compression.",
+    "if_branch": {
+      "id": "c9598cc8-9c0d-4043-befe-691194174ddb",
+      "created_at": "2026-07-04 12:20:56.788059+00:00",
+      "condition": "price_structure_v14: FIIS_INFLUENCE",
+      "action": "promote"
+    },
+    "else_branch": {
+      "id": "09c1b9dc-3d11-458b-9e5f-49d964aa79b9",
+      "created_at": "2026-07-04 12:20:56.788133+00:00",
+      "condition": "price_structure_v13: RELIANCE short-term momentum weakening",
+      "action": "demote"
+    },
+    "unless": "",
+    "falsified_if": "price_structure_v12",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "7e02622d-3069-4fe7-bf1c-d249cdab153c",
+        "created_at": "2026-07-04 12:20:53.792397+00:00",
+        "component_id": "price_structure_v13",
+        "description": "Price maintains sequence of higher highs and lower lows, but with a twist: when RELIANCE is trading within a range-bound pattern, its price exhibits moderate volatility and momentum. Additionally, when RELIANCE is experiencing short-term momentum weakening, the price structure shifts towards compression.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous low (when RELIANCE is trading within a range-bound pattern) or Each day's high < previous high (otherwise)",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "VOLATILITY_COMPRESSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION",
+          "MEAN_REVERSION",
+          "MOMENTUM"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_001"
+      },
+      {
+        "id": "ab653c64-e43b-4e56-b77a-5d9bb8b6a441",
+        "created_at": "2026-07-04 12:20:53.796004+00:00",
+        "component_id": "price_structure_v14",
+        "description": "Price structure exhibits moderate volatility and momentum when Reliance is trading within a range-bound pattern, but with an added nuance: the presence of FIIs can lead to increased selling pressure, potentially shifting the price structure towards compression.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous low (when RELIANCE is trading within a range-bound pattern) or Each day's high < previous high (otherwise)",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION",
+          "VOLATILITY_COMPRESSION",
+          "LIQUIDITY_ABSORPTION",
+          "INSTITUTIONAL_ACCUMULATION",
+          "MEAN_REVERSION",
+          "MOMENTUM",
+          "FIIS_INFLUENCE"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_001"
+      }
+    ],
+    "falsification_conditions": [
+      "price_structure_v12: price structure did not exhibit moderate volatility and momentum as expected when Reliance was trading within a range-bound pattern"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.6197,
+    "reflection": 0.0,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.08738000000000001,
+    "indicators": [
+      "Structural: Low semantic similarity: Reliance's price str... vs : ...; Low semantic similarity: price_structure_v14:... vs : ...; Low semantic similarity: price_structure_v13:... vs : ...",
+      "Structural: Low semantic similarity: price_structure_v12... vs ...; Low semantic similarity: Reliance's price str... vs : ...; Low semantic similarity: price_structure_v14:... vs : ...; Low semantic similarity: price_structure_v13:... vs : ...",
+      "Structural: Low semantic similarity: price_structure_v12... vs ...; Low semantic similarity: Reliance's price str... vs : ...; Low semantic similarity: price_structure_v14:... vs : ...; Low semantic similarity: price_structure_v13:... vs : ...",
+      "Structural: Low semantic similarity: Reliance's price str... vs price_action.daily_s...; Low semantic similarity: price_structure_v14:... vs price_action.daily_s...; Low semantic similarity: price_structure_v13:... vs true: ...",
+      "Structural: Low semantic similarity: Reliance's price str... vs price_action.daily_s...; Low semantic similarity: price_structure_v14:... vs price_action.daily_s...; Low semantic similarity: price_structure_v13:... vs true: ..."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "24ec3649-76df-4269-a80e-010f6279c736",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "8e877cbd-63b1-4525-845e-4018dc602a5e",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "fe5dd214-1579-4f47-a9e1-334cb6835987",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "692c4ba3-5a1e-4c7b-991d-bf231ca09fce",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "690e7b0e-832a-4801-9fbc-7d2139b46efa",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 5 contradictions with a total score of 0.09."
+  },
+  "horizon": {
+    "daily": "strengthening",
+    "weekly": "mixed",
+    "monthly": "range_bound"
+  },
+  "regime_signature": {
+    "date": "2026-06-16",
+    "trend": "extended_higher",
+    "volatility_state": "moderate",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.087,
+    "active_theory_count": 16,
+    "breadth_proxy": "strengthened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-06-12",
+      "similarity": 0.945,
+      "active_theories": [
+        "5c9c1c4a9f2d9328",
+        "fc6f4056c5e92db5",
+        "f167a11f8f366f7a"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: ... vs ...; Low semantic similarity: Price structure exhi... vs : ...; Low semantic similarity: : ... vs : ...; Low semantic similarity: : ... vs : ...",
+        "Structural: Low semantic similarity: ... vs price_structure_v4...; Low semantic similarity: Price structure exhi... vs price_action.daily_s...; Low semantic similarity: : ... vs price_action.daily_s...; Low semantic similarity: : ... vs true: ...",
+        "Structural: Low semantic similarity: ... vs price_structure_v4...; Low semantic similarity: Price structure exhi... vs price_action.daily_s...; Low semantic similarity: : ... vs price_action.daily_s...; Low semantic similarity: : ... vs true: ..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-06-15",
+      "similarity": 0.78,
+      "active_theories": [
+        "5c9c1c4a9f2d9328",
+        "fc6f4056c5e92db5",
+        "f167a11f8f366f7a"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: price_structure_v11... vs ...; Low semantic similarity: Price structure exhi... vs : ...; Low semantic similarity: : ... vs : ...; Low semantic similarity: : ... vs : ...",
+        "Structural: Low semantic similarity: Price structure exhi... vs price_action.daily_s...; Low semantic similarity: : ... vs price_action.daily_s...; Low semantic similarity: : ... vs true: ...",
+        "Structural: Low semantic similarity: Price structure exhi... vs price_action.daily_s...; Low semantic similarity: : ... vs price_action.daily_s...; Low semantic similarity: : ... vs true: ..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-06-09",
+      "similarity": 0.481,
+      "active_theories": [
+        "5c9c1c4a9f2d9328",
+        "fc6f4056c5e92db5",
+        "f167a11f8f366f7a"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: Price sequence exhib... vs price_action.daily_s...",
+        "Structural: Low semantic similarity: Price sequence exhib... vs price_action.daily_s...",
+        "Structural: Low semantic similarity: Price sequence exhib... vs range_expanding: pro...; Low semantic similarity: price_action.daily_s... vs range_expanding: pro...; Low semantic similarity: true: ... vs false: demote..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-06-16",
+      "policy_name": "Baseline",
+      "action": "buy",
+      "conviction": 0.812,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-06-16",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.812,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-06-16",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.812,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.18790994,
+    "label": "weak"
+  },
+  "reflection": "The provided structured market observation dimensions validate the theory that Reliance's price structure exhibits moderate volatility and momentum when trading within a range-bound pattern, driven by the presence of FIIs. The observations suggest that the price is shifting towards compression due to increased selling pressure. However, upon closer examination, several contradictions emerge: The analog divergence indicates a similarity with the 2026-06-12 observation, which had a broad participation and moderate volatility. However, this does not necessarily validate or invalidate the current observation.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "Analog to 2026-06-12: liquidity is broad_participation (prior was normal), volatility is moderate (prior was normal)",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 15,
+    "avg_usefulness": 0.2,
+    "last_seen": "2026-06-16",
+    "historical_resolution": {
+      "higher": 3,
+      "lower": 5,
+      "range_bound": 6,
+      "uncertain": 0
+    },
+    "falsified_count": 9
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 16,
+    "date": "2026-06-16",
+    "contradiction_count": 3,
+    "contradiction_half_life": 1.1794871794871795,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9285714285714286,
+    "avg_contradiction_severity": 0.4384418849206349,
+    "highest_contradiction": 1.0,
+    "theory_count": 16,
+    "active_theories": 16,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 12,
+    "avg_retirement_age": 2.0,
+    "avg_revival_latency": 3.0,
+    "avg_theory_age": 7.8125,
+    "longest_surviving_theory": 16,
+    "theory_mutation_count": 19,
+    "avg_confidence": 0.0,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.012345679012345678,
+    "avg_abstraction_length": 20.0,
+    "compression_ratio": 0.5,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 31,
+    "mechanism_count": 2,
+    "conditional_clauses_count": 2,
+    "exceptions_added": 0,
+    "mechanisms_retired_count": 1,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 22,
+    "words_after_mutation": 31,
+    "mechanisms_before_mutation": 1,
+    "mechanisms_after_mutation": 2,
+    "extras": {
+      "observation_length": 40,
+      "theory_text": "Reliance's price structure exhibits moderate volatility and momentum when trading within a range-bound pattern, driven by the presence of FIIs, leading to increased selling pressure that shifts the price towards compression.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 0.09.",
+      "horizon": {
+        "daily": "strengthening",
+        "weekly": "mixed",
+        "monthly": "range_bound"
+      },
+      "regime_signature": {
+        "date": "2026-06-16",
+        "trend": "extended_higher",
+        "volatility_state": "moderate",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.087,
+        "active_theory_count": 16,
+        "breadth_proxy": "strengthened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.945,
+          "active_theories": [
+            "5c9c1c4a9f2d9328",
+            "fc6f4056c5e92db5",
+            "f167a11f8f366f7a"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: ... vs ...; Low semantic similarity: Price structure exhi... vs : ...; Low semantic similarity: : ... vs : ...; Low semantic similarity: : ... vs : ...",
+            "Structural: Low semantic similarity: ... vs price_structure_v4...; Low semantic similarity: Price structure exhi... vs price_action.daily_s...; Low semantic similarity: : ... vs price_action.daily_s...; Low semantic similarity: : ... vs true: ...",
+            "Structural: Low semantic similarity: ... vs price_structure_v4...; Low semantic similarity: Price structure exhi... vs price_action.daily_s...; Low semantic similarity: : ... vs price_action.daily_s...; Low semantic similarity: : ... vs true: ..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-15",
+          "similarity": 0.78,
+          "active_theories": [
+            "5c9c1c4a9f2d9328",
+            "fc6f4056c5e92db5",
+            "f167a11f8f366f7a"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: price_structure_v11... vs ...; Low semantic similarity: Price structure exhi... vs : ...; Low semantic similarity: : ... vs : ...; Low semantic similarity: : ... vs : ...",
+            "Structural: Low semantic similarity: Price structure exhi... vs price_action.daily_s...; Low semantic similarity: : ... vs price_action.daily_s...; Low semantic similarity: : ... vs true: ...",
+            "Structural: Low semantic similarity: Price structure exhi... vs price_action.daily_s...; Low semantic similarity: : ... vs price_action.daily_s...; Low semantic similarity: : ... vs true: ..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-09",
+          "similarity": 0.481,
+          "active_theories": [
+            "5c9c1c4a9f2d9328",
+            "fc6f4056c5e92db5",
+            "f167a11f8f366f7a"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Price sequence exhib... vs price_action.daily_s...",
+            "Structural: Low semantic similarity: Price sequence exhib... vs price_action.daily_s...",
+            "Structural: Low semantic similarity: Price sequence exhib... vs range_expanding: pro...; Low semantic similarity: price_action.daily_s... vs range_expanding: pro...; Low semantic similarity: true: ... vs false: demote..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.18790994,
+        "label": "weak"
+      }
+    }
+  }
+}

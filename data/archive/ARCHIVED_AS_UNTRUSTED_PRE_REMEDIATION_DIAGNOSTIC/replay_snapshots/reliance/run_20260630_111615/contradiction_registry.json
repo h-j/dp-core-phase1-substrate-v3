@@ -1,0 +1,352 @@
+{
+  "5a83c21b773556bd": {
+    "id": "5a83c21b773556bd",
+    "theory_id": "6a1b37fc85758229",
+    "description": "structural: low semantic similarity: delivery: high, sect... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: volume > 50% of aver... vs participation widens...; low semantic similarity: volatility (20-day r... vs volatility remains c...",
+    "created_at_step": 1,
+    "resolved_at_step": 2,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.089
+  },
+  "e81fdd4d2a520fc4": {
+    "id": "e81fdd4d2a520fc4",
+    "theory_id": "7d5bd1df33d54234",
+    "description": "structural: low semantic similarity: delivery_high or fii... vs delivery: high, sect...; low semantic similarity: revised claim: regim... vs volume > 50% of aver...; low semantic similarity: absorption_rate > 0.... vs volume > 50% of aver...; low semantic similarity: absorption_rate <= 0... vs volatility (20-day r...",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.242
+  },
+  "919f1456fdd3d311": {
+    "id": "919f1456fdd3d311",
+    "theory_id": "7d5bd1df33d54234",
+    "description": "structural: low semantic similarity: delivery_high or fii... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: absorption_rate > 0.... vs participation widens...; field conflict: absorption_rate <= 0.7 or volu vs volatility remains compressed:",
+    "created_at_step": 2,
+    "resolved_at_step": 3,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.242
+  },
+  "d3041b30b16d2b56": {
+    "id": "d3041b30b16d2b56",
+    "theory_id": "beba71b1d3ac52de",
+    "description": "structural: field conflict: revised claim: regime is drive vs revised claim: regime is drive; low semantic similarity: if volume expansion ... vs delivery_high or fii...; low semantic similarity: reliance's stock pri... vs absorption_rate <= 0...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.10336129032258065
+  },
+  "97ef8d2097581433": {
+    "id": "97ef8d2097581433",
+    "theory_id": "beba71b1d3ac52de",
+    "description": "structural: field conflict: revised claim: regime is drive vs revised claim: regime is drive; low semantic similarity: if volume expansion ... vs delivery: high, sect...; low semantic similarity: revised claim: regim... vs volume > 50% of aver...; low semantic similarity: reliance's stock pri... vs volume > 50% of aver...; low semantic similarity: reliance's stock pri... vs volatility (20-day r...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.10336129032258065
+  },
+  "1a55f2ce5b99b71a": {
+    "id": "1a55f2ce5b99b71a",
+    "theory_id": "beba71b1d3ac52de",
+    "description": "structural: low semantic similarity: if volume expansion ... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: reliance's stock pri... vs participation widens...; low semantic similarity: reliance's stock pri... vs volatility remains c...",
+    "created_at_step": 3,
+    "resolved_at_step": 4,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.10336129032258065
+  },
+  "8a274cc5417ec2fd": {
+    "id": "8a274cc5417ec2fd",
+    "theory_id": "bd2789d127e81f69",
+    "description": "structural: low semantic similarity: absorption_rate < 0.... vs if volume expansion ...; low semantic similarity: reliance closed lowe... vs reliance's stock pri...; low semantic similarity: reliance closed high... vs reliance's stock pri...",
+    "created_at_step": 4,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.2308423780487805
+  },
+  "b3d7f8b5eefa3e29": {
+    "id": "b3d7f8b5eefa3e29",
+    "theory_id": "bd2789d127e81f69",
+    "description": "structural: field conflict: revised claim: regime is drive vs revised claim: regime is drive; low semantic similarity: absorption_rate < 0.... vs delivery_high or fii...; low semantic similarity: revised claim: regim... vs absorption_rate > 0....; low semantic similarity: reliance closed lowe... vs absorption_rate > 0....; low semantic similarity: reliance closed high... vs absorption_rate <= 0...",
+    "created_at_step": 4,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.2308423780487805
+  },
+  "f1801f7d48bf0354": {
+    "id": "f1801f7d48bf0354",
+    "theory_id": "bd2789d127e81f69",
+    "description": "structural: field conflict: revised claim: regime is drive vs revised claim: regime is drive; low semantic similarity: absorption_rate < 0.... vs delivery: high, sect...; low semantic similarity: revised claim: regim... vs volume > 50% of aver...; low semantic similarity: reliance closed lowe... vs volume > 50% of aver...; low semantic similarity: reliance closed high... vs volatility (20-day r...",
+    "created_at_step": 4,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.2308423780487805
+  },
+  "84da02edf18a0e3a": {
+    "id": "84da02edf18a0e3a",
+    "theory_id": "bd2789d127e81f69",
+    "description": "structural: low semantic similarity: absorption_rate < 0.... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; field conflict: reliance closed lower and has vs participation widens above ave; low semantic similarity: reliance closed high... vs volatility remains c...",
+    "created_at_step": 4,
+    "resolved_at_step": 5,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.2308423780487805
+  },
+  "20fe1143ac6dc542": {
+    "id": "20fe1143ac6dc542",
+    "theory_id": "8230f08e9f010b3e",
+    "description": "structural: field conflict: revised claim: regime is drive vs revised claim: regime is drive; low semantic similarity: delivery < 0.6 or se... vs absorption_rate < 0....; low semantic similarity: revised claim: regim... vs reliance closed lowe...; low semantic similarity: absorption_rate > 0.... vs reliance closed lowe...; low semantic similarity: absorption_rate <= 0... vs reliance closed high...",
+    "created_at_step": 5,
+    "resolved_at_step": 6,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3659292445054945
+  },
+  "9f400bfe8dd1d515": {
+    "id": "9f400bfe8dd1d515",
+    "theory_id": "8230f08e9f010b3e",
+    "description": "structural: field conflict: revised claim: regime is drive vs revised claim: regime is drive; low semantic similarity: delivery < 0.6 or se... vs if volume expansion ...; field conflict: revised claim: regime is drive vs reliance's stock price is abov; low semantic similarity: absorption_rate > 0.... vs reliance's stock pri...; low semantic similarity: absorption_rate <= 0... vs reliance's stock pri...",
+    "created_at_step": 5,
+    "resolved_at_step": 6,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3659292445054945
+  },
+  "a88330acbcdbe2ce": {
+    "id": "a88330acbcdbe2ce",
+    "theory_id": "8230f08e9f010b3e",
+    "description": "structural: field conflict: revised claim: regime is drive vs revised claim: regime is drive; low semantic similarity: revised claim: regim... vs absorption_rate > 0....; low semantic similarity: absorption_rate > 0.... vs absorption_rate > 0....; participation: weakening vs elevated",
+    "created_at_step": 5,
+    "resolved_at_step": 6,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3659292445054945
+  },
+  "b0801db89c161782": {
+    "id": "b0801db89c161782",
+    "theory_id": "8230f08e9f010b3e",
+    "description": "structural: field conflict: revised claim: regime is drive vs revised claim: regime is drive; low semantic similarity: delivery < 0.6 or se... vs delivery: high, sect...; low semantic similarity: revised claim: regim... vs volume > 50% of aver...; low semantic similarity: absorption_rate > 0.... vs volume > 50% of aver...; low semantic similarity: absorption_rate <= 0... vs volatility (20-day r...; participation: weakening vs elevated",
+    "created_at_step": 5,
+    "resolved_at_step": 6,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3659292445054945
+  },
+  "63e8c0c5430d50ef": {
+    "id": "63e8c0c5430d50ef",
+    "theory_id": "8230f08e9f010b3e",
+    "description": "structural: low semantic similarity: revised claim: regim... vs regime is driven by ...; low semantic similarity: delivery < 0.6 or se... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: absorption_rate > 0.... vs participation widens...; low semantic similarity: absorption_rate <= 0... vs volatility remains c...",
+    "created_at_step": 5,
+    "resolved_at_step": 6,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.3659292445054945
+  },
+  "37a904047ae87fba": {
+    "id": "37a904047ae87fba",
+    "theory_id": "ec18771cee4b2d5c",
+    "description": "structural: field conflict: revised claim: the market regi vs revised claim: regime is drive; low semantic similarity: strong evidence of t... vs delivery < 0.6 or se...; low semantic similarity: revised claim: the m... vs absorption_rate > 0....; low semantic similarity: reliance's price is ... vs absorption_rate > 0....",
+    "created_at_step": 6,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.15219973479334134
+  },
+  "907e21ce7fcbb833": {
+    "id": "907e21ce7fcbb833",
+    "theory_id": "ec18771cee4b2d5c",
+    "description": "structural: low semantic similarity: strong evidence of t... vs absorption_rate < 0....; low semantic similarity: revised claim: the m... vs reliance closed lowe...; low semantic similarity: reliance's price is ... vs reliance closed lowe...; low semantic similarity: reliance's price is ... vs reliance closed high...",
+    "created_at_step": 6,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.15219973479334134
+  },
+  "1dd755e860de51fc": {
+    "id": "1dd755e860de51fc",
+    "theory_id": "ec18771cee4b2d5c",
+    "description": "structural: low semantic similarity: revised claim: the m... vs revised claim: regim...; low semantic similarity: strong evidence of t... vs if volume expansion ...; low semantic similarity: revised claim: the m... vs reliance's stock pri...; low semantic similarity: reliance's price is ... vs reliance's stock pri...",
+    "created_at_step": 6,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.15219973479334134
+  },
+  "6e3e9e277fe503b5": {
+    "id": "6e3e9e277fe503b5",
+    "theory_id": "ec18771cee4b2d5c",
+    "description": "structural: field conflict: revised claim: the market regi vs revised claim: regime is drive; low semantic similarity: strong evidence of t... vs delivery_high or fii...; low semantic similarity: revised claim: the m... vs absorption_rate > 0....; low semantic similarity: reliance's price is ... vs absorption_rate > 0....; low semantic similarity: reliance's price is ... vs absorption_rate <= 0...",
+    "created_at_step": 6,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.15219973479334134
+  },
+  "d3fdfa5c38a7379e": {
+    "id": "d3fdfa5c38a7379e",
+    "theory_id": "ec18771cee4b2d5c",
+    "description": "structural: field conflict: revised claim: the market regi vs revised claim: regime is drive; low semantic similarity: strong evidence of t... vs delivery: high, sect...; low semantic similarity: revised claim: the m... vs volume > 50% of aver...; low semantic similarity: reliance's price is ... vs volume > 50% of aver...; low semantic similarity: reliance's price is ... vs volatility (20-day r...",
+    "created_at_step": 6,
+    "resolved_at_step": 7,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.15219973479334134
+  },
+  "ff235670d4b24425": {
+    "id": "ff235670d4b24425",
+    "theory_id": "a93f55bbe95082e8",
+    "description": "structural: low semantic similarity: the pressure-loaded ... vs strong evidence of t...; low semantic similarity: revised claim: the m... vs reliance's price is ...; low semantic similarity: reliance traded abov... vs reliance's price is ...; low semantic similarity: reliance traded belo... vs reliance's price is ...",
+    "created_at_step": 7,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.21360060606060605
+  },
+  "a6e31f67ce9695fb": {
+    "id": "a6e31f67ce9695fb",
+    "theory_id": "a93f55bbe95082e8",
+    "description": "structural: field conflict: revised claim: the market regi vs revised claim: regime is drive; low semantic similarity: the pressure-loaded ... vs delivery < 0.6 or se...; low semantic similarity: revised claim: the m... vs absorption_rate > 0....; low semantic similarity: reliance traded abov... vs absorption_rate > 0....; low semantic similarity: reliance traded belo... vs absorption_rate <= 0...",
+    "created_at_step": 7,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.21360060606060605
+  },
+  "45f4c9904fbe6a12": {
+    "id": "45f4c9904fbe6a12",
+    "theory_id": "a93f55bbe95082e8",
+    "description": "structural: low semantic similarity: the pressure-loaded ... vs absorption_rate < 0....; low semantic similarity: revised claim: the m... vs reliance closed lowe...; low semantic similarity: reliance traded abov... vs reliance closed lowe...; field conflict: reliance traded below its lowe vs reliance closed higher and has",
+    "created_at_step": 7,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.21360060606060605
+  },
+  "ce3d581769e32346": {
+    "id": "ce3d581769e32346",
+    "theory_id": "a93f55bbe95082e8",
+    "description": "structural: low semantic similarity: revised claim: the m... vs revised claim: regim...; low semantic similarity: the pressure-loaded ... vs if volume expansion ...; low semantic similarity: revised claim: the m... vs reliance's stock pri...; low semantic similarity: reliance traded abov... vs reliance's stock pri...; low semantic similarity: reliance traded belo... vs reliance's stock pri...",
+    "created_at_step": 7,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.21360060606060605
+  },
+  "b582e1f2e0b29903": {
+    "id": "b582e1f2e0b29903",
+    "theory_id": "a93f55bbe95082e8",
+    "description": "structural: field conflict: revised claim: the market regi vs revised claim: regime is drive; low semantic similarity: the pressure-loaded ... vs delivery_high or fii...; low semantic similarity: revised claim: the m... vs absorption_rate > 0....; low semantic similarity: reliance traded abov... vs absorption_rate > 0....; low semantic similarity: reliance traded belo... vs absorption_rate <= 0...",
+    "created_at_step": 7,
+    "resolved_at_step": 8,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.21360060606060605
+  },
+  "f61c6633252d104e": {
+    "id": "f61c6633252d104e",
+    "theory_id": "1e162b3dd10456fa",
+    "description": "structural: low semantic similarity: {'condition': \"relia... vs the pressure-loaded ...; low semantic similarity: the market regime is... vs reliance traded abov...; low semantic similarity: reliance's price act... vs reliance traded abov...; low semantic similarity: reliance's price act... vs reliance traded belo...",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.13009064935064935
+  },
+  "3629473b1c93af0b": {
+    "id": "3629473b1c93af0b",
+    "theory_id": "1e162b3dd10456fa",
+    "description": "structural: low semantic similarity: {'condition': \"relia... vs strong evidence of t...; low semantic similarity: the market regime is... vs reliance's price is ...; low semantic similarity: reliance's price act... vs reliance's price is ...; low semantic similarity: reliance's price act... vs reliance's price is ...",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.13009064935064935
+  },
+  "1abcb1856b437f5b": {
+    "id": "1abcb1856b437f5b",
+    "theory_id": "1e162b3dd10456fa",
+    "description": "structural: field conflict: the market regime is experienc vs revised claim: regime is drive; low semantic similarity: {'condition': \"relia... vs delivery < 0.6 or se...; low semantic similarity: the market regime is... vs absorption_rate > 0....; low semantic similarity: reliance's price act... vs absorption_rate > 0....; low semantic similarity: reliance's price act... vs absorption_rate <= 0...",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.13009064935064935
+  },
+  "3033eff1fe4bace6": {
+    "id": "3033eff1fe4bace6",
+    "theory_id": "1e162b3dd10456fa",
+    "description": "structural: low semantic similarity: {'condition': \"relia... vs absorption_rate < 0....; low semantic similarity: the market regime is... vs reliance closed lowe...; low semantic similarity: reliance's price act... vs reliance closed lowe...; low semantic similarity: reliance's price act... vs reliance closed high...",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.13009064935064935
+  },
+  "3472962ccad8007d": {
+    "id": "3472962ccad8007d",
+    "theory_id": "1e162b3dd10456fa",
+    "description": "structural: low semantic similarity: the market regime is... vs revised claim: regim...; low semantic similarity: {'condition': \"relia... vs if volume expansion ...; low semantic similarity: the market regime is... vs reliance's stock pri...; low semantic similarity: reliance's price act... vs reliance's stock pri...",
+    "created_at_step": 8,
+    "resolved_at_step": 9,
+    "status": "resolved",
+    "age": 1,
+    "severity": 0.13009064935064935
+  },
+  "bb538ba2911c6055": {
+    "id": "bb538ba2911c6055",
+    "theory_id": "9e5270ada3e910a7",
+    "description": "structural: low semantic similarity: absorption_rate <= 0... vs {'condition': \"relia...; low semantic similarity: the market regime is... vs reliance's price act...; low semantic similarity: volume < 5000000: tr... vs reliance's price act...; low semantic similarity: volume >= 5000000: t... vs reliance's price act...",
+    "created_at_step": 9,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.13021064935064935
+  },
+  "240871050654f3df": {
+    "id": "240871050654f3df",
+    "theory_id": "9e5270ada3e910a7",
+    "description": "structural: low semantic similarity: absorption_rate <= 0... vs the pressure-loaded ...; low semantic similarity: the market regime is... vs reliance traded abov...; low semantic similarity: volume < 5000000: tr... vs reliance traded abov...; low semantic similarity: volume >= 5000000: t... vs reliance traded belo...",
+    "created_at_step": 9,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.13021064935064935
+  },
+  "e72724a2c74c9a36": {
+    "id": "e72724a2c74c9a36",
+    "theory_id": "9e5270ada3e910a7",
+    "description": "structural: low semantic similarity: absorption_rate <= 0... vs strong evidence of t...; low semantic similarity: the market regime is... vs reliance's price is ...; low semantic similarity: volume < 5000000: tr... vs reliance's price is ...; low semantic similarity: volume >= 5000000: t... vs reliance's price is ...",
+    "created_at_step": 9,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.13021064935064935
+  },
+  "5f7ff6408aca92ba": {
+    "id": "5f7ff6408aca92ba",
+    "theory_id": "9e5270ada3e910a7",
+    "description": "structural: field conflict: the market regime is experienc vs revised claim: regime is drive; low semantic similarity: absorption_rate <= 0... vs delivery < 0.6 or se...; low semantic similarity: the market regime is... vs absorption_rate > 0....; low semantic similarity: volume < 5000000: tr... vs absorption_rate > 0....; low semantic similarity: volume >= 5000000: t... vs absorption_rate <= 0...",
+    "created_at_step": 9,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.13021064935064935
+  },
+  "eb44e514416897b0": {
+    "id": "eb44e514416897b0",
+    "theory_id": "9e5270ada3e910a7",
+    "description": "structural: low semantic similarity: the market regime is... vs reliance closed lowe...; low semantic similarity: volume < 5000000: tr... vs reliance closed lowe...; low semantic similarity: volume >= 5000000: t... vs reliance closed high...",
+    "created_at_step": 9,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.13021064935064935
+  }
+}

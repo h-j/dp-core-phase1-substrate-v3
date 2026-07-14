@@ -1,0 +1,2466 @@
+{
+  "symbol": "RELIANCE",
+  "days": 30,
+  "date_range": "2026-05-15 \u2192 2026-06-25",
+  "execution_hash": "64b827e6f224d7fcfa0aa41dae239332832e2095f5daf9dfb257e6d3c0f970b6",
+  "git_commit": "b311d340c394ae66640035f1339cbae1ab0ef1ea",
+  "llm_version": "llama3.2",
+  "replay_version": "v3.0PersistentReflective",
+  "story_summary": "This replay represents 30 days of experience on RELIANCE. During this period, DP generated 30 experiences, evolved 29 theories, extracted 0 lessons, consolidated them into 0 active principles, maintained 1 evolving world model(s), and reduced uncertainty in 3 key market mechanisms while identifying 18 unresolved evidence gap(s).",
+  "metrics": {
+    "accuracy": 17.24137931034483,
+    "knowledge_debt": 0,
+    "memory_usefulness": 0.7039277777777778,
+    "knowledge_coverage": 0.0,
+    "prediction_drift": 0.0,
+    "theory_drift": 0.0
+  },
+  "knowledge_health": {
+    "knowledge_debt_bar": 10,
+    "principle_coverage": 0.0,
+    "reuse_rate": 0.0,
+    "trust": 56.699999999999996
+  },
+  "knowledge_lifecycle": {
+    "candidate": 2,
+    "emerging": 0,
+    "trusted": 0,
+    "canonical": 0,
+    "retired": 100
+  },
+  "timeline": [
+    {
+      "date": "2026-05-15",
+      "theory": "Regime is driven by Absorption; price remains range-bound despite volume expansion.",
+      "prediction": "lower (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0
+    },
+    {
+      "date": "2026-05-18",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and weakening short-term momentum.",
+      "prediction": "uncertain (34%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.089
+    },
+    {
+      "date": "2026-05-19",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and weakening short-term momentum, and a potential shift towards bearish dominance.",
+      "prediction": "lower (78%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.242
+    },
+    {
+      "date": "2026-05-20",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance.",
+      "prediction": "higher (59%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.10336129032258065
+    },
+    {
+      "date": "2026-05-21",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance, with RELIANCE's performance serving as a key indicator of the regime's direction.",
+      "prediction": "uncertain (59%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.2308423780487805
+    },
+    {
+      "date": "2026-05-22",
+      "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance, with RELIANCE's performance serving as a key indicator of the regime's direction. However, in this observation, the regime appears to be neutral due to weak upper participation and moderate delivery, suggesting that the absorption mechanism may not be driving the market as strongly as previously thought.",
+      "prediction": "range_bound (26%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.3659292445054945
+    },
+    {
+      "date": "2026-05-25",
+      "theory": "Revised claim: The market regime is experiencing a neutral phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a mixed trend persistence.",
+      "prediction": "range_bound (40%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.15219973479334134
+    },
+    {
+      "date": "2026-05-26",
+      "theory": "Revised claim: The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "prediction": "higher (69%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.21360060606060605
+    },
+    {
+      "date": "2026-05-27",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "prediction": "range_bound (63%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.13009064935064935
+    },
+    {
+      "date": "2026-05-28",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "prediction": "range_bound (49%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.13021064935064935
+    },
+    {
+      "date": "2026-05-29",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "prediction": "lower (64%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.2905454181405417
+    },
+    {
+      "date": "2026-06-01",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "prediction": "range_bound (49%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.2228192714377821
+    },
+    {
+      "date": "2026-06-02",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "prediction": "lower (64%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.1052046153846154
+    },
+    {
+      "date": "2026-06-03",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure.",
+      "prediction": "range_bound (56%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.1064857142857143
+    },
+    {
+      "date": "2026-06-04",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure.",
+      "prediction": "range_bound (56%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.10254285714285716
+    },
+    {
+      "date": "2026-06-05",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap up and expanding volatility suggest a potential shift towards a more bullish phase, which may override the bearish sentiment.",
+      "prediction": "uncertain (51%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.089
+    },
+    {
+      "date": "2026-06-08",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap down and expanding volatility suggest a potential shift towards a more bearish phase, which may override the bullish sentiment.",
+      "prediction": "uncertain (39%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08660000000000001
+    },
+    {
+      "date": "2026-06-09",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap down and expanding volatility suggest a potential shift towards a more bearish phase, which may override the bullish sentiment.",
+      "prediction": "range_bound (62%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0842
+    },
+    {
+      "date": "2026-06-10",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap down and expanding volatility suggest a potential shift towards a more bearish phase, which may override the bullish sentiment.",
+      "prediction": "lower (68%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08180000000000001
+    },
+    {
+      "date": "2026-06-11",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap down and expanding volatility suggest a potential shift towards a more bearish phase, which may override the bullish sentiment.",
+      "prediction": "range_bound (44%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0794
+    },
+    {
+      "date": "2026-06-12",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap up and expanding volatility suggest a potential shift towards a more bullish phase, which may override the bearish sentiment.",
+      "prediction": "higher (55%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.05437490384615385
+    },
+    {
+      "date": "2026-06-15",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap up and expanding volatility suggest a potential shift towards a more bullish phase, which may override the bearish sentiment.",
+      "prediction": "uncertain (51%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.05366615384615385
+    },
+    {
+      "date": "2026-06-16",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap up and expanding volatility suggest a potential shift towards a more bullish phase, which may override the bearish sentiment.",
+      "prediction": "higher (84%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.05387384615384616
+    },
+    {
+      "date": "2026-06-17",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap up and expanding volatility suggest a potential shift towards a more bullish phase, which may override the bearish sentiment.",
+      "prediction": "range_bound (45%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.05354153846153847
+    },
+    {
+      "date": "2026-06-18",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap down and neutral sector suggest a potential shift towards a more bearish phase, which may override the bullish sentiment.",
+      "prediction": "range_bound (56%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.0941818181818182
+    },
+    {
+      "date": "2026-06-19",
+      "theory": "The market regime is experiencing a bearish phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure.",
+      "prediction": "uncertain (58%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.10635240384615385
+    },
+    {
+      "date": "2026-06-22",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and selective participation, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards neutral sentiment, but with a reduced impact on price structure.",
+      "prediction": "higher (57%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.08366000000000001
+    },
+    {
+      "date": "2026-06-23",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and selective participation, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards neutral sentiment, but with a reduced impact on price structure. Additionally, recent observations suggest that short-term momentum weakening and moderate volatility may indicate a shift towards a more bearish regime.",
+      "prediction": "lower (66%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.10233972602739727
+    },
+    {
+      "date": "2026-06-24",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and selective participation, with RELIANCE's performance serving as a key indicator of the regime's direction. However, recent observations suggest that short-term momentum weakening may indicate a shift towards a more bearish regime, potentially altering the trend persistence.",
+      "prediction": "higher (53%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.11886138467234357
+    },
+    {
+      "date": "2026-06-25",
+      "theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and selective participation, with RELIANCE's performance serving as a key indicator of the regime's direction. However, recent observations suggest that short-term momentum weakening may indicate a shift towards a more bearish regime, potentially altering trend persistence.",
+      "prediction": "range_bound (52%)",
+      "outcome": "N/A",
+      "knowledge_used": "Experience Only",
+      "contradiction": 0.14321891891891894
+    }
+  ],
+  "theory_evolution": [
+    {
+      "day": "2026-05-15",
+      "lineage_id": "7d5bd1df33d54234",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-18",
+      "lineage_id": "6a1b37fc85758229",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-19",
+      "lineage_id": "7d5bd1df33d54234",
+      "created": false,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "close"
+    },
+    {
+      "day": "2026-05-20",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-05-21",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-22",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": true,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-25",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-26",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-27",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-28",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-05-29",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-01",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-02",
+      "lineage_id": "c3651703925495d3",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-03",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-04",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-05",
+      "lineage_id": "7d5bd1df33d54234",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-08",
+      "lineage_id": "e57a12ddf574ecba",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-09",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-10",
+      "lineage_id": "7d5bd1df33d54234",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-11",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-12",
+      "lineage_id": "c3651703925495d3",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-15",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-16",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-17",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-18",
+      "lineage_id": "85fcb873b1cbc7dc",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-19",
+      "lineage_id": "c3651703925495d3",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-22",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-23",
+      "lineage_id": "7d5bd1df33d54234",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    },
+    {
+      "day": "2026-06-24",
+      "lineage_id": "6298750ad801c53e",
+      "created": true,
+      "mutated": false,
+      "merged": false,
+      "revived": false,
+      "experience_action": "create"
+    },
+    {
+      "day": "2026-06-25",
+      "lineage_id": "beba71b1d3ac52de",
+      "created": false,
+      "mutated": true,
+      "merged": false,
+      "revived": false,
+      "experience_action": "attach"
+    }
+  ],
+  "world_model": {
+    "narrative": "Baseline world model. No active principles recorded yet.",
+    "regime_constraints": {},
+    "supporting_principles": [],
+    "dominant_mechanisms": [],
+    "active_constraints": [],
+    "supporting_canonical_principles": [],
+    "confidence": 0.5,
+    "stability": "Emerging",
+    "evidence_count": 0,
+    "applicable_regimes": [],
+    "open_questions": [
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under pressure_loaded_range regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "spike"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure' fail under neutral regime?",
+        "hypothesized_factors": [
+          "expanded",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'price_structure' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "elevated"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "dry"
+        ]
+      },
+      {
+        "question_text": "Why did component 'absorption_rate' fail under neutral regime?",
+        "hypothesized_factors": [
+          "normal",
+          "normal"
+        ]
+      }
+    ],
+    "evidence_gaps": [
+      {
+        "id": "e754b743-f7a3-41bd-b1b4-b774a944440c",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "b61114ad-8065-4278-a90a-0bb38ebfc1e2",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "6bac9940-f559-4bf6-ade7-ef37e70c3b8f",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "d6b77fbd-449a-4ee1-b362-eb26c4cc3b18",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under pressure_loaded_range regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "af5999fc-b06e-4180-b68a-12df548d9c65",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "ea0a72ff-fd4f-4eaf-bfee-9258cb950ac6",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "8ffcebb4-870a-4a3e-b4a4-a2882f967901",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "9a50542a-30c0-44b2-b35d-de653cc22212",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "f08209f9-d4f2-4b25-a900-3eb68891d2d7",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "13f84055-dab3-4ddc-9a17-9b6a2ea43590",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "dd0f2e29-d320-49be-8c48-e8fae4ee93a5",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "b4118aad-8e24-435b-a586-8547afd6b42d",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "f88f61a1-fe92-4a75-bbe5-f00dbac04e34",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "4ffeb760-27bf-4b41-b0e9-f42a9ec7bce5",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "06677194-13b8-4b84-875e-218148f7a67f",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'price_structure'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'price_structure' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "50fa4082-a8ec-4232-ae4b-be40aaef7ecf",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "91be0b6c-a9a9-43dd-9c3e-8940a85c9270",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      },
+      {
+        "id": "bdb8f1d6-edf2-4902-b5da-6e2459012a33",
+        "missing_evidence": "Order book imbalance and detailed participation dynamics for 'absorption_rate'",
+        "candidate_data_source": "FII/DII Flows & Order Book Depth",
+        "expected_explanatory_value": "To resolve structural failure of component 'absorption_rate' under neutral regime",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  "chart_data": {
+    "dates": [
+      "2026-05-15",
+      "2026-05-18",
+      "2026-05-19",
+      "2026-05-20",
+      "2026-05-21",
+      "2026-05-22",
+      "2026-05-25",
+      "2026-05-26",
+      "2026-05-27",
+      "2026-05-28",
+      "2026-05-29",
+      "2026-06-01",
+      "2026-06-02",
+      "2026-06-03",
+      "2026-06-04",
+      "2026-06-05",
+      "2026-06-08",
+      "2026-06-09",
+      "2026-06-10",
+      "2026-06-11",
+      "2026-06-12",
+      "2026-06-15",
+      "2026-06-16",
+      "2026-06-17",
+      "2026-06-18",
+      "2026-06-19",
+      "2026-06-22",
+      "2026-06-23",
+      "2026-06-24",
+      "2026-06-25"
+    ],
+    "close": [
+      1330.24951171875,
+      1329.7518310546875,
+      1316.6124267578125,
+      1353.442138671875,
+      1343.388671875,
+      1348.26611328125,
+      1360.7086181640625,
+      1350.0579833984375,
+      1344.2845458984375,
+      1344.2845458984375,
+      1315.119384765625,
+      1313.9249267578125,
+      1308.5498046875,
+      1307.15625,
+      1297.699951171875,
+      1291.0,
+      1263.300048828125,
+      1269.199951171875,
+      1258.800048828125,
+      1263.0,
+      1293.0,
+      1307.0,
+      1328.800048828125,
+      1332.699951171875,
+      1328.0999755859375,
+      1309.5,
+      1326.5,
+      1309.5,
+      1313.5999755859375,
+      1318.0999755859375
+    ],
+    "delivery_pct": [
+      52.70622542240553,
+      52.772687264617005,
+      56.83012384969734,
+      55.77944774355135,
+      56.85982804539001,
+      56.00731254536614,
+      58.75399841973381,
+      54.01985909390693,
+      54.98000982649471,
+      51.42673347546638,
+      47.11880140383549,
+      44.56790035604459,
+      43.942547571930746,
+      44.64233360695972,
+      43.08359003535174,
+      45.236609176003455,
+      45.78056613854481,
+      48.97679369619591,
+      46.66731060742478,
+      51.83285946029091,
+      51.97388150373346,
+      52.26871405201209,
+      50.42605229031468,
+      53.2234875081348,
+      49.07429394026749,
+      48.674840843739545,
+      46.33526555736112,
+      45.03680902295764,
+      46.15254851538015,
+      49.37172245725797
+    ],
+    "fii_net": [
+      1760.723423781778,
+      885.5820937261275,
+      -20.073095997743383,
+      -1868.890495355913,
+      833.6131127287114,
+      -2140.9255164018223,
+      -189.10754054643127,
+      -537.2621615773305,
+      193.4017965123835,
+      476.502952043554,
+      -385.2677365383244,
+      1497.2505366193468,
+      -22.906524066059625,
+      544.2134630385839,
+      -1798.282087632246,
+      751.5401814060695,
+      303.82736210532113,
+      -88.54033016482377,
+      -729.4976841312648,
+      648.7887875734142,
+      -356.06815946510915,
+      -933.2472710708151,
+      35.66826771662844,
+      1260.4911834109118,
+      -329.64950255039054,
+      -220.8166097429164,
+      1010.1916422542774,
+      301.93764725371153,
+      -80.50963185138922,
+      -377.7727170864493
+    ],
+    "sector_zscore": [
+      -1.333237585488516,
+      -0.911179193241665,
+      -1.2950765579927774,
+      -0.7035546532572983,
+      -1.148795781908429,
+      -1.0067533444256918,
+      -0.9685460933569572,
+      -1.457529997281712,
+      -1.977166164326005,
+      -1.7168730041907527,
+      -1.6777178583210182,
+      -1.118627701353397,
+      -1.134368030180451,
+      -1.095250252975664,
+      -1.4754884849553973,
+      -1.504584085803136,
+      -1.583210957290614,
+      -1.3522085423633263,
+      -0.7226092289836646,
+      -0.1194651207754426,
+      0.3629265650277729,
+      0.6830852094804629,
+      1.0191553626271497,
+      0.8338494227875765,
+      0.3561311033663766,
+      -0.5960324155177462,
+      0.0027108915672358,
+      0.0369019196757033,
+      0.9244168921209854,
+      1.0840271291382426
+    ]
+  },
+  "decision_traces": [
+    {
+      "step": 0,
+      "date": "2026-05-15",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 65.68418401273081,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [],
+      "novelty_score": 1.0,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Regime is driven by Absorption; price remains range-bound despite volume expansion.. If participation widens above average: favor breakout higher. Else volatility remains compressed: favor range persistence. Unless liquidity evaporates entirely. Falsified if: decisive close below the prior support floor.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.55
+      },
+      "outcome": {
+        "actual_direction": "uncertain",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains supported based on the moderate volatility and normal candle participation, which aligns with the theory's expectation of a neutral subtype. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior assumption of strong participation strength. This tension highlights the need for additional confirmation signals to further validate or falsify the theory.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 1,
+      "date": "2026-05-18",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 47.29374361318996,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-15",
+          "similarity": 0.68,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.32,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and weakening short-term momentum.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.34
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 2,
+      "date": "2026-05-19",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 68.63767470123454,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-15",
+          "similarity": 0.988,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.669,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.012,
+      "reuse_decision": "reused",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and weakening short-term momentum, and a potential shift towards bearish dominance.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.779
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype: mixed. The regime remains partially supported, but its falsifiability boundary conditions are met. The observed continuation of moderate volatility and weakening short-term momentum contradicts the theory's claim that price will remain range-bound despite volume expansion. This contradiction is driven by low semantic similarity between the revised claim and the observation of increased volume participation.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 3,
+      "date": "2026-05-20",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "strong_bull",
+        "delivery_pct": 41.570603456242154,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-19",
+          "similarity": 0.675,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.656,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.654,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.325,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.59
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains partially supported, but its falsification is contingent upon additional confirmation signals. The observed continuation of moderate volatility expansion contradicts the prior assumption of decreasing participation strength, which was a key component of the revised claim. This contradiction highlights an unresolved tension in the theory's framework, specifically regarding the relationship between volume expansion and short-term momentum.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 4,
+      "date": "2026-05-21",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 61.11293444355254,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-19",
+          "similarity": 0.982,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.964,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-20",
+          "similarity": 0.668,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.018,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance, with RELIANCE's performance serving as a key indicator of the regime's direction.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.59
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype is falsified based on boundary conditions. The regime's performance, particularly RELIANCE's closing lower amid moderate volatility, contradicts the theory's claim that price remains range-bound despite volume expansion. This contradiction is supported by structural conflicts between the revised claim and observed data, such as low semantic similarity between absorption rate and delivery or sector lagging. One unresolved tension lies in the theory's inability to fully explain the observed analog divergence with 2026-05-19, which had a higher similarity score but lower confidence.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 0.0
+      }
+    },
+    {
+      "step": 5,
+      "date": "2026-05-22",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 61.421606512611525,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-18",
+          "similarity": 0.697,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-20",
+          "similarity": 0.655,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.515,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.303,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum, and a potential shift towards bullish dominance, with RELIANCE's performance serving as a key indicator of the regime's direction. However, in this observation, the regime appears to be neutral due to weak upper participation and moderate delivery, suggesting that the absorption mechanism may not be driving the market as strongly as previously thought.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.26
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype. The regime remains partially supported, but its falsification is indicated by the observed weak upper participation and moderate delivery. This contradicts the revised claim that the regime is driven by absorption, as the market's behavior suggests a neutral or mixed state rather than a strong absorption mechanism. The theory's falsifiability boundary conditions are met.",
+      "knowledge_updated": {
+        "principles_merged": 0,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 13.0
+      }
+    },
+    {
+      "step": 6,
+      "date": "2026-05-25",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 61.0271729850283,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-22",
+          "similarity": 0.816,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.672,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.49,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.184,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: The market regime is experiencing a neutral phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a mixed trend persistence.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.4
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Neutral Regime Subtype is falsified based on boundary conditions. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's specific falsifiability boundary condition that requires additional confirmation signals. Analog divergence is present, with a similarity of 0.82 to 2026-05-22, but confidence is low (0.00).",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 14.0
+      }
+    },
+    {
+      "step": 7,
+      "date": "2026-05-26",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 44.966978072100105,
+        "volume_state": "normal",
+        "regime_subtype": "pressure_loaded_range"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-25",
+          "similarity": 0.982,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-22",
+          "similarity": 0.804,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.659,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.018,
+      "reuse_decision": "generated_new",
+      "generated_theory": "Revised claim: The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.689
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "Breadth weakness remains unresolved under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 15.0
+      }
+    },
+    {
+      "step": 8,
+      "date": "2026-05-27",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 46.371357119181106,
+        "volume_state": "normal",
+        "regime_subtype": "pressure_loaded_range"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-26",
+          "similarity": 0.654,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-25",
+          "similarity": 0.649,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-22",
+          "similarity": 0.471,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.346,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.634
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is pressure_loaded_range. The regime remains supported based on the boundary conditions, as the observed continuation aligns with the expected trend persistence of mixed phase. However, the detected 5 contradictions with a total score of 0.13 indicate that the theory requires additional confirmation signals to be fully validated. One unresolved tension arises from the low semantic similarity between the theory's claim and the observed RELIANCE traded above its price, which contradicts the expected trend persistence.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 16.0
+      }
+    },
+    {
+      "step": 9,
+      "date": "2026-05-28",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "indecision",
+        "delivery_pct": 43.34655268841085,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-27",
+          "similarity": 0.852,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.526,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-25",
+          "similarity": 0.509,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.148,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.49
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which is already included in the theory's falsifiability. The regime remains supported based on boundary conditions. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 19.0
+      }
+    },
+    {
+      "step": 10,
+      "date": "2026-05-29",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 39.88194615445707,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-15",
+          "similarity": 0.58,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-21",
+          "similarity": 0.577,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-19",
+          "similarity": 0.551,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.42,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.64
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Breadth weakness remains unresolved under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 20.0
+      }
+    },
+    {
+      "step": 11,
+      "date": "2026-06-01",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "strong_bear",
+        "delivery_pct": 48.27266774607381,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-26",
+          "similarity": 0.681,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-29",
+          "similarity": 0.669,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-25",
+          "similarity": 0.664,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.319,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the absorption mechanism appears to be less dominant than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.49
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype The regime remains supported based on the boundary conditions, as the observed trend persistence leans towards bearish sentiment. However, the absorption mechanism's dominance is less clear than previously thought, leading to a trend persistence that contradicts prior participation strength assumptions. This contradiction arises from the low semantic similarity between the market regime's characteristics (moderate volatility) and the expected absorption mechanism (dominant). The observed RELIANCE's performance serves as a key indicator of the regime's direction, but its trading range-bound amid moderate volatility does not strongly support the neutral subtype.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 23.0
+      }
+    },
+    {
+      "step": 12,
+      "date": "2026-06-02",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 41.840214151530866,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-29",
+          "similarity": 0.797,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-01",
+          "similarity": 0.677,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-21",
+          "similarity": 0.576,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.203,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.64
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Breadth weakness remains unresolved under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 26.0
+      }
+    },
+    {
+      "step": 13,
+      "date": "2026-06-03",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 49.87028729432598,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-18",
+          "similarity": 0.749,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-01",
+          "similarity": 0.681,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-02",
+          "similarity": 0.667,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.251,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.56
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this observation already includes. The regime remains supported based on the boundary conditions of daily range-bound trading, weekly range-bound trading, and monthly range-bound trading. However, the observed continuation under moderate volatility expansion contradicts the prior assumption of participation strength, indicating a need for further testing.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 29.0
+      }
+    },
+    {
+      "step": 14,
+      "date": "2026-06-04",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "neutral",
+        "delivery_pct": 35.55283483037098,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-03",
+          "similarity": 0.847,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.749,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-01",
+          "similarity": 0.668,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.153,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.56
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this observation already includes. The regime remains supported based on boundary conditions. However, the observed continuation under volatility expansion contradicts the prior participation strength assumption, indicating a weakness in the theory's ability to predict market behavior during such events.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 32.0
+      }
+    },
+    {
+      "step": 15,
+      "date": "2026-06-05",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 50.64704185771566,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-21",
+          "similarity": 0.756,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-19",
+          "similarity": 0.755,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.736,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.244,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap up and expanding volatility suggest a potential shift towards a more bullish phase, which may override the bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.51
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this validation already includes. The regime remains supported based on the boundary conditions of daily weakening, weekly range-bound, and monthly range-bound. However, the observed continuation under volatility expansion contradicts the prior participation strength assumption, indicating a potential weakness in the theory's ability to predict trend persistence.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 33.0
+      }
+    },
+    {
+      "step": 16,
+      "date": "2026-06-08",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 50.99245255878058,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-05",
+          "similarity": 0.807,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-29",
+          "similarity": 0.787,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-04",
+          "similarity": 0.656,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.193,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap down and expanding volatility suggest a potential shift towards a more bearish phase, which may override the bullish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.39
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this validation already includes. The regime remains supported based on boundary conditions. However, the observed continuation under volatility expansion contradicts the prior participation strength assumption, indicating a potential weakness in the theory's ability to capture trend persistence.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 36.0
+      }
+    },
+    {
+      "step": 17,
+      "date": "2026-06-09",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 57.82135193978634,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-04",
+          "similarity": 0.963,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-03",
+          "similarity": 0.81,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-18",
+          "similarity": 0.749,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.037,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap down and expanding volatility suggest a potential shift towards a more bearish phase, which may override the bullish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.615
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this validation already includes. The regime remains supported based on boundary conditions. However, the observed continuation under volatility expansion contradicts the prior participation strength assumption, indicating a potential weakness in the theory's ability to capture trend persistence dynamics.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 37.0
+      }
+    },
+    {
+      "step": 18,
+      "date": "2026-06-10",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 38.32287185047036,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-05",
+          "similarity": 0.964,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-08",
+          "similarity": 0.797,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-15",
+          "similarity": 0.76,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.036,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap down and expanding volatility suggest a potential shift towards a more bearish phase, which may override the bullish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.681
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this validation already includes. The regime remains supported based on the boundary conditions of a recent gap down and expanding volatility, but with a reduced impact on price structure. This contradicts the prior assumption of participation strength, as observed continuation remains insufficiently tested under volatility expansion.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 38.0
+      }
+    },
+    {
+      "step": 19,
+      "date": "2026-06-11",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 61.38057909470163,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-09",
+          "similarity": 0.837,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-04",
+          "similarity": 0.798,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-28",
+          "similarity": 0.704,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.163,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap down and expanding volatility suggest a potential shift towards a more bearish phase, which may override the bullish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.44
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this validation already includes. The regime remains supported based on the boundary conditions of a recent gap down and expanding volatility, but with a reduced impact on price structure. This contradicts the prior assumption of trend persistence leaning towards bearish sentiment.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 41.0
+      }
+    },
+    {
+      "step": 20,
+      "date": "2026-06-12",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 51.35215207492836,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-20",
+          "similarity": 0.748,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-22",
+          "similarity": 0.7,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-26",
+          "similarity": 0.578,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.252,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap up and expanding volatility suggest a potential shift towards a more bullish phase, which may override the bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.554
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Breadth weakness remains unresolved under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 44.0
+      }
+    },
+    {
+      "step": 21,
+      "date": "2026-06-15",
+      "observation": {
+        "trend_state": "closed_lower",
+        "candle_type": "neutral",
+        "delivery_pct": 52.46661530017378,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.814,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-10",
+          "similarity": 0.685,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-22",
+          "similarity": 0.676,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.186,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap up and expanding volatility suggest a potential shift towards a more bullish phase, which may override the bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.51
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this observation already includes. The regime remains supported based on the recent gap up and expanding volatility, but with a reduced impact on price structure due to absorption's nuanced role in shaping trend persistence. This contradicts the prior assumption of participation strength under volatility expansion.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 47.0
+      }
+    },
+    {
+      "step": 22,
+      "date": "2026-06-16",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "expansion",
+        "delivery_pct": 48.60804313129929,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-12",
+          "similarity": 0.981,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-15",
+          "similarity": 0.814,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-20",
+          "similarity": 0.748,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.019,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap up and expanding volatility suggest a potential shift towards a more bullish phase, which may override the bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.836
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this observation already includes. The regime remains supported based on the recent gap up and expanding volatility, but with a reduced impact on price structure due to absorption's nuanced role in shaping trend persistence. This contradicts the prior assumption of participation strength under volatility expansion.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 50.0
+      }
+    },
+    {
+      "step": 23,
+      "date": "2026-06-17",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 52.31004793957095,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-22",
+          "similarity": 0.856,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-16",
+          "similarity": 0.814,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-15",
+          "similarity": 0.801,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.144,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap up and expanding volatility suggest a potential shift towards a more bullish phase, which may override the bearish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.45
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Breadth weakness remains unresolved under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 51.0
+      }
+    },
+    {
+      "step": 24,
+      "date": "2026-06-18",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_lower",
+        "delivery_pct": 40.63461125536507,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-27",
+          "similarity": 0.744,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-28",
+          "similarity": 0.744,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-17",
+          "similarity": 0.674,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.256,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and breadth strengthening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure. The recent gap down and neutral sector suggest a potential shift towards a more bearish phase, which may override the bullish sentiment.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.56
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 1.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this validation already includes. The regime remains supported based on the boundary conditions of replay validation. However, the observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 54.0
+      }
+    },
+    {
+      "step": 25,
+      "date": "2026-06-19",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "expansion",
+        "delivery_pct": 49.35488659228862,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-05-29",
+          "similarity": 0.865,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-08",
+          "similarity": 0.75,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-02",
+          "similarity": 0.707,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.135,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a bearish phase, characterized by moderate volatility and breadth weakening, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards bearish sentiment, but with a reduced impact on price structure.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "uncertain",
+        "confidence": 0.581
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.5,
+        "invalidation_triggered": true
+      },
+      "reflection": "Neutral Regime Subtype The current regime subtype is neutral, but the observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's falsifiability boundary conditions, which require additional confirmation signals. Analog divergence is present, with strong participation and moderate volatility, similar to 2026-05-29. However, this similarity does not provide sufficient evidence to support the current regime subtype.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 55.0
+      }
+    },
+    {
+      "step": 26,
+      "date": "2026-06-22",
+      "observation": {
+        "trend_state": "extended_higher",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 40.76873886828168,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-16",
+          "similarity": 0.676,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-12",
+          "similarity": 0.651,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-20",
+          "similarity": 0.608,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.324,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and selective participation, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards neutral sentiment, but with a reduced impact on price structure.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.57
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": false
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this observation already includes. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the theory's specific falsifiability boundary conditions regarding absorption in shaping trend persistence.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 58.0
+      }
+    },
+    {
+      "step": 27,
+      "date": "2026-06-23",
+      "observation": {
+        "trend_state": "extended_lower",
+        "candle_type": "strong_bear",
+        "delivery_pct": 42.115760459281866,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-19",
+          "similarity": 0.976,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-29",
+          "similarity": 0.889,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-08",
+          "similarity": 0.746,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.024,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and selective participation, with RELIANCE's performance serving as a key indicator of the regime's direction. However, the role of absorption in shaping trend persistence appears to be more nuanced than previously thought, leading to a trend persistence that leans towards neutral sentiment, but with a reduced impact on price structure. Additionally, recent observations suggest that short-term momentum weakening and moderate volatility may indicate a shift towards a more bearish regime.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "lower",
+        "confidence": 0.656
+      },
+      "outcome": {
+        "actual_direction": "lower",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "Compressed volatility masks fragility under contradiction pressure.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 59.0
+      }
+    },
+    {
+      "step": 28,
+      "date": "2026-06-24",
+      "observation": {
+        "trend_state": "closed_higher",
+        "candle_type": "neutral",
+        "delivery_pct": 57.8887454016835,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-22",
+          "similarity": 0.797,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-02",
+          "similarity": 0.607,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-11",
+          "similarity": 0.571,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.203,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and selective participation, with RELIANCE's performance serving as a key indicator of the regime's direction. However, recent observations suggest that short-term momentum weakening may indicate a shift towards a more bearish regime, potentially altering the trend persistence.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "higher",
+        "confidence": 0.53
+      },
+      "outcome": {
+        "actual_direction": "higher",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified based on the observed short-term momentum weakening, which suggests a shift towards a more bearish regime, potentially altering trend persistence. The observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This contradicts the theory's requirement for additional confirmation signals to validate its falsifiability.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 62.0
+      }
+    },
+    {
+      "step": 29,
+      "date": "2026-06-25",
+      "observation": {
+        "trend_state": "range_bound",
+        "candle_type": "rejection_upper",
+        "delivery_pct": 56.73048096475415,
+        "volume_state": "normal",
+        "regime_subtype": "neutral"
+      },
+      "memory_retrieved": [
+        {
+          "date": "2026-06-17",
+          "similarity": 0.751,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-05-22",
+          "similarity": 0.676,
+          "actual_direction": "range_bound"
+        },
+        {
+          "date": "2026-06-18",
+          "similarity": 0.619,
+          "actual_direction": "range_bound"
+        }
+      ],
+      "novelty_score": 0.249,
+      "reuse_decision": "generated_new",
+      "generated_theory": "The market regime is experiencing a mixed phase, characterized by moderate volatility and selective participation, with RELIANCE's performance serving as a key indicator of the regime's direction. However, recent observations suggest that short-term momentum weakening may indicate a shift towards a more bearish regime, potentially altering trend persistence.",
+      "applied_principles": [],
+      "world_model_constraints": {},
+      "prediction": {
+        "direction": "range_bound",
+        "confidence": 0.52
+      },
+      "outcome": {
+        "actual_direction": "range_bound",
+        "direction_score": 0.0,
+        "invalidation_triggered": true
+      },
+      "reflection": "The current regime subtype is neutral. The theory is falsified if additional confirmation signals are required, which this observation already includes. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradicts the short-term momentum weakening indicator, which suggests a shift towards a more bearish regime.",
+      "knowledge_updated": {
+        "principles_merged": 2,
+        "principles_generalized": 0,
+        "principles_retired": 0,
+        "principles_restricted": 0,
+        "debt_after": 65.0
+      }
+    }
+  ],
+  "epistemic_review": {
+    "assumptions_survived": [],
+    "assumptions_failed": [
+      "The absorption rate is valid when volume expansion and volatility are present, but breaks down when either factor is absent or dominant.",
+      "The component expectation is valid under market conditions where regime subtype and volatility regime are in a state of balance, but breaks down when either momentum or volatility dominates.",
+      "The absorption rate is valid when the market regime is in a range-bound or trend state, and its volatility is either compressed or normal, but breaks down when the regime shifts towards momentum or the volume expansion is not accompanied by increased participation.",
+      "The component expectation 'price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum' is valid under market conditions where the regime is driven by Absorption and participation and volatility expand together, indicating a neutral phase with moderate breadth strengthening."
+    ],
+    "knowledge_stronger": [],
+    "knowledge_weaker": [
+      "Absorption rate is predictive when participation and volatility expand together, but breaks down in weak participation or compressed volatility. (status: candidate, trust: -0.05)"
+    ],
+    "world_model_shifts": "The system's understanding of the relationship between volume expansion, volatility, and market regime has been refined, with a greater emphasis on the importance of participation and volatility in determining absorption rates.",
+    "fundamental_uncertainty": [
+      "The impact of weak participation or compressed volatility on absorption rates remains uncertain.",
+      "The role of momentum states in the market regime is still not fully understood.",
+      "The relationship between volume expansion, volatility, and price structure is complex and requires further investigation."
+    ],
+    "tomorrow_beliefs": "If the replay restarted tomorrow, the system would believe that the absorption rate is more nuanced and context-dependent, with a greater emphasis on participation and volatility. The component expectation would be refined to account for the complexities of momentum states and volume expansion."
+  }
+}

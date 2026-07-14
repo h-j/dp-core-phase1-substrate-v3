@@ -1,0 +1,50 @@
+{
+  "PILOT_GATE_1_WORLD_COUNT": {
+    "status": "PASS",
+    "evidence": "Registry has 100 worlds. Decided 100 worlds."
+  },
+  "PILOT_GATE_2_ZONE_COMPOSITION": {
+    "status": "PASS",
+    "evidence": "Zones: Clear=30, Boundary=50, Evidence-Limited=20."
+  },
+  "PILOT_GATE_3_BOUNDARY_MAPPING": {
+    "status": "PASS",
+    "evidence": "Verified boundary effect to ground truth mapping consistency."
+  },
+  "PILOT_GATE_4_MULTIPLE_SEEDS": {
+    "status": "PASS",
+    "evidence": "Boundary effect seed counts: {-0.08: 7, -0.04: 7, 0.0: 7, 0.05: 8, 0.12: 7, 0.16: 7, 0.2: 7}."
+  },
+  "PILOT_GATE_5_REGISTRY_FREEZE": {
+    "status": "PASS",
+    "evidence": "Stored hash: a6264ea2fe8f58a4bb63afad933ad72194ebd9bc44211d4de1996f72f08b5d19, Computed hash: a6264ea2fe8f58a4bb63afad933ad72194ebd9bc44211d4de1996f72f08b5d19."
+  },
+  "PILOT_GATE_6_THRESHOLD_FREEZE": {
+    "status": "PASS",
+    "evidence": "Admit=0.15, Reject=-0.05."
+  },
+  "PILOT_GATE_7_NO_SCIENTIFIC_MUTATION": {
+    "status": "PASS",
+    "evidence": "No mutation of scientific thresholds detected."
+  },
+  "PILOT_GATE_8_ARTIFACT_COMPLETENESS": {
+    "status": "PASS",
+    "evidence": "Found 15 of 15 required artifacts on disk."
+  },
+  "PILOT_GATE_9_PAIRED_COMPARISON_COMPLETENESS": {
+    "status": "PASS",
+    "evidence": "MLC=100, B2=100, B3=100 decisions matched."
+  },
+  "PILOT_GATE_10_ZONE_METRIC_COMPLETENESS": {
+    "status": "PASS",
+    "evidence": "Found metric sections: ['pooled', 'clear_zone', 'boundary_zone', 'evidence_limited_zone']."
+  },
+  "PILOT_GATE_11_CATASTROPHIC_DECOMPOSITION": {
+    "status": "PASS",
+    "evidence": "Found H4 sections: ['pooled', 'false_admit_reject', 'false_admit_evidence_limited', 'false_admit_effect_ambiguous']."
+  },
+  "PILOT_GATE_12_POWER_REPORT_COMPLETENESS": {
+    "status": "PASS",
+    "evidence": "All required power fields exist for H2, H3, and H4."
+  }
+}

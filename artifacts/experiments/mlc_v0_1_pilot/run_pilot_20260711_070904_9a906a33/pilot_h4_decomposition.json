@@ -1,0 +1,27 @@
+{
+  "pooled": {
+    "mlc_count": 2,
+    "mlc_rate": 0.02,
+    "b2_count": 2,
+    "b2_rate": 0.02,
+    "difference": 0.0
+  },
+  "false_admit_reject": {
+    "mlc_count": 0,
+    "mlc_rate": 0.0,
+    "b2_count": 0,
+    "b2_rate": 0.0
+  },
+  "false_admit_evidence_limited": {
+    "mlc_count": 0,
+    "mlc_rate": 0.0,
+    "b2_count": 0,
+    "b2_rate": 0.0
+  },
+  "false_admit_effect_ambiguous": {
+    "mlc_count": 2,
+    "mlc_rate": 0.02,
+    "b2_count": 2,
+    "b2_rate": 0.02
+  }
+}

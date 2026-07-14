@@ -1,0 +1,343 @@
+{
+  "step": 11,
+  "date": "2023-01-17",
+  "observation": "[volume dry, range expanding, gap up, delivery:low, fii:neutral, sector:lagging_strong, RELIANCE focus] candle expansion participation normal (divergence) RELIANCE closed higher amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance stock is experiencing a mixed trend with moderate volatility, closing higher despite sector lagging and low delivery volumes.",
+  "theory": "Revised claim: Regime is leaning towards a more neutral state due to weak bear participation and divergent trends, with moderate absorption and sector-specific factors playing a significant role in shaping the market. However, recent observations suggest that RELIANCE's dominance and asset participation surge may be influencing the market's trajectory, potentially leading to a shift away from neutrality, but only if RELIANCE continues to exhibit strong performance.",
+  "theory_summary_structured": {
+    "id": "2635e28e-e06e-44d5-a88a-11e21556a6bd",
+    "created_at": "2026-07-01 04:20:19.936051+00:00",
+    "mechanism": "revised mechanism: The regime is influenced by the interplay between sector-specific factors, moderate absorption, and the relative strength of bear and bull participation. If RELIANCE's dominance persists, it may lead to a shift in the market's trajectory towards a more bullish state.",
+    "claim": "Revised claim: Regime is leaning towards a more neutral state due to weak bear participation and divergent trends, with moderate absorption and sector-specific factors playing a significant role in shaping the market. However, recent observations suggest that RELIANCE's dominance and asset participation surge may be influencing the market's trajectory, potentially leading to a shift away from neutrality, but only if RELIANCE continues to exhibit strong performance.",
+    "if_branch": {
+      "id": "82382fbd-a867-4b04-8a66-018e17b0e4a8",
+      "created_at": "2026-07-01 04:30:19.175110+00:00",
+      "condition": "RELIANCE's closing price is above its 50-day moving average",
+      "action": "The regime shifts towards a more bullish state due to RELIANCE's dominance and asset participation surge"
+    },
+    "else_branch": {
+      "id": "63b1880a-b6ea-4a8c-8292-86f41c68551d",
+      "created_at": "2026-07-01 04:30:19.175178+00:00",
+      "condition": "RELIANCE's closing price is below or equal to its 50-day moving average",
+      "action": "The regime remains neutral, with moderate absorption and sector-specific factors playing a significant role in shaping the market"
+    },
+    "unless": "RELIANCE continues to exhibit strong performance",
+    "falsified_if": "RELIANCE's dominance is not sustained over an extended period, or if other bullish indicators are absent",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "component_id": "absorption_rate",
+        "description": "Absorption rate is low, indicating passive absorption.",
+        "observable": "delivery_pct",
+        "expected_behavior": ">60%",
+        "dependency": null
+      },
+      {
+        "component_id": "volume_confirmation",
+        "description": "Volume expands on up days relative to down days, consistent with passive absorption.",
+        "observable": "volume_state",
+        "expected_behavior": "elevated",
+        "dependency": null
+      }
+    ],
+    "falsification_conditions": [
+      "absorption_rate: high absorption rate (>80%)",
+      "volume_confirmation: down-day volume exceeds up-day volume for 3 consecutive sessions"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.5547,
+    "reflection": 0.0663,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.6100314004469202,
+    "indicators": [
+      "Structural: Field conflict: Revised claim: Regime is leani vs Revised claim: Regime is leani; Low semantic similarity: RELIANCE's dominance... vs weak bear participat...; Field conflict: Revised claim: Regime is leani vs weak bear participation AND di; Low semantic similarity: RELIANCE's closing p... vs weak bear participat...; Low semantic similarity: RELIANCE's closing p... vs RELIANCE's dominance...; Participation: weakening vs elevated",
+      "Structural: Field conflict: Revised claim: Regime is leani vs Revised claim: Regime is leani; Low semantic similarity: RELIANCE's dominance... vs Strong bear particip...; Field conflict: Revised claim: Regime is leani vs Moderate to high volume, range; Low semantic similarity: RELIANCE's closing p... vs Moderate to high vol...; Low semantic similarity: RELIANCE's closing p... vs Weak bear participat...; Participation: weakening vs elevated",
+      "Structural: Field conflict: Revised claim: Regime is leani vs Revised claim: Regime is drive; Low semantic similarity: RELIANCE's dominance... vs absorption rate exce...; Field conflict: Revised claim: Regime is leani vs weak bear participation and di; Low semantic similarity: RELIANCE's closing p... vs weak bear participat...; Low semantic similarity: RELIANCE's closing p... vs strong bear particip...; Participation: weakening vs elevated",
+      "Structural: Field conflict: Revised claim: Regime is leani vs Revised claim: Regime is drive; Low semantic similarity: RELIANCE's dominance... vs strong bear particip...; Low semantic similarity: Revised claim: Regim... vs absorption_rate > 0....; Low semantic similarity: RELIANCE's closing p... vs absorption_rate > 0....; Low semantic similarity: RELIANCE's closing p... vs absorption_rate <= 0...; Participation: weakening vs elevated"
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "6a8511b7-9130-4114-82f9-10ebd6ef3585",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "7a8afd37-f422-4e51-8f2b-f838cf3a7275",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "5e955bdd-e023-48b4-bf6c-d924c90373b9",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "5111eeb6-6f76-4aaf-8576-0c95fc83ac05",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 4 contradictions with a total score of 0.61."
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "fatigue",
+    "monthly": "mixed"
+  },
+  "regime_signature": {
+    "date": "2023-01-17",
+    "trend": "extended_higher",
+    "volatility_state": "moderate",
+    "sentiment": "neutral",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.61,
+    "active_theory_count": 41,
+    "breadth_proxy": "mixed"
+  },
+  "regime_matches": [
+    {
+      "date": "2023-01-09",
+      "similarity": 0.795,
+      "active_theories": [
+        "7d5bd1df33d54234",
+        "6a1b37fc85758229",
+        "beba71b1d3ac52de"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: Regime persists for ... vs absorption_rate > 1....; Low semantic similarity: Revised claim: Regim... vs volume_spike > 0.5 *...; Low semantic similarity: volume > 500k, range... vs volume_spike > 0.5 *...; Low semantic similarity: moderate delivery, F... vs delivery < 0.7 * ave...",
+        "Structural: Low semantic similarity: Regime persists for ... vs absorption_rate < 30...; Low semantic similarity: Revised claim: Regim... vs volume > 1000, range...; Low semantic similarity: volume > 500k, range... vs volume > 1000, range...; Low semantic similarity: moderate delivery, F... vs sector:lagging, RELI...",
+        "Structural: Low semantic similarity: Regime persists for ... vs price breaks out abo...; Low semantic similarity: Revised claim: Regim... vs volume > 2x average ...; Field conflict: volume > 500k, range expansion vs volume > 2x average daily volu; Low semantic similarity: moderate delivery, F... vs FII buying > 50% of ..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2023-01-12",
+      "similarity": 0.629,
+      "active_theories": [
+        "7d5bd1df33d54234",
+        "6a1b37fc85758229",
+        "beba71b1d3ac52de"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: Strong bear particip... vs absorption rate exce...; Low semantic similarity: Revised claim: Regim... vs weak bear participat...; Low semantic similarity: Moderate to high vol... vs weak bear participat...; Field conflict: Weak bear participation, diver vs strong bear participation and ",
+        "Structural: Low semantic similarity: Strong bear particip... vs strong bear particip...; Low semantic similarity: Revised claim: Regim... vs absorption_rate > 0....; Low semantic similarity: Moderate to high vol... vs absorption_rate > 0....; Low semantic similarity: Weak bear participat... vs absorption_rate <= 0...",
+        "Structural: Low semantic similarity: Strong bear particip... vs Regime persists for ...; Field conflict: Revised claim: Regime is leani vs volume > 500k, range expansion; Field conflict: Moderate to high volume, range vs volume > 500k, range expansion; Low semantic similarity: Weak bear participat... vs moderate delivery, F..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2023-01-13",
+      "similarity": 0.626,
+      "active_theories": [
+        "7d5bd1df33d54234",
+        "6a1b37fc85758229",
+        "beba71b1d3ac52de"
+      ],
+      "contradictions": [
+        "Structural: Field conflict: weak bear participation AND di vs Strong bear participation, sig; Low semantic similarity: Revised claim: Regim... vs Moderate to high vol...; Low semantic similarity: weak bear participat... vs Moderate to high vol...; Low semantic similarity: RELIANCE's dominance... vs Weak bear participat...",
+        "Structural: Low semantic similarity: weak bear participat... vs absorption rate exce...; Low semantic similarity: Revised claim: Regim... vs weak bear participat...; Low semantic similarity: RELIANCE's dominance... vs strong bear particip...",
+        "Structural: Field conflict: weak bear participation AND di vs strong bear participation and ; Low semantic similarity: Revised claim: Regim... vs absorption_rate > 0....; Low semantic similarity: weak bear participat... vs absorption_rate > 0....; Low semantic similarity: RELIANCE's dominance... vs absorption_rate <= 0..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2023-01-17",
+      "policy_name": "Baseline",
+      "action": "buy",
+      "conviction": 0.189,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2023-01-17",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.189,
+      "reason": "Skipped low confidence",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2023-01-17",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.189,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.3570430919016775,
+    "label": "weak"
+  },
+  "reflection": "The current regime subtype is neutral. The regime remains supported based on the provided observations, but with a note of caution due to the detected contradictions. The observed continuation of Reliance's stock price in a range-bound manner with moderate volatility contradicts the prior assumption of weak bear participation and divergent trends. This suggests that additional confirmation signals are needed to determine whether the trend is leaning towards a bullish or bearish direction.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 11,
+    "avg_usefulness": 0.193,
+    "last_seen": "2023-01-17",
+    "historical_resolution": {
+      "higher": 2,
+      "lower": 5,
+      "range_bound": 3,
+      "uncertain": 0
+    },
+    "falsified_count": 6
+  },
+  "dialectical_triggered": true,
+  "dialectical_synthesis": {
+    "shared_premise": "Reliance stock is trading in a range-bound manner with moderate volatility, indicating a mixed trend persistence and overall regime.",
+    "conflict": "The active theories present conflicting views on the trend persistence and overall regime of Reliance stock, with some suggesting a weakening trend and others indicating a mixed or neutral trend.",
+    "synthesis": "While there is agreement that Reliance stock is trading in a range-bound manner with moderate volatility, the specific interpretation of this trend is subject to debate. The conflicting views on trend persistence can be reconciled by acknowledging that Reliance's stock price movement is influenced by both short-term and long-term factors. A more nuanced understanding of the regime would require additional confirmation signals to determine whether the trend is leaning towards a bullish or bearish direction.",
+    "falsified_if": "Reliance stock closes significantly higher or lower than its current range-bound price, indicating a clear directional momentum that contradicts the mixed trend persistence and overall regime.",
+    "validation": {
+      "valid": true,
+      "quality": 0.8,
+      "issues": []
+    }
+  },
+  "metrics": {
+    "step": 11,
+    "date": "2023-01-17",
+    "contradiction_count": 4,
+    "contradiction_half_life": 0.9709302325581395,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.9772727272727273,
+    "avg_contradiction_severity": 0.17920731030502043,
+    "highest_contradiction": 0.6100314004469202,
+    "theory_count": 41,
+    "active_theories": 41,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 39,
+    "avg_retirement_age": 1.0,
+    "avg_revival_latency": 3.0,
+    "avg_theory_age": 20.975609756097562,
+    "longest_surviving_theory": 42,
+    "theory_mutation_count": 66,
+    "avg_confidence": 0.0,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.05555555555555555,
+    "avg_abstraction_length": 19.0,
+    "compression_ratio": 0.5757575757575758,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 33,
+      "theory_text": "Revised claim: Regime is leaning towards a more neutral state due to weak bear participation and divergent trends, with moderate absorption and sector-specific factors playing a significant role in shaping the market. However, recent observations suggest that RELIANCE's dominance and asset participation surge may be influencing the market's trajectory, potentially leading to a shift away from neutrality, but only if RELIANCE continues to exhibit strong performance.",
+      "contradiction_text": "Detected 4 contradictions with a total score of 0.61.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "fatigue",
+        "monthly": "mixed"
+      },
+      "regime_signature": {
+        "date": "2023-01-17",
+        "trend": "extended_higher",
+        "volatility_state": "moderate",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.61,
+        "active_theory_count": 41,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2023-01-09",
+          "similarity": 0.795,
+          "active_theories": [
+            "7d5bd1df33d54234",
+            "6a1b37fc85758229",
+            "beba71b1d3ac52de"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Regime persists for ... vs absorption_rate > 1....; Low semantic similarity: Revised claim: Regim... vs volume_spike > 0.5 *...; Low semantic similarity: volume > 500k, range... vs volume_spike > 0.5 *...; Low semantic similarity: moderate delivery, F... vs delivery < 0.7 * ave...",
+            "Structural: Low semantic similarity: Regime persists for ... vs absorption_rate < 30...; Low semantic similarity: Revised claim: Regim... vs volume > 1000, range...; Low semantic similarity: volume > 500k, range... vs volume > 1000, range...; Low semantic similarity: moderate delivery, F... vs sector:lagging, RELI...",
+            "Structural: Low semantic similarity: Regime persists for ... vs price breaks out abo...; Low semantic similarity: Revised claim: Regim... vs volume > 2x average ...; Field conflict: volume > 500k, range expansion vs volume > 2x average daily volu; Low semantic similarity: moderate delivery, F... vs FII buying > 50% of ..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2023-01-12",
+          "similarity": 0.629,
+          "active_theories": [
+            "7d5bd1df33d54234",
+            "6a1b37fc85758229",
+            "beba71b1d3ac52de"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Strong bear particip... vs absorption rate exce...; Low semantic similarity: Revised claim: Regim... vs weak bear participat...; Low semantic similarity: Moderate to high vol... vs weak bear participat...; Field conflict: Weak bear participation, diver vs strong bear participation and ",
+            "Structural: Low semantic similarity: Strong bear particip... vs strong bear particip...; Low semantic similarity: Revised claim: Regim... vs absorption_rate > 0....; Low semantic similarity: Moderate to high vol... vs absorption_rate > 0....; Low semantic similarity: Weak bear participat... vs absorption_rate <= 0...",
+            "Structural: Low semantic similarity: Strong bear particip... vs Regime persists for ...; Field conflict: Revised claim: Regime is leani vs volume > 500k, range expansion; Field conflict: Moderate to high volume, range vs volume > 500k, range expansion; Low semantic similarity: Weak bear participat... vs moderate delivery, F..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2023-01-13",
+          "similarity": 0.626,
+          "active_theories": [
+            "7d5bd1df33d54234",
+            "6a1b37fc85758229",
+            "beba71b1d3ac52de"
+          ],
+          "contradictions": [
+            "Structural: Field conflict: weak bear participation AND di vs Strong bear participation, sig; Low semantic similarity: Revised claim: Regim... vs Moderate to high vol...; Low semantic similarity: weak bear participat... vs Moderate to high vol...; Low semantic similarity: RELIANCE's dominance... vs Weak bear participat...",
+            "Structural: Low semantic similarity: weak bear participat... vs absorption rate exce...; Low semantic similarity: Revised claim: Regim... vs weak bear participat...; Low semantic similarity: RELIANCE's dominance... vs strong bear particip...",
+            "Structural: Field conflict: weak bear participation AND di vs strong bear participation and ; Low semantic similarity: Revised claim: Regim... vs absorption_rate > 0....; Low semantic similarity: weak bear participat... vs absorption_rate > 0....; Low semantic similarity: RELIANCE's dominance... vs absorption_rate <= 0..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.3570430919016775,
+        "label": "weak"
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "id": "e7cf6539-d2c2-4e98-8fad-ca4e1527e6af",
+  "created_at": "2026-06-30T06:03:55.221641+00:00",
+  "status": "retired",
+  "statement": "The absorption rate is valid when volume expansion and volatility are in the same direction, but breaks down when they move in opposite directions.",
+  "associated_lineage_ids": [
+    "fcaef396-6390-4f14-b111-fd26fe6835ee",
+    "13285851-484c-4ca6-bf0c-2c0f09d51185",
+    "a4f123b3-963f-4918-ba1a-58da656edd03",
+    "b3569634-e8d7-4023-9df0-7e451d2b7918",
+    "d98c0cf5-0b20-4238-a45a-3f83be9d1b88"
+  ],
+  "supporting_theory_ids": [
+    "a4f123b3-963f-4918-ba1a-58da656edd03",
+    "b3569634-e8d7-4023-9df0-7e451d2b7918"
+  ],
+  "contradicting_theory_ids": [
+    "fcaef396-6390-4f14-b111-fd26fe6835ee",
+    "13285851-484c-4ca6-bf0c-2c0f09d51185",
+    "d98c0cf5-0b20-4238-a45a-3f83be9d1b88"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "69b418ed-32ca-4862-8acd-a373617ee797",
+      "created_at": "2026-06-30T06:03:55.220808+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "expanded"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "f27c6f93-7970-4bfb-8d8d-cfc9462e4419",
+      "created_at": "2026-06-30T06:03:55.221362+00:00",
+      "target_component": "absorption_rate",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 5,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 5.0
+}

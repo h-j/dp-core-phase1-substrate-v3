@@ -1,0 +1,229 @@
+{
+  "step": 1,
+  "date": "2026-06-25",
+  "observation": "[volume dry, range expanding, gap up, volatility expanding, short-term momentum weakening, delivery:moderate, fii:selling, sector:lagging, TCS focus, asset selloff, asset liquidity fade] candle expansion participation weak (divergence) TCS closed lower amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Weaker trend with mixed persistence and a mixed overall regime, indicating a lack of clear direction in the market.",
+  "theory": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening.",
+  "theory_summary_structured": {
+    "id": "33ad2375-b708-4622-af43-6c146e1cb2cc",
+    "created_at": "2026-06-29 08:05:29.696363+00:00",
+    "mechanism": "Revised mechanism: The regime is driven by absorption, but the increasing volatility and short-term momentum weakening indicate a shift towards a more neutral state.",
+    "claim": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening.",
+    "if_branch": {
+      "id": "dad49ac0-7c8e-4f2f-96ee-36e2f1e2ec8e",
+      "created_at": "2026-06-29 08:06:01.189803+00:00",
+      "condition": "volume dry",
+      "action": "price remains range-bound"
+    },
+    "else_branch": {
+      "id": "12dda154-579c-49f6-9853-4dd54384e37c",
+      "created_at": "2026-06-29 08:06:01.190146+00:00",
+      "condition": "volatility expanding and short-term momentum weakening",
+      "action": "price is likely to break out of the range, but with increasing uncertainty"
+    },
+    "unless": "TCS closed lower amid moderate volatility",
+    "falsified_if": "candle expansion participation weak (divergence), asset selloff and asset liquidity fade",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "component_id": "absorption_rate",
+        "description": "Price remains range-bound despite volume expansion, indicating absorption of price action.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": "Each day's high > previous high, each low < previous low",
+        "dependency": null
+      },
+      {
+        "component_id": "volume_expansion",
+        "description": "Volume expands on up days relative to down days, indicating absorption of price action.",
+        "observable": "volume.daily_ratio",
+        "expected_behavior": "Average volume on up days exceeds average volume on down days",
+        "dependency": null
+      }
+    ],
+    "falsification_conditions": [
+      "absorption_rate: lower low formed breaking HH/HL sequence"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.507,
+    "reflection": 0.4329,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.25233333333333335,
+    "indicators": [
+      "Structural: Low semantic similarity: candle expansion par... vs decisive close below...; Low semantic similarity: Revised claim: Regim... vs participation widens...; Low semantic similarity: volume dry: price re... vs participation widens...; Field conflict: volatility expanding and short vs volatility remains compressed:"
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "9b07967e-c0b7-420a-becf-6475ac3857c3",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 1 contradictions with a total score of 0.25."
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-06-25",
+    "trend": "closed_lower",
+    "volatility_state": "moderate",
+    "sentiment": "risk_off",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.252,
+    "active_theory_count": 2,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-06-24",
+      "similarity": 0.796,
+      "active_theories": [
+        "e45667047db30dd3"
+      ],
+      "contradictions": [],
+      "confidence": 0.175,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-06-25",
+      "policy_name": "Baseline",
+      "action": "hold",
+      "conviction": 0.35,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-06-25",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.35,
+      "reason": "Skipped low confidence",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-06-25",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.35,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.17223033333333335,
+    "label": "weak"
+  },
+  "reflection": "The revised claim suggests that a regime is driven by absorption, resulting in price range-boundness despite volume expansion, with increasing volatility and short-term momentum weakening. However, the observed data does not strongly support this theory. One detected contradiction has a low semantic similarity score, suggesting that the theory's language does not accurately capture the observed market behavior. Specifically, the phrase \"candle expansion participation weak\" seems to contradict the idea of \"participation widens,\" as the data shows a weak divergence in candle expansion participation.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 2,
+    "avg_usefulness": 0.086,
+    "last_seen": "2026-06-25",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 1,
+      "range_bound": 0,
+      "uncertain": 0
+    },
+    "falsified_count": 0
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 1,
+    "date": "2026-06-25",
+    "contradiction_count": 1,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.25233333333333335,
+    "highest_contradiction": 0.25233333333333335,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 1.5,
+    "longest_surviving_theory": 2,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.0875,
+    "confidence_delta": -0.175,
+    "confidence_volatility": 0.0875,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.060240963855421686,
+    "avg_abstraction_length": 19.0,
+    "compression_ratio": 0.4418604651162791,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "extras": {
+      "observation_length": 43,
+      "theory_text": "Revised claim: Regime is driven by Absorption; price remains range-bound despite volume expansion, but with increasing volatility and short-term momentum weakening.",
+      "contradiction_text": "Detected 1 contradictions with a total score of 0.25.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-25",
+        "trend": "closed_lower",
+        "volatility_state": "moderate",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.252,
+        "active_theory_count": 2,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-24",
+          "similarity": 0.796,
+          "active_theories": [
+            "e45667047db30dd3"
+          ],
+          "contradictions": [],
+          "confidence": 0.175,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.17223033333333335,
+        "label": "weak"
+      }
+    }
+  }
+}

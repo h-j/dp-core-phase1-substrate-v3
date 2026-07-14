@@ -1,0 +1,107 @@
+{
+  "experience_id": "exp_af3dc35e4a171830_2026-05-14",
+  "lineage_id": "af3dc35e4a171830",
+  "theory_family_id": "af3dc35e4a171830",
+  "created_at": "2026-05-14",
+  "status": "closed",
+  "theory_ids": [
+    "2b28d4e9-68a1-4b5c-866d-07e449594946",
+    "ab8721e9-2c94-4ab8-b6be-5ce4c6c37468",
+    "1a03959e-46ab-4bcf-afde-fbcfa71a810a"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: institutional_accumu... vs momentum_absorption_...; Low semantic similarity: In a neutral market ... vs weak_momentum_scenar...; Low semantic similarity: mixed_market_regime:... vs weak_momentum_scenar...; Low semantic similarity: neutral_market_regim... vs normal_market_scenar...",
+    "Structural: Low semantic similarity: institutional_accumu... vs price_stability_revi...; Low semantic similarity: In a neutral market ... vs volume > 1000 and ra...; Low semantic similarity: mixed_market_regime:... vs volume > 1000 and ra...; Low semantic similarity: neutral_market_regim... vs true: retain...",
+    "Structural: Low semantic similarity: institutional_accumu... vs price_stability_revi...; Low semantic similarity: mixed_market_regime:... vs short_term_momentum ...; Low semantic similarity: neutral_market_regim... vs false: retain moment...",
+    "Structural: Low semantic similarity: The revised rate of ... vs In a neutral market ...; Low semantic similarity: The revised rate of ... vs mixed_market_regime:...; Low semantic similarity: short_term_momentum ... vs mixed_market_regime:...; Low semantic similarity: short_term_momentum ... vs neutral_market_regim...",
+    "Structural: Low semantic similarity: The revised rate of ... vs In a fatigue regime ...; Low semantic similarity: institutional_accumu... vs momentum_absorption_...; Low semantic similarity: The revised rate of ... vs weak_momentum_scenar...; Low semantic similarity: short_term_momentum ... vs weak_momentum_scenar...; Low semantic similarity: short_term_momentum ... vs normal_market_scenar...",
+    "Structural: Low semantic similarity: The revised rate of ... vs In a neutral market ...; Low semantic similarity: institutional_accumu... vs momentum_absorption_...; Low semantic similarity: The revised rate of ... vs weak_momentum_scenar...; Low semantic similarity: short_term_momentum ... vs weak_momentum_scenar...; Low semantic similarity: short_term_momentum ... vs normal_market_scenar...",
+    "Structural: Low semantic similarity: institutional_accumu... vs price_stability_revi...; Low semantic similarity: The revised rate of ... vs volume > 1000 and ra...; Low semantic similarity: short_term_momentum ... vs volume > 1000 and ra...; Low semantic similarity: short_term_momentum ... vs true: retain...",
+    "Structural: Low semantic similarity: The market regime is... vs The revised rate of ...; Low semantic similarity: momentum_absorption_... vs institutional_accumu...; Low semantic similarity: The market regime is... vs short_term_momentum ...; Low semantic similarity: market_participation... vs short_term_momentum ...; Low semantic similarity: market_participation... vs short_term_momentum ...; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.",
+    "Structural: Low semantic similarity: The market regime is... vs The revised rate of ...; Low semantic similarity: momentum_absorption_... vs institutional_accumu...; Low semantic similarity: The market regime is... vs short_term_momentum ...; Low semantic similarity: market_participation... vs short_term_momentum ...; Low semantic similarity: market_participation... vs short_term_momentum ...; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.",
+    "Structural: Low semantic similarity: The market regime is... vs In a neutral market ...; Low semantic similarity: momentum_absorption_... vs institutional_accumu...; Low semantic similarity: The market regime is... vs mixed_market_regime:...; Low semantic similarity: market_participation... vs mixed_market_regime:...; Low semantic similarity: market_participation... vs neutral_market_regim...; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_ACCUMULATION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_EXPANSION' relation is 'DAMPENS' in current theory but 'AMPLIFIES' in historical theory.",
+    "Structural: Low semantic similarity: The market regime is... vs In a fatigue regime ...; Low semantic similarity: The market regime is... vs weak_momentum_scenar...; Low semantic similarity: market_participation... vs weak_momentum_scenar...; Low semantic similarity: market_participation... vs normal_market_scenar...",
+    "Structural: Low semantic similarity: The market regime is... vs In a neutral market ...; Low semantic similarity: The market regime is... vs weak_momentum_scenar...; Low semantic similarity: market_participation... vs weak_momentum_scenar...; Low semantic similarity: market_participation... vs normal_market_scenar..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.3333333333333333
+  },
+  "regime_context": [
+    "trend:range_bound",
+    "volume:normal",
+    "volatility:moderate",
+    "liquidity:even_flow",
+    "breadth:weakened",
+    "participation:normal",
+    "momentum:weakening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:buying",
+    "sector:sector:lagging"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 2,
+  "contradiction_count": 3,
+  "validation_count": 1,
+  "falsification_count": 2,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-03T10:01:13.811149",
+      "outcome": "validated",
+      "theory_claim": "In a neutral market regime, institutional accumulation weakens the relationship between liquidity absorption rate and short-term momentum expansion, resulting in a moderately weakened correlation belo",
+      "components_passed": [
+        "momentum_absorption_rate_revision_revised_with_institutional_accumulation_updated"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-03T10:02:17.578261",
+      "outcome": "partial",
+      "theory_claim": "The revised rate of liquidity absorption is negatively correlated with short-term momentum expansion, with a moderate weakening in weak momentum scenarios, suggesting that institutional accumulation m",
+      "components_passed": [
+        "momentum_absorption_rate_revision_revised_with_institutional_accumulation_updated",
+        "momentum_absorption_rate_revision_revised_with_institutional_accumulation_updated"
+      ],
+      "components_failed": [
+        "momentum_absorption_rate_revision_revised_with_institutional_accumulation_updated"
+      ],
+      "root_cause": "momentum_absorption_rate_revision_revised_with_institutional_accumulation_updated",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This appears to be a technical analysis report from a trading platform or software, specifically designed for identifying potential trading opportunities based on market data and trends.\n\nThe report is stating that the theory \"The revised rate of liquidity absorption is negatively correlated with sh"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-03T10:06:09.052483",
+      "outcome": "partial",
+      "theory_claim": "The market regime is characterized by a modified mechanism component (MECH_003) exhibiting behavior less than 0.5, which is offset by a new mechanism component (new_mechanism_component) driving behavi",
+      "components_passed": [
+        "new_component_id",
+        "new_component_id",
+        "new_component_id",
+        "new_mechanism_component"
+      ],
+      "components_failed": [
+        "new_component_id"
+      ],
+      "root_cause": "new_component_id",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory states that the market regime is characterized by a modified mechanism component (MECH_003) exhibiting behavior less than 0.5, which is offset by a new mechanism component (new_mechanism_component) driving behavior greater than 0.5.\n\nHowever, in this case, the theory failed because the ob"
+    }
+  ],
+  "component_failure_counts": {
+    "momentum_absorption_rate_revision_revised_with_institutional_accumulation_updated": 1,
+    "new_component_id": 1
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "experience_id": "exp_dfa7678d18ef4f77_2026-06-25",
+  "lineage_id": "dfa7678d18ef4f77",
+  "theory_family_id": "dfa7678d18ef4f77",
+  "created_at": "2026-06-25",
+  "status": "closed",
+  "theory_ids": [
+    "9ae100b8-5702-4204-9ed4-0af554a776fb",
+    "efd7eed5-173a-4bd8-913b-e767e130477e",
+    "34da3ac5-04c1-415a-9bf4-788f9a2a2a3b",
+    "c438bf8c-798d-42cb-9a36-eacde3d641cf",
+    "119283de-5756-44cb-b12e-2de217cebd04"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: {'condition': 'Volum... vs decisive close above...; Low semantic similarity: Revised claim: Regim... vs sector leading: favo...; Low semantic similarity: Liquidity Absorption... vs sector leading: favo...; Low semantic similarity: Liquidity Absorption... vs volume dry: favor ra...",
+    "Structural: Low semantic similarity: delivery volume > 3x... vs {'condition': 'Volum...; Low semantic similarity: Revised claim: Regim... vs Liquidity Absorption...; Low semantic similarity: volume > 2.5x averag... vs Liquidity Absorption...; Low semantic similarity: fatigue index (FI) >... vs Liquidity Absorption...",
+    "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: delivery volume > 3x... vs decisive close above...; Low semantic similarity: Revised claim: Regim... vs sector leading: favo...; Low semantic similarity: volume > 2.5x averag... vs sector leading: favo...; Low semantic similarity: fatigue index (FI) >... vs volume dry: favor ra...",
+    "Structural: Low semantic similarity: price_structure does... vs delivery volume > 3x...; Low semantic similarity: Revised claim: Regim... vs volume > 2.5x averag...; Low semantic similarity: sector:neutral or se... vs fatigue index (FI) >...",
+    "Structural: Low semantic similarity: price_structure does... vs {'condition': 'Volum...; Low semantic similarity: Revised claim: Regim... vs Liquidity Absorption...; Low semantic similarity: volume > 2x average ... vs Liquidity Absorption...; Low semantic similarity: sector:neutral or se... vs Liquidity Absorption...",
+    "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: price_structure does... vs decisive close above...; Low semantic similarity: Revised claim: Regim... vs sector leading: favo...; Low semantic similarity: volume > 2x average ... vs sector leading: favo...; Low semantic similarity: sector:neutral or se... vs volume dry: favor ra..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.3333333333333333
+  },
+  "regime_context": [
+    "trend:range_bound",
+    "volume:dry",
+    "volatility:moderate",
+    "liquidity:even_flow",
+    "breadth:nascent",
+    "participation:weak",
+    "momentum:weakening",
+    "subtype:fatigue",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:leading_strong"
+  ],
+  "theory_subtype": "fatigue",
+  "mutation_count": 4,
+  "contradiction_count": 4,
+  "validation_count": 1,
+  "falsification_count": 2,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-01T15:18:50.075013",
+      "outcome": "partial",
+      "theory_claim": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening effect due to fatigue.",
+      "components_passed": [
+        "price_structure",
+        "volume_confirmation"
+      ],
+      "components_failed": [
+        "price_structure"
+      ],
+      "root_cause": "price_structure",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Revised claim: Regime is driven by Liquidity Absorption, but with a weakening effect due to fatigue\" failed given the observed data because it did not accurately predict the market behavior.\n\nHere's why:\n\n1. **Volume elevated**: The observation of elevated volume suggests that liquidity "
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-01T15:19:49.056194",
+      "outcome": "validated",
+      "theory_claim": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening effect due to fatigue and increased market sentiment.",
+      "components_passed": [
+        "price_structure",
+        "volume_confirmation"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-02T08:33:17.993327",
+      "outcome": "partial",
+      "theory_claim": "Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion.",
+      "components_passed": [
+        "liquidity_absorption",
+        "price_structure"
+      ],
+      "components_failed": [
+        "price_structure"
+      ],
+      "root_cause": "price_structure",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Regime is driven by Liquidity Absorption; price remains range-bound despite volume expansion\" failed to accurately predict the market behavior based on the provided observations.\n\nHere's a breakdown of why this theory might not have held up:\n\n1. **Volume expansion**: The observation that"
+    }
+  ],
+  "component_failure_counts": {
+    "price_structure": 2
+  }
+}

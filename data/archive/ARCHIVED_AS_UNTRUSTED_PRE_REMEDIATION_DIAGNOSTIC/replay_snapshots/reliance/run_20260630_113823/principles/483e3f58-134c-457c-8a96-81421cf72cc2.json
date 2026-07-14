@@ -1,0 +1,81 @@
+{
+  "id": "483e3f58-134c-457c-8a96-81421cf72cc2",
+  "created_at": "2026-06-30T07:37:51.941504+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid when volume expansion is positively correlated with market participation and volatility, but breaks down when volume expansion is negatively correlated or when market participation and volatility do not expand together.",
+  "associated_lineage_ids": [
+    "bdf9da87-01e4-46fb-9593-e4e2bfc04bd7",
+    "e23f7dd2-0475-4e72-8635-8172b7f28f7e",
+    "fe1776ae-4034-45eb-922f-b9da1ec8f38c",
+    "406884ae-b852-4f57-8da7-5c393989aa3c"
+  ],
+  "supporting_theory_ids": [
+    "bdf9da87-01e4-46fb-9593-e4e2bfc04bd7",
+    "e23f7dd2-0475-4e72-8635-8172b7f28f7e",
+    "fe1776ae-4034-45eb-922f-b9da1ec8f38c",
+    "406884ae-b852-4f57-8da7-5c393989aa3c"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "d854ebc0-8f21-4a9a-b6dd-2864a15ea7bf",
+      "created_at": "2026-06-30T07:37:51.941205+00:00",
+      "target_component": "volume_expansion",
+      "expected_status": "passed or failed",
+      "applicability_filter": {
+        "regime_subtype": [
+          "momentum",
+          null
+        ],
+        "volatility_regime": [
+          "compressed",
+          "expanded"
+        ],
+        "volume_state": [
+          "normal"
+        ]
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 25,
+  "revision_history": [
+    {
+      "id": "86fa4f51-df61-4385-893b-5e092a987617",
+      "created_at": "2026-06-30T07:32:45.034521+00:00",
+      "revision_step": 25,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid when volume expansion is positively correlated with market participation and volatility, but breaks down when volume expansion is negatively correlated or when market participation and volatility do not expand together.",
+      "change_reason": "consolidated via hierarchical merging"
+    },
+    {
+      "id": "6bde6618-0fbe-4756-b5ac-c06e11cbf6f4",
+      "created_at": "2026-06-30T07:37:51.940976+00:00",
+      "revision_step": 25,
+      "previous_statement": "Consolidated group",
+      "updated_statement": "The component expectation is valid when volume expansion is positively correlated with market participation and volatility, but breaks down when volume expansion is negatively correlated or when market participation and volatility do not expand together.",
+      "change_reason": "consolidated via hierarchical merging"
+    }
+  ],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 1,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 4.95
+}

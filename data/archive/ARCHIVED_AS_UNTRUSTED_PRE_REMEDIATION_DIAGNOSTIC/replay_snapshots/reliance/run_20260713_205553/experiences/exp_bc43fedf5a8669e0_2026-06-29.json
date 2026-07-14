@@ -1,0 +1,142 @@
+{
+  "experience_id": "exp_bc43fedf5a8669e0_2026-06-29",
+  "lineage_id": "bc43fedf5a8669e0",
+  "theory_family_id": "bc43fedf5a8669e0",
+  "created_at": "2026-06-29",
+  "status": "active",
+  "theory_ids": [
+    "ef288966-78c9-4e11-b4d6-7334af61a325",
+    "d4ce5d8c-9c2f-43d6-af32-ae4604bfba91",
+    "c74bfb31-fcaa-4ff4-8caa-162542a5fe6e",
+    "b6895bdf-5df0-4a29-a06c-2fe3c269f8bb"
+  ],
+  "contradictions": [
+    "Structural: Field conflict: Increased volatility leads to  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: Increased volatility... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs never: ignore...; Participation: weakening vs elevated",
+    "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: DELIVERY_EXHAUSTION... vs never...; Low semantic similarity: Compressed volatilit... vs weak_move && RELIANC...; Low semantic similarity: volume > 1000 and ga... vs weak_move && RELIANC...; Low semantic similarity: false: demote... vs otherwise: demote ME...",
+    "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: DELIVERY_EXHAUSTION... vs never...; Field conflict: Compressed volatility through  vs VOLATILITY_EXPANSION > 0.5: AD; Low semantic similarity: volume > 1000 and ga... vs VOLATILITY_EXPANSION...; Low semantic similarity: false: demote... vs VOLATILITY_EXPANSION...",
+    "Structural: Low semantic similarity: Compressed volatilit... vs {\n  \"claim\": \"Regime...; Low semantic similarity: DELIVERY_EXHAUSTION... vs never...; Low semantic similarity: Compressed volatilit... vs always: observe...; Low semantic similarity: volume > 1000 and ga... vs always: observe...; Low semantic similarity: false: demote... vs never: ignore...",
+    "Structural: Field conflict: Compressed volatility through  vs Compressed volatility through ; Low semantic similarity: MOMENTUM_DAMPENING... vs DELIVERY_EXHAUSTION...; Low semantic similarity: Compressed volatilit... vs volume > 1000 and ga...; Low semantic similarity: volume_spike OR deli... vs volume > 1000 and ga...",
+    "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Low semantic similarity: Compressed volatilit... vs weak_move && RELIANC...; Low semantic similarity: volume_spike OR deli... vs weak_move && RELIANC...; Low semantic similarity: false: demote mechan... vs otherwise: demote ME...",
+    "Structural: Field conflict: Compressed volatility through  vs Increased volatility leads to ; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Field conflict: Compressed volatility through  vs VOLATILITY_EXPANSION > 0.5: AD; Low semantic similarity: volume_spike OR deli... vs VOLATILITY_EXPANSION...; Low semantic similarity: false: demote mechan... vs VOLATILITY_EXPANSION...",
+    "Structural: Field conflict: Compressed volatility through  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: MOMENTUM_DAMPENING... vs never...; Low semantic similarity: Compressed volatilit... vs always: observe...; Low semantic similarity: volume_spike OR deli... vs always: observe...; Low semantic similarity: false: demote mechan... vs never: ignore...",
+    "Structural: Low semantic similarity: VOLATILITY_COMPRESSI... vs MECH_001...; Low semantic similarity: In a neutral market ... vs liquidity_constraine...; Low semantic similarity: volume > 1000 and ra... vs liquidity_constraine...; Low semantic similarity: otherwise: retain ME... vs not_liquidity_constr...; Volatility: expansion vs stability",
+    "Structural: Field conflict: In a neutral market regime, re vs Compressed volatility through ; Low semantic similarity: VOLATILITY_COMPRESSI... vs MOMENTUM_DAMPENING...; Low semantic similarity: In a neutral market ... vs market_conditions:le...; Low semantic similarity: volume > 1000 and ra... vs market_conditions:le...; Low semantic similarity: otherwise: retain ME... vs market_conditions:li...",
+    "Structural: Field conflict: In a neutral market regime, re vs Compressed volatility through ; Low semantic similarity: VOLATILITY_COMPRESSI... vs MOMENTUM_DAMPENING...; Low semantic similarity: In a neutral market ... vs volume_spike OR deli...; Low semantic similarity: volume > 1000 and ra... vs volume_spike OR deli...; Low semantic similarity: otherwise: retain ME... vs false: demote mechan...",
+    "Structural: Field conflict: In a neutral market regime, re vs Compressed volatility through ; Low semantic similarity: VOLATILITY_COMPRESSI... vs DELIVERY_EXHAUSTION...; Low semantic similarity: In a neutral market ... vs volume > 1000 and ga...; Low semantic similarity: volume > 1000 and ra... vs volume > 1000 and ga...; Low semantic similarity: otherwise: retain ME... vs false: demote...; Volatility: expansion vs stability",
+    "Structural: Low semantic similarity: In a neutral market ... vs Increased volatility...; Low semantic similarity: VOLATILITY_COMPRESSI... vs never...; Low semantic similarity: In a neutral market ... vs weak_move && RELIANC...; Low semantic similarity: volume > 1000 and ra... vs weak_move && RELIANC...; Low semantic similarity: otherwise: retain ME... vs otherwise: demote ME..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.4
+  },
+  "regime_context": [
+    "trend:closed_lower",
+    "volume:elevated",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:normal",
+    "momentum:weakening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 3,
+  "contradiction_count": 4,
+  "validation_count": 2,
+  "falsification_count": 3,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-13T20:58:51.187326",
+      "outcome": "validated",
+      "theory_claim": "{\n  \"claim\": \"Regime is driven by Liquidity Absorption; price remains range-bound despite moderate volatility.\",\n  \"mechanism\": \"Liquidity Absorption\",\n  \"if_branch\": {\"condition\": \"delivery_pct > 50 ",
+      "components_passed": [],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-13T21:00:02.704291",
+      "outcome": "partial",
+      "theory_claim": "Increased volatility leads to expanding price ranges, weakening short-term momentum, and ultimately resulting in lower prices due to delivery exhaustion.",
+      "components_passed": [
+        "VOLATILITY_EXPANSION",
+        "MOMENTUM_DAMPENING"
+      ],
+      "components_failed": [
+        "DELIVERY_EXHAUSTION"
+      ],
+      "root_cause": "DELIVERY_EXHAUSTION",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Increased volatility leads to expanding price ranges, weakening short-term momentum, and ultimately resulting in lower prices due to delivery exhaustion\" failed given the observed data.\n\nHere's a breakdown of why:\n\n1. **Volume was dry**: This suggests that there wasn't much buying or sel"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-13T21:03:22.285616",
+      "outcome": "validated",
+      "theory_claim": "Compressed volatility through repeated compression mechanisms leads to reduced price ranges in a neutral market regime, resulting in contracting price ranges and potentially stabilizing market dynamic",
+      "components_passed": [
+        "VOLATILITY_COMPRESSION",
+        "VOLATILITY_COMPRESSION",
+        "VOLATILITY_COMPRESSION"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-13T21:04:43.152899",
+      "outcome": "falsified",
+      "theory_claim": "Compressed volatility through Volatility Compression (MECH_001) and Adjusted Volatility Expansion Adjustment (MECH_004) mechanisms lead to reduced price ranges in a liquidity-constrained market regime",
+      "components_passed": [],
+      "components_failed": [
+        "VOLATILITY_COMPRESSION",
+        "VOLATILITY_COMPRESSION",
+        "VOLATILITY_COMPRESSION",
+        "VOLATILITY_EXPANSION_ADJUSTMENT"
+      ],
+      "root_cause": "VOLATILITY_COMPRESSION",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Compressed volatility through Volatility Compression (MECH_001) and Adjusted Volatility Expansion Adjustment (MECH_004) mechanisms lead to reduced price ranges in a liquidity-constrained market regime\" failed given the observed data.\n\nHere's why:\n\n1. **Liquidity-constrained market regime"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-13T21:09:01.978233",
+      "outcome": "partial",
+      "theory_claim": "In a neutral market regime, reduced price ranges are expected due to adjusted volatility expansion and liquidity contraction mechanisms, leading to increased price stability through self-regulating ma",
+      "components_passed": [
+        "VOLATILITY_EXPANSION_ADJUSTMENT_2",
+        "LIQUIDITY_CONTRACTION_ADJUSTMENT"
+      ],
+      "components_failed": [
+        "VOLATILITY_EXPANSION_ADJUSTMENT_2"
+      ],
+      "root_cause": "VOLATILITY_EXPANSION_ADJUSTMENT_2",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory being tested suggests that in a neutral market regime, reduced price ranges are expected due to adjusted volatility expansion and liquidity contraction mechanisms, leading to increased price stability through self-regulating market forces. However, the observed data does not support this "
+    }
+  ],
+  "component_failure_counts": {
+    "DELIVERY_EXHAUSTION": 1,
+    "VOLATILITY_COMPRESSION": 3,
+    "VOLATILITY_EXPANSION_ADJUSTMENT": 1,
+    "VOLATILITY_EXPANSION_ADJUSTMENT_2": 1
+  }
+}

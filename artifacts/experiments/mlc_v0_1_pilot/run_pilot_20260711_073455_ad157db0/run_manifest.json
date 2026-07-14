@@ -1,0 +1,62 @@
+{
+  "run_id": "run_pilot_20260711_073455_ad157db0",
+  "timestamp": "2026-07-11T02:04:55.822868Z",
+  "git_commit": "00917cea62b3f23ad003fc449d5d81f4899f6982",
+  "configuration_hash": "8bcece76360f39e8e603e94b9e9b160fdbe7982fdec2a6c13b2ec3cd1622bccc",
+  "world_registry_hash": "a6264ea2fe8f58a4bb63afad933ad72194ebd9bc44211d4de1996f72f08b5d19",
+  "scientific_configuration": {
+    "admit_threshold": 0.15,
+    "reject_threshold": -0.05,
+    "min_evidence_count": 15,
+    "min_coverage": 0.1
+  },
+  "exact_world_counts_by_zone": {
+    "clear": 30,
+    "boundary": 50,
+    "evidence_limited": 20
+  },
+  "exact_boundary_effect_allocation": {
+    "-0.08": 7,
+    "-0.04": 7,
+    "0.0": 7,
+    "0.05": 8,
+    "0.12": 7,
+    "0.16": 7,
+    "0.2": 7
+  },
+  "artifact_inventory": [
+    "pilot_protocol.json",
+    "pilot_world_registry.json",
+    "pilot_world_registry_hash.json",
+    "pilot_ground_truth.json",
+    "pilot_results.csv",
+    "pilot_mlc_decisions.json",
+    "pilot_baseline_results.json",
+    "pilot_pooled_metrics.json",
+    "pilot_zone_metrics.json",
+    "pilot_h4_decomposition.json",
+    "pilot_h5_metrics.json",
+    "pilot_paired_comparisons.json",
+    "pilot_power_analysis.json",
+    "pilot_validity_gates.json",
+    "pilot_summary_report.md",
+    "run_manifest.json"
+  ],
+  "hashes_of_scientific_artifacts": {
+    "pilot_protocol.json": "45ab90ec7ee00514c98d0fa679076629a5e1ea3ac71da762407803ed94ecd76c",
+    "pilot_world_registry.json": "1436266bde3f16ed9ca02f5688af793f72f9b3b2d9bc1ed473fa2ec0f30dd58e",
+    "pilot_world_registry_hash.json": "eaee302e6e70aeedc04da1ba9d33276856b0c7de021b7f89b331920fcb18b785",
+    "pilot_ground_truth.json": "b02de96e0d0e43307579737cdcdccff08f700504c70dafac5d596d6482da79f6",
+    "pilot_results.csv": "1e451afb85c486068ee5f94676dd0408fc84bf4e4318e55c4b48e65bd025f569",
+    "pilot_mlc_decisions.json": "73ae91a8272790f0dd022d4a331eea6d7de377534f94f619875a5a82a1e8dbc8",
+    "pilot_baseline_results.json": "ccdf09241c613aa6465a02576e5ed4f0de6550de49d229c7da8d17395db93a64",
+    "pilot_pooled_metrics.json": "7ba31e3edd17eb2641a08a1dbe1b8ffe343cf9a6ee6125ee8127a34451bdfef5",
+    "pilot_zone_metrics.json": "517140bebc240ca0e8802d7a0072b89fb2f9709f985a68e79632efa801d85266",
+    "pilot_h4_decomposition.json": "80df167b62b194c979c3a51dedfb97eeed457f5ef04b611951da94615fa78988",
+    "pilot_h5_metrics.json": "646e242939f9a92988bf44fc741b3e3872fb359280f27e2b8edb51314651099b",
+    "pilot_paired_comparisons.json": "c2509475813994d374517ecac7e20bf23a80e5a2b7bf3a7776096c92819d0ddc",
+    "pilot_power_analysis.json": "c35976a84b0afda0f5e28f7e27a9655bb1634f19dfb0a3f03ecd36ef2bf02486",
+    "pilot_validity_gates.json": "42febd6a565c97bfc33728ceddf768a7006af7cc5b65aa3b16a2c54acb0fe3af",
+    "pilot_summary_report.md": "adc6306a60742ef4323dc7c3dc9e567667dcf1b4554dfa015086bcb3644af839"
+  }
+}

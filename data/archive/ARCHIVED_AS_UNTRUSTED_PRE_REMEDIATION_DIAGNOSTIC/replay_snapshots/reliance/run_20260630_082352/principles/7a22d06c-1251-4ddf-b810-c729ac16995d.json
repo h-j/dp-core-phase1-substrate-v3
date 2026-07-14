@@ -1,0 +1,64 @@
+{
+  "id": "7a22d06c-1251-4ddf-b810-c729ac16995d",
+  "created_at": "2026-06-30T03:02:23.328209+00:00",
+  "status": "retired",
+  "statement": "The component expectation 'price remains range-bound despite volume expansion, but with increasing volatility and strengthening short-term momentum' is valid under market conditions where the regime subtype is either in a momentum or range-bound state, and the volatility regime is compressed or expanded, while the volume state is high.",
+  "associated_lineage_ids": [
+    "c2390607-3979-4dd7-8b36-5d409e008c26",
+    "44f8fc63-90c2-4a44-9636-7c90dfcb9e53",
+    "da1263aa-73c7-4158-8f85-e1e05ce616b0",
+    "09f94250-73fe-4a4d-a06d-3c5e91f05fcc",
+    "d1f340af-40a8-4894-93f1-f514bfd1b259",
+    "2a395408-5fd1-4b70-b23c-1744acef3573",
+    "4802256e-e3d6-411c-b269-73a0c6932dad"
+  ],
+  "supporting_theory_ids": [
+    "da1263aa-73c7-4158-8f85-e1e05ce616b0",
+    "4802256e-e3d6-411c-b269-73a0c6932dad",
+    "c2390607-3979-4dd7-8b36-5d409e008c26",
+    "2a395408-5fd1-4b70-b23c-1744acef3573",
+    "09f94250-73fe-4a4d-a06d-3c5e91f05fcc",
+    "44f8fc63-90c2-4a44-9636-7c90dfcb9e53",
+    "d1f340af-40a8-4894-93f1-f514bfd1b259"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "67cfa032-71f8-437b-8d9a-e3bbd25ee189",
+      "created_at": "2026-06-30T03:02:23.327869+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "normal",
+        "volume_state": "low"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "e8dbfa6e-36c9-4ba5-b0ca-607805bb649f",
+      "created_at": "2026-06-30T03:02:23.328017+00:00",
+      "target_component": "price_structure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volatility_regime": "compressed",
+        "volume_state": "high"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 7,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

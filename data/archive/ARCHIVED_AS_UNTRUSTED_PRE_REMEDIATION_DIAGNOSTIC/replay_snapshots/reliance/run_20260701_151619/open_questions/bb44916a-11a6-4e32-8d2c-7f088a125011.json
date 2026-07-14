@@ -1,0 +1,15 @@
+{
+  "id": "bb44916a-11a6-4e32-8d2c-7f088a125011",
+  "created_at": "2026-07-02T03:22:03.155304+00:00",
+  "created_at_step": 15,
+  "question_text": "Why did component 'volume_confirmation' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "bf8b7a85-70d0-4f2f-abdd-1617a7c4c224"
+  ],
+  "hypothesized_factors": [
+    "expanded",
+    "normal"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

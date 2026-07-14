@@ -1,0 +1,12 @@
+{
+  "832bdb25e88bbba9": {
+    "id": "832bdb25e88bbba9",
+    "theory_id": "3f701dde4ca14d5e",
+    "description": "structural: low semantic similarity: candle expansion par... vs decisive close below...; low semantic similarity: revised claim: regim... vs participation widens...; low semantic similarity: volume dry: price re... vs participation widens...; field conflict: volatility expanding and short vs volatility remains compressed:",
+    "created_at_step": 1,
+    "resolved_at_step": null,
+    "status": "active",
+    "age": 0,
+    "severity": 0.25233333333333335
+  }
+}

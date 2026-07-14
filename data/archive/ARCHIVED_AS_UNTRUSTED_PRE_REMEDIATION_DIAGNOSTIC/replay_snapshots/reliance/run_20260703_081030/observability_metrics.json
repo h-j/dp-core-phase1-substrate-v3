@@ -1,0 +1,989 @@
+[
+  {
+    "step": 0,
+    "date": "2026-06-19",
+    "contradiction_count": 0,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.0,
+    "highest_contradiction": 0.0,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 0,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 1.0,
+    "longest_surviving_theory": 1,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.24,
+    "confidence_delta": 0.0,
+    "confidence_volatility": 0.0,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.5,
+    "memory_reference_count": 0,
+    "critique_density": 0.014925373134328358,
+    "avg_abstraction_length": 19.0,
+    "compression_ratio": 0.475,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 12,
+    "mechanism_count": 2,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 0,
+    "mechanisms_added_count": 2,
+    "mechanisms_modified_count": 0,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 0,
+    "words_after_mutation": 0,
+    "mechanisms_before_mutation": 0,
+    "mechanisms_after_mutation": 0,
+    "extras": {
+      "observation_length": 40,
+      "theory_text": "Regime is driven by passive absorption; price remains range-bound despite volume expansion.",
+      "contradiction_text": "Detected 0 contradictions with a total score of 0.00.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-19",
+        "trend": "closed_lower",
+        "volatility_state": "moderate",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.0,
+        "active_theory_count": 1,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [],
+      "theory_usefulness": {
+        "score": 0.0,
+        "label": "unknown"
+      }
+    }
+  },
+  {
+    "step": 1,
+    "date": "2026-06-22",
+    "contradiction_count": 1,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.089,
+    "highest_contradiction": 0.089,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 1.5,
+    "longest_surviving_theory": 2,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.12,
+    "confidence_delta": -0.24,
+    "confidence_volatility": 0.12,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 5.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.04,
+    "avg_abstraction_length": 15.0,
+    "compression_ratio": 0.39473684210526316,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 38,
+    "mechanism_count": 3,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 0,
+    "mechanisms_added_count": 2,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 0.5,
+    "words_before_mutation": 12,
+    "words_after_mutation": 38,
+    "mechanisms_before_mutation": 2,
+    "mechanisms_after_mutation": 3,
+    "extras": {
+      "observation_length": 38,
+      "theory_text": "The revised rate of volume expansion during up days (MECH_002) and absorption rate revision (MECH_003) jointly cause a stronger upward bias in price movements, leading to a neutral market regime characterized by range-bound trading with increasing institutional buying.",
+      "contradiction_text": "Detected 1 contradictions with a total score of 0.09.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-22",
+        "trend": "closed_higher",
+        "volatility_state": "moderate",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.089,
+        "active_theory_count": 2,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-19",
+          "similarity": 0.68,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.1708366666666667,
+        "label": "weak"
+      }
+    }
+  },
+  {
+    "step": 2,
+    "date": "2026-06-23",
+    "contradiction_count": 0,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 1.0,
+    "avg_contradiction_severity": 0.089,
+    "highest_contradiction": 0.089,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 0,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 1,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 1.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.5,
+    "longest_surviving_theory": 3,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.1714,
+    "confidence_delta": 0.03420000000000001,
+    "confidence_volatility": 0.12199967213070698,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 5.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.03125,
+    "avg_abstraction_length": 20.0,
+    "compression_ratio": 0.5714285714285714,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 38,
+    "mechanism_count": 3,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 0,
+    "mechanisms_added_count": 0,
+    "mechanisms_modified_count": 0,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 0,
+    "words_after_mutation": 0,
+    "mechanisms_before_mutation": 0,
+    "mechanisms_after_mutation": 0,
+    "extras": {
+      "observation_length": 35,
+      "theory_text": "The revised rate of volume expansion during up days (MECH_002) and absorption rate revision (MECH_003) jointly cause a stronger upward bias in price movements, leading to a neutral market regime characterized by range-bound trading with increasing institutional buying.",
+      "contradiction_text": "Detected 1 contradictions with a total score of 0.09.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "mixed",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-23",
+        "trend": "extended_lower",
+        "volatility_state": "moderate",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.089,
+        "active_theory_count": 1,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-19",
+          "similarity": 0.784,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-22",
+          "similarity": 0.667,
+          "active_theories": [
+            "f2cca7fa84e5cfbc",
+            "98d842ea061d549a"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The revised rate of ... vs Regime is driven by ...; Low semantic similarity: The revised rate of ... vs participation widens...; Low semantic similarity: volume_expansion_rev... vs participation widens...; Low semantic similarity: false: ... vs volatility remains c..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.305982,
+        "label": "weak"
+      }
+    }
+  },
+  {
+    "step": 3,
+    "date": "2026-06-24",
+    "contradiction_count": 2,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.3333333333333333,
+    "avg_contradiction_severity": 0.5471333333333334,
+    "highest_contradiction": 0.7762,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 1.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.3333333333333335,
+    "longest_surviving_theory": 4,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.12855,
+    "confidence_delta": -0.24,
+    "confidence_volatility": 0.1291174174927612,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.05128205128205128,
+    "avg_abstraction_length": 17.0,
+    "compression_ratio": 0.4594594594594595,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 29,
+    "mechanism_count": 1,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 2,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 0,
+    "mechanism_stability": 0.0,
+    "words_before_mutation": 38,
+    "words_after_mutation": 29,
+    "mechanisms_before_mutation": 3,
+    "mechanisms_after_mutation": 1,
+    "extras": {
+      "observation_length": 37,
+      "theory_text": "Volume expansion during up days is weaker than down days due to asset selloff and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+      "contradiction_text": "Detected 3 contradictions with a total score of 0.78.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "mixed",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-24",
+        "trend": "closed_higher",
+        "volatility_state": "moderate",
+        "sentiment": "cautiously_positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.776,
+        "active_theory_count": 2,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-22",
+          "similarity": 0.977,
+          "active_theories": [
+            "f2cca7fa84e5cfbc",
+            "98d842ea061d549a"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The revised rate of ... vs Regime is driven by ...; Low semantic similarity: The revised rate of ... vs participation widens...; Low semantic similarity: volume_expansion_rev... vs participation widens...; Low semantic similarity: false: ... vs volatility remains c..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-19",
+          "similarity": 0.68,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-23",
+          "similarity": 0.669,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The revised rate of ... vs Regime is driven by ...; Low semantic similarity: The revised rate of ... vs participation widens...; Low semantic similarity: volume_expansion_rev... vs participation widens...; Low semantic similarity: false: ... vs volatility remains c..."
+          ],
+          "confidence": 0.274,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.1,
+        "label": "failed"
+      }
+    }
+  },
+  {
+    "step": 4,
+    "date": "2026-06-25",
+    "contradiction_count": 3,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.5,
+    "avg_contradiction_severity": 0.6861416666666668,
+    "highest_contradiction": 0.82515,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 2,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 2.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.5,
+    "longest_surviving_theory": 5,
+    "theory_mutation_count": 1,
+    "avg_confidence": 0.11284,
+    "confidence_delta": -0.19,
+    "confidence_volatility": 0.11968401062798656,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 5.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.02666666666666667,
+    "avg_abstraction_length": 19.0,
+    "compression_ratio": 0.5428571428571428,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 30,
+    "mechanism_count": 1,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 3,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 0.0,
+    "words_before_mutation": 29,
+    "words_after_mutation": 30,
+    "mechanisms_before_mutation": 1,
+    "mechanisms_after_mutation": 1,
+    "extras": {
+      "observation_length": 35,
+      "theory_text": "Volume expansion during up days is weaker than down days due to asset selloff and fading liquidity, leading to a downward bias in price movements, consistent with fatigue regime behavior.",
+      "contradiction_text": "Detected 4 contradictions with a total score of 0.83.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "mixed",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-25",
+        "trend": "range_bound",
+        "volatility_state": "moderate",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.825,
+        "active_theory_count": 1,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-22",
+          "similarity": 0.669,
+          "active_theories": [
+            "f2cca7fa84e5cfbc",
+            "98d842ea061d549a"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The revised rate of ... vs Regime is driven by ...; Low semantic similarity: The revised rate of ... vs participation widens...; Low semantic similarity: volume_expansion_rev... vs participation widens...; Low semantic similarity: false: ... vs volatility remains c..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-19",
+          "similarity": 0.668,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-23",
+          "similarity": 0.657,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The revised rate of ... vs Regime is driven by ...; Low semantic similarity: The revised rate of ... vs participation widens...; Low semantic similarity: volume_expansion_rev... vs participation widens...; Low semantic similarity: false: ... vs volatility remains c..."
+          ],
+          "confidence": 0.274,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.1,
+        "label": "failed"
+      }
+    }
+  },
+  {
+    "step": 5,
+    "date": "2026-06-26",
+    "contradiction_count": 0,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 1.0,
+    "avg_contradiction_severity": 0.6861416666666668,
+    "highest_contradiction": 0.82515,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 1,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 1.75,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.4,
+    "longest_surviving_theory": 5,
+    "theory_mutation_count": 1,
+    "avg_confidence": 0.09403333333333333,
+    "confidence_delta": -0.24,
+    "confidence_volatility": 0.11706980348872585,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 1.0,
+    "grounded_reflection_score": 0.25,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.25,
+    "avg_abstraction_length": 44.0,
+    "compression_ratio": 1.1891891891891893,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 30,
+    "mechanism_count": 1,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 0,
+    "mechanisms_added_count": 0,
+    "mechanisms_modified_count": 0,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 0,
+    "words_after_mutation": 0,
+    "mechanisms_before_mutation": 0,
+    "mechanisms_after_mutation": 0,
+    "extras": {
+      "observation_length": 37,
+      "theory_text": "Volume expansion during up days is weaker than down days due to asset selloff and fading liquidity, leading to a downward bias in price movements, consistent with fatigue regime behavior.",
+      "contradiction_text": "Detected 4 contradictions with a total score of 0.83.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "strengthening",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-26",
+        "trend": "range_bound",
+        "volatility_state": "stable",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.825,
+        "active_theory_count": 1,
+        "breadth_proxy": "strengthened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-25",
+          "similarity": 0.465,
+          "active_theories": [
+            "a96d698c18bfc34e"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Volume expansion dur... vs range_expanding_and_...; Field conflict: volume dry and gap down and de vs range_expanding_and_short_term; Trend: continuation vs rejection",
+            "Structural: Low semantic similarity: Volume expansion dur... vs The revised rate of ...; Low semantic similarity: MECH_002 and MECH_00... vs decisive close below...; Low semantic similarity: Volume expansion dur... vs volume_expansion_rev...; Low semantic similarity: volume dry and gap d... vs volume_expansion_rev...; Low semantic similarity: otherwise: retain cu... vs false: ...; Trend: continuation vs rejection; Participation: weakening vs elevated",
+            "Structural: Low semantic similarity: Volume expansion dur... vs The revised rate of ...; Low semantic similarity: MECH_002 and MECH_00... vs decisive close below...; Low semantic similarity: Volume expansion dur... vs volume_expansion_rev...; Low semantic similarity: volume dry and gap d... vs volume_expansion_rev...; Low semantic similarity: otherwise: retain cu... vs false: ...; Trend: continuation vs rejection; Participation: weakening vs elevated"
+          ],
+          "confidence": 0.05,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.0,
+        "label": "failed"
+      }
+    }
+  },
+  {
+    "step": 6,
+    "date": "2026-06-29",
+    "contradiction_count": 3,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.6666666666666666,
+    "avg_contradiction_severity": 0.5748144444444444,
+    "highest_contradiction": 0.82515,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 2,
+    "avg_retirement_age": 1.75,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.3333333333333335,
+    "longest_surviving_theory": 5,
+    "theory_mutation_count": 1,
+    "avg_confidence": 0.08774285714285714,
+    "confidence_delta": -0.19,
+    "confidence_volatility": 0.10947535739859916,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.03278688524590164,
+    "avg_abstraction_length": 21.0,
+    "compression_ratio": 0.5833333333333334,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 32,
+    "mechanism_count": 2,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 0,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 30,
+    "words_after_mutation": 32,
+    "mechanisms_before_mutation": 1,
+    "mechanisms_after_mutation": 2,
+    "extras": {
+      "observation_length": 36,
+      "theory_text": "Volume expansion during up days is negatively correlated with asset selloff and fading liquidity, suggesting that these factors contribute to a weaker upward bias in market volume, potentially leading to increased volatility.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 0.35.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "mixed",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-29",
+        "trend": "extended_lower",
+        "volatility_state": "moderate",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.352,
+        "active_theory_count": 2,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-23",
+          "similarity": 0.849,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The revised rate of ... vs Regime is driven by ...; Low semantic similarity: The revised rate of ... vs participation widens...; Low semantic similarity: volume_expansion_rev... vs participation widens...; Low semantic similarity: false: ... vs volatility remains c..."
+          ],
+          "confidence": 0.274,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-19",
+          "similarity": 0.68,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-22",
+          "similarity": 0.517,
+          "active_theories": [
+            "f2cca7fa84e5cfbc",
+            "98d842ea061d549a"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The revised rate of ... vs Regime is driven by ...; Low semantic similarity: The revised rate of ... vs participation widens...; Low semantic similarity: volume_expansion_rev... vs participation widens...; Low semantic similarity: false: ... vs volatility remains c..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.4134414666666667,
+        "label": "useful"
+      }
+    }
+  },
+  {
+    "step": 7,
+    "date": "2026-06-30",
+    "contradiction_count": 4,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.6923076923076923,
+    "avg_contradiction_severity": 0.5819262029459902,
+    "highest_contradiction": 0.82515,
+    "theory_count": 3,
+    "active_theories": 3,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 3,
+    "avg_retirement_age": 1.75,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.4285714285714284,
+    "longest_surviving_theory": 5,
+    "theory_mutation_count": 2,
+    "avg_confidence": 0.076775,
+    "confidence_delta": -0.24,
+    "confidence_volatility": 0.10643685628108339,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 1.0,
+    "grounded_reflection_score": 0.25,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.25,
+    "avg_abstraction_length": 15.0,
+    "compression_ratio": 0.39473684210526316,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 33,
+    "mechanism_count": 1,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 2,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 0.0,
+    "words_before_mutation": 32,
+    "words_after_mutation": 33,
+    "mechanisms_before_mutation": 2,
+    "mechanisms_after_mutation": 1,
+    "extras": {
+      "observation_length": 38,
+      "theory_text": "Volume expansion during up days is weaker than down days due to asset selloffs, fading liquidity, institutional selling, and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 0.60.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "mixed",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-30",
+        "trend": "closed_lower",
+        "volatility_state": "moderate",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.598,
+        "active_theory_count": 3,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-19",
+          "similarity": 0.848,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-29",
+          "similarity": 0.778,
+          "active_theories": [
+            "5caf200459842377",
+            "8ec4e67140dd7f80"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Volume expansion dur... vs volume dry and gap d...; Low semantic similarity: volume_expansion_rev... vs volume dry and gap d...; Low semantic similarity: otherwise: demote... vs otherwise: retain cu...; Trend: continuation vs rejection",
+            "Structural: Low semantic similarity: Volume expansion dur... vs volume dry and gap d...; Low semantic similarity: volume_expansion_rev... vs volume dry and gap d...; Low semantic similarity: otherwise: demote... vs otherwise: retain cu...; Trend: continuation vs rejection",
+            "Structural: Low semantic similarity: Volume expansion dur... vs range_expanding_and_...; Low semantic similarity: volume_expansion_rev... vs range_expanding_and_...; Low semantic similarity: otherwise: demote... vs otherwise: remove_al..."
+          ],
+          "confidence": 0.05,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-23",
+          "similarity": 0.657,
+          "active_theories": [
+            "f2cca7fa84e5cfbc"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The revised rate of ... vs Regime is driven by ...; Low semantic similarity: The revised rate of ... vs participation widens...; Low semantic similarity: volume_expansion_rev... vs participation widens...; Low semantic similarity: false: ... vs volatility remains c..."
+          ],
+          "confidence": 0.274,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.2488541943262411,
+        "label": "weak"
+      }
+    }
+  },
+  {
+    "step": 8,
+    "date": "2026-07-01",
+    "contradiction_count": 3,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 1,
+    "contradiction_resolution_rate": 0.7692307692307693,
+    "avg_contradiction_severity": 0.5835803764320786,
+    "highest_contradiction": 0.82515,
+    "theory_count": 4,
+    "active_theories": 4,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 4,
+    "avg_retirement_age": 1.75,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.625,
+    "longest_surviving_theory": 5,
+    "theory_mutation_count": 2,
+    "avg_confidence": 0.06824444444444444,
+    "confidence_delta": -0.24,
+    "confidence_volatility": 0.103209550711282,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.5,
+    "memory_reference_count": 0,
+    "critique_density": 0.038461538461538464,
+    "avg_abstraction_length": 35.0,
+    "compression_ratio": 0.9210526315789473,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 33,
+    "mechanism_count": 1,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 0,
+    "mechanisms_added_count": 0,
+    "mechanisms_modified_count": 0,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 0,
+    "words_after_mutation": 0,
+    "mechanisms_before_mutation": 0,
+    "mechanisms_after_mutation": 0,
+    "extras": {
+      "observation_length": 38,
+      "theory_text": "Volume expansion during up days is weaker than down days due to asset selloffs, fading liquidity, institutional selling, and short-term momentum weakening, resulting in a neutral market regime characterized by reduced upward bias.",
+      "contradiction_text": "Detected 4 contradictions with a total score of 0.61.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "mixed",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-07-01",
+        "trend": "extended_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.605,
+        "active_theory_count": 4,
+        "breadth_proxy": "mixed"
+      },
+      "regime_matches": [],
+      "theory_usefulness": {
+        "score": 0.1872956028368794,
+        "label": "weak"
+      }
+    }
+  },
+  {
+    "step": 9,
+    "date": "2026-07-02",
+    "contradiction_count": 3,
+    "contradiction_half_life": 1.2307692307692308,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.8125,
+    "avg_contradiction_severity": 0.49064405585106385,
+    "highest_contradiction": 0.82515,
+    "theory_count": 5,
+    "active_theories": 5,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 5,
+    "avg_retirement_age": 1.75,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.888888888888889,
+    "longest_surviving_theory": 5,
+    "theory_mutation_count": 4,
+    "avg_confidence": 0.06142,
+    "confidence_delta": -0.24,
+    "confidence_volatility": 0.10003073327732832,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 9.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.25,
+    "memory_reference_count": 0,
+    "critique_density": 0.010869565217391304,
+    "avg_abstraction_length": 20.0,
+    "compression_ratio": 0.5714285714285714,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 22,
+    "mechanism_count": 1,
+    "conditional_clauses_count": 0,
+    "exceptions_added": 0,
+    "mechanisms_retired_count": 2,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 0.0,
+    "words_before_mutation": 33,
+    "words_after_mutation": 22,
+    "mechanisms_before_mutation": 1,
+    "mechanisms_after_mutation": 1,
+    "extras": {
+      "observation_length": 35,
+      "theory_text": "Volume expansion during up days is neutralized by asset selloffs and fading liquidity, resulting in a volume-expansion-neutral bias that influences market behavior.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 0.09.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "mixed",
+        "monthly": "mixed"
+      },
+      "regime_signature": {
+        "date": "2026-07-02",
+        "trend": "range_bound",
+        "volatility_state": "compressed",
+        "sentiment": "neutral",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.088,
+        "active_theory_count": 5,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-25",
+          "similarity": 0.544,
+          "active_theories": [
+            "a96d698c18bfc34e"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Volume expansion dur... vs range_expanding_and_...; Field conflict: volume dry and gap down and de vs range_expanding_and_short_term; Trend: continuation vs rejection",
+            "Structural: Low semantic similarity: Volume expansion dur... vs The revised rate of ...; Low semantic similarity: MECH_002 and MECH_00... vs decisive close below...; Low semantic similarity: Volume expansion dur... vs volume_expansion_rev...; Low semantic similarity: volume dry and gap d... vs volume_expansion_rev...; Low semantic similarity: otherwise: retain cu... vs false: ...; Trend: continuation vs rejection; Participation: weakening vs elevated",
+            "Structural: Low semantic similarity: Volume expansion dur... vs The revised rate of ...; Low semantic similarity: MECH_002 and MECH_00... vs decisive close below...; Low semantic similarity: Volume expansion dur... vs volume_expansion_rev...; Low semantic similarity: volume dry and gap d... vs volume_expansion_rev...; Low semantic similarity: otherwise: retain cu... vs false: ...; Trend: continuation vs rejection; Participation: weakening vs elevated"
+          ],
+          "confidence": 0.05,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-07-01",
+          "similarity": 0.467,
+          "active_theories": [
+            "5caf200459842377",
+            "8ec4e67140dd7f80",
+            "7734b00caead9ca1"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: volume_expansion_rev... vs MECH_002 and MECH_00...; Low semantic similarity: Volume expansion dur... vs volume_expansion_rev...; Low semantic similarity: volume > 0.5: add ne... vs volume_expansion_rev...",
+            "Structural: Low semantic similarity: volume_expansion_rev... vs MECH_002 and MECH_00...; Field conflict: Volume expansion during up day vs volume dry and gap down and de; Low semantic similarity: volume > 0.5: add ne... vs volume dry and gap d...; Low semantic similarity: otherwise: demote... vs otherwise: retain cu...; Trend: continuation vs rejection",
+            "Structural: Low semantic similarity: volume_expansion_rev... vs MECH_002 and MECH_00...; Field conflict: Volume expansion during up day vs volume dry and gap down and de; Low semantic similarity: volume > 0.5: add ne... vs volume dry and gap d...; Low semantic similarity: otherwise: demote... vs otherwise: retain cu...; Trend: continuation vs rejection"
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.2074492666666667,
+        "label": "weak"
+      }
+    }
+  }
+]

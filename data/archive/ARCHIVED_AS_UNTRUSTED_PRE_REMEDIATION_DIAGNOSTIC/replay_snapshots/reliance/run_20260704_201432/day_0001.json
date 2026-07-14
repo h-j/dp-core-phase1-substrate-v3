@@ -1,0 +1,270 @@
+{
+  "step": 1,
+  "date": "2026-06-30",
+  "observation": "[volume elevated, range expanding, gap up, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, RELIANCE focus] candle strong bear participation normal (normal) RELIANCE closed lower amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is experiencing moderate volatility with a mixed trend, indicating a neutral sector performance and weak short-term momentum.",
+  "theory": "Increased volatility leads to expanding price ranges, weakening short-term momentum, and ultimately resulting in lower prices due to delivery exhaustion.",
+  "theory_summary_structured": {
+    "id": "eb4d7cd6-84c7-45fd-8eb0-47bce4db3e16",
+    "created_at": "2026-07-04 14:46:43.894598+00:00",
+    "mechanism": "",
+    "claim": "Increased volatility leads to expanding price ranges, weakening short-term momentum, and ultimately resulting in lower prices due to delivery exhaustion.",
+    "if_branch": {
+      "id": "904fdf9b-0fde-4bf1-b753-82d9e8250b8b",
+      "created_at": "2026-07-04 14:47:27.235362+00:00",
+      "condition": "VOLATILITY_EXPANSION > 0.5",
+      "action": "ADD_VOLATILITY_EXPANSION_MECHANISM"
+    },
+    "else_branch": {
+      "id": "8f9a5fce-b26b-4c50-96d5-f9c2211f2b9f",
+      "created_at": "2026-07-04 14:47:27.235412+00:00",
+      "condition": "VOLATILITY_EXPANSION <= 0.5",
+      "action": "REMOVE_VOLATILITY_EXPANSION_MECHANISM"
+    },
+    "unless": "",
+    "falsified_if": "never",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "66fa625d-f417-48ff-aed9-cdb7cef630d8",
+        "created_at": "2026-07-04 14:47:23.821472+00:00",
+        "component_id": "VOLATILITY_EXPANSION",
+        "description": "Increased volatility leading to expanding price ranges.",
+        "observable": "VOLATILITY_EXPANSION",
+        "expected_behavior": "PRICE_RANGE_EXPANDING",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "VOLATILITY_EXPANSION"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_001"
+      },
+      {
+        "id": "aa6c3240-d852-4492-b7e1-b49c1a8a07bf",
+        "created_at": "2026-07-04 14:47:24.243956+00:00",
+        "component_id": "MOMENTUM_DAMPENING",
+        "description": "Short-term momentum weakening due to increased volatility.",
+        "observable": "MOMENTUM_DAMPENING",
+        "expected_behavior": "SHORT_TERM_MOMENTUM_WEAKENING",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_EXPANSION",
+          "MOMENTUM"
+        ],
+        "relation_type": "AMPLIFIES",
+        "mechanism_id": "MECH_002"
+      },
+      {
+        "id": "bffb88a2-59de-4971-b4b9-e4a81f9b1b85",
+        "created_at": "2026-07-04 14:47:25.054104+00:00",
+        "component_id": "DELIVERY_EXHAUSTION",
+        "description": "Delivery exhaustion leading to lower prices.",
+        "observable": "DELIVERY_EXHAUSTION",
+        "expected_behavior": "LOWER_PRICES",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_EXPANSION",
+          "LIQUIDITY_ABSORPTION"
+        ],
+        "relation_type": "DEPENDS_ON",
+        "mechanism_id": "MECH_003"
+      }
+    ],
+    "falsification_conditions": [],
+    "reuse_decision": null
+  },
+  "confidence": {
+    "empirical": 0.482,
+    "regime": 0.6447,
+    "reflection": 0.46,
+    "coherence": 0.2704,
+    "contradiction": 0.2557
+  },
+  "contradiction": {
+    "score": 0.3651785714285714,
+    "indicators": [
+      "Structural: Field conflict: Increased volatility leads to  vs {\n  \"claim\": \"Regime is driven; Low semantic similarity: Increased volatility... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs always: observe...; Low semantic similarity: VOLATILITY_EXPANSION... vs never: ignore...; Participation: weakening vs elevated"
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "2ef4e793-6100-433b-b439-04615bd95c3b",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 1 contradictions with a total score of 0.37."
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "insufficient_history",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-06-30",
+    "trend": "closed_lower",
+    "volatility_state": "moderate",
+    "sentiment": "risk_off",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.365,
+    "active_theory_count": 1,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-06-29",
+      "similarity": 1.0,
+      "active_theories": [
+        "bc43fedf5a8669e0"
+      ],
+      "contradictions": [],
+      "confidence": 0.24,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-06-30",
+      "policy_name": "Baseline",
+      "action": "sell",
+      "conviction": 0.615,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-06-30",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.615,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-06-30",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.615,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.2225449404761905,
+    "label": "weak"
+  },
+  "reflection": "Neutral regime subtype: Mixed. The current regime is falsified based on boundary conditions. The observed continuation remains insufficiently tested under volatility expansion, contradicting the prior participation strength assumption. This contradiction is supported by a total score of 0.37 in structural analysis, indicating low semantic similarity between the theory's claim and the observed data.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "Analog to 2026-06-29: liquidity is broad_participation (prior was normal), volatility is moderate (prior was normal)",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 2,
+    "avg_usefulness": 0.111,
+    "last_seen": "2026-06-30",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 1,
+      "range_bound": 0,
+      "uncertain": 0
+    },
+    "falsified_count": 0
+  },
+  "dialectical_triggered": false,
+  "dialectical_synthesis": null,
+  "metrics": {
+    "step": 1,
+    "date": "2026-06-30",
+    "contradiction_count": 1,
+    "contradiction_half_life": 0.0,
+    "median_contradiction_half_life": 0.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.0,
+    "avg_contradiction_severity": 0.3651785714285714,
+    "highest_contradiction": 0.3651785714285714,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 0,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 0,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 0.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.0,
+    "longest_surviving_theory": 2,
+    "theory_mutation_count": 0,
+    "avg_confidence": 0.361,
+    "confidence_delta": 0.242,
+    "confidence_volatility": 0.121,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 5.0,
+    "grounded_reflection_score": 0.75,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.03773584905660377,
+    "avg_abstraction_length": 18.0,
+    "compression_ratio": 0.4864864864864865,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 20,
+    "mechanism_count": 3,
+    "conditional_clauses_count": 2,
+    "exceptions_added": 0,
+    "mechanisms_retired_count": 2,
+    "mechanisms_added_count": 3,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 156,
+    "words_after_mutation": 20,
+    "mechanisms_before_mutation": 0,
+    "mechanisms_after_mutation": 3,
+    "extras": {
+      "observation_length": 37,
+      "theory_text": "Increased volatility leads to expanding price ranges, weakening short-term momentum, and ultimately resulting in lower prices due to delivery exhaustion.",
+      "contradiction_text": "Detected 1 contradictions with a total score of 0.37.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "insufficient_history",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-06-30",
+        "trend": "closed_lower",
+        "volatility_state": "moderate",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.365,
+        "active_theory_count": 1,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-29",
+          "similarity": 1.0,
+          "active_theories": [
+            "bc43fedf5a8669e0"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.2225449404761905,
+        "label": "weak"
+      }
+    }
+  }
+}

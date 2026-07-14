@@ -1,0 +1,1422 @@
+[
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3525,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2001",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2001",
+    "timestamp": 1783734027.40943,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3688,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2002",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2002",
+    "timestamp": 1783734027.414172,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3272,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2003",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2003",
+    "timestamp": 1783734027.4193852,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3309,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2004",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2004",
+    "timestamp": 1783734027.424383,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3073,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2005",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2005",
+    "timestamp": 1783734027.4296262,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3584,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2006",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2006",
+    "timestamp": 1783734027.434946,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3133,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2007",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2007",
+    "timestamp": 1783734027.440576,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3184,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2008",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2008",
+    "timestamp": 1783734027.4468532,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3282,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2009",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2009",
+    "timestamp": 1783734027.4522681,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3712,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2010",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2010",
+    "timestamp": 1783734027.4577081,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3438,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2011",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2011",
+    "timestamp": 1783734027.4632452,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.4028,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2012",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2012",
+    "timestamp": 1783734027.469662,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3264,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2013",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2013",
+    "timestamp": 1783734027.476056,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.3171,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2014",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2014",
+    "timestamp": 1783734027.4830568,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.345,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_ADMIT_SEED_2015",
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2015",
+    "timestamp": 1783734027.490328,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.2949,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2016",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2016",
+    "timestamp": 1783734027.496553,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.3984,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2017",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2017",
+    "timestamp": 1783734027.5028539,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.4088,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2018",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2018",
+    "timestamp": 1783734027.50993,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.3224,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2019",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2019",
+    "timestamp": 1783734027.5173419,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.3419,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2020",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2020",
+    "timestamp": 1783734027.526453,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.3237,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2021",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2021",
+    "timestamp": 1783734027.533371,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.2987,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2022",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2022",
+    "timestamp": 1783734027.54062,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.3658,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2023",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2023",
+    "timestamp": 1783734027.547808,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.3293,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2024",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2024",
+    "timestamp": 1783734027.555951,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.3781,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2025",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2025",
+    "timestamp": 1783734027.566935,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.3882,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2026",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2026",
+    "timestamp": 1783734027.574568,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.285,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2027",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2027",
+    "timestamp": 1783734027.582551,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.3063,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2028",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2028",
+    "timestamp": 1783734027.590581,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.351,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2029",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2029",
+    "timestamp": 1783734027.599736,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.3493,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_CLEAR_REJECT_SEED_2030",
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2030",
+    "timestamp": 1783734027.60923,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.1797,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.08_SEED_2031",
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2031",
+    "timestamp": 1783734027.621981,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.1004,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.08_SEED_2032",
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2032",
+    "timestamp": 1783734027.630767,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0921,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.08_SEED_2033",
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2033",
+    "timestamp": 1783734027.639523,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0423,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.08_SEED_2034",
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2034",
+    "timestamp": 1783734027.6489658,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.1635,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.08_SEED_2035",
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2035",
+    "timestamp": 1783734027.65964,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0175,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.08_SEED_2036",
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2036",
+    "timestamp": 1783734027.6723928,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.1,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.08_SEED_2037",
+    "world_id": "WORLD_BOUNDARY_-0.08_SEED_2037",
+    "timestamp": 1783734027.6821692,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.009,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.04_SEED_2038",
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2038",
+    "timestamp": 1783734027.692158,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0125,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.04_SEED_2039",
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2039",
+    "timestamp": 1783734027.703947,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0679,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.04_SEED_2040",
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2040",
+    "timestamp": 1783734027.7180722,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0377,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.04_SEED_2041",
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2041",
+    "timestamp": 1783734027.728592,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0199,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.04_SEED_2042",
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2042",
+    "timestamp": 1783734027.740195,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0192,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.04_SEED_2043",
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2043",
+    "timestamp": 1783734027.7573051,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0245,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_-0.04_SEED_2044",
+    "world_id": "WORLD_BOUNDARY_-0.04_SEED_2044",
+    "timestamp": 1783734027.7685308,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0764,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.00_SEED_2045",
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2045",
+    "timestamp": 1783734027.779534,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0105,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.00_SEED_2046",
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2046",
+    "timestamp": 1783734027.790899,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0633,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.00_SEED_2047",
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2047",
+    "timestamp": 1783734027.80449,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.043,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.00_SEED_2048",
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2048",
+    "timestamp": 1783734027.820436,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "REJECT",
+    "reason_code": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0901,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.00_SEED_2049",
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2049",
+    "timestamp": 1783734027.832277,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.0319,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.00_SEED_2050",
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2050",
+    "timestamp": 1783734027.84554,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0379,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.00_SEED_2051",
+    "world_id": "WORLD_BOUNDARY_0.00_SEED_2051",
+    "timestamp": 1783734027.864844,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": -0.0048,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.05_SEED_2052",
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2052",
+    "timestamp": 1783734027.877345,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1195,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.05_SEED_2053",
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2053",
+    "timestamp": 1783734027.889836,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1414,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.05_SEED_2054",
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2054",
+    "timestamp": 1783734027.90271,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1182,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.05_SEED_2055",
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2055",
+    "timestamp": 1783734027.923986,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.0668,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.05_SEED_2056",
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2056",
+    "timestamp": 1783734027.937024,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.0482,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.05_SEED_2057",
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2057",
+    "timestamp": 1783734027.950279,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.0159,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.05_SEED_2058",
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2058",
+    "timestamp": 1783734027.963658,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.0759,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.05_SEED_2059",
+    "world_id": "WORLD_BOUNDARY_0.05_SEED_2059",
+    "timestamp": 1783734027.9862149,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1294,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.12_SEED_2060",
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2060",
+    "timestamp": 1783734028.000489,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.166,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.12_SEED_2061",
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2061",
+    "timestamp": 1783734028.0169191,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.0502,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.12_SEED_2062",
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2062",
+    "timestamp": 1783734028.036347,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.0972,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.12_SEED_2063",
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2063",
+    "timestamp": 1783734028.0598788,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.0637,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.12_SEED_2064",
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2064",
+    "timestamp": 1783734028.074881,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1837,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.12_SEED_2065",
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2065",
+    "timestamp": 1783734028.091842,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.07,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.12_SEED_2066",
+    "world_id": "WORLD_BOUNDARY_0.12_SEED_2066",
+    "timestamp": 1783734028.109177,
+    "defer_origin_classification": "EXPECTED_EFFECT_AMBIGUITY_DEFER"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1334,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.16_SEED_2067",
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2067",
+    "timestamp": 1783734028.131826,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1959,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.16_SEED_2068",
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2068",
+    "timestamp": 1783734028.147031,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.2146,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.16_SEED_2069",
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2069",
+    "timestamp": 1783734028.164006,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.2148,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.16_SEED_2070",
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2070",
+    "timestamp": 1783734028.187546,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1366,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.16_SEED_2071",
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2071",
+    "timestamp": 1783734028.202993,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1402,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.16_SEED_2072",
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2072",
+    "timestamp": 1783734028.218585,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.2058,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.16_SEED_2073",
+    "world_id": "WORLD_BOUNDARY_0.16_SEED_2073",
+    "timestamp": 1783734028.242948,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.0621,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.20_SEED_2074",
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2074",
+    "timestamp": 1783734028.258888,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1767,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.20_SEED_2075",
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2075",
+    "timestamp": 1783734028.276978,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1948,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.20_SEED_2076",
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2076",
+    "timestamp": 1783734028.303812,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1074,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.20_SEED_2077",
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2077",
+    "timestamp": 1783734028.320106,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1857,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.20_SEED_2078",
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2078",
+    "timestamp": 1783734028.3367941,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "ADMIT",
+    "reason_code": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1988,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.20_SEED_2079",
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2079",
+    "timestamp": 1783734028.364931,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "AMBIGUOUS_PROSPECTIVE_EFFECT",
+    "measured_effect": 0.1327,
+    "thresholds": {
+      "admit_threshold": 0.15,
+      "reject_threshold": -0.05
+    },
+    "adequacy_status": "PASS",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_BOUNDARY_0.20_SEED_2080",
+    "world_id": "WORLD_BOUNDARY_0.20_SEED_2080",
+    "timestamp": 1783734028.382282,
+    "defer_origin_classification": "OTHER_DEFER_MISMATCH"
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2081",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2081",
+    "timestamp": 1783734028.398454
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2082",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2082",
+    "timestamp": 1783734028.4261189
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2083",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2083",
+    "timestamp": 1783734028.4425302
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2084",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2084",
+    "timestamp": 1783734028.45888
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2085",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2085",
+    "timestamp": 1783734028.490727
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2086",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2086",
+    "timestamp": 1783734028.507339
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2087",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2087",
+    "timestamp": 1783734028.524228
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2088",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2088",
+    "timestamp": 1783734028.5410151
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2089",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2089",
+    "timestamp": 1783734028.569298
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2090",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2090",
+    "timestamp": 1783734028.586267
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2091",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2091",
+    "timestamp": 1783734028.605794
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2092",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2092",
+    "timestamp": 1783734028.637366
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2093",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2093",
+    "timestamp": 1783734028.6549098
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2094",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2094",
+    "timestamp": 1783734028.672579
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2095",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2095",
+    "timestamp": 1783734028.692755
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2096",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2096",
+    "timestamp": 1783734028.7239912
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2097",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2097",
+    "timestamp": 1783734028.742474
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2098",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2098",
+    "timestamp": 1783734028.7600908
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2099",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2099",
+    "timestamp": 1783734028.7936618
+  },
+  {
+    "decision": "DEFER",
+    "reason_code": "FAILED_READINESS",
+    "measured_effect": 0.0,
+    "thresholds": {},
+    "adequacy_status": "FAIL",
+    "coverage_status": "PASS",
+    "proposition_id": "PROP_WORLD_EVIDENCE_LIMITED_SEED_2100",
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2100",
+    "timestamp": 1783734028.811651
+  }
+]

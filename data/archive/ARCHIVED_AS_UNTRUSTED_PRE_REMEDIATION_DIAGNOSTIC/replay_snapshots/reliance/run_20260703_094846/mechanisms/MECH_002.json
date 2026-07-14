@@ -1,0 +1,38 @@
+{
+  "id": "MECH_002",
+  "created_at": "2026-07-03T04:19:14.926246+00:00",
+  "mechanism_id": "MECH_002",
+  "canonical_name": "VOLATILITY_COMPRESSION",
+  "concept_tags": [
+    "VOLATILITY_COMPRESSION_REVISION",
+    "MOMENTUM"
+  ],
+  "relation_type": "CO-OCCURS_WITH",
+  "first_seen": 0,
+  "last_seen": 3,
+  "days_active": 5,
+  "times_reused": 0,
+  "times_modified": 2,
+  "times_retired": 1,
+  "support_count": 0,
+  "contradiction_count": 3,
+  "prediction_helped": 0,
+  "prediction_harmed": 3,
+  "status": "retired",
+  "regimes_seen": [
+    "neutral"
+  ],
+  "name": "VOLATILITY_COMPRESSION",
+  "description": "Revised price stability relative to short-term momentum expansion considering recent market trends",
+  "concept_type": "candidate",
+  "associated_theory_ids": [
+    "d399dbbd-2e7e-4506-81ad-6813566c8c41",
+    "d4f82d16-ea62-4510-bbea-13db75d3f477",
+    "fa2b6657-5292-4c2c-ac65-3d8899ae7e86",
+    "ce242ed4-32fc-40b6-ab45-91cdefa8befc"
+  ],
+  "associated_lineages": [
+    "a18adea1-f1c7-44a4-becd-43910aa343f1"
+  ],
+  "created_at_step": 0
+}

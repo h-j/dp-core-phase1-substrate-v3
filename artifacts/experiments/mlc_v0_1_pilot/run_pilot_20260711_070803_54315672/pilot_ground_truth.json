@@ -1,0 +1,502 @@
+[
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2001",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2002",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2003",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2004",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2005",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2006",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2007",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2008",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2009",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2010",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2011",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2012",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2013",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2014",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_ADMIT_SEED_2015",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2016",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2017",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2018",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2019",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2020",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2021",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2022",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2023",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2024",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2025",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2026",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2027",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2028",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2029",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_CLEAR_REJECT_SEED_2030",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2031",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2032",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2033",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2034",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2035",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2036",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2037",
+    "expected_decision": "REJECT",
+    "expected_reason": "SUFFICIENT_NEGATIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2038",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2039",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2040",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2041",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2042",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2043",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2044",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2045",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2046",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2047",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2048",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2049",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2050",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2051",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2052",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2053",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2054",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2055",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2056",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2057",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2058",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2059",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2060",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2061",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2062",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2063",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2064",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2065",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2066",
+    "expected_decision": "DEFER",
+    "expected_reason": "EFFECT_AMBIGUITY"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2067",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2068",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2069",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2070",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2071",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2072",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2073",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2074",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2075",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2076",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2077",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2078",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2079",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_BOUNDARY_SEED_2080",
+    "expected_decision": "ADMIT",
+    "expected_reason": "SUFFICIENT_POSITIVE_PROSPECTIVE_EFFECT"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2081",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2082",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2083",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2084",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2085",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2086",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2087",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2088",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2089",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2090",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2091",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2092",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2093",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2094",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2095",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2096",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2097",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2098",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2099",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  },
+  {
+    "world_id": "WORLD_EVIDENCE_LIMITED_SEED_2100",
+    "expected_decision": "DEFER",
+    "expected_reason": "EVIDENCE_LIMITED"
+  }
+]

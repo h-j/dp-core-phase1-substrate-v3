@@ -1,0 +1,356 @@
+{
+  "step": 3,
+  "date": "2026-07-01",
+  "observation": "[volume dry, gap up, short-term momentum weakening, delivery:moderate, fii:selling, sector:leading, RELIANCE focus, asset liquidity fade] candle expansion participation weak (weak move) RELIANCE closed higher with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Weaker short-term momentum and fading asset liquidity suggest a weakening trend, but RELIANCE's leading sector position and moderate delivery volumes indicate some stability. Overall, the market is in a mixed state with no clear direction.",
+  "theory": "The market regime is characterized by moderate liquidity absorption and price range-bound behavior driven by institutional selling, suggesting a liquidity-constrained environment where sector leading influences are partially offset by reliance on RELIANCE.",
+  "theory_summary_structured": {
+    "id": "7c423de8-ed93-4f5d-9869-b0237e10d283",
+    "created_at": "2026-07-03 03:11:42.806444+00:00",
+    "mechanism": "Liquidity Absorption",
+    "claim": "The market regime is characterized by moderate liquidity absorption and price range-bound behavior driven by institutional selling, suggesting a liquidity-constrained environment where sector leading influences are partially offset by reliance on RELIANCE.",
+    "if_branch": {
+      "id": "79ba7a4e-4607-42a1-b41c-bbcdb236381c",
+      "created_at": "2026-07-03 03:15:01.653430+00:00",
+      "condition": "price_action.daily_structure > 1.5 AND RELIANCE_close_price > 1000",
+      "action": "update MECH_002 with new description"
+    },
+    "else_branch": {
+      "id": "946eec0e-dbc5-49b5-801d-a93a4d151561",
+      "created_at": "2026-07-03 03:15:01.653477+00:00",
+      "condition": "price_action.daily_structure <= 1.5 OR RELIANCE_close_price <= 1000",
+      "action": "remove MECH_002"
+    },
+    "unless": "liquidity evaporates entirely",
+    "falsified_if": "price_range_bound",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "4d0f3705-1ba8-44c2-b12d-48787097a2bb",
+        "created_at": "2026-07-03 03:12:33.500878+00:00",
+        "component_id": "absorption_rate",
+        "description": "Liquidity absorption rate is moderate, indicating mixed market behavior.",
+        "observable": "liquidity.absorption_rate",
+        "expected_behavior": ">0.5",
+        "dependency": null,
+        "concept_tags": [
+          "LIQUIDITY_ABSORPTION"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_001"
+      },
+      {
+        "id": "ed2adb7f-bd6f-41f4-a184-49cf11a21249",
+        "created_at": "2026-07-03 03:14:58.317352+00:00",
+        "component_id": "price_range_bound_expansion",
+        "description": "Price remains range-bound despite moderate delivery and sector leading, but with a stronger emphasis on institutional selling.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": ">1.5",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_COMPRESSION",
+          "INSTITUTIONAL_SELLING"
+        ],
+        "relation_type": "CO-OCCURS_WITH",
+        "mechanism_id": "MECH_002"
+      },
+      {
+        "id": "585c4004-69cd-4aed-8019-b8be5d4d6ab9",
+        "created_at": "2026-07-03 03:14:58.321808+00:00",
+        "component_id": "price_range_bound_expansion",
+        "description": "Price remains range-bound despite moderate delivery and sector leading, but with a stronger emphasis on institutional selling.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": ">1.5",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_COMPRESSION",
+          "INSTITUTIONAL_SELLING"
+        ],
+        "relation_type": "CO-OCCURS_WITH",
+        "mechanism_id": "MECH_002"
+      },
+      {
+        "id": "f0c63121-4b3c-4b6e-b03f-eb41d1413193",
+        "created_at": "2026-07-03 03:14:58.322286+00:00",
+        "component_id": "price_range_bound_expansion",
+        "description": "Price remains range-bound despite moderate delivery and sector leading, but with a stronger emphasis on institutional selling.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": ">1.5",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_COMPRESSION",
+          "INSTITUTIONAL_SELLING"
+        ],
+        "relation_type": "CO-OCCURS_WITH",
+        "mechanism_id": "MECH_002"
+      },
+      {
+        "id": "ac893042-2b75-4dc4-ba87-f84f249a8826",
+        "created_at": "2026-07-03 03:14:58.322992+00:00",
+        "component_id": "price_range_bound_expansion_with_reliance",
+        "description": "Price range expands despite moderate delivery and sector leading, indicating a shift in market sentiment with RELIANCE focus.",
+        "observable": "price_action.daily_structure",
+        "expected_behavior": ">1.5",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_COMPRESSION",
+          "INSTITUTIONAL_SELLING",
+          "RELIANCE_FOCUS"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_002"
+      }
+    ],
+    "falsification_conditions": [
+      "price_range_bound_expansion: price_action.daily_structure > 1.5 AND RELIANCE_close_price > 1000"
+    ],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.05,
+    "regime": 0.5148,
+    "reflection": 0.3464,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 1.0,
+    "indicators": [
+      "Structural: Low semantic similarity: The market regime is... vs volume_elevated: add...; Low semantic similarity: price_action.daily_s... vs volume_elevated: add...; Low semantic similarity: price_action.daily_s... vs false: retain_price_...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CO-OCCURS_WITH' in current theory but 'CONTRADICTS' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Low semantic similarity: price_range_bound... vs decisive close below...; Low semantic similarity: The market regime is... vs volume > 1000 and pr...; Low semantic similarity: price_action.daily_s... vs false: retain curren...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'INSTITUTIONAL_SELLING' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Low semantic similarity: price_range_bound... vs decisive close below...; Low semantic similarity: The market regime is... vs delivery_pct > 50 AN...; Low semantic similarity: price_action.daily_s... vs delivery_pct > 50 AN...; Low semantic similarity: price_action.daily_s... vs sector_zscore < -1.5...; Semantic Contradiction: Concept 'VOLATILITY_COMPRESSION' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "92d5a465-5d52-4a4a-9d9a-cac2441a4cc6",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "6dca5574-e9b5-4163-8dc4-d211a92b6026",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "90e81c6b-010e-4e2d-8ab2-2b49a15df4b8",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 3 contradictions with a total score of 1.00."
+  },
+  "horizon": {
+    "daily": "mixed",
+    "weekly": "mixed",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-07-01",
+    "trend": "extended_higher",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 1.0,
+    "active_theory_count": 2,
+    "breadth_proxy": "nascent"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-06-29",
+      "similarity": 0.49,
+      "active_theories": [
+        "e134c2611dbdd0ea",
+        "7c9df2b2b7af0760"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: The price remains ra... vs delivery_pct > 50 AN...; Low semantic similarity: volume > 1000 and pr... vs delivery_pct > 50 AN...; Low semantic similarity: false: retain curren... vs sector_zscore < -1.5..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-06-26",
+      "similarity": 0.488,
+      "active_theories": [
+        "e134c2611dbdd0ea"
+      ],
+      "contradictions": [],
+      "confidence": 0.24,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-07-01",
+      "policy_name": "Baseline",
+      "action": "buy",
+      "conviction": 0.221,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-07-01",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.221,
+      "reason": "Skipped low confidence",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-07-01",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.221,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.22266666666666665,
+    "label": "weak"
+  },
+  "reflection": "The current regime subtype is liquidity_constrained. The theory is falsified by the observed contradiction, which includes low semantic similarity between the market regime's characteristics and the observed candle expansion participation weak (weak move) RELIANCE closed higher with volatility compressed. The dialectical synthesis attempts to reconcile this apparent contradiction by suggesting that RELIANCE's mixed trend persistence is indicative of a state of indecision rather than a clear direction. However, this interpretation relies on the assumption that the leading sector position and moderate delivery volumes are sufficient to counteract the weakening trend suggested by weaker short-term momentum and fading asset liquidity.",
+  "regime_subtype": "liquidity_constrained",
+  "falsifiability_conditions": [
+    "volume exceeds 5-day average and participation strengthens"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "liquidity_constrained",
+    "seen_count": 1,
+    "avg_usefulness": 0.223,
+    "last_seen": "2026-07-01",
+    "historical_resolution": {
+      "higher": 1,
+      "lower": 0,
+      "range_bound": 0,
+      "uncertain": 0
+    },
+    "falsified_count": 1
+  },
+  "dialectical_triggered": true,
+  "dialectical_synthesis": {
+    "shared_premise": "The RELIANCE stock is exhibiting mixed trend persistence across different time horizons, with stable volatility and indecision.",
+    "conflict": "The current theory suggests a weakening trend due to weaker short-term momentum and fading asset liquidity, but the leading sector position and moderate delivery volumes indicate some stability.",
+    "synthesis": "This apparent contradiction can be reconciled by considering that RELIANCE's mixed trend persistence is not necessarily indicative of a clear direction, but rather a state of indecision. The stable volatility and moderate delivery volumes suggest that the market is experiencing a period of consolidation, where both bullish and bearish forces are present. This interpretation is supported by the fact that the leading sector position and moderate delivery volumes indicate some stability, which counters the weakening trend suggested by weaker short-term momentum and fading asset liquidity.",
+    "falsified_if": "The RELIANCE stock closes below its 50-day moving average or the volume exceeds 10% above the 5-day average",
+    "validation": {
+      "valid": true,
+      "quality": 0.8,
+      "issues": []
+    }
+  },
+  "metrics": {
+    "step": 3,
+    "date": "2026-07-01",
+    "contradiction_count": 3,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.5,
+    "avg_contradiction_severity": 0.8466666666666667,
+    "highest_contradiction": 1.0,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 1,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 1.0,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.25,
+    "longest_surviving_theory": 4,
+    "theory_mutation_count": 1,
+    "avg_confidence": 0.0725,
+    "confidence_delta": -0.19,
+    "confidence_volatility": 0.09883698700385397,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 1.0,
+    "memory_reference_count": 0,
+    "critique_density": 0.06060606060606061,
+    "avg_abstraction_length": 35.0,
+    "compression_ratio": 0.9210526315789473,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 32,
+    "mechanism_count": 5,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 0,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 26,
+    "words_after_mutation": 32,
+    "mechanisms_before_mutation": 4,
+    "mechanisms_after_mutation": 5,
+    "extras": {
+      "observation_length": 38,
+      "theory_text": "The market regime is characterized by moderate liquidity absorption and price range-bound behavior driven by institutional selling, suggesting a liquidity-constrained environment where sector leading influences are partially offset by reliance on RELIANCE.",
+      "contradiction_text": "Detected 3 contradictions with a total score of 1.00.",
+      "horizon": {
+        "daily": "mixed",
+        "weekly": "mixed",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-07-01",
+        "trend": "extended_higher",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 1.0,
+        "active_theory_count": 2,
+        "breadth_proxy": "nascent"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-06-29",
+          "similarity": 0.49,
+          "active_theories": [
+            "e134c2611dbdd0ea",
+            "7c9df2b2b7af0760"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The price remains ra... vs delivery_pct > 50 AN...; Low semantic similarity: volume > 1000 and pr... vs delivery_pct > 50 AN...; Low semantic similarity: false: retain curren... vs sector_zscore < -1.5..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-06-26",
+          "similarity": 0.488,
+          "active_theories": [
+            "e134c2611dbdd0ea"
+          ],
+          "contradictions": [],
+          "confidence": 0.24,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.22266666666666665,
+        "label": "weak"
+      }
+    }
+  }
+}

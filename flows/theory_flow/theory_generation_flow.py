@@ -330,9 +330,13 @@ Example:
 }}
 """
 
+        # Strategy B spike prompt additions removed from primary prompt to prevent model overload.
+
+
         # Strongly prefer a JSON-only response. Add an explicit output format
         # requirement to the prompt to reduce free-text responses.
         # The prompt above already includes the detailed output format.
+
 
         # Strict validation loop for theory components ontology compliance
         max_attempts = 3
@@ -466,6 +470,69 @@ Example:
                 }
             if parsed_theory_data.get("unless") is None:
                 parsed_theory_data["unless"] = "no contrary evidence emerges"
+
+            # Strategy B: Sequential Structured Extraction (Call 2)
+            import os
+            if os.environ.get("EKAMNET_STRATEGY_B_SPIKE", "1") == "1":
+                claim = parsed_theory_data.get("claim", "")
+                mechanism = parsed_theory_data.get("mechanism", "")
+                extraction_prompt = f"""
+You are an expert financial researcher. Your task is to extract structured proposition fields from a generated theory claim.
+
+Theory Claim: "{claim}"
+Theory Mechanism: "{mechanism}"
+
+Return a JSON object containing exactly the following fields:
+1. "trigger_definition": a JSON object with:
+  - "field": string matching one of the active observables (e.g. "volume_state")
+  - "operator": "=="
+  - "value": 1 or 0
+  - "lag": 0 or 1
+2. "target_definition": a JSON object with:
+  - "field": "outcome"
+  - "operator": "=="
+  - "value": "VAL_A" or "VAL_B"
+3. "scope_definition": a JSON list of objects, each with:
+  - "field": string matching one of the active observables (e.g. "delivery_pct")
+  - "operator": "=="
+  - "value": 1 or 0
+4. "expected_direction": float (e.g. 1.0 or -1.0)
+5. "contradiction_definition": a JSON object with:
+  - "field": "outcome"
+  - "operator": "=="
+  - "value": "VAL_A" or "VAL_B"
+6. "mechanism_type": string (short label of mechanism, e.g. "Liquidity Absorption")
+7. "causal_direction": string (e.g. "positive" or "negative")
+8. "driver": string (primary causal variable, e.g. "volume_state")
+9. "mediator_or_process": string (mediating variable or behavior, e.g. "delivery_pct")
+10. "target_effect": string (resulting state, e.g. "price compression")
+
+Example:
+{{
+  "trigger_definition": {{"field": "volume_state", "operator": "==", "value": 1, "lag": 0}},
+  "target_definition": {{"field": "outcome", "operator": "==", "value": "VAL_A"}},
+  "scope_definition": [{{"field": "delivery_pct", "operator": "==", "value": 1}}],
+  "expected_direction": 1.0,
+  "contradiction_definition": {{"field": "outcome", "operator": "==", "value": "VAL_B"}},
+  "mechanism_type": "Liquidity Absorption",
+  "causal_direction": "positive",
+  "driver": "volume_state",
+  "mediator_or_process": "delivery_pct",
+  "target_effect": "price compression"
+}}
+"""
+                try:
+                    ext_res = self.client.generate(extraction_prompt, json_format=True)
+                    start = ext_res.find("{")
+                    end = ext_res.rfind("}") + 1
+                    ext_json = ext_res[start:end] if start != -1 and end > start else ext_res
+                    ext_data = json.loads(ext_json)
+                    if isinstance(ext_data, dict):
+                        for k, v in ext_data.items():
+                            parsed_theory_data[k] = v
+                except Exception as e:
+                    if self.debug:
+                        print(f"[Strategy B Extraction Error] {e}")
 
             try:
                 parsed_theory_data = TheoryStructured(**parsed_theory_data)
@@ -784,3 +851,94 @@ Example:
         if theory_structured.unless:
             count += 1
         return count
+
+    def process_multiple(
+        self,
+        abstraction,
+        historical_context: str = "",
+        market_memory_context: str = "",
+        current_market_observation: str = "",
+        reflective_memory_summary: str = "",
+        regime_subtype: str = "neutral",
+        falsifiability_conditions: list = None,
+        analog_divergence_claim: str = None,
+        regime_history: dict = None,
+        dialectical_synthesis: str = None,
+        relevant_lessons: list = None,
+        prior_theory: Optional[Theory] = None,
+        prior_attribution: Optional[Any] = None,
+        retrieved_theory: Optional[Theory] = None,
+        world_model_narrative: Optional[str] = None,
+        active_principles: Optional[list] = None,
+        active_open_questions: Optional[list] = None,
+        step: int = 0,
+        knowledge_repository: Optional[Any] = None,
+        count: int = 2
+    ):
+        """Generates multiple sibling candidate theories sharing a common alternative_group_id."""
+        from uuid import uuid4
+        group_id = str(uuid4())
+        
+        # 1. Generate primary candidate
+        theory1, stats1 = self.process(
+            abstraction=abstraction,
+            historical_context=historical_context,
+            market_memory_context=market_memory_context,
+            current_market_observation=current_market_observation,
+            reflective_memory_summary=reflective_memory_summary,
+            regime_subtype=regime_subtype,
+            falsifiability_conditions=falsifiability_conditions,
+            analog_divergence_claim=analog_divergence_claim,
+            regime_history=regime_history,
+            dialectical_synthesis=dialectical_synthesis,
+            relevant_lessons=relevant_lessons,
+            prior_theory=prior_theory,
+            prior_attribution=prior_attribution,
+            retrieved_theory=retrieved_theory,
+            world_model_narrative=world_model_narrative,
+            active_principles=active_principles,
+            active_open_questions=active_open_questions,
+            step=step,
+            knowledge_repository=knowledge_repository
+        )
+        theory1.alternative_group_id = group_id
+        
+        candidates = [theory1]
+        
+        if count > 1:
+            primary_claim = theory1.summary_structured.claim if theory1.summary_structured else theory1.summary
+            alternative_observation = (
+                current_market_observation
+                + f"\n\nMANDATORY PLURALITY REQUIREMENT:\n"
+                + f"You MUST generate a distinct, alternative theory that explains the observation, different from the prior explanation:\n"
+                + f"'{primary_claim}'\n"
+            )
+            try:
+                theory2, stats2 = self.process(
+                    abstraction=abstraction,
+                    historical_context=historical_context,
+                    market_memory_context=market_memory_context,
+                    current_market_observation=alternative_observation,
+                    reflective_memory_summary=reflective_memory_summary,
+                    regime_subtype=regime_subtype,
+                    falsifiability_conditions=falsifiability_conditions,
+                    analog_divergence_claim=analog_divergence_claim,
+                    regime_history=regime_history,
+                    dialectical_synthesis=dialectical_synthesis,
+                    relevant_lessons=relevant_lessons,
+                    prior_theory=prior_theory,
+                    prior_attribution=prior_attribution,
+                    retrieved_theory=retrieved_theory,
+                    world_model_narrative=world_model_narrative,
+                    active_principles=active_principles,
+                    active_open_questions=active_open_questions,
+                    step=step,
+                    knowledge_repository=knowledge_repository
+                )
+                theory2.alternative_group_id = group_id
+                candidates.append(theory2)
+            except Exception as e:
+                if self.debug:
+                    print(f"[Milestone 3 Sibling Generation Failure] {e}")
+                    
+        return candidates

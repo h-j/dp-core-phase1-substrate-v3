@@ -1,0 +1,81 @@
+{
+  "id": "8f290e5a-02c8-472f-bec6-d0340862245d",
+  "created_at": "2026-06-30T06:15:37.601494+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where the regime is driven by Absorption, and price remains range-bound despite volume expansion, with increasing volatility and strengthening short-term momentum.",
+  "associated_lineage_ids": [
+    "961701e7-487e-422b-abfa-747f69f2fb57",
+    "a87b8aa9-faef-4b0e-b6ac-645bf13e899c",
+    "fcaef396-6390-4f14-b111-fd26fe6835ee",
+    "13285851-484c-4ca6-bf0c-2c0f09d51185",
+    "a4f123b3-963f-4918-ba1a-58da656edd03",
+    "273f89ce-2faa-4099-b8af-7ea6e0b2909a",
+    "653e23dd-f9a2-47c8-a1e0-23d10dab80d1",
+    "b3569634-e8d7-4023-9df0-7e451d2b7918",
+    "ce4876b6-a38f-4bb2-8a5f-e0e43d043062",
+    "d98c0cf5-0b20-4238-a45a-3f83be9d1b88"
+  ],
+  "supporting_theory_ids": [
+    "fcaef396-6390-4f14-b111-fd26fe6835ee",
+    "a4f123b3-963f-4918-ba1a-58da656edd03",
+    "13285851-484c-4ca6-bf0c-2c0f09d51185",
+    "d98c0cf5-0b20-4238-a45a-3f83be9d1b88",
+    "b3569634-e8d7-4023-9df0-7e451d2b7918",
+    "961701e7-487e-422b-abfa-747f69f2fb57",
+    "ce4876b6-a38f-4bb2-8a5f-e0e43d043062",
+    "a87b8aa9-faef-4b0e-b6ac-645bf13e899c",
+    "653e23dd-f9a2-47c8-a1e0-23d10dab80d1"
+  ],
+  "contradicting_theory_ids": [
+    "273f89ce-2faa-4099-b8af-7ea6e0b2909a"
+  ],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "6e38e66f-c4cf-4a1e-91cf-f1fff9e1ceec",
+      "created_at": "2026-06-30T06:15:37.600408+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "479f078d-4285-4d30-906c-f006cad1a204",
+      "created_at": "2026-06-30T06:15:37.601344+00:00",
+      "target_component": "price_structure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": [
+          "range_bound",
+          "trend"
+        ]
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 10,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 5.0
+}

@@ -1,0 +1,381 @@
+{
+  "step": 8,
+  "date": "2026-05-13",
+  "observation": "[volume dry, range expanding, volatility expanding, short-term momentum weakening, delivery:moderate, fii:strong_buy, sector:lagging, RELIANCE focus, asset liquidity fade] candle rejection upper participation weak (normal) RELIANCE traded range-bound amid moderate volatility but breadth weakened.\nTrend Persistence: 3D: Persistent Lower, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Reliance is trading in a range-bound environment with moderate volatility, but breadth has weakened, indicating a mixed trend persistence and overall regime.",
+  "theory": "In a fatigue regime characterized by weakened momentum absorption rates, institutional accumulation and moderate volatility will lead to increased liquidity absorption relative to short-term momentum expansion.",
+  "theory_summary_structured": {
+    "id": "4db587fa-8e20-458a-b772-397f45019dea",
+    "created_at": "2026-07-03 04:19:14.926926+00:00",
+    "mechanism": "Liquidity Absorption",
+    "claim": "In a fatigue regime characterized by weakened momentum absorption rates, institutional accumulation and moderate volatility will lead to increased liquidity absorption relative to short-term momentum expansion.",
+    "if_branch": {
+      "id": "b538701f-ed3b-440b-bdca-aa858bf4b531",
+      "created_at": "2026-07-03 04:28:13.345097+00:00",
+      "condition": "weak_momentum_scenario",
+      "action": "update_mechanism"
+    },
+    "else_branch": {
+      "id": "1bafdc2c-fc74-45d7-8311-dea891ec85ab",
+      "created_at": "2026-07-03 04:28:13.345156+00:00",
+      "condition": "normal_market_scenario",
+      "action": "retain_mechanism"
+    },
+    "unless": "liquidity evaporates entirely",
+    "falsified_if": "momentum_absorption_rate_revision_revised_with_institutional_accumulation",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "1e2f8e93-b53b-407f-b772-0e05e3d1a4f8",
+        "created_at": "2026-07-03 04:28:11.005965+00:00",
+        "component_id": "momentum_absorption_rate_revision_revised_with_institutional_accumulation",
+        "description": "Revised rate of liquidity absorption relative to short-term momentum expansion considering recent market trends, with a focus on the impact of institutional accumulation and moderate volatility. However, in a weak momentum scenario, this relationship is expected to be WEAKENED.",
+        "observable": "short_term_momentum",
+        "expected_behavior": "< 0.5",
+        "dependency": null,
+        "concept_tags": [
+          "LIQUIDITY_ABSORPTION_REVISION",
+          "MOMENTUM",
+          "INSTITUTIONAL_ACCUMULATION",
+          "VOLATILITY_EXPANSION"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_003"
+      },
+      {
+        "id": "17a261f4-c2b8-4cbf-83d1-41f9d57882ba",
+        "created_at": "2026-07-03 04:28:11.011073+00:00",
+        "component_id": "momentum_absorption_rate_revision_revised_with_institutional_accumulation",
+        "description": "Revised rate of liquidity absorption relative to short-term momentum expansion considering recent market trends, with a focus on the impact of institutional accumulation and moderate volatility. However, in a weak momentum scenario, this relationship is expected to be WEAKENED.",
+        "observable": "short_term_momentum",
+        "expected_behavior": "< 0.5",
+        "dependency": null,
+        "concept_tags": [
+          "LIQUIDITY_ABSORPTION_REVISION",
+          "MOMENTUM",
+          "INSTITUTIONAL_ACCUMULATION",
+          "VOLATILITY_EXPANSION"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_003"
+      }
+    ],
+    "falsification_conditions": [],
+    "reuse_decision": "REJECTED"
+  },
+  "confidence": {
+    "empirical": 0.0,
+    "regime": 0.5251,
+    "reflection": 0.0311,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 0.8909000000000001,
+    "indicators": [
+      "Structural: Low semantic similarity: In a fatigue regime ... vs weak_momentum_scenar...",
+      "Structural: Low semantic similarity: momentum_absorption_... vs price_stability_revi...; Low semantic similarity: In a fatigue regime ... vs volume > 1000 and ra...; Low semantic similarity: weak_momentum_scenar... vs volume > 1000 and ra...; Low semantic similarity: normal_market_scenar... vs true: retain...",
+      "Structural: Low semantic similarity: momentum_absorption_... vs price_stability_revi...; Low semantic similarity: In a fatigue regime ... vs volume > 1000 and ra...; Low semantic similarity: weak_momentum_scenar... vs volume > 1000 and ra...; Low semantic similarity: normal_market_scenar... vs true: retain...",
+      "Structural: Low semantic similarity: momentum_absorption_... vs price_stability_revi...; Low semantic similarity: In a fatigue regime ... vs short_term_momentum ...; Low semantic similarity: weak_momentum_scenar... vs short_term_momentum ...; Low semantic similarity: normal_market_scenar... vs false: retain moment...",
+      "Structural: Low semantic similarity: In a fatigue regime ... vs The current market r...; Low semantic similarity: momentum_absorption_... vs price_stability_revi...; Low semantic similarity: In a fatigue regime ... vs neutral_market_regim...; Low semantic similarity: weak_momentum_scenar... vs neutral_market_regim...; Low semantic similarity: normal_market_scenar... vs mixed_market_regime:...; Volatility: expansion vs stability; Semantic Contradiction: Concept 'MOMENTUM' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'MOMENTUM' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "7232860b-f875-45b6-ace8-8c2fa113c607",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "bba91af1-f6d7-4802-ba5e-4f1c53101fc1",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "9e95c819-7a59-471d-8ebc-75b5180a6544",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "5863186e-6894-437f-a552-a76f061ec03f",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "ce242ed4-32fc-40b6-ab45-91cdefa8befc",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 5 contradictions with a total score of 0.89."
+  },
+  "horizon": {
+    "daily": "range_bound",
+    "weekly": "range_bound",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-05-13",
+    "trend": "range_bound",
+    "volatility_state": "moderate",
+    "sentiment": "risk_off",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 0.891,
+    "active_theory_count": 2,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-05-12",
+      "similarity": 0.746,
+      "active_theories": [
+        "e134c2611dbdd0ea",
+        "cacd7c0f74a230a3",
+        "b51b0807ee283b5a"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: momentum_absorption_... vs price_stability_revi...; Low semantic similarity: In a neutral market ... vs volume > 1000 and ra...; Low semantic similarity: weak_momentum_scenar... vs volume > 1000 and ra...; Low semantic similarity: normal_market_scenar... vs true: retain...",
+        "Structural: Low semantic similarity: momentum_absorption_... vs price_stability_revi...; Low semantic similarity: In a neutral market ... vs volume > 1000 and ra...; Low semantic similarity: weak_momentum_scenar... vs volume > 1000 and ra...; Low semantic similarity: normal_market_scenar... vs true: retain...",
+        "Structural: Low semantic similarity: momentum_absorption_... vs price_stability_revi...; Low semantic similarity: weak_momentum_scenar... vs short_term_momentum ...; Low semantic similarity: normal_market_scenar... vs false: retain moment..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-08",
+      "similarity": 0.658,
+      "active_theories": [
+        "e134c2611dbdd0ea",
+        "cacd7c0f74a230a3",
+        "b51b0807ee283b5a"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: volume > 1000 and ra... vs short_term_momentum ...; Low semantic similarity: true: retain... vs false: retain moment...",
+        "Structural: Low semantic similarity: The revised rate of ... vs neutral_market_regim...; Low semantic similarity: volume > 1000 and ra... vs neutral_market_regim...; Low semantic similarity: true: retain... vs mixed_market_regime:...; Volatility: expansion vs stability",
+        "Structural: Low semantic similarity: The revised rate of ... vs range_expanding_and_...; Low semantic similarity: volume > 1000 and ra... vs range_expanding_and_...; Low semantic similarity: true: retain... vs sector_leading: prom...; Volatility: expansion vs stability"
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-05-07",
+      "similarity": 0.644,
+      "active_theories": [
+        "e134c2611dbdd0ea",
+        "cacd7c0f74a230a3",
+        "b51b0807ee283b5a"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: The revised rate of ... vs The current market r...; Low semantic similarity: The revised rate of ... vs neutral_market_regim...; Low semantic similarity: short_term_momentum ... vs neutral_market_regim...; Low semantic similarity: false: retain moment... vs mixed_market_regime:...; Volatility: expansion vs stability",
+        "Structural: Low semantic similarity: The revised rate of ... vs range_expanding_and_...; Low semantic similarity: short_term_momentum ... vs range_expanding_and_...; Low semantic similarity: false: retain moment... vs sector_leading: prom...; Volatility: expansion vs stability",
+        "Structural: Low semantic similarity: price_stability_revi... vs decisive close below...; Low semantic similarity: The revised rate of ... vs volume_state > 0.5 A...; Low semantic similarity: false: retain moment... vs false: do nothing...; Volatility: expansion vs stability"
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-05-13",
+      "policy_name": "Baseline",
+      "action": "hold",
+      "conviction": 0.21,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-05-13",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.21,
+      "reason": "Skipped low confidence",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-05-13",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.21,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.2950853333333333,
+    "label": "weak"
+  },
+  "reflection": "The provided analysis is a thorough examination of the given theory validation using structured market observation dimensions. The findings indicate that the theory is partially supported, but also contains contradictions that need to be addressed. One major contradiction arises from the semantic similarity between the current theory's regime subtype (fatigue) and the observed market conditions (range-bound with moderate volatility). This discrepancy suggests that the theory may not accurately capture the nuances of Reliance's behavior in this specific context.",
+  "regime_subtype": "fatigue",
+  "falsifiability_conditions": [
+    "momentum re-accelerates despite weak participation"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "fatigue",
+    "seen_count": 1,
+    "avg_usefulness": 0.295,
+    "last_seen": "2026-05-13",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 0,
+      "range_bound": 1,
+      "uncertain": 0
+    },
+    "falsified_count": 1
+  },
+  "dialectical_triggered": true,
+  "dialectical_synthesis": {
+    "shared_premise": "Reliance is trading in a range-bound environment with moderate volatility, indicating a mixed trend persistence and regime.",
+    "conflict": "The active theories disagree on whether Reliance's trend is weakening or persistent, with some suggesting a strong bearish trend and others indicating a mixed trend persistence.",
+    "synthesis": "While the market appears to be experiencing a moderate sell-off amidst normal bear participation, the RELIANCE focus suggests that the trend may not be as clear-cut. The mixed trend persistence and regime indicate that Reliance's behavior is complex and multifaceted, making it difficult to pinpoint a single direction. Therefore, it is more accurate to say that Reliance's trend is currently range-bound with moderate volatility, rather than definitively weakening or persistent.",
+    "falsified_if": "Reliance's momentum re-accelerates despite weak participation",
+    "validation": {
+      "valid": true,
+      "quality": 0.8,
+      "issues": []
+    }
+  },
+  "metrics": {
+    "step": 8,
+    "date": "2026-05-13",
+    "contradiction_count": 4,
+    "contradiction_half_life": 1.2105263157894737,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.8260869565217391,
+    "avg_contradiction_severity": 0.5131095652173914,
+    "highest_contradiction": 0.8909000000000001,
+    "theory_count": 2,
+    "active_theories": 2,
+    "new_theories": 0,
+    "mutated_theories": 1,
+    "merged_theories": 0,
+    "retired_theories": 6,
+    "revived_theories": 1,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 3.4285714285714284,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 4.0,
+    "longest_surviving_theory": 9,
+    "theory_mutation_count": 7,
+    "avg_confidence": 0.05043333333333333,
+    "confidence_delta": -0.24,
+    "confidence_volatility": 0.0945524663289588,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.5,
+    "memory_reference_count": 0,
+    "critique_density": 0.02564102564102564,
+    "avg_abstraction_length": 22.0,
+    "compression_ratio": 0.5,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 26,
+    "mechanism_count": 2,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 0,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 1.0,
+    "words_before_mutation": 26,
+    "words_after_mutation": 26,
+    "mechanisms_before_mutation": 1,
+    "mechanisms_after_mutation": 2,
+    "extras": {
+      "observation_length": 44,
+      "theory_text": "In a fatigue regime characterized by weakened momentum absorption rates, institutional accumulation and moderate volatility will lead to increased liquidity absorption relative to short-term momentum expansion.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 0.89.",
+      "horizon": {
+        "daily": "range_bound",
+        "weekly": "range_bound",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-05-13",
+        "trend": "range_bound",
+        "volatility_state": "moderate",
+        "sentiment": "risk_off",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 0.891,
+        "active_theory_count": 2,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-05-12",
+          "similarity": 0.746,
+          "active_theories": [
+            "e134c2611dbdd0ea",
+            "cacd7c0f74a230a3",
+            "b51b0807ee283b5a"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: momentum_absorption_... vs price_stability_revi...; Low semantic similarity: In a neutral market ... vs volume > 1000 and ra...; Low semantic similarity: weak_momentum_scenar... vs volume > 1000 and ra...; Low semantic similarity: normal_market_scenar... vs true: retain...",
+            "Structural: Low semantic similarity: momentum_absorption_... vs price_stability_revi...; Low semantic similarity: In a neutral market ... vs volume > 1000 and ra...; Low semantic similarity: weak_momentum_scenar... vs volume > 1000 and ra...; Low semantic similarity: normal_market_scenar... vs true: retain...",
+            "Structural: Low semantic similarity: momentum_absorption_... vs price_stability_revi...; Low semantic similarity: weak_momentum_scenar... vs short_term_momentum ...; Low semantic similarity: normal_market_scenar... vs false: retain moment..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-08",
+          "similarity": 0.658,
+          "active_theories": [
+            "e134c2611dbdd0ea",
+            "cacd7c0f74a230a3",
+            "b51b0807ee283b5a"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: volume > 1000 and ra... vs short_term_momentum ...; Low semantic similarity: true: retain... vs false: retain moment...",
+            "Structural: Low semantic similarity: The revised rate of ... vs neutral_market_regim...; Low semantic similarity: volume > 1000 and ra... vs neutral_market_regim...; Low semantic similarity: true: retain... vs mixed_market_regime:...; Volatility: expansion vs stability",
+            "Structural: Low semantic similarity: The revised rate of ... vs range_expanding_and_...; Low semantic similarity: volume > 1000 and ra... vs range_expanding_and_...; Low semantic similarity: true: retain... vs sector_leading: prom...; Volatility: expansion vs stability"
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-05-07",
+          "similarity": 0.644,
+          "active_theories": [
+            "e134c2611dbdd0ea",
+            "cacd7c0f74a230a3",
+            "b51b0807ee283b5a"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The revised rate of ... vs The current market r...; Low semantic similarity: The revised rate of ... vs neutral_market_regim...; Low semantic similarity: short_term_momentum ... vs neutral_market_regim...; Low semantic similarity: false: retain moment... vs mixed_market_regime:...; Volatility: expansion vs stability",
+            "Structural: Low semantic similarity: The revised rate of ... vs range_expanding_and_...; Low semantic similarity: short_term_momentum ... vs range_expanding_and_...; Low semantic similarity: false: retain moment... vs sector_leading: prom...; Volatility: expansion vs stability",
+            "Structural: Low semantic similarity: price_stability_revi... vs decisive close below...; Low semantic similarity: The revised rate of ... vs volume_state > 0.5 A...; Low semantic similarity: false: retain moment... vs false: do nothing...; Volatility: expansion vs stability"
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.2950853333333333,
+        "label": "weak"
+      }
+    }
+  }
+}

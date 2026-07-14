@@ -1,0 +1,107 @@
+{
+  "experience_id": "exp_ca47592b86186811_2026-05-01",
+  "lineage_id": "ca47592b86186811",
+  "theory_family_id": "ca47592b86186811",
+  "created_at": "2026-05-01",
+  "status": "closed",
+  "theory_ids": [
+    "2cc46d86-8c6a-4898-a08a-23007b2048d9",
+    "18a8aa0c-5504-439b-b7c8-480e965fbe13",
+    "4b447f4c-13a6-4980-9c71-bd54502f3069",
+    "839190d6-a889-49d5-a354-54229f78a3c5"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: delivery:moderate, s... vs price_structure: low...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: volume > 50% of aver... vs delivery_pct > 50 AN...; Low semantic similarity: short-term momentum ... vs volume_state = eleva...",
+    "Structural: Low semantic similarity: Significant increase... vs delivery:moderate, s...; Low semantic similarity: Revised claim: Regim... vs volume > 50% of aver...; Low semantic similarity: Moderate to high vol... vs volume > 50% of aver...; Field conflict: Low to moderate volume and wea vs short-term momentum strengthen",
+    "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: Significant increase... vs price_structure: low...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: Moderate to high vol... vs delivery_pct > 50 AN...; Low semantic similarity: Low to moderate volu... vs volume_state = eleva...",
+    "Structural: Low semantic similarity: No change in RELIANC... vs Significant increase...; Field conflict: Revised claim: Regime is drive vs Moderate to high volume and st; Low semantic similarity: volume_confirmation:... vs Moderate to high vol...; Low semantic similarity: RELIANCE focus and m... vs Low to moderate volu...",
+    "Structural: Low semantic similarity: No change in RELIANC... vs delivery:moderate, s...; Low semantic similarity: Revised claim: Regim... vs volume > 50% of aver...; Low semantic similarity: volume_confirmation:... vs volume > 50% of aver...; Low semantic similarity: RELIANCE focus and m... vs short-term momentum ...",
+    "Structural: Low semantic similarity: Revised claim: Regim... vs Regime is driven by ...; Low semantic similarity: No change in RELIANC... vs price_structure: low...; Low semantic similarity: Revised claim: Regim... vs delivery_pct > 50 AN...; Low semantic similarity: volume_confirmation:... vs delivery_pct > 50 AN...; Low semantic similarity: RELIANCE focus and m... vs volume_state = eleva...",
+    "Structural: Low semantic similarity: No change in RELIANC... vs Significant increase...; Field conflict: Revised claim: The market's tr vs Moderate to high volume and st; Low semantic similarity: Liquidity Absorption... vs Moderate to high vol...; Low semantic similarity: RELIANCE focus > 0.7... vs Low to moderate volu...",
+    "Structural: Low semantic similarity: Revised claim: The m... vs volume > 50% of aver...; Low semantic similarity: Liquidity Absorption... vs volume > 50% of aver...; Low semantic similarity: RELIANCE focus > 0.7... vs short-term momentum ..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:range_bound",
+    "volume:dry",
+    "volatility:stable",
+    "liquidity:even_flow",
+    "breadth:nascent",
+    "participation:weak",
+    "momentum:strengthening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:strong_buy",
+    "sector:sector:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 3,
+  "contradiction_count": 4,
+  "validation_count": 0,
+  "falsification_count": 3,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-02T08:39:02.270781",
+      "outcome": "partial",
+      "theory_claim": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening of momentum and increasing volatility.",
+      "components_passed": [
+        "price_structure",
+        "volume_confirmation",
+        "delivery_exhaustion"
+      ],
+      "components_failed": [
+        "price_structure"
+      ],
+      "root_cause": "price_structure",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Revised claim: Regime is driven by Liquidity Absorption, but with a weakening of momentum and increasing volatility\" failed to accurately predict the market behavior based on the provided observations.\n\nHere's why:\n\n1. **Observations vs. Theory**: The observations suggest that:\n\t* Range "
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-02T08:40:34.682906",
+      "outcome": "partial",
+      "theory_claim": "Revised claim: Regime is driven by Liquidity Absorption, but with a weakening of momentum and increasing volatility, leading to a mixed trend persistence.",
+      "components_passed": [
+        "price_structure",
+        "delivery_exhaustion"
+      ],
+      "components_failed": [
+        "volume_confirmation"
+      ],
+      "root_cause": "volume_confirmation",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Revised claim: Regime is driven by Liquidity Absorption, but with a weakening of momentum and increasing volatility, leading to a mixed trend persistence\" failed given the observed data because it did not accurately predict the outcome.\n\nHere's why:\n\n1. **Volume dry**: The theory suggest"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-02T08:43:09.170631",
+      "outcome": "partial",
+      "theory_claim": "Revised claim: The market's trend persistence is driven by Liquidity Absorption, but with a weakening of momentum and increasing volatility, leading to a mixed trend persistence. However, the neutral ",
+      "components_passed": [
+        "price_structure",
+        "volume_confirmation",
+        "delivery_exhaustion"
+      ],
+      "components_failed": [
+        "price_structure"
+      ],
+      "root_cause": "price_structure",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This theory \"Revised claim\" attempts to explain the market's trend persistence by attributing it to Liquidity Absorption, but with a twist. The original claim suggests that the market's trend persistence is driven by Liquidity Absorption, which implies a strong momentum and stability in the market.\n"
+    }
+  ],
+  "component_failure_counts": {
+    "price_structure": 2,
+    "volume_confirmation": 1
+  }
+}

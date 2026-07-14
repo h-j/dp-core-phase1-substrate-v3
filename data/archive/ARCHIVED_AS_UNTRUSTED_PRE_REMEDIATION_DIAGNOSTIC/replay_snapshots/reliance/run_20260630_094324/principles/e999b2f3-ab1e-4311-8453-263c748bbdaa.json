@@ -1,0 +1,56 @@
+{
+  "id": "e999b2f3-ab1e-4311-8453-263c748bbdaa",
+  "created_at": "2026-06-30T04:17:42.895580+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where regime subtype and volatility regime are in a state of balance, but breaks down when either momentum or volatility dominates.",
+  "associated_lineage_ids": [
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "7d86af60-c883-4efa-897d-133e8712850d"
+  ],
+  "supporting_theory_ids": [
+    "ed0793ac-24e4-41ce-8fb5-fe139e7a9e94",
+    "7d86af60-c883-4efa-897d-133e8712850d",
+    "04a6928c-85a3-482c-ad24-961219c34a7c",
+    "315d4d30-ecdd-4ce2-8194-4fe440d5bbab"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "867c5896-72ce-43da-a704-46c8e739ff83",
+      "created_at": "2026-06-30T04:17:42.895476+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum",
+        "volatility_regime": "expanded"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "e3f20dff-ccf0-4cf5-9e0d-3cb251d142f3",
+      "created_at": "2026-06-30T04:17:42.895528+00:00",
+      "target_component": "price_structure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "regime_subtype": "range_bound",
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 4,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0
+}

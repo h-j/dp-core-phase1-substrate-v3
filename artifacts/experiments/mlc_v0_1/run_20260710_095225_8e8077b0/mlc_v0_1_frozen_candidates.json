@@ -1,0 +1,188 @@
+[
+  {
+    "proposition_definition": {
+      "proposition_id": "PROP_WORLD_A_SEED_42",
+      "source_hypothesis_id": "HYP_WORLD_A_SEED_42",
+      "trigger_definition": {
+        "field": "VAR_1",
+        "operator": "==",
+        "value": 1,
+        "lag": 0
+      },
+      "target_definition": {
+        "field": "outcome",
+        "operator": "==",
+        "value": "VAL_B"
+      },
+      "scope_definition": [],
+      "expected_direction": 1.0,
+      "contradiction_definition": {
+        "field": "outcome",
+        "operator": "==",
+        "value": "VAL_A"
+      },
+      "specificity_definition": {
+        "type": "deterministic"
+      },
+      "complexity_cost": 1.0,
+      "generation_source": "deterministic_compilation",
+      "creation_timestamp": 1783657345.577914,
+      "lifecycle_state": "EVALUATION_READY"
+    },
+    "contradiction_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_A"
+    },
+    "specificity_definition": {
+      "type": "deterministic"
+    },
+    "window_2_evidence_summary": {
+      "active_count": 198,
+      "active_target_count": 167,
+      "control_count": 202,
+      "control_target_count": 101
+    },
+    "window_2_intrinsic_measurements": {
+      "activation_count": 198,
+      "support_count": 167,
+      "contradiction_count": 31,
+      "inconclusive_count": 0,
+      "sample_adequacy": true,
+      "coverage": 0.495,
+      "stability": 0.9936,
+      "complexity": 1.0,
+      "equivalence": false,
+      "redundancy": false
+    },
+    "threshold_configuration_version": "v0.1_frozen",
+    "measurement_function_version": "v0.1_frozen",
+    "attribution_function_version": "v0.1_frozen",
+    "freeze_timestamp": 1783657345.5788312,
+    "content_hash": "2ff1b596dd86277f588253c23910b2fc78f831ef698d1fde343350e33e558445"
+  },
+  {
+    "proposition_definition": {
+      "proposition_id": "PROP_WORLD_B_SEED_42",
+      "source_hypothesis_id": "HYP_WORLD_B_SEED_42",
+      "trigger_definition": {
+        "field": "VAR_1",
+        "operator": "==",
+        "value": 1,
+        "lag": 0
+      },
+      "target_definition": {
+        "field": "outcome",
+        "operator": "==",
+        "value": "VAL_B"
+      },
+      "scope_definition": [],
+      "expected_direction": 1.0,
+      "contradiction_definition": {
+        "field": "outcome",
+        "operator": "==",
+        "value": "VAL_A"
+      },
+      "specificity_definition": {
+        "type": "deterministic"
+      },
+      "complexity_cost": 1.0,
+      "generation_source": "deterministic_compilation",
+      "creation_timestamp": 1783657345.5800052,
+      "lifecycle_state": "EVALUATION_READY"
+    },
+    "contradiction_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_A"
+    },
+    "specificity_definition": {
+      "type": "deterministic"
+    },
+    "window_2_evidence_summary": {
+      "active_count": 198,
+      "active_target_count": 27,
+      "control_count": 202,
+      "control_target_count": 101
+    },
+    "window_2_intrinsic_measurements": {
+      "activation_count": 198,
+      "support_count": 27,
+      "contradiction_count": 171,
+      "inconclusive_count": 0,
+      "sample_adequacy": true,
+      "coverage": 0.495,
+      "stability": 0.971,
+      "complexity": 1.0,
+      "equivalence": false,
+      "redundancy": false
+    },
+    "threshold_configuration_version": "v0.1_frozen",
+    "measurement_function_version": "v0.1_frozen",
+    "attribution_function_version": "v0.1_frozen",
+    "freeze_timestamp": 1783657345.580842,
+    "content_hash": "da873e0723ac5ea640e511bf46c63ad51e2b459ff4033e811e95dd056f72013b"
+  },
+  {
+    "proposition_definition": {
+      "proposition_id": "PROP_WORLD_C2_SEED_42",
+      "source_hypothesis_id": "HYP_WORLD_C2_SEED_42",
+      "trigger_definition": {
+        "field": "VAR_1",
+        "operator": "==",
+        "value": 1,
+        "lag": 0
+      },
+      "target_definition": {
+        "field": "outcome",
+        "operator": "==",
+        "value": "VAL_B"
+      },
+      "scope_definition": [],
+      "expected_direction": 1.0,
+      "contradiction_definition": {
+        "field": "outcome",
+        "operator": "==",
+        "value": "VAL_A"
+      },
+      "specificity_definition": {
+        "type": "deterministic"
+      },
+      "complexity_cost": 1.0,
+      "generation_source": "deterministic_compilation",
+      "creation_timestamp": 1783657345.5828109,
+      "lifecycle_state": "EVALUATION_READY"
+    },
+    "contradiction_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_A"
+    },
+    "specificity_definition": {
+      "type": "deterministic"
+    },
+    "window_2_evidence_summary": {
+      "active_count": 198,
+      "active_target_count": 103,
+      "control_count": 202,
+      "control_target_count": 101
+    },
+    "window_2_intrinsic_measurements": {
+      "activation_count": 198,
+      "support_count": 103,
+      "contradiction_count": 95,
+      "inconclusive_count": 0,
+      "sample_adequacy": true,
+      "coverage": 0.495,
+      "stability": 0.9426,
+      "complexity": 1.0,
+      "equivalence": false,
+      "redundancy": false
+    },
+    "threshold_configuration_version": "v0.1_frozen",
+    "measurement_function_version": "v0.1_frozen",
+    "attribution_function_version": "v0.1_frozen",
+    "freeze_timestamp": 1783657345.5838919,
+    "content_hash": "6233e7ad81a7069be5aeebeb62359b2c22e9fea5a4da5985b86001b1ff0ca2d6"
+  }
+]

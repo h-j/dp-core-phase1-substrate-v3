@@ -1,0 +1,73 @@
+{
+  "id": "042bf01d-d9c2-4322-8479-868104da084e",
+  "created_at": "2026-06-30T08:42:17.571953+00:00",
+  "status": "retired",
+  "statement": "The component expectation is valid under market conditions where the regime is driven by Absorption, and price remains range-bound despite volume expansion, with increasing volatility and strengthening short-term momentum.",
+  "associated_lineage_ids": [
+    "d7fcc02f-ab9f-4df8-ba56-1820c009f78a",
+    "c7fa16fa-a739-46e1-8541-aaa9489c6ccb",
+    "2f7b19be-f462-475d-a8bb-197c32a1bf6d",
+    "ba4d531c-074a-4970-966b-fc5109e4197a",
+    "486e3f4d-b090-49c6-96f2-7749c33c50a5",
+    "eb93b7fa-9426-4cbf-86d4-3c94480ec622",
+    "b167e254-40e0-4978-be0c-899b17a91150",
+    "a245d32b-920d-4a5b-889b-86b7a6122787"
+  ],
+  "supporting_theory_ids": [
+    "b167e254-40e0-4978-be0c-899b17a91150",
+    "486e3f4d-b090-49c6-96f2-7749c33c50a5",
+    "c7fa16fa-a739-46e1-8541-aaa9489c6ccb",
+    "2f7b19be-f462-475d-a8bb-197c32a1bf6d",
+    "eb93b7fa-9426-4cbf-86d4-3c94480ec622",
+    "d7fcc02f-ab9f-4df8-ba56-1820c009f78a",
+    "a245d32b-920d-4a5b-889b-86b7a6122787",
+    "ba4d531c-074a-4970-966b-fc5109e4197a"
+  ],
+  "contradicting_theory_ids": [],
+  "supporting_experience_ids": [],
+  "falsifiable_predictions": [
+    {
+      "id": "79ad8c4d-e92c-4abf-9375-e14838142a03",
+      "created_at": "2026-06-30T08:42:17.571823+00:00",
+      "target_component": "price_structure",
+      "expected_status": "failed",
+      "applicability_filter": {
+        "regime_subtype": "momentum"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    },
+    {
+      "id": "1acb0d51-1ede-4b66-9b74-18835519ee23",
+      "created_at": "2026-06-30T08:42:17.571881+00:00",
+      "target_component": "price_structure",
+      "expected_status": "passed",
+      "applicability_filter": {
+        "volatility_regime": "compressed"
+      },
+      "empirical_support_count": 0,
+      "empirical_failure_count": 0
+    }
+  ],
+  "confidence": 0.5,
+  "support_count": 0,
+  "contradiction_count": 0,
+  "created_at_step": 8,
+  "revision_history": [],
+  "uses_count": 0,
+  "predictions_helped": 0,
+  "predictions_harmed": 0,
+  "confidence_adjustments_triggered": 0,
+  "world_model_influence_count": 0,
+  "empirical_support": 0,
+  "cross_asset_support": 1,
+  "usefulness_trend": 0.0,
+  "stability_age": 0,
+  "confidence_interval": [
+    0.0,
+    0.0
+  ],
+  "last_successful_reuse": null,
+  "last_contradiction": null,
+  "trust_score": 5.0
+}
