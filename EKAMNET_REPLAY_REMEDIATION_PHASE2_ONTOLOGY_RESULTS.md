@@ -246,8 +246,16 @@ The repair adds `"SECTOR_ZSCORE"` directly to the ontology whitelist:
 
 ### 15. Claim Boundary
 
-* **Claim**: `NOVELTY_ROUTING_AND_PREDICTION_DIRECTION_PRESERVATION_CONFIRMED_ONLY`
-* **Preservation Limit**: The downstream trade allocations and PnL diverged from baseline due to the expected propagation of accepting the original `SECTOR_ZSCORE` theory instead of a mutated fallback. No downstream behavior preservation is claimed.
+* **Claim**: `ONTOLOGY_CONTRACT_CORRECTION_CONFIRMED_WITH_TRACEABLE_EXPECTED_COGNITIVE_DELTA`
+* **Interpretation Limits**:
+  - The ontology registry defect was successfully demonstrated;
+  - The minimum repair was implemented;
+  - Matched initial states were established between baseline and treatment;
+  - The intervention successfully removed the identified ontology rejection and validation retry path;
+  - The resulting cognitive trajectories diverged downstream;
+  - The broad trajectory divergence is consistent with the downstream propagation of the contract correction;
+  - The exact causal ancestry of every individual downstream delta was not independently established, and we do not claim that every individual downstream delta was independently causally proven.
+
 
 ---
 

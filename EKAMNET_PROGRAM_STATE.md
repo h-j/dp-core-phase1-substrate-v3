@@ -111,5 +111,25 @@
 
 ---
 
-## 11. Next Highest-Leverage Action
-- Transition to closed-loop cognitive learning with Lesson/Principle formation.
+## 12. Replay Integrity Remediation Closure
+- **Status**: `REPLAY_INTEGRITY_REMEDIATION_COMPLETE`
+- **Repaired Defects**:
+  - **DEFECT 1**: Relational lineage propagation inconsistency.
+    - *Bounded result*: Lineage-family identity propagation and SQL ↔ JSON consistency restored.
+  - **DEFECT 2**: Nested TheoryStructured identity collision.
+    - *Bounded result*: REVISE regenerates nested identity according to the accepted Phase 1 semantics; REINFORCE preserves nested identity.
+  - **DEFECT 3**: SECTOR_ZSCORE ontology contract mismatch.
+    - *Bounded result*: Ontology registry omission corrected, matched-state Replay comparison completed, and expected cognitive trajectory divergence characterized.
+- **Claim Boundaries**:
+  - Phase 1 did not establish unrestricted full cognitive-behavior preservation.
+  - Phase 2 intentionally introduced cognitive trajectory divergence.
+  - P1-P6 hardcoded closure-gate risk remains open and tracked.
+  - Candidate F remains: `MINIMUM_COGNITIVE_LOOP_MECHANISM_IDENTIFIED`, not experimentally validated.
+  - S4-E0 remains unresolved and queued.
+  - No additional Replay remediation is authorized without new blocking evidence.
+
+---
+
+## 13. Next Highest-Leverage Action
+- Proceed to Candidate F (Provenance-Driven Novelty Routing) counterfactual experiment design.
+
