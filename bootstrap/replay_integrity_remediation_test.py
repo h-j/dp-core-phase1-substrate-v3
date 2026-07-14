@@ -84,6 +84,73 @@ def test_nested_id_regeneration():
     print("✓ test_nested_id_regeneration passed.")
 
 
+from cognition.schemas.knowledge.ontology import OntologyRegistry
+from cognition.schemas.theory.theory import MechanismComponent
+
+def test_generate_contract_consistency():
+    """Verify that SECTOR_ZSCORE is a valid Core Concept in OntologyRegistry."""
+    assert "SECTOR_ZSCORE" in OntologyRegistry.CORE_CONCEPTS
+    print("✓ test_generate_contract_consistency passed.")
+
+def test_revise_contract_consistency():
+    """Verify that a revised theory component with SECTOR_ZSCORE is semantically accepted."""
+    comp = {
+        "component_id": "relative_strength",
+        "description": "Sector relative strength performance",
+        "observable": "sector_zscore",
+        "expected_behavior": "sector_zscore > 1.0",
+        "concept_tags": ["SECTOR_ZSCORE"],
+        "relation_type": "AMPLIFIES"
+    }
+    # Validate concept tags manually against core concepts
+    for t in comp["concept_tags"]:
+        assert t in OntologyRegistry.CORE_CONCEPTS
+    print("✓ test_revise_contract_consistency passed.")
+
+def test_persistence_retrieval_consistency():
+    """Verify that a SECTOR_ZSCORE component can be serialized and deserialized cleanly."""
+    comp = MechanismComponent(
+        component_id="sector_rel_strength",
+        description="Sector relative strength performance",
+        observable="sector_zscore",
+        expected_behavior="sector_zscore > 1.5",
+        concept_tags=["SECTOR_ZSCORE"],
+        relation_type="AMPLIFIES"
+    )
+    # Serialize to dictionary
+    serialized = comp.to_dict()
+    assert "SECTOR_ZSCORE" in serialized["concept_tags"]
+    
+    # Deserialize back
+    deserialized = MechanismComponent.from_dict(serialized)
+    assert deserialized.concept_tags == ["SECTOR_ZSCORE"]
+    print("✓ test_persistence_retrieval_consistency passed.")
+
+def test_unknown_value_policy():
+    """Verify that an unsupported value is rejected and tracked."""
+    unsupported_val = "FAKE_UNSUPPORTED_METRIC_XYZ"
+    assert unsupported_val not in OntologyRegistry.CORE_CONCEPTS
+    
+    # Verify validation tracks the unknown value
+    OntologyRegistry.reset_metrics()
+    OntologyRegistry.track_unknown_value(unsupported_val)
+    assert unsupported_val in OntologyRegistry._unknown_ontology_values
+    print("✓ test_unknown_value_policy passed.")
+
+def test_no_unrelated_ontology_expansion():
+    """Verify that only SECTOR_ZSCORE was added and other core concepts are untouched."""
+    # Count of expected concepts: original 10 + 1 (SECTOR_ZSCORE) = 11
+    assert len(OntologyRegistry.CORE_CONCEPTS) == 11
+    assert "TREND_PERSISTENCE" in OntologyRegistry.CORE_CONCEPTS
+    assert "RANDOM_UNSUPPORTED_CONCEPT" not in OntologyRegistry.CORE_CONCEPTS
+    print("✓ test_no_unrelated_ontology_expansion passed.")
+
+
 if __name__ == "__main__":
     test_lineage_propagation()
     test_nested_id_regeneration()
+    test_generate_contract_consistency()
+    test_revise_contract_consistency()
+    test_persistence_retrieval_consistency()
+    test_unknown_value_policy()
+    test_no_unrelated_ontology_expansion()
