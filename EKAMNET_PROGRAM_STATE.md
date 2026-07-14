@@ -107,6 +107,7 @@
 1. **`CANONICAL_STATE_DRIFT_RISK`**: The risk that scientific interpretations become stronger in canonical state files than underlying code and execution evidence supports.
 2. **`EVIDENCE_TO_ARCHITECTURE_INFERENCE_RISK`**: The risk of concluding that one architecture option is correct/superior solely because a different option is shown to be strained, without directly testing the proposed option.
 3. **`PREMATURE_HUMAN_GATE_RISK`**: The risk of stopping execution for a human decision when the current steering authorization already permits further bounded evidence generation, preventing the completion of an evidence-gathering loop.
+4. **`P1-P6_BOUNDARY_CONTRACTS_BYPASS`**: Milestone 5, 6, and 7 verification completion check gates are bypassed (hardcoded to `PASS`) in the validator script `verify_scientific_closures.py`, rendering the scientific closures unverified in automated checks.
 
 ---
 
