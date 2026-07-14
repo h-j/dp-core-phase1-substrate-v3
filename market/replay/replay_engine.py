@@ -2046,6 +2046,7 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                         lineage_id_val = lineage_result.get(
                             "lineage_id", "N/A"
                         )  # Use the stable lineage_id from lineage_result
+                        theory.lineage_id = lineage_id_val
                         audit_created = lineage_result.get("created", False)
                         audit_mutated = lineage_result.get("mutated", False)
                         audit_merged = lineage_result.get("merged", False)
