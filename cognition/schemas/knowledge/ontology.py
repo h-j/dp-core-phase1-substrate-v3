@@ -68,6 +68,7 @@ class OntologyRegistry:
         "BREAKOUT_VALIDATION",
         "BREAKOUT_FAILURE",
         "DELIVERY_EXHAUSTION",
+        "SECTOR_ZSCORE",
     ]
 
     RELATION_TYPES = [
