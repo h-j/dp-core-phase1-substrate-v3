@@ -1,0 +1,61 @@
+{
+  "experience_id": "exp_b1951952e2d6d834_2026-07-10",
+  "lineage_id": "b1951952e2d6d834",
+  "theory_family_id": "b1951952e2d6d834",
+  "created_at": "2026-07-10",
+  "status": "closed",
+  "theory_ids": [
+    "0933a179-df7a-44d9-a166-967d879d75df"
+  ],
+  "contradictions": [
+    "Structural: Field conflict: The current market regime is c vs Sector relative strength Z-sco; Low semantic similarity: volume_confirmation... vs sector_zscore_revise...; Field conflict: The current market regime is c vs sector_zscore.rolling_20day > ; Field conflict: RANGE_EXPANSION IS HIGH OR DEL vs sector_zscore.rolling_20day > ; Volatility: expansion vs stability; Participation: weakening vs elevated",
+    "Structural: Field conflict: The current market regime is c vs The current market regime is c; Low semantic similarity: volume_confirmation... vs MECH_002...; Low semantic similarity: The current market r... vs volume_elevated AND ...; Low semantic similarity: RANGE_EXPANSION IS H... vs volume_elevated AND ...; Low semantic similarity: true: remove... vs false: demote MECH_0...; Volatility: expansion vs stability; Participation: weakening vs elevated",
+    "Structural: Low semantic similarity: volume_confirmation... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs volume.daily_ratio <...; Low semantic similarity: RANGE_EXPANSION IS H... vs volume.daily_ratio <...; Participation: weakening vs elevated; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+    "Structural: Low semantic similarity: volume_confirmation... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs volume_spike OR asse...; Low semantic similarity: RANGE_EXPANSION IS H... vs volume_spike OR asse...; Low semantic similarity: true: remove... vs true: retain MECH_00...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:extended_higher",
+    "volume:dry",
+    "volatility:compressed",
+    "liquidity:broad_participation",
+    "breadth:strengthened",
+    "participation:weak",
+    "momentum:flat",
+    "subtype:liquidity_constrained",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:leading"
+  ],
+  "theory_subtype": "liquidity_constrained",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-15T05:52:54.009321",
+      "outcome": "partial",
+      "theory_claim": "The current market regime is characterized by FII selling driving delivery exhaustion, sector relative strength Z-scores remaining strong despite weak performance, and volume expansion on up days bein",
+      "components_passed": [
+        "delivery_exhaustion_with_fii_selling_revised",
+        "sector_zscore_revised_with_fii_selling_emphasis"
+      ],
+      "components_failed": [
+        "volume_expansion_with_range_expansion"
+      ],
+      "root_cause": "volume_expansion_with_range_expansion",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This theory appears to have failed due to several reasons:\n\n1. **Volume dry**: The observation that volume is dry suggests a lack of liquidity and interest in the market, which contradicts the theory's expectation of \"volume expansion on up days being weak\".\n\n2. **Gap down**: A gap down indicates a "
+    }
+  ],
+  "component_failure_counts": {
+    "volume_expansion_with_range_expansion": 1
+  }
+}

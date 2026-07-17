@@ -1,0 +1,1002 @@
+{
+  "market_outcomes": [
+    {
+      "id": "ecb8fee0-1696-4c76-8433-ea3bc7984eb0",
+      "created_at": "2026-07-15T05:53:27.494097+05:30",
+      "market_name": "reliance",
+      "related_observation_id": "871b30bd-c54d-426c-9681-942ebbf3b741",
+      "outcome_summary": "[volume elevated, range expanding, gap up, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, reliance focus] candle strong bear participation normal (normal) reliance closed lower amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "realized_trend": "closed_lower",
+      "realized_volatility": "moderate",
+      "realized_breadth": "nascent",
+      "realized_liquidity": "broad_participation",
+      "outcome_contradictions": "[]",
+      "outcome_confidence": 0.5
+    },
+    {
+      "id": "5682078d-2b4c-4a08-b90d-ac03b9956d71",
+      "created_at": "2026-07-15T05:54:33.802863+05:30",
+      "market_name": "reliance",
+      "related_observation_id": "90897bbe-e4c0-47b8-86e1-b782fdb7590e",
+      "outcome_summary": "[volume dry, gap up, short-term momentum weakening, delivery:moderate, fii:selling, sector:leading, reliance focus, asset liquidity fade] candle expansion participation weak (weak move) reliance closed higher with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "realized_trend": "closed_higher",
+      "realized_volatility": "compressed",
+      "realized_breadth": "nascent",
+      "realized_liquidity": "broad_participation",
+      "outcome_contradictions": "[\"Structural: Low semantic similarity: The current market r... vs Neutral regime is dr...; Low semantic similarity: The current market r... vs sector_zscore < -1.5...; Low semantic similarity: delivery_pct.rolling... vs sector_zscore < -1.5...; Low semantic similarity: false: remove mechan... vs volume_state = eleva...\"]",
+      "outcome_confidence": 0.55
+    },
+    {
+      "id": "ab5288e3-c5d2-45a6-ab6d-827b1928888f",
+      "created_at": "2026-07-15T05:55:58.196206+05:30",
+      "market_name": "reliance",
+      "related_observation_id": "2bb072d7-1fc3-4d9c-87ab-bb42b7d06dda",
+      "outcome_summary": "[volume spike, delivery:moderate, fii:selling, sector:neutral, reliance focus, asset participation surge] candle neutral participation strong (normal) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "realized_trend": "range_bound",
+      "realized_volatility": "compressed",
+      "realized_breadth": "nascent",
+      "realized_liquidity": "even_flow",
+      "outcome_contradictions": "[\"Structural: Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The neutral market r... vs delivery_pct.rolling...; Low semantic similarity: false: add to retain... vs false: remove mechan...\", \"Structural: Low semantic similarity: The neutral market r... vs Neutral regime is dr...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The neutral market r... vs sector_zscore < -1.5...; Low semantic similarity: delivery_exhaustion_... vs sector_zscore < -1.5...; Low semantic similarity: false: add to retain... vs volume_state = eleva...\"]",
+      "outcome_confidence": 0.5
+    },
+    {
+      "id": "4609b3d9-7d93-42e6-858a-1853deda5f2c",
+      "created_at": "2026-07-15T05:57:21.140606+05:30",
+      "market_name": "reliance",
+      "related_observation_id": "759668c8-4194-41ae-a864-c534a6633c3f",
+      "outcome_summary": "[volume dry, gap up, short-term momentum strengthening, delivery:moderate, fii:selling, sector:leading, reliance focus, asset liquidity fade] candle strong bear participation weak (weak move) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "realized_trend": "range_bound",
+      "realized_volatility": "compressed",
+      "realized_breadth": "nascent",
+      "realized_liquidity": "broad_participation",
+      "outcome_contradictions": "[\"Structural: Low semantic similarity: The sector Z-score r... vs delivery_exhaustion_...; Low semantic similarity: volume_spike OR asse... vs delivery_exhaustion_...; Low semantic similarity: true: retain MECH_00... vs false: add to retain...\", \"Structural: Low semantic similarity: The sector Z-score r... vs The current market r...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The sector Z-score r... vs delivery_pct.rolling...; Low semantic similarity: volume_spike OR asse... vs delivery_pct.rolling...; Low semantic similarity: true: retain MECH_00... vs false: remove mechan...\", \"Structural: Low semantic similarity: The sector Z-score r... vs Neutral regime is dr...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The sector Z-score r... vs sector_zscore < -1.5...; Low semantic similarity: volume_spike OR asse... vs sector_zscore < -1.5...; Low semantic similarity: true: retain MECH_00... vs volume_state = eleva...\"]",
+      "outcome_confidence": 0.58
+    },
+    {
+      "id": "07730628-f2f6-4cac-b4cf-8457ef866487",
+      "created_at": "2026-07-15T05:58:29.273562+05:30",
+      "market_name": "reliance",
+      "related_observation_id": "92af53f3-577b-49b3-8e20-3d837e3ba599",
+      "outcome_summary": "[volume dry, range expanding, short-term momentum strengthening, delivery:moderate, fii:selling, sector:leading_strong, reliance focus, asset rally, asset liquidity fade] candle strong bull participation weak (divergence) reliance closed higher with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "realized_trend": "extended_higher",
+      "realized_volatility": "compressed",
+      "realized_breadth": "nascent",
+      "realized_liquidity": "broad_participation",
+      "outcome_contradictions": "[\"Structural: Low semantic similarity: Sector relative stre... vs volume_spike OR asse...; Low semantic similarity: volume.daily_ratio <... vs volume_spike OR asse...; Low semantic similarity: true: remove mechani... vs true: retain MECH_00...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Low semantic similarity: Sector relative stre... vs delivery_exhaustion_...; Low semantic similarity: volume.daily_ratio <... vs delivery_exhaustion_...; Low semantic similarity: true: remove mechani... vs false: add to retain...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Low semantic similarity: Sector relative stre... vs The current market r...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: Sector relative stre... vs delivery_pct.rolling...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Low semantic similarity: Sector relative stre... vs Neutral regime is dr...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: Sector relative stre... vs sector_zscore < -1.5...; Low semantic similarity: volume.daily_ratio <... vs sector_zscore < -1.5...; Low semantic similarity: true: remove mechani... vs volume_state = eleva...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\"]",
+      "outcome_confidence": 0.45
+    },
+    {
+      "id": "7bb899c9-5bfe-49b5-8379-513fc5fc7677",
+      "created_at": "2026-07-15T06:00:14.876277+05:30",
+      "market_name": "reliance",
+      "related_observation_id": "ee033764-dbf5-4f59-9203-a1b1f35e6502",
+      "outcome_summary": "[volume elevated, range expanding, delivery:moderate, fii:selling, sector:leading, reliance focus] candle expansion participation normal (bearish confirmed) reliance closed lower with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "realized_trend": "closed_lower",
+      "realized_volatility": "compressed",
+      "realized_breadth": "mixed",
+      "realized_liquidity": "broad_participation",
+      "outcome_contradictions": "[\"Structural: Low semantic similarity: Sector relative stre... vs volume_spike OR asse...; Low semantic similarity: volume.daily_ratio <... vs volume_spike OR asse...; Low semantic similarity: true: remove mechani... vs true: retain MECH_00...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Low semantic similarity: Sector relative stre... vs delivery_exhaustion_...; Low semantic similarity: volume.daily_ratio <... vs delivery_exhaustion_...; Low semantic similarity: true: remove mechani... vs false: add to retain...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Low semantic similarity: Sector relative stre... vs The current market r...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: Sector relative stre... vs delivery_pct.rolling...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Low semantic similarity: Sector relative stre... vs Neutral regime is dr...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: Sector relative stre... vs sector_zscore < -1.5...; Low semantic similarity: volume.daily_ratio <... vs sector_zscore < -1.5...; Low semantic similarity: true: remove mechani... vs volume_state = eleva...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\"]",
+      "outcome_confidence": 0.34
+    },
+    {
+      "id": "b5cb5c15-df42-45f1-b82a-f31f398323ac",
+      "created_at": "2026-07-15T06:01:24.726411+05:30",
+      "market_name": "reliance",
+      "related_observation_id": "0f93b6c3-7a2d-48f3-be6d-d0158c4b56f1",
+      "outcome_summary": "[volume elevated, range expanding, gap down, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, reliance focus, asset selloff, asset participation surge] candle strong bear participation strong (bearish confirmed) reliance closed lower with volatility compressed but breadth weakened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "realized_trend": "extended_lower",
+      "realized_volatility": "compressed",
+      "realized_breadth": "weakened",
+      "realized_liquidity": "broad_participation",
+      "outcome_contradictions": "[\"Structural: Field conflict: The current market regime is c vs Sector relative strength Z-sco; Low semantic similarity: MECH_002... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs volume.daily_ratio <...; Low semantic similarity: volume_elevated AND ... vs volume.daily_ratio <...; Low semantic similarity: false: demote MECH_0... vs true: remove mechani...; Volatility: expansion vs stability; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Field conflict: The current market regime is c vs Sector relative strength Z-sco; Low semantic similarity: MECH_002... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs volume.daily_ratio <...; Low semantic similarity: volume_elevated AND ... vs volume.daily_ratio <...; Low semantic similarity: false: demote MECH_0... vs true: remove mechani...; Volatility: expansion vs stability; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Field conflict: The current market regime is c vs The sector Z-score remains neu; Low semantic similarity: MECH_002... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs volume_spike OR asse...; Low semantic similarity: false: demote MECH_0... vs true: retain MECH_00...; Volatility: expansion vs stability; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Field conflict: The current market regime is c vs The neutral market regime is c; Low semantic similarity: MECH_002... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs delivery_exhaustion_...; Low semantic similarity: volume_elevated AND ... vs delivery_exhaustion_...; Low semantic similarity: false: demote MECH_0... vs false: add to retain...; Volatility: expansion vs stability; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Low semantic similarity: MECH_002... vs decisive close above...; Low semantic similarity: The current market r... vs delivery_pct.rolling...; Low semantic similarity: volume_elevated AND ... vs delivery_pct.rolling...; Low semantic similarity: false: demote MECH_0... vs false: remove mechan...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\"]",
+      "outcome_confidence": 0.55
+    },
+    {
+      "id": "6b1031d7-7646-4e6d-b506-254969f21a7b",
+      "created_at": "2026-07-15T06:03:14.861989+05:30",
+      "market_name": "reliance",
+      "related_observation_id": "adb2560c-550a-4404-9972-6092ce684371",
+      "outcome_summary": "[volume elevated, range expanding, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, reliance focus] candle rejection upper participation normal (normal) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Persistent Lower, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "realized_trend": "range_bound",
+      "realized_volatility": "compressed",
+      "realized_breadth": "mixed",
+      "realized_liquidity": "even_flow",
+      "outcome_contradictions": "[\"Structural: Field conflict: Sector relative strength Z-sco vs The current market regime is c; Low semantic similarity: sector_zscore_revise... vs MECH_002...; Field conflict: Sector relative strength Z-sco vs volume_elevated AND range_expa; Field conflict: sector_zscore.rolling_20day >  vs volume_elevated AND range_expa; Low semantic similarity: true: remove... vs false: demote MECH_0...; Volatility: expansion vs stability; Participation: weakening vs elevated\", \"Structural: Field conflict: Sector relative strength Z-sco vs Sector relative strength Z-sco; Low semantic similarity: sector_zscore_revise... vs delivery_exhaustion_...; Low semantic similarity: Sector relative stre... vs volume.daily_ratio <...; Low semantic similarity: sector_zscore.rollin... vs volume.daily_ratio <...; Volatility: expansion vs stability; Participation: weakening vs elevated\", \"Structural: Field conflict: Sector relative strength Z-sco vs Sector relative strength Z-sco; Low semantic similarity: sector_zscore_revise... vs delivery_exhaustion_...; Low semantic similarity: Sector relative stre... vs volume.daily_ratio <...; Low semantic similarity: sector_zscore.rollin... vs volume.daily_ratio <...; Volatility: expansion vs stability; Participation: weakening vs elevated\", \"Structural: Field conflict: Sector relative strength Z-sco vs The sector Z-score remains neu; Low semantic similarity: sector_zscore_revise... vs delivery_exhaustion_...; Low semantic similarity: Sector relative stre... vs volume_spike OR asse...; Low semantic similarity: sector_zscore.rollin... vs volume_spike OR asse...; Low semantic similarity: true: remove... vs true: retain MECH_00...; Volatility: expansion vs stability\", \"Structural: Field conflict: Sector relative strength Z-sco vs The neutral market regime is c; Low semantic similarity: sector_zscore_revise... vs delivery_exhaustion_...; Low semantic similarity: Sector relative stre... vs delivery_exhaustion_...; Low semantic similarity: sector_zscore.rollin... vs delivery_exhaustion_...; Low semantic similarity: true: remove... vs false: add to retain...; Volatility: expansion vs stability; Participation: weakening vs elevated\"]",
+      "outcome_confidence": 0.537
+    },
+    {
+      "id": "f49a4715-3896-4753-ae64-09d3e5efe906",
+      "created_at": "2026-07-15T06:04:54.673133+05:30",
+      "market_name": "reliance",
+      "related_observation_id": "c483d5c0-2313-4122-a5bc-96094b5f216d",
+      "outcome_summary": "[volume dry, range expanding, gap up, delivery:moderate, fii:selling, sector:leading, reliance focus, asset rally, asset liquidity fade] candle strong bull participation weak (divergence) reliance closed higher with volatility compressed and breadth strengthened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "realized_trend": "extended_higher",
+      "realized_volatility": "compressed",
+      "realized_breadth": "strengthened",
+      "realized_liquidity": "broad_participation",
+      "outcome_contradictions": "[\"Structural: Field conflict: The current market regime is c vs Sector relative strength Z-sco; Low semantic similarity: volume_confirmation... vs sector_zscore_revise...; Field conflict: The current market regime is c vs sector_zscore.rolling_20day > ; Field conflict: RANGE_EXPANSION IS HIGH OR DEL vs sector_zscore.rolling_20day > ; Volatility: expansion vs stability; Participation: weakening vs elevated\", \"Structural: Field conflict: The current market regime is c vs The current market regime is c; Low semantic similarity: volume_confirmation... vs MECH_002...; Low semantic similarity: The current market r... vs volume_elevated AND ...; Low semantic similarity: RANGE_EXPANSION IS H... vs volume_elevated AND ...; Low semantic similarity: true: remove... vs false: demote MECH_0...; Volatility: expansion vs stability; Participation: weakening vs elevated\", \"Structural: Low semantic similarity: volume_confirmation... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs volume.daily_ratio <...; Low semantic similarity: RANGE_EXPANSION IS H... vs volume.daily_ratio <...; Participation: weakening vs elevated; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Low semantic similarity: volume_confirmation... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs volume.daily_ratio <...; Low semantic similarity: RANGE_EXPANSION IS H... vs volume.daily_ratio <...; Participation: weakening vs elevated; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\", \"Structural: Low semantic similarity: volume_confirmation... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs volume_spike OR asse...; Low semantic similarity: RANGE_EXPANSION IS H... vs volume_spike OR asse...; Low semantic similarity: true: remove... vs true: retain MECH_00...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.\"]",
+      "outcome_confidence": 0.528
+    },
+    {
+      "id": "b281de44-633d-42fc-8ada-9e1e9831551e",
+      "created_at": "2026-07-15T06:06:52.610885+05:30",
+      "market_name": "reliance",
+      "related_observation_id": "5a6f8562-d5f5-4fad-8fe3-62f695a249ff",
+      "outcome_summary": "[volume dry, gap down, short-term momentum strengthening, delivery:moderate, fii:selling, sector:neutral, reliance focus, asset liquidity fade] candle rejection upper participation weak (normal) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "realized_trend": "range_bound",
+      "realized_volatility": "compressed",
+      "realized_breadth": "mixed",
+      "realized_liquidity": "even_flow",
+      "outcome_contradictions": "[\"Structural: Field conflict: Delivery percentage remains be vs The current market regime is c; Field conflict: Delivery percentage remains be vs RANGE_EXPANSION IS HIGH OR DEL; Low semantic similarity: volume dry OR range ... vs RANGE_EXPANSION IS H...; Low semantic similarity: otherwise: retain th... vs true: remove...; Volatility: expansion vs stability; Participation: weakening vs elevated\", \"Structural: Field conflict: Delivery percentage remains be vs Sector relative strength Z-sco; Low semantic similarity: volume_confirmation... vs sector_zscore_revise...; Low semantic similarity: Delivery percentage ... vs sector_zscore.rollin...; Field conflict: volume dry OR range expanding  vs sector_zscore.rolling_20day > ; Low semantic similarity: otherwise: retain th... vs true: remove...; Participation: weakening vs elevated\", \"Structural: Field conflict: Delivery percentage remains be vs The current market regime is c; Low semantic similarity: volume_confirmation... vs MECH_002...; Field conflict: Delivery percentage remains be vs volume_elevated AND range_expa; Low semantic similarity: volume dry OR range ... vs volume_elevated AND ...; Low semantic similarity: otherwise: retain th... vs false: demote MECH_0...; Volatility: expansion vs stability\", \"Structural: Field conflict: Delivery percentage remains be vs Sector relative strength Z-sco; Low semantic similarity: volume_confirmation... vs delivery_exhaustion_...; Low semantic similarity: Delivery percentage ... vs volume.daily_ratio <...; Low semantic similarity: volume dry OR range ... vs volume.daily_ratio <...; Low semantic similarity: otherwise: retain th... vs true: remove mechani...; Volatility: expansion vs stability\", \"Structural: Field conflict: Delivery percentage remains be vs Sector relative strength Z-sco; Low semantic similarity: volume_confirmation... vs delivery_exhaustion_...; Low semantic similarity: Delivery percentage ... vs volume.daily_ratio <...; Low semantic similarity: volume dry OR range ... vs volume.daily_ratio <...; Low semantic similarity: otherwise: retain th... vs true: remove mechani...; Volatility: expansion vs stability\"]",
+      "outcome_confidence": 0.29
+    }
+  ],
+  "abstractions": [
+    {
+      "id": "9104dc11-f1d0-48ac-b191-7bf90fa0beee",
+      "created_at": "2026-07-15T05:53:29.173080+05:30",
+      "source_observation_id": "871b30bd-c54d-426c-9681-942ebbf3b741",
+      "abstraction_summary": "Weaker market with moderate volatility, neutral sector performance, and a mixed trend persistence, indicating a potential shift towards a weaker trend."
+    },
+    {
+      "id": "f8159bdb-3239-4101-9707-839903595445",
+      "created_at": "2026-07-15T05:54:36.504208+05:30",
+      "source_observation_id": "90897bbe-e4c0-47b8-86e1-b782fdb7590e",
+      "abstraction_summary": "Weaker short-term momentum and compressed volatility suggest a weakening trend, while the leading sector and moderate delivery indicate some underlying support. The market is experiencing a mixed trend with no clear direction, making it challenging to predict future movements."
+    },
+    {
+      "id": "cdb687a8-3071-4090-81f0-66078c55470b",
+      "created_at": "2026-07-15T05:55:59.607080+05:30",
+      "source_observation_id": "2bb072d7-1fc3-4d9c-87ab-bb42b7d06dda",
+      "abstraction_summary": "The market is experiencing a neutral participation with moderate trading activity, indicating a range-bound trend with compressed volatility."
+    },
+    {
+      "id": "d264f5ce-9823-4a55-b692-772c433d2138",
+      "created_at": "2026-07-15T05:57:23.527936+05:30",
+      "source_observation_id": "759668c8-4194-41ae-a864-c534a6633c3f",
+      "abstraction_summary": "The market is experiencing a mixed trend with weak short-term momentum and moderate delivery volumes, indicating a lack of strong participation from bears. The sector is leading, but asset liquidity is fading, suggesting a compressed trading range."
+    },
+    {
+      "id": "5839df83-ab3e-441f-b48b-2a2f212c7526",
+      "created_at": "2026-07-15T05:58:32.969517+05:30",
+      "source_observation_id": "92af53f3-577b-49b3-8e20-3d837e3ba599",
+      "abstraction_summary": "The market is experiencing a mixed trend with strong bull participation, but weak divergence, indicating a compressed volatility and reliance on the leading sector. The trend persistence is mixed across different time frames, and the horizon context suggests a lack of clear direction in the short-term (daily) and weekly periods, while the monthly period lacks sufficient history to make a definitive assessment."
+    },
+    {
+      "id": "0684e811-5b79-4f9b-9e98-346b0f5aab78",
+      "created_at": "2026-07-15T06:00:17.784998+05:30",
+      "source_observation_id": "ee033764-dbf5-4f59-9203-a1b1f35e6502",
+      "abstraction_summary": "The market is experiencing a mixed trend with a bearish bias, characterized by moderate volume and compressed volatility. The sector is leading, but the reliance focus is closing lower, indicating a weakening trend in the short term (daily) and mixed signals for the weekly and monthly horizons."
+    },
+    {
+      "id": "4aeb0196-c38f-4776-b98e-46993664d710",
+      "created_at": "2026-07-15T06:01:26.239532+05:30",
+      "source_observation_id": "0f93b6c3-7a2d-48f3-be6d-d0158c4b56f1",
+      "abstraction_summary": "Weaker market with a strong bearish trend, moderate delivery volume, and neutral sector performance."
+    },
+    {
+      "id": "c9ae2ba6-26c4-4f67-940b-978d5e5f2381",
+      "created_at": "2026-07-15T06:03:16.381479+05:30",
+      "source_observation_id": "adb2560c-550a-4404-9972-6092ce684371",
+      "abstraction_summary": "The market is experiencing a neutral trend with moderate volatility, and the current price action suggests a potential reversal or consolidation."
+    },
+    {
+      "id": "6ca78268-d693-4b84-8b6e-d0846214c09c",
+      "created_at": "2026-07-15T06:04:57.313176+05:30",
+      "source_observation_id": "c483d5c0-2313-4122-a5bc-96094b5f216d",
+      "abstraction_summary": "The market is experiencing a mixed trend with strong bull participation, but weak overall momentum. The trend is characterized by moderate volatility and compressed breadth, indicating a potential asset rally. However, the horizon context suggests that the trend may be weakening over time."
+    },
+    {
+      "id": "406683c9-14ef-460d-98c6-5c438819d708",
+      "created_at": "2026-07-15T06:06:55.342688+05:30",
+      "source_observation_id": "5a6f8562-d5f5-4fad-8fe3-62f695a249ff",
+      "abstraction_summary": "The market is experiencing a neutral trend with moderate volatility, and there are signs of selling pressure from FII (Financial Institutions) and a fading asset liquidity. The short-term momentum is strengthening, but the overall trend persistence is mixed across different time frames."
+    }
+  ],
+  "confidence_states": [
+    {
+      "id": "441067fe-ad8c-4e2e-b20a-198e0788bf4d",
+      "created_at": "2026-07-15T05:54:21.203469+05:30",
+      "empirical_confidence": 0.05,
+      "regime_confidence": 0.5572,
+      "reflection_confidence": 0.0,
+      "theoretical_coherence": 0.0,
+      "contradiction_pressure": 1.0
+    }
+  ],
+  "observations": [
+    {
+      "id": "871b30bd-c54d-426c-9681-942ebbf3b741",
+      "created_at": "2026-07-15T05:53:27.495395+05:30",
+      "source_type": "replay",
+      "raw_content": "[volume elevated, range expanding, gap up, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, reliance focus] candle strong bear participation normal (normal) reliance closed lower amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.\nHorizon Context: Daily: weakening; Weekly: insufficient_history; Monthly: insufficient_history",
+      "source_reliability": 0.5
+    },
+    {
+      "id": "90897bbe-e4c0-47b8-86e1-b782fdb7590e",
+      "created_at": "2026-07-15T05:54:33.803076+05:30",
+      "source_type": "replay",
+      "raw_content": "[volume dry, gap up, short-term momentum weakening, delivery:moderate, fii:selling, sector:leading, reliance focus, asset liquidity fade] candle expansion participation weak (weak move) reliance closed higher with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.\nHorizon Context: Daily: mixed; Weekly: insufficient_history; Monthly: insufficient_history",
+      "source_reliability": 0.5
+    },
+    {
+      "id": "2bb072d7-1fc3-4d9c-87ab-bb42b7d06dda",
+      "created_at": "2026-07-15T05:55:58.196456+05:30",
+      "source_type": "replay",
+      "raw_content": "[volume spike, delivery:moderate, fii:selling, sector:neutral, reliance focus, asset participation surge] candle neutral participation strong (normal) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.\nHorizon Context: Daily: range_bound; Weekly: mixed; Monthly: insufficient_history",
+      "source_reliability": 0.5
+    },
+    {
+      "id": "759668c8-4194-41ae-a864-c534a6633c3f",
+      "created_at": "2026-07-15T05:57:21.140863+05:30",
+      "source_type": "replay",
+      "raw_content": "[volume dry, gap up, short-term momentum strengthening, delivery:moderate, fii:selling, sector:leading, reliance focus, asset liquidity fade] candle strong bear participation weak (weak move) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.\nHorizon Context: Daily: range_bound; Weekly: range_bound; Monthly: insufficient_history",
+      "source_reliability": 0.5
+    },
+    {
+      "id": "92af53f3-577b-49b3-8e20-3d837e3ba599",
+      "created_at": "2026-07-15T05:58:29.273829+05:30",
+      "source_type": "replay",
+      "raw_content": "[volume dry, range expanding, short-term momentum strengthening, delivery:moderate, fii:selling, sector:leading_strong, reliance focus, asset rally, asset liquidity fade] candle strong bull participation weak (divergence) reliance closed higher with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.\nHorizon Context: Daily: mixed; Weekly: mixed; Monthly: insufficient_history",
+      "source_reliability": 0.5
+    },
+    {
+      "id": "ee033764-dbf5-4f59-9203-a1b1f35e6502",
+      "created_at": "2026-07-15T06:00:14.876539+05:30",
+      "source_type": "replay",
+      "raw_content": "[volume elevated, range expanding, delivery:moderate, fii:selling, sector:leading, reliance focus] candle expansion participation normal (bearish confirmed) reliance closed lower with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.\nHorizon Context: Daily: weakening; Weekly: mixed; Monthly: insufficient_history",
+      "source_reliability": 0.5
+    },
+    {
+      "id": "0f93b6c3-7a2d-48f3-be6d-d0158c4b56f1",
+      "created_at": "2026-07-15T06:01:24.726780+05:30",
+      "source_type": "replay",
+      "raw_content": "[volume elevated, range expanding, gap down, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, reliance focus, asset selloff, asset participation surge] candle strong bear participation strong (bearish confirmed) reliance closed lower with volatility compressed but breadth weakened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.\nHorizon Context: Daily: weakening; Weekly: mixed; Monthly: insufficient_history",
+      "source_reliability": 0.5
+    },
+    {
+      "id": "adb2560c-550a-4404-9972-6092ce684371",
+      "created_at": "2026-07-15T06:03:14.862254+05:30",
+      "source_type": "replay",
+      "raw_content": "[volume elevated, range expanding, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, reliance focus] candle rejection upper participation normal (normal) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Persistent Lower, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.\nHorizon Context: Daily: range_bound; Weekly: mixed; Monthly: insufficient_history",
+      "source_reliability": 0.5
+    },
+    {
+      "id": "c483d5c0-2313-4122-a5bc-96094b5f216d",
+      "created_at": "2026-07-15T06:04:54.673578+05:30",
+      "source_type": "replay",
+      "raw_content": "[volume dry, range expanding, gap up, delivery:moderate, fii:selling, sector:leading, reliance focus, asset rally, asset liquidity fade] candle strong bull participation weak (divergence) reliance closed higher with volatility compressed and breadth strengthened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.\nHorizon Context: Daily: strengthening; Weekly: mixed; Monthly: insufficient_history",
+      "source_reliability": 0.5
+    },
+    {
+      "id": "5a6f8562-d5f5-4fad-8fe3-62f695a249ff",
+      "created_at": "2026-07-15T06:06:52.611452+05:30",
+      "source_type": "replay",
+      "raw_content": "[volume dry, gap down, short-term momentum strengthening, delivery:moderate, fii:selling, sector:neutral, reliance focus, asset liquidity fade] candle rejection upper participation weak (normal) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.\nHorizon Context: Daily: range_bound; Weekly: mixed; Monthly: mixed",
+      "source_reliability": 0.5
+    }
+  ],
+  "reflective_memory_states": [],
+  "strategic_memory": [],
+  "transition_pressure_events": [
+    {
+      "id": 1,
+      "date": "2026-06-30",
+      "day_index": 0,
+      "direction_bias": "neutral",
+      "pressure_score": 0.3566666666666667,
+      "stability_score": 0.55,
+      "breakout_risk": false,
+      "drivers_json": "[\"volume_ratio_5d_elevated\", \"volume_elevated_confirmation\", \"theory_usefulness_low_0.00\"]",
+      "created_at": "2026-07-15T05:54:33.728257"
+    },
+    {
+      "id": 2,
+      "date": "2026-07-01",
+      "day_index": 1,
+      "direction_bias": "lower",
+      "pressure_score": 0.15666666666666668,
+      "stability_score": 0.65,
+      "breakout_risk": false,
+      "drivers_json": "[\"volume_dry_divergence\", \"confidence_weakening_0.24\", \"coherence_degrading_0.30\", \"theory_usefulness_low_0.10\"]",
+      "created_at": "2026-07-15T05:55:58.158607"
+    },
+    {
+      "id": 3,
+      "date": "2026-07-02",
+      "day_index": 2,
+      "direction_bias": "higher",
+      "pressure_score": 0.21333333333333332,
+      "stability_score": 0.825,
+      "breakout_risk": false,
+      "drivers_json": "[\"volume_ratio_5d_elevated\", \"coherence_degrading_0.00\", \"theory_usefulness_low_0.19\"]",
+      "created_at": "2026-07-15T05:57:21.110085"
+    },
+    {
+      "id": 4,
+      "date": "2026-07-03",
+      "day_index": 3,
+      "direction_bias": "lower",
+      "pressure_score": 0.15666666666666668,
+      "stability_score": 0.65,
+      "breakout_risk": false,
+      "drivers_json": "[\"volume_dry_divergence\", \"confidence_weakening_0.08\", \"coherence_degrading_0.00\", \"theory_usefulness_low_0.18\"]",
+      "created_at": "2026-07-15T05:58:29.244879"
+    },
+    {
+      "id": 5,
+      "date": "2026-07-06",
+      "day_index": 4,
+      "direction_bias": "lower",
+      "pressure_score": 0.29137232500000004,
+      "stability_score": 0.5,
+      "breakout_risk": false,
+      "drivers_json": "[\"contradiction_severe_0.89\", \"volume_dry_divergence\", \"confidence_weakening_0.00\", \"coherence_degrading_0.00\", \"theory_usefulness_low_0.34\"]",
+      "created_at": "2026-07-15T06:00:14.831377"
+    },
+    {
+      "id": 6,
+      "date": "2026-07-07",
+      "day_index": 5,
+      "direction_bias": "lower",
+      "pressure_score": 0.3884148833333333,
+      "stability_score": 0.5666666666666667,
+      "breakout_risk": false,
+      "drivers_json": "[\"contradiction_severe_0.89\", \"volume_ratio_5d_elevated\", \"volume_elevated_confirmation\", \"confidence_weakening_0.00\", \"coherence_degrading_0.00\", \"theory_usefulness_low_0.12\"]",
+      "created_at": "2026-07-15T06:01:24.686045"
+    },
+    {
+      "id": 7,
+      "date": "2026-07-08",
+      "day_index": 6,
+      "direction_bias": "lower",
+      "pressure_score": 0.39543333333333336,
+      "stability_score": 0.5666666666666667,
+      "breakout_risk": false,
+      "drivers_json": "[\"contradiction_severe_1.00\", \"volume_ratio_5d_elevated\", \"volume_elevated_confirmation\", \"confidence_weakening_0.05\", \"coherence_degrading_0.00\", \"theory_usefulness_low_0.00\"]",
+      "created_at": "2026-07-15T06:03:14.834729"
+    },
+    {
+      "id": 8,
+      "date": "2026-07-09",
+      "day_index": 7,
+      "direction_bias": "lower",
+      "pressure_score": 0.38465578130558076,
+      "stability_score": 0.41666666666666663,
+      "breakout_risk": false,
+      "drivers_json": "[\"regime_similarity_weakening\", \"contradiction_severe_0.98\", \"volume_elevated_confirmation\", \"confidence_weakening_0.05\", \"coherence_degrading_0.00\", \"theory_usefulness_low_0.00\"]",
+      "created_at": "2026-07-15T06:04:54.633375"
+    },
+    {
+      "id": 9,
+      "date": "2026-07-10",
+      "day_index": 8,
+      "direction_bias": "lower",
+      "pressure_score": 0.30190000000000006,
+      "stability_score": 0.5,
+      "breakout_risk": false,
+      "drivers_json": "[\"contradiction_severe_1.00\", \"volume_dry_divergence\", \"confidence_weakening_0.05\", \"coherence_degrading_0.00\", \"theory_usefulness_low_0.00\"]",
+      "created_at": "2026-07-15T06:06:52.568182"
+    },
+    {
+      "id": 10,
+      "date": "2026-07-13",
+      "day_index": 9,
+      "direction_bias": "lower",
+      "pressure_score": 0.3098262133122923,
+      "stability_score": 0.35,
+      "breakout_risk": false,
+      "drivers_json": "[\"regime_similarity_weakening\", \"contradiction_severe_0.82\", \"volume_dry_divergence\", \"confidence_weakening_0.05\", \"coherence_degrading_0.00\", \"theory_usefulness_low_0.10\"]",
+      "created_at": "2026-07-15T06:08:49.155515"
+    }
+  ],
+  "validations": [
+    {
+      "id": "2223c350-767f-4168-a4ab-d4031bcea1cf",
+      "created_at": "2026-07-15T05:54:21.211487+05:30",
+      "theory_id": "5be4c37e-f220-4301-b9b4-44410d4bb357",
+      "validation_summary": "Replay validation. Horizon Context: Daily: weakening; Weekly: insufficient_history; Monthly: insufficient_history. Regime memory: no prior match.",
+      "observed_behavior": "[volume elevated, range expanding, gap up, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, reliance focus] candle strong bear participation normal (normal) reliance closed lower amid moderate volatility.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "expected_behavior": "Market-grounded theory"
+    },
+    {
+      "id": "7624e75e-123e-47bb-a502-561937a59b62",
+      "created_at": "2026-07-15T05:55:21.968651+05:30",
+      "theory_id": "bffd5311-5b51-4a51-b66e-1f3de2dd90cc",
+      "validation_summary": "Replay validation. Horizon Context: Daily: mixed; Weekly: insufficient_history; Monthly: insufficient_history. Regime memory: 2026-06-30 similarity 0.50, confidence 0.24",
+      "observed_behavior": "[volume dry, gap up, short-term momentum weakening, delivery:moderate, fii:selling, sector:leading, reliance focus, asset liquidity fade] candle expansion participation weak (weak move) reliance closed higher with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "expected_behavior": "Market-grounded theory"
+    },
+    {
+      "id": "70e634f7-a0b2-4dd7-9d51-b081d1ac60ec",
+      "created_at": "2026-07-15T05:56:51.436463+05:30",
+      "theory_id": "15159d8b-2250-4e7b-9b31-9d1b4d4a83b3",
+      "validation_summary": "Replay validation. Horizon Context: Daily: range_bound; Weekly: mixed; Monthly: insufficient_history. Regime memory: 2026-07-01 similarity 0.67, confidence 0.00 | 2026-06-30 similarity 0.49, confidence 0.24",
+      "observed_behavior": "[volume spike, delivery:moderate, fii:selling, sector:neutral, reliance focus, asset participation surge] candle neutral participation strong (normal) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "expected_behavior": "Market-grounded theory"
+    },
+    {
+      "id": "2efb6294-b51c-4180-a2f4-bdc1b12a0116",
+      "created_at": "2026-07-15T05:58:14.110145+05:30",
+      "theory_id": "70717041-46e7-4fb7-8b9a-cbd7547aaf27",
+      "validation_summary": "Replay validation. Horizon Context: Daily: range_bound; Weekly: range_bound; Monthly: insufficient_history. Regime memory: 2026-07-02 similarity 0.85, confidence 0.08 | 2026-07-01 similarity 0.81, confidence 0.00 | 2026-06-30 similarity 0.49, confidence 0.24",
+      "observed_behavior": "[volume dry, gap up, short-term momentum strengthening, delivery:moderate, fii:selling, sector:leading, reliance focus, asset liquidity fade] candle strong bear participation weak (weak move) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "expected_behavior": "Market-grounded theory"
+    },
+    {
+      "id": "e1dcbbfa-dd38-4a82-9818-58f46c2b1a46",
+      "created_at": "2026-07-15T05:59:43.924647+05:30",
+      "theory_id": "99bfe104-93e0-4f44-ae2d-ab1b4097aecd",
+      "validation_summary": "Replay validation. Horizon Context: Daily: mixed; Weekly: mixed; Monthly: insufficient_history. Regime memory: 2026-07-03 similarity 0.81, confidence 0.00 | 2026-07-01 similarity 0.79, confidence 0.00 | 2026-07-02 similarity 0.66, confidence 0.08",
+      "observed_behavior": "[volume dry, range expanding, short-term momentum strengthening, delivery:moderate, fii:selling, sector:leading_strong, reliance focus, asset rally, asset liquidity fade] candle strong bull participation weak (divergence) reliance closed higher with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "expected_behavior": "Market-grounded theory"
+    },
+    {
+      "id": "e14a6d24-978e-44e8-a5e5-8f925e78e437",
+      "created_at": "2026-07-15T06:00:43.817720+05:30",
+      "theory_id": "00572d7e-8ab1-46b3-a9a8-042368de554f",
+      "validation_summary": "Replay validation. Horizon Context: Daily: weakening; Weekly: mixed; Monthly: insufficient_history. Regime memory: 2026-06-30 similarity 0.68, confidence 0.24 | 2026-07-01 similarity 0.52, confidence 0.00 | 2026-07-02 similarity 0.52, confidence 0.08",
+      "observed_behavior": "[volume elevated, range expanding, delivery:moderate, fii:selling, sector:leading, reliance focus] candle expansion participation normal (bearish confirmed) reliance closed lower with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "expected_behavior": "Market-grounded theory"
+    },
+    {
+      "id": "2a55aefd-48d6-45b3-8aef-f7c210ddf1cd",
+      "created_at": "2026-07-15T06:02:41.610077+05:30",
+      "theory_id": "915fe327-eae2-45af-94c4-1f81bd52b9ec",
+      "validation_summary": "Replay validation. Horizon Context: Daily: weakening; Weekly: mixed; Monthly: insufficient_history. Regime memory: 2026-07-01 similarity 0.66, confidence 0.00 | 2026-07-03 similarity 0.64, confidence 0.00 | 2026-07-06 similarity 0.57, confidence 0.00",
+      "observed_behavior": "[volume elevated, range expanding, gap down, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, reliance focus, asset selloff, asset participation surge] candle strong bear participation strong (bearish confirmed) reliance closed lower with volatility compressed but breadth weakened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "expected_behavior": "Market-grounded theory"
+    },
+    {
+      "id": "8c542eec-64ed-45ab-82b4-acc31ceee54b",
+      "created_at": "2026-07-15T06:04:25.647230+05:30",
+      "theory_id": "f3dca0b3-7766-492c-8339-7cbdeaf964d4",
+      "validation_summary": "Replay validation. Horizon Context: Daily: range_bound; Weekly: mixed; Monthly: insufficient_history. Regime memory: 2026-07-02 similarity 0.70, confidence 0.08 | 2026-07-03 similarity 0.68, confidence 0.00 | 2026-07-07 similarity 0.57, confidence 0.05",
+      "observed_behavior": "[volume elevated, range expanding, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, reliance focus] candle rejection upper participation normal (normal) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Persistent Lower, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "expected_behavior": "Market-grounded theory"
+    },
+    {
+      "id": "20208032-e355-4f6d-a72d-14d57e867632",
+      "created_at": "2026-07-15T06:06:17.307760+05:30",
+      "theory_id": "83fb78f8-4684-49ed-896a-5effe2463325",
+      "validation_summary": "Replay validation. Horizon Context: Daily: strengthening; Weekly: mixed; Monthly: insufficient_history. Regime memory: 2026-07-06 similarity 0.78, confidence 0.00 | 2026-07-01 similarity 0.65, confidence 0.00 | 2026-07-03 similarity 0.64, confidence 0.00",
+      "observed_behavior": "[volume dry, range expanding, gap up, delivery:moderate, fii:selling, sector:leading, reliance focus, asset rally, asset liquidity fade] candle strong bull participation weak (divergence) reliance closed higher with volatility compressed and breadth strengthened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "expected_behavior": "Market-grounded theory"
+    },
+    {
+      "id": "3ce29d2f-ad36-4239-a56c-fb34ccefdabe",
+      "created_at": "2026-07-15T06:08:10.640664+05:30",
+      "theory_id": "39e69f31-f70f-41e5-8ad6-a89a69d441b9",
+      "validation_summary": "Replay validation. Horizon Context: Daily: range_bound; Weekly: mixed; Monthly: mixed. Regime memory: 2026-07-03 similarity 0.82, confidence 0.00 | 2026-07-09 similarity 0.74, confidence 0.05 | 2026-07-02 similarity 0.70, confidence 0.08",
+      "observed_behavior": "[volume dry, gap down, short-term momentum strengthening, delivery:moderate, fii:selling, sector:neutral, reliance focus, asset liquidity fade] candle rejection upper participation weak (normal) reliance traded range-bound with volatility compressed.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+      "expected_behavior": "Market-grounded theory"
+    }
+  ],
+  "market_observations": [],
+  "theories": [
+    {
+      "id": "5be4c37e-f220-4301-b9b4-44410d4bb357",
+      "created_at": "2026-07-15T05:54:21.203689+05:30",
+      "lineage_id": "c974dc5f813def5d",
+      "thesis": "Neutral regime is driven by moderate delivery exhaustion; price weakens despite sector neutral performance.",
+      "summary": "Neutral regime is driven by moderate delivery exhaustion; price weakens despite sector neutral performance.",
+      "summary_structured": "{\"id\":\"78aab842-3102-4a98-b077-f41993d444e5\",\"created_at\":\"2026-07-15T00:24:21.201227Z\",\"mechanism\":\"Delivery Exhaustion\",\"claim\":\"Neutral regime is driven by moderate delivery exhaustion; price weakens despite sector neutral performance.\",\"if_branch\":{\"id\":\"aa4df9a1-eb16-4c41-85f5-09e317a035dd\",\"created_at\":\"2026-07-15T00:24:21.201344Z\",\"condition\":\"sector_zscore < -1.5\",\"action\":\"favor trend persistence\"},\"else_branch\":{\"id\":\"7b7089d1-c2d1-43da-a140-269f4f4f144e\",\"created_at\":\"2026-07-15T00:24:21.201387Z\",\"condition\":\"volume_state = elevated AND fii_net > 1000\",\"action\":\"favor momentum weakening\"},\"unless\":\"liquidity evaporates entirely\",\"falsified_if\":\"decisive close above the prior resistance floor\",\"forbidden_state\":\"\",\"mechanism_components\":[{\"id\":\"41c30a06-063e-4606-8e51-f41fe12209e6\",\"created_at\":\"2026-07-15T00:24:21.201468Z\",\"component_id\":\"delivery_exhaustion\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60\",\"dependency\":null,\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_001\"},{\"id\":\"a6352652-957c-45ba-96d1-d1980ee16c41\",\"created_at\":\"2026-07-15T00:24:21.201536Z\",\"component_id\":\"sector_zscore\",\"description\":\"Sector relative strength Z-score remains neutral despite sector performance\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\"<-1.5 AND >1.5\",\"dependency\":null,\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\"],\"relation_type\":\"CO-OCCURS_WITH\",\"mechanism_id\":\"MECH_002\"},{\"id\":\"efc2c2a2-b7c1-4d27-bee9-5233c3f83578\",\"created_at\":\"2026-07-15T00:24:21.201559Z\",\"component_id\":\"volume_confirmation\",\"description\":\"Volume expansion on up days relative to down days remains weak\",\"observable\":\"volume.daily_ratio\",\"expected_behavior\":\"<1.5 AND >0.5\",\"dependency\":null,\"concept_tags\":[\"VOLATILITY_EXPANSION\",\"INSTITUTIONAL_ACCUMULATION\"],\"relation_type\":\"DAMPENS\",\"mechanism_id\":\"MECH_003\"}],\"falsification_conditions\":[\"delivery_exhaustion: delivery percentage exceeds 60\",\"sector_zscore: sector relative strength Z-score exceeds 1.5\",\"volume_confirmation: volume expansion on up days exceeds 2.0\"],\"reuse_decision\":\"REJECTED\",\"trigger_definition\":{\"field\":\"delivery_pct\",\"operator\":\"==\",\"value\":1,\"lag\":0},\"target_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_A\"},\"scope_definition\":[{\"field\":\"price\",\"operator\":\"<=\",\"value\":1.0}],\"expected_direction\":-1.0,\"contradiction_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_B\"},\"mechanism_type\":\"Moderate Delivery Exhaustion\",\"causal_direction\":\"negative\",\"driver\":\"delivery_pct\",\"mediator_or_process\":\"price\",\"target_effect\":\"price weakens\"}",
+      "confidence_state_id": "441067fe-ad8c-4e2e-b20a-198e0788bf4d",
+      "llm_evaluation": {
+        "mechanistic_depth": 0.5,
+        "explanatory_power": 0.5,
+        "falsifiability_quality": 0.5,
+        "branch_quality": 0.5,
+        "novelty": 0.5,
+        "actionability": 0.5,
+        "overall_score": 0.5,
+        "reasoning": "Optimized: LLM evaluation bypassed during replay to improve performance."
+      },
+      "survival_days": 0.0,
+      "falsified_at_index": null,
+      "falsification_precision": null
+    },
+    {
+      "id": "bffd5311-5b51-4a51-b66e-1f3de2dd90cc",
+      "created_at": "2026-07-15T05:54:21.203689+05:30",
+      "lineage_id": "c9c6c6d7bb71fede",
+      "thesis": "The current market regime is characterized by a liquidity-constrained environment where moderate volatility and FII selling lead to delivery percentages below 50, indicating persistent exhaustion of investor demand.",
+      "summary": "The current market regime is characterized by a liquidity-constrained environment where moderate volatility and FII selling lead to delivery percentages below 50, indicating persistent exhaustion of investor demand.",
+      "summary_structured": "{\"id\":\"6d2177fd-7259-441b-b4b9-cdc421d7285a\",\"created_at\":\"2026-07-15T00:25:21.961014Z\",\"mechanism\":\"Delivery Exhaustion\",\"claim\":\"The current market regime is characterized by a liquidity-constrained environment where moderate volatility and FII selling lead to delivery percentages below 50, indicating persistent exhaustion of investor demand.\",\"if_branch\":{\"id\":\"3cefe166-d71b-4732-8a3e-0f1c75a9a694\",\"created_at\":\"2026-07-15T00:25:21.961229Z\",\"condition\":\"delivery_pct.rolling_5day_average < 50 AND FII_selling == true\",\"action\":\"retain mechanism\"},\"else_branch\":{\"id\":\"aca1c962-7300-4eb9-ab95-34a94a5daf40\",\"created_at\":\"2026-07-15T00:25:21.961275Z\",\"condition\":\"false\",\"action\":\"remove mechanism\"},\"unless\":\"liquidity evaporates entirely\",\"falsified_if\":\"decisive close above the prior resistance floor\",\"forbidden_state\":\"\",\"mechanism_components\":[{\"id\":\"6afad405-1016-427e-a5b3-9f5c39e555fa\",\"created_at\":\"2026-07-15T00:25:17.931041Z\",\"component_id\":\"delivery_exhaustion_with_fii_selling\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility and FII selling\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60\",\"dependency\":null,\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_001\"},{\"id\":\"a6352652-957c-45ba-96d1-d1980ee16c41\",\"created_at\":\"2026-07-15T00:24:21.201536Z\",\"component_id\":\"sector_zscore\",\"description\":\"Sector relative strength Z-score remains neutral despite sector performance\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\"<-1.5 AND >1.5\",\"dependency\":null,\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\"],\"relation_type\":\"CO-OCCURS_WITH\",\"mechanism_id\":\"MECH_002\"},{\"id\":\"efc2c2a2-b7c1-4d27-bee9-5233c3f83578\",\"created_at\":\"2026-07-15T00:24:21.201559Z\",\"component_id\":\"volume_confirmation\",\"description\":\"Volume expansion on up days relative to down days remains weak\",\"observable\":\"volume.daily_ratio\",\"expected_behavior\":\"<1.5 AND >0.5\",\"dependency\":null,\"concept_tags\":[\"VOLATILITY_EXPANSION\",\"INSTITUTIONAL_ACCUMULATION\"],\"relation_type\":\"DAMPENS\",\"mechanism_id\":\"MECH_003\"},{\"id\":\"4230866d-97c6-4048-b7e7-f56ccbb22b7d\",\"created_at\":\"2026-07-15T00:25:19.156295Z\",\"component_id\":\"delivery_exhaustion_with_fii_selling\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility and FII selling\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60\",\"dependency\":null,\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_004\"}],\"falsification_conditions\":[],\"reuse_decision\":\"REJECTED\",\"trigger_definition\":{\"field\":\"delivery_pct\",\"operator\":\"==\",\"value\":1,\"lag\":0},\"target_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_A\"},\"scope_definition\":[{\"field\":\"price\",\"operator\":\"<=\",\"value\":1.0}],\"expected_direction\":-1.0,\"contradiction_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_B\"},\"mechanism_type\":\"Moderate Delivery Exhaustion\",\"causal_direction\":\"negative\",\"driver\":\"delivery_pct\",\"mediator_or_process\":\"price\",\"target_effect\":\"price weakens\"}",
+      "confidence_state_id": "441067fe-ad8c-4e2e-b20a-198e0788bf4d",
+      "llm_evaluation": {
+        "mechanistic_depth": 0.5,
+        "explanatory_power": 0.5,
+        "falsifiability_quality": 0.5,
+        "branch_quality": 0.5,
+        "novelty": 0.5,
+        "actionability": 0.5,
+        "overall_score": 0.5,
+        "reasoning": "Optimized: LLM evaluation bypassed during replay to improve performance."
+      },
+      "survival_days": 0.0,
+      "falsified_at_index": null,
+      "falsification_precision": null
+    },
+    {
+      "id": "15159d8b-2250-4e7b-9b31-9d1b4d4a83b3",
+      "created_at": "2026-07-15T05:54:21.203689+05:30",
+      "lineage_id": "c974dc5f813def5d",
+      "thesis": "The neutral market regime is characterized by a moderate sector Z-score, weak volume expansion on up days relative to down days, and delivery percentages below 50, driven primarily by FII selling.",
+      "summary": "The neutral market regime is characterized by a moderate sector Z-score, weak volume expansion on up days relative to down days, and delivery percentages below 50, driven primarily by FII selling.",
+      "summary_structured": "{\"id\":\"7ef7a0bb-d5dd-40c6-9ea5-803b482ddeb8\",\"created_at\":\"2026-07-15T00:26:51.428725Z\",\"mechanism\":\"Delivery Exhaustion\",\"claim\":\"The neutral market regime is characterized by a moderate sector Z-score, weak volume expansion on up days relative to down days, and delivery percentages below 50, driven primarily by FII selling.\",\"if_branch\":{\"id\":\"6f72b545-0903-4a85-9ecd-6ed32a8504b0\",\"created_at\":\"2026-07-15T00:26:51.428886Z\",\"condition\":\"delivery_exhaustion_with_fii_selling_revised: delivery_pct.rolling_5day_average > 50 AND delivery_pct.rolling_5day_average < 60\",\"action\":\"remove from retained mechanisms\"},\"else_branch\":{\"id\":\"dadc073e-a448-470d-9b7e-2e22e3e66180\",\"created_at\":\"2026-07-15T00:26:51.428926Z\",\"condition\":\"false\",\"action\":\"add to retained mechanisms\"},\"unless\":\"liquidity evaporates entirely\",\"falsified_if\":\"delivery_exhaustion_with_fii_selling_revised: delivery_pct.rolling_5day_average > 50 AND delivery_pct.rolling_5day_average < 60\",\"forbidden_state\":\"\",\"mechanism_components\":[{\"id\":\"9fd92041-a013-4f5d-9c40-fef2deb55a24\",\"created_at\":\"2026-07-15T00:26:46.921554Z\",\"component_id\":\"sector_zscore_revised\",\"description\":\"Sector relative strength Z-score remains neutral despite sector performance, but with a stronger emphasis on the role of leading sector performance in driving sector z-score.\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\"<-1.5 AND >1.5\",\"dependency\":null,\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\"],\"relation_type\":\"CO-OCCURS_WITH\",\"mechanism_id\":\"MECH_002\"},{\"id\":\"efc2c2a2-b7c1-4d27-bee9-5233c3f83578\",\"created_at\":\"2026-07-15T00:24:21.201559Z\",\"component_id\":\"volume_confirmation\",\"description\":\"Volume expansion on up days relative to down days remains weak\",\"observable\":\"volume.daily_ratio\",\"expected_behavior\":\"<1.5 AND >0.5\",\"dependency\":null,\"concept_tags\":[\"VOLATILITY_EXPANSION\",\"INSTITUTIONAL_ACCUMULATION\"],\"relation_type\":\"DAMPENS\",\"mechanism_id\":\"MECH_003\"},{\"id\":\"e2b2cfee-695b-445b-bf80-e8e3dbc33f26\",\"created_at\":\"2026-07-15T00:26:48.588539Z\",\"component_id\":\"delivery_exhaustion_with_fii_selling_revised\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility and FII selling, but with a stronger emphasis on the role of FII selling in driving delivery exhaustion.\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60\",\"dependency\":null,\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_005\"}],\"falsification_conditions\":[\"delivery_exhaustion_with_fii_selling_revised: delivery_pct.rolling_5day_average <= 50 OR delivery_pct.rolling_5day_average >= 60\"],\"reuse_decision\":\"REJECTED\",\"trigger_definition\":{\"field\":\"delivery_pct\",\"operator\":\"==\",\"value\":1,\"lag\":0},\"target_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_A\"},\"scope_definition\":[{\"field\":\"price\",\"operator\":\"<=\",\"value\":1.0}],\"expected_direction\":-1.0,\"contradiction_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_B\"},\"mechanism_type\":\"Moderate Delivery Exhaustion\",\"causal_direction\":\"negative\",\"driver\":\"delivery_pct\",\"mediator_or_process\":\"price\",\"target_effect\":\"price weakens\"}",
+      "confidence_state_id": "441067fe-ad8c-4e2e-b20a-198e0788bf4d",
+      "llm_evaluation": {
+        "mechanistic_depth": 0.5,
+        "explanatory_power": 0.5,
+        "falsifiability_quality": 0.5,
+        "branch_quality": 0.5,
+        "novelty": 0.5,
+        "actionability": 0.5,
+        "overall_score": 0.5,
+        "reasoning": "Optimized: LLM evaluation bypassed during replay to improve performance."
+      },
+      "survival_days": 0.0,
+      "falsified_at_index": null,
+      "falsification_precision": null
+    },
+    {
+      "id": "70717041-46e7-4fb7-8b9a-cbd7547aaf27",
+      "created_at": "2026-07-15T05:54:21.203689+05:30",
+      "lineage_id": "c974dc5f813def5d",
+      "thesis": "The sector Z-score remains neutral despite sector performance, primarily driven by leading sector performance, while volume expansion on up days relative to down days and delivery percentage remain constrained below 50 due to FII selling.",
+      "summary": "The sector Z-score remains neutral despite sector performance, primarily driven by leading sector performance, while volume expansion on up days relative to down days and delivery percentage remain constrained below 50 due to FII selling.",
+      "summary_structured": "{\"id\":\"834044e6-421a-4741-8089-53f59dc74a46\",\"created_at\":\"2026-07-15T00:28:14.100531Z\",\"mechanism\":\"Delivery Exhaustion\",\"claim\":\"The sector Z-score remains neutral despite sector performance, primarily driven by leading sector performance, while volume expansion on up days relative to down days and delivery percentage remain constrained below 50 due to FII selling.\",\"if_branch\":{\"id\":\"da89a6a0-ba31-4013-bcf9-5b187e23886e\",\"created_at\":\"2026-07-15T00:28:14.100799Z\",\"condition\":\"volume_spike OR asset_participation_surge\",\"action\":\"promote MECH_005\"},\"else_branch\":{\"id\":\"d667a5af-4f1c-4e44-9924-58ed5a0df2be\",\"created_at\":\"2026-07-15T00:28:14.100844Z\",\"condition\":\"true\",\"action\":\"retain MECH_002 and MECH_003\"},\"unless\":\"liquidity evaporates entirely\",\"falsified_if\":\"delivery_exhaustion_with_fii_selling_revised: delivery_pct.rolling_5day_average > 50 AND delivery_pct.rolling_5day_average < 60\",\"forbidden_state\":\"\",\"mechanism_components\":[{\"id\":\"9fd92041-a013-4f5d-9c40-fef2deb55a24\",\"created_at\":\"2026-07-15T00:26:46.921554Z\",\"component_id\":\"sector_zscore_revised\",\"description\":\"Sector relative strength Z-score remains neutral despite sector performance, but with a stronger emphasis on the role of leading sector performance in driving sector z-score.\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\"<-1.5 AND >1.5\",\"dependency\":null,\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\"],\"relation_type\":\"CO-OCCURS_WITH\",\"mechanism_id\":\"MECH_002\"},{\"id\":\"efc2c2a2-b7c1-4d27-bee9-5233c3f83578\",\"created_at\":\"2026-07-15T00:24:21.201559Z\",\"component_id\":\"volume_confirmation\",\"description\":\"Volume expansion on up days relative to down days remains weak\",\"observable\":\"volume.daily_ratio\",\"expected_behavior\":\"<1.5 AND >0.5\",\"dependency\":null,\"concept_tags\":[\"VOLATILITY_EXPANSION\",\"INSTITUTIONAL_ACCUMULATION\"],\"relation_type\":\"DAMPENS\",\"mechanism_id\":\"MECH_003\"},{\"id\":\"e4985d45-0923-44eb-9e44-0d638b5c1f0b\",\"created_at\":\"2026-07-15T00:28:11.041378Z\",\"component_id\":\"delivery_exhaustion_with_fii_selling_revised\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility and FII selling, but with a stronger emphasis on the role of FII selling in driving delivery exhaustion.\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60\",\"dependency\":null,\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_005\"}],\"falsification_conditions\":[\"delivery_exhaustion_with_fii_selling: >50 AND <60\"],\"reuse_decision\":\"REJECTED\",\"trigger_definition\":{\"field\":\"delivery_pct\",\"operator\":\"==\",\"value\":1,\"lag\":0},\"target_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_A\"},\"scope_definition\":[{\"field\":\"price\",\"operator\":\"<=\",\"value\":1.0}],\"expected_direction\":-1.0,\"contradiction_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_B\"},\"mechanism_type\":\"Moderate Delivery Exhaustion\",\"causal_direction\":\"negative\",\"driver\":\"delivery_pct\",\"mediator_or_process\":\"price\",\"target_effect\":\"price weakens\"}",
+      "confidence_state_id": "441067fe-ad8c-4e2e-b20a-198e0788bf4d",
+      "llm_evaluation": {
+        "mechanistic_depth": 0.5,
+        "explanatory_power": 0.5,
+        "falsifiability_quality": 0.5,
+        "branch_quality": 0.5,
+        "novelty": 0.5,
+        "actionability": 0.5,
+        "overall_score": 0.5,
+        "reasoning": "Optimized: LLM evaluation bypassed during replay to improve performance."
+      },
+      "survival_days": 0.0,
+      "falsified_at_index": null,
+      "falsification_precision": null
+    },
+    {
+      "id": "99bfe104-93e0-4f44-ae2d-ab1b4097aecd",
+      "created_at": "2026-07-15T05:54:21.203689+05:30",
+      "lineage_id": "c801bf8cf96b46db",
+      "thesis": "Sector relative strength Z-score remains neutral despite sector performance, driven primarily by FII selling, which weakens volume expansion on up days and delivery percentage below 50 during moderate volatility.",
+      "summary": "Sector relative strength Z-score remains neutral despite sector performance, driven primarily by FII selling, which weakens volume expansion on up days and delivery percentage below 50 during moderate volatility.",
+      "summary_structured": "{\"id\":\"ecef35db-19aa-4d96-adca-3a38ffdd8919\",\"created_at\":\"2026-07-15T00:29:26.624881Z\",\"mechanism\":\"Delivery Exhaustion\",\"claim\":\"Sector relative strength Z-score remains neutral despite sector performance, driven primarily by FII selling, which weakens volume expansion on up days and delivery percentage below 50 during moderate volatility.\",\"if_branch\":{\"id\":\"bcd67a69-548a-4020-b6d1-1dac6bea7d8d\",\"created_at\":\"2026-07-15T00:29:26.625150Z\",\"condition\":\"volume.daily_ratio < 1.5 AND delivery_pct.rolling_5day_average > 50\",\"action\":\"retain mechanism\"},\"else_branch\":{\"id\":\"393d3417-816a-4f0c-adbf-d4b49809acdc\",\"created_at\":\"2026-07-15T00:29:26.625251Z\",\"condition\":\"true\",\"action\":\"remove mechanism\"},\"unless\":\"liquidity evaporates entirely\",\"falsified_if\":\"delivery_exhaustion_with_fii_selling_revised: delivery_pct.rolling_5day_average > 50 AND delivery_pct.rolling_5day_average < 60\",\"forbidden_state\":\"\",\"mechanism_components\":[{\"id\":\"9fd92041-a013-4f5d-9c40-fef2deb55a24\",\"created_at\":\"2026-07-15T00:26:46.921554Z\",\"component_id\":\"sector_zscore_revised\",\"description\":\"Sector relative strength Z-score remains neutral despite sector performance, but with a stronger emphasis on the role of leading sector performance in driving sector z-score.\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\"<-1.5 AND >1.5\",\"dependency\":null,\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\"],\"relation_type\":\"CO-OCCURS_WITH\",\"mechanism_id\":\"MECH_002\"},{\"id\":\"efc2c2a2-b7c1-4d27-bee9-5233c3f83578\",\"created_at\":\"2026-07-15T00:24:21.201559Z\",\"component_id\":\"volume_confirmation\",\"description\":\"Volume expansion on up days relative to down days remains weak\",\"observable\":\"volume.daily_ratio\",\"expected_behavior\":\"<1.5 AND >0.5\",\"dependency\":null,\"concept_tags\":[\"VOLATILITY_EXPANSION\",\"INSTITUTIONAL_ACCUMULATION\"],\"relation_type\":\"DAMPENS\",\"mechanism_id\":\"MECH_003\"},{\"id\":\"2736b8e0-a44f-4da9-96fa-3d179fb0b75e\",\"created_at\":\"2026-07-15T00:29:21.355384Z\",\"component_id\":\"delivery_exhaustion_with_fii_selling_revised\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility and FII selling, but with a stronger emphasis on the role of FII selling in driving delivery exhaustion.\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60 WHEN FII_SELLING IS HIGH\",\"dependency\":null,\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_005\"},{\"id\":\"f421cf90-5c0c-4a31-ad2b-a53246ef8453\",\"created_at\":\"2026-07-15T00:29:23.375018Z\",\"component_id\":\"sector_zscore_revised_with_fii_selling_emphasis\",\"description\":\"Sector relative strength Z-score remains neutral despite sector performance, but with a stronger emphasis on the role of FII selling in driving sector z-score.\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\"<-1.5 AND >1.5 AND <0.5 WHEN FII_SELLING IS HIGH\",\"dependency\":null,\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_006\"}],\"falsification_conditions\":[\"MECH_005: delivery_pct.rolling_5day_average > 60 OR FII_SELLING IS LOW\",\"sector_zscore_revised_with_fii_selling_emphasis: sector_zscore.rolling_20day < -1.5\"],\"reuse_decision\":\"REJECTED\",\"trigger_definition\":{\"field\":\"delivery_pct\",\"operator\":\"==\",\"value\":1,\"lag\":0},\"target_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_A\"},\"scope_definition\":[{\"field\":\"price\",\"operator\":\"<=\",\"value\":1.0}],\"expected_direction\":-1.0,\"contradiction_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_B\"},\"mechanism_type\":\"Moderate Delivery Exhaustion\",\"causal_direction\":\"negative\",\"driver\":\"delivery_pct\",\"mediator_or_process\":\"price\",\"target_effect\":\"price weakens\"}",
+      "confidence_state_id": "441067fe-ad8c-4e2e-b20a-198e0788bf4d",
+      "llm_evaluation": {
+        "mechanistic_depth": 0.5,
+        "explanatory_power": 0.5,
+        "falsifiability_quality": 0.5,
+        "branch_quality": 0.5,
+        "novelty": 0.5,
+        "actionability": 0.5,
+        "overall_score": 0.5,
+        "reasoning": "Optimized: LLM evaluation bypassed during replay to improve performance."
+      },
+      "survival_days": 0.0,
+      "falsified_at_index": null,
+      "falsification_precision": null
+    },
+    {
+      "id": "00572d7e-8ab1-46b3-a9a8-042368de554f",
+      "created_at": "2026-07-15T05:54:21.203689+05:30",
+      "lineage_id": "c801bf8cf96b46db",
+      "thesis": "Sector relative strength Z-score remains neutral despite sector performance, driven primarily by FII selling, which weakens volume expansion on up days and delivery percentage below 50 during moderate volatility.",
+      "summary": "Sector relative strength Z-score remains neutral despite sector performance, driven primarily by FII selling, which weakens volume expansion on up days and delivery percentage below 50 during moderate volatility.",
+      "summary_structured": "{\"id\":\"ecef35db-19aa-4d96-adca-3a38ffdd8919\",\"created_at\":\"2026-07-15T00:29:26.624881Z\",\"mechanism\":\"Delivery Exhaustion\",\"claim\":\"Sector relative strength Z-score remains neutral despite sector performance, driven primarily by FII selling, which weakens volume expansion on up days and delivery percentage below 50 during moderate volatility.\",\"if_branch\":{\"id\":\"bcd67a69-548a-4020-b6d1-1dac6bea7d8d\",\"created_at\":\"2026-07-15T00:29:26.625150Z\",\"condition\":\"volume.daily_ratio < 1.5 AND delivery_pct.rolling_5day_average > 50\",\"action\":\"retain mechanism\"},\"else_branch\":{\"id\":\"393d3417-816a-4f0c-adbf-d4b49809acdc\",\"created_at\":\"2026-07-15T00:29:26.625251Z\",\"condition\":\"true\",\"action\":\"remove mechanism\"},\"unless\":\"liquidity evaporates entirely\",\"falsified_if\":\"delivery_exhaustion_with_fii_selling_revised: delivery_pct.rolling_5day_average > 50 AND delivery_pct.rolling_5day_average < 60\",\"forbidden_state\":\"\",\"mechanism_components\":[{\"id\":\"9fd92041-a013-4f5d-9c40-fef2deb55a24\",\"created_at\":\"2026-07-15T00:26:46.921554Z\",\"component_id\":\"sector_zscore_revised\",\"description\":\"Sector relative strength Z-score remains neutral despite sector performance, but with a stronger emphasis on the role of leading sector performance in driving sector z-score.\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\"<-1.5 AND >1.5\",\"dependency\":null,\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\"],\"relation_type\":\"CO-OCCURS_WITH\",\"mechanism_id\":\"MECH_002\"},{\"id\":\"efc2c2a2-b7c1-4d27-bee9-5233c3f83578\",\"created_at\":\"2026-07-15T00:24:21.201559Z\",\"component_id\":\"volume_confirmation\",\"description\":\"Volume expansion on up days relative to down days remains weak\",\"observable\":\"volume.daily_ratio\",\"expected_behavior\":\"<1.5 AND >0.5\",\"dependency\":null,\"concept_tags\":[\"VOLATILITY_EXPANSION\",\"INSTITUTIONAL_ACCUMULATION\"],\"relation_type\":\"DAMPENS\",\"mechanism_id\":\"MECH_003\"},{\"id\":\"2736b8e0-a44f-4da9-96fa-3d179fb0b75e\",\"created_at\":\"2026-07-15T00:29:21.355384Z\",\"component_id\":\"delivery_exhaustion_with_fii_selling_revised\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility and FII selling, but with a stronger emphasis on the role of FII selling in driving delivery exhaustion.\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60 WHEN FII_SELLING IS HIGH\",\"dependency\":null,\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_005\"},{\"id\":\"f421cf90-5c0c-4a31-ad2b-a53246ef8453\",\"created_at\":\"2026-07-15T00:29:23.375018Z\",\"component_id\":\"sector_zscore_revised_with_fii_selling_emphasis\",\"description\":\"Sector relative strength Z-score remains neutral despite sector performance, but with a stronger emphasis on the role of FII selling in driving sector z-score.\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\"<-1.5 AND >1.5 AND <0.5 WHEN FII_SELLING IS HIGH\",\"dependency\":null,\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_006\"}],\"falsification_conditions\":[\"MECH_005: delivery_pct.rolling_5day_average > 60 OR FII_SELLING IS LOW\",\"sector_zscore_revised_with_fii_selling_emphasis: sector_zscore.rolling_20day < -1.5\"],\"reuse_decision\":\"REJECTED\",\"trigger_definition\":{\"field\":\"delivery_pct\",\"operator\":\"==\",\"value\":1,\"lag\":0},\"target_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_A\"},\"scope_definition\":[{\"field\":\"price\",\"operator\":\"<=\",\"value\":1.0}],\"expected_direction\":-1.0,\"contradiction_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_B\"},\"mechanism_type\":\"Moderate Delivery Exhaustion\",\"causal_direction\":\"negative\",\"driver\":\"delivery_pct\",\"mediator_or_process\":\"price\",\"target_effect\":\"price weakens\"}",
+      "confidence_state_id": "441067fe-ad8c-4e2e-b20a-198e0788bf4d",
+      "llm_evaluation": {
+        "mechanistic_depth": 0.5,
+        "explanatory_power": 0.5,
+        "falsifiability_quality": 0.5,
+        "branch_quality": 0.5,
+        "novelty": 0.5,
+        "actionability": 0.5,
+        "overall_score": 0.5,
+        "reasoning": "Optimized: LLM evaluation bypassed during replay to improve performance."
+      },
+      "survival_days": 0.0,
+      "falsified_at_index": null,
+      "falsification_precision": null
+    },
+    {
+      "id": "915fe327-eae2-45af-94c4-1f81bd52b9ec",
+      "created_at": "2026-07-15T05:54:21.203689+05:30",
+      "lineage_id": "24c55c1834f77e54",
+      "thesis": "The current market regime is characterized by weak volume expansion on up days relative to down days, moderate delivery exhaustion driven by FII selling, and neutral sector relative strength Z-scores influenced by volatility compression.",
+      "summary": "The current market regime is characterized by weak volume expansion on up days relative to down days, moderate delivery exhaustion driven by FII selling, and neutral sector relative strength Z-scores influenced by volatility compression.",
+      "summary_structured": "{\"id\":\"e9eb0206-ba1a-4296-9c8f-fa9c539e4b96\",\"created_at\":\"2026-07-15T00:32:25.861273Z\",\"mechanism\":\"Delivery Exhaustion\",\"claim\":\"The current market regime is characterized by weak volume expansion on up days relative to down days, moderate delivery exhaustion driven by FII selling, and neutral sector relative strength Z-scores influenced by volatility compression.\",\"if_branch\":{\"id\":\"4f873af3-60e1-43ed-85b7-d101f75ec68f\",\"created_at\":\"2026-07-15T00:32:25.861483Z\",\"condition\":\"volume_elevated AND range_expanding\",\"action\":\"promote MECH_005\"},\"else_branch\":{\"id\":\"feecd6f1-9634-431b-990c-92560c40e2b5\",\"created_at\":\"2026-07-15T00:32:25.861523Z\",\"condition\":\"false\",\"action\":\"demote MECH_005\"},\"unless\":\"liquidity evaporates entirely\",\"falsified_if\":\"MECH_002\",\"forbidden_state\":\"\",\"mechanism_components\":[{\"id\":\"efc2c2a2-b7c1-4d27-bee9-5233c3f83578\",\"created_at\":\"2026-07-15T00:24:21.201559Z\",\"component_id\":\"volume_confirmation\",\"description\":\"Volume expansion on up days relative to down days remains weak\",\"observable\":\"volume.daily_ratio\",\"expected_behavior\":\"<1.5 AND >0.5\",\"dependency\":null,\"concept_tags\":[\"VOLATILITY_EXPANSION\",\"INSTITUTIONAL_ACCUMULATION\"],\"relation_type\":\"DAMPENS\",\"mechanism_id\":\"MECH_003\"},{\"id\":\"249e5c10-bac0-4b9a-954d-3d1adda2cb40\",\"created_at\":\"2026-07-15T00:32:20.565537Z\",\"component_id\":\"delivery_exhaustion_with_fii_selling_revised\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility and FII selling, but with a stronger emphasis on the role of FII selling in driving delivery exhaustion.\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60 WHEN FII_SELLING IS HIGH\",\"dependency\":null,\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_005\"},{\"id\":\"d0907616-a5ed-4128-98e7-a43bb1b7e3a6\",\"created_at\":\"2026-07-15T00:32:22.705227Z\",\"component_id\":\"sector_zscore_revised_with_fii_selling_emphasis_revised\",\"description\":\"Sector relative strength Z-score remains neutral despite sector performance, but with a stronger emphasis on the role of FII selling in driving sector z-score and incorporating additional factors such as volatility compression.\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\"<-1.5 AND >1.5 AND <0.5 WHEN VOLATILITY_COMPRESSION IS HIGH\",\"dependency\":null,\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\",\"VOLATILITY_COMPRESSION\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_007\"}],\"falsification_conditions\":[\"sector_zscore_revised: <0.5\"],\"reuse_decision\":\"REJECTED\",\"trigger_definition\":{\"field\":\"delivery_pct\",\"operator\":\"==\",\"value\":1,\"lag\":0},\"target_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_A\"},\"scope_definition\":[{\"field\":\"price\",\"operator\":\"<=\",\"value\":1.0}],\"expected_direction\":-1.0,\"contradiction_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_B\"},\"mechanism_type\":\"Moderate Delivery Exhaustion\",\"causal_direction\":\"negative\",\"driver\":\"delivery_pct\",\"mediator_or_process\":\"price\",\"target_effect\":\"price weakens\"}",
+      "confidence_state_id": "441067fe-ad8c-4e2e-b20a-198e0788bf4d",
+      "llm_evaluation": {
+        "mechanistic_depth": 0.5,
+        "explanatory_power": 0.5,
+        "falsifiability_quality": 0.5,
+        "branch_quality": 0.5,
+        "novelty": 0.5,
+        "actionability": 0.5,
+        "overall_score": 0.5,
+        "reasoning": "Optimized: LLM evaluation bypassed during replay to improve performance."
+      },
+      "survival_days": 0.0,
+      "falsified_at_index": null,
+      "falsification_precision": null
+    },
+    {
+      "id": "f3dca0b3-7766-492c-8339-7cbdeaf964d4",
+      "created_at": "2026-07-15T05:54:21.203689+05:30",
+      "lineage_id": "898ab86e3b54098a",
+      "thesis": "Sector relative strength Z-score remains strong (>1.5 AND <2.5) due to FII selling and volatility compression, driving delivery exhaustion (>50 AND <60 WHEN FII_SELLING IS HIGH).",
+      "summary": "Sector relative strength Z-score remains strong (>1.5 AND <2.5) due to FII selling and volatility compression, driving delivery exhaustion (>50 AND <60 WHEN FII_SELLING IS HIGH).",
+      "summary_structured": "{\"id\":\"36386bcc-115c-4db1-99cc-41bd6498b0f8\",\"created_at\":\"2026-07-15T00:34:10.882827Z\",\"mechanism\":\"Delivery Exhaustion\",\"claim\":\"Sector relative strength Z-score remains strong (>1.5 AND <2.5) due to FII selling and volatility compression, driving delivery exhaustion (>50 AND <60 WHEN FII_SELLING IS HIGH).\",\"if_branch\":{\"id\":\"250abe05-9520-492a-a11d-1213e0108195\",\"created_at\":\"2026-07-15T00:34:10.883044Z\",\"condition\":\"sector_zscore.rolling_20day > 1.5 AND sector_zscore.rolling_20day < 2.5 WHEN VOLATILITY_COMPRESSION IS HIGH\",\"action\":\"retain\"},\"else_branch\":{\"id\":\"3b751a02-4364-4bbe-8734-17024c89ba65\",\"created_at\":\"2026-07-15T00:34:10.883085Z\",\"condition\":\"true\",\"action\":\"remove\"},\"unless\":\"liquidity evaporates entirely\",\"falsified_if\":\"sector_zscore_revised\",\"forbidden_state\":\"\",\"mechanism_components\":[{\"id\":\"efc2c2a2-b7c1-4d27-bee9-5233c3f83578\",\"created_at\":\"2026-07-15T00:24:21.201559Z\",\"component_id\":\"volume_confirmation\",\"description\":\"Volume expansion on up days relative to down days remains weak\",\"observable\":\"volume.daily_ratio\",\"expected_behavior\":\"<1.5 AND >0.5\",\"dependency\":null,\"concept_tags\":[\"VOLATILITY_EXPANSION\",\"INSTITUTIONAL_ACCUMULATION\"],\"relation_type\":\"DAMPENS\",\"mechanism_id\":\"MECH_003\"},{\"id\":\"249e5c10-bac0-4b9a-954d-3d1adda2cb40\",\"created_at\":\"2026-07-15T00:32:20.565537Z\",\"component_id\":\"delivery_exhaustion_with_fii_selling_revised\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility and FII selling, but with a stronger emphasis on the role of FII selling in driving delivery exhaustion.\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60 WHEN FII_SELLING IS HIGH\",\"dependency\":null,\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_005\"},{\"id\":\"96c30564-fa8e-498b-b0ed-66dc0021a388\",\"created_at\":\"2026-07-15T00:34:07.693314Z\",\"component_id\":\"sector_zscore_revised_with_fii_selling_emphasis\",\"description\":\"Sector relative strength Z-score remains strong despite sector performance, driven primarily by FII selling and volatility compression.\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\">1.5 AND <2.5 WHEN VOLATILITY_COMPRESSION IS HIGH\",\"dependency\":null,\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\",\"VOLATILITY_COMPRESSION\"],\"relation_type\":\"AMPLIFIES\",\"mechanism_id\":\"MECH_008\"}],\"falsification_conditions\":[\"MECH_007: sector_zscore.rolling_20day < -1.5 OR sector_zscore.rolling_20day > 1.5\"],\"reuse_decision\":\"REJECTED\",\"trigger_definition\":{\"field\":\"delivery_pct\",\"operator\":\"==\",\"value\":1,\"lag\":0},\"target_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_A\"},\"scope_definition\":[{\"field\":\"price\",\"operator\":\"<=\",\"value\":1.0}],\"expected_direction\":-1.0,\"contradiction_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_B\"},\"mechanism_type\":\"Moderate Delivery Exhaustion\",\"causal_direction\":\"negative\",\"driver\":\"delivery_pct\",\"mediator_or_process\":\"price\",\"target_effect\":\"price weakens\"}",
+      "confidence_state_id": "441067fe-ad8c-4e2e-b20a-198e0788bf4d",
+      "llm_evaluation": {
+        "mechanistic_depth": 0.5,
+        "explanatory_power": 0.5,
+        "falsifiability_quality": 0.5,
+        "branch_quality": 0.5,
+        "novelty": 0.5,
+        "actionability": 0.5,
+        "overall_score": 0.5,
+        "reasoning": "Optimized: LLM evaluation bypassed during replay to improve performance."
+      },
+      "survival_days": 0.0,
+      "falsified_at_index": null,
+      "falsification_precision": null
+    },
+    {
+      "id": "83fb78f8-4684-49ed-896a-5effe2463325",
+      "created_at": "2026-07-15T05:54:21.203689+05:30",
+      "lineage_id": "b1951952e2d6d834",
+      "thesis": "The current market regime is characterized by FII selling driving delivery exhaustion, sector relative strength Z-scores remaining strong despite weak performance, and volume expansion on up days being weak, indicating a widening price movement.",
+      "summary": "The current market regime is characterized by FII selling driving delivery exhaustion, sector relative strength Z-scores remaining strong despite weak performance, and volume expansion on up days being weak, indicating a widening price movement.",
+      "summary_structured": "{\"id\":\"a9719231-2992-4cbe-a480-85545c7fe77c\",\"created_at\":\"2026-07-15T00:36:01.831416Z\",\"mechanism\":\"Delivery Exhaustion\",\"claim\":\"The current market regime is characterized by FII selling driving delivery exhaustion, sector relative strength Z-scores remaining strong despite weak performance, and volume expansion on up days being weak, indicating a widening price movement.\",\"if_branch\":{\"id\":\"e15d8936-5817-4851-a676-878815686f79\",\"created_at\":\"2026-07-15T00:36:01.831656Z\",\"condition\":\"RANGE_EXPANSION IS HIGH OR DELIVERY_EXHAUSTION_IS_HIGH\",\"action\":\"ADD NEW MECHANISM FOR VOLATILITY EXPANSION WITH RANGE EXPANSION\"},\"else_branch\":{\"id\":\"9b62d213-ca83-48eb-91c8-3a7a01a5defa\",\"created_at\":\"2026-07-15T00:36:01.831697Z\",\"condition\":\"true\",\"action\":\"remove\"},\"unless\":\"liquidity evaporates entirely\",\"falsified_if\":\"volume_confirmation\",\"forbidden_state\":\"\",\"mechanism_components\":[{\"id\":\"ccc113f5-8bdb-4da3-aae0-eb79ccb36af0\",\"created_at\":\"2026-07-15T00:35:56.489662Z\",\"component_id\":\"delivery_exhaustion_with_fii_selling_revised\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility and FII selling, but with a stronger emphasis on the role of FII selling in driving delivery exhaustion.\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60 WHEN FII_SELLING IS HIGH OR DELIVERY_EXHAUSTION_IS_HIGH\",\"dependency\":null,\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_005\"},{\"id\":\"f8408b16-5a98-4157-b108-b027237c17f9\",\"created_at\":\"2026-07-15T00:35:56.492347Z\",\"component_id\":\"sector_zscore_revised_with_fii_selling_emphasis\",\"description\":\"Sector relative strength Z-score remains strong despite sector performance, driven primarily by FII selling and volatility compression.\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\">1.5 AND <2.5 WHEN VOLATILITY_COMPRESSION IS HIGH OR SECTOR_PERFORMANCE_IS_WEAK\",\"dependency\":null,\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\",\"VOLATILITY_COMPRESSION\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_008\"},{\"id\":\"0725e4d9-999d-4b51-bbbe-622db3d5ca00\",\"created_at\":\"2026-07-15T00:35:58.628066Z\",\"component_id\":\"volume_expansion_with_range_expansion\",\"description\":\"Volume expansion on up days relative to down days is weak, but range expansion suggests a widening price movement.\",\"observable\":\"volume.daily_ratio\",\"expected_behavior\":\"<1.5 AND >0.5 OR RANGE_EXPANSION IS HIGH\",\"dependency\":null,\"concept_tags\":[\"VOLATILITY_EXPANSION\",\"RANGE_EXPANSION\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_009\"}],\"falsification_conditions\":[\"MECH_003: volume.daily_ratio < 1.5 AND volume.daily_ratio > 0.5\"],\"reuse_decision\":\"REJECTED\",\"trigger_definition\":{\"field\":\"delivery_pct\",\"operator\":\"==\",\"value\":1,\"lag\":0},\"target_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_A\"},\"scope_definition\":[{\"field\":\"price\",\"operator\":\"<=\",\"value\":1.0}],\"expected_direction\":-1.0,\"contradiction_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_B\"},\"mechanism_type\":\"Moderate Delivery Exhaustion\",\"causal_direction\":\"negative\",\"driver\":\"delivery_pct\",\"mediator_or_process\":\"price\",\"target_effect\":\"price weakens\"}",
+      "confidence_state_id": "441067fe-ad8c-4e2e-b20a-198e0788bf4d",
+      "llm_evaluation": {
+        "mechanistic_depth": 0.5,
+        "explanatory_power": 0.5,
+        "falsifiability_quality": 0.5,
+        "branch_quality": 0.5,
+        "novelty": 0.5,
+        "actionability": 0.5,
+        "overall_score": 0.5,
+        "reasoning": "Optimized: LLM evaluation bypassed during replay to improve performance."
+      },
+      "survival_days": 0.0,
+      "falsified_at_index": null,
+      "falsification_precision": null
+    },
+    {
+      "id": "39e69f31-f70f-41e5-8ad6-a89a69d441b9",
+      "created_at": "2026-07-15T05:54:21.203689+05:30",
+      "lineage_id": "9c032d3c7c1c0c5e",
+      "thesis": "Delivery percentage remains below 50 in a liquidity-constrained market regime driven primarily by FII selling and volatility compression, where sector relative strength Z-score is maintained above 1.5 despite weak sector performance.",
+      "summary": "Delivery percentage remains below 50 in a liquidity-constrained market regime driven primarily by FII selling and volatility compression, where sector relative strength Z-score is maintained above 1.5 despite weak sector performance.",
+      "summary_structured": "{\"id\":\"1ea5ea42-743a-4785-944b-24cd3330bd1e\",\"created_at\":\"2026-07-15T00:37:54.026763Z\",\"mechanism\":\"Delivery Exhaustion\",\"claim\":\"Delivery percentage remains below 50 in a liquidity-constrained market regime driven primarily by FII selling and volatility compression, where sector relative strength Z-score is maintained above 1.5 despite weak sector performance.\",\"if_branch\":{\"id\":\"4be59171-a2d3-41bd-bcd8-779ec9cee443\",\"created_at\":\"2026-07-15T00:37:54.026869Z\",\"condition\":\"volume dry OR range expanding OR gap down OR short-term momentum strengthening\",\"action\":\"reject the theory and add a new mechanism\"},\"else_branch\":{\"id\":\"0f0d297e-1ffe-4da4-afd0-7739dce07f96\",\"created_at\":\"2026-07-15T00:37:54.026890Z\",\"condition\":\"otherwise\",\"action\":\"retain the current mechanisms\"},\"unless\":\"FII selling is high or delivery exhaustion is high\",\"falsified_if\":\"volume_confirmation\",\"forbidden_state\":\"\",\"mechanism_components\":[{\"id\":\"ccc113f5-8bdb-4da3-aae0-eb79ccb36af0\",\"created_at\":\"2026-07-15T00:35:56.489662Z\",\"component_id\":\"delivery_exhaustion_with_fii_selling_revised\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility and FII selling, but with a stronger emphasis on the role of FII selling in driving delivery exhaustion.\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60 WHEN FII_SELLING IS HIGH OR DELIVERY_EXHAUSTION_IS_HIGH\",\"dependency\":null,\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\",\"FII_SELLING\"],\"relation_type\":\"CONTRADICTS\",\"mechanism_id\":\"MECH_005\"},{\"id\":\"b615701d-a7a6-4bce-8a5d-6f740caaab30\",\"created_at\":\"2026-07-15T00:37:47.388428Z\",\"component_id\":\"sector_zscore_revised_with_fii_selling_emphasis_and_volatility_compression\",\"description\":\"Sector relative strength Z-score remains strong despite sector performance, driven primarily by FII selling and volatility compression.\",\"observable\":\"sector_zscore.rolling_20day\",\"expected_behavior\":\">1.5 AND <2.5 WHEN VOLATILITY_COMPRESSION IS HIGH OR SECTOR_PERFORMANCE_IS_WEAK\",\"dependency\":\"volatility_compression\",\"concept_tags\":[\"TREND_PERSISTENCE\",\"SECTOR_ZSCORE\",\"VOLATILITY_COMPRESSION\"],\"relation_type\":\"AMPLIFIES\",\"mechanism_id\":\"MECH_008\"},{\"id\":\"6dc92a99-4b16-4928-9735-337470c34ab5\",\"created_at\":\"2026-07-15T00:37:50.711288Z\",\"component_id\":\"delivery_exhaustion_with_fii_selling_revised_and_volatility_compression\",\"description\":\"Delivery percentage remains below 50 despite moderate volatility and FII selling, but with a stronger emphasis on the role of FII selling in driving delivery exhaustion and the impact of volatility compression.\",\"observable\":\"delivery_pct.rolling_5day_average\",\"expected_behavior\":\">50 AND <60 WHEN VOLATILITY_COMPRESSION IS HIGH OR FII_SELLING IS HIGH\",\"dependency\":\"volatility_compression\",\"concept_tags\":[\"LIQUIDITY_ABSORPTION\",\"DELIVERY_EXHAUSTION\",\"FII_SELLING\",\"VOLATILITY_COMPRESSION\"],\"relation_type\":\"AMPLIFIES\",\"mechanism_id\":\"MECH_010\"}],\"falsification_conditions\":[\"MECH_008: FII_SELLING IS HIGH OR DELIVERY_EXHAUSTION_IS_HIGH\",\"MECH_005: VOLATILITY_COMPRESSION IS HIGH\"],\"reuse_decision\":\"REJECTED\",\"trigger_definition\":{\"field\":\"delivery_pct\",\"operator\":\"==\",\"value\":1,\"lag\":0},\"target_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_A\"},\"scope_definition\":[{\"field\":\"price\",\"operator\":\"<=\",\"value\":1.0}],\"expected_direction\":-1.0,\"contradiction_definition\":{\"field\":\"outcome\",\"operator\":\"==\",\"value\":\"VAL_B\"},\"mechanism_type\":\"Moderate Delivery Exhaustion\",\"causal_direction\":\"negative\",\"driver\":\"delivery_pct\",\"mediator_or_process\":\"price\",\"target_effect\":\"price weakens\"}",
+      "confidence_state_id": "441067fe-ad8c-4e2e-b20a-198e0788bf4d",
+      "llm_evaluation": {
+        "mechanistic_depth": 0.5,
+        "explanatory_power": 0.5,
+        "falsifiability_quality": 0.5,
+        "branch_quality": 0.5,
+        "novelty": 0.5,
+        "actionability": 0.5,
+        "overall_score": 0.5,
+        "reasoning": "Optimized: LLM evaluation bypassed during replay to improve performance."
+      },
+      "survival_days": 0.0,
+      "falsified_at_index": null,
+      "falsification_precision": null
+    }
+  ],
+  "prediction_probes": [
+    {
+      "id": 1,
+      "date": "2026-06-30",
+      "day_index": 0,
+      "direction": "lower",
+      "confidence": 0.55,
+      "tension": "observation coherence vs residual uncertainty",
+      "invalidation": "contradiction signal",
+      "theory_id": "5be4c37e-f220-4301-b9b4-44410d4bb357",
+      "reflection_id": "decda281-49c5-4082-8ac6-184f14be0600",
+      "created_at": "2026-07-15T05:54:33.740478"
+    },
+    {
+      "id": 2,
+      "date": "2026-07-01",
+      "day_index": 1,
+      "direction": "higher",
+      "confidence": 0.5,
+      "tension": "volatility expansion vs structural support",
+      "invalidation": "volatility expansion",
+      "theory_id": "bffd5311-5b51-4a51-b66e-1f3de2dd90cc",
+      "reflection_id": "29c82fd3-9add-4da3-b744-7a6ce9910b20",
+      "created_at": "2026-07-15T05:55:58.161900"
+    },
+    {
+      "id": 3,
+      "date": "2026-07-02",
+      "day_index": 2,
+      "direction": "range_bound",
+      "confidence": 0.58,
+      "tension": "observation coherence vs residual uncertainty",
+      "invalidation": "contradiction signal",
+      "theory_id": "15159d8b-2250-4e7b-9b31-9d1b4d4a83b3",
+      "reflection_id": "9eacccba-c4e7-4ef6-9e9c-606a2fce4dcc",
+      "created_at": "2026-07-15T05:57:21.112944"
+    },
+    {
+      "id": 4,
+      "date": "2026-07-03",
+      "day_index": 3,
+      "direction": "range_bound",
+      "confidence": 0.45,
+      "tension": "observation coherence vs residual uncertainty",
+      "invalidation": "contradiction signal",
+      "theory_id": "70717041-46e7-4fb7-8b9a-cbd7547aaf27",
+      "reflection_id": "9dc19231-2817-4a08-9024-8002c716b108",
+      "created_at": "2026-07-15T05:58:29.247300"
+    },
+    {
+      "id": 5,
+      "date": "2026-07-06",
+      "day_index": 4,
+      "direction": "higher",
+      "confidence": 0.34,
+      "tension": "volatility expansion vs structural support",
+      "invalidation": "volatility expansion",
+      "theory_id": "99bfe104-93e0-4f44-ae2d-ab1b4097aecd",
+      "reflection_id": "9ede8500-2f20-467a-b45d-46bc7a6699be",
+      "created_at": "2026-07-15T06:00:14.834789"
+    },
+    {
+      "id": 6,
+      "date": "2026-07-07",
+      "day_index": 5,
+      "direction": "higher",
+      "confidence": 0.55,
+      "tension": "volatility expansion vs structural support",
+      "invalidation": "volatility expansion",
+      "theory_id": "00572d7e-8ab1-46b3-a9a8-042368de554f",
+      "reflection_id": "0ba3280b-9934-4932-97b7-ad5cf6db91b6",
+      "created_at": "2026-07-15T06:01:24.689657"
+    },
+    {
+      "id": 7,
+      "date": "2026-07-08",
+      "day_index": 6,
+      "direction": "lower",
+      "confidence": 0.537,
+      "tension": "volatility expansion vs structural support",
+      "invalidation": "volatility expansion",
+      "theory_id": "915fe327-eae2-45af-94c4-1f81bd52b9ec",
+      "reflection_id": "b0eaff7c-6e00-4e78-b4dd-32f95dfe7ca1",
+      "created_at": "2026-07-15T06:03:14.837098"
+    },
+    {
+      "id": 8,
+      "date": "2026-07-09",
+      "day_index": 7,
+      "direction": "lower",
+      "confidence": 0.528,
+      "tension": "volatility expansion vs structural support",
+      "invalidation": "volatility expansion",
+      "theory_id": "f3dca0b3-7766-492c-8339-7cbdeaf964d4",
+      "reflection_id": "7933b6c0-45f1-4101-a1aa-7e9f1214c1c5",
+      "created_at": "2026-07-15T06:04:54.637103"
+    },
+    {
+      "id": 9,
+      "date": "2026-07-10",
+      "day_index": 8,
+      "direction": "higher",
+      "confidence": 0.29,
+      "tension": "volatility expansion vs structural support",
+      "invalidation": "volatility expansion",
+      "theory_id": "83fb78f8-4684-49ed-896a-5effe2463325",
+      "reflection_id": "ae9d359f-eec7-4bec-907d-1b21e1634e15",
+      "created_at": "2026-07-15T06:06:52.571394"
+    },
+    {
+      "id": 10,
+      "date": "2026-07-13",
+      "day_index": 9,
+      "direction": "range_bound",
+      "confidence": 0.262,
+      "tension": "observation coherence vs residual uncertainty",
+      "invalidation": "contradiction signal",
+      "theory_id": "39e69f31-f70f-41e5-8ad6-a89a69d441b9",
+      "reflection_id": "5dadbec1-9bf9-440b-ba09-d3e69c6aba01",
+      "created_at": "2026-07-15T06:08:49.160901"
+    }
+  ],
+  "reflections": [
+    {
+      "id": "decda281-49c5-4082-8ac6-184f14be0600",
+      "created_at": "2026-07-15T05:54:33.539977+05:30",
+      "related_theory_id": "5be4c37e-f220-4301-b9b4-44410d4bb357",
+      "reflection_summary": "Neutral regime is driven by moderate delivery exhaustion; price weakens despite sector neutral performance. Analog divergence is not present in this observation. The detected 0 contradictions with a total score of 0.00 suggests that the current observation does not provide sufficient evidence to falsify the theory. One unresolved tension remains: the lack of clear confirmation signals for the neutral regime subtype, which may indicate that additional research or data are needed to further validate the theory.",
+      "confidence_impact": "moderate"
+    },
+    {
+      "id": "29c82fd3-9add-4da3-b744-7a6ce9910b20",
+      "created_at": "2026-07-15T05:55:39.655802+05:30",
+      "related_theory_id": "bffd5311-5b51-4a51-b66e-1f3de2dd90cc",
+      "reflection_summary": "The current market regime is characterized by a liquidity-constrained environment, where moderate volatility and FII selling lead to delivery percentages below 50. However, the observed candle expansion participation weak (weak move) reliance closed higher with volatility compressed suggests that this assumption may not hold. Contradiction: The detected 1 contradiction with a total score of 0.09 indicates that the theory's falsifiability boundary conditions are being challenged. Specifically, the low semantic similarity between the current market regime and the neutral regime, as well as the sector_zscore < -1.5, suggests that the theory may not be accurately capturing the market dynamics.",
+      "confidence_impact": "moderate"
+    },
+    {
+      "id": "9eacccba-c4e7-4ef6-9e9c-606a2fce4dcc",
+      "created_at": "2026-07-15T05:57:08.623579+05:30",
+      "related_theory_id": "15159d8b-2250-4e7b-9b31-9d1b4d4a83b3",
+      "reflection_summary": "Theory contradiction remains unresolved.",
+      "confidence_impact": "moderate"
+    },
+    {
+      "id": "9dc19231-2817-4a08-9024-8002c716b108",
+      "created_at": "2026-07-15T05:58:29.215309+05:30",
+      "related_theory_id": "70717041-46e7-4fb7-8b9a-cbd7547aaf27",
+      "reflection_summary": "The observed data suggests that the sector Z-score remains neutral despite sector performance, primarily driven by leading sector performance, while volume expansion on up days relative to down days and delivery percentage remain constrained below 50 due to FII selling. However, the current regime subtype is liquidity_constrained, which contradicts the theory's expectation of a neutral regime. The detected contradictions with a total score of 0.10 indicate that the observed data does not strongly support the theory. Specifically, the low semantic similarity between the sector Z-score and delivery_exhaustion_...",
+      "confidence_impact": "moderate"
+    },
+    {
+      "id": "9ede8500-2f20-467a-b45d-46bc7a6699be",
+      "created_at": "2026-07-15T06:00:00.354272+05:30",
+      "related_theory_id": "99bfe104-93e0-4f44-ae2d-ab1b4097aecd",
+      "reflection_summary": "The current regime subtype is liquidity_constrained. The theory's falsifiability boundary conditions are met, as the observed data does not exceed the volume threshold of 5-day average, which would strengthen participation and potentially falsify the neutral participation assumption. However, the observed data contradicts the prior assumption that sector relative strength Z-score remains neutral despite sector performance, driven primarily by FII selling. The strong bull participation weakens divergence, indicating a compressed volatility and reliance on the leading sector.",
+      "confidence_impact": "moderate"
+    },
+    {
+      "id": "0ba3280b-9934-4932-97b7-ad5cf6db91b6",
+      "created_at": "2026-07-15T06:01:01.357055+05:30",
+      "related_theory_id": "00572d7e-8ab1-46b3-a9a8-042368de554f",
+      "reflection_summary": "Compressed volatility masks fragility under contradiction pressure.",
+      "confidence_impact": "moderate"
+    },
+    {
+      "id": "b0eaff7c-6e00-4e78-b4dd-32f95dfe7ca1",
+      "created_at": "2026-07-15T06:03:01.586717+05:30",
+      "related_theory_id": "915fe327-eae2-45af-94c4-1f81bd52b9ec",
+      "reflection_summary": "The current market regime is characterized by a neutral sector relative strength Z-score, but the observed data suggests a strong bearish bias with moderate volume and compressed volatility. The contradiction between the active theories regarding the sector's performance indicates a discrepancy that needs to be reconciled. The dialectical synthesis attempts to reconcile this conflict by suggesting that while the sector's relative strength Z-score remains neutral, the current market regime is characterized by a bearish bias, which may influence the sector's performance. However, further confirmation signals are required to confirm this hypothesis.",
+      "confidence_impact": "moderate"
+    },
+    {
+      "id": "7933b6c0-45f1-4101-a1aa-7e9f1214c1c5",
+      "created_at": "2026-07-15T06:04:43.116576+05:30",
+      "related_theory_id": "f3dca0b3-7766-492c-8339-7cbdeaf964d4",
+      "reflection_summary": "The current regime subtype is neutral. The theory's falsifiability boundary conditions are met, as the observed market behavior does not provide strong confirmation signals for a clear bearish trend or significant delivery exhaustion within the next 3-5 trading days. The observed continuation remains insufficiently tested under volatility expansion, contradicting prior participation strength assumptions. This suggests that further confirmation signals are needed to confirm this thesis.",
+      "confidence_impact": "moderate"
+    },
+    {
+      "id": "ae9d359f-eec7-4bec-907d-1b21e1634e15",
+      "created_at": "2026-07-15T06:06:34.815671+05:30",
+      "related_theory_id": "83fb78f8-4684-49ed-896a-5effe2463325",
+      "reflection_summary": "The dominant feature of the market appears to be a mixed trend with moderate volatility, rather than a neutral trend or a leading sector. The asset rally suggests that the market is in a state of expansion, which may be weakening over time. This interpretation reconciles the conflicting views by acknowledging the complexity of the market regime. The boundary condition that strengthens participation beyond 5-day average and volume exceeds 10-day average supports this interpretation.",
+      "confidence_impact": "moderate"
+    },
+    {
+      "id": "5dadbec1-9bf9-440b-ba09-d3e69c6aba01",
+      "created_at": "2026-07-15T06:08:30.786337+05:30",
+      "related_theory_id": "39e69f31-f70f-41e5-8ad6-a89a69d441b9",
+      "reflection_summary": "The current regime subtype is liquidity_constrained. The regime remains supported based on the boundary conditions, as the market's trend remains weak or declines if volume falls below 5-day average and participation weakens. The critique of this observation is that it contradicts prior participation strength assumptions, which were previously observed to be normal. This suggests that the current regime may not be consistent with previous observations, potentially indicating a need for additional confirmation signals to validate the theory.",
+      "confidence_impact": "moderate"
+    }
+  ],
+  "prediction_results": [
+    {
+      "id": 1,
+      "date": "2026-07-01",
+      "day_index": 1,
+      "prediction_id": 1,
+      "prior_direction": "lower",
+      "actual_direction": "higher",
+      "direction_score": 0.0,
+      "partial_score": 0.0,
+      "invalidation_triggered": true,
+      "created_at": "2026-07-15T05:55:58.165117"
+    },
+    {
+      "id": 2,
+      "date": "2026-07-02",
+      "day_index": 2,
+      "prediction_id": 2,
+      "prior_direction": "higher",
+      "actual_direction": "range_bound",
+      "direction_score": 0.0,
+      "partial_score": 0.0,
+      "invalidation_triggered": true,
+      "created_at": "2026-07-15T05:57:21.115721"
+    },
+    {
+      "id": 3,
+      "date": "2026-07-03",
+      "day_index": 3,
+      "prediction_id": 3,
+      "prior_direction": "range_bound",
+      "actual_direction": "range_bound",
+      "direction_score": 1.0,
+      "partial_score": 0.0,
+      "invalidation_triggered": false,
+      "created_at": "2026-07-15T05:58:29.250037"
+    },
+    {
+      "id": 4,
+      "date": "2026-07-06",
+      "day_index": 4,
+      "prediction_id": 4,
+      "prior_direction": "range_bound",
+      "actual_direction": "higher",
+      "direction_score": 0.5,
+      "partial_score": 0.0,
+      "invalidation_triggered": true,
+      "created_at": "2026-07-15T06:00:14.838022"
+    },
+    {
+      "id": 5,
+      "date": "2026-07-07",
+      "day_index": 5,
+      "prediction_id": 5,
+      "prior_direction": "higher",
+      "actual_direction": "lower",
+      "direction_score": 0.0,
+      "partial_score": 0.0,
+      "invalidation_triggered": true,
+      "created_at": "2026-07-15T06:01:24.694319"
+    },
+    {
+      "id": 6,
+      "date": "2026-07-08",
+      "day_index": 6,
+      "prediction_id": 6,
+      "prior_direction": "higher",
+      "actual_direction": "lower",
+      "direction_score": 0.0,
+      "partial_score": 0.0,
+      "invalidation_triggered": true,
+      "created_at": "2026-07-15T06:03:14.839194"
+    },
+    {
+      "id": 7,
+      "date": "2026-07-09",
+      "day_index": 7,
+      "prediction_id": 7,
+      "prior_direction": "lower",
+      "actual_direction": "range_bound",
+      "direction_score": 0.0,
+      "partial_score": 0.0,
+      "invalidation_triggered": true,
+      "created_at": "2026-07-15T06:04:54.640168"
+    },
+    {
+      "id": 8,
+      "date": "2026-07-10",
+      "day_index": 8,
+      "prediction_id": 8,
+      "prior_direction": "lower",
+      "actual_direction": "higher",
+      "direction_score": 0.0,
+      "partial_score": 0.0,
+      "invalidation_triggered": true,
+      "created_at": "2026-07-15T06:06:52.574503"
+    },
+    {
+      "id": 9,
+      "date": "2026-07-13",
+      "day_index": 9,
+      "prediction_id": 9,
+      "prior_direction": "higher",
+      "actual_direction": "range_bound",
+      "direction_score": 0.0,
+      "partial_score": 0.0,
+      "invalidation_triggered": true,
+      "created_at": "2026-07-15T06:08:49.170432"
+    }
+  ]
+}

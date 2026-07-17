@@ -1,0 +1,15 @@
+{
+  "id": "9ee7a85f-361b-4e81-86ed-db052cf107e3",
+  "created_at": "2026-07-15T00:23:10.483898+00:00",
+  "created_at_step": 9,
+  "question_text": "Why did component 'volume_expansion_with_range_expansion' fail under liquidity_constrained regime?",
+  "source_contradiction_ids": [
+    "0933a179-df7a-44d9-a166-967d879d75df"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "dry"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

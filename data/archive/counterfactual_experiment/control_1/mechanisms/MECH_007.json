@@ -1,0 +1,39 @@
+{
+  "id": "MECH_007",
+  "created_at": "2026-07-14T21:05:40.324799+00:00",
+  "mechanism_id": "MECH_007",
+  "canonical_name": "TREND_PERSISTENCE",
+  "concept_tags": [
+    "TREND_PERSISTENCE",
+    "SECTOR_ZSCORE",
+    "VOLATILITY_COMPRESSION"
+  ],
+  "relation_type": "CONTRADICTS",
+  "first_seen": 6,
+  "last_seen": 6,
+  "days_active": 2,
+  "times_reused": 0,
+  "times_modified": 0,
+  "times_retired": 0,
+  "support_count": 0,
+  "contradiction_count": 1,
+  "prediction_helped": 0,
+  "prediction_harmed": 1,
+  "status": "candidate",
+  "regimes_seen": [
+    "neutral"
+  ],
+  "name": "TREND_PERSISTENCE",
+  "description": "Sector relative strength Z-score remains neutral despite sector performance, but with a stronger emphasis on the role of FII selling in driving sector z-score and incorporating additional factors such as volatility compression.",
+  "concept_type": "candidate",
+  "associated_theory_ids": [
+    "42571915-ca3b-4652-bb05-ead8e1093b16"
+  ],
+  "associated_lineages": [
+    "24c55c1834f77e54",
+    "c974dc5f813def5d",
+    "c9c6c6d7bb71fede",
+    "c801bf8cf96b46db"
+  ],
+  "created_at_step": 6
+}

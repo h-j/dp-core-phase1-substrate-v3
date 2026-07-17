@@ -85,58 +85,56 @@ def match_and_register_in_registry(
 
     # Compute hybrid similarity for all active candidates
     for mech in existing_mechanisms:
-            # Calculate ontology overlap (40%)
-            tags_overlap = jaccard_similarity(
-                set(tags), set(getattr(mech, "concept_tags", []) or [])
-            )
-            rel_overlap = 1.0 if rel == getattr(mech, "relation_type", None) else 0.0
-            ontology_overlap = 0.8 * tags_overlap + 0.2 * rel_overlap
+        # Calculate ontology overlap (40%)
+        tags_overlap = jaccard_similarity(
+            set(tags), set(getattr(mech, "concept_tags", []) or [])
+        )
+        rel_overlap = 1.0 if rel == getattr(mech, "relation_type", None) else 0.0
+        ontology_overlap = 0.8 * tags_overlap + 0.2 * rel_overlap
 
-            # Calculate embedding similarity (40%)
-            desc2 = (
-                getattr(mech, "description", "")
-                or getattr(mech, "canonical_name", "")
-                or ""
-            )
-            embedding_sim = get_embedding_similarity(desc, desc2)
+        # Calculate embedding similarity (40%)
+        desc2 = (
+            getattr(mech, "description", "")
+            or getattr(mech, "canonical_name", "")
+            or ""
+        )
+        embedding_sim = get_embedding_similarity(desc, desc2)
 
-            # Calculate historical behavior similarity (20%)
-            total1 = getattr(mech, "prediction_helped", 0) + getattr(
-                mech, "prediction_harmed", 0
-            )
-            rate1 = (
-                getattr(mech, "prediction_helped", 0) / total1 if total1 > 0 else 0.5
-            )
-            rate2 = 0.5
-            diff_rate = abs(rate1 - rate2)
+        # Calculate historical behavior similarity (20%)
+        total1 = getattr(mech, "prediction_helped", 0) + getattr(
+            mech, "prediction_harmed", 0
+        )
+        rate1 = getattr(mech, "prediction_helped", 0) / total1 if total1 > 0 else 0.5
+        rate2 = 0.5
+        diff_rate = abs(rate1 - rate2)
 
-            total_evidence1 = getattr(mech, "support_count", 0) + getattr(
-                mech, "contradiction_count", 0
-            )
-            support_rate1 = (
-                getattr(mech, "support_count", 0) / total_evidence1
-                if total_evidence1 > 0
-                else 0.5
-            )
-            support_rate2 = 0.5
-            diff_support = abs(support_rate1 - support_rate2)
+        total_evidence1 = getattr(mech, "support_count", 0) + getattr(
+            mech, "contradiction_count", 0
+        )
+        support_rate1 = (
+            getattr(mech, "support_count", 0) / total_evidence1
+            if total_evidence1 > 0
+            else 0.5
+        )
+        support_rate2 = 0.5
+        diff_support = abs(support_rate1 - support_rate2)
 
-            historical_sim = 1.0 - (0.5 * diff_rate + 0.5 * diff_support)
+        historical_sim = 1.0 - (0.5 * diff_rate + 0.5 * diff_support)
 
-            if embedding_sim < 0.85:
-                hybrid_sim = 0.0
-            else:
-                hybrid_sim = (
-                    0.4 * ontology_overlap + 0.4 * embedding_sim + 0.2 * historical_sim
-                )
-
-            print(
-                f"[Mechanism Registry] Comparing component '{primary_tag}' with existing mechanism '{mech.mechanism_id}' ({mech.canonical_name}): ontology_sim={ontology_overlap:.4f}, embedding_sim={embedding_sim:.4f}, history_sim={historical_sim:.4f} -> hybrid_sim={hybrid_sim:.4f}"
+        if embedding_sim < 0.85:
+            hybrid_sim = 0.0
+        else:
+            hybrid_sim = (
+                0.4 * ontology_overlap + 0.4 * embedding_sim + 0.2 * historical_sim
             )
 
-            if hybrid_sim > best_sim:
-                best_sim = hybrid_sim
-                best_mech = mech
+        print(
+            f"[Mechanism Registry] Comparing component '{primary_tag}' with existing mechanism '{mech.mechanism_id}' ({mech.canonical_name}): ontology_sim={ontology_overlap:.4f}, embedding_sim={embedding_sim:.4f}, history_sim={historical_sim:.4f} -> hybrid_sim={hybrid_sim:.4f}"
+        )
+
+        if hybrid_sim > best_sim:
+            best_sim = hybrid_sim
+            best_mech = mech
 
     # Threshold for reuse is 0.75
     if best_sim >= 0.75 and best_mech is not None:

@@ -1,8 +1,9 @@
+import json
+import math
 from enum import Enum
 from typing import Any, Dict, List
-from pydantic import BaseModel, model_validator, Field
-import math
-import json
+
+from pydantic import BaseModel, Field, model_validator
 
 
 class GateStatus(str, Enum):
@@ -89,46 +90,82 @@ class MilestoneCompletionGates(BaseModel):
             ("ISOLATION_GATE_STATUS", self.ISOLATION_GATE_STATUS),
             ("CAUSAL_NECESSITY_GATE_STATUS", self.CAUSAL_NECESSITY_GATE_STATUS),
             ("MECHANISM_STRENGTH_GATE_STATUS", self.MECHANISM_STRENGTH_GATE_STATUS),
-            ("DIAGNOSTIC_PRIMARY_SEPARATION_STATUS", self.DIAGNOSTIC_PRIMARY_SEPARATION_STATUS),
+            (
+                "DIAGNOSTIC_PRIMARY_SEPARATION_STATUS",
+                self.DIAGNOSTIC_PRIMARY_SEPARATION_STATUS,
+            ),
             ("RESOURCE_CONTAMINATION_STATUS", self.RESOURCE_CONTAMINATION_STATUS),
             ("SAFEGUARD_BENEFIT_STATUS", self.SAFEGUARD_BENEFIT_STATUS),
             ("SAFEGUARD_COST_STATUS", self.SAFEGUARD_COST_STATUS),
-            ("COMPLETE_LIFECYCLE_ACCOUNTING_STATUS", self.COMPLETE_LIFECYCLE_ACCOUNTING_STATUS),
+            (
+                "COMPLETE_LIFECYCLE_ACCOUNTING_STATUS",
+                self.COMPLETE_LIFECYCLE_ACCOUNTING_STATUS,
+            ),
             ("CLAIM_SCOPE_STATUS", self.CLAIM_SCOPE_STATUS),
             ("REGRESSION_SAFETY_STATUS", self.REGRESSION_SAFETY_STATUS),
-            ("CANONICAL_STATE_CORRECTION_STATUS", self.CANONICAL_STATE_CORRECTION_STATUS),
-            ("REPOSITORY_REALITY_INSPECTION_STATUS", self.REPOSITORY_REALITY_INSPECTION_STATUS),
-            ("PERSISTENT_PRE_REGISTRATION_STATUS", self.PERSISTENT_PRE_REGISTRATION_STATUS),
+            (
+                "CANONICAL_STATE_CORRECTION_STATUS",
+                self.CANONICAL_STATE_CORRECTION_STATUS,
+            ),
+            (
+                "REPOSITORY_REALITY_INSPECTION_STATUS",
+                self.REPOSITORY_REALITY_INSPECTION_STATUS,
+            ),
+            (
+                "PERSISTENT_PRE_REGISTRATION_STATUS",
+                self.PERSISTENT_PRE_REGISTRATION_STATUS,
+            ),
             ("SEED_OVERLAP_STATUS", self.SEED_OVERLAP_STATUS),
             ("FUTURE_DATA_ISOLATION_STATUS", self.FUTURE_DATA_ISOLATION_STATUS),
             ("PRIMARY_BEHAVIORAL_METRIC_STATUS", self.PRIMARY_BEHAVIORAL_METRIC_STATUS),
             ("PRIMARY_EPISTEMIC_METRIC_STATUS", self.PRIMARY_EPISTEMIC_METRIC_STATUS),
-            ("PRIMARY_EPISTEMIC_METRIC_MEASUREMENT_STATUS", self.PRIMARY_EPISTEMIC_METRIC_MEASUREMENT_STATUS),
-            ("EVIDENCE_SUFFICIENCY_REQUIREMENT_STATUS", self.EVIDENCE_SUFFICIENCY_REQUIREMENT_STATUS),
-            ("EVIDENCE_SUFFICIENCY_SATISFACTION_STATUS", self.EVIDENCE_SUFFICIENCY_SATISFACTION_STATUS),
+            (
+                "PRIMARY_EPISTEMIC_METRIC_MEASUREMENT_STATUS",
+                self.PRIMARY_EPISTEMIC_METRIC_MEASUREMENT_STATUS,
+            ),
+            (
+                "EVIDENCE_SUFFICIENCY_REQUIREMENT_STATUS",
+                self.EVIDENCE_SUFFICIENCY_REQUIREMENT_STATUS,
+            ),
+            (
+                "EVIDENCE_SUFFICIENCY_SATISFACTION_STATUS",
+                self.EVIDENCE_SUFFICIENCY_SATISFACTION_STATUS,
+            ),
             ("MEMORY_INFLUENCE_STATUS", self.MEMORY_INFLUENCE_STATUS),
             ("CAUSAL_ATTRIBUTION_STATUS", self.CAUSAL_ATTRIBUTION_STATUS),
             ("FAMILY_A_RESULT_STATUS", self.FAMILY_A_RESULT_STATUS),
             ("FAMILY_B_RESULT_STATUS", self.FAMILY_B_RESULT_STATUS),
-            ("NEGATIVE_MEMORY_OVERGENERALIZATION_STATUS", self.NEGATIVE_MEMORY_OVERGENERALIZATION_STATUS),
+            (
+                "NEGATIVE_MEMORY_OVERGENERALIZATION_STATUS",
+                self.NEGATIVE_MEMORY_OVERGENERALIZATION_STATUS,
+            ),
             ("RESOURCE_METRIC_STATUS", self.RESOURCE_METRIC_STATUS),
-            ("CLAIM_EVIDENCE_GATE_REPAIR_STATUS", self.CLAIM_EVIDENCE_GATE_REPAIR_STATUS),
-            ("CLAIM_EVIDENCE_CONSISTENCY_STATUS", self.CLAIM_EVIDENCE_CONSISTENCY_STATUS),
-            ("MILESTONE_SCIENTIFIC_CLOSURE_STATUS", self.MILESTONE_SCIENTIFIC_CLOSURE_STATUS),
+            (
+                "CLAIM_EVIDENCE_GATE_REPAIR_STATUS",
+                self.CLAIM_EVIDENCE_GATE_REPAIR_STATUS,
+            ),
+            (
+                "CLAIM_EVIDENCE_CONSISTENCY_STATUS",
+                self.CLAIM_EVIDENCE_CONSISTENCY_STATUS,
+            ),
+            (
+                "MILESTONE_SCIENTIFIC_CLOSURE_STATUS",
+                self.MILESTONE_SCIENTIFIC_CLOSURE_STATUS,
+            ),
             ("VERDICT_INTEGRITY_STATUS", self.VERDICT_INTEGRITY_STATUS),
         ]
-        
+
         failures = []
         for name, status in gates:
             if status in (GateStatus.FAIL, GateStatus.INDETERMINATE):
                 failures.append(f"{name} is {status}")
-                
+
         if failures:
             raise ValueError(
                 f"Scientific Completion Gate Failure for {self.milestone_id}: "
                 f"The following gates did not pass: {', '.join(failures)}"
             )
-            
+
         return self
 
 
@@ -139,7 +176,7 @@ def probit(p: float) -> float:
     """
     if p <= 0.0 or p >= 1.0:
         raise ValueError("Probability p must be in (0, 1) exclusive.")
-    
+
     # Fast lookup for common statistical values
     lookups = {
         0.90: 1.28155,
@@ -157,14 +194,26 @@ def probit(p: float) -> float:
     y = p - 0.5
     if abs(y) < 0.42:
         r = y * y
-        num = (((-2.549732777849e1 * r + 5.127818090947e1) * r - 3.487039050749e1) * r + 7.828524756583e0) * y
-        den = (((1.661839254620e1 * r - 5.078404561586e1) * r + 4.904612123469e1) * r - 1.655562035952e1) * r + 1.0
+        num = (
+            ((-2.549732777849e1 * r + 5.127818090947e1) * r - 3.487039050749e1) * r
+            + 7.828524756583e0
+        ) * y
+        den = (
+            ((1.661839254620e1 * r - 5.078404561586e1) * r + 4.904612123469e1) * r
+            - 1.655562035952e1
+        ) * r + 1.0
         return num / den
     else:
         r = p if y < 0 else 1.0 - p
         s = math.log(-math.log(r))
-        t = (((-3.222384921989e-3 * s - 3.422420885551e-2) * s - 2.043228511497e-1) * s - 4.536400293207e-1) * s - 2.132285047353e-1
-        u = (((9.938761102624e-5 * s + 3.215878036308e-3) * s + 3.551375231584e-2) * s + 1.189771618774e-1) * s + 1.0
+        t = (
+            ((-3.222384921989e-3 * s - 3.422420885551e-2) * s - 2.043228511497e-1) * s
+            - 4.536400293207e-1
+        ) * s - 2.132285047353e-1
+        u = (
+            ((9.938761102624e-5 * s + 3.215878036308e-3) * s + 3.551375231584e-2) * s
+            + 1.189771618774e-1
+        ) * s + 1.0
         z_val = t / u
         return z_val if y < 0 else -z_val
 
@@ -186,7 +235,7 @@ class ClaimEvidenceConsistencyGate(BaseModel):
         """
         Calculates exact confidence intervals and sample size requirements based on MME
         to validate claims across POSITIVE_IMPROVEMENT, HARM_DEGRADATION, and NO_DIFFERENCE types.
-        
+
         CRITICAL: The N_required power calculation relies on pre-registered MME and expected/conservative baseline,
         completely independent of the observed rates in results.
         """
@@ -194,20 +243,31 @@ class ClaimEvidenceConsistencyGate(BaseModel):
             return ClaimEvidenceConsistencyGate(
                 claim_id=spec.claim_id,
                 claim_text=spec.claim_text,
-                status=ClaimStatus.INDETERMINATE_NO_POWER_TARGET_DEFINED
+                status=ClaimStatus.INDETERMINATE_NO_POWER_TARGET_DEFINED,
             )
 
         family_key = None
         if "family a" in spec.claim_text.lower():
             family_key = "family_a"
-        elif "family b" in spec.claim_text.lower() or "overgeneralization" in spec.claim_text.lower():
+        elif (
+            "family b" in spec.claim_text.lower()
+            or "overgeneralization" in spec.claim_text.lower()
+        ):
             family_key = "family_b"
-        
-        family_results = results.get(family_key, results) if family_key and family_key in results else results
+
+        family_results = (
+            results.get(family_key, results)
+            if family_key and family_key in results
+            else results
+        )
 
         N = family_results.get("sample_size", family_results.get("triggered_events", 0))
-        p_c = family_results.get("condition_c_rate", family_results.get("baseline_rate", 0.0))
-        p_d = family_results.get("condition_d_rate", family_results.get("treatment_rate", 0.0))
+        p_c = family_results.get(
+            "condition_c_rate", family_results.get("baseline_rate", 0.0)
+        )
+        p_d = family_results.get(
+            "condition_d_rate", family_results.get("treatment_rate", 0.0)
+        )
         diff = family_results.get("epistemic_metric_diff", p_d - p_c)
 
         # 1. CI calculation uses observed rates (descriptive error bounds)
@@ -222,12 +282,16 @@ class ClaimEvidenceConsistencyGate(BaseModel):
         ci_upper = diff + z * se
 
         # 2. Power calculation uses expected baseline or conservative 0.5 baseline (independent of results)
-        p_b = spec.expected_baseline_proportion if spec.expected_baseline_proportion is not None else 0.5
+        p_b = (
+            spec.expected_baseline_proportion
+            if spec.expected_baseline_proportion is not None
+            else 0.5
+        )
         p_t = max(0.0, min(1.0, p_b + spec.minimum_meaningful_effect))
-        
+
         expected_variance = p_b * (1 - p_b) + p_t * (1 - p_t)
         mme = abs(spec.minimum_meaningful_effect)
-        n_required = math.ceil(((z + z_power) ** 2) * expected_variance / (mme ** 2))
+        n_required = math.ceil(((z + z_power) ** 2) * expected_variance / (mme**2))
 
         # Determine status
         if N >= n_required:
@@ -269,7 +333,7 @@ class ClaimEvidenceConsistencyGate(BaseModel):
             observed_diff=diff,
             ci_lower=ci_lower,
             ci_upper=ci_upper,
-            n_required=n_required
+            n_required=n_required,
         )
 
     @staticmethod
@@ -279,14 +343,20 @@ class ClaimEvidenceConsistencyGate(BaseModel):
         """
         Legacy Regression Case 1 Validator:
         """
-        if "reduced false admissions" in claim_text.lower() or "reduction" in claim_text.lower():
+        if (
+            "reduced false admissions" in claim_text.lower()
+            or "reduction" in claim_text.lower()
+        ):
             if treatment_rate < baseline_rate:
                 status = ClaimStatus.CLAIM_SUPPORTED
             elif treatment_rate > baseline_rate:
                 status = ClaimStatus.CLAIM_CONTRADICTED
             else:
                 status = ClaimStatus.CLAIM_NOT_DEMONSTRATED
-        elif "did not reduce" in claim_text.lower() or "no reduction" in claim_text.lower():
+        elif (
+            "did not reduce" in claim_text.lower()
+            or "no reduction" in claim_text.lower()
+        ):
             if treatment_rate == baseline_rate:
                 status = ClaimStatus.CLAIM_SUPPORTED
             else:
@@ -295,9 +365,7 @@ class ClaimEvidenceConsistencyGate(BaseModel):
             status = ClaimStatus.CLAIM_INDETERMINATE
 
         return ClaimEvidenceConsistencyGate(
-            claim_id="M5_FALSE_ADMISSION_CLAIM",
-            claim_text=claim_text,
-            status=status
+            claim_id="M5_FALSE_ADMISSION_CLAIM", claim_text=claim_text, status=status
         )
 
     @staticmethod
@@ -307,7 +375,10 @@ class ClaimEvidenceConsistencyGate(BaseModel):
         """
         Legacy Regression Case 2 Validator:
         """
-        if "order sensitivity" in claim_text.lower() or "order_sensitivity" in claim_text.lower():
+        if (
+            "order sensitivity" in claim_text.lower()
+            or "order_sensitivity" in claim_text.lower()
+        ):
             if "order_a" in sequences and "order_b" in sequences:
                 if sequences["order_a"] != sequences["order_b"]:
                     status = ClaimStatus.CLAIM_SUPPORTED
@@ -317,9 +388,10 @@ class ClaimEvidenceConsistencyGate(BaseModel):
                 status = ClaimStatus.CLAIM_NOT_DEMONSTRATED
         elif "absorbing" in claim_text.lower() or "retirement" in claim_text.lower():
             if (
-                sequences.get("sequence_b_contradiction", [])[-1] == "RETIRED_BELIEF" or
-                sequences.get("order_a") == "RETIRED_BELIEF" or
-                sequences.get("sequence_d_order_sensitivity", {}).get("order_a") == "RETIRED_BELIEF"
+                sequences.get("sequence_b_contradiction", [])[-1] == "RETIRED_BELIEF"
+                or sequences.get("order_a") == "RETIRED_BELIEF"
+                or sequences.get("sequence_d_order_sensitivity", {}).get("order_a")
+                == "RETIRED_BELIEF"
             ):
                 status = ClaimStatus.CLAIM_SUPPORTED
             else:
@@ -328,9 +400,7 @@ class ClaimEvidenceConsistencyGate(BaseModel):
             status = ClaimStatus.CLAIM_INDETERMINATE
 
         return ClaimEvidenceConsistencyGate(
-            claim_id="M6_ORDER_SENSITIVITY_CLAIM",
-            claim_text=claim_text,
-            status=status
+            claim_id="M6_ORDER_SENSITIVITY_CLAIM", claim_text=claim_text, status=status
         )
 
     @staticmethod
@@ -340,8 +410,15 @@ class ClaimEvidenceConsistencyGate(BaseModel):
         """
         Legacy Milestone 7 Repaired Validator:
         """
-        if "minimal causal learning demonstrated" in claim_text.lower() or "minimal_causal_learning" in claim_text.lower() or "positive epistemic effect" in claim_text.lower():
-            if not results.get("epistemic_metric_measured", False) or "primary_epistemic_metric" not in results:
+        if (
+            "minimal causal learning demonstrated" in claim_text.lower()
+            or "minimal_causal_learning" in claim_text.lower()
+            or "positive epistemic effect" in claim_text.lower()
+        ):
+            if (
+                not results.get("epistemic_metric_measured", False)
+                or "primary_epistemic_metric" not in results
+            ):
                 status = ClaimStatus.CLAIM_NOT_DEMONSTRATED
             elif not results.get("evidence_sufficiency_satisfied", True):
                 status = ClaimStatus.CLAIM_NOT_DEMONSTRATED
@@ -360,9 +437,7 @@ class ClaimEvidenceConsistencyGate(BaseModel):
             status = ClaimStatus.CLAIM_INDETERMINATE
 
         return ClaimEvidenceConsistencyGate(
-            claim_id="M7_MINIMAL_CAUSAL_LEARNING",
-            claim_text=claim_text,
-            status=status
+            claim_id="M7_MINIMAL_CAUSAL_LEARNING", claim_text=claim_text, status=status
         )
 
 
@@ -370,7 +445,7 @@ class MilestoneScientificClosure(BaseModel):
     milestone_id: str
     methodology_gates: MilestoneCompletionGates
     claims: List[ClaimEvidenceConsistencyGate]
-    
+
     # Validation Invariants
     primary_epistemic_metric_measured: bool = True
     evidence_sufficiency_satisfied: bool = True
@@ -383,19 +458,33 @@ class MilestoneScientificClosure(BaseModel):
     @model_validator(mode="after")
     def validate_scientific_closure(self) -> "MilestoneScientificClosure":
         if not self.primary_epistemic_metric_measured:
-            raise ValueError(f"Scientific Closure Failure for {self.milestone_id}: PRIMARY_EPISTEMIC_METRIC_NOT_MEASURED")
+            raise ValueError(
+                f"Scientific Closure Failure for {self.milestone_id}: PRIMARY_EPISTEMIC_METRIC_NOT_MEASURED"
+            )
         if not self.evidence_sufficiency_satisfied:
-            raise ValueError(f"Scientific Closure Failure for {self.milestone_id}: EVIDENCE_SUFFICIENCY_REQUIREMENT_NOT_SATISFIED")
+            raise ValueError(
+                f"Scientific Closure Failure for {self.milestone_id}: EVIDENCE_SUFFICIENCY_REQUIREMENT_NOT_SATISFIED"
+            )
         if not self.diagnostic_primary_separation:
-            raise ValueError(f"Scientific Closure Failure for {self.milestone_id}: DIAGNOSTIC_PRIMARY_SEPARATION_FAILED")
+            raise ValueError(
+                f"Scientific Closure Failure for {self.milestone_id}: DIAGNOSTIC_PRIMARY_SEPARATION_FAILED"
+            )
         if not self.condition_isolation:
-            raise ValueError(f"Scientific Closure Failure for {self.milestone_id}: CONDITION_ISOLATION_FAILED")
+            raise ValueError(
+                f"Scientific Closure Failure for {self.milestone_id}: CONDITION_ISOLATION_FAILED"
+            )
         if not self.causal_necessity_satisfied:
-            raise ValueError(f"Scientific Closure Failure for {self.milestone_id}: CAUSAL_NECESSITY_FAILED")
+            raise ValueError(
+                f"Scientific Closure Failure for {self.milestone_id}: CAUSAL_NECESSITY_FAILED"
+            )
         if not self.claim_evidence_consistency:
-            raise ValueError(f"Scientific Closure Failure for {self.milestone_id}: CLAIM_EVIDENCE_CONSISTENCY_FAILED")
+            raise ValueError(
+                f"Scientific Closure Failure for {self.milestone_id}: CLAIM_EVIDENCE_CONSISTENCY_FAILED"
+            )
         if self.final_verdict_exceeds_evidence:
-            raise ValueError(f"Scientific Closure Failure for {self.milestone_id}: FINAL_VERDICT_EXCEEDS_EVIDENCE")
+            raise ValueError(
+                f"Scientific Closure Failure for {self.milestone_id}: FINAL_VERDICT_EXCEEDS_EVIDENCE"
+            )
 
         undemonstrated = []
         contradicted = []
@@ -405,24 +494,24 @@ class MilestoneScientificClosure(BaseModel):
                 ClaimStatus.INSUFFICIENTLY_POWERED,
                 ClaimStatus.INCONCLUSIVE,
                 ClaimStatus.CLAIM_INDETERMINATE,
-                ClaimStatus.INDETERMINATE_NO_POWER_TARGET_DEFINED
+                ClaimStatus.INDETERMINATE_NO_POWER_TARGET_DEFINED,
             ):
                 undemonstrated.append(f"{claim.claim_text} ({claim.status.value})")
             elif claim.status == ClaimStatus.CLAIM_CONTRADICTED:
                 contradicted.append(claim.claim_text)
-                
+
         errors = []
         if contradicted:
             errors.append(f"Contradicted claims: {', '.join(contradicted)}")
         if undemonstrated:
             errors.append(f"Undemonstrated claims: {', '.join(undemonstrated)}")
-            
+
         if errors:
             raise ValueError(
                 f"Scientific Closure Failure for {self.milestone_id}: "
                 f"{'; '.join(errors)}"
             )
-            
+
         return self
 
 
@@ -441,7 +530,9 @@ class EpistemicValidationManifest(BaseModel):
     def run_gate_checks(self) -> "EpistemicValidationManifest":
         evaluated = []
         for spec in self.claims:
-            gate = ClaimEvidenceConsistencyGate.evaluate_claim_consistency(self.results, spec)
+            gate = ClaimEvidenceConsistencyGate.evaluate_claim_consistency(
+                self.results, spec
+            )
             evaluated.append(gate)
         self.evaluated_claims = evaluated
         return self
@@ -459,12 +550,15 @@ class EpistemicValidationManifestReader:
     def load_manifest(filepath: str) -> EpistemicValidationManifest:
         with open(filepath, "r") as f:
             data = json.load(f)
-        
+
         manifest = EpistemicValidationManifest.model_validate(data)
-        
+
         # Consumption-side check: raise on CONTRADICTED or INSUFFICIENTLY_POWERED
         for claim in manifest.evaluated_claims:
-            if claim.status in (ClaimStatus.CLAIM_CONTRADICTED, ClaimStatus.INSUFFICIENTLY_POWERED):
+            if claim.status in (
+                ClaimStatus.CLAIM_CONTRADICTED,
+                ClaimStatus.INSUFFICIENTLY_POWERED,
+            ):
                 raise ValueError(
                     f"Consumption Blocked: Manifest contains failed/underpowered status: "
                     f"[{claim.claim_id}] -> {claim.status}"

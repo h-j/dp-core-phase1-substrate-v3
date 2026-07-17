@@ -22,6 +22,13 @@ from typing import List
 
 import pandas as pd
 
+from cognition.schemas.proposition.canonical_semantic_proposition import \
+    CanonicalSemanticProposition
+from cognition.schemas.proposition.market_proposition import \
+    CompiledProposition
+from flows.proposition_flow.proposition_compiler import \
+    MarketPropositionCompiler
+from flows.proposition_flow.validation_engine import ValidationEngine
 from flows.theory_flow.attribution import AttributionResult
 from flows.theory_flow.attribution_engine import AttributionEngine
 from market.data.dataset_validator import DatasetValidator
@@ -33,6 +40,12 @@ from market.replay.transition_memory import (TransitionExample,
 from market.replay.transition_pressure import TransitionPressureEngine
 from memory.experience.experience_engine import ExperienceEngine
 from memory.experience.experience_repository import ExperienceRepository
+from memory.relational.repositories.canonical_semantic_proposition_repository import \
+    CanonicalSemanticPropositionRepository
+from memory.relational.repositories.compiled_proposition_repository import \
+    CompiledPropositionRepository
+from memory.relational.repositories.validation_record_repository import \
+    ValidationRecordRepository
 from memory.replay.regime_continuity_memory import RegimeContinuityMemory
 from memory.replay.regime_memory import \
     RegimeMemoryStore  # Import RegimeMemoryStore
@@ -286,6 +299,13 @@ class ReplayExecutor:
         self.base_output_dir = (
             Path(__file__).parent.parent.parent / "market" / "replay" / "output"
         )
+        self.min_validations_for_principle = 5
+        self.min_validations_for_lesson = 5
+        self.min_temporal_span_for_lesson = 5
+        self.min_success_rate_for_lesson = 0.70
+        self.min_confidence_for_lesson = 0.70
+        self.max_uncertainty_for_lesson = 0.40
+
         self._create_snapshot_dirs()
 
         # Run pipeline to ensure Sector RS, Delivery %, and FII/DII data are merged.
@@ -384,6 +404,38 @@ class ReplayExecutor:
         self.experience_engine.verbose = self.verbose
         self._lineage_audit_table = []  # Instrumentation: For final audit table
 
+        # Proposition compilation
+        self.proposition_compiler = None
+        self.compiled_proposition_repo = None
+        self.validation_engine = ValidationEngine()
+        self.validation_record_repo = ValidationRecordRepository()
+        self.compilation_metrics = {
+            "theories_generated": 0,
+            "propositions_compiled": 0,
+            "compilation_success_rate": 0.0,
+            "compilation_success_count": 0,
+            "compilation_partial_count": 0,
+            "compilation_failed_count": 0,
+            "failure_reasons": {},
+            # Phase 1.7 Two-Stage Metrics
+            "semantic_propositions_created": 0,
+            "semantic_failures": 0,
+            "ontology_mapping_failures": 0,
+            "propositions_grounded": 0,
+            "percentile_grounding": 0,
+            "relative_references_resolved": 0,
+            "grounding_failures": 0,
+            # Milestone 9 Validation Metrics
+            "validation_records_created": 0,
+            "propositions_evaluated": 0,
+            "supported_records": 0,
+            "contradicted_records": 0,
+            "partially_supported_records": 0,
+            "undecidable_records": 0,
+            "avg_confidence_delta": 0.0,
+            "avg_uncertainty_delta": 0.0,
+        }
+
     def _create_snapshot_dirs(self):
         """Create replay snapshot directories if missing."""
         dirs = [
@@ -391,9 +443,15 @@ class ReplayExecutor:
             self.replay_dir / "observations",
             self.replay_dir / "theories",
             self.replay_dir / "confidence",
+            self.replay_dir / "propositions",
+            self.replay_dir / "canonical_propositions",
+            self.replay_dir / "validation_records",
             self.replay_dir / "logs",
             self.base_data_snap_dir,
             self.base_output_dir,
+            self.base_output_dir / "propositions",
+            self.base_output_dir / "canonical_propositions",
+            self.base_output_dir / "validation_records",
         ]
 
         for d in dirs:
@@ -414,6 +472,11 @@ class ReplayExecutor:
             )
             if run_dirs:
                 self.run_dir = run_dirs[0]
+                (self.run_dir / "propositions").mkdir(parents=True, exist_ok=True)
+                (self.run_dir / "canonical_propositions").mkdir(
+                    parents=True, exist_ok=True
+                )
+                (self.run_dir / "validation_records").mkdir(parents=True, exist_ok=True)
                 self._log(
                     f"✓ Reusing existing run directory for incremental replay: {self.run_dir.name}"
                 )
@@ -424,6 +487,9 @@ class ReplayExecutor:
             self.base_data_snap_dir / f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         )
         self.run_dir.mkdir(parents=True, exist_ok=True)
+        (self.run_dir / "propositions").mkdir(parents=True, exist_ok=True)
+        (self.run_dir / "canonical_propositions").mkdir(parents=True, exist_ok=True)
+        (self.run_dir / "validation_records").mkdir(parents=True, exist_ok=True)
         self._log(f"✓ Created new run directory: {self.run_dir.name}")
 
     def restart_clean(self):
@@ -562,6 +628,40 @@ class ReplayExecutor:
                 "WARNING: MarketOutcomeRepository missing; optional persistence disabled."
             )
             self.market_outcome_repo = None
+
+        self.proposition_compiler = MarketPropositionCompiler(
+            client=self.theory_flow.client
+        )
+        self.compiled_proposition_repo = CompiledPropositionRepository()
+        self.canonical_semantic_proposition_repo = (
+            CanonicalSemanticPropositionRepository()
+        )
+
+        # Milestone 10 Closed-Loop Learning Setup
+        from flows.proposition_flow.belief_dynamics_engine import \
+            BeliefDynamicsEngine
+        from flows.proposition_flow.pattern_consolidation_engine import \
+            PatternConsolidationEngine
+        from memory.relational.repositories.belief_state_repository import \
+            BeliefStateRepository
+
+        self.belief_state_repo = BeliefStateRepository()
+        self.belief_dynamics_engine = BeliefDynamicsEngine(
+            belief_repo=self.belief_state_repo,
+            learning_rate=0.15,
+            uncertainty_rate=0.10,
+            decay_rate=0.01,
+        )
+        self.pattern_consolidation_engine = PatternConsolidationEngine(
+            min_validations=self.min_validations_for_lesson,
+            min_temporal_span=self.min_temporal_span_for_lesson,
+            min_confidence=self.min_confidence_for_lesson,
+            max_uncertainty=self.max_uncertainty_for_lesson,
+            min_success_rate=self.min_success_rate_for_lesson,
+            belief_repo=self.belief_state_repo,
+            val_record_repo=self.validation_record_repo,
+            comp_prop_repo=self.compiled_proposition_repo,
+        )
 
         self.flows_initialized = True
 
@@ -1125,6 +1225,9 @@ class ReplayExecutor:
 
                 # Synthesize observation
                 market_obs = synthesizer.synthesize(day_idx)
+
+                # Milestone 10: Closed-loop belief update cycle
+                self._process_closed_loop_belief_updates(day_idx)
 
                 # Track directional persistence
                 actual_dir_str = market_obs.trend_state.lower()
@@ -1714,8 +1817,6 @@ You MUST return a JSON object conforming exactly to this structure:
                             if "mechanism_id" in m
                         }
 
-
-
                         for (
                             comp
                         ) in prior_theory.summary_structured.mechanism_components:
@@ -1841,7 +1942,9 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                         theory.id = str(uuid4())
                         if theory.summary_structured:
                             theory.summary_structured.id = str(uuid4())
-                            theory.summary_structured.created_at = datetime.now(timezone.utc)
+                            theory.summary_structured.created_at = datetime.now(
+                                timezone.utc
+                            )
 
                         def to_str(val, default="") -> str:
                             if val is None:
@@ -3503,6 +3606,247 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                 self.reflection_repo.save(reflection)
                 self.confidence_repo.save(confidence_state)
 
+                # Phase 1: Market-Native Proposition Compilation (Observational Loop)
+                self.compilation_metrics["theories_generated"] += 1
+                try:
+                    if (
+                        self.proposition_compiler
+                        and self.compiled_proposition_repo
+                        and self.canonical_semantic_proposition_repo
+                    ):
+                        # Extract historical dataframe slice for statistical grounding
+                        history_df = getattr(self.engine, "data", None)
+                        if history_df is not None and hasattr(history_df, "iloc"):
+                            history_slice = history_df.iloc[: day_idx + 1]
+                        else:
+                            history_slice = None
+
+                        # Two-stage compilation flow
+                        canonical_prop, compiled_prop = (
+                            self.proposition_compiler.compile_theory(
+                                theory, day_idx, history_slice
+                            )
+                        )
+
+                        # Database persistence - Canonical
+                        self.canonical_semantic_proposition_repo.save(canonical_prop)
+
+                        # Database persistence - Grounded Executable
+                        self.compiled_proposition_repo.save(compiled_prop)
+
+                        # Local file snapshot persistence
+                        import json as _json
+
+                        # 1. Save Canonical snapshots
+                        run_canon_path = (
+                            self.run_dir
+                            / "canonical_propositions"
+                            / f"prop_{theory.id}.json"
+                        )
+                        with open(run_canon_path, "w") as f:
+                            _json.dump(
+                                canonical_prop.model_dump(), f, indent=2, default=str
+                            )
+
+                        out_canon_path = (
+                            self.base_output_dir
+                            / "canonical_propositions"
+                            / f"prop_{theory.id}.json"
+                        )
+                        with open(out_canon_path, "w") as f:
+                            _json.dump(
+                                canonical_prop.model_dump(), f, indent=2, default=str
+                            )
+
+                        # 2. Save Grounded Executable snapshots
+                        run_snap_path = (
+                            self.run_dir / "propositions" / f"prop_{theory.id}.json"
+                        )
+                        with open(run_snap_path, "w") as f:
+                            _json.dump(
+                                compiled_prop.model_dump(), f, indent=2, default=str
+                            )
+
+                        out_snap_path = (
+                            self.base_output_dir
+                            / "propositions"
+                            / f"prop_{theory.id}.json"
+                        )
+                        with open(out_snap_path, "w") as f:
+                            _json.dump(
+                                compiled_prop.model_dump(), f, indent=2, default=str
+                            )
+
+                        # Metrics tracking - Semantic Compilation stage
+                        c_status = canonical_prop.compiler_provenance.get(
+                            "status", "FAILED"
+                        )
+                        if c_status in ["SUCCESS", "PARTIAL"]:
+                            self.compilation_metrics[
+                                "semantic_propositions_created"
+                            ] += 1
+                        else:
+                            self.compilation_metrics["semantic_failures"] += 1
+
+                        # Ontology mapping check
+                        from flows.proposition_flow.parameter_grounder import \
+                            CONCEPT_TO_FIELD as _C2F
+
+                        trig_c = canonical_prop.trigger_concept.get("concept")
+                        tar_c = canonical_prop.target_concept.get("concept")
+                        if (trig_c and trig_c not in _C2F) or (
+                            tar_c and tar_c not in _C2F
+                        ):
+                            self.compilation_metrics["ontology_mapping_failures"] += 1
+
+                        # Metrics tracking - Parameter Grounding stage
+                        g_status = compiled_prop.compilation_status
+                        if g_status == "SUCCESS":
+                            self.compilation_metrics["propositions_grounded"] += 1
+                        else:
+                            self.compilation_metrics["grounding_failures"] += 1
+
+                        ground_provenance = compiled_prop.compiler_trace.get(
+                            "grounding_provenance", {}
+                        )
+                        self.compilation_metrics[
+                            "percentile_grounding"
+                        ] += ground_provenance.get("percentile_groundings_applied", 0)
+                        self.compilation_metrics[
+                            "relative_references_resolved"
+                        ] += ground_provenance.get("relative_references_resolved", 0)
+
+                        # Legacy metrics tracking
+                        self.compilation_metrics["propositions_compiled"] += 1
+                        if g_status == "SUCCESS":
+                            self.compilation_metrics["compilation_success_count"] += 1
+                        elif g_status == "PARTIAL":
+                            self.compilation_metrics["compilation_partial_count"] += 1
+                        else:
+                            self.compilation_metrics["compilation_failed_count"] += 1
+
+                        reason = compiled_prop.failure_reason or "Unknown Reason"
+                        if g_status != "SUCCESS":
+                            self.compilation_metrics["failure_reasons"][reason] = (
+                                self.compilation_metrics["failure_reasons"].get(
+                                    reason, 0
+                                )
+                                + 1
+                            )
+
+                        # Update success rate
+                        tot = self.compilation_metrics["theories_generated"]
+                        self.compilation_metrics["compilation_success_rate"] = (
+                            self.compilation_metrics["compilation_success_count"] / tot
+                            if tot > 0
+                            else 0.0
+                        )
+
+                        # Observational Validation Engine Execution
+                        if (
+                            compiled_prop
+                            and compiled_prop.compilation_status == "SUCCESS"
+                        ):
+                            try:
+                                full_df = (
+                                    self.engine.data
+                                )  # Full backtest dataframe containing future steps
+                                regime_str = getattr(
+                                    market_obs, "regime_subtype", "neutral"
+                                )
+                                conf_val = (
+                                    getattr(
+                                        theory.confidence_state,
+                                        "empirical_confidence",
+                                        0.5,
+                                    )
+                                    if theory
+                                    else 0.5
+                                )
+                                unc_val = (
+                                    getattr(
+                                        theory.confidence_state,
+                                        "epistemic_uncertainty",
+                                        0.5,
+                                    )
+                                    if theory
+                                    else 0.5
+                                )
+
+                                val_rec = self.validation_engine.validate(
+                                    compiled_prop=compiled_prop,
+                                    history_df=full_df,
+                                    current_step=day_idx,
+                                    confidence_before=conf_val,
+                                    confidence_after=conf_val,
+                                    uncertainty_before=unc_val,
+                                    uncertainty_after=unc_val,
+                                    regime=regime_str,
+                                    market_context={
+                                        "trend": getattr(
+                                            market_obs, "trend_state", "neutral"
+                                        )
+                                    },
+                                )
+
+                                # Database persistence - Validation Record
+                                self.validation_record_repo.save(val_rec)
+
+                                # Local file snapshot persistence
+                                run_val_path = (
+                                    self.run_dir
+                                    / "validation_records"
+                                    / f"val_{val_rec.id}.json"
+                                )
+                                with open(run_val_path, "w") as f:
+                                    json.dump(
+                                        val_rec.model_dump(), f, indent=2, default=str
+                                    )
+
+                                out_val_path = (
+                                    self.base_output_dir
+                                    / "validation_records"
+                                    / f"val_{val_rec.id}.json"
+                                )
+                                with open(out_val_path, "w") as f:
+                                    json.dump(
+                                        val_rec.model_dump(), f, indent=2, default=str
+                                    )
+
+                                # Increment metrics
+                                self.compilation_metrics["propositions_evaluated"] += 1
+                                self.compilation_metrics[
+                                    "validation_records_created"
+                                ] += 1
+                                if val_rec.validation_state == "SUPPORTED":
+                                    self.compilation_metrics["supported_records"] += 1
+                                elif val_rec.validation_state == "CONTRADICTED":
+                                    self.compilation_metrics[
+                                        "contradicted_records"
+                                    ] += 1
+                                elif val_rec.validation_state == "PARTIALLY_SUPPORTED":
+                                    self.compilation_metrics[
+                                        "partially_supported_records"
+                                    ] += 1
+                                elif val_rec.validation_state in [
+                                    "GROUNDED",
+                                    "UNTRIGGERED",
+                                    "TRIGGERED",
+                                ]:
+                                    self.compilation_metrics["undecidable_records"] += 1
+
+                            except Exception as val_err:
+                                self._log(
+                                    f"WARNING: Validation Engine execution failed: {val_err}"
+                                )
+                except Exception as comp_err:
+                    err_msg = f"Unexpected compiler error: {str(comp_err)}"
+                    self.compilation_metrics["compilation_failed_count"] += 1
+                    self.compilation_metrics["grounding_failures"] += 1
+                    self.compilation_metrics["failure_reasons"][err_msg] = (
+                        self.compilation_metrics["failure_reasons"].get(err_msg, 0) + 1
+                    )
+
                 # v1.4 Analytics Persistence (PostgreSQL) - Defensive Observer Pattern
                 try:
                     if self.market_outcome_repo:
@@ -4538,6 +4882,9 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                 external_metrics["regime_recall_hit_rate"] = 0.0
                 external_metrics["memory_retrieval_usefulness"] = 0.0
 
+            # Proposition compilation and validation metrics
+            external_metrics["compilation_metrics"] = self.compilation_metrics
+
             # Output paths
             external_metrics["outputs"] = {
                 "prediction_csv": str(self.base_output_dir / "prediction_analysis.csv"),
@@ -4681,6 +5028,65 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                             else {}
                         ),
                     }
+                if hasattr(self.replay_analysis_engine, "external_metrics"):
+                    try:
+                        belief_states = self.belief_state_repo.list_all_belief_states()
+                        active = [s for s in belief_states if s.status == "ACTIVE"]
+                        weakened = [s for s in belief_states if s.status == "WEAKENED"]
+                        retired = [s for s in belief_states if s.status == "RETIRED"]
+
+                        from memory.relational.models.belief_state_model import \
+                            BeliefTransitionEventModel
+                        from memory.relational.postgres_client import \
+                            SessionLocal
+
+                        with SessionLocal() as session:
+                            event_count = session.query(
+                                BeliefTransitionEventModel
+                            ).count()
+
+                        mean_conf = (
+                            sum(s.confidence for s in active) / len(active)
+                            if active
+                            else 0.0
+                        )
+                        mean_unc = (
+                            sum(s.uncertainty for s in active) / len(active)
+                            if active
+                            else 0.0
+                        )
+
+                        total_lessons = len(self.lesson_repo.list_lessons())
+
+                        latest_wm = self.knowledge_repository.get_latest_world_model()
+                        hard_count = 0
+                        soft_count = 0
+                        if latest_wm and latest_wm.regime_constraints:
+                            for (
+                                regime,
+                                constraints,
+                            ) in latest_wm.regime_constraints.items():
+                                hard_count += len(constraints.get("hard_guidance", []))
+                                soft_count += len(constraints.get("soft_prior", []))
+
+                        self.replay_analysis_engine.external_metrics[
+                            "belief_metrics"
+                        ] = {
+                            "active_lineages": len(active),
+                            "weakened_lineages": len(weakened),
+                            "retired_lineages": len(retired),
+                            "mean_confidence": mean_conf,
+                            "mean_uncertainty": mean_unc,
+                            "total_transition_events": event_count,
+                            "total_lessons": total_lessons,
+                            "hard_constraints": hard_count,
+                            "soft_constraints": soft_count,
+                        }
+                    except Exception as e:
+                        self._log(
+                            f"WARNING: Failed to gather belief metrics for summary: {e}"
+                        )
+
                 self.replay_analysis_engine.knowledge_repository = (
                     self.knowledge_repository
                 )
@@ -4851,6 +5257,298 @@ Respond STRICTLY in JSON format with the following keys:
             for name, value in fields
             if value not in (None, "")
         ]
+
+    def _process_closed_loop_belief_updates(self, day_idx: int):
+        """Milestone 10: Deterministic closed-loop belief update cycle.
+        Resolves TRIGGERED validations from step t-1, runs mathematical dynamics,
+        aggregates patterns, and promotes lessons/principles/world models.
+        """
+        if day_idx == 0:
+            return  # No validations from day -1 exist
+
+        prev_step = day_idx - 1
+        self._log(
+            f"--- CLOSED-LOOP BELIEF UPDATE (Step {prev_step} -> Step {day_idx}) ---"
+        )
+
+        # 1. Query CompiledPropositions created on step t-1
+        prev_props = self.compiled_proposition_repo.query_by_replay_step(prev_step)
+        self._log(
+            f"Found {len(prev_props)} compiled propositions from Step {prev_step}."
+        )
+
+        resolved_lineages = set()
+        resolved_records_count = 0
+
+        # We need the full history df to validate retrospectively
+        full_df = self.engine.data.iloc[: day_idx + 1]
+
+        # Get the prediction probe from step t-1
+        prev_date = self.engine.get_observation_for_day(prev_step)["date"]
+        prev_probe = None
+        from memory.relational.models.prediction_probe_model import \
+            PredictionProbeModel
+        from memory.relational.postgres_client import SessionLocal
+
+        with SessionLocal() as session:
+            probe_model = (
+                session.query(PredictionProbeModel)
+                .filter(PredictionProbeModel.date == prev_date)
+                .first()
+            )
+            if probe_model:
+                prev_probe = probe_model  # Has .confidence attribute
+
+        # Get contradiction score from step t-1
+        contradiction_score = 0.0
+        from memory.relational.models.transition_pressure_model import \
+            TransitionPressureModel
+
+        with SessionLocal() as session:
+            pressure_model = (
+                session.query(TransitionPressureModel)
+                .filter(TransitionPressureModel.day_index == prev_step)
+                .first()
+            )
+            if pressure_model:
+                contradiction_score = getattr(
+                    pressure_model, "pressure_score", 0.0
+                )
+
+        for prop in prev_props:
+            lineage_id = prop.lineage_id
+
+            try:
+                # Resolve validation record retrospectively (lookahead is now within bounds)
+                val_rec = self.validation_engine.validate(
+                    compiled_prop=prop,
+                    history_df=full_df,
+                    current_step=prev_step,
+                    confidence_before=0.5,
+                    confidence_after=0.5,
+                    uncertainty_before=0.5,
+                    uncertainty_after=0.5,
+                    regime=getattr(prop, "regime", "neutral"),
+                    market_context={"trend": "neutral"},
+                )
+
+                # Save the resolved ValidationRecord
+                self.validation_record_repo.save(val_rec)
+                resolved_records_count += 1
+
+                # Save snapshots of validation record
+                run_val_path = (
+                    self.run_dir / "validation_records" / f"val_{val_rec.id}.json"
+                )
+                run_val_path.parent.mkdir(parents=True, exist_ok=True)
+                with open(run_val_path, "w") as f:
+                    json.dump(val_rec.model_dump(), f, indent=2, default=str)
+
+                out_val_path = (
+                    self.base_output_dir
+                    / "validation_records"
+                    / f"val_{val_rec.id}.json"
+                )
+                out_val_path.parent.mkdir(parents=True, exist_ok=True)
+                with open(out_val_path, "w") as f:
+                    json.dump(val_rec.model_dump(), f, indent=2, default=str)
+
+                # Process Belief Update
+                event = self.belief_dynamics_engine.process_validation(
+                    val_record=val_rec,
+                    compiled_prop=prop,
+                    history_df=full_df,
+                    current_step=prev_step,
+                    prediction_probe=prev_probe,
+                    contradiction_score=contradiction_score,
+                )
+                resolved_lineages.add(lineage_id)
+                self._log(
+                    f"Lineage {lineage_id[:8]} updated: State={val_rec.validation_state} | "
+                    f"Conf: {event.confidence_before:.2f} -> {event.confidence_after:.2f} | "
+                    f"Unc: {event.uncertainty_before:.2f} -> {event.uncertainty_after:.2f} | "
+                    f"Status: {event.status_after}"
+                )
+            except Exception as e:
+                self._log(
+                    f"WARNING: Belief update failed for lineage {lineage_id}: {e}"
+                )
+
+        # 2. Apply decay to other lineages that did not resolve on this step
+        try:
+            decay_events = self.belief_dynamics_engine.apply_decay_to_other_lineages(
+                active_lineage_ids=list(resolved_lineages), current_step=prev_step
+            )
+            if decay_events:
+                self._log(f"Applied decay to {len(decay_events)} other lineages.")
+        except Exception as e:
+            self._log(f"WARNING: Decay application failed: {e}")
+
+        # 3. Pattern Consolidation Engine
+        nominations = []
+        try:
+            nominations = self.pattern_consolidation_engine.consolidate_patterns(
+                history_df=full_df, current_step=prev_step
+            )
+            self._log(
+                f"Pattern Consolidation Engine nominated {len(nominations)} Lesson candidates."
+            )
+        except Exception as e:
+            self._log(f"WARNING: Pattern consolidation failed: {e}")
+
+        # Promote nominated Lessons
+        new_lessons_count = 0
+        from market.replay.lesson_record import LessonRecord, LessonStatus
+
+        for nom in nominations:
+            try:
+                # Check if this lesson has already been extracted
+                existing_lessons = self.lesson_repo.list_lessons()
+                is_new = True
+                for el in existing_lessons:
+                    if el.lesson_text == nom["lesson_text"]:
+                        is_new = False
+                        break
+
+                if is_new:
+                    lesson = LessonRecord(
+                        lesson_id=uuid4(),
+                        target_regime={"regime_subtype": nom["regime_context"]},
+                        activation_conditions=[
+                            f"trigger_met on cluster {nom['cluster_id']}"
+                        ],
+                        validation_count=nom["evidence_count"],
+                        falsification_count=0,
+                        confidence=nom["confidence"],
+                        status=LessonStatus.ACTIVE,
+                        lesson_text=nom["lesson_text"],
+                        source_experience_ids=nom["source_experience_ids"],
+                    )
+                    self.lesson_repo.save(lesson)
+                    new_lessons_count += 1
+                    self._log(f"✓ Promoted Lesson: {nom['lesson_text']}")
+            except Exception as e:
+                self._log(
+                    f"WARNING: Lesson promotion failed for nomination {nom.get('cluster_id')}: {e}"
+                )
+
+        # 4. Promote Lessons to Principle Candidates (L4 Validation)
+        # Criteria: Lesson validations >= 20, success_rate >= 0.70, falsifications < 5%
+        try:
+            active_lessons = self.lesson_repo.list_lessons(status=LessonStatus.ACTIVE)
+            promoted_principles_count = 0
+            for lesson in active_lessons:
+                min_vals = getattr(self, "min_validations_for_principle", 20)
+                if lesson.validation_count >= min_vals:
+                    total = lesson.validation_count
+                    falsified = lesson.falsification_count
+                    success_rate = (total - falsified) / total if total > 0 else 0.0
+
+                    if (
+                        success_rate >= 0.70
+                        and (falsified / total if total > 0 else 0.0) < 0.05
+                    ):
+                        existing_principles = (
+                            self.knowledge_repository.list_principles()
+                        )
+                        p_exists = False
+                        for p in existing_principles:
+                            if p.statement == lesson.lesson_text:
+                                p_exists = True
+                                break
+
+                        if not p_exists:
+                            from cognition.schemas.knowledge.principle import (
+                                Principle, PrincipleStatus)
+
+                            new_p = Principle(
+                                status=PrincipleStatus.CANDIDATE,
+                                statement=lesson.lesson_text,
+                                associated_lineage_ids=lesson.source_experience_ids,
+                                created_at_step=day_idx,
+                                confidence=lesson.confidence,
+                                support_count=lesson.validation_count,
+                                contradiction_count=lesson.falsification_count,
+                            )
+                            self.knowledge_repository.save_principle(new_p)
+                            promoted_principles_count += 1
+                            self._log(
+                                f"✓ Promoted Lesson to Principle Candidate: {lesson.lesson_text}"
+                            )
+        except Exception as e:
+            self._log(f"WARNING: Principle promotion failed: {e}")
+
+        # 5. Adaptive World Model Promotion (L5 Generalization)
+        try:
+            all_principles = self.knowledge_repository.list_principles()
+
+            from cognition.schemas.knowledge.world_model import WorldModel
+
+            new_wm = WorldModel(
+                step=day_idx,
+                narrative_summary=f"World Model at step {day_idx}. Cumulative updates active.",
+                active_principle_ids=[],
+                regime_constraints={},
+            )
+
+            hard_guidance_count = 0
+            soft_guidance_count = 0
+            exploration_count = 0
+
+            for p in all_principles:
+                lineage_id = (
+                    p.associated_lineage_ids[0] if p.associated_lineage_ids else None
+                )
+                U_p = 0.50
+                if lineage_id:
+                    belief = self.belief_state_repo.get_belief_state_by_lineage(
+                        lineage_id
+                    )
+                    if belief:
+                        U_p = belief.uncertainty
+
+                # Apply Adaptive Hybrid Exploration Safeguard
+                regime_subtype = "neutral"
+
+                # Update status and wm constraints mapping based on uncertainty
+                if U_p < 0.30:
+                    p.status = "canonical"
+                    new_wm.active_principle_ids.append(p.id)
+                    new_wm.supporting_canonical_principles.append(p.id)
+
+                    if regime_subtype not in new_wm.regime_constraints:
+                        new_wm.regime_constraints[regime_subtype] = {}
+                    if "hard_guidance" not in new_wm.regime_constraints[regime_subtype]:
+                        new_wm.regime_constraints[regime_subtype]["hard_guidance"] = []
+                    new_wm.regime_constraints[regime_subtype]["hard_guidance"].append(
+                        p.statement
+                    )
+                    hard_guidance_count += 1
+                elif 0.30 <= U_p < 0.60:
+                    p.status = "active"
+                    new_wm.active_principle_ids.append(p.id)
+
+                    if regime_subtype not in new_wm.regime_constraints:
+                        new_wm.regime_constraints[regime_subtype] = {}
+                    if "soft_prior" not in new_wm.regime_constraints[regime_subtype]:
+                        new_wm.regime_constraints[regime_subtype]["soft_prior"] = []
+                    new_wm.regime_constraints[regime_subtype]["soft_prior"].append(
+                        p.statement
+                    )
+                    soft_guidance_count += 1
+                else:
+                    p.status = "challenged"
+                    exploration_count += 1
+
+                self.knowledge_repository.save_principle(p)
+
+            self.knowledge_repository.save_world_model(new_wm)
+            self._log(
+                f"World Model updated at Step {day_idx}: "
+                f"Hard Guidance={hard_guidance_count} | Soft Prior={soft_guidance_count} | Exploration={exploration_count}"
+            )
+        except Exception as e:
+            self._log(f"WARNING: Adaptive World Model update failed: {e}")
 
     def _save_snapshot(self, day_idx: int, date_str: str, snapshot_data: dict):
         """Save replay snapshot to disk."""

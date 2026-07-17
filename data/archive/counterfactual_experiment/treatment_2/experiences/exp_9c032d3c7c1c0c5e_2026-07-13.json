@@ -1,0 +1,40 @@
+{
+  "experience_id": "exp_9c032d3c7c1c0c5e_2026-07-13",
+  "lineage_id": "9c032d3c7c1c0c5e",
+  "theory_family_id": "9c032d3c7c1c0c5e",
+  "created_at": "2026-07-13",
+  "status": "active",
+  "theory_ids": [
+    "39e69f31-f70f-41e5-8ad6-a89a69d441b9"
+  ],
+  "contradictions": [
+    "Structural: Field conflict: Delivery percentage remains be vs The current market regime is c; Field conflict: Delivery percentage remains be vs RANGE_EXPANSION IS HIGH OR DEL; Low semantic similarity: volume dry OR range ... vs RANGE_EXPANSION IS H...; Low semantic similarity: otherwise: retain th... vs true: remove...; Volatility: expansion vs stability; Participation: weakening vs elevated",
+    "Structural: Field conflict: Delivery percentage remains be vs Sector relative strength Z-sco; Low semantic similarity: volume_confirmation... vs sector_zscore_revise...; Low semantic similarity: Delivery percentage ... vs sector_zscore.rollin...; Field conflict: volume dry OR range expanding  vs sector_zscore.rolling_20day > ; Low semantic similarity: otherwise: retain th... vs true: remove...; Participation: weakening vs elevated",
+    "Structural: Field conflict: Delivery percentage remains be vs The current market regime is c; Low semantic similarity: volume_confirmation... vs MECH_002...; Field conflict: Delivery percentage remains be vs volume_elevated AND range_expa; Low semantic similarity: volume dry OR range ... vs volume_elevated AND ...; Low semantic similarity: otherwise: retain th... vs false: demote MECH_0...; Volatility: expansion vs stability",
+    "Structural: Field conflict: Delivery percentage remains be vs Sector relative strength Z-sco; Low semantic similarity: volume_confirmation... vs delivery_exhaustion_...; Low semantic similarity: Delivery percentage ... vs volume.daily_ratio <...; Low semantic similarity: volume dry OR range ... vs volume.daily_ratio <...; Low semantic similarity: otherwise: retain th... vs true: remove mechani...; Volatility: expansion vs stability"
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.5
+  },
+  "regime_context": [
+    "trend:range_bound",
+    "volume:dry",
+    "volatility:compressed",
+    "liquidity:even_flow",
+    "breadth:mixed",
+    "participation:weak",
+    "momentum:strengthening",
+    "subtype:liquidity_constrained",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:neutral"
+  ],
+  "theory_subtype": "liquidity_constrained",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 0,
+  "causal_events": [],
+  "component_failure_counts": {}
+}

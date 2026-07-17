@@ -115,6 +115,11 @@ class ReplayFinalizationMixin:
                 external_metrics["regime_recall_hit_rate"] = 0.0
                 external_metrics["memory_retrieval_usefulness"] = 0.0
 
+            # Proposition compilation metrics
+            external_metrics["compilation_metrics"] = getattr(
+                self, "compilation_metrics", {}
+            )
+
             # Output paths
             external_metrics["outputs"] = {
                 "prediction_csv": str(self.base_output_dir / "prediction_analysis.csv"),

@@ -1240,6 +1240,117 @@ class ReplayJournalBuilder:
         else:
             print("    - None")
 
+        # -------------------------------------------------------------
+        # O. Proposition Compilation Statistics
+        # -------------------------------------------------------------
+        comp_metrics = external_metrics.get("compilation_metrics")
+        if (
+            comp_metrics
+            and isinstance(comp_metrics, dict)
+            and not hasattr(comp_metrics, "_mock_self")
+        ):
+            print("\nO. Proposition Compilation Statistics")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            print(
+                f"  • Theories Processed (Generated):{comp_metrics.get('theories_generated', 0)}"
+            )
+            print(
+                f"  • Propositions Compiled (Total):{comp_metrics.get('propositions_compiled', 0)}"
+            )
+            print(
+                f"  • Compilation Success Rate:     {comp_metrics.get('compilation_success_rate', 0.0):.1%}"
+            )
+            print(
+                f"  • Success Count:                {comp_metrics.get('compilation_success_count', 0)}"
+            )
+            print(
+                f"  • Partial Count:                {comp_metrics.get('compilation_partial_count', 0)}"
+            )
+            print(
+                f"  • Failed Count:                 {comp_metrics.get('compilation_failed_count', 0)}"
+            )
+            print("\n  [Semantic Compilation stage]")
+            print(
+                f"  • Semantic Propositions Created: {comp_metrics.get('semantic_propositions_created', 0)}"
+            )
+            print(
+                f"  • Semantic Failures:            {comp_metrics.get('semantic_failures', 0)}"
+            )
+            print(
+                f"  • Ontology Mapping Failures:     {comp_metrics.get('ontology_mapping_failures', 0)}"
+            )
+            print("\n  [Parameter Grounding stage]")
+            print(
+                f"  • Propositions Grounded:        {comp_metrics.get('propositions_grounded', 0)}"
+            )
+            print(
+                f"  • Percentile Groundings Applied: {comp_metrics.get('percentile_grounding', 0)}"
+            )
+            print(
+                f"  • Relative References Resolved:  {comp_metrics.get('relative_references_resolved', 0)}"
+            )
+            print(
+                f"  • Grounding Failures:           {comp_metrics.get('grounding_failures', 0)}"
+            )
+            print("\n  [Validation Engine stage]")
+            print(
+                f"  • Propositions Evaluated:        {comp_metrics.get('propositions_evaluated', 0)}"
+            )
+            print(
+                f"  • Validation Records Created:   {comp_metrics.get('validation_records_created', 0)}"
+            )
+            print(
+                f"  • Supported Records:            {comp_metrics.get('supported_records', 0)}"
+            )
+            print(
+                f"  • Contradicted Records:         {comp_metrics.get('contradicted_records', 0)}"
+            )
+            print(
+                f"  • Partially Supported Records:  {comp_metrics.get('partially_supported_records', 0)}"
+            )
+            print(
+                f"  • Undecidable Records:          {comp_metrics.get('undecidable_records', 0)}"
+            )
+
+            bm = external_metrics.get("belief_metrics", {})
+            if bm:
+                print("\n  [Closed-Loop Belief Dynamics & World Model]")
+                print(
+                    f"  • Active Lineages Tracked:       {bm.get('active_lineages', 0)}"
+                )
+                print(
+                    f"  • Weakened Lineages:             {bm.get('weakened_lineages', 0)}"
+                )
+                print(
+                    f"  • Retired Lineages:              {bm.get('retired_lineages', 0)}"
+                )
+                print(
+                    f"  • Mean Confidence (Active):      {bm.get('mean_confidence', 0.0):.3f}"
+                )
+                print(
+                    f"  • Mean Uncertainty (Active):     {bm.get('mean_uncertainty', 0.0):.3f}"
+                )
+                print(
+                    f"  • Belief Transition Events:      {bm.get('total_transition_events', 0)}"
+                )
+                print(
+                    f"  • Promoted Lessons:              {bm.get('total_lessons', 0)}"
+                )
+                print(
+                    f"  • Hard WM Constraints Active:    {bm.get('hard_constraints', 0)}"
+                )
+                print(
+                    f"  • Soft WM Priors Active:         {bm.get('soft_constraints', 0)}"
+                )
+
+            reasons = comp_metrics.get("failure_reasons", {})
+            if reasons:
+                print("  • Failure Reasons / Categories:")
+                for reason, count in sorted(
+                    reasons.items(), key=lambda x: x[1], reverse=True
+                ):
+                    print(f"    - {reason}: {count} time(s)")
+
         # Artifacts
         print("\n" + "━" * 50)
         out = external_metrics.get("outputs", {})

@@ -1,0 +1,56 @@
+{
+  "id": "6f8853cf-7e67-4b33-b3c1-7624b8bfaf22",
+  "created_at": "2026-07-17T06:48:19.043541+00:00",
+  "prediction_date": "2025-12-15",
+  "evaluation_date": "2025-12-16",
+  "asset": "RELIANCE",
+  "prediction": "range_bound",
+  "decision": {
+    "id": "78e7ddb5-3b0b-45c6-b96d-6e6ef3bec13d",
+    "created_at": "2026-07-17T06:48:19.043472+00:00",
+    "date": "2025-12-15",
+    "prediction_direction": "range_bound",
+    "action": "short",
+    "allocation_pct": 0.0521,
+    "conviction_score": 0.2472,
+    "reason": "volatility expansion vs structural support"
+  },
+  "allocation": 0.0521,
+  "conviction_score": 0.2472,
+  "decision_reason": "volatility expansion vs structural support",
+  "supporting_lineages": [
+    "cdfc445f32de0e2d"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [
+    "Regime Analog unknown",
+    "Regime Analog unknown",
+    "Regime Analog unknown"
+  ],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 0.6618611385891561,
+  "transition_pressure": 0.35885710387606784,
+  "calibrated_confidence": 0.33,
+  "empirical_confidence": 0.0,
+  "reflection_confidence": 0.0,
+  "regime_confidence": 1.0,
+  "expected_scenarios": [
+    "volatility expansion vs structural support"
+  ],
+  "actual_outcome": "-0.17%",
+  "decision_result": "incorrect",
+  "pnl": 0.0,
+  "reflection_summary": "The prediction 'range_bound' was incorrect (actual return: -0.17%). High contradiction pressure (0.66) correctly signaled potential failure. Recommended action: Trigger lineage mutation and open an evidence gap to reconcile contradiction.",
+  "knowledge_changes": [
+    "theory_mutated",
+    "theory_revived"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.1155,
+    "empirical": 0.0,
+    "principle_support": 0.0,
+    "contradictions": -0.1324,
+    "transition_pressure": -0.0359
+  }
+}

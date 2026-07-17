@@ -1148,10 +1148,8 @@ def test_scientific_verdict_evaluator_adversarial_and_scenarios():
 
 
 def test_inconclusive_default_state_label():
-    from flows.minimal_learning_cycle.verdicts import (
-        HypothesisStatus,
-        MLCVerdictEvaluator,
-    )
+    from flows.minimal_learning_cycle.verdicts import (HypothesisStatus,
+                                                       MLCVerdictEvaluator)
 
     # Instantiate with no threshold arguments (default inconclusive configuration)
     evaluator = MLCVerdictEvaluator()
@@ -1197,16 +1195,13 @@ def test_inconclusive_default_state_label():
     assert res.h3_result.status == HypothesisStatus.INCONCLUSIVE
     assert res.h4_result.status == HypothesisStatus.INCONCLUSIVE
     assert (
-        res.derived_summary_label
-        == "STRUCTURED_RESULT_REQUIRES_MANUAL_INTERPRETATION"
+        res.derived_summary_label == "STRUCTURED_RESULT_REQUIRES_MANUAL_INTERPRETATION"
     )
 
 
 def test_matrix_fallback_cells_coverage():
-    from flows.minimal_learning_cycle.verdicts import (
-        HypothesisStatus,
-        MLCVerdictEvaluator,
-    )
+    from flows.minimal_learning_cycle.verdicts import (HypothesisStatus,
+                                                       MLCVerdictEvaluator)
 
     # Instantiate with thresholds so H2 is PASS, but we control H3 and H4 outcomes
     evaluator = MLCVerdictEvaluator(

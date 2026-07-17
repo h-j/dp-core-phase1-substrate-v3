@@ -1,0 +1,36 @@
+{
+  "id": "18bea191-cd47-4e58-9482-e71060a0260b",
+  "created_at": "2026-07-15 15:39:55.912759+00:00",
+  "theory_id": "3f5d7fcb-b948-4a25-b844-720b025693a2",
+  "lineage_id": "cae47dcd74a494f6",
+  "replay_step": 1,
+  "compilation_status": "SUCCESS",
+  "failure_reason": null,
+  "trigger_definition": {
+    "field": "absorption_rate_revised",
+    "operator": ">=",
+    "value": 0.5,
+    "lag": 1
+  },
+  "target_definition": {
+    "field": "outcome",
+    "operator": "==",
+    "value": "flat"
+  },
+  "scope_definition": [
+    {
+      "field": "volatility_regime",
+      "operator": "==",
+      "value": "normal"
+    }
+  ],
+  "compiler_trace": {
+    "source_mechanisms": [
+      "absorption_rate_revised",
+      "price_range_bound",
+      "absorption_rate_revised"
+    ],
+    "source_theory": "3f5d7fcb-b948-4a25-b844-720b025693a2",
+    "compiler_version": "proposition_compiler_v1"
+  }
+}

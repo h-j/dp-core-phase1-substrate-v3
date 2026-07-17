@@ -1,0 +1,101 @@
+{
+  "experience_id": "exp_c974dc5f813def5d_2026-06-30",
+  "lineage_id": "c974dc5f813def5d",
+  "theory_family_id": "c974dc5f813def5d",
+  "created_at": "2026-06-30",
+  "status": "closed",
+  "theory_ids": [
+    "7a303544-ada9-4071-aa63-0405d127c834",
+    "76e41772-b14d-46a8-809c-4783b01197f6"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The neutral market r... vs delivery_pct.rolling...; Low semantic similarity: false: add to retain... vs false: remove mechan...",
+    "Structural: Low semantic similarity: The neutral market r... vs Neutral regime is dr...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The neutral market r... vs sector_zscore < -1.5...; Low semantic similarity: delivery_exhaustion_... vs sector_zscore < -1.5...; Low semantic similarity: false: add to retain... vs volume_state = eleva...",
+    "Structural: Low semantic similarity: The sector Z-score r... vs delivery_exhaustion_...; Low semantic similarity: volume_spike OR asse... vs delivery_exhaustion_...; Low semantic similarity: true: retain MECH_00... vs false: add to retain...",
+    "Structural: Low semantic similarity: The sector Z-score r... vs The current market r...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The sector Z-score r... vs delivery_pct.rolling...; Low semantic similarity: volume_spike OR asse... vs delivery_pct.rolling...; Low semantic similarity: true: retain MECH_00... vs false: remove mechan...",
+    "Structural: Low semantic similarity: The sector Z-score r... vs Neutral regime is dr...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The sector Z-score r... vs sector_zscore < -1.5...; Low semantic similarity: volume_spike OR asse... vs sector_zscore < -1.5...; Low semantic similarity: true: retain MECH_00... vs volume_state = eleva..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.3333333333333333
+  },
+  "regime_context": [
+    "trend:closed_lower",
+    "volume:elevated",
+    "volatility:moderate",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:normal",
+    "momentum:weakening",
+    "subtype:neutral",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:neutral"
+  ],
+  "theory_subtype": "neutral",
+  "mutation_count": 1,
+  "contradiction_count": 2,
+  "validation_count": 1,
+  "falsification_count": 2,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-15T01:41:16.612374",
+      "outcome": "partial",
+      "theory_claim": "Neutral regime is driven by moderate delivery exhaustion; price weakens despite sector neutral performance.",
+      "components_passed": [
+        "delivery_exhaustion",
+        "sector_zscore",
+        "volume_confirmation"
+      ],
+      "components_failed": [
+        "delivery_exhaustion"
+      ],
+      "root_cause": "delivery_exhaustion",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This appears to be a technical analysis report or a trading strategy evaluation result. Here's a breakdown of why the theory \"Neutral regime is driven by moderate delivery exhaustion; price weakens despite sector neutral performance\" failed:\n\n1. **Volume was dry**: This suggests that there wasn't mu"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-15T01:59:57.158563",
+      "outcome": "validated",
+      "theory_claim": "The neutral market regime is characterized by a moderate sector Z-score, weak volume expansion on up days relative to down days, and delivery percentages below 50, driven primarily by FII selling.",
+      "components_passed": [
+        "sector_zscore_revised",
+        "volume_confirmation",
+        "delivery_exhaustion_with_fii_selling_revised"
+      ],
+      "components_failed": [],
+      "root_cause": null,
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": ""
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-15T02:32:55.917132",
+      "outcome": "partial",
+      "theory_claim": "The sector Z-score remains neutral despite sector performance, primarily driven by leading sector performance, while volume expansion on up days relative to down days and delivery percentage remain co",
+      "components_passed": [
+        "sector_zscore_revised",
+        "volume_confirmation",
+        "delivery_exhaustion_with_fii_selling_revised"
+      ],
+      "components_failed": [
+        "sector_zscore_revised"
+      ],
+      "root_cause": "sector_zscore_revised",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This theory appears to be a technical analysis framework for predicting stock market trends and sector performance. Here's why it failed:\n\n1. **Leading Sector Performance**: The leading sector (e.g., technology) is performing strongly, which suggests that the overall market should be bullish. Howeve"
+    }
+  ],
+  "component_failure_counts": {
+    "delivery_exhaustion": 1,
+    "sector_zscore_revised": 1
+  }
+}

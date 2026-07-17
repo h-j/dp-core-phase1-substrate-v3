@@ -1,0 +1,15 @@
+{
+  "id": "f3d4ef9c-0edd-4d6a-9416-bcb8e6bc2104",
+  "created_at": "2026-07-15T00:47:47.116224+00:00",
+  "created_at_step": 2,
+  "question_text": "Why did component 'delivery_exhaustion_with_fii_selling' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "5982079c-844c-4c5f-8c01-c1643e56670c"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "spike"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

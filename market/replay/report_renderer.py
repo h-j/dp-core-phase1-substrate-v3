@@ -330,6 +330,36 @@ class ReplayReportModel:
         decision_traces = getattr(self.executor, "decision_traces", [])
         epistemic_review = getattr(self.executor, "epistemic_review", {})
 
+        compilation_metrics = getattr(self.executor, "compilation_metrics", None)
+        if not isinstance(compilation_metrics, dict) or hasattr(
+            compilation_metrics, "_mock_self"
+        ):
+            compilation_metrics = {
+                "theories_generated": 0,
+                "propositions_compiled": 0,
+                "compilation_success_rate": 0.0,
+                "compilation_success_count": 0,
+                "compilation_partial_count": 0,
+                "compilation_failed_count": 0,
+                "failure_reasons": {},
+                "semantic_propositions_created": 0,
+                "semantic_failures": 0,
+                "ontology_mapping_failures": 0,
+                "propositions_grounded": 0,
+                "percentile_grounding": 0,
+                "relative_references_resolved": 0,
+                "grounding_failures": 0,
+                # Milestone 9 Validation Metrics
+                "validation_records_created": 0,
+                "propositions_evaluated": 0,
+                "supported_records": 0,
+                "contradicted_records": 0,
+                "partially_supported_records": 0,
+                "undecidable_records": 0,
+                "avg_confidence_delta": 0.0,
+                "avg_uncertainty_delta": 0.0,
+            }
+
         # Construct final dict
         return {
             "symbol": symbol,
@@ -358,6 +388,7 @@ class ReplayReportModel:
             "epistemic_review": epistemic_review,
             "paper_trading_summary": paper_trading_summary,
             "decision_intelligence": decision_intelligence,
+            "compilation_metrics": compilation_metrics,
         }
 
 

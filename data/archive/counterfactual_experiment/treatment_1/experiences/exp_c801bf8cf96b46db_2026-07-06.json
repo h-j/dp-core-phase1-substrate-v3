@@ -1,0 +1,84 @@
+{
+  "experience_id": "exp_c801bf8cf96b46db_2026-07-06",
+  "lineage_id": "c801bf8cf96b46db",
+  "theory_family_id": "c801bf8cf96b46db",
+  "created_at": "2026-07-06",
+  "status": "closed",
+  "theory_ids": [
+    "859f5589-0464-437f-ab81-68631fc92451",
+    "54ee2f6a-9215-4737-a718-3ea3d3d53ae2"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: Sector relative stre... vs volume_spike OR asse...; Low semantic similarity: volume.daily_ratio <... vs volume_spike OR asse...; Low semantic similarity: true: remove mechani... vs true: retain MECH_00...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+    "Structural: Low semantic similarity: Sector relative stre... vs delivery_exhaustion_...; Low semantic similarity: volume.daily_ratio <... vs delivery_exhaustion_...; Low semantic similarity: true: remove mechani... vs false: add to retain...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+    "Structural: Low semantic similarity: Sector relative stre... vs The current market r...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: Sector relative stre... vs delivery_pct.rolling...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+    "Structural: Low semantic similarity: Sector relative stre... vs Neutral regime is dr...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: Sector relative stre... vs sector_zscore < -1.5...; Low semantic similarity: volume.daily_ratio <... vs sector_zscore < -1.5...; Low semantic similarity: true: remove mechani... vs volume_state = eleva...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:extended_higher",
+    "volume:dry",
+    "volatility:compressed",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:weak",
+    "momentum:strengthening",
+    "subtype:liquidity_constrained",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:leading_strong"
+  ],
+  "theory_subtype": "liquidity_constrained",
+  "mutation_count": 1,
+  "contradiction_count": 2,
+  "validation_count": 0,
+  "falsification_count": 2,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-15T05:45:28.522141",
+      "outcome": "partial",
+      "theory_claim": "Sector relative strength Z-score remains neutral despite sector performance, driven primarily by FII selling, which weakens volume expansion on up days and delivery percentage below 50 during moderate",
+      "components_passed": [
+        "sector_zscore_revised",
+        "volume_confirmation",
+        "delivery_exhaustion_with_fii_selling_revised",
+        "sector_zscore_revised_with_fii_selling_emphasis"
+      ],
+      "components_failed": [
+        "sector_zscore_revised"
+      ],
+      "root_cause": "sector_zscore_revised",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This appears to be a technical analysis report from a trading platform or software, specifically discussing the performance of a theory called \"Sector Relative Strength Z-score\" (SRZ). Here's a breakdown of why this theory failed:\n\n**Theory Background**: The SRZ is a statistical model that aims to p"
+    },
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-15T05:47:30.332378",
+      "outcome": "partial",
+      "theory_claim": "Sector relative strength Z-score remains neutral despite sector performance, driven primarily by FII selling, which weakens volume expansion on up days and delivery percentage below 50 during moderate",
+      "components_passed": [
+        "sector_zscore_revised",
+        "volume_confirmation",
+        "delivery_exhaustion_with_fii_selling_revised",
+        "sector_zscore_revised_with_fii_selling_emphasis"
+      ],
+      "components_failed": [
+        "sector_zscore_revised"
+      ],
+      "root_cause": "sector_zscore_revised",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "The theory \"Sector relative strength Z-score remains neutral despite sector performance, driven primarily by FII selling, which weakens volume expansion on up days and delivery percentage below 50 during moderate volatility\" failed because the observed data did not support this hypothesis.\n\nHere are"
+    }
+  ],
+  "component_failure_counts": {
+    "sector_zscore_revised": 2
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "c12980bf-fdac-42d5-b3d9-6047d48cade0",
+  "created_at": "2026-07-15T01:17:34.093174+00:00",
+  "created_at_step": 1,
+  "question_text": "Why did component 'delivery_exhaustion' fail under liquidity_constrained regime?",
+  "source_contradiction_ids": [
+    "cfa235e6-ff6c-4204-8e5e-57d210afaa6a"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "dry"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

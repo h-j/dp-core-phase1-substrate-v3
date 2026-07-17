@@ -1,0 +1,47 @@
+{
+  "id": "MECH_003",
+  "created_at": "2026-07-15T00:24:07.787844+00:00",
+  "mechanism_id": "MECH_003",
+  "canonical_name": "VOLATILITY_EXPANSION",
+  "concept_tags": [
+    "VOLATILITY_EXPANSION",
+    "INSTITUTIONAL_ACCUMULATION"
+  ],
+  "relation_type": "DAMPENS",
+  "first_seen": 0,
+  "last_seen": 7,
+  "days_active": 9,
+  "times_reused": 0,
+  "times_modified": 0,
+  "times_retired": 1,
+  "support_count": 1,
+  "contradiction_count": 4,
+  "prediction_helped": 1,
+  "prediction_harmed": 4,
+  "status": "retired",
+  "regimes_seen": [
+    "neutral",
+    "liquidity_constrained"
+  ],
+  "name": "VOLATILITY_EXPANSION",
+  "description": "Volume expansion on up days relative to down days remains weak",
+  "concept_type": "candidate",
+  "associated_theory_ids": [
+    "5be4c37e-f220-4301-b9b4-44410d4bb357",
+    "bffd5311-5b51-4a51-b66e-1f3de2dd90cc",
+    "15159d8b-2250-4e7b-9b31-9d1b4d4a83b3",
+    "70717041-46e7-4fb7-8b9a-cbd7547aaf27",
+    "99bfe104-93e0-4f44-ae2d-ab1b4097aecd",
+    "00572d7e-8ab1-46b3-a9a8-042368de554f",
+    "915fe327-eae2-45af-94c4-1f81bd52b9ec",
+    "f3dca0b3-7766-492c-8339-7cbdeaf964d4"
+  ],
+  "associated_lineages": [
+    "c9c6c6d7bb71fede",
+    "c801bf8cf96b46db",
+    "c974dc5f813def5d",
+    "898ab86e3b54098a",
+    "24c55c1834f77e54"
+  ],
+  "created_at_step": 0
+}

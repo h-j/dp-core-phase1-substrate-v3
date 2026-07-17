@@ -1,0 +1,413 @@
+{
+  "step": 6,
+  "date": "2026-07-08",
+  "observation": "[volume elevated, range expanding, gap down, short-term momentum weakening, delivery:moderate, fii:selling, sector:neutral, reliance focus, asset selloff, asset participation surge] candle strong bear participation strong (bearish confirmed) reliance closed lower with volatility compressed but breadth weakened.\nTrend Persistence: 3D: Mixed, 5D: Mixed, 10D: Mixed. Overall Regime: Mixed.",
+  "abstraction": "Weaker market with a strong bearish trend, moderate delivery volume, and neutral sector performance.",
+  "theory": "The current market regime is characterized by weak volume expansion on up days relative to down days, moderate delivery exhaustion driven by FII selling, and neutral sector relative strength Z-scores influenced by volatility compression.",
+  "theory_summary_structured": {
+    "id": "8b98be39-8e3f-4b9e-9d40-9aae045e37a5",
+    "created_at": "2026-07-15 01:08:38.402624+00:00",
+    "mechanism": "Delivery Exhaustion",
+    "claim": "The current market regime is characterized by weak volume expansion on up days relative to down days, moderate delivery exhaustion driven by FII selling, and neutral sector relative strength Z-scores influenced by volatility compression.",
+    "if_branch": {
+      "id": "fcc77e11-9966-4a45-af35-c8fbdb30143b",
+      "created_at": "2026-07-15 01:08:38.402727+00:00",
+      "condition": "volume_elevated AND range_expanding",
+      "action": "promote MECH_005"
+    },
+    "else_branch": {
+      "id": "2d40494d-cece-4948-a642-8a5911ca6aea",
+      "created_at": "2026-07-15 01:08:38.402750+00:00",
+      "condition": "false",
+      "action": "demote MECH_005"
+    },
+    "unless": "liquidity evaporates entirely",
+    "falsified_if": "MECH_002",
+    "forbidden_state": "",
+    "mechanism_components": [
+      {
+        "id": "2d6d44ad-e735-4d71-b6a9-9841b821c108",
+        "created_at": "2026-07-15 01:00:24.832380+00:00",
+        "component_id": "volume_confirmation",
+        "description": "Volume expansion on up days relative to down days remains weak",
+        "observable": "volume.daily_ratio",
+        "expected_behavior": "<1.5 AND >0.5",
+        "dependency": null,
+        "concept_tags": [
+          "VOLATILITY_EXPANSION",
+          "INSTITUTIONAL_ACCUMULATION"
+        ],
+        "relation_type": "DAMPENS",
+        "mechanism_id": "MECH_003"
+      },
+      {
+        "id": "c6d09c16-eb42-4352-be8e-9dee3cfa9364",
+        "created_at": "2026-07-15 01:08:33.056767+00:00",
+        "component_id": "delivery_exhaustion_with_fii_selling_revised",
+        "description": "Delivery percentage remains below 50 despite moderate volatility and FII selling, but with a stronger emphasis on the role of FII selling in driving delivery exhaustion.",
+        "observable": "delivery_pct.rolling_5day_average",
+        "expected_behavior": ">50 AND <60 WHEN FII_SELLING IS HIGH",
+        "dependency": null,
+        "concept_tags": [
+          "LIQUIDITY_ABSORPTION",
+          "DELIVERY_EXHAUSTION",
+          "FII_SELLING"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_005"
+      },
+      {
+        "id": "ff375005-a26a-4ec2-be32-ca598a4e7e15",
+        "created_at": "2026-07-15 01:08:35.209286+00:00",
+        "component_id": "sector_zscore_revised_with_fii_selling_emphasis_revised",
+        "description": "Sector relative strength Z-score remains neutral despite sector performance, but with a stronger emphasis on the role of FII selling in driving sector z-score and incorporating additional factors such as volatility compression.",
+        "observable": "sector_zscore.rolling_20day",
+        "expected_behavior": "<-1.5 AND >1.5 AND <0.5 WHEN VOLATILITY_COMPRESSION IS HIGH",
+        "dependency": null,
+        "concept_tags": [
+          "TREND_PERSISTENCE",
+          "SECTOR_ZSCORE",
+          "VOLATILITY_COMPRESSION"
+        ],
+        "relation_type": "CONTRADICTS",
+        "mechanism_id": "MECH_007"
+      }
+    ],
+    "falsification_conditions": [
+      "sector_zscore_revised: <0.5"
+    ],
+    "reuse_decision": "REJECTED",
+    "trigger_definition": {
+      "field": "delivery_pct",
+      "operator": "==",
+      "value": 1,
+      "lag": 0
+    },
+    "target_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_A"
+    },
+    "scope_definition": [
+      {
+        "field": "price",
+        "operator": "<=",
+        "value": 1.0
+      }
+    ],
+    "expected_direction": -1.0,
+    "contradiction_definition": {
+      "field": "outcome",
+      "operator": "==",
+      "value": "VAL_B"
+    },
+    "mechanism_type": "Moderate Delivery Exhaustion",
+    "causal_direction": "negative",
+    "driver": "delivery_pct",
+    "mediator_or_process": "price",
+    "target_effect": "price weakens"
+  },
+  "confidence": {
+    "empirical": 0.05,
+    "regime": 0.5411,
+    "reflection": 0.1766,
+    "coherence": 0.0,
+    "contradiction": 1.0
+  },
+  "contradiction": {
+    "score": 1.0,
+    "indicators": [
+      "Structural: Field conflict: The current market regime is c vs Sector relative strength Z-sco; Low semantic similarity: MECH_002... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs volume.daily_ratio <...; Low semantic similarity: volume_elevated AND ... vs volume.daily_ratio <...; Low semantic similarity: false: demote MECH_0... vs true: remove mechani...; Volatility: expansion vs stability; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Field conflict: The current market regime is c vs Sector relative strength Z-sco; Low semantic similarity: MECH_002... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs volume.daily_ratio <...; Low semantic similarity: volume_elevated AND ... vs volume.daily_ratio <...; Low semantic similarity: false: demote MECH_0... vs true: remove mechani...; Volatility: expansion vs stability; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Field conflict: The current market regime is c vs The sector Z-score remains neu; Low semantic similarity: MECH_002... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs volume_spike OR asse...; Low semantic similarity: false: demote MECH_0... vs true: retain MECH_00...; Volatility: expansion vs stability; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Field conflict: The current market regime is c vs The neutral market regime is c; Low semantic similarity: MECH_002... vs delivery_exhaustion_...; Low semantic similarity: The current market r... vs delivery_exhaustion_...; Low semantic similarity: volume_elevated AND ... vs delivery_exhaustion_...; Low semantic similarity: false: demote MECH_0... vs false: add to retain...; Volatility: expansion vs stability; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+      "Structural: Low semantic similarity: MECH_002... vs decisive close above...; Low semantic similarity: The current market r... vs delivery_pct.rolling...; Low semantic similarity: volume_elevated AND ... vs delivery_pct.rolling...; Low semantic similarity: false: demote MECH_0... vs false: remove mechan...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+    ],
+    "llm_contradiction_audit": [
+      {
+        "theory_id": "957cce15-9f99-4bf4-a4ff-de4fedb73b72",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "e5220f58-8ebc-4451-b035-3555770c36dd",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "a364914c-005f-45da-b8ec-e4f8a3730291",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "51b15dcc-4b5a-42b4-b9d5-b47fb3f4235f",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      },
+      {
+        "theory_id": "722beccf-3d65-48ae-bfcd-b5ca43837612",
+        "audit": {
+          "relationship": "unknown",
+          "confidence": 0.0,
+          "reasoning": "Optimized: LLM contradiction audit bypassed during replay."
+        }
+      }
+    ],
+    "summary": "Detected 5 contradictions with a total score of 1.00."
+  },
+  "horizon": {
+    "daily": "weakening",
+    "weekly": "mixed",
+    "monthly": "insufficient_history"
+  },
+  "regime_signature": {
+    "date": "2026-07-08",
+    "trend": "extended_lower",
+    "volatility_state": "compressed",
+    "sentiment": "positive",
+    "confidence_profile": "pressured",
+    "contradiction_severity": 1.0,
+    "active_theory_count": 1,
+    "breadth_proxy": "weakened"
+  },
+  "regime_matches": [
+    {
+      "date": "2026-07-01",
+      "similarity": 0.657,
+      "active_theories": [
+        "c974dc5f813def5d",
+        "c9c6c6d7bb71fede"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: The current market r... vs Neutral regime is dr...; Low semantic similarity: The current market r... vs sector_zscore < -1.5...; Low semantic similarity: delivery_pct.rolling... vs sector_zscore < -1.5...; Low semantic similarity: false: remove mechan... vs volume_state = eleva..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-07-03",
+      "similarity": 0.656,
+      "active_theories": [
+        "c974dc5f813def5d",
+        "94061e85bb06b636"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: The sector Z-score r... vs delivery_exhaustion_...; Low semantic similarity: volume_spike OR asse... vs delivery_exhaustion_...; Low semantic similarity: true: retain MECH_00... vs false: add to retain...",
+        "Structural: Low semantic similarity: The sector Z-score r... vs The current market r...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The sector Z-score r... vs delivery_pct.rolling...; Low semantic similarity: volume_spike OR asse... vs delivery_pct.rolling...; Low semantic similarity: true: retain MECH_00... vs false: remove mechan...",
+        "Structural: Low semantic similarity: The sector Z-score r... vs Neutral regime is dr...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The sector Z-score r... vs sector_zscore < -1.5...; Low semantic similarity: volume_spike OR asse... vs sector_zscore < -1.5...; Low semantic similarity: true: retain MECH_00... vs volume_state = eleva..."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    },
+    {
+      "date": "2026-07-06",
+      "similarity": 0.573,
+      "active_theories": [
+        "c801bf8cf96b46db"
+      ],
+      "contradictions": [
+        "Structural: Low semantic similarity: Sector relative stre... vs volume_spike OR asse...; Low semantic similarity: volume.daily_ratio <... vs volume_spike OR asse...; Low semantic similarity: true: remove mechani... vs true: retain MECH_00...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+        "Structural: Low semantic similarity: Sector relative stre... vs delivery_exhaustion_...; Low semantic similarity: volume.daily_ratio <... vs delivery_exhaustion_...; Low semantic similarity: true: remove mechani... vs false: add to retain...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+        "Structural: Low semantic similarity: Sector relative stre... vs The current market r...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: Sector relative stre... vs delivery_pct.rolling...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+      ],
+      "confidence": 0.0,
+      "recurring_contradiction": null
+    }
+  ],
+  "decisions": {
+    "baseline": {
+      "date": "2026-07-08",
+      "policy_name": "Baseline",
+      "action": "sell",
+      "conviction": 0.537,
+      "reason": "Daily execution baseline",
+      "allowed": true
+    },
+    "high_conviction": {
+      "date": "2026-07-08",
+      "policy_name": "High Conviction",
+      "action": "cash",
+      "conviction": 0.537,
+      "reason": "Cognition requirements not met",
+      "allowed": false
+    },
+    "breakout": {
+      "date": "2026-07-08",
+      "policy_name": "Breakout Discipline",
+      "action": "cash",
+      "conviction": 0.537,
+      "reason": "Skipped pressure threshold",
+      "allowed": false
+    }
+  },
+  "theory_usefulness": {
+    "score": 0.0,
+    "label": "failed"
+  },
+  "reflection": "The provided structured market observation dimensions validate the current market regime as neutral, but with a strong bearish bias. The observations suggest that the market is experiencing a mixed trend with moderate volume and compressed volatility, which aligns with the theory's characterization of a weak volume expansion on up days relative to down days. However, there are contradictions between the active theories regarding the sector's performance, with some indicating a leading sector while others suggest a neutral sector. The dialectical synthesis attempts to reconcile this conflict by suggesting that the sector's relative strength Z-score remains neutral, but the current market regime is characterized by a bearish bias.",
+  "regime_subtype": "neutral",
+  "falsifiability_conditions": [
+    "requires additional confirmation signals"
+  ],
+  "analog_divergence_claim": "",
+  "theory_regime_subtype": "neutral",
+  "theory_falsifiability": [
+    "requires additional confirmation signals"
+  ],
+  "regime_history": {
+    "subtype": "neutral",
+    "seen_count": 4,
+    "avg_usefulness": 0.076,
+    "last_seen": "2026-07-08",
+    "historical_resolution": {
+      "higher": 0,
+      "lower": 2,
+      "range_bound": 1,
+      "uncertain": 0
+    },
+    "falsified_count": 3
+  },
+  "dialectical_triggered": true,
+  "dialectical_synthesis": {
+    "shared_premise": "The market is experiencing a mixed trend with a bearish bias, characterized by moderate volume and compressed volatility.",
+    "conflict": "There is a discrepancy between the active theories regarding the sector's performance, with some indicating a leading sector while others suggest a neutral sector.",
+    "synthesis": "While the sector's relative strength Z-score remains neutral, the current market regime is characterized by a bearish bias, which suggests that the sector's performance may be influenced by this trend. However, further confirmation signals are required to confirm this hypothesis.",
+    "falsified_if": "The market experiences a significant increase in volume or volatility that contradicts the observed moderate volume and compressed volatility.",
+    "validation": {
+      "valid": true,
+      "quality": 0.8,
+      "issues": []
+    }
+  },
+  "metrics": {
+    "step": 6,
+    "date": "2026-07-08",
+    "contradiction_count": 4,
+    "contradiction_half_life": 1.0,
+    "median_contradiction_half_life": 1.0,
+    "oldest_unresolved_contradiction": 0,
+    "contradiction_resolution_rate": 0.7142857142857143,
+    "avg_contradiction_severity": 0.5810071428571428,
+    "highest_contradiction": 1.0,
+    "theory_count": 1,
+    "active_theories": 1,
+    "new_theories": 1,
+    "mutated_theories": 0,
+    "merged_theories": 0,
+    "retired_theories": 1,
+    "revived_theories": 0,
+    "contradicted_theories": 1,
+    "avg_retirement_age": 1.6,
+    "avg_revival_latency": 0.0,
+    "avg_theory_age": 2.3333333333333335,
+    "longest_surviving_theory": 5,
+    "theory_mutation_count": 2,
+    "avg_confidence": 0.06047142857142857,
+    "confidence_delta": -0.19,
+    "confidence_volatility": 0.07922962494791802,
+    "confidence_saturation_score": 0.0,
+    "reflection_count": 1,
+    "reflection_depth_score": 4.0,
+    "grounded_reflection_score": 1.0,
+    "meta_commentary_score": 0.0,
+    "critique_specificity": 0.75,
+    "memory_reference_count": 0,
+    "critique_density": 0.028037383177570093,
+    "avg_abstraction_length": 14.0,
+    "compression_ratio": 0.30434782608695654,
+    "generic_phrase_score": 0.0,
+    "inflation_relapse_score": 0.0,
+    "theory_word_count": 34,
+    "mechanism_count": 3,
+    "conditional_clauses_count": 3,
+    "exceptions_added": 1,
+    "mechanisms_retired_count": 2,
+    "mechanisms_added_count": 1,
+    "mechanisms_modified_count": 1,
+    "mechanism_stability": 0.5,
+    "words_before_mutation": 29,
+    "words_after_mutation": 34,
+    "mechanisms_before_mutation": 4,
+    "mechanisms_after_mutation": 3,
+    "extras": {
+      "observation_length": 46,
+      "theory_text": "The current market regime is characterized by weak volume expansion on up days relative to down days, moderate delivery exhaustion driven by FII selling, and neutral sector relative strength Z-scores influenced by volatility compression.",
+      "contradiction_text": "Detected 5 contradictions with a total score of 1.00.",
+      "horizon": {
+        "daily": "weakening",
+        "weekly": "mixed",
+        "monthly": "insufficient_history"
+      },
+      "regime_signature": {
+        "date": "2026-07-08",
+        "trend": "extended_lower",
+        "volatility_state": "compressed",
+        "sentiment": "positive",
+        "confidence_profile": "pressured",
+        "contradiction_severity": 1.0,
+        "active_theory_count": 1,
+        "breadth_proxy": "weakened"
+      },
+      "regime_matches": [
+        {
+          "date": "2026-07-01",
+          "similarity": 0.657,
+          "active_theories": [
+            "c974dc5f813def5d",
+            "c9c6c6d7bb71fede"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The current market r... vs Neutral regime is dr...; Low semantic similarity: The current market r... vs sector_zscore < -1.5...; Low semantic similarity: delivery_pct.rolling... vs sector_zscore < -1.5...; Low semantic similarity: false: remove mechan... vs volume_state = eleva..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-07-03",
+          "similarity": 0.656,
+          "active_theories": [
+            "c974dc5f813def5d",
+            "94061e85bb06b636"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: The sector Z-score r... vs delivery_exhaustion_...; Low semantic similarity: volume_spike OR asse... vs delivery_exhaustion_...; Low semantic similarity: true: retain MECH_00... vs false: add to retain...",
+            "Structural: Low semantic similarity: The sector Z-score r... vs The current market r...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The sector Z-score r... vs delivery_pct.rolling...; Low semantic similarity: volume_spike OR asse... vs delivery_pct.rolling...; Low semantic similarity: true: retain MECH_00... vs false: remove mechan...",
+            "Structural: Low semantic similarity: The sector Z-score r... vs Neutral regime is dr...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: The sector Z-score r... vs sector_zscore < -1.5...; Low semantic similarity: volume_spike OR asse... vs sector_zscore < -1.5...; Low semantic similarity: true: retain MECH_00... vs volume_state = eleva..."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        },
+        {
+          "date": "2026-07-06",
+          "similarity": 0.573,
+          "active_theories": [
+            "c801bf8cf96b46db"
+          ],
+          "contradictions": [
+            "Structural: Low semantic similarity: Sector relative stre... vs volume_spike OR asse...; Low semantic similarity: volume.daily_ratio <... vs volume_spike OR asse...; Low semantic similarity: true: remove mechani... vs true: retain MECH_00...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+            "Structural: Low semantic similarity: Sector relative stre... vs delivery_exhaustion_...; Low semantic similarity: volume.daily_ratio <... vs delivery_exhaustion_...; Low semantic similarity: true: remove mechani... vs false: add to retain...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.",
+            "Structural: Low semantic similarity: Sector relative stre... vs The current market r...; Low semantic similarity: delivery_exhaustion_... vs decisive close above...; Low semantic similarity: Sector relative stre... vs delivery_pct.rolling...; Semantic Contradiction: Concept 'SECTOR_ZSCORE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory.; Semantic Contradiction: Concept 'TREND_PERSISTENCE' relation is 'CONTRADICTS' in current theory but 'CO-OCCURS_WITH' in historical theory."
+          ],
+          "confidence": 0.0,
+          "recurring_contradiction": null
+        }
+      ],
+      "theory_usefulness": {
+        "score": 0.0,
+        "label": "failed"
+      }
+    }
+  }
+}

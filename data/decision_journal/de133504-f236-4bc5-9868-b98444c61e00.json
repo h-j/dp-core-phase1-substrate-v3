@@ -1,0 +1,56 @@
+{
+  "id": "de133504-f236-4bc5-9868-b98444c61e00",
+  "created_at": "2026-07-17T07:10:28.797161+00:00",
+  "prediction_date": "2026-06-30",
+  "evaluation_date": "2026-07-01",
+  "asset": "RELIANCE",
+  "prediction": "lower",
+  "decision": {
+    "id": "f37d497e-3caf-42b0-8c65-44a3d29eeea6",
+    "created_at": "2026-07-17T07:10:28.797097+00:00",
+    "date": "2026-06-30",
+    "prediction_direction": "lower",
+    "action": "short",
+    "allocation_pct": 0.0825,
+    "conviction_score": 0.4806,
+    "reason": "observation coherence vs residual uncertainty"
+  },
+  "allocation": 0.0825,
+  "conviction_score": 0.4806,
+  "decision_reason": "observation coherence vs residual uncertainty",
+  "supporting_lineages": [
+    "f4ef0718667ec636"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [
+    "Regime Analog unknown",
+    "Regime Analog unknown",
+    "Regime Analog unknown"
+  ],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 0.09476000000000001,
+  "transition_pressure": 0.44400000000000006,
+  "calibrated_confidence": 0.697,
+  "empirical_confidence": 0.0,
+  "reflection_confidence": 0.0,
+  "regime_confidence": 0.5637,
+  "expected_scenarios": [
+    "observation coherence vs residual uncertainty"
+  ],
+  "actual_outcome": "+0.70%",
+  "decision_result": "incorrect",
+  "pnl": -822.95,
+  "reflection_summary": "The prediction 'lower' was incorrect (actual return: +0.70%). Cognitive confidence was inappropriately high, failing to capture the risk. Recommended action: Trigger lineage mutation and open an evidence gap to reconcile contradiction.",
+  "knowledge_changes": [
+    "theory_mutated",
+    "theory_revived"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.2439,
+    "empirical": 0.0,
+    "principle_support": 0.0,
+    "contradictions": -0.019,
+    "transition_pressure": -0.0444
+  }
+}

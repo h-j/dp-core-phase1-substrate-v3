@@ -332,11 +332,9 @@ Example:
 
         # Strategy B spike prompt additions removed from primary prompt to prevent model overload.
 
-
         # Strongly prefer a JSON-only response. Add an explicit output format
         # requirement to the prompt to reduce free-text responses.
         # The prompt above already includes the detailed output format.
-
 
         # Strict validation loop for theory components ontology compliance
         max_attempts = 3
@@ -473,6 +471,7 @@ Example:
 
             # Strategy B: Sequential Structured Extraction (Call 2)
             import os
+
             if os.environ.get("EKAMNET_STRATEGY_B_SPIKE", "1") == "1":
                 claim = parsed_theory_data.get("claim", "")
                 mechanism = parsed_theory_data.get("mechanism", "")
@@ -525,7 +524,9 @@ Example:
                     ext_res = self.client.generate(extraction_prompt, json_format=True)
                     start = ext_res.find("{")
                     end = ext_res.rfind("}") + 1
-                    ext_json = ext_res[start:end] if start != -1 and end > start else ext_res
+                    ext_json = (
+                        ext_res[start:end] if start != -1 and end > start else ext_res
+                    )
                     ext_data = json.loads(ext_json)
                     if isinstance(ext_data, dict):
                         for k, v in ext_data.items():
@@ -873,12 +874,13 @@ Example:
         active_open_questions: Optional[list] = None,
         step: int = 0,
         knowledge_repository: Optional[Any] = None,
-        count: int = 2
+        count: int = 2,
     ):
         """Generates multiple sibling candidate theories sharing a common alternative_group_id."""
         from uuid import uuid4
+
         group_id = str(uuid4())
-        
+
         # 1. Generate primary candidate
         theory1, stats1 = self.process(
             abstraction=abstraction,
@@ -899,14 +901,18 @@ Example:
             active_principles=active_principles,
             active_open_questions=active_open_questions,
             step=step,
-            knowledge_repository=knowledge_repository
+            knowledge_repository=knowledge_repository,
         )
         theory1.alternative_group_id = group_id
-        
+
         candidates = [theory1]
-        
+
         if count > 1:
-            primary_claim = theory1.summary_structured.claim if theory1.summary_structured else theory1.summary
+            primary_claim = (
+                theory1.summary_structured.claim
+                if theory1.summary_structured
+                else theory1.summary
+            )
             alternative_observation = (
                 current_market_observation
                 + f"\n\nMANDATORY PLURALITY REQUIREMENT:\n"
@@ -933,12 +939,12 @@ Example:
                     active_principles=active_principles,
                     active_open_questions=active_open_questions,
                     step=step,
-                    knowledge_repository=knowledge_repository
+                    knowledge_repository=knowledge_repository,
                 )
                 theory2.alternative_group_id = group_id
                 candidates.append(theory2)
             except Exception as e:
                 if self.debug:
                     print(f"[Milestone 3 Sibling Generation Failure] {e}")
-                    
+
         return candidates

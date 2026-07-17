@@ -1,0 +1,51 @@
+{
+  "id": "871a7530-5b32-4ac8-ac77-c93390e7b520",
+  "created_at": "2026-07-17T06:11:20.043289+00:00",
+  "prediction_date": "2026-06-05",
+  "evaluation_date": "2026-06-08",
+  "asset": "RELIANCE",
+  "prediction": "uncertain",
+  "decision": {
+    "id": "dd9d22be-2ffd-4aa9-8abd-870916753d6c",
+    "created_at": "2026-07-17T06:11:20.043260+00:00",
+    "date": "2026-06-05",
+    "prediction_direction": "uncertain",
+    "action": "hold",
+    "allocation_pct": 0.0,
+    "conviction_score": 0.4785,
+    "reason": "continuation strength vs uncertainty"
+  },
+  "allocation": 0.0,
+  "conviction_score": 0.4785,
+  "decision_reason": "continuation strength vs uncertainty",
+  "supporting_lineages": [
+    "97e4fd788fe40ba2"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 0.0,
+  "transition_pressure": 0.06999999999999999,
+  "calibrated_confidence": 0.43,
+  "empirical_confidence": 0.175,
+  "reflection_confidence": 0.487,
+  "regime_confidence": 0.5,
+  "expected_scenarios": [
+    "continuation strength vs uncertainty"
+  ],
+  "actual_outcome": "-1.07%",
+  "decision_result": "neutral",
+  "pnl": 0.0,
+  "reflection_summary": "The prediction 'uncertain' was incorrect (actual return: -1.07%). Recommended action: Trigger lineage mutation and open an evidence gap to reconcile contradiction.",
+  "knowledge_changes": [
+    "theory_created"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.1505,
+    "empirical": 0.035,
+    "principle_support": 0.0,
+    "contradictions": -0.0,
+    "transition_pressure": -0.007
+  }
+}

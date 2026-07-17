@@ -1,0 +1,47 @@
+{
+  "id": "MECH_005",
+  "created_at": "2026-07-15T01:18:23.583855+00:00",
+  "mechanism_id": "MECH_005",
+  "canonical_name": "LIQUIDITY_ABSORPTION",
+  "concept_tags": [
+    "LIQUIDITY_ABSORPTION",
+    "DELIVERY_EXHAUSTION",
+    "FII_SELLING"
+  ],
+  "relation_type": "CONTRADICTS",
+  "first_seen": 2,
+  "last_seen": 9,
+  "days_active": 9,
+  "times_reused": 1,
+  "times_modified": 3,
+  "times_retired": 1,
+  "support_count": 1,
+  "contradiction_count": 4,
+  "prediction_helped": 1,
+  "prediction_harmed": 4,
+  "status": "retired",
+  "regimes_seen": [
+    "neutral",
+    "liquidity_constrained"
+  ],
+  "name": "LIQUIDITY_ABSORPTION",
+  "description": "Delivery percentage remains below 50 despite moderate volatility and FII selling, but with a stronger emphasis on the role of FII selling in driving delivery exhaustion.",
+  "concept_type": "candidate",
+  "associated_theory_ids": [
+    "75eadf56-ac8a-40f4-9364-70822419e34a",
+    "306e138b-0c5e-44f8-abcf-6598f39405b8",
+    "78b92762-f9d3-413d-a581-25cad163457c",
+    "f022e0b3-ba41-4942-b2dc-dc040a437b94",
+    "c07f6f99-622b-422e-ad0b-f0b6faf09a41",
+    "ecddb96c-50ea-4775-bf61-9a12c05ddaad",
+    "ac814bc2-70ac-4d44-8ff8-717da19f82cb",
+    "974d8321-b31d-4c31-a37b-3637969abf7d"
+  ],
+  "associated_lineages": [
+    "c974dc5f813def5d",
+    "c9c6c6d7bb71fede",
+    "b1951952e2d6d834",
+    "9c032d3c7c1c0c5e"
+  ],
+  "created_at_step": 2
+}

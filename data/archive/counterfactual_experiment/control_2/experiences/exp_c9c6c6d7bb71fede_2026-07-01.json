@@ -1,0 +1,60 @@
+{
+  "experience_id": "exp_c9c6c6d7bb71fede_2026-07-01",
+  "lineage_id": "c9c6c6d7bb71fede",
+  "theory_family_id": "c9c6c6d7bb71fede",
+  "created_at": "2026-07-01",
+  "status": "closed",
+  "theory_ids": [
+    "5982079c-844c-4c5f-8c01-c1643e56670c"
+  ],
+  "contradictions": [
+    "Structural: Low semantic similarity: The current market r... vs Neutral regime is dr...; Low semantic similarity: The current market r... vs sector_zscore < -1.5...; Low semantic similarity: delivery_pct.rolling... vs sector_zscore < -1.5...; Low semantic similarity: false: remove mechan... vs volume_state = eleva..."
+  ],
+  "mutations": [],
+  "outcome": {
+    "outcome_confidence": 0.0
+  },
+  "regime_context": [
+    "trend:closed_higher",
+    "volume:dry",
+    "volatility:compressed",
+    "liquidity:broad_participation",
+    "breadth:nascent",
+    "participation:weak",
+    "momentum:weakening",
+    "subtype:liquidity_constrained",
+    "delivery:delivery:moderate",
+    "fii:fii:selling",
+    "sector:sector:leading"
+  ],
+  "theory_subtype": "liquidity_constrained",
+  "mutation_count": 0,
+  "contradiction_count": 1,
+  "validation_count": 0,
+  "falsification_count": 1,
+  "causal_events": [
+    {
+      "event_type": "validation",
+      "timestamp": "2026-07-15T06:17:34.553043",
+      "outcome": "partial",
+      "theory_claim": "The current market regime is characterized by a liquidity-constrained environment where moderate volatility and FII selling lead to delivery percentages below 50, indicating persistent exhaustion of i",
+      "components_passed": [
+        "delivery_exhaustion_with_fii_selling",
+        "sector_zscore",
+        "volume_confirmation",
+        "delivery_exhaustion_with_fii_selling"
+      ],
+      "components_failed": [
+        "delivery_exhaustion_with_fii_selling"
+      ],
+      "root_cause": "delivery_exhaustion_with_fii_selling",
+      "falsification_triggered": null,
+      "divergence_point": "",
+      "attribution_confidence": 0.7,
+      "attribution_reasoning": "This theory failed because the observed data does not support the predicted outcome of \"delivery exhaustion with FII selling\". Here's why:\n\n1. **Volume spike**: The presence of a volume spike suggests that there is still significant investor interest and participation in the market, which contradict"
+    }
+  ],
+  "component_failure_counts": {
+    "delivery_exhaustion_with_fii_selling": 1
+  }
+}

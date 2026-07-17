@@ -1,0 +1,32 @@
+{
+  "id": "d5dce5d2-0cdd-4ebc-8881-90c7d4b25124",
+  "created_at": "2026-07-15 15:43:08.326474+00:00",
+  "theory_id": "9ffa3e17-cb30-4dea-ae03-0ac771bf1264",
+  "lineage_id": "dbd4f9ed7157f52a",
+  "replay_step": 3,
+  "compilation_status": "SUCCESS",
+  "failure_reason": null,
+  "trigger_definition": {
+    "field": "delivery_pct_5d",
+    "operator": ">",
+    "value": 60.0,
+    "lag": 0
+  },
+  "target_definition": {
+    "field": "outcome",
+    "operator": "==",
+    "value": "down"
+  },
+  "scope_definition": [
+    {
+      "field": "volatility_regime",
+      "operator": "==",
+      "value": "compressed"
+    }
+  ],
+  "compiler_trace": {
+    "source_mechanisms": [],
+    "source_theory": "9ffa3e17-cb30-4dea-ae03-0ac771bf1264",
+    "compiler_version": "proposition_compiler_v1"
+  }
+}

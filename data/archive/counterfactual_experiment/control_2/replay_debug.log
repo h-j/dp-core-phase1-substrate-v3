@@ -1,0 +1,115 @@
+
+======================================================================
+RESTART REPLAY: Clearing all database records and generated artifacts...
+======================================================================
+✓ PostgreSQL database tables dropped and recreated successfully.
+✓ Experience JSON files cleared.
+✓ Replay snapshots cleared.
+✓ Decision journal JSON files cleared.
+✓ Created new run directory: run_20260715_060903
+
+======================================================================
+REPLAY EXECUTION
+======================================================================
+Dataset: 10 days
+Range: 2026-06-30 to 2026-07-13
+
+[CONFIG SNAPSHOT]
+
+CONTRADICTION:
+  max_score_weight=0.7
+  mean_score_weight=0.3
+  threshold_synthesis=0.38
+  lexical_weight_base=0.15
+  trend_conflict_score=0.3
+  range_persistence_score=0.2
+  volatility_conflict_score=0.25
+  participation_conflict_score=0.2
+  regime_direct_conflict_score=0.4
+  regime_secondary_conflict_score=0.3
+
+TRANSITION:
+  regime_weakening_weight=0.4
+  low_regime_sim_stability=0.25
+  high_regime_sim_stability=0.8
+  contra_severe_base=0.468
+  contra_severe_slope=0.34
+  contra_max_weight=0.723
+  contra_high_weight=0.34
+  contra_rising_weight=0.255
+  atr_expansion_weight=0.6
+  volume_elevated_weight=0.65
+  range_compressed_stability=0.88
+  confidence_weakening_weight=0.28
+  coherence_degrading_weight=0.22
+  utility_low_weight=0.12
+  reflection_uncertain_weight=0.12
+  contra_breadth_multiplier=1.3
+  contra_solo_multiplier=1.15
+  stability_decay_step=0.15
+  breakout_signal_threshold=3
+  breakout_pressure_bonus=0.1
+
+----------------------------------------------------------------------
+[NOVELTY GATE] Decision: GENERATE | Score: 1.00 | 
+[Lineage] day=0 action=created record_id=c974dc5f813def5d parent_id=None survival_steps=1 confidence=0.500
+• [CONVICTION] Score: 0.50 | Allocation: 8.6% | Confidence: 0.55 | Pressure: 0.00 | Empirical: 0.24 | Principles: 0 | Regime: 0.64
+[NOVELTY GATE] Decision: REVISE | Score: 0.43 | Critique: The current observation suggests a weakening of short-term momentum and a moderate delivery exhaustion, which aligns with the existing theory's premise. However, the regime subtype 'liquidity_constrained' indicates that the market is experiencing volatility compression, which may not be fully captured by the existing theory. The prediction surprise of 0.50 also implies that there might be some discrepancies between the predicted and actual outcomes. | Explanation: Given the slight inconsistencies in the observation and the moderate deviation from the expected outcome, a minor revision to the existing theory's assumptions is warranted. This will allow us to adapt to the nuances of the current market situation without completely discarding the established framework.
+[Lineage] day=1 action=created record_id=c9c6c6d7bb71fede parent_id=None survival_steps=1 confidence=0.240
+• [CONVICTION] Score: 0.44 | Allocation: 7.7% | Confidence: 0.50 | Pressure: 0.09 | Empirical: 0.00 | Principles: 0 | Regime: 0.84
+[NOVELTY GATE] Decision: REVISE | Score: 0.54 | Critique: The current observation of a neutral participation and strong reliance traded range-bound with volatility compressed suggests that the existing theory's assumption of persistent exhaustion of investor demand may be partially correct. However, the moderate delivery percentage indicates some deviation from this expectation. A minor revision to the existing theory is warranted to account for these slight differences. | Explanation: Given the mixed trend persistence and regime subtype, a full theory generation might not be necessary. The observation is consistent with the prior theory but requires a slight adjustment to its assumptions. A minor revision will allow us to refine our understanding of the market regime without completely discarding the existing theory.
+[Lineage] day=2 action=continued record_id=c974dc5f813def5d parent_id=c974dc5f813def5d survival_steps=3 confidence=0.500
+[Lineage] day=2 retired=c9c6c6d7bb71fede
+• [CONVICTION] Score: 0.48 | Allocation: 8.2% | Confidence: 0.58 | Pressure: 0.09 | Empirical: 0.08 | Principles: 0 | Regime: 0.79
+[NOVELTY GATE] Decision: REVISE | Score: 0.54 | Critique: The current observation suggests a mixed trend persistence with weak bear participation and compressed volatility. This is consistent with the existing theory's neutral market regime characteristics, particularly the moderate sector Z-score and delivery percentages below 50. However, the recent FII selling event may have introduced some uncertainty, warranting a minor revision to the existing theory. | Explanation: Given that the prior step failed due to delivery exhaustion with FII selling, but the current observation is still within the realm of the neutral market regime, a minor revision is necessary to adapt to the slight differences. This decision allows for a nuanced adjustment to the existing theory without completely generating a new one.
+[Lineage] day=3 action=mutated record_id=94061e85bb06b636 parent_id=c974dc5f813def5d survival_steps=1 confidence=0.083
+• [CONVICTION] Score: 0.42 | Allocation: 7.5% | Confidence: 0.45 | Pressure: 0.10 | Empirical: 0.00 | Principles: 0 | Regime: 0.84
+[NOVELTY GATE] Decision: REVISE | Score: 0.43 | Critique: The current observation shows a mixed trend with a strong bull participation and weak divergence. The reliance focus is closed higher with volatility compressed, which aligns with the existing theory's neutral sector Z-score despite leading sector performance. However, the volume expansion on up days relative to down days and delivery percentage remain constrained below 50 due to FII selling, indicating some minor deviations from the prior theory. | Explanation: Given the slight deviations from the existing theory's assumptions, a minor revision is necessary to adapt to these changes. The observation does not strongly suggest generating a new theory or reinforcing the existing one, but rather requires a nuanced adjustment to the current framework.
+[Lineage] day=4 action=created record_id=c801bf8cf96b46db parent_id=None survival_steps=1 confidence=0.000
+[Lineage] day=4 retired=94061e85bb06b636,c974dc5f813def5d
+• [CONVICTION] Score: 0.21 | Allocation: 0.0% | Confidence: 0.34 | Pressure: 0.89 | Empirical: 0.00 | Principles: 0 | Regime: 0.71
+[Adaptive Trigger] Reconciliation triggered by Knowledge Debt: 11.0 > 10.0
+[Adaptive Trigger] Reconciliation triggered by Contradiction spike: 0.89 > 0.50
+[NOVELTY GATE] Decision: REINFORCE | Score: 0.54 | Critique: The current observation suggests a mixed trend with no significant deviations from the prior step's performance. The reliance focus is still neutral, and the sector Z-score remains unchanged despite sector performance. However, the FII selling has weakened volume expansion on up days, which could be seen as a minor adjustment to the existing theory. | Explanation: Given that the prior step's prediction surprise was relatively low (0.50) and the current observation is consistent with the existing theory, we can choose to REINFORCE the current state without making significant changes. The minor adjustments to the volume expansion on up days do not deviate significantly from the prior theory, so REINFORCE is the most appropriate choice.
+[Lineage] day=5 action=mutated record_id=c15abbddc6ffd2d3 parent_id=c801bf8cf96b46db survival_steps=1 confidence=0.000
+[Lineage] day=5 retired=c801bf8cf96b46db
+  [Feedback] Avoided Bad Trade: Rewarding empirical confidence (+0.05).
+• [CONVICTION] Score: 0.29 | Allocation: 0.0% | Confidence: 0.55 | Pressure: 0.89 | Empirical: 0.05 | Principles: 0 | Regime: 0.61
+[Adaptive Trigger] Reconciliation triggered by Knowledge Debt: 14.0 > 10.0
+[Adaptive Trigger] Reconciliation triggered by Contradiction spike: 0.89 > 0.50
+[NOVELTY GATE] Decision: REVISE | Score: 0.54 | Critique: The current observation suggests a mixed regime with bearish participation and compressed volatility. However, the reliance focus and asset selloff indicate some degree of weakness in the market. The existing theory's neutral sector Z-score remains consistent despite these observations, which may suggest that the prior theory was overly reliant on FII selling as the primary driver. A minor revision to the falsification checks could be warranted to account for the mixed regime and compressed volatility. | Explanation: Given the slight divergence between the observation and the existing theory, a minor revision is necessary to adapt to these changes. The decision not to generate a new theory or reinforce the existing one is based on the fact that the prior theory was not completely broken down, but rather requires some adjustments to account for the mixed regime.
+[Lineage] day=6 action=created record_id=24c55c1834f77e54 parent_id=None survival_steps=1 confidence=0.050
+[Lineage] day=6 retired=c15abbddc6ffd2d3
+  [Feedback] Avoided Bad Trade: Rewarding empirical confidence (+0.05).
+• [CONVICTION] Score: 0.26 | Allocation: 0.0% | Confidence: 0.54 | Pressure: 1.00 | Empirical: 0.05 | Principles: 0 | Regime: 0.60
+[Adaptive Trigger] Reconciliation triggered by Knowledge Debt: 17.0 > 10.0
+[Adaptive Trigger] Reconciliation triggered by Contradiction spike: 1.00 > 0.50
+[NOVELTY GATE] Decision: REVISE | Score: 0.54 | Critique: The current observation suggests a continuation of the neutral regime with moderate delivery exhaustion and compressed volatility. However, the slight increase in volume elevation and range expansion may indicate a minor shift towards a more bullish trend. The mixed trend persistence signals that the market is still indecisive, but not strongly leaning towards either side. This divergence from the existing theory's assumptions about weak volume expansion on up days relative to down days warrants a minor revision. | Explanation: Given the slight deviations from the expected patterns, revising the existing theory's assumptions is necessary to adapt to these changes. The decision not to generate a new theory or reinforce the existing one is based on the observation that the market is still in a mixed regime and the changes are minor enough to warrant a revision rather than a complete overhaul.
+[Lineage] day=7 action=created record_id=898ab86e3b54098a parent_id=None survival_steps=1 confidence=0.050
+[Lineage] day=7 retired=24c55c1834f77e54
+  [Feedback] Avoided Bad Trade: Rewarding empirical confidence (+0.05).
+• [CONVICTION] Score: 0.26 | Allocation: 0.0% | Confidence: 0.53 | Pressure: 0.98 | Empirical: 0.05 | Principles: 0 | Regime: 0.62
+[Adaptive Trigger] Reconciliation triggered by Knowledge Debt: 20.0 > 10.0
+[Adaptive Trigger] Reconciliation triggered by Contradiction spike: 0.98 > 0.50
+[NOVELTY GATE] Decision: REVISE | Score: 0.54 | Critique: The current observation suggests a mixed trend with a strong bull participation and weak divergence. The reliance focus is closed higher with volatility compressed and breadth strengthened. This aligns with the existing theory's assumption of sector relative strength Z-score remaining strong due to FII selling and volatility compression, driving delivery exhaustion. However, the slight increase in volume dryness (0.30) indicates a minor deviation from the prior step's performance. | Explanation: Given the minor deviation in volume dryness, it is reasonable to trigger a minor revision of the existing theory's assumptions/falsification checks to adapt to slight differences. This decision allows for a nuanced adjustment to the theory without completely breaking down the prior step's performance.
+[Lineage] day=8 action=created record_id=b1951952e2d6d834 parent_id=None survival_steps=1 confidence=0.050
+[Lineage] day=8 retired=898ab86e3b54098a
+  [Feedback] Avoided Bad Trade: Rewarding empirical confidence (+0.05).
+• [CONVICTION] Score: 0.18 | Allocation: 0.0% | Confidence: 0.29 | Pressure: 1.00 | Empirical: 0.05 | Principles: 0 | Regime: 0.70
+[Adaptive Trigger] Reconciliation triggered by Knowledge Debt: 23.0 > 10.0
+[Adaptive Trigger] Reconciliation triggered by Contradiction spike: 1.00 > 0.50
+[NOVELTY GATE] Decision: REVISE | Score: 0.54 | Critique: The current observation suggests a continuation of the existing regime, with the addition of weak upper participation and compressed volatility. However, the reliance focus and asset liquidity fade indicate some degree of constraint on the market's ability to move freely. This divergence from the prior theory's assumptions warrants a minor revision. | Explanation: Given that the observation is not drastically different from the prior step, but rather a slight refinement, revising the existing theory's assumptions seems like the most appropriate course of action. This will allow us to adapt to the new information while still maintaining some consistency with our previous understanding.
+[Lineage] day=9 action=created record_id=9c032d3c7c1c0c5e parent_id=None survival_steps=1 confidence=0.050
+[Lineage] day=9 retired=b1951952e2d6d834
+  [Feedback] Avoided Bad Trade: Rewarding empirical confidence (+0.05).
+• [CONVICTION] Score: 0.21 | Allocation: 0.0% | Confidence: 0.26 | Pressure: 0.82 | Empirical: 0.05 | Principles: 0 | Regime: 0.69
+✓ Saved paper trading log to: /Users/hemantj/Proj/dp_core/dp-core-phase1-substrate-v3/market/replay/output/paper_trade_log.csv
+✓ Saved paper trading log to run snapshot: /Users/hemantj/Proj/dp_core/dp-core-phase1-substrate-v3/data/replay_snapshots/reliance/run_20260715_060903/paper_trade_log.csv
+✓ Saved decision journal dump to: /Users/hemantj/Proj/dp_core/dp-core-phase1-substrate-v3/market/replay/output/decision_journal.json
+Synthesizing Epistemic Review...
+Saving Knowledge Graph...
+Saved: /Users/hemantj/Proj/dp_core/dp-core-phase1-substrate-v3/market/replay/output/reliance/cognitive_decision_trace.json
+
+✓ Replay complete
+  Execution hash: 82bcbd558e4a70ec...
+  Total synthesis triggered: 6

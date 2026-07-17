@@ -1,0 +1,15 @@
+{
+  "id": "a7ea9a17-f0ba-4f3e-a00a-f0af16b6ded0",
+  "created_at": "2026-07-15T01:06:15.309734+00:00",
+  "created_at_step": 4,
+  "question_text": "Why did component 'sector_zscore_revised' fail under liquidity_constrained regime?",
+  "source_contradiction_ids": [
+    "a364914c-005f-45da-b8ec-e4f8a3730291"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "dry"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

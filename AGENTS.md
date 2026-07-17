@@ -75,3 +75,13 @@ Prefer:
 - Deterministic replay validation.
 - Contradiction-aware lifecycle repair.
 - Small changes with explicit cognition semantics.
+
+## Forensic Audit Governance Rule
+
+Every forensic audit must end in exactly one of the following outcomes:
+- **Evidence Ledger Entry**: For verified scientific findings and empirical claims.
+- **Decision Ledger Entry**: For versioned architectural and design decisions.
+- **Rejected Finding**: For refuted candidate claims.
+
+No forensic audit may remain unattached or unmapped.
+

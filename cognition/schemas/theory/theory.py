@@ -88,7 +88,6 @@ class TheoryStructured(CognitionBase):
     target_effect: Optional[str] = None
 
 
-
 class Theory(CognitionBase):
     lineage_id: str
     thesis: str
@@ -102,4 +101,3 @@ class Theory(CognitionBase):
     analog_divergence_claim: str = ""
     regime_description: str = ""
     alternative_group_id: Optional[str] = None
-

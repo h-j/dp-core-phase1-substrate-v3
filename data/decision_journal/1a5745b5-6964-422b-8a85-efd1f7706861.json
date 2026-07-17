@@ -1,0 +1,56 @@
+{
+  "id": "1a5745b5-6964-422b-8a85-efd1f7706861",
+  "created_at": "2026-07-17T07:21:37.520328+00:00",
+  "prediction_date": "2026-06-01",
+  "evaluation_date": "2026-06-02",
+  "asset": "RELIANCE",
+  "prediction": "range_bound",
+  "decision": {
+    "id": "1379fbb1-1aac-4216-91f5-d1ddbe055b9f",
+    "created_at": "2026-07-17T07:21:37.520221+00:00",
+    "date": "2026-06-01",
+    "prediction_direction": "range_bound",
+    "action": "short",
+    "allocation_pct": 0.0756,
+    "conviction_score": 0.4279,
+    "reason": "observation coherence vs residual uncertainty"
+  },
+  "allocation": 0.0756,
+  "conviction_score": 0.4279,
+  "decision_reason": "observation coherence vs residual uncertainty",
+  "supporting_lineages": [
+    "92f2c4afd12e5f0e"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [
+    "Regime Analog unknown",
+    "Regime Analog unknown",
+    "Regime Analog unknown"
+  ],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 0.09692,
+  "transition_pressure": 0.24250000000000005,
+  "calibrated_confidence": 0.49,
+  "empirical_confidence": 0.0,
+  "reflection_confidence": 0.0,
+  "regime_confidence": 1.0,
+  "expected_scenarios": [
+    "observation coherence vs residual uncertainty"
+  ],
+  "actual_outcome": "+0.53%",
+  "decision_result": "incorrect",
+  "pnl": 0.0,
+  "reflection_summary": "The prediction 'range_bound' was incorrect (actual return: +0.53%). Recommended action: Trigger lineage mutation and open an evidence gap to reconcile contradiction.",
+  "knowledge_changes": [
+    "theory_mutated",
+    "theory_revived"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.1715,
+    "empirical": 0.0,
+    "principle_support": 0.0,
+    "contradictions": -0.0194,
+    "transition_pressure": -0.0243
+  }
+}

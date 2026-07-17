@@ -1,4 +1,10 @@
 from memory.relational.models.abstraction_model import AbstractionModel
+from memory.relational.models.belief_state_model import (
+    BeliefStateModel, BeliefTransitionEventModel)
+from memory.relational.models.canonical_semantic_proposition_model import \
+    CanonicalSemanticPropositionModel
+from memory.relational.models.compiled_proposition_model import \
+    CompiledPropositionModel
 from memory.relational.models.confidence_model import ConfidenceModel
 from memory.relational.models.market_outcome_model import MarketOutcomeModel
 from memory.relational.models.observation_model import ObservationModel
@@ -15,6 +21,8 @@ from memory.relational.models.theory_model import TheoryModel
 from memory.relational.models.transition_pressure_model import \
     TransitionPressureModel
 from memory.relational.models.validation_model import ValidationModel
+from memory.relational.models.validation_record_model import \
+    ValidationRecordModel
 
 __all__ = [
     "AbstractionModel",
@@ -29,4 +37,9 @@ __all__ = [
     "PredictionProbeModel",
     "PredictionResultModel",
     "TransitionPressureModel",
+    "CompiledPropositionModel",
+    "CanonicalSemanticPropositionModel",
+    "ValidationRecordModel",
+    "BeliefStateModel",
+    "BeliefTransitionEventModel",
 ]

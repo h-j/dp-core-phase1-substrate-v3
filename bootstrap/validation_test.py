@@ -660,8 +660,6 @@ def test_causal_loop_adjustments():
 
     flow.client.generate.reset_mock()
 
-
-
     # 2.2 With prior theory/attribution containing failed components
     prior_theory = Theory(
         lineage_id="l1",

@@ -1,5 +1,11 @@
 from memory.relational.repositories.abstraction_repository import \
     AbstractionRepository
+from memory.relational.repositories.belief_state_repository import \
+    BeliefStateRepository
+from memory.relational.repositories.canonical_semantic_proposition_repository import \
+    CanonicalSemanticPropositionRepository
+from memory.relational.repositories.compiled_proposition_repository import \
+    CompiledPropositionRepository
 from memory.relational.repositories.confidence_repository import \
     ConfidenceRepository
 from memory.relational.repositories.observation_repository import \
@@ -9,6 +15,8 @@ from memory.relational.repositories.reflection_repository import \
 from memory.relational.repositories.reflective_memory_repository import \
     ReflectiveMemoryRepository
 from memory.relational.repositories.theory_repository import TheoryRepository
+from memory.relational.repositories.validation_record_repository import \
+    ValidationRecordRepository
 from memory.relational.repositories.validation_repository import \
     ValidationRepository
 
@@ -20,4 +28,8 @@ __all__ = [
     "ReflectiveMemoryRepository",
     "TheoryRepository",
     "ValidationRepository",
+    "CompiledPropositionRepository",
+    "CanonicalSemanticPropositionRepository",
+    "ValidationRecordRepository",
+    "BeliefStateRepository",
 ]

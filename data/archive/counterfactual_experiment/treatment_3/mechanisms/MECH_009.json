@@ -1,0 +1,39 @@
+{
+  "id": "MECH_009",
+  "created_at": "2026-07-15T01:27:34.615986+00:00",
+  "mechanism_id": "MECH_009",
+  "canonical_name": "VOLATILITY_EXPANSION",
+  "concept_tags": [
+    "VOLATILITY_EXPANSION",
+    "RANGE_EXPANSION"
+  ],
+  "relation_type": "CONTRADICTS",
+  "first_seen": 8,
+  "last_seen": 8,
+  "days_active": 2,
+  "times_reused": 0,
+  "times_modified": 0,
+  "times_retired": 0,
+  "support_count": 0,
+  "contradiction_count": 1,
+  "prediction_helped": 0,
+  "prediction_harmed": 1,
+  "status": "candidate",
+  "regimes_seen": [
+    "liquidity_constrained"
+  ],
+  "name": "VOLATILITY_EXPANSION",
+  "description": "Volume expansion on up days relative to down days is weak, but range expansion suggests a widening price movement.",
+  "concept_type": "candidate",
+  "associated_theory_ids": [
+    "ac814bc2-70ac-4d44-8ff8-717da19f82cb"
+  ],
+  "associated_lineages": [
+    "c9c6c6d7bb71fede",
+    "c801bf8cf96b46db",
+    "c974dc5f813def5d",
+    "898ab86e3b54098a",
+    "24c55c1834f77e54"
+  ],
+  "created_at_step": 8
+}

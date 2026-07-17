@@ -6,6 +6,7 @@ from flows.minimal_learning_cycle.baselines import (B1AlwaysAdmit,
                                                     B3MatchedRandom)
 from flows.minimal_learning_cycle.belief_memory import MLCBeliefMemory
 from flows.minimal_learning_cycle.candidate_freeze import MLCCandidateFreeze
+from flows.minimal_learning_cycle.competition import MLCCompetitionEngine
 from flows.minimal_learning_cycle.decision import MLCDecision
 from flows.minimal_learning_cycle.erc import ERCController
 from flows.minimal_learning_cycle.evidence_ledger import EvidenceLedger
@@ -17,7 +18,6 @@ from flows.minimal_learning_cycle.readiness import MLCReadiness
 from flows.minimal_learning_cycle.schemas import (LifecycleState,
                                                   PropositionSchema,
                                                   validate_state_transition)
-from flows.minimal_learning_cycle.competition import MLCCompetitionEngine
 
 
 class MLCExperimentRunner:
@@ -433,9 +433,11 @@ class MLCExperimentRunner:
         The winner is then evaluated prospectively on Window 3 if enable_prospective_filter is True.
         """
         from uuid import uuid4
+
         from flows.minimal_learning_cycle.config import MIN_COVERAGE
+
         alternative_group_id = str(uuid4())
-        
+
         world_id = f"WORLD_{world['family']}_SEED_{world['seed']}"
         self.world_registry.append(
             {"world_id": world_id, "family": world["family"], "seed": world["seed"]}
@@ -454,11 +456,13 @@ class MLCExperimentRunner:
             if sham_trigger:
                 rejected_triggers = [sham_trigger]
             else:
-                rejected_triggers = self.belief_memory.get_rejected_or_retired_triggers()
+                rejected_triggers = (
+                    self.belief_memory.get_rejected_or_retired_triggers()
+                )
 
         # 1. Compile Candidates
         candidates = []
-        
+
         # Primary candidate (correct, using trigger_var F_0)
         prop1_id = f"PROP_{world_id}_c1"
         prop1 = {
@@ -489,39 +493,55 @@ class MLCExperimentRunner:
             "lifecycle_state": LifecycleState.HYPOTHESIS,
             "alternative_group_id": alternative_group_id,
         }
-        
+
         primary_pruned = False
-        if enable_learning and world["trigger_var"] in rejected_triggers and not bypass_pruning:
+        if (
+            enable_learning
+            and world["trigger_var"] in rejected_triggers
+            and not bypass_pruning
+        ):
             if not hasattr(self, "learning_audit_log"):
                 self.learning_audit_log = []
-            self.learning_audit_log.append({
-                "proposition_id": prop1_id,
-                "trigger_field": world["trigger_var"],
-                "action": "PRUNED",
-                "reason": "PAST_REJECTION"
-            })
+            self.learning_audit_log.append(
+                {
+                    "proposition_id": prop1_id,
+                    "trigger_field": world["trigger_var"],
+                    "action": "PRUNED",
+                    "reason": "PAST_REJECTION",
+                }
+            )
             primary_pruned = True
 
         if not primary_pruned:
             candidates.append(prop1)
-        
+
         # Confounding candidates (using non-causal VAR fields)
         f_map = world["feature_map"]
         # Find all available non-causal features
-        non_causal_keys = [f"F_{i}" for i in range(1, 10) if f_map.get(f"F_{i}") != world["trigger_var"]]
-        
+        non_causal_keys = [
+            f"F_{i}"
+            for i in range(1, 10)
+            if f_map.get(f"F_{i}") != world["trigger_var"]
+        ]
+
         for idx in range(min(num_confounders, len(non_causal_keys))):
             confounding_var = f_map[non_causal_keys[idx]]
-            
-            if enable_learning and confounding_var in rejected_triggers and not bypass_pruning:
+
+            if (
+                enable_learning
+                and confounding_var in rejected_triggers
+                and not bypass_pruning
+            ):
                 if not hasattr(self, "learning_audit_log"):
                     self.learning_audit_log = []
-                self.learning_audit_log.append({
-                    "proposition_id": f"PROP_{world_id}_c{idx+2}",
-                    "trigger_field": confounding_var,
-                    "action": "PRUNED",
-                    "reason": "PAST_REJECTION"
-                })
+                self.learning_audit_log.append(
+                    {
+                        "proposition_id": f"PROP_{world_id}_c{idx+2}",
+                        "trigger_field": confounding_var,
+                        "action": "PRUNED",
+                        "reason": "PAST_REJECTION",
+                    }
+                )
                 continue
 
             prop_id = f"PROP_{world_id}_c{idx+2}"
@@ -555,45 +575,45 @@ class MLCExperimentRunner:
                 "alternative_group_id": alternative_group_id,
             }
             candidates.append(prop)
-            
+
         # 2. Run compilation and evidence gathering (Window 2) for all candidates
         compiled_candidates = []
         for prop in candidates:
             p_id = prop["proposition_id"]
             lifecycle_history = [LifecycleState.HYPOTHESIS]
-            
+
             # Verify compilation
             if not MLCMeasurement.verify_proposition_compilation(prop):
                 continue
-                
+
             # Debit compilation resource
             comp_authorized = self.erc.check_and_deduct("COMPILATION", p_id, 10)
             if not comp_authorized:
                 raise RuntimeError(f"Compilation budget check failed for {p_id}")
-                
+
             prop["lifecycle_state"] = LifecycleState.COMPILED_CANDIDATE
             lifecycle_history.append(LifecycleState.COMPILED_CANDIDATE)
-            
+
             # Debit evidence resource
             ev_authorized = self.erc.check_and_deduct("EVIDENCE", p_id, 20)
             if not ev_authorized:
                 raise RuntimeError(f"Evidence budget check failed for {p_id}")
-                
+
             prop["lifecycle_state"] = LifecycleState.EVIDENCE_ACCUMULATING
             lifecycle_history.append(LifecycleState.EVIDENCE_ACCUMULATING)
-            
+
             # Attribute experiences for Window 2
             active_count = 0
             active_target_count = 0
             control_count = 0
             control_target_count = 0
-            
+
             for exp in world["window_2"]:
                 attr = MLCMeasurement.attribute_experience(
                     prop, exp, world["window_2"], "WINDOW_2", world["experiences"]
                 )
                 self.ledger.append(attr)
-                
+
                 if attr["trigger_activated"]:
                     active_count += 1
                     if attr["attribution_class"] == "SUPPORT":
@@ -602,101 +622,137 @@ class MLCExperimentRunner:
                     control_count += 1
                     if exp["outcome"] == prop["target_definition"]["value"]:
                         control_target_count += 1
-                        
+
             window_2_summary = {
                 "active_count": active_count,
                 "active_target_count": active_target_count,
                 "control_count": control_count,
                 "control_target_count": control_target_count,
             }
-            
+
             intrinsic_metrics = MLCMeasurement.compute_metrics(
                 prop, world["window_2"], "WINDOW_2", world["experiences"]
             )
             # Calculate retrospective comparative effect on Window 2
-            a_pct = (window_2_summary["active_target_count"] / window_2_summary["active_count"]) if window_2_summary["active_count"] > 0 else 0.50
-            c_pct = (window_2_summary["control_target_count"] / window_2_summary["control_count"]) if window_2_summary["control_count"] > 0 else 0.50
+            a_pct = (
+                (
+                    window_2_summary["active_target_count"]
+                    / window_2_summary["active_count"]
+                )
+                if window_2_summary["active_count"] > 0
+                else 0.50
+            )
+            c_pct = (
+                (
+                    window_2_summary["control_target_count"]
+                    / window_2_summary["control_count"]
+                )
+                if window_2_summary["control_count"] > 0
+                else 0.50
+            )
             retro_effect = a_pct - c_pct
             intrinsic_metrics["comparative_effect"] = retro_effect
-            
+
             self.intrinsic_measurements.append(
                 {"proposition_id": p_id, **intrinsic_metrics}
             )
-            
+
             ready, reason = MLCReadiness.check_readiness(prop, intrinsic_metrics)
             if not ready:
                 prop["lifecycle_state"] = LifecycleState.DEFERRED_PROPOSITION
                 continue
-                
+
             prop["lifecycle_state"] = LifecycleState.EVALUATION_READY
             lifecycle_history.append(LifecycleState.EVALUATION_READY)
-            
-            frozen = MLCCandidateFreeze.freeze(prop, intrinsic_metrics, window_2_summary)
+
+            frozen = MLCCandidateFreeze.freeze(
+                prop, intrinsic_metrics, window_2_summary
+            )
             if prop is prop1:
                 self.frozen_candidates.append(frozen)
-                
+
             prop["lifecycle_state"] = LifecycleState.FROZEN_EVALUATION_CANDIDATE
             lifecycle_history.append(LifecycleState.FROZEN_EVALUATION_CANDIDATE)
-            
+
             # Construct retrospective results for selection comparator
             retrospective_res = {
                 "comparative_effect": retro_effect,
-                "prospective_adequacy": "PASS" if intrinsic_metrics.get("sample_adequacy") else "FAIL",
-                "prospective_coverage": "PASS" if intrinsic_metrics.get("coverage", 0.0) >= MIN_COVERAGE else "FAIL",
+                "prospective_adequacy": (
+                    "PASS" if intrinsic_metrics.get("sample_adequacy") else "FAIL"
+                ),
+                "prospective_coverage": (
+                    "PASS"
+                    if intrinsic_metrics.get("coverage", 0.0) >= MIN_COVERAGE
+                    else "FAIL"
+                ),
             }
-            
-            compiled_candidates.append({
-                "proposition": prop,
-                "prospective_res": retrospective_res,
-                "lifecycle_history": lifecycle_history,
-                "window_2_summary": window_2_summary,
-                "frozen": frozen,
-            })
-            
+
+            compiled_candidates.append(
+                {
+                    "proposition": prop,
+                    "prospective_res": retrospective_res,
+                    "lifecycle_history": lifecycle_history,
+                    "window_2_summary": window_2_summary,
+                    "frozen": frozen,
+                }
+            )
+
         if not compiled_candidates:
             raise RuntimeError("No candidates survived compilation/readiness.")
-            
+
         # 3. Retrospective Selection
         winner_data = MLCCompetitionEngine.select_best_candidate(compiled_candidates)
         winner_prop = winner_data["proposition"]
         winner_id = winner_prop["proposition_id"]
-        
+
         # 4. Evaluation and Decision
         if enable_prospective_filter:
             # Debit validation resource (only for the selected winner!)
             val_authorized = self.erc.check_and_deduct("VALIDATION", winner_id, 30)
             if not val_authorized:
                 raise RuntimeError(f"Validation budget check failed for {winner_id}")
-                
+
             winner_prop["lifecycle_state"] = LifecycleState.PROSPECTIVELY_EVALUATED
-            winner_data["lifecycle_history"].append(LifecycleState.PROSPECTIVELY_EVALUATED)
-            
+            winner_data["lifecycle_history"].append(
+                LifecycleState.PROSPECTIVELY_EVALUATED
+            )
+
             # Unseal Window 3
             if hasattr(world.get("window_3"), "unseal"):
                 world["window_3"].unseal()
-                
+
             for exp in world["window_3"]:
                 attr = MLCMeasurement.attribute_experience(
-                    winner_prop, exp, world["window_3"], "WINDOW_3", world["experiences"]
+                    winner_prop,
+                    exp,
+                    world["window_3"],
+                    "WINDOW_3",
+                    world["experiences"],
                 )
                 self.ledger.append(attr)
-                
+
             prospective_res = MLCProspectiveValidation.evaluate(
                 winner_prop, world["window_3"], world["experiences"]
             )
             self.prospective_measurements.append(
                 {"proposition_id": winner_id, **prospective_res}
             )
-            
-            decision_dict = MLCDecision.make_decision(winner_id, world_id, prospective_res)
+
+            decision_dict = MLCDecision.make_decision(
+                winner_id, world_id, prospective_res
+            )
         else:
             # Retrospective Decision (Condition B: No prospective validation)
             winner_prop["lifecycle_state"] = LifecycleState.PROSPECTIVELY_EVALUATED
-            winner_data["lifecycle_history"].append(LifecycleState.PROSPECTIVELY_EVALUATED)
-            
+            winner_data["lifecycle_history"].append(
+                LifecycleState.PROSPECTIVELY_EVALUATED
+            )
+
             retrospective_res = winner_data["prospective_res"]
-            decision_dict = MLCDecision.make_decision(winner_id, world_id, retrospective_res)
-            
+            decision_dict = MLCDecision.make_decision(
+                winner_id, world_id, retrospective_res
+            )
+
             # Run prospective validation silently to measure true performance (without affecting decision)
             if hasattr(world.get("window_3"), "unseal"):
                 world["window_3"].unseal()
@@ -706,7 +762,7 @@ class MLCExperimentRunner:
             self.prospective_measurements.append(
                 {"proposition_id": winner_id, **prospective_res}
             )
-            
+
         decision_dict["prospective_filter_enabled"] = enable_prospective_filter
         sys_dec = decision_dict["decision"]
         if sys_dec == "ADMIT":
@@ -715,19 +771,19 @@ class MLCExperimentRunner:
             target_state = LifecycleState.REJECTED_PROPOSITION
         else:
             target_state = LifecycleState.DEFERRED_PROPOSITION
-            
+
         validate_state_transition(winner_prop["lifecycle_state"], target_state)
         winner_prop["lifecycle_state"] = target_state
         winner_data["lifecycle_history"].append(target_state)
-        
+
         defer_class = MLCDecision.classify_defer_origin(
             decision_dict, ground_truth_record
         )
         decision_dict["defer_origin_classification"] = defer_class
-        
+
         self.decisions.append(decision_dict)
         self.propositions.append(winner_prop)
-        
+
         erc_refs = [
             l["request_id"] for l in self.erc.logs if l["proposition_id"] == winner_id
         ]
@@ -736,7 +792,7 @@ class MLCExperimentRunner:
             for l in self.ledger.get_records()
             if l["proposition_id"] == winner_id
         ]
-        
+
         self.belief_memory.store_record(
             winner_prop,
             winner_data["lifecycle_history"],
@@ -747,6 +803,5 @@ class MLCExperimentRunner:
             erc_refs,
             ledger_refs,
         )
-        
-        return decision_dict
 
+        return decision_dict

@@ -1,0 +1,55 @@
+{
+  "id": "613c3a1a-a719-4803-9677-cadbd24d4fb9",
+  "created_at": "2026-07-17T06:39:31.364061+00:00",
+  "prediction_date": "2026-05-19",
+  "evaluation_date": "2026-05-20",
+  "asset": "RELIANCE",
+  "prediction": "lower",
+  "decision": {
+    "id": "7887e170-2e9e-48f5-aed7-22e6b66004c8",
+    "created_at": "2026-07-17T06:39:31.363963+00:00",
+    "date": "2026-05-19",
+    "prediction_direction": "lower",
+    "action": "short",
+    "allocation_pct": 0.0839,
+    "conviction_score": 0.4915,
+    "reason": "volatility expansion vs structural support"
+  },
+  "allocation": 0.0839,
+  "conviction_score": 0.4915,
+  "decision_reason": "volatility expansion vs structural support",
+  "supporting_lineages": [
+    "92f2c4afd12e5f0e"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [
+    "Regime Analog unknown",
+    "Regime Analog unknown",
+    "Regime Analog unknown"
+  ],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 0.2402,
+  "transition_pressure": 0.30333333333333334,
+  "calibrated_confidence": 0.771,
+  "empirical_confidence": 0.0,
+  "reflection_confidence": 0.0,
+  "regime_confidence": 1.0,
+  "expected_scenarios": [
+    "volatility expansion vs structural support"
+  ],
+  "actual_outcome": "+3.11%",
+  "decision_result": "incorrect",
+  "pnl": -2855.17,
+  "reflection_summary": "The prediction 'lower' was incorrect (actual return: +3.11%). Cognitive confidence was inappropriately high, failing to capture the risk. Recommended action: Trigger lineage mutation and open an evidence gap to reconcile contradiction.",
+  "knowledge_changes": [
+    "theory_mutated"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.2698,
+    "empirical": 0.0,
+    "principle_support": 0.0,
+    "contradictions": -0.048,
+    "transition_pressure": -0.0303
+  }
+}

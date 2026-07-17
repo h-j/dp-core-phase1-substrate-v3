@@ -51,7 +51,8 @@ class MLCBeliefMemory:
         Returns all records representing active beliefs (ADMITTED or WEAKENED).
         """
         return [
-            r for r in self.records 
+            r
+            for r in self.records
             if r["record_type"] in ("ADMITTED_BELIEF", "WEAKENED_BELIEF")
         ]
 
@@ -68,42 +69,49 @@ class MLCBeliefMemory:
         return rejected_triggers
 
     def update_belief_state(
-        self, 
-        proposition_id: str, 
-        new_state: str, 
-        trigger_evidence: Dict[str, Any], 
-        reason_code: str
+        self,
+        proposition_id: str,
+        new_state: str,
+        trigger_evidence: Dict[str, Any],
+        reason_code: str,
     ):
         """
         Transitions the state of an existing admitted/weakened belief to a new state,
         validating the transition and recording the provenance.
         """
-        from flows.minimal_learning_cycle.schemas import validate_state_transition, LifecycleState
-        
+        from flows.minimal_learning_cycle.schemas import (
+            LifecycleState, validate_state_transition)
+
         # Find record
         record = None
         for r in self.records:
             if r["proposition"]["proposition_id"] == proposition_id:
                 record = r
                 break
-                
+
         if not record:
-            raise KeyError(f"Belief with proposition_id {proposition_id} not found in belief memory.")
-            
+            raise KeyError(
+                f"Belief with proposition_id {proposition_id} not found in belief memory."
+            )
+
         current_state = record["proposition"]["lifecycle_state"]
-        
+
         # Validate transition using schema rules
-        validate_state_transition(LifecycleState(current_state), LifecycleState(new_state))
-        
+        validate_state_transition(
+            LifecycleState(current_state), LifecycleState(new_state)
+        )
+
         # Record evolution event
-        record["evolution_history"].append({
-            "timestamp": time.time(),
-            "from_state": record["record_type"],
-            "to_state": new_state,
-            "trigger_evidence": json_copy(trigger_evidence),
-            "reason_code": reason_code,
-        })
-        
+        record["evolution_history"].append(
+            {
+                "timestamp": time.time(),
+                "from_state": record["record_type"],
+                "to_state": new_state,
+                "trigger_evidence": json_copy(trigger_evidence),
+                "reason_code": reason_code,
+            }
+        )
+
         # Update states
         record["record_type"] = new_state
         record["proposition"]["lifecycle_state"] = new_state

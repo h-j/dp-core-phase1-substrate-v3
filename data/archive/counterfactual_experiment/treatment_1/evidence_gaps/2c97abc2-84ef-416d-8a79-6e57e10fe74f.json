@@ -1,0 +1,9 @@
+{
+  "id": "2c97abc2-84ef-416d-8a79-6e57e10fe74f",
+  "created_at": "2026-07-15T00:14:42.214169+00:00",
+  "open_question_id": "5e14e506-6661-471c-b902-8513b608ffdb",
+  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'sector_zscore_revised'",
+  "candidate_data_source": "FII/DII Flows & Order Book Depth",
+  "expected_explanatory_value": "To resolve structural failure of component 'sector_zscore_revised' under liquidity_constrained regime",
+  "priority": "HIGH"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "ddbd62f4-8420-4b21-b9e4-2fa95e109ac5",
+  "created_at": "2026-07-15T00:17:43.741971+00:00",
+  "created_at_step": 6,
+  "question_text": "Why did component 'sector_zscore_revised' fail under neutral regime?",
+  "source_contradiction_ids": [
+    "54ee2f6a-9215-4737-a718-3ea3d3d53ae2"
+  ],
+  "hypothesized_factors": [
+    "normal",
+    "elevated"
+  ],
+  "status": "active",
+  "resolution_principle_id": null
+}

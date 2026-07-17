@@ -1,0 +1,38 @@
+{
+  "id": "MECH_001",
+  "created_at": "2026-07-15T00:24:06.524618+00:00",
+  "mechanism_id": "MECH_001",
+  "canonical_name": "LIQUIDITY_ABSORPTION",
+  "concept_tags": [
+    "LIQUIDITY_ABSORPTION",
+    "DELIVERY_EXHAUSTION"
+  ],
+  "relation_type": "CONTRADICTS",
+  "first_seen": 0,
+  "last_seen": 1,
+  "days_active": 3,
+  "times_reused": 0,
+  "times_modified": 1,
+  "times_retired": 0,
+  "support_count": 0,
+  "contradiction_count": 1,
+  "prediction_helped": 0,
+  "prediction_harmed": 1,
+  "status": "active",
+  "regimes_seen": [
+    "neutral",
+    "liquidity_constrained"
+  ],
+  "name": "LIQUIDITY_ABSORPTION",
+  "description": "Delivery percentage remains below 50 despite moderate volatility",
+  "concept_type": "candidate",
+  "associated_theory_ids": [
+    "5be4c37e-f220-4301-b9b4-44410d4bb357",
+    "bffd5311-5b51-4a51-b66e-1f3de2dd90cc"
+  ],
+  "associated_lineages": [
+    "c974dc5f813def5d",
+    "c9c6c6d7bb71fede"
+  ],
+  "created_at_step": 0
+}

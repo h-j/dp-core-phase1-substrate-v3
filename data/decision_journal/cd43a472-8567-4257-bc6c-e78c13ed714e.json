@@ -1,0 +1,55 @@
+{
+  "id": "cd43a472-8567-4257-bc6c-e78c13ed714e",
+  "created_at": "2026-07-17T07:27:36.262074+00:00",
+  "prediction_date": "2026-06-02",
+  "evaluation_date": "2026-06-03",
+  "asset": "RELIANCE",
+  "prediction": "lower",
+  "decision": {
+    "id": "92191d9e-abed-4036-99b8-e9d8f8957f87",
+    "created_at": "2026-07-17T07:27:36.261990+00:00",
+    "date": "2026-06-02",
+    "prediction_direction": "lower",
+    "action": "short",
+    "allocation_pct": 0.0707,
+    "conviction_score": 0.39,
+    "reason": "volatility expansion vs structural support"
+  },
+  "allocation": 0.0707,
+  "conviction_score": 0.39,
+  "decision_reason": "volatility expansion vs structural support",
+  "supporting_lineages": [
+    "92f2c4afd12e5f0e"
+  ],
+  "supporting_principles": [],
+  "retrieved_memories": [
+    "Regime Analog unknown",
+    "Regime Analog unknown",
+    "Regime Analog unknown"
+  ],
+  "novelty_score": 1.0,
+  "contradiction_pressure": 0.3609966666666667,
+  "transition_pressure": 0.30333333333333334,
+  "calibrated_confidence": 0.55,
+  "empirical_confidence": 0.0,
+  "reflection_confidence": 0.0,
+  "regime_confidence": 1.0,
+  "expected_scenarios": [
+    "volatility expansion vs structural support"
+  ],
+  "actual_outcome": "-0.14%",
+  "decision_result": "correct",
+  "pnl": -114.33,
+  "reflection_summary": "The prediction 'lower' was correct. Recommended action: Retain lineage and reinforce principle confidence.",
+  "knowledge_changes": [
+    "theory_mutated"
+  ],
+  "conviction_breakdown": {
+    "base": 0.3,
+    "confidence": 0.1925,
+    "empirical": 0.0,
+    "principle_support": 0.0,
+    "contradictions": -0.0722,
+    "transition_pressure": -0.0303
+  }
+}

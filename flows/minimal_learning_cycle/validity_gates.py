@@ -23,7 +23,9 @@ class MLCValidityGates:
             }
 
         # Check if the prospective filter was enabled (default to True for backward compatibility)
-        filter_enabled = any(d.get("prospective_filter_enabled", True) for d in decisions)
+        filter_enabled = any(
+            d.get("prospective_filter_enabled", True) for d in decisions
+        )
 
         validation_auths = [
             l
@@ -31,26 +33,30 @@ class MLCValidityGates:
             if l["resource_type"] == "VALIDATION"
             and l["authorization_decision"] == "AUTHORIZED"
         ]
-        
+
         candidates_validated = [
             d
             for d in decisions
             if d.get("reason_code") not in ["FAILED_READINESS", "FAILED_COMPILATION"]
         ]
-        
+
         if filter_enabled:
-            status = "PASS" if len(validation_auths) == len(candidates_validated) else "FAIL"
+            status = (
+                "PASS" if len(validation_auths) == len(candidates_validated) else "FAIL"
+            )
             evidence = f"Prospective filter enabled. Found {len(validation_auths)} validation authorizations for {len(candidates_validated)} validated candidates out of {len(decisions)} total decisions."
         else:
             # If prospective filter is disabled, no validation auths should be requested/authorized
-            has_validation_requests = any(l["resource_type"] == "VALIDATION" for l in erc_logs)
+            has_validation_requests = any(
+                l["resource_type"] == "VALIDATION" for l in erc_logs
+            )
             if has_validation_requests or len(validation_auths) > 0:
                 status = "FAIL"
                 evidence = f"Prospective filter disabled, but found unexpected validation requests/authorizations in ERC logs: {len(validation_auths)} authorized."
             else:
                 status = "PASS"
                 evidence = f"Prospective filter disabled. Found {len(validation_auths)} validation authorizations."
-            
+
         return {
             "status": status,
             "evidence": evidence,
@@ -106,7 +112,11 @@ class MLCValidityGates:
                 break
         return {
             "status": "PASS" if immut else "FAIL",
-            "evidence": "SHA-256 hashes of proposition definitions match content_hash records." if immut else "Hash mismatch found in frozen candidates.",
+            "evidence": (
+                "SHA-256 hashes of proposition definitions match content_hash records."
+                if immut
+                else "Hash mismatch found in frozen candidates."
+            ),
         }
 
     @staticmethod
