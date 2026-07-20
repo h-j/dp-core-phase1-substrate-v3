@@ -85,3 +85,27 @@ This table outlines the corrections applied to the program state to eliminate cl
 4.  **`P1-P6_BOUNDARY_CONTRACTS_BYPASS`**: Milestone 5, 6, and 7 verification completion check gates are bypassed (hardcoded to `PASS`) in the validator script `verify_scientific_closures.py`, rendering the scientific closures unverified in automated checks.
 5.  **`UNCONTAINED_FEEDBACK_LOOP_RISK`**: The risk of downstream decision/sizing components mutating cognition confidence states. Mitigated by Phase 0 explicit observer-only contract in `AGENTS.md` and AST regression tests (`tests/test_no_trade_feedback.py`).
 6.  **`SILENT_COGNITION_FAILURE_RISK`**: The risk of silent exception suppression corrupting cognition state. Mitigated by Phase 3 exception triage and `_degraded_steps` tracking in `replay_engine.py`.
+
+---
+
+## 7. Phase 1C Scientific Progress & Experimental Findings
+
+### 7.1 EXP-1C.1 Diagnostic Replay (10-Day Reliance Window)
+*   **Status**: COMPLETED (`commit 56dd7dd`)
+*   **Execution Integrity**: 0 degraded steps across 10 matched seed runs (Control $C_0$ vs Intervention $I_1$, $k=5$).
+*   **Finding**: $D_{\text{epistemic}} = 0.0$. On short single-regime 10-day windows, zero theory falsification events occur naturally.
+
+### 7.2 EXP-1C_60D Multi-Regime Replay (60-Day Reliance Window)
+*   **Status**: COMPLETED (`commit e4d25fa`)
+*   **Execution Integrity**: 0 degraded steps across 60 steps $\times$ 10 runs (100% operational reliability).
+*   **Finding**: $D_{\text{epistemic}} = 0.0$. In un-perturbed market replays, theories remain within valid bounds ($\text{score} \ge 0.5$). `LessonExtractor` requires $\ge 2$ recurring falsification instances to persist a lesson. Without falsifications, no lessons accumulate naturally.
+
+### 7.3 EXP-1C.2 Controlled Epistemic Stress Experiment (60-Day Window)
+*   **Status**: COMPLETED (`commit 72f099c`)
+*   **Protocol**: [EXP_1C_2_CONTROLLED_EPISTEMIC_STRESS_PROTOCOL.md](file:///Users/hemantj/.gemini/antigravity-ide/brain/877ece6d-f299-4c12-b07c-dfc28f55cd90/EXP_1C_2_CONTROLLED_EPISTEMIC_STRESS_PROTOCOL.md)
+*   **Three-Tier Evaluation Results**:
+    1.  **Level 1 (Engineering Stability)**: `VERIFIED` (0 degraded steps across all runs).
+    2.  **Level 2 (Learning Activation)**: `ACTIVATED` ($Y_{\text{lesson}} = 2.0$ active failure attribution lessons extracted and persisted into `LessonRepository` per run under regime shock mode $S_{\text{shock}}$, and $Y_{\text{lesson}} = 1.0$ under pre-warmed seeding mode $S_{\text{seed}}$).
+    3.  **Level 3 (Causal Cognitive Adaptation)**: `INVARIANT` ($D_{\text{epistemic}} = 0.0$).
+*   **Scientific Forensic Discovery**: `NoveltyDetectionGate` evaluates existing theories as `REINFORCE` or `REVISE` during replay steps, preserving structural theory component stability unless a full `GENERATE` decision is triggered.
+
