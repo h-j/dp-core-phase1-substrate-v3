@@ -734,6 +734,15 @@ def main():
         action="store_true",
         help="Enable DEBUG-level structured logging (ContradictionDetector, confidence traces, etc.)",
     )
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help=(
+            "Offline replay mode: raise on LLM cache miss instead of calling Ollama. "
+            "Requires a warm cache from a prior online replay. "
+            "Ensures fully deterministic replay verification."
+        ),
+    )
 
     args = parser.parse_args()
 
@@ -741,6 +750,14 @@ def main():
     from telemetry.logging_config import configure_logging
     log_level = logging.DEBUG if args.debug_log else logging.INFO
     configure_logging(level=log_level)
+
+    # Phase 6: Set offline mode before importing OllamaClient
+    if getattr(args, "offline", False):
+        import os
+        os.environ["REPLAY_OFFLINE"] = "1"
+        logging.getLogger("run").info(
+            "[run] Offline mode enabled: LLM cache misses will raise RuntimeError."
+        )
 
     try:
         pipeline = ReplayPipeline(args)
