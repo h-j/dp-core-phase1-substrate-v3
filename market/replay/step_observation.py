@@ -95,9 +95,15 @@ def process_daily_observation(
 
         if prev_obs.trend_state != market_obs.trend_state:
             example = TransitionExample(
-                date=date_str,
+                date=prev_obs.observation_source.replace(
+                    "replay_engine_", ""
+                ),
+                day_index=day_idx - 1,
                 from_regime=prev_obs.trend_state,
                 to_regime=market_obs.trend_state,
+                confidence=ctx["confidence"],
+                theory_usefulness=ctx["usefulness"],
+                contradiction_score=ctx["contradiction"],
                 pressure_score=ctx["pressure"],
                 breakout_risk=ctx["breakout"],
                 direction_bias=ctx["bias"],
