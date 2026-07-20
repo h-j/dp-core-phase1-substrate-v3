@@ -47,8 +47,17 @@ from memory.relational.repositories.compiled_proposition_repository import \
 from memory.relational.repositories.validation_record_repository import \
     ValidationRecordRepository
 from memory.replay.regime_continuity_memory import RegimeContinuityMemory
-from memory.replay.regime_memory import \
-    RegimeMemoryStore  # Import RegimeMemoryStore
+from memory.replay.regime_memory import (  # Import RegimeMemoryStore
+    RegimeMemoryStore,
+)
+from market.replay.step_observation import process_daily_observation
+from market.replay.step_prediction import process_daily_prediction
+from market.replay.step_validation import process_daily_validation
+from market.replay.step_logging import (
+    print_day_log,
+    save_step_snapshot,
+    update_knowledge_graph_trace,
+)
 
 
 def count_conditional_clauses(theory_structured) -> int:
@@ -5723,94 +5732,25 @@ Respond STRICTLY in JSON format with the following keys:
                 print("  No lesson has stabilized.")
             return
 
-        # 2. Cognitive Learning Report (Default Mode)
-        # -------------------------------------------------------------
-        # Gather information for a compact, single-line learning summary
-        action_label = "Active"
-        lineage_id = "N/A"
-        if intelligence:
-            lineage_id = intelligence.get("lineage_id", "N/A")
-            if intelligence.get("created"):
-                action_label = "CREATED"
-            elif intelligence.get("mutated"):
-                action_label = "MUTATED"
-            elif intelligence.get("merged"):
-                action_label = "MERGED"
-            elif intelligence.get("revived"):
-                action_label = "REVIVED"
-            elif intelligence.get("retired"):
-                action_label = "RETIRED"
-
-        # Bias and Confidence
-        pred_dir = "Hold"
-        pred_conf_pct = ""
-        if prediction:
-            pred_dir = getattr(prediction.direction, "value", str(prediction.direction))
-            pred_conf_pct = f" ({prediction.confidence:.0%})"
-
-        # Trust (empirical confidence)
-        trust_score = confidence.empirical_confidence
-
-        # Contradiction
-        contra_score = float(contradiction.get("score", 0.0)) if contradiction else 0.0
-        contra_count = len(contradiction.get("indicators", [])) if contradiction else 0
-
-        # Memory match
-        memory_match = "None"
-        if regime_matches:
-            best_match = regime_matches[0]
-            sim = (
-                best_match.similarity
-                if hasattr(best_match, "similarity")
-                else best_match.get("similarity", 0.0)
-            )
-            if sim >= 0.8:
-                m_date = (
-                    best_match.date
-                    if hasattr(best_match, "date")
-                    else best_match.get("date", "N/A")
-                )
-                memory_match = f"Recalled {m_date} (Sim: {sim:.2f})"
-
-        # Failures (failed components)
-        failures_str = ""
-        if prior_prediction_result:
-            pred_score = (
-                prior_prediction_result.get("direction_score")
-                if isinstance(prior_prediction_result, dict)
-                else getattr(prior_prediction_result, "direction_score", 1.0)
-            )
-            invalidation_triggered = (
-                prior_prediction_result.get("invalidation_triggered")
-                if isinstance(prior_prediction_result, dict)
-                else getattr(prior_prediction_result, "invalidation_triggered", False)
-            )
-            if invalidation_triggered or (pred_score is not None and pred_score < 1.0):
-                attr = getattr(self, "_prior_attribution", None)
-                if attr and attr.components_failed:
-                    failed = ", ".join(attr.components_failed)
-                    root_cause = attr.root_cause_component or "none"
-                    failures_str = f" | Failures: [{failed}] (Root: {root_cause})"
-
-        # Lesson extracted
-        lesson_str = ""
-        if lesson_info:
-            lesson_extracted, reason, evidence_count = lesson_info
-            if lesson_extracted:
-                lesson_str = f" | Lesson: {lesson_extracted.lesson_text[:60]}..."
-
-        # Update prior confidence log tracker
-        self._prior_confidence_state_log = confidence
-
-        # Print the single-line streamlined log
-        print(
-            f"[Day {day_idx:3d} | {date_str}] "
-            f"Theory: {action_label:<7} ({lineage_id[:8]}) | "
-            f"Bias: {pred_dir:<11}{pred_conf_pct} | "
-            f"Trust: {trust_score:.2f} | "
-            f"Contra: {contra_score:.2f} (n={contra_count}) | "
-            f"Memory: {memory_match}"
-            f"{failures_str}{lesson_str}"
+        # Delegate to step_logging module for clean single-line logging
+        print_day_log(
+            executor=self,
+            day_idx=day_idx,
+            date_str=date_str,
+            market_obs=market_obs,
+            theory=theory,
+            reflection=reflection,
+            confidence_state=confidence,
+            contradiction_result=contradiction,
+            horizon_view=horizon_view,
+            regime_matches=regime_matches,
+            theory_usefulness=theory_usefulness,
+            transition_pressure=transition_pressure,
+            prediction_probe=prediction,
+            prior_prediction_result=prior_prediction_result,
+            active_experience=active_experience,
+            lesson_info=lesson_info,
+            intelligence=intelligence,
         )
 
     def _run_knowledge_compression(self, step: int):
