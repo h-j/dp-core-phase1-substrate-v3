@@ -769,7 +769,14 @@ class ReplayExecutor:
             self.conviction_sizer = ConvictionSizer()
             self.paper_trader = PaperTrader()
             self.decision_journal = DecisionJournal()
-        except Exception:
+        except Exception as _exc:
+            # CRITICAL: cognition infrastructure failed to initialize.
+            # All cognition objects will be None — replay will be severely degraded.
+            logger.error(
+                "[ReplayExecutor.__init__] Cognition infrastructure init failed: %s. "
+                "observer, theory_lineage, contradiction_registry will be None.",
+                _exc, exc_info=True
+            )
             self.observer = None
             self.theory_lineage = None
             self.contradiction_registry = None
@@ -840,6 +847,8 @@ class ReplayExecutor:
         self._log("\n" + "-" * 70)
 
         last_lineage_id = None  # Instrumentation: Track lineage changes
+        # Phase 3: Track degraded steps across the replay run
+        _degraded_steps: list = []
 
         # Execute replay
         # Execute replay
@@ -933,8 +942,12 @@ class ReplayExecutor:
                                 structured_data = TheoryStructured(
                                     **json.loads(theory_model.summary_structured)
                                 )
-                            except Exception:
-                                pass
+                            except Exception as _exc:  # SAFE: JSON parse fallback for optional structured field
+                                logger.debug(
+                                    "[ReplayExecutor] TheoryStructured parse failed for theory %s: %s",
+                                    theory_model.id, _exc
+                                )
+                                pass  # structured_data stays None; Theory built from raw summary
                         theory = Theory(
                             id=theory_model.id,
                             created_at=theory_model.created_at,
@@ -2317,8 +2330,12 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                             self.experience_engine.record_contradiction(
                                 lineage_id_val, signatures=descriptions
                             )
-                except Exception:
-                    pass
+                except Exception as _exc:
+                    logger.error(
+                        "[ReplayExecutor] day=%d CRITICAL: contradiction registration failed: %s",
+                        day_idx, _exc, exc_info=True
+                    )
+                    _degraded_steps.append({"day": day_idx, "op": "contradiction_registration", "error": str(_exc)})
 
                 # v3.2 Dialectical Synthesis Layer - Triggered after final contradiction state but before retirement
                 contradiction_score = float(contradiction_result.get("score", 0.0))
@@ -2442,8 +2459,12 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                                 self.contradiction_registry.active_count()
                             )
                         audit_retired = len(retired_records) > 0
-                except Exception:
-                    pass
+                except Exception as _exc:
+                    logger.error(
+                        "[ReplayExecutor] day=%d CRITICAL: theory retirement/lineage evolution failed: %s",
+                        day_idx, _exc, exc_info=True
+                    )
+                    _degraded_steps.append({"day": day_idx, "op": "theory_retirement", "error": str(_exc)})
 
                 # revive if matched
                 try:
@@ -2468,8 +2489,12 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                                 revived_record.lineage_id, theory.id
                             )
                             exp_attach_called = True
-                except Exception:
-                    pass
+                except Exception as _exc:
+                    logger.error(
+                        "[ReplayExecutor] day=%d CRITICAL: theory revival failed: %s",
+                        day_idx, _exc, exc_info=True
+                    )
+                    _degraded_steps.append({"day": day_idx, "op": "theory_revival", "error": str(_exc)})
 
                 # Instrumentation: Print Daily Trace
                 if self.verbose:
@@ -2599,11 +2624,12 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                             ),
                             reflection_summary=reflection.reflection_summary,
                         )
-                except Exception:
-                    theory_usefulness = {
-                        "score": 0.0,
-                        "label": "unknown",
-                    }
+                except Exception as _exc:
+                    logger.warning(
+                        "[ReplayExecutor] day=%d theory_usefulness evaluation failed: %s — defaulting to 0.0",
+                        day_idx, _exc
+                    )
+                    theory_usefulness = {"score": 0.0, "label": "unknown"}
                 # Sanity validation
                 assert (
                     "score" in theory_usefulness
@@ -3349,8 +3375,11 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                     self._confidence_history.append(
                         confidence_state.empirical_confidence
                     )
-                except Exception:
-                    pass
+                except Exception as _exc:  # SAFE: in-memory confidence history only; no persistence impact
+                    logger.debug(
+                        "[ReplayExecutor] day=%d _confidence_history append failed: %s",
+                        day_idx, _exc
+                    )
 
                 # Conviction position sizer calculation
                 calibrated_confidence = prediction_probe.confidence
@@ -4390,10 +4419,16 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                                     indent=2,
                                     default=str,
                                 )
-                        except Exception:
-                            pass
-                except Exception:
-                    pass
+                        except Exception as _exc:  # SAFE: snapshot JSON write failure; day data not lost
+                            logger.warning(
+                                "[ReplayExecutor] day=%d snapshot JSON write failed: %s",
+                                day_idx, _exc
+                            )
+                except Exception as _exc:
+                    logger.warning(
+                        "[ReplayExecutor] day=%d snapshot write outer failed: %s",
+                        day_idx, _exc
+                    )
 
                 # Find experience for current trace log
                 active_exp = None
@@ -4604,6 +4639,16 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                 self._log(f"✗ Day {day_idx} ({date_str}) failed: {e}")
                 raise
 
+        # Phase 3: Report degraded steps accumulated during replay
+        if _degraded_steps:
+            logger.error(
+                "[ReplayExecutor] Replay completed with %d DEGRADED STEP(S). "
+                "Cognition integrity may be compromised. Details: %s",
+                len(_degraded_steps), _degraded_steps
+            )
+        else:
+            logger.info("[ReplayExecutor] Replay completed with 0 degraded steps.")
+
         # Finalize
         execution_hash = self.engine.finalize_execution()
 
@@ -4783,7 +4828,11 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                     if self.regime_memory
                     else 0.0
                 )
-            except Exception:
+            except Exception as _exc:
+                logger.warning(
+                    "[ReplayExecutor] regime metrics collection failed: %s — defaulting to 0.0",
+                    _exc
+                )
                 external_metrics["regime_recall_hit_rate"] = 0.0
                 external_metrics["memory_retrieval_usefulness"] = 0.0
 
@@ -4843,8 +4892,12 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
 
             # Attach to analysis engine for richer printing
             self.replay_analysis_engine.external_metrics = external_metrics
-        except Exception:
-            pass
+        except Exception as _exc:
+            logger.error(
+                "[ReplayExecutor] CRITICAL: external_metrics collection failed: %s. "
+                "Replay summary will be incomplete.",
+                _exc, exc_info=True
+            )
 
         self.replay_analysis_engine.export_prediction_analysis_csv(
             self.base_output_dir / "prediction_analysis.csv"
@@ -4996,8 +5049,11 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                     self.knowledge_repository
                 )
                 self.replay_analysis_engine.print_summary()
-            except Exception:
-                pass
+            except Exception as _exc:
+                logger.error(
+                    "[ReplayExecutor] CRITICAL: replay summary print_summary failed: %s",
+                    _exc, exc_info=True
+                )
 
         # 10. Generate Epistemic Review & Save Graph
         try:
@@ -5518,7 +5574,11 @@ Respond STRICTLY in JSON format with the following keys:
             parsed = _json.loads(raw) if raw else None
             if isinstance(parsed, dict):
                 theory_summary_structured = parsed
-        except Exception:
+        except Exception as _exc:  # SAFE: JSON parse fallback; structured field stays None
+            logger.debug(
+                "[ReplayExecutor] theory_summary_structured JSON parse failed: %s",
+                _exc
+            )
             theory_summary_structured = None
 
         snapshot["theory_summary_structured"] = theory_summary_structured

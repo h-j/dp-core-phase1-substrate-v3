@@ -1,6 +1,9 @@
 import json
+import logging
 import re
 from typing import Any, Dict, List, Optional, Set, Tuple
+
+logger = logging.getLogger(__name__)
 
 from cognition.contradiction.llm_contradiction_auditor import \
     LLMContradictionAuditor
@@ -28,9 +31,11 @@ class ContradictionDetector:
         "regime_secondary_conflict_score": 0.3,
     }
 
-    def __init__(self, verbose: bool = False):
+    def __init__(self, verbose: bool = False, debug: bool = False):
         self.llm_auditor = LLMContradictionAuditor()
-        self.verbose = verbose
+        # debug gates all diagnostic output; verbose is kept for backward compat
+        self.debug = debug or verbose
+        self.verbose = self.debug
 
     def detect(
         self,
@@ -323,16 +328,17 @@ class ContradictionDetector:
             total_score += pair_score
             pair_scores.append(pair_score)
 
-            # Debug print for each pair
-            if getattr(self, "verbose", False):
-                print(f"\n[CONTRADICTION MATCHES (Field-Aware)]")
-                print(f"theory A (claim): {curr_data.get('claim', '')}")
-                print(f"theory B (claim): {hist_data.get('claim', '')}")
-                print(f"lexical conflict: {lexical_conflict_score:.3f}")
-                print(
-                    f"structural conflict: {structural_conflict_score:.3f} ({'; '.join(structural_indicators)})"
+            # Debug logging for each pair
+            if self.debug:
+                logger.debug(
+                    "[ContradictionDetector] pair: A=%r B=%r lexical=%.3f structural=%.3f score=%.3f indicators=%s",
+                    curr_data.get('claim', '')[:80],
+                    hist_data.get('claim', '')[:80],
+                    lexical_conflict_score,
+                    structural_conflict_score,
+                    pair_score,
+                    '; '.join(structural_indicators)
                 )
-                print(f"final score (pair): {pair_score:.3f}")
 
         # Normalize score (simple sum for now, can be refined)
         # If no historical theories, score is 0.0
@@ -346,12 +352,11 @@ class ContradictionDetector:
             + (self.CONFIG["mean_score_weight"] * mean_score),
         )
 
-        if getattr(self, "verbose", False):
-            print(f"\n[CONTRADICTION SCORE]")
-            print(f"pair_scores={[f'{s:.3f}' for s in pair_scores]}")
-            print(f"max={max_score:.3f}")
-            print(f"mean={mean_score:.3f}")
-            print(f"final={normalized_score:.3f}")
+        if self.debug:
+            logger.debug(
+                "[ContradictionDetector] final: pair_scores=%s max=%.3f mean=%.3f normalized=%.3f",
+                [f'{s:.3f}' for s in pair_scores], max_score, mean_score, normalized_score
+            )
 
         return {
             "score": normalized_score,

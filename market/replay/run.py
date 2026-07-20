@@ -729,17 +729,26 @@ def main():
         action="store_true",
         help="Enable verbose debug trace output",
     )
+    parser.add_argument(
+        "--debug-log",
+        action="store_true",
+        help="Enable DEBUG-level structured logging (ContradictionDetector, confidence traces, etc.)",
+    )
 
     args = parser.parse_args()
+
+    # Configure structured logging for the replay run
+    from telemetry.logging_config import configure_logging
+    log_level = logging.DEBUG if args.debug_log else logging.INFO
+    configure_logging(level=log_level)
 
     try:
         pipeline = ReplayPipeline(args)
         pipeline.run()
     except Exception as e:
-        print(f"\n✗ Replay pipeline execution failed: {e}")
-        import traceback
-
-        traceback.print_exc()
+        logging.getLogger("run").error(
+            "Replay pipeline execution failed: %s", e, exc_info=True
+        )
         return 1
 
     return 0
