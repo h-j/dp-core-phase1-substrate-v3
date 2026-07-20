@@ -1,13 +1,13 @@
 """
-EXP-1C.1 Diagnostic Counterfactual Experiment Runner
-=====================================================
-Phase 1C Scientific Protocol Implementation (Step 1)
+EXP-1C.2 Multi-Regime Counterfactual Experiment Runner (60-Day Window)
+======================================================================
+Phase 1C Scientific Protocol Implementation (Step 2 — 60-Day Multi-Regime Replay)
 
 Compares:
   - Group C0: Control (Memoryless baseline — past lessons & contradiction maps bypassed)
   - Group I1: Intervention (Full reflective memory active)
 
-Across k=5 matched seeds: [42, 100, 200, 500, 777] on 10-day Reliance market slice.
+Across k=5 matched seeds: [42, 100, 200, 500, 777] over 60 trading days on Reliance dataset.
 
 Computes 5 Measurable DVs:
   - DV1: Lineage Survival Half-Life (T_1/2)
@@ -16,6 +16,7 @@ Computes 5 Measurable DVs:
   - DV4: Contradiction Discovery Latency (L_contra)
   - DV5: Epistemic Divergence Score (D_epistemic)
 """
+import argparse
 import hashlib
 import json
 import logging
@@ -38,7 +39,6 @@ from telemetry.logging_config import configure_logging
 # Seeds for matched replication pairs
 SEEDS = [42, 100, 200, 500, 777]
 DATASET_PATH = PROJECT_ROOT / "data" / "reliance_daily_3y.csv"
-OUTPUT_BASE_DIR = PROJECT_ROOT / "data" / "experiments" / "exp_1c_1"
 
 
 def reset_environment():
@@ -59,12 +59,14 @@ def reset_environment():
             f.unlink()
 
 
-def run_single_condition(condition_name: str, seed: int, memoryless: bool) -> Dict[str, Any]:
+def run_single_condition(
+    condition_name: str, seed: int, memoryless: bool, days: int, output_base_dir: Path
+) -> Dict[str, Any]:
     """
-    Executes a single 10-day replay under Control (memoryless) or Intervention (full memory).
+    Executes a single multi-day replay under Control (memoryless) or Intervention (full memory).
     """
     reset_environment()
-    run_dir = OUTPUT_BASE_DIR / f"{condition_name}_seed_{seed}"
+    run_dir = output_base_dir / f"{condition_name}_seed_{seed}"
     run_dir.mkdir(parents=True, exist_ok=True)
 
     # Patch OllamaClient seed
@@ -78,10 +80,8 @@ def run_single_condition(condition_name: str, seed: int, memoryless: bool) -> Di
 
     # If memoryless (C0), patch LessonRepository and ContradictionRegistry to suppress history
     old_list_lessons = None
-    old_active_count = None
     if memoryless:
         from market.replay.lesson_repository import LessonRepository
-        from telemetry.contradiction_registry import ContradictionRegistry
 
         old_list_lessons = LessonRepository.list_lessons
         LessonRepository.list_lessons = lambda self: []
@@ -89,7 +89,7 @@ def run_single_condition(condition_name: str, seed: int, memoryless: bool) -> Di
     try:
         executor = ReplayExecutor(
             market_name="RELIANCE",
-            max_days=10,
+            max_days=days,
             quiet=True,
             restart=True,
         )
@@ -109,6 +109,7 @@ def run_single_condition(condition_name: str, seed: int, memoryless: bool) -> Di
             "condition": condition_name,
             "seed": seed,
             "memoryless": memoryless,
+            "days_requested": days,
             "total_steps": len(snapshots),
             "execution_hash": results.get("execution_hash", "unknown"),
             "snapshots": snapshots,
@@ -124,15 +125,16 @@ def run_single_condition(condition_name: str, seed: int, memoryless: bool) -> Di
         OllamaClient.__init__ = old_init
         if memoryless and old_list_lessons:
             from market.replay.lesson_repository import LessonRepository
+
             LessonRepository.list_lessons = old_list_lessons
 
 
-def compute_dependent_variables(c0_results: List[Dict], i1_results: List[Dict]) -> Dict[str, Any]:
+def compute_dependent_variables(
+    c0_results: List[Dict], i1_results: List[Dict]
+) -> Dict[str, Any]:
     """
     Computes all 5 DVs across matched seed pairs.
     """
-    dv_summary = {}
-
     # DV1: Lineage Survival Half-Life (T_1/2)
     def calc_survival(results_list):
         durations = []
@@ -170,7 +172,6 @@ def compute_dependent_variables(c0_results: List[Dict], i1_results: List[Dict]) 
     i1_c0 = calc_init_conf(i1_results)
 
     # DV5: Epistemic Divergence Score (D_epistemic)
-    # Jaccard distance on claim tokens between C0 and I1 for identical seeds
     divergence_scores = []
     for c0_r, i1_r in zip(c0_results, i1_results):
         c0_snaps = c0_r.get("snapshots", [])
@@ -188,8 +189,15 @@ def compute_dependent_variables(c0_results: List[Dict], i1_results: List[Dict]) 
 
     dv_summary = {
         "DV1_Survival_HalfLife": {"C0_Control": c0_t12, "I1_Intervention": i1_t12},
-        "DV2_Recurring_Failure_Rate": {"C0_Control": c0_rfail, "I1_Intervention": i1_rfail},
-        "DV3_Initial_Confidence": {"C0_Control": c0_c0, "I1_Intervention": i1_c0, "Delta": i1_c0 - c0_c0},
+        "DV2_Recurring_Failure_Rate": {
+            "C0_Control": c0_rfail,
+            "I1_Intervention": i1_rfail,
+        },
+        "DV3_Initial_Confidence": {
+            "C0_Control": c0_c0,
+            "I1_Intervention": i1_c0,
+            "Delta": i1_c0 - c0_c0,
+        },
         "DV4_Contradiction_Latency": {"C0_Control": 1.0, "I1_Intervention": 1.0},
         "DV5_Epistemic_Divergence": mean_divergence,
     }
@@ -198,14 +206,36 @@ def compute_dependent_variables(c0_results: List[Dict], i1_results: List[Dict]) 
 
 
 def main():
-    configure_logging(level=logging.INFO)
-    logger = logging.getLogger("exp_1c_1")
+    parser = argparse.ArgumentParser(
+        description="Run Phase 1C Counterfactual Experiment"
+    )
+    parser.add_argument(
+        "--days",
+        type=int,
+        default=60,
+        help="Replay window duration in trading days (default: 60)",
+    )
+    args = parser.parse_args()
 
-    print("\n======================================================================")
-    print("STARTING EXP-1C.1 DIAGNOSTIC COUNTERFACTUAL EXPERIMENT")
-    print("Protocol: Phase 1C Section 12 (Diagnostic 10-Day Counterfactual)")
+    days = args.days
+    output_base_dir = (
+        PROJECT_ROOT / "data" / "experiments" / f"exp_1c_{days}d"
+    )
+
+    configure_logging(level=logging.INFO)
+    logger = logging.getLogger("exp_1c")
+
+    print(
+        "\n======================================================================"
+    )
+    print(f"STARTING EXP-1C COUNTERFACTUAL EXPERIMENT ({days}-DAY WINDOW)")
+    print(
+        f"Protocol: Phase 1C Section 12 (Multi-Regime {days}-Day Counterfactual)"
+    )
     print(f"Seeds ({len(SEEDS)}): {SEEDS}")
-    print("======================================================================\n")
+    print(
+        "======================================================================\n"
+    )
 
     c0_results = []
     i1_results = []
@@ -213,34 +243,64 @@ def main():
     for idx, seed in enumerate(SEEDS, start=1):
         print(f"--- Seed Pair {idx}/{len(SEEDS)} (Seed: {seed}) ---")
         print(f"Running Group C0 (Memoryless Control)...")
-        c0_res = run_single_condition("Control_C0", seed=seed, memoryless=True)
+        c0_res = run_single_condition(
+            "Control_C0",
+            seed=seed,
+            memoryless=True,
+            days=days,
+            output_base_dir=output_base_dir,
+        )
         c0_results.append(c0_res)
 
         print(f"Running Group I1 (Full Reflective Intervention)...")
-        i1_res = run_single_condition("Intervention_I1", seed=seed, memoryless=False)
+        i1_res = run_single_condition(
+            "Intervention_I1",
+            seed=seed,
+            memoryless=False,
+            days=days,
+            output_base_dir=output_base_dir,
+        )
         i1_results.append(i1_res)
 
-    print("\n======================================================================")
+    print(
+        "\n======================================================================"
+    )
     print("COMPUTING DEPENDENT VARIABLES & SCIENTIFIC AUDIT")
-    print("======================================================================")
+    print(
+        "======================================================================"
+    )
 
     dvs = compute_dependent_variables(c0_results, i1_results)
 
     summary_report = {
-        "experiment_id": "EXP-1C.1",
+        "experiment_id": f"EXP-1C_{days}D",
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "protocol": "Phase 1C Section 12",
+        "protocol": f"Phase 1C Section 12 ({days}-Day Multi-Regime Window)",
+        "days": days,
         "matched_seeds": SEEDS,
         "dependent_variables": dvs,
         "hypotheses_evaluation": {
-            "H1_Primary_Trajectory_Shift": "VALIDATED" if dvs["DV5_Epistemic_Divergence"] > 0.0 else "UNVALIDATED",
-            "H2a_Contradiction_Sensitivity": "VALIDATED" if dvs["DV3_Initial_Confidence"]["Delta"] != 0.0 else "NEUTRAL",
-            "H2b_Recurring_Failure_Reduction": "VALIDATED" if dvs["DV2_Recurring_Failure_Rate"]["I1_Intervention"] <= dvs["DV2_Recurring_Failure_Rate"]["C0_Control"] else "NEUTRAL",
+            "H1_Primary_Trajectory_Shift": (
+                "VALIDATED"
+                if dvs["DV5_Epistemic_Divergence"] > 0.0
+                else "UNVALIDATED"
+            ),
+            "H2a_Contradiction_Sensitivity": (
+                "VALIDATED"
+                if dvs["DV3_Initial_Confidence"]["Delta"] != 0.0
+                else "NEUTRAL"
+            ),
+            "H2b_Recurring_Failure_Reduction": (
+                "VALIDATED"
+                if dvs["DV2_Recurring_Failure_Rate"]["I1_Intervention"]
+                <= dvs["DV2_Recurring_Failure_Rate"]["C0_Control"]
+                else "NEUTRAL"
+            ),
         },
     }
 
-    OUTPUT_BASE_DIR.mkdir(parents=True, exist_ok=True)
-    report_file = OUTPUT_BASE_DIR / "summary_report.json"
+    output_base_dir.mkdir(parents=True, exist_ok=True)
+    report_file = output_base_dir / "summary_report.json"
     with open(report_file, "w", encoding="utf-8") as rf:
         json.dump(summary_report, rf, indent=2)
 
