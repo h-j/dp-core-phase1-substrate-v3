@@ -1,0 +1,39 @@
+name: DP-Core Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Run pytest suite
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install dependencies
+        run: poetry install --no-interaction
+
+      - name: Run unit tests (no external services required)
+        run: poetry run pytest tests/ -q --tb=short
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_DB: dp_test
+          POSTGRES_USER: dp_user
+          POSTGRES_PASSWORD: dp_pass
+
+      - name: Verify no trade feedback regression
+        run: poetry run pytest tests/test_no_trade_feedback.py -v
