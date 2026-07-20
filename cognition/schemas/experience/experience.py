@@ -33,5 +33,7 @@ class Experience:
     contradiction_count: int = 0
     validation_count: int = 0
     falsification_count: int = 0
+    undecidable_count: int = 0
     causal_events: List[Dict[str, Any]] = field(default_factory=list)
     component_failure_counts: Dict[str, int] = field(default_factory=dict)
+    advancement_trace: List[Dict[str, Any]] = field(default_factory=list)

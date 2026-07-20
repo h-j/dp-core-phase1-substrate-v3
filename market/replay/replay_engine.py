@@ -379,6 +379,7 @@ class ReplayExecutor:
         self.regime_memory = RegimeMemoryStore()  # Initialize unconditionally
         self.regime_continuity_memory = RegimeContinuityMemory()
         self.attribution_engine = AttributionEngine(llm_client=None)
+        self._accumulated_attributions = []
         self._prior_dialectical_synthesis = None
         self._prior_dialectical_subtype = None
         self._prior_prediction_db_id = None
@@ -2953,6 +2954,9 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                                 market_context=market_snapshot,
                             )
                             self._prior_attribution = attribution
+                            if not hasattr(self, "_accumulated_attributions"):
+                                self._accumulated_attributions = []
+                            self._accumulated_attributions.append(attribution)
 
                             # Keep attribution in the explicit experience causal
                             # event path below. Theory is a Pydantic schema and
@@ -3140,11 +3144,19 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                         )
                         if target_exp:
                             attributed = False
-                            if prior_prediction_result.direction_score == 1.0:
+                            score = getattr(prior_prediction_result, "direction_score", 0.0)
+                            is_invalidated = getattr(prior_prediction_result, "invalidation_triggered", False)
+
+                            if score == 1.0 and not is_invalidated:
                                 target_exp.validation_count += 1
                                 attributed = True
-                            if prior_prediction_result.invalidation_triggered:
+                            elif is_invalidated or score == 0.0:
                                 target_exp.falsification_count += 1
+                                attributed = True
+                            else:
+                                # Explicit Undecidable / Inconclusive outcome semantics
+                                if hasattr(target_exp, "undecidable_count"):
+                                    target_exp.undecidable_count += 1
                                 attributed = True
 
                             if attributed:
@@ -4536,6 +4548,9 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                         )
 
                 if should_reconcile:
+                    # Run Knowledge Compression to extract candidate principles from experiences and attributions
+                    self._run_knowledge_compression(step=day_idx)
+
                     experiences = self.experience_repo.get_all()
 
                     # Calculate debt to pass to compress for logging
@@ -5797,6 +5812,46 @@ Respond STRICTLY in JSON format with the following keys:
             f"Memory: {memory_match}"
             f"{failures_str}{lesson_str}"
         )
+
+    def _run_knowledge_compression(self, step: int):
+        """
+        Runs KnowledgeCompressionEngine to induct high-level principles from experiences,
+        theory lineages, and accumulated attributions, validates them, and persists them.
+        """
+        if not hasattr(self, "knowledge_compression_engine") or not self.knowledge_compression_engine:
+            from flows.knowledge_flow.knowledge_compression_engine import \
+                KnowledgeCompressionEngine
+            self.knowledge_compression_engine = KnowledgeCompressionEngine()
+
+        try:
+            experiences = self.experience_repo.get_all() if self.experience_repo else []
+            lineages = self.theory_lineage.get_all_lineages() if self.theory_lineage else []
+            attributions = getattr(self, "_accumulated_attributions", [])
+
+            new_principles = self.knowledge_compression_engine.compress(
+                experiences=experiences,
+                theory_lineages=lineages,
+                attributions=attributions,
+                step=step,
+            )
+
+            prediction_history = []
+            for r in getattr(self, "_run_validations", []):
+                val_dict = r.to_dict() if hasattr(r, "to_dict") else {}
+                prediction_history.append({
+                    "prior_prediction_result": val_dict,
+                    "regime_subtype": getattr(r, "regime", "neutral"),
+                    "components_failed": getattr(self._prior_attribution, "components_failed", []) if getattr(self, "_prior_attribution", None) else [],
+                })
+
+            for p in new_principles:
+                validated_p = self.knowledge_compression_engine.validate_principle(p, prediction_history)
+                if self.knowledge_repository:
+                    self.knowledge_repository.save_principle(validated_p)
+                if self.verbose:
+                    print(f"[KnowledgeCompression] Induced & Validated Principle {validated_p.id} (Status: {validated_p.status}, Support: {validated_p.support_count})")
+        except Exception as e:
+            self._log(f"WARNING: Knowledge Compression execution error at step {step}: {e}")
 
 
 def main():

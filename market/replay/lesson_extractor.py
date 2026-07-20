@@ -92,13 +92,7 @@ class LessonExtractor:  #
         if self.debug:
             print(f"[LessonExtractor] Confidence: {confidence:.2f}")
 
-        # REQUIREMENT 3: Prevent lessons with confidence=0.0 from being persisted
-        if confidence == 0.0:
-            if self.debug:
-                print(
-                    f"[LessonExtractor] Confidence is 0.0. Preventing lesson persistence."
-                )
-            return None, "zero_confidence_rejected", count
+        # Persistent Candidate Lesson State: Save as CANDIDATE when pattern exists
         existing_lesson = self._find_existing_lesson(pattern["lesson_text"])
         if existing_lesson:
             updated_lesson = self._update_lesson_record(
@@ -109,7 +103,8 @@ class LessonExtractor:  #
                 pattern["contradiction_count"],
             )
             self.lesson_repo.save(updated_lesson)
-            return updated_lesson, "updated", count
+            status_reason = "updated_candidate" if updated_lesson.status == LessonStatus.CANDIDATE else "updated_active"
+            return updated_lesson, status_reason, count
         else:
             new_lesson = self._create_new_lesson_record(
                 pattern["lesson_text"],
@@ -119,7 +114,8 @@ class LessonExtractor:  #
                 pattern["contradiction_count"],
             )
             self.lesson_repo.save(new_lesson)
-            return new_lesson, "created", count
+            status_reason = "candidate_created" if new_lesson.status == LessonStatus.CANDIDATE else "active_created"
+            return new_lesson, status_reason, count
 
     def _contains_internal_id(self, text: str) -> bool:
         """CHANGE 3: Checks if the lesson text contains internal identifiers."""

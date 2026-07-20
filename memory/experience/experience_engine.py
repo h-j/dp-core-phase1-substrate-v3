@@ -265,20 +265,30 @@ class ExperienceEngine:
             # Save the updated experience to repository
             self.experience_repo.save(experience)
 
-            # Trigger lesson extraction from process_cycle
+            # Trigger lesson extraction from process_cycle and record gate advancement trace
             if self.lesson_extractor:
                 if experience.status == ExperienceStatus.CLOSED:
-                    self._last_extracted_lesson_info = (
-                        self.lesson_extractor.extract_lessons_from_closed_experience(
-                            experience
-                        )
-                    )
+                    info = self.lesson_extractor.extract_lessons_from_closed_experience(experience)
                 else:
-                    self._last_extracted_lesson_info = (
-                        self.lesson_extractor.extract_lessons_from_active_experience(
-                            experience
-                        )
-                    )
+                    info = self.lesson_extractor.extract_lessons_from_active_experience(experience)
+                self._last_extracted_lesson_info = info
+                
+                # Append gate advancement trace
+                lesson_obj, status_reason, cohort_cnt = info
+                trace_entry = {
+                    "gate": "lesson_extraction",
+                    "status_reason": status_reason,
+                    "cohort_count": cohort_cnt,
+                    "lesson_id": str(lesson_obj.lesson_id) if lesson_obj else None,
+                    "lesson_status": lesson_obj.status.value if (lesson_obj and hasattr(lesson_obj.status, "value")) else (str(lesson_obj.status) if lesson_obj else None)
+                }
+                if hasattr(experience, "advancement_trace") and isinstance(experience.advancement_trace, list):
+                    experience.advancement_trace.append(trace_entry)
+                elif isinstance(experience, dict):
+                    if "advancement_trace" not in experience:
+                        experience["advancement_trace"] = []
+                    experience["advancement_trace"].append(trace_entry)
+                self.experience_repo.save(experience)
 
         # For printing compatibility, retrieve experience_id and create a getter wrapper if needed
         original_experience = experience
