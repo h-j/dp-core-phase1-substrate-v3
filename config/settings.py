@@ -33,3 +33,28 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+
+# ---------------------------------------------------------------------------
+# Cognition Tuning Parameters
+# Loaded from config/cognition_tuning.yaml (Phase 5 — 2026-07-20).
+# Use cognition_tuning["confidence_evolution"]["outcome_high_threshold"]
+# to access values. Falls back to an empty dict if the file is missing.
+# ---------------------------------------------------------------------------
+import pathlib
+
+
+def _load_cognition_tuning() -> dict:
+    yaml_path = pathlib.Path(__file__).parent / "cognition_tuning.yaml"
+    if not yaml_path.exists():
+        return {}
+    try:
+        import yaml
+
+        with open(yaml_path, encoding="utf-8") as f:
+            return yaml.safe_load(f) or {}
+    except Exception:
+        return {}
+
+
+cognition_tuning: dict = _load_cognition_tuning()

@@ -30,6 +30,7 @@ yfinance = "^0.2.36"
 matplotlib = "^3.10.9"
 pyarrow = "^24.0.0"
 jinja2 = "^3.1.6"
+pyyaml = "^6.0.3"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.0"

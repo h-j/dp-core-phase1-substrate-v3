@@ -1,0 +1,59 @@
+# DP-Core Cognition Tuning Parameters
+# =====================================
+# CHANGELOG: see config/CHANGELOG_tuning.md
+# v1.0 (2026-07-20): Initial extraction from inline literals.
+#   All values match the defaults that were previously hardcoded in:
+#   - cognition/confidence/confidence_evolution_engine.py
+#   - cognition/contradiction/contradiction_detector.py
+#
+# To change a parameter, edit this file and commit with a CHANGELOG_tuning.md entry.
+# DO NOT change inline code values — they must always read from this config.
+
+confidence_evolution:
+  # Outcome alignment thresholds (from outcome_validation_result.validation_score)
+  outcome_high_threshold: 0.7         # Above this → high-confidence update
+  outcome_mid_threshold: 0.4          # Between mid and high → mild update
+
+  # Empirical deltas for outcome alignment
+  empirical_delta_high_support: 0.08
+  empirical_delta_mid_support: 0.02
+  empirical_delta_contradiction: -0.09
+
+  # Regime and coherence deltas for outcome alignment
+  regime_delta_high_support: 0.04
+  regime_delta_mid_support: 0.01
+  coherence_delta_high_support: 0.03
+
+  # Validation alignment deltas (narrative/structural)
+  empirical_delta_validation_aligned: 0.03
+  empirical_delta_validation_misaligned: -0.08
+  coherence_delta_validation_misaligned: -0.05
+  pressure_delta_validation_misaligned: 0.10
+
+  # Theory usefulness thresholds
+  usefulness_high_threshold: 0.6
+  usefulness_low_threshold: 0.3
+  empirical_delta_usefulness_high: 0.08
+  empirical_delta_usefulness_low: -0.12
+  coherence_delta_usefulness_high: 0.05
+  coherence_delta_usefulness_low: -0.10
+
+  # Bayesian calibration divisor (baseline for pos_mult/neg_mult)
+  bayesian_baseline: 0.25
+  bayesian_mult_min: 0.1
+  bayesian_mult_max: 3.0
+
+  # Contradiction pressure multiplier
+  contradiction_pressure_coherence_penalty: 0.04
+
+contradiction_detection:
+  max_score_weight: 0.7
+  mean_score_weight: 0.3
+  threshold_synthesis: 0.38
+  lexical_weight_base: 0.15
+  trend_conflict_score: 0.3
+  range_persistence_score: 0.2
+  volatility_conflict_score: 0.25
+  participation_conflict_score: 0.2
+  regime_direct_conflict_score: 0.4
+  regime_secondary_conflict_score: 0.3
