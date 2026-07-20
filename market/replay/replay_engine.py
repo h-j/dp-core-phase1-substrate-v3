@@ -3151,7 +3151,11 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                                 self.experience_engine.process_cycle(
                                     lineage_id=self._prior_lineage_id,
                                     experience=target_exp,
-                                    status=target_exp.status.value,
+                                    status=getattr(
+                                        target_exp.status,
+                                        "value",
+                                        target_exp.status,
+                                    ),
                                     attribution=attribution,
                                 )
                                 self.experience_repo.save(target_exp)
@@ -4080,7 +4084,9 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                                 {
                                     "id": p_obj.id,
                                     "statement": p_obj.statement,
-                                    "status": p_obj.status.value,
+                                    "status": getattr(
+                                        p_obj.status, "value", p_obj.status
+                                    ),
                                     "trust_score": p_obj.trust_score,
                                 }
                             )
@@ -4259,7 +4265,9 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                                 "Principle",
                                 p_obj.statement,
                                 {
-                                    "status": p_obj.status.value,
+                                    "status": getattr(
+                                        p_obj.status, "value", p_obj.status
+                                    ),
                                     "trust_score": p_obj.trust_score,
                                 },
                             )
@@ -4516,8 +4524,11 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                         )
 
                     candidate_count = sum(
-                        1 for p in all_p_temp if p.status.value == "candidate"
+                        1
+                        for p in all_p_temp
+                        if getattr(p.status, "value", p.status) == "candidate"
                     )
+
                     if candidate_count > 6:
                         should_reconcile = True
                         self._log(
@@ -5087,7 +5098,7 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
 
         principles_summary = ""
         for i, p in enumerate(active_p[:15]):
-            principles_summary += f"- {p.statement} (status: {p.status.value}, trust: {p.trust_score:.2f})\n"
+            principles_summary += f"- {p.statement} (status: {getattr(p.status, 'value', p.status)}, trust: {p.trust_score:.2f})\n"
 
         retired_summary = ""
         for i, p in enumerate(retired_p[:10]):
@@ -5670,7 +5681,9 @@ Respond STRICTLY in JSON format with the following keys:
             if active_experience:
                 print(f"Experience:")
                 print(f"  {active_experience.experience_id}")
-                print(f"  Status: {active_experience.status.value}")
+                print(
+                    f"  Status: {getattr(active_experience.status, 'value', active_experience.status)}"
+                )
                 print(
                     f"  Theories: {len(active_experience.theory_ids)} | Contradictions: {active_experience.contradiction_count} | Mutations: {active_experience.mutation_count}"
                 )
@@ -5683,7 +5696,7 @@ Respond STRICTLY in JSON format with the following keys:
 
             if lesson_extracted:
                 print(
-                    f"  Extracted: {lesson_extracted.lesson_text[:100]}... (Confidence: {lesson_extracted.confidence:.2f}, Status: {lesson_extracted.status.value})"
+                    f"  Extracted: {lesson_extracted.lesson_text[:100]}... (Confidence: {lesson_extracted.confidence:.2f}, Status: {getattr(lesson_extracted.status, 'value', lesson_extracted.status)})"
                 )
             elif reason == "insufficient_evidence":
                 print(
