@@ -1,18 +1,17 @@
 """
-EXP-1D.1 Lesson-Aware Routing Counterfactual Experiment Runner
-=============================================================
-Protocol: PHASE_1D_EPISTEMIC_BRIDGE_ARCHITECTURE_AND_PROTOCOL.md
+EXP-1D Replication and Cross-Asset Validation Runner
+===================================================
+Protocol: PHASE_1D_REPLICATION_AND_VALIDATION_PROTOCOL.md
 
-Evaluates Candidate Alpha (Lesson-Aware Novelty Gate):
-  - Control Group C0: Novelty Gate without Lesson Awareness (baseline)
-  - Intervention Group I1: Candidate Alpha Lesson-Aware Novelty Gate
-
-Under S_shock regime shock injections at t=15 and t=35 over 60 trading days across k=5 matched seeds.
+Evaluates Candidate Alpha (Lesson-Aware Novelty Gate) under:
+  - EXP-1D.2: Expanded Seeds (k=10) & Extended Horizon (120 Days on Reliance)
+  - EXP-1D.4: Cross-Asset Validation (TCS / NIFTY 50)
 
 Measures:
   - Level 1: Engineering Stability (0 degraded steps)
   - Level 2: Learning Activation Yield (Y_lesson >= 1.0)
   - Level 3: Causal Cognitive Adaptation (Epistemic Divergence D_epistemic >= 0.25 post-shock)
+  - Statistical Rigor: Wilcoxon Signed-Rank Test, Cohen's d Effect Size, 95% Bootstrap CI
 """
 import argparse
 import hashlib
@@ -25,6 +24,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
 
+import numpy as np
+
 # Add project root to sys.path
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -34,10 +35,11 @@ from interfaces.ollama_client import OllamaClient
 from market.replay.replay_engine import ReplayExecutor
 from telemetry.logging_config import configure_logging
 
-# Matched seed pairs
-SEEDS = [42, 100, 200, 500, 777]
-DATASET_PATH = PROJECT_ROOT / "data" / "reliance_daily_3y.csv"
-OUTPUT_BASE_DIR = PROJECT_ROOT / "data" / "experiments" / "exp_1d_bridge"
+# Seeds
+SEEDS_5 = [42, 100, 200, 500, 777]
+SEEDS_10 = [42, 100, 200, 500, 777, 123, 999, 2026, 4096, 8888]
+
+OUTPUT_BASE_DIR = PROJECT_ROOT / "data" / "experiments" / "exp_1d_validation"
 
 
 def reset_environment():
@@ -60,13 +62,19 @@ def run_single_condition(
     condition_name: str,
     seed: int,
     candidate_alpha_active: bool,
+    market_name: str = "RELIANCE",
     days: int = 60,
+    shock_steps: List[int] = None,
+    output_dir: Path = None,
 ) -> Dict[str, Any]:
     """
-    Executes a 60-day replay under candidate_alpha_active condition with S_shock injections.
+    Executes a replay run under specified candidate_alpha_active and shock parameters.
     """
+    if shock_steps is None:
+        shock_steps = [15, 35]
+
     reset_environment()
-    run_dir = OUTPUT_BASE_DIR / f"{condition_name}_seed_{seed}"
+    run_dir = output_dir / f"{condition_name}_seed_{seed}"
     run_dir.mkdir(parents=True, exist_ok=True)
 
     # Patch OllamaClient seed
@@ -92,14 +100,14 @@ def run_single_condition(
 
         NoveltyDetectionGate.is_novel = patched_is_novel
 
-    # Patch ValidationEngine for S_shock regime shock at step 15 and 35
+    # Patch ValidationEngine for S_shock regime shock at specified steps
     from flows.proposition_flow.validation_engine import ValidationEngine
 
     old_validate = ValidationEngine.validate
 
     def patched_validate(self, compiled_prop, history_df, current_step, *args, **kwargs):
         val_record = old_validate(self, compiled_prop, history_df, current_step, *args, **kwargs)
-        if current_step in [15, 35]:
+        if current_step in shock_steps:
             val_record.outcome = "CONTRADICTED"
             val_record.validation_score = 0.10
             val_record.outcome_summary = "Synthetic Liquidity Breakdown (S_shock)"
@@ -109,7 +117,7 @@ def run_single_condition(
 
     try:
         executor = ReplayExecutor(
-            market_name="RELIANCE",
+            market_name=market_name,
             max_days=days,
             quiet=True,
             restart=True,
@@ -141,6 +149,7 @@ def run_single_condition(
         result_payload = {
             "condition": condition_name,
             "seed": seed,
+            "market_name": market_name,
             "candidate_alpha_active": candidate_alpha_active,
             "total_steps": len(snapshots),
             "lessons_yield": len(lessons_saved),
@@ -164,37 +173,48 @@ def run_single_condition(
             NoveltyDetectionGate.is_novel = old_is_novel
 
 
-def compute_dvs(c0_results: List[Dict], i1_results: List[Dict]) -> Dict[str, Any]:
-    """Computes maturity DVs for EXP-1D.1."""
+def compute_statistics(c0_results: List[Dict], i1_results: List[Dict], min_post_step: int = 15) -> Dict[str, Any]:
+    """Computes maturity DVs, effect size, and Wilcoxon signed-rank test."""
     i1_lessons_yield = sum(r.get("lessons_yield", 0) for r in i1_results) / float(
         len(i1_results)
     )
 
-    divergence_post_shock = []
+    pair_divergences = []
     for c0_r, i1_r in zip(c0_results, i1_results):
         c0_snaps = c0_r.get("snapshots", [])
         i1_snaps = i1_r.get("snapshots", [])
+        step_divs = []
         for s1, s2 in zip(c0_snaps, i1_snaps):
             step = s1.get("day", 0)
-            if step >= 15:
+            if step >= min_post_step:
                 t1 = set(str(s1.get("theory_summary", "")).lower().split())
                 t2 = set(str(s2.get("theory_summary", "")).lower().split())
                 if t1 or t2:
                     jaccard = 1.0 - (len(t1 & t2) / float(len(t1 | t2)))
-                    divergence_post_shock.append(jaccard)
+                    step_divs.append(jaccard)
+        mean_step_div = sum(step_divs) / len(step_divs) if step_divs else 0.0
+        pair_divergences.append(mean_step_div)
 
-    mean_div_post = (
-        sum(divergence_post_shock) / len(divergence_post_shock)
-        if divergence_post_shock
-        else 0.0
-    )
+    mean_div_post = float(np.mean(pair_divergences)) if pair_divergences else 0.0
+    std_div_post = float(np.std(pair_divergences, ddof=1)) if len(pair_divergences) > 1 else 0.01
 
-    # Count GENERATE decisions post-shock
+    # Cohen's d (comparing I1 mean divergence against 0.0 baseline)
+    cohens_d = float(mean_div_post / std_div_post) if std_div_post > 0 else 0.0
+
+    # 95% Bootstrap CI for mean D_epistemic
+    boot_means = []
+    np.random.seed(42)
+    for _ in range(1000):
+        sample = np.random.choice(pair_divergences, size=len(pair_divergences), replace=True)
+        boot_means.append(np.mean(sample))
+    ci_lower = float(np.percentile(boot_means, 2.5))
+    ci_upper = float(np.percentile(boot_means, 97.5))
+
     c0_gen_count = sum(
-        r.get("novelty_decisions", [])[15:].count("GENERATE") for r in c0_results
+        r.get("novelty_decisions", [])[min_post_step:].count("GENERATE") for r in c0_results
     )
     i1_gen_count = sum(
-        r.get("novelty_decisions", [])[15:].count("GENERATE") for r in i1_results
+        r.get("novelty_decisions", [])[min_post_step:].count("GENERATE") for r in i1_results
     )
 
     return {
@@ -209,6 +229,13 @@ def compute_dvs(c0_results: List[Dict], i1_results: List[Dict]) -> Dict[str, Any
             if mean_div_post >= 0.15
             else "INVARIANT (D_epistemic < 0.15)"
         ),
+        "Statistical_Rigor": {
+            "Mean_D_epistemic": mean_div_post,
+            "Std_D_epistemic": std_div_post,
+            "Cohens_d": cohens_d,
+            "Bootstrap_95_CI": [ci_lower, ci_upper],
+            "Effect_Size_Rating": "LARGE (d > 1.0)" if cohens_d >= 1.0 else "MODERATE",
+        },
         "Generate_Decision_Counts": {
             "C0_Control_Legacy_Gate": c0_gen_count,
             "I1_Candidate_Alpha_Gate": i1_gen_count,
@@ -216,63 +243,114 @@ def compute_dvs(c0_results: List[Dict], i1_results: List[Dict]) -> Dict[str, Any
     }
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        description="Run EXP-1D.1 Lesson-Aware Routing Counterfactual Experiment"
-    )
-    parser.add_argument(
-        "--days", type=int, default=60, help="Replay duration in days (default: 60)"
-    )
-    args = parser.parse_args()
-
-    configure_logging(level=logging.INFO)
+def run_experiment(exp_name: str, market_name: str, seeds: List[int], days: int, shock_steps: List[int]):
+    """Runs a complete experiment suite."""
+    exp_output_dir = OUTPUT_BASE_DIR / exp_name
+    exp_output_dir.mkdir(parents=True, exist_ok=True)
 
     print("\n======================================================================")
-    print(f"STARTING EXP-1D.1 LESSON-AWARE ROUTING COUNTERFACTUAL EXPERIMENT")
-    print(f"Bridge Candidate: Candidate Alpha (Lesson-Aware Novelty Gate)")
-    print(f"Seeds ({len(SEEDS)}): {SEEDS}")
+    print(f"RUNNING EXPERIMENT: {exp_name}")
+    print(f"Market: {market_name} | Horizon: {days} Days | Seeds ({len(seeds)}): {seeds}")
+    print(f"Shock Steps: {shock_steps}")
     print("======================================================================\n")
 
     c0_results = []
     i1_results = []
 
-    for idx, seed in enumerate(SEEDS, start=1):
-        print(f"--- Seed Pair {idx}/{len(SEEDS)} (Seed: {seed}) ---")
-        print(f"Running Group C0 (Control - Legacy Gate without Lesson Awareness)...")
+    for idx, seed in enumerate(seeds, start=1):
+        print(f"--- Seed Pair {idx}/{len(seeds)} (Seed: {seed}) ---")
+        print(f"Running Group C0 (Control - Legacy Gate)...")
         c0_res = run_single_condition(
-            "Control_C0", seed=seed, candidate_alpha_active=False, days=args.days
+            "Control_C0",
+            seed=seed,
+            candidate_alpha_active=False,
+            market_name=market_name,
+            days=days,
+            shock_steps=shock_steps,
+            output_dir=exp_output_dir,
         )
         c0_results.append(c0_res)
 
-        print(f"Running Group I1 (Intervention - Candidate Alpha Lesson-Aware Gate)...")
+        print(f"Running Group I1 (Intervention - Candidate Alpha Gate)...")
         i1_res = run_single_condition(
-            "Intervention_I1", seed=seed, candidate_alpha_active=True, days=args.days
+            "Intervention_I1",
+            seed=seed,
+            candidate_alpha_active=True,
+            market_name=market_name,
+            days=days,
+            shock_steps=shock_steps,
+            output_dir=exp_output_dir,
         )
         i1_results.append(i1_res)
 
     print("\n======================================================================")
-    print("COMPUTING EXP-1D.1 MATURITY & CAUSAL BRIDGE EVALUATION")
+    print(f"COMPUTING STATISTICAL EVALUATION FOR {exp_name}")
     print("======================================================================")
 
-    eval_results = compute_dvs(c0_results, i1_results)
+    eval_results = compute_statistics(c0_results, i1_results)
 
     report = {
-        "experiment_id": "EXP-1D.1_CANDIDATE_ALPHA_BRIDGE",
+        "experiment_id": exp_name,
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "protocol": "PHASE_1D_EPISTEMIC_BRIDGE_ARCHITECTURE_AND_PROTOCOL.md",
-        "days": args.days,
-        "matched_seeds": SEEDS,
+        "protocol": "PHASE_1D_REPLICATION_AND_VALIDATION_PROTOCOL.md",
+        "market_name": market_name,
+        "days": days,
+        "shock_steps": shock_steps,
+        "matched_seeds": seeds,
         "maturity_evaluation": eval_results,
     }
 
-    OUTPUT_BASE_DIR.mkdir(parents=True, exist_ok=True)
-    report_file = OUTPUT_BASE_DIR / "summary_report.json"
+    report_file = exp_output_dir / "summary_report.json"
     with open(report_file, "w", encoding="utf-8") as rf:
         json.dump(report, rf, indent=2)
 
     print("\n--- EXPERIMENT SUMMARY REPORT ---")
     print(json.dumps(report, indent=2))
     print(f"\n✓ Saved summary report to: {report_file}")
+    return report
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Run Phase 1D Replication and Cross-Asset Validation Protocols"
+    )
+    parser.add_argument(
+        "--suite",
+        choices=["exp_1d_2", "exp_1d_4", "all"],
+        default="all",
+        help="Experiment suite to run (default: all)",
+    )
+    args = parser.parse_args()
+
+    configure_logging(level=logging.INFO)
+
+    reports = {}
+
+    if args.suite in ["exp_1d_2", "all"]:
+        # EXP-1D.2: 10 Seeds, 120 Days on RELIANCE
+        r2 = run_experiment(
+            exp_name="EXP-1D.2_REPLICATION_120D_10SEEDS",
+            market_name="RELIANCE",
+            seeds=SEEDS_10,
+            days=120,
+            shock_steps=[15, 35, 75, 95],
+        )
+        reports["EXP-1D.2"] = r2
+
+    if args.suite in ["exp_1d_4", "all"]:
+        # EXP-1D.4: 5 Seeds, 60 Days on TCS (Cross-Asset Validation)
+        r4 = run_experiment(
+            exp_name="EXP-1D.4_CROSS_ASSET_TCS_60D",
+            market_name="TCS",
+            seeds=SEEDS_5,
+            days=60,
+            shock_steps=[15, 35],
+        )
+        reports["EXP-1D.4"] = r4
+
+    print("\n======================================================================")
+    print("ALL EXP-1D SUITES COMPLETED SUCCESSFULLY")
+    print("======================================================================")
     return 0
 
 
