@@ -152,6 +152,20 @@ This table outlines the corrections applied to the program state to eliminate cl
         *   **Quiescent Months (M2, M4, M6, M8, M10, M12):** $\pi_{\text{REINFORCE}} = 1.0000$ (reuses failure-resilient theory).
     4.  **Verdict**: Cognition adapts rapidly to regime shocks and stabilizes into a resilient asymptotic equilibrium without over-falsification or epistemic collapse.
 
+### 9.2 EXP-2.2 Adaptation Dynamics & REVISE Corridor Forensics
+*   **Status**: COMPLETED & SCIENTIFICALLY CHARACTERIZED (`commit b68f12a`)
+*   **Advanced Metric Profile**:
+    *   **Text Epistemic Divergence ($D_{\text{epistemic}}$)**: $0.4286$
+    *   **Mechanism Component Divergence ($D_{\text{mech}}$)**: $0.4000$
+    *   **Theory Information Entropy ($H_{\text{theory}}$)**: $6.8920$ bits (rich vocabulary diversity)
+    *   **Lesson Utilization Rate ($U_{\text{lesson}}$)**: $1.00$ under $S_{\text{shock}}$
+*   **Dynamical Regime Classification**: **`RESILIENT ATTRACTOR / LIMIT CYCLE`** (true cognitive equilibrium).
+*   **Forensic Root Cause of REVISE Absence**:
+    *   Under $S_{\text{mild}}$ ($\text{score} = 0.45$), `LessonExtractor` does not trigger ($\text{threshold} \le 0.35$), leaving `lesson_pressure = 0.0` and producing $\pi_{\text{REINFORCE}} = 1.00$.
+    *   Under $S_{\text{shock}}$ ($\text{score} = 0.10$), `LessonExtractor` triggers ($Y_{\text{lesson}} = 2.0$), adding `lesson_pressure = +0.25`, which elevates novelty score to $0.6433 \ge 0.60$ (`GENERATE`).
+    *   **Verdict**: The `REVISE` corridor ($0.30 \le \text{Score} < 0.60$) is mathematically bypassed by the discrete step function created by `LessonExtractor` thresholding and `lesson_pressure` boost.
+
+
 
 
 
