@@ -3338,106 +3338,11 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                     lifetime_accuracy=lifetime_acc,
                 )
 
-                # Programmatic Decision Feedback Loop
-                if (
-                    hasattr(self, "paper_trader")
-                    and len(self.paper_trader.decision_records) > 0
-                ):
-                    last_rec = self.paper_trader.decision_records[-1]
-                    if last_rec.evaluation_date == date_str:
-                        if (
-                            last_rec.decision_result == "incorrect"
-                            and last_rec.conviction_score >= 0.60
-                        ):
-                            confidence_state.empirical_confidence = max(
-                                0.0, confidence_state.empirical_confidence - 0.15
-                            )
-                            confidence_state.regime_confidence = max(
-                                0.0, confidence_state.regime_confidence - 0.10
-                            )
-                            self._log(
-                                f"  [Feedback] False High Conviction: Penalizing empirical (-0.15) & regime (-0.10) confidence."
-                            )
-                        elif last_rec.decision_result == "avoided_bad_trade":
-                            confidence_state.empirical_confidence = min(
-                                1.0, confidence_state.empirical_confidence + 0.05
-                            )
-                            self._log(
-                                f"  [Feedback] Avoided Bad Trade: Rewarding empirical confidence (+0.05)."
-                            )
-
-                        for lineage_id in last_rec.supporting_lineages:
-                            for rec in self.theory_lineage.theories.values():
-                                if rec.lineage_id == lineage_id:
-                                    pnl_term = last_rec.pnl / 100000.0
-                                    delta = 0.0
-                                    if last_rec.decision_result == "correct":
-                                        delta += 0.10
-                                    elif last_rec.decision_result == "incorrect":
-                                        delta -= 0.15
-                                    elif (
-                                        last_rec.decision_result == "avoided_bad_trade"
-                                    ):
-                                        delta += 0.05
-
-                                    rec.predictive_fitness = max(
-                                        0.0,
-                                        min(
-                                            1.0,
-                                            getattr(rec, "predictive_fitness", 0.5)
-                                            + delta,
-                                        ),
-                                    )
-                                    rec.economic_fitness = max(
-                                        0.0,
-                                        min(
-                                            1.0,
-                                            getattr(rec, "economic_fitness", 0.5)
-                                            + pnl_term,
-                                        ),
-                                    )
-                                    rec.generalization_fitness = max(
-                                        0.0,
-                                        min(
-                                            1.0,
-                                            getattr(rec, "generalization_fitness", 0.5)
-                                            + (
-                                                0.05
-                                                if last_rec.decision_result == "correct"
-                                                else -0.05
-                                            ),
-                                        ),
-                                    )
-                                    rec.cross_asset_fitness = max(
-                                        0.0,
-                                        min(
-                                            1.0,
-                                            getattr(rec, "cross_asset_fitness", 0.5)
-                                            + 0.02,
-                                        ),
-                                    )
-                                    rec.longevity_days = (
-                                        getattr(rec, "longevity_days", 0) + 1
-                                    )
-
-                        for pid in last_rec.supporting_principles:
-                            principle = self.knowledge_repository.get_principle(pid)
-                            if principle:
-                                principle.uses_count += 1
-                                if last_rec.decision_result in [
-                                    "correct",
-                                    "ignored_opportunity",
-                                ]:
-                                    principle.predictions_helped += 1
-                                    principle.confidence = min(
-                                        1.0, principle.confidence + 0.05
-                                    )
-                                else:
-                                    principle.predictions_harmed += 1
-                                    principle.confidence = max(
-                                        0.0, principle.confidence - 0.08
-                                    )
-                                self.knowledge_repository.save_principle(principle)
+                # NOTE(charter): DecisionPolicyEngine and CapitalSimulator are downstream
+                # observers only. Their outputs (conviction, PnL, decision_result) must not
+                # be fed back into any cognition-state-mutating path. The feedback loop that
+                # previously existed here (lines 3411-3511 pre-Phase-0) has been removed.
+                # See AGENTS.md §"Observer-Only Modules" for the architectural contract.
 
                 # Update in-memory confidence history
                 try:

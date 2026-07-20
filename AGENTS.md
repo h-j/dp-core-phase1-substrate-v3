@@ -76,6 +76,12 @@ Prefer:
 - Contradiction-aware lifecycle repair.
 - Small changes with explicit cognition semantics.
 
+## Observer-Only Modules
+
+`DecisionPolicyEngine`, `CapitalSimulator`, `ConvictionSizer`, and `PaperTrader` are downstream observers only.
+They read prediction probes, transition pressure, and market outcomes to simulate paper trading performance.
+Nothing produced by these modules (decisions, trade logs, PnL, conviction scores) may ever feed back into cognition-state-mutating methods (`ConfidenceEvolutionEngine.evolve`, `TheoryLineageEngine.evolve_theory`, `ContradictionRegistry`, or `RegimeMemoryStore`).
+
 ## Forensic Audit Governance Rule
 
 Every forensic audit must end in exactly one of the following outcomes:
