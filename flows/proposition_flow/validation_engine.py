@@ -290,6 +290,12 @@ class ValidationEngine:
                 return is_met, actual_dir, desc
 
             else:
+                if field not in history_df.columns:
+                    return (
+                        False,
+                        None,
+                        f"Missing field in dataset: field={field}",
+                    )
                 lag = cond.get("lag", 0)
                 target_idx = idx - lag
                 if target_idx < 0 or target_idx >= len(history_df):
@@ -316,7 +322,9 @@ class ValidationEngine:
     def _resolve_operand(
         self, operand: dict, history_df: pd.DataFrame, idx: int
     ) -> Tuple[Any, str]:
-        field = operand["field"]
+        field = operand.get("field")
+        if not field or field not in history_df.columns:
+            return None, f"{field} (Missing Column)"
         offset = operand.get("time_offset", 0)
         target_idx = idx + offset
 
@@ -335,6 +343,7 @@ class ValidationEngine:
         val = history_df[field].iloc[target_idx]
         trace = f"{field}[t+{offset}]"
         return val, trace
+
 
     def _apply_operator(self, left: Any, op: str, right: Any) -> bool:
         try:
