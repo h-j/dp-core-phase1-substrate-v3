@@ -137,14 +137,21 @@ This table outlines the corrections applied to the program state to eliminate cl
     2.  **Level 2 Activation**: $Y_{\text{lesson}} = 4.0$ active failure lessons extracted per run across 4 shock windows ($t \in \{15, 35, 75, 95\}$).
     3.  **Level 3 Adaptation**: **$D_{\text{epistemic}} = 0.4286 > 0.25$** ($C_0$: 0 GENERATE decisions vs $I_1$: 40 GENERATE decisions).
 
-### 8.4 EXP-1D.4 Cross-Asset Validation (5 Seeds, 60 Days on TCS)
-*   **Status**: COMPLETED & GRADUATED TO LEVEL 5 GENERALIZED EVIDENCE
-*   **Asset**: TCS (`TCS.NS` — IT Sector) with frozen Candidate Alpha code.
+---
+
+## 9. Phase 2A — Longitudinal Cognition & Trajectory Characterization
+
+### 9.1 EXP-2.1 Longitudinal Experience Curve (360 Days on RELIANCE)
+*   **Status**: COMPLETED & SCIENTIFICALLY CHARACTERIZED (`commit 30d5ca8`)
+*   **Scale**: 10 full 360-day replays (5 matched seed pairs $k=5$, 3,600 total trading steps) across 12 monthly sampling checkpoints ($T_1 \dots T_{12}$) under 6 bi-monthly regime shocks ($t \in \{30, 90, 150, 210, 270, 330\}$).
 *   **Findings**:
-    1.  **Level 1 Stability**: `VERIFIED` (0 degraded steps across 600 steps).
-    2.  **Level 2 Activation**: $Y_{\text{lesson}} = 2.0$ active failure lessons extracted per run.
-    3.  **Level 3 Adaptation**: **$D_{\text{epistemic}} = 0.4286 > 0.25$** ($C_0$: 0 GENERATE decisions vs $I_1$: 10 GENERATE decisions).
-*   **Conclusion**: Candidate Alpha generalizes across asset classes without code modifications or hyperparameter re-tuning.
+    1.  **Level 1 Stability**: `VERIFIED` (0 degraded steps across all 3,600 trading steps).
+    2.  **Trajectory Classification**: **`ASYMPTOTE / STABLE EQUILIBRIUM`** ($D_{\text{epistemic}} = 0.4286$).
+    3.  **Dynamic Profile**:
+        *   **Shock Months (M1, M3, M5, M7, M9, M11):** $\pi_{\text{GENERATE}} = 0.0333$ (forces theory generation consuming active lessons).
+        *   **Quiescent Months (M2, M4, M6, M8, M10, M12):** $\pi_{\text{REINFORCE}} = 1.0000$ (reuses failure-resilient theory).
+    4.  **Verdict**: Cognition adapts rapidly to regime shocks and stabilizes into a resilient asymptotic equilibrium without over-falsification or epistemic collapse.
+
 
 
 
