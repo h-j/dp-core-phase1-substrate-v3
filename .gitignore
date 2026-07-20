@@ -17,3 +17,13 @@ market/replay/output/
 # editors
 .vscode/
 .idea/
+
+# Phase 9: Runtime output data & cached files
+data/decision_journal/
+data/llm_cache/
+*.db
+*.duckdb
+*.parquet
+dp_cognition.db
+market_memory.db
+tmp_lineage.json
