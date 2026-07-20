@@ -1,4 +1,4 @@
-from sqlalchemy import Column, DateTime, Float, String, Text
+from sqlalchemy import Column, DateTime, Float, ForeignKey, String, Text
 from sqlalchemy.sql import func
 
 from memory.relational.base import Base
@@ -15,7 +15,10 @@ class MarketOutcomeModel(Base):
 
     market_name = Column(String)
 
-    related_observation_id = Column(String)
+    # FK to observations; SET NULL protects against orphaned legacy rows
+    related_observation_id = Column(
+        String, ForeignKey("observations.id", ondelete="SET NULL"), nullable=True
+    )
 
     outcome_summary = Column(Text)
 

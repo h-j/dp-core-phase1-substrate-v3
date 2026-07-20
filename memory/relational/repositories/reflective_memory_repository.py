@@ -69,12 +69,18 @@ class ReflectiveMemoryRepository:
         )
 
     def _serialize(self, values: List[str]) -> str:
-
-        return "\n".join(values)
+        import json
+        return json.dumps(values)
 
     def _deserialize(self, value: Union[str, None]) -> List[str]:
-
         if not value:
             return []
-
-        return [item for item in value.splitlines() if item]
+        import json
+        try:
+            result = json.loads(value)
+            if isinstance(result, list):
+                return [str(item) for item in result if item]
+            return []
+        except (json.JSONDecodeError, ValueError):
+            # Backward-compat: legacy data stored as newline-delimited
+            return [item for item in value.splitlines() if item]
