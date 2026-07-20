@@ -1609,6 +1609,7 @@ class ReplayExecutor:
                             prior_prediction_result=prior_pred_res_obj,
                             prior_attribution=prior_attribution,
                             active_principles=active_principles,
+                            active_lessons=relevant_lessons,
                         )
                     )
                 self.novelty_decision_history.append(decision)

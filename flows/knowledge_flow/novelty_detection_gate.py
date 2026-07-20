@@ -21,19 +21,19 @@ class NoveltyDetectionGate:
         prior_attribution: Optional[Any],
         active_principles: List[Any],
         regime_subtype: str,
+        active_lessons: Optional[List[str]] = None,
     ) -> float:
         """
-        Calculates a continuous novelty score [0.0, 1.0] based on four factors.
+        Calculates a continuous novelty score [0.0, 1.0] based on five factors (including lesson pressure).
         """
-        # Factor 1: Regime Mismatch (Weight: 0.25)
+        # Factor 1: Regime Mismatch (Weight: 0.20)
         regime_mismatch = 1.0 - (
             regime_similarity if regime_similarity is not None else 0.5
         )
 
-        # Factor 2: Failed Component Ratio (Weight: 0.35)
+        # Factor 2: Failed Component Ratio (Weight: 0.25)
         if prior_attribution and hasattr(prior_attribution, "components_failed"):
             failed_count = len(prior_attribution.components_failed)
-            # Normalize over a cap of 3 failures
             failed_ratio = min(1.0, failed_count / 3.0)
         elif (
             isinstance(prior_attribution, dict)
@@ -44,7 +44,7 @@ class NoveltyDetectionGate:
         else:
             failed_ratio = 0.0
 
-        # Factor 3: Existing Principle Coverage (Weight: 0.20)
+        # Factor 3: Existing Principle Coverage (Weight: 0.15)
         principle_coverage = 0.0
         for p in active_principles:
             if hasattr(p, "falsifiable_predictions"):
@@ -62,11 +62,10 @@ class NoveltyDetectionGate:
                 break
         principle_uncovered = 1.0 - principle_coverage
 
-        # Factor 4: Prediction Surprise (Weight: 0.20)
+        # Factor 4: Prediction Surprise (Weight: 0.15)
         surprise = 0.5
         if prior_prediction and prior_prediction_result:
             try:
-                # Support both class objects and dicts
                 conf = getattr(prior_prediction, "confidence", 0.5)
                 if isinstance(prior_prediction, dict):
                     conf = prior_prediction.get("confidence", 0.5)
@@ -80,12 +79,16 @@ class NoveltyDetectionGate:
             except Exception:
                 pass
 
+        # Factor 5: Lesson Pressure (Weight: 0.25) - Candidate Alpha Epistemic Bridge
+        lesson_pressure = 1.0 if active_lessons else 0.0
+
         # Weighted Novelty Sum
         score = (
-            0.25 * regime_mismatch
-            + 0.35 * failed_ratio
-            + 0.20 * principle_uncovered
-            + 0.20 * surprise
+            0.20 * regime_mismatch
+            + 0.25 * failed_ratio
+            + 0.15 * principle_uncovered
+            + 0.15 * surprise
+            + 0.25 * lesson_pressure
         )
         return float(max(0.0, min(1.0, score)))
 
@@ -98,19 +101,14 @@ class NoveltyDetectionGate:
         prior_prediction_result: Optional[Any],
         prior_attribution: Optional[Any],
         active_principles: List[Any],
+        active_lessons: Optional[List[str]] = None,
     ) -> Tuple[str, float, str]:
         """
-        Runs the full novelty gate.
-        Returns:
-            decision (str): "REINFORCE", "REVISE", or "GENERATE"
-            score (float): The calculated Novelty Score
-            rationale (str): Description explaining the critique output.
+        Runs the full novelty gate with Lesson Awareness (Candidate Alpha).
         """
-        # If there is no prior theory, we must generate a new one
         if not prior_theory:
             return "GENERATE", 1.0, "No prior theory exists."
 
-        # Get observation text safely
         observation_text = ""
         if hasattr(observation, "observation_text"):
             observation_text = observation.observation_text
@@ -119,7 +117,6 @@ class NoveltyDetectionGate:
         else:
             observation_text = str(observation)
 
-        # Get prior claim safely
         prior_claim = ""
         if (
             hasattr(prior_theory, "summary_structured")
@@ -132,11 +129,9 @@ class NoveltyDetectionGate:
             prior_claim = str(prior_theory)
 
         sim = 0.5
-        # Estimate similarity using dict fields if present
         if isinstance(observation, dict):
             sim = observation.get("regime_similarity", 0.5)
 
-        # Calculate Novelty Score
         score = self.compute_novelty_score(
             regime_similarity=sim,
             prior_prediction=prior_prediction,
@@ -144,6 +139,7 @@ class NoveltyDetectionGate:
             prior_attribution=prior_attribution,
             active_principles=active_principles,
             regime_subtype=regime_subtype,
+            active_lessons=active_lessons,
         )
 
         failed_comps = []
@@ -170,6 +166,8 @@ class NoveltyDetectionGate:
             except Exception:
                 pass
 
+        lessons_text = "\n- ".join(active_lessons) if active_lessons else "None"
+
         # Trigger Micro Reflection Critique via LLM
         prompt = f"""You are the reflective critique model for the Cognition Engine.
 We computed a quantitative Novelty Score of {score:.2f} (where >= 0.60 suggests generating a new theory, 0.30 to 0.60 suggests revising the existing theory, and < 0.30 suggests reinforcing it).
@@ -178,15 +176,16 @@ Current State:
 - Current Observation: {observation_text}
 - Regime Subtype: {regime_subtype}
 - Existing Theory: {prior_claim}
+- Active Failure Lessons: {lessons_text}
 
 Prior Step Performance:
 - Failed Components: {failed_comps}
 - Prediction Surprise (Error): {surprise:.2f}
 
 Run a Micro Reflection Critique to finalize the decision. Choose one of:
-- "REINFORCE": Bypasses theory generation, reusing the existing theory directly. Use this if the prior theory succeeded and the regime/observation is consistent.
-- "REVISE": Triggers a minor revision of the existing theory's assumptions/falsification checks to adapt to slight differences.
-- "GENERATE": Triggers standard full theory generation because the observation is highly novel or the prior theory completely broke down.
+- "REINFORCE": Bypasses theory generation, reusing the existing theory directly. Note: If active failure lessons exist for this regime, REINFORCE is discouraged.
+- "REVISE": Triggers a minor revision of the existing theory's assumptions/falsification checks to adapt to slight differences or active failure lessons.
+- "GENERATE": Triggers standard full theory generation because the observation is highly novel, or active failure lessons require building a new theory.
 
 Respond in JSON format:
 {{
@@ -200,8 +199,7 @@ Respond in JSON format:
             res = json.loads(res_raw)
             decision = res.get("decision", "GENERATE")
             if decision not in ["REINFORCE", "REVISE", "GENERATE"]:
-                # Fallback to score-based thresholds
-                if score < 0.30:
+                if score < 0.30 and not active_lessons:
                     decision = "REINFORCE"
                 elif score < 0.60:
                     decision = "REVISE"
@@ -213,11 +211,11 @@ Respond in JSON format:
             rationale = f"Critique: {critique} | Explanation: {explanation}"
             return decision, score, rationale
         except Exception as e:
-            # Fallback to threshold-based policy on failure
-            if score < 0.30:
+            if score < 0.30 and not active_lessons:
                 decision = "REINFORCE"
             elif score < 0.60:
                 decision = "REVISE"
             else:
                 decision = "GENERATE"
             return decision, score, f"Fallback due to exception: {e}"
+
