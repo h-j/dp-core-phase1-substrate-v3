@@ -191,6 +191,7 @@ class KnowledgeRepository:
     def save_mechanism(self, mechanism: Mechanism):
         """Persists a Mechanism object to disk."""
         self.mechanisms[mechanism.id] = mechanism
+        self.mechanisms_path.mkdir(parents=True, exist_ok=True)
         file_path = self.mechanisms_path / f"{mechanism.id}.json"
         with open(file_path, "w") as f:
             json.dump(mechanism.to_dict(), f, indent=2)

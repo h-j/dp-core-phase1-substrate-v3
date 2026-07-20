@@ -50,6 +50,7 @@ class ExperienceRepository:
         self.storage[experience.experience_id] = experience
 
         # Persist to disk
+        self.base_path.mkdir(parents=True, exist_ok=True)
         file_path = self.base_path / f"{experience.experience_id}.json"
 
         experience_data = asdict(experience)
