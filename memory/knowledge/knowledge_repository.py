@@ -111,6 +111,7 @@ class KnowledgeRepository:
     def save_principle(self, principle: Principle):
         """Persists a Principle object to disk."""
         self.principles[principle.id] = principle
+        self.principles_path.mkdir(parents=True, exist_ok=True)
         file_path = self.principles_path / f"{principle.id}.json"
         with open(file_path, "w") as f:
             json.dump(principle.to_dict(), f, indent=2)
@@ -129,6 +130,7 @@ class KnowledgeRepository:
     def save_world_model(self, wm: WorldModel):
         """Persists a WorldModel object to disk."""
         self.world_models[wm.id] = wm
+        self.world_models_path.mkdir(parents=True, exist_ok=True)
         file_path = self.world_models_path / f"{wm.id}.json"
         with open(file_path, "w") as f:
             json.dump(wm.to_dict(), f, indent=2)
@@ -149,6 +151,7 @@ class KnowledgeRepository:
     def save_open_question(self, oq: OpenQuestion):
         """Persists an OpenQuestion object to disk."""
         self.open_questions[oq.id] = oq
+        self.open_questions_path.mkdir(parents=True, exist_ok=True)
         file_path = self.open_questions_path / f"{oq.id}.json"
         with open(file_path, "w") as f:
             json.dump(oq.to_dict(), f, indent=2)
@@ -167,6 +170,7 @@ class KnowledgeRepository:
     def save_reconciliation_report(self, report: ReconciliationReport):
         """Persists a ReconciliationReport object to disk."""
         self.reconciliation_reports[report.id] = report
+        self.reconciliation_reports_path.mkdir(parents=True, exist_ok=True)
         file_path = self.reconciliation_reports_path / f"{report.id}.json"
         with open(file_path, "w") as f:
             json.dump(report.to_dict(), f, indent=2)
@@ -180,6 +184,7 @@ class KnowledgeRepository:
     def save_evidence_gap(self, gap: EvidenceGap):
         """Persists an EvidenceGap object to disk."""
         self.evidence_gaps[gap.id] = gap
+        self.evidence_gaps_path.mkdir(parents=True, exist_ok=True)
         file_path = self.evidence_gaps_path / f"{gap.id}.json"
         with open(file_path, "w") as f:
             json.dump(gap.to_dict(), f, indent=2)
