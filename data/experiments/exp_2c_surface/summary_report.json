@@ -1,0 +1,124 @@
+{
+  "experiment_id": "EXP-2C.1_DECISION_SURFACE_GRID_SWEEP",
+  "timestamp": "2026-07-20T13:38:53.800626+00:00",
+  "protocol": "PHASE_2C_DECISION_SURFACE_AND_COGNITIVE_GEOMETRY.md",
+  "results": {
+    "total_coordinates": 18480,
+    "state_occupancy_no_lessons": {
+      "REINFORCE": 0.36623376623376624,
+      "REVISE": 0.5946969696969697,
+      "GENERATE": 0.039069264069264066
+    },
+    "state_occupancy_with_lessons": {
+      "REINFORCE": 0.0,
+      "REVISE": 0.49642857142857144,
+      "GENERATE": 0.5035714285714286
+    },
+    "decision_entropy_no_lessons_bits": 1.1593795457259026,
+    "decision_entropy_with_lessons_bits": 0.9999631962421185,
+    "revise_volume_with_lessons_pct": 49.642857142857146,
+    "falsification_verdict": "FALSIFIED (REVISE corridor is widely reachable)",
+    "sample_grid_points": [
+      {
+        "s_val": 0.0,
+        "sim": 0.0,
+        "f_count": 0,
+        "p_cov": false,
+        "l_pres": false,
+        "conf": 0.1,
+        "score": 0.365,
+        "decision": "REVISE"
+      },
+      {
+        "s_val": 0.0,
+        "sim": 0.0,
+        "f_count": 0,
+        "p_cov": false,
+        "l_pres": false,
+        "conf": 0.30000000000000004,
+        "score": 0.39499999999999996,
+        "decision": "REVISE"
+      },
+      {
+        "s_val": 0.0,
+        "sim": 0.0,
+        "f_count": 0,
+        "p_cov": false,
+        "l_pres": false,
+        "conf": 0.5,
+        "score": 0.425,
+        "decision": "REVISE"
+      },
+      {
+        "s_val": 0.0,
+        "sim": 0.0,
+        "f_count": 0,
+        "p_cov": false,
+        "l_pres": false,
+        "conf": 0.7000000000000001,
+        "score": 0.45499999999999996,
+        "decision": "REVISE"
+      },
+      {
+        "s_val": 0.0,
+        "sim": 0.0,
+        "f_count": 0,
+        "p_cov": false,
+        "l_pres": false,
+        "conf": 0.9,
+        "score": 0.485,
+        "decision": "REVISE"
+      },
+      {
+        "s_val": 0.0,
+        "sim": 0.0,
+        "f_count": 0,
+        "p_cov": false,
+        "l_pres": true,
+        "conf": 0.1,
+        "score": 0.615,
+        "decision": "GENERATE"
+      },
+      {
+        "s_val": 0.0,
+        "sim": 0.0,
+        "f_count": 0,
+        "p_cov": false,
+        "l_pres": true,
+        "conf": 0.30000000000000004,
+        "score": 0.645,
+        "decision": "GENERATE"
+      },
+      {
+        "s_val": 0.0,
+        "sim": 0.0,
+        "f_count": 0,
+        "p_cov": false,
+        "l_pres": true,
+        "conf": 0.5,
+        "score": 0.675,
+        "decision": "GENERATE"
+      },
+      {
+        "s_val": 0.0,
+        "sim": 0.0,
+        "f_count": 0,
+        "p_cov": false,
+        "l_pres": true,
+        "conf": 0.7000000000000001,
+        "score": 0.705,
+        "decision": "GENERATE"
+      },
+      {
+        "s_val": 0.0,
+        "sim": 0.0,
+        "f_count": 0,
+        "p_cov": false,
+        "l_pres": true,
+        "conf": 0.9,
+        "score": 0.735,
+        "decision": "GENERATE"
+      }
+    ]
+  }
+}
