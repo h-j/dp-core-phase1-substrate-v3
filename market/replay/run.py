@@ -1,6 +1,7 @@
 import argparse
 import hashlib
 import json
+import logging
 import subprocess
 import sys
 from datetime import datetime, timedelta
