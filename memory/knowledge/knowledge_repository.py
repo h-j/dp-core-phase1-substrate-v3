@@ -124,8 +124,13 @@ class KnowledgeRepository:
         """Lists all cached principles, optionally filtered by status."""
         principles = list(self.principles.values())
         if status:
-            principles = [p for p in principles if p.status.value == status]
+            principles = [
+                p
+                for p in principles
+                if getattr(p.status, "value", p.status) == status
+            ]
         return principles
+
 
     def save_world_model(self, wm: WorldModel):
         """Persists a WorldModel object to disk."""
