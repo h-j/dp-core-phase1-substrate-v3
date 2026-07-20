@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from statistics import mean
 from typing import Any, List
 
-from cognition.schemas.observation.observation import ObservationEvent
+from cognition.schemas.observation.observation_event import ObservationEvent
 from market.replay.transition_memory import TransitionExample
 
 
