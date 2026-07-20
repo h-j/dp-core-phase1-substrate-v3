@@ -160,10 +160,16 @@ This table outlines the corrections applied to the program state to eliminate cl
     *   **Theory Information Entropy ($H_{\text{theory}}$)**: $6.8920$ bits (rich vocabulary diversity)
     *   **Lesson Utilization Rate ($U_{\text{lesson}}$)**: $1.00$ under $S_{\text{shock}}$
 *   **Dynamical Regime Classification**: **`RESILIENT ATTRACTOR / LIMIT CYCLE`** (true cognitive equilibrium).
-*   **Forensic Root Cause of REVISE Absence**:
-    *   Under $S_{\text{mild}}$ ($\text{score} = 0.45$), `LessonExtractor` does not trigger ($\text{threshold} \le 0.35$), leaving `lesson_pressure = 0.0` and producing $\pi_{\text{REINFORCE}} = 1.00$.
-    *   Under $S_{\text{shock}}$ ($\text{score} = 0.10$), `LessonExtractor` triggers ($Y_{\text{lesson}} = 2.0$), adding `lesson_pressure = +0.25`, which elevates novelty score to $0.6433 \ge 0.60$ (`GENERATE`).
-    *   **Verdict**: The `REVISE` corridor ($0.30 \le \text{Score} < 0.60$) is mathematically bypassed by the discrete step function created by `LessonExtractor` thresholding and `lesson_pressure` boost.
+
+### 9.3 Phase 2C Decision Surface Mapping & Cognitive Geometry (EXP-2C.1)
+*   **Status**: COMPLETED & SCIENTIFICALLY CHARACTERIZED (`commit 38f9021`)
+*   **Scale**: Full 6D continuous parameter grid sweep across 18,480 parameter coordinates ($S_{\text{val}} \times Sim \times F_{\text{ratio}} \times P_{\text{cov}} \times L_{\text{pres}} \times C$).
+*   **Decision Surface Partitioning**:
+    *   **Without Lessons ($L_{\text{pres}} = 0$)**: $\Omega_{\text{REINFORCE}} = 36.62\%$, $\Omega_{\text{REVISE}} = 59.47\%$, $\Omega_{\text{GENERATE}} = 3.91\%$ ($H_{\text{dec}} = 1.1594$ bits).
+    *   **With Lessons ($L_{\text{pres}} = 1$)**: $\Omega_{\text{REINFORCE}} = 0.00\%$, $\Omega_{\text{REVISE}} = \mathbf{49.64\%}$, $\Omega_{\text{GENERATE}} = \mathbf{50.36\%}$ ($H_{\text{dec}} = 1.0000$ bits).
+*   **Falsification Verdict**: **FALSIFIED** — The hypothesis that the `REVISE` corridor is "mathematically bypassed" is falsified. When active lessons exist, `REVISE` is not impossible or narrow; it occupies **49.64% of the continuous 6D parameter space volume**.
+*   **Dynamical System Classification**: **Piecewise Continuous Threshold-Based Controller with Half-Space Bifurcation**.
+
 
 
 
