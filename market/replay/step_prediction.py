@@ -10,7 +10,7 @@ import logging
 from dataclasses import dataclass
 from typing import Any, Dict, List, Tuple
 
-from cognition.schemas.prediction.prediction import PredictionDirection
+from market.replay.prediction_probe import PredictionDirection
 
 logger = logging.getLogger("replay_engine.step_prediction")
 
