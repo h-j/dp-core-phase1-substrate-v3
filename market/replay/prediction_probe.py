@@ -25,7 +25,7 @@ class PredictionProbe:
 
     def to_dict(self) -> dict:
         return {
-            "direction": self.direction.value,
+            "direction": getattr(self.direction, "value", self.direction),
             "confidence": round(self.confidence, 3),
             "tension": self.tension,
             "invalidation": self.invalidation,
@@ -240,11 +240,10 @@ class PredictionProbeGenerator:
         ):
             # NEW: Break Uncertainty Deadlock
             # If we have strong regime history for this subtype, force a probe based on the dominant resolution
+            reg_hist = intelligence_data.get("regime_history", {}) if intelligence_data else {}
             dominant_res = (
-                intelligence_data.get("regime_history", {}).get(
-                    "historical_resolution", {}
-                )
-                if intelligence_data
+                reg_hist.get("historical_resolution", {})
+                if isinstance(reg_hist, dict)
                 else {}
             )
             if dominant_res:

@@ -59,21 +59,27 @@ class TheoryGenerationFlow:
             )
 
         # v3.1 Tuning Correction: Reduced history burden
-        seen_count = regime_history.get("seen_count", 0) if regime_history else 0
-        if seen_count < 2:
-            history_text_for_prompt = "No prior subtype history."
-        else:
-            res = regime_history.get("historical_resolution", {})
-            dominant_res = max(res, key=res.get) if res else "uncertain"
-            history_text_for_prompt = f"""
+        seen_count = None
+        if isinstance(regime_history, dict):
+            seen_count = regime_history.get("seen_count", 0)
+            if seen_count < 2:
+                history_text_for_prompt = "No prior subtype history."
+            else:
+                res = regime_history.get("historical_resolution", {})
+                dominant_res = max(res, key=res.get) if res else "uncertain"
+                history_text_for_prompt = f"""
 Historical subtype memory:
 Subtype: {regime_history.get('subtype', 'neutral')}
 Seen: {seen_count}
 Dominant resolution: {dominant_res}
 Avg usefulness: {regime_history.get('avg_usefulness', 0.0):.2f}
 
-Use subtype history only if materially relevant. Primary focus remains: 1 observation, 2 subtype, 3 falsifiability. History is secondary context. Do not force theory to explain history.
-"""
+Use subtype history only if materially relevant. Primary focus remains: 1 observation, 2 subtype, 3 falsifiability. History is secondary context. Do not force theory to explain history."""
+        elif isinstance(regime_history, str) and regime_history.strip():
+            history_text_for_prompt = f"Historical subtype memory: {regime_history}"
+        else:
+            history_text_for_prompt = "No prior subtype history."
+
         if self.debug:
             print(
                 f"[Theory History Debug] seen_count: {seen_count}, context: {history_text_for_prompt}"
@@ -89,8 +95,12 @@ You MUST incorporate the logic of this synthesis into your new theory. If curren
 
         lessons_context = ""
         if relevant_lessons:
+            formatted_lessons = [
+                getattr(l, "lesson_text", getattr(l, "description", str(l)))
+                for l in relevant_lessons
+            ]
             lessons_context = "Historical Lessons for this Regime:\n- " + "\n- ".join(
-                relevant_lessons
+                formatted_lessons
             )
         else:
             lessons_context = "No validated historical lessons for this regime yet."

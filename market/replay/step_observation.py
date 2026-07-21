@@ -54,10 +54,6 @@ def process_daily_observation(
     # Synthesize observation
     market_obs = synthesizer.synthesize(day_idx)
 
-    # Closed-loop belief update cycle
-    if hasattr(executor, "_process_closed_loop_belief_updates"):
-        executor._process_closed_loop_belief_updates(day_idx)
-
     # Track directional persistence
     actual_dir_str = market_obs.trend_state.lower()
     dir_val = (

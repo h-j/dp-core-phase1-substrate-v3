@@ -92,6 +92,11 @@ class LessonExtractor:  #
         if self.debug:
             print(f"[LessonExtractor] Confidence: {confidence:.2f}")
 
+        if confidence == 0.0:
+            if self.debug:
+                print(f"[LessonExtractor] Rejected lesson with 0.0 confidence.")
+            return None, "zero_confidence_rejected", count
+
         # Persistent Candidate Lesson State: Save as CANDIDATE when pattern exists
         existing_lesson = self._find_existing_lesson(pattern["lesson_text"])
         if existing_lesson:

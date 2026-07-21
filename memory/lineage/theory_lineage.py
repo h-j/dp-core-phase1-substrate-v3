@@ -710,6 +710,9 @@ class TheoryLineageEngine:
     def get_theory(self, tid: str) -> Optional[TheoryRecord]:
         return self.theories.get(tid)
 
+    def get_all_lineages(self) -> List[TheoryRecord]:
+        return list(self.theories.values())
+
     def to_graph(self) -> Dict[str, Any]:
         return {tid: asdict(rec) for tid, rec in self.theories.items()}
 

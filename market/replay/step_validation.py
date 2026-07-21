@@ -55,6 +55,10 @@ def process_daily_validation(
             executor._prior_prediction, market_obs
         )
 
+        # Closed-loop belief update cycle (triggered post-validation scoring)
+        if hasattr(executor, "_process_closed_loop_belief_updates"):
+            executor._process_closed_loop_belief_updates(day_idx)
+
         # Causal Attribution Step
         if executor._prior_lineage_id and executor._run_theories:
             theory_to_attr = executor._run_theories[-1]
@@ -67,9 +71,9 @@ def process_daily_validation(
                         else getattr(market_obs, "regime_descriptor", "")
                     ),
                     "abstractions": (
-                        market_obs.get("abstractions", [])
-                        if hasattr(market_obs, "get")
-                        else getattr(market_obs, "abstractions", [])
+                        getattr(market_obs, "descriptors", market_obs.get("descriptors", []))
+                        if hasattr(market_obs, "descriptors") or (isinstance(market_obs, dict) and "descriptors" in market_obs)
+                        else getattr(market_obs, "abstractions", market_obs.get("abstractions", []) if hasattr(market_obs, "get") else [])
                     ),
                     "trend_persistence": {
                         "3d": persistence_3d,
@@ -116,10 +120,14 @@ def process_daily_validation(
                         + executor.knowledge_repository.list_principles(status="trusted")
                         + executor.knowledge_repository.list_principles(status="canonical")
                     )
+                    obs_dict = market_obs.to_dict() if hasattr(market_obs, "to_dict") else {}
+                    derived_dict = obs_dict.get("derived", {}) if isinstance(obs_dict, dict) else {}
+                    volume_state_val = derived_dict.get("volume_state", "normal") if isinstance(derived_dict, dict) else "normal"
+
                     regime_context = {
                         "regime_subtype": regime_subtype,
                         "volatility_regime": vol_regime,
-                        "volume_state": obs_data["derived"].get("volume_state", "normal"),
+                        "volume_state": volume_state_val,
                     }
 
                     updated_principles = executor.knowledge_compression_engine.resolve_contradictions(
@@ -161,11 +169,7 @@ def process_daily_validation(
                                 source_contradiction_ids=[attribution.theory_id],
                                 hypothesized_factors=[
                                     str(vol_regime),
-                                    (
-                                        str(obs_data["derived"].get("volume_state", "normal"))
-                                        if not pd.isna(obs_data["derived"].get("volume_state"))
-                                        else "normal"
-                                    ),
+                                    str(volume_state_val),
                                 ],
                                 status=QuestionStatus.ACTIVE,
                             )

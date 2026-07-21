@@ -66,6 +66,8 @@ def initialize_flows(executor: Any):
         executor.market_outcome_repo = None
 
     executor.proposition_compiler = MarketPropositionCompiler(client=executor.theory_flow.client)
+    from flows.proposition_flow.validation_engine import ValidationEngine
+    executor.validation_engine = ValidationEngine()
     executor.compiled_proposition_repo = CompiledPropositionRepository()
     executor.canonical_semantic_proposition_repo = CanonicalSemanticPropositionRepository()
 
@@ -101,8 +103,8 @@ def restart_clean(executor: Any):
     executor._log("======================================================================\n")
 
     try:
+        from memory.relational.base import Base
         from memory.relational.postgres_client import engine
-        from memory.relational.postgres_models import Base
 
         Base.metadata.drop_all(bind=engine)
         Base.metadata.create_all(bind=engine)
@@ -160,9 +162,9 @@ def format_regime_context(regime_matches: List[Any]) -> str:
         return "Regime Context: No historical regime matches found (first encounter)."
 
     match = regime_matches[0]
-    sim = match.similarity if hasattr(match, "similarity") else match.get("similarity", 0.0)
-    m_date = match.date if hasattr(match, "date") else match.get("date", "N/A")
-    m_subtype = match.regime_subtype if hasattr(match, "regime_subtype") else match.get("regime_subtype", "mixed")
+    sim = getattr(match, "similarity", 0.0) if not isinstance(match, dict) else match.get("similarity", 0.0)
+    m_date = getattr(match, "date", "N/A") if not isinstance(match, dict) else match.get("date", "N/A")
+    m_subtype = getattr(match, "regime_subtype", "mixed") if not isinstance(match, dict) else match.get("regime_subtype", "mixed")
     return f"Regime Context: High similarity ({sim:.2f}) to prior historical period on {m_date} ({m_subtype} regime)."
 
 
@@ -182,50 +184,39 @@ def process_closed_loop_belief_updates(executor: Any, day_idx: int):
     if executor.lineage_debug:
         print(f"\n--- CLOSED-LOOP BELIEF UPDATE (Step {prior_step} -> Step {day_idx}) ---")
 
-    compiled_props = executor.compiled_proposition_repo.get_by_step(prior_step)
-    val_records = executor.validation_record_repo.get_by_step(prior_step)
+    compiled_props = executor.compiled_proposition_repo.query_by_replay_step(prior_step)
+    val_records = executor.validation_record_repo.query_by_replay_step(prior_step)
 
     if executor.lineage_debug:
         print(f"Found {len(compiled_props)} compiled propositions from Step {prior_step}.")
 
     for comp_prop in compiled_props:
         prop_val_records = [vr for vr in val_records if vr.proposition_id == comp_prop.id]
-        new_belief, updated = executor.belief_dynamics_engine.process_step_outcomes(
-            comp_prop=comp_prop,
-            validation_records=prop_val_records,
-            current_step=day_idx,
-        )
+        for vr in prop_val_records:
+            try:
+                executor.belief_dynamics_engine.process_validation(
+                    val_record=vr,
+                    compiled_prop=comp_prop,
+                    history_df=executor.engine.data,
+                    current_step=day_idx,
+                )
+            except Exception as _exc:
+                logger.debug(f"Belief transition event processing skipped: {_exc}")
 
-        lineage_id = comp_prop.theory_id
-        if lineage_id and hasattr(executor, "theory_lineage") and executor.theory_lineage:
-            executor.theory_lineage.update_lineage_from_belief(
-                lineage_id=lineage_id,
-                belief_state=new_belief,
-                step=day_idx,
-            )
-
-        if updated and executor.lineage_debug:
-            print(
-                f"Lineage {lineage_id[:8]} updated: State={new_belief.state.value} | "
-                f"Conf: {new_belief.prior_confidence:.2f} -> {new_belief.confidence:.2f} | "
-                f"Unc: {new_belief.prior_uncertainty:.2f} -> {new_belief.epistemic_uncertainty:.2f} | "
-                f"Status: {new_belief.status}"
-            )
-
-    lesson_candidates = executor.pattern_consolidation_engine.consolidate_patterns(current_step=day_idx)
+    lesson_candidates = executor.pattern_consolidation_engine.consolidate_patterns(
+        history_df=executor.engine.data, current_step=day_idx
+    )
     if executor.lineage_debug:
         print(f"Pattern Consolidation Engine nominated {len(lesson_candidates)} Lesson candidates.")
 
-    wm_update = executor.world_model_engine.consolidate_world_model(
-        step=day_idx,
-        lesson_candidates=lesson_candidates,
+    wm_update = executor.world_model_engine.synthesize(
         active_principles=executor.knowledge_repository.list_principles(status="active"),
-        knowledge_repo=executor.knowledge_repository,
+        step=day_idx,
     )
     if executor.lineage_debug:
         print(
             f"World Model updated at Step {day_idx}: "
-            f"Hard Guidance={len(wm_update.hard_guidance_rules)} | "
-            f"Soft Prior={len(wm_update.soft_prior_weights)} | "
-            f"Exploration={len(wm_update.exploration_regimes)}"
+            f"Active Constraints={len(getattr(wm_update, 'active_constraints', []))} | "
+            f"Regime Constraints={len(getattr(wm_update, 'regime_constraints', {}))} | "
+            f"Explanatory Constraints={len(getattr(wm_update, 'explanatory_constraints', []))}"
         )

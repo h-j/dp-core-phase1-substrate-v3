@@ -21,10 +21,12 @@ from typing import Any, List, Optional
 import pandas as pd
 
 # NOTE(charter): DecisionPolicyEngine and CapitalSimulator are downstream observers only.
+from flows.theory_flow.attribution_engine import AttributionEngine
 from market.data.dataset_validator import DatasetValidator
 from market.replay.capital_simulator import CapitalSimulator
 from market.replay.decision_policy import DecisionPolicyEngine
 from market.replay.prediction_probe import PredictionProbeGenerator
+from market.replay.replay_analysis import ReplayAnalysisEngine
 from market.replay.replay_finalization import emit_cognitive_summary, generate_v1_report, save_manifest
 from market.replay.replay_initialization import (
     format_historical_context,
@@ -106,7 +108,8 @@ class ReplayEngine:
             self.data = self.data.head(self.max_days)
 
         if validate:
-            DatasetValidator.validate_df(self.data, name=self.market_name)
+            validator = DatasetValidator(csv_path=str(self.dataset_path))
+            validator.validate(verbose=False)
 
         logger.info(
             f"Loaded {len(self.data)} trading days for {self.market_name} "
@@ -157,24 +160,34 @@ class ReplayExecutor:
 
     def __init__(
         self,
-        engine: ReplayEngine,
+        engine: Optional[ReplayEngine] = None,
         verbose: bool = False,
         quiet: bool = False,
         restart: bool = False,
         lineage_debug: bool = False,
+        max_days: Optional[int] = None,
+        dataset_path: Optional[str] = None,
+        market_name: str = "RELIANCE",
+        **kwargs,
     ):
+        if engine is None:
+            engine = ReplayEngine(
+                dataset_path=dataset_path,
+                market_name=market_name,
+                max_days=max_days,
+            )
+
         self.engine = engine
         self.verbose = verbose
         self.quiet = quiet
         self.restart = restart
         self.lineage_debug = lineage_debug
+        self.extra_kwargs = kwargs
 
         self.replay_dir = Path(__file__).parent
+        self.base_data_snap_dir = Path(__file__).parent.parent.parent / "data" / "replay_snapshots"
         self.base_output_dir = self.replay_dir / "output"
-        self.base_output_dir.mkdir(parents=True, exist_ok=True)
-        (self.base_output_dir / "propositions").mkdir(parents=True, exist_ok=True)
-        (self.base_output_dir / "canonical_propositions").mkdir(parents=True, exist_ok=True)
-        (self.base_output_dir / "validation_records").mkdir(parents=True, exist_ok=True)
+        self._create_snapshot_dirs()
 
         self.run_dir = self.base_output_dir
 
@@ -185,6 +198,7 @@ class ReplayExecutor:
         self.attribution_engine = AttributionEngine()
         self.decision_engine = DecisionPolicyEngine()
         self.validation_record_repo = ValidationRecordRepository()
+        self.replay_analysis_engine = ReplayAnalysisEngine(market_name=getattr(self.engine, "market_name", "RELIANCE") if hasattr(self, "engine") and self.engine else "RELIANCE")
 
         self.flows_initialized = False
 
@@ -250,11 +264,25 @@ class ReplayExecutor:
             "undecidable_records": 0,
         }
 
+    def _create_snapshot_dirs(self):
+        """Ensure base snapshot and output directories exist."""
+        if hasattr(self, "base_data_snap_dir") and self.base_data_snap_dir:
+            self.base_data_snap_dir.mkdir(parents=True, exist_ok=True)
+        if hasattr(self, "base_output_dir") and self.base_output_dir:
+            self.base_output_dir.mkdir(parents=True, exist_ok=True)
+            (self.base_output_dir / "propositions").mkdir(parents=True, exist_ok=True)
+            (self.base_output_dir / "canonical_propositions").mkdir(parents=True, exist_ok=True)
+            (self.base_output_dir / "validation_records").mkdir(parents=True, exist_ok=True)
+
     def _initialize_flows(self):
         initialize_flows(self)
 
     def restart_clean(self):
         restart_clean(self)
+
+    @property
+    def lineage_audit_table(self):
+        return self._lineage_audit_table
 
     def _log(self, message: str):
         if not self.quiet:
@@ -385,7 +413,7 @@ class ReplayExecutor:
             self.paper_trader = PaperTrader()
             self.decision_journal = None
 
-        synthesizer = MarketObservationSynthesizer(self.engine)
+        synthesizer = MarketObservationSynthesizer(self.engine.data)
         num_days = len(self.engine)
 
         if not self.quiet:
@@ -603,8 +631,9 @@ class ReplayExecutor:
             try:
                 if prior_prediction_result and self._prior_prediction_db_id:
                     self.prediction_result_repo.save(
-                        prior_prediction_result,
+                        result=prior_prediction_result,
                         date=date_str,
+                        day_index=day_idx,
                         prediction_id=self._prior_prediction_db_id,
                     )
             except Exception as e:
@@ -626,6 +655,34 @@ class ReplayExecutor:
                 intelligence_metadata["merged"] = audit_merged
                 intelligence_metadata["revived"] = audit_revived
                 intelligence_metadata["retired"] = audit_retired
+
+            if hasattr(self, "replay_analysis_engine") and self.replay_analysis_engine:
+                def safe_dict(obj):
+                    if obj is None: return {}
+                    if isinstance(obj, dict): return obj
+                    try:
+                        if hasattr(obj, "to_dict"): return obj.to_dict()
+                        if hasattr(obj, "model_dump"): return obj.model_dump()
+                        if hasattr(obj, "__dict__"): return dict(obj.__dict__)
+                    except Exception:
+                        pass
+                    return {"raw": str(obj)}
+
+                self.replay_analysis_engine.record_day(
+                    day_index=day_idx,
+                    date=date_str,
+                    confidence_state=safe_dict(confidence_state),
+                    contradiction_result=safe_dict(contradiction_result),
+                    theory_summary=theory.to_summary() if hasattr(theory, "to_summary") else str(theory),
+                    reflection_summary=reflection.reflection_summary if hasattr(reflection, "reflection_summary") else str(reflection),
+                    market_regime=getattr(market_obs, "regime", "neutral"),
+                    prediction=safe_dict(prediction_probe),
+                    prior_prediction_result=safe_dict(prior_prediction_result),
+                    regime_matches=regime_matches if isinstance(regime_matches, list) else [],
+                    theory_usefulness=theory_usefulness if isinstance(theory_usefulness, dict) else {},
+                    transition_pressure=transition_pressure if isinstance(transition_pressure, dict) else {},
+                    intelligence_data=intelligence_metadata,
+                )
 
             self._print_day_log(
                 day_idx,

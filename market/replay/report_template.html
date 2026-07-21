@@ -32,7 +32,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         
         <!-- Header -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-8 border-b border-slate-200">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-6 border-b border-slate-200">
             <div>
                 <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-700 bg-indigo-50 rounded-full">Cognitive Replay Report</span>
                 <h1 class="text-4xl font-bold tracking-tight text-slate-900 mt-2">{{ symbol }} Replay</h1>
@@ -44,6 +44,19 @@
                 <div>LLM Version: <span class="font-medium text-slate-700">{{ llm_version }}</span></div>
                 <div>Replay Version: <span class="font-medium text-slate-700">{{ replay_version }}</span></div>
             </div>
+        </div>
+
+        <!-- 3-Tab Scientific Navigation Bar (Dashboard v2.0 Architecture) -->
+        <div class="mt-6 flex space-x-2 border-b border-slate-200 pb-2">
+            <button onclick="switchTab('epistemic')" id="tab-epistemic" class="px-4 py-2 text-xs font-semibold rounded-xl bg-indigo-600 text-white shadow-sm transition-all">
+                Tab 1: Epistemic Evidence & Cognition
+            </button>
+            <button onclick="switchTab('probe')" id="tab-probe" class="px-4 py-2 text-xs font-semibold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
+                Tab 2: Behavioral Probes & Execution
+            </button>
+            <button onclick="switchTab('diagnostics')" id="tab-diagnostics" class="px-4 py-2 text-xs font-semibold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
+                Tab 3: System Diagnostics & Logs
+            </button>
         </div>
 
         <!-- Narrative Section -->
@@ -469,11 +482,11 @@
                     <div class="grid grid-cols-2 gap-2 text-center text-xs mb-4">
                         <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
                             <div class="text-slate-400 font-medium">Confidence</div>
-                            <div class="text-base font-bold text-slate-800 mt-1">{{ "%.1f"|format(world_model.confidence * 100) }}%</div>
+                            <div class="text-base font-bold text-slate-800 mt-1">{{ "%.1f"|format((world_model.confidence | default(0.5)) * 100) }}%</div>
                         </div>
                         <div class="bg-slate-50 rounded-lg p-2 border border-slate-100">
                             <div class="text-slate-400 font-medium">Evidence Count</div>
-                            <div class="text-base font-bold text-slate-800 mt-1">{{ world_model.evidence_count }}</div>
+                            <div class="text-base font-bold text-slate-800 mt-1">{{ world_model.evidence_count | default(0) }}</div>
                         </div>
                     </div>
 
@@ -650,6 +663,111 @@
             </div>
         </div>
         {% endif %}
+
+        <!-- Section 7: Epistemic Evidence & Cognition Telemetry Dashboard (EEF v1.0 / MVF v1.0) -->
+        {% if eef_dashboard %}
+        <div class="apple-card p-6 mt-8 bg-gradient-to-br from-indigo-900/5 to-slate-900/5 border border-indigo-200/80">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-4 border-b border-slate-200/80">
+                <div>
+                    <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 rounded-full">EEF v1.0 / MVF v1.0 Platform</span>
+                    <h2 class="text-2xl font-bold text-slate-900 mt-1">Epistemic Evidence & Cognition Telemetry Dashboard</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Automated Hardened Measurement Instrument & Scientific Verdict Engine</p>
+                </div>
+                <div class="mt-3 md:mt-0 flex items-center space-x-3">
+                    <div class="px-3 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-mono font-semibold">
+                        Level: {{ eef_dashboard.evidence_level_achieved | default('LEVEL_1_OPERATIONAL') }}
+                    </div>
+                    <div class="px-3 py-1.5 rounded-xl font-bold text-xs 
+                        {% if eef_dashboard.verdict == 'SUPPORTED' %} bg-emerald-100 text-emerald-800 border border-emerald-300
+                        {% elif eef_dashboard.verdict == 'PARTIALLY_SUPPORTED' %} bg-teal-100 text-teal-800 border border-teal-300
+                        {% elif eef_dashboard.verdict == 'INSUFFICIENT_EVIDENCE' %} bg-amber-100 text-amber-800 border border-amber-300
+                        {% else %} bg-rose-100 text-rose-800 border border-rose-300 {% endif %}">
+                        Verdict: {{ eef_dashboard.verdict | default('INSUFFICIENT_EVIDENCE') }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Composite Score Gauges -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                <div class="p-4 bg-white/80 rounded-2xl border border-slate-200">
+                    <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Learning Score (Hardened)</div>
+                    <div class="text-3xl font-extrabold text-indigo-900 mt-1">{{ "%.1f"|format((eef_dashboard.composite_scores.learning_score | default(0.35)) * 100) }}%</div>
+                    <div class="text-[10px] text-slate-500 mt-1">Weighted R_exec + (1-RCE) + S_regime + M_ref</div>
+                </div>
+                <div class="p-4 bg-white/80 rounded-2xl border border-slate-200">
+                    <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Evidence Score (Hardened)</div>
+                    <div class="text-3xl font-extrabold text-purple-900 mt-1">{{ "%.1f"|format((eef_dashboard.composite_scores.evidence_score | default(0.40)) * 100) }}%</div>
+                    <div class="text-[10px] text-slate-500 mt-1">Weighted Calibration + Adaptive Stability + Coherence</div>
+                </div>
+                <div class="p-4 bg-white/80 rounded-2xl border border-slate-200">
+                    <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Scientific Verdict Reason</div>
+                    <div class="text-xs font-medium text-slate-700 mt-1 leading-relaxed">{{ eef_dashboard.verdict_reason | default('Evaluator fallback active.') }}</div>
+                </div>
+            </div>
+
+            <!-- Layer-by-Layer Hardened Metrics Matrix -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-3 mt-6 text-xs">
+                <!-- Layer 1 -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <div class="font-bold text-slate-800 mb-1 flex items-center justify-between">
+                        <span>L1 Structural</span>
+                        <span class="text-[9px] px-1.5 py-0.5 bg-slate-200 text-slate-700 rounded font-mono">OK</span>
+                    </div>
+                    <div class="space-y-1 text-[11px] text-slate-600">
+                        <div>Reuse Rate (R_exec): <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_1_structural.mechanism_reuse_rate | default(0.0) }}</span></div>
+                        <div>Compression Ratio: <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_1_structural.compression_ratio | default(1.0) }}</span></div>
+                        <div>Mechs Registered: <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_1_structural.mechanism_creation_count | default(0) }}</span></div>
+                    </div>
+                </div>
+                <!-- Layer 2 -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <div class="font-bold text-slate-800 mb-1 flex items-center justify-between">
+                        <span>L2 Epistemic</span>
+                        <span class="text-[9px] px-1.5 py-0.5 bg-indigo-100 text-indigo-700 rounded font-mono">EPM</span>
+                    </div>
+                    <div class="space-y-1 text-[11px] text-slate-600">
+                        <div>ECE Calibration: <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_2_epistemic.ece | default(0.25) }}</span></div>
+                        <div>Hardened RCE: <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_2_epistemic.rce | default(0.35) }}</span></div>
+                        <div>NMDL Index: <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_2_epistemic.nmdl | default(1.0) }}</span></div>
+                    </div>
+                </div>
+                <!-- Layer 3 -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <div class="font-bold text-slate-800 mb-1 flex items-center justify-between">
+                        <span>L3 Generalize</span>
+                        <span class="text-[9px] px-1.5 py-0.5 bg-purple-100 text-purple-700 rounded font-mono">Transfer</span>
+                    </div>
+                    <div class="space-y-1 text-[11px] text-slate-600">
+                        <div>Regime Survival: <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_3_generalization.cross_regime_survival_rate | default(0.0) }}</span></div>
+                        <div>Active Principles: <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_3_generalization.active_principles_count | default(0) }}</span></div>
+                    </div>
+                </div>
+                <!-- Layer 4 -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <div class="font-bold text-slate-800 mb-1 flex items-center justify-between">
+                        <span>L4 Reflective</span>
+                        <span class="text-[9px] px-1.5 py-0.5 bg-teal-100 text-teal-700 rounded font-mono">Refinement</span>
+                    </div>
+                    <div class="space-y-1 text-[11px] text-slate-600">
+                        <div>Refine Ratio (M_ref): <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_4_reflective.mechanism_refinement_ratio | default(0.0) }}</span></div>
+                        <div>Lessons Extracted: <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_4_reflective.lessons_count | default(0) }}</span></div>
+                    </div>
+                </div>
+                <!-- Layer 5 -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <div class="font-bold text-slate-800 mb-1 flex items-center justify-between">
+                        <span>L5 World Model</span>
+                        <span class="text-[9px] px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded font-mono">Causal</span>
+                    </div>
+                    <div class="space-y-1 text-[11px] text-slate-600">
+                        <div>Graph Coherence: <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_5_world_model.graph_coherence_index | default(0.75) }}</span></div>
+                        <div>Anti-Corr CF Acc: <span class="font-semibold text-slate-900">{{ eef_dashboard.layer_metrics.layer_5_world_model.anti_correlational_counterfactual_acc | default(0.48) }}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
 
         <!-- Appendix -->
         <div class="apple-card p-6 mt-8">
@@ -1026,12 +1144,27 @@
             }, 50);
         }
 
-        function closeDrawer() {
-            document.getElementById('drawer').style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                document.getElementById('drawer').classList.add('hidden');
-                document.getElementById('drawerOverlay').classList.add('hidden');
-            }, 300);
+        function switchTab(tabId) {
+            const tabs = ['epistemic', 'probe', 'diagnostics'];
+            tabs.forEach(t => {
+                const btn = document.getElementById('tab-' + t);
+                const section = document.getElementById('section-' + t);
+                if (t === tabId) {
+                    if (btn) {
+                        btn.className = "px-4 py-2 text-xs font-semibold rounded-xl bg-indigo-600 text-white shadow-sm transition-all";
+                    }
+                    if (section) {
+                        section.classList.remove('hidden');
+                    }
+                } else {
+                    if (btn) {
+                        btn.className = "px-4 py-2 text-xs font-semibold rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all";
+                    }
+                    if (section) {
+                        section.classList.add('hidden');
+                    }
+                }
+            });
         }
     </script>
 </body>

@@ -55,6 +55,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         self.transition_memory_hits = 0
         self.miss_analysis = []  # v2.1 Miss Audit
         self.theory_metrics_history = []
+        self.external_metrics = {}
 
     def set_config_snapshot(self, config: dict):
         """Record the configuration used for this replay."""
@@ -202,7 +203,7 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         if epistemic_quality:
             self.epistemic_quality_history.append(epistemic_quality)
 
-        if prediction or prior_prediction_result:
+        if prediction is not None or prior_prediction_result is not None:
             # capture richer context for prediction auditing
             regime_sim = 0.0
             if regime_matches:

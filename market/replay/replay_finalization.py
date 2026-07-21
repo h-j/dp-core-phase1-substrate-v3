@@ -35,11 +35,9 @@ def emit_cognitive_summary(executor: Any):
             )
 
     try:
-        from market.replay.replay_analysis import ReplayAnalysisEngine
-        from market.replay.replay_analysis_metrics import print_milestone10_metrics
-
-        analysis_engine = ReplayAnalysisEngine(base_path=executor.run_dir)
-        print_milestone10_metrics(analysis_engine, quiet=executor.quiet)
+        analysis_engine = getattr(executor, "replay_analysis_engine", None)
+        if analysis_engine and not executor.quiet:
+            analysis_engine.print_summary()
     except Exception as e:
         logger.warning(f"Failed to generate Milestone 10 cognitive metrics: {e}")
 
@@ -47,11 +45,11 @@ def emit_cognitive_summary(executor: Any):
     generate_v1_report(executor)
 
 
-def save_manifest(executor: Any):
+def save_manifest(executor: Any, manifest_path: Path = None):
     """Generates and persists the replay manifest JSON."""
     manifest = {
         "run_id": getattr(executor, "run_id", "run_unknown"),
-        "symbol": executor.engine.market_name or "RELIANCE",
+        "symbol": getattr(executor.engine, "market_name", None) or "RELIANCE",
         "downloaded_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
         "data_sources": [
             "yfinance (Stock & Index)",
@@ -73,53 +71,61 @@ def save_manifest(executor: Any):
         ).hexdigest(),
     }
 
-    manifest_run_path = executor.run_dir / "replay_manifest.json"
-    with open(manifest_run_path, "w") as f:
+    target_file = manifest_path or (executor.run_dir / "replay_manifest.json")
+    target_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(target_file, "w") as f:
         json.dump(manifest, f, indent=2)
 
-    manifest_out_path = executor.base_output_dir / "replay_manifest.json"
-    with open(manifest_out_path, "w") as f:
-        json.dump(manifest, f, indent=2)
+    if not manifest_path and hasattr(executor, "base_output_dir"):
+        manifest_out_path = executor.base_output_dir / "replay_manifest.json"
+        manifest_out_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(manifest_out_path, "w") as f:
+            json.dump(manifest, f, indent=2)
 
     if not executor.quiet:
         print("\n======================================================================")
         print("REPLAY MANIFEST (REPRODUCIBILITY)")
         print("======================================================================")
         print(json.dumps(manifest, indent=2))
-        print(f"✓ Saved manifest to run snapshot directory: {manifest_run_path}")
-        print(f"✓ Saved manifest to outputs folder: {manifest_out_path}")
+        print(f"✓ Saved manifest to target path: {target_file}")
 
 
 def generate_v1_report(executor: Any):
     """Generates JSON and HTML report artifacts for replay."""
     try:
-        from market.replay.replay_report_generator import ReplayReportGenerator
+        from market.replay.report_renderer import ReplayReportModel, ReplayReportRenderer
+        from market.replay.replay_analysis import ReplayAnalysisEngine
 
         if not executor.quiet:
             print("\n--- REPLAY REPORT V1 GENERATION ---")
 
-        report_gen = ReplayReportGenerator(base_path=executor.run_dir)
-        report_data = report_gen.build_report_data()
+        analysis_engine = getattr(executor, "replay_analysis_engine", None) or getattr(executor, "analysis_engine", None)
+        if analysis_engine is None:
+            analysis_engine = ReplayAnalysisEngine(market_name=getattr(getattr(executor, "engine", None), "market_name", "RELIANCE"))
+        report_builder = ReplayReportModel(executor, analysis_engine)
+        report_data = report_builder.build_model()
 
-        run_json_path = executor.run_dir / "report.json"
-        with open(run_json_path, "w") as f:
-            json.dump(report_data, f, indent=2, default=str)
+        if executor.run_dir:
+            run_json_path = executor.run_dir / "report.json"
+            with open(run_json_path, "w") as f:
+                json.dump(report_data, f, indent=2, default=str)
 
-        run_html_path = executor.run_dir / "report.html"
-        report_gen.render_html_report(report_data, run_html_path)
+            run_html_path = executor.run_dir / "report.html"
+            ReplayReportRenderer.render(report_data, run_html_path)
 
         out_json_path = executor.base_output_dir / "report.json"
         with open(out_json_path, "w") as f:
             json.dump(report_data, f, indent=2, default=str)
 
         out_html_path = executor.base_output_dir / "report.html"
-        report_gen.render_html_report(report_data, out_html_path)
+        ReplayReportRenderer.render(report_data, out_html_path)
 
         if not executor.quiet:
-            print(f"✓ Saved structured report data to run snapshot: {run_json_path}")
-            print(f"✓ Rendered interactive HTML report to run snapshot: {run_html_path}")
+            print(f"✓ Saved structured report data to run snapshot: {executor.run_dir / 'report.json' if executor.run_dir else 'N/A'}")
+            print(f"✓ Rendered interactive HTML report to run snapshot: {executor.run_dir / 'report.html' if executor.run_dir else 'N/A'}")
             print(f"✓ Saved structured report data to output folder: {out_json_path}")
             print(f"✓ Rendered interactive HTML report to output folder: {out_html_path}\n")
 
     except Exception as e:
         logger.error(f"Failed to generate Replay Report v1: {e}", exc_info=True)
+

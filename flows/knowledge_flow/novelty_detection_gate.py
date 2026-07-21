@@ -166,7 +166,13 @@ class NoveltyDetectionGate:
             except Exception:
                 pass
 
-        lessons_text = "\n- ".join(active_lessons) if active_lessons else "None"
+        lessons_text = (
+            "\n- ".join(
+                getattr(l, "lesson_summary", str(l)) for l in active_lessons
+            )
+            if active_lessons
+            else "None"
+        )
 
         # Trigger Micro Reflection Critique via LLM
         prompt = f"""You are the reflective critique model for the Cognition Engine.

@@ -149,21 +149,25 @@ class ReflectionFlow:
             )
 
         # v3.1 Tuning Correction: Reduced history burden
-        seen_count = regime_history.get("seen_count", 0) if regime_history else 0
-        if seen_count < 2:
-            history_context_for_prompt = "No prior subtype history."
-        else:
-            res = regime_history.get("historical_resolution", {})
-            dominant_res = max(res, key=res.get) if res else "uncertain"
-            history_context_for_prompt = f"""
+        if isinstance(regime_history, dict):
+            seen_count = regime_history.get("seen_count", 0)
+            if seen_count < 2:
+                history_context_for_prompt = "No prior subtype history."
+            else:
+                res = regime_history.get("historical_resolution", {})
+                dominant_res = max(res, key=res.get) if res else "uncertain"
+                history_context_for_prompt = f"""
 Historical Subtype Memory:
 Subtype: {regime_history.get('subtype', 'neutral')}
 Seen: {seen_count}
 Dominant resolution: {dominant_res}
 Avg usefulness: {regime_history.get('avg_usefulness', 0.0):.2f}
 
-Use subtype history only if materially relevant. Primary focus remains: 1 observation, 2 subtype, 3 falsifiability. History is secondary context. Do not force reflection to explain history.
-"""
+Use subtype history only if materially relevant. Primary focus remains: 1 observation, 2 subtype, 3 falsifiability. History is secondary context. Do not force reflection to explain history."""
+        elif isinstance(regime_history, str) and regime_history.strip():
+            history_context_for_prompt = f"Historical Subtype Memory: {regime_history}"
+        else:
+            history_context_for_prompt = "No prior subtype history."
         if getattr(self, "verbose", False):
             print(
                 f"[Reflection History Debug] seen_count: {seen_count}, context: {history_context_for_prompt}"

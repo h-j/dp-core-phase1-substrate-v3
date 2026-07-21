@@ -127,6 +127,10 @@ def run_single_condition(
 
         # Gather snapshot data
         snapshots_dir = executor.run_dir / "logs"
+        if not snapshots_dir.exists():
+            snapshots_dir = executor.run_dir / "snapshots"
+        if not snapshots_dir.exists():
+            snapshots_dir = executor.replay_dir / "logs"
         snapshots = []
         if snapshots_dir.exists():
             for f in sorted(snapshots_dir.glob("day_*.json")):
@@ -158,8 +162,10 @@ def run_single_condition(
             "snapshots": snapshots,
         }
 
-        with open(run_dir / "result.json", "w", encoding="utf-8") as rf:
+        result_file = run_dir / "result.json"
+        with open(result_file, "w", encoding="utf-8") as rf:
             json.dump(result_payload, rf, indent=2, default=str)
+        print(f"[SAVE_CHECK] Saved result.json to: {result_file.resolve()} (exists={result_file.exists()})")
 
         return result_payload
 

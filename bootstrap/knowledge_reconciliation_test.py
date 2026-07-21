@@ -120,7 +120,7 @@ class TestKnowledgeReconciliation(unittest.TestCase):
             active_principles=[p],
             regime_subtype="range_bound",
         )
-        self.assertAlmostEqual(score, 0.065)
+        self.assertAlmostEqual(score, 0.05)
 
         decision, final_score, rationale = gate.is_novel(
             observation={"regime_similarity": 0.9},

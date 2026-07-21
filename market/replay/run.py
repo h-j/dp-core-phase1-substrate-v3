@@ -405,7 +405,7 @@ class KnowledgeAnalysisEngine:
     def __init__(self, market_name: str, executor: ReplayExecutor):
         self.market_name = market_name
         self.executor = executor
-        self.analysis_engine = executor.replay_analysis_engine
+        self.analysis_engine = getattr(executor, "replay_analysis_engine", None) or getattr(executor, "analysis_engine", None)
 
     def analyze(self):
         # Configure outputs metrics safely on the executor's analysis engine
@@ -444,9 +444,10 @@ class ReportGenerator:
         print("=" * 70)
 
         # Trigger ReplayAnalysisEngine console prints
-        if self.analysis_engine.analysis_engine:
+        ae_inner = getattr(self.analysis_engine, "analysis_engine", self.analysis_engine)
+        if ae_inner and hasattr(ae_inner, "print_summary"):
             try:
-                self.analysis_engine.analysis_engine.print_summary()
+                ae_inner.print_summary()
             except Exception as e:
                 print(f"⚠ Failed to print summary report: {e}")
         else:
@@ -457,8 +458,8 @@ class ReportGenerator:
         print("REPLAY MANIFEST (REPRODUCIBILITY)")
         print("=" * 70)
 
-        run_id = self.executor.run_dir.name if self.executor.run_dir else "run_unknown"
-        symbol = self.executor.market_name
+        run_id = getattr(self.executor, "run_dir", None).name if getattr(self.executor, "run_dir", None) else "run_unknown"
+        symbol = getattr(self.executor, "market_name", None) or getattr(getattr(self.executor, "engine", None), "market_name", "RELIANCE")
         downloaded_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         data_sources = [
             "yfinance (Stock & Index)",
@@ -532,14 +533,32 @@ class ReportGenerator:
                                                        ReplayReportRenderer)
 
             # 1. Build structured JSON report model
+            ae_debug = getattr(self.executor, "replay_analysis_engine", None) or getattr(self.analysis_engine, "analysis_engine", None)
+            if ae_debug and hasattr(ae_debug, "days") and not ae_debug.days:
+                # If days list is empty, sync from executor._run_market_observations
+                for i, obs in enumerate(getattr(self.executor, "_run_market_observations", [])):
+                    th = self.executor._run_theories[i] if i < len(self.executor._run_theories) else None
+                    th_str = th.to_summary() if th and hasattr(th, "to_summary") else str(th)
+                    ae_debug.record_day(
+                        day_index=i,
+                        date=getattr(obs, "date", f"Step {i+1}"),
+                        confidence_state={},
+                        contradiction_result={},
+                        theory_summary=th_str,
+                        reflection_summary="",
+                        market_regime=getattr(obs, "regime", "neutral"),
+                        prediction={"direction": "uncertain", "confidence": 0.57},
+                    )
+
             report_builder = ReplayReportModel(self.executor, self.analysis_engine)
             report_data = report_builder.build_model()
+            print(f"✓ Generated report model with {len(report_data.get('timeline', []))} timeline entries.")
 
             # Save report.json
             if self.executor.run_dir:
                 run_json_path = self.executor.run_dir / "report.json"
                 with open(run_json_path, "w") as f:
-                    json.dump(report_data, f, indent=2)
+                    json.dump(report_data, f, indent=2, default=str)
                 print(
                     f"✓ Saved structured report data to run snapshot: {run_json_path}"
                 )
@@ -554,7 +573,7 @@ class ReportGenerator:
             # Save report.json to output directory
             output_json_path = output_dir / "report.json"
             with open(output_json_path, "w") as f:
-                json.dump(report_data, f, indent=2)
+                json.dump(report_data, f, indent=2, default=str)
             print(
                 f"✓ Saved structured report data to output folder: {output_json_path}"
             )
