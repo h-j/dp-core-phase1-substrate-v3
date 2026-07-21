@@ -24,7 +24,8 @@ from config.settings import settings
 logger = logging.getLogger(__name__)
 
 # Offline mode: set REPLAY_OFFLINE=1 env or use run.py --offline flag
-_OFFLINE_MODE: bool = os.environ.get("REPLAY_OFFLINE", "0").strip() == "1"
+def _offline_mode() -> bool:
+    return os.environ.get("REPLAY_OFFLINE", "0").strip() == "1"
 
 # Default cache directory (overridable for tests)
 _CACHE_DIR: Path = Path("data/llm_cache")
@@ -71,7 +72,7 @@ class OllamaClient:
             logger.debug("[OllamaClient] Cache hit: %s", key[:16])
             return cached
 
-        if _OFFLINE_MODE:
+        if _offline_mode():
             raise RuntimeError(
                 f"[OllamaClient] Offline mode: cache miss for key {key[:16]}. "
                 "Run with Ollama first to warm the cache, then replay offline."
