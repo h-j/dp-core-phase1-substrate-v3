@@ -223,6 +223,22 @@ def process_daily_observation(
     )
     abstraction = executor.abstraction_flow.process(obs_event)
 
+    try:
+        from core.event_bus import get_event_bus
+        from core.events import ObservationCreated
+
+        get_event_bus().publish(
+            ObservationCreated(
+                date=date_str,
+                symbol=getattr(executor, "market_name", "RELIANCE"),
+                ohlcv=obs_data.get("ohlcv", {}),
+                derived=obs_data.get("derived", {}),
+            ),
+            publisher="step_observation",
+        )
+    except Exception as _evt_exc:
+        pass
+
     return DailyObservationResult(
         market_obs=market_obs,
         obs_event=obs_event,

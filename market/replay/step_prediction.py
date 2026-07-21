@@ -112,6 +112,28 @@ def process_daily_prediction(
         active_principles=active_principles,
     )
 
+    try:
+        from core.event_bus import get_event_bus
+        from core.events import PredictionGenerated
+
+        pred_dir_str = (
+            prediction_probe.direction.value
+            if hasattr(prediction_probe, "direction") and hasattr(prediction_probe.direction, "value")
+            else str(getattr(prediction_probe, "direction", "NEUTRAL"))
+        )
+        get_event_bus().publish(
+            PredictionGenerated(
+                prediction_id=getattr(prediction_probe, "id", f"PRED_{day_idx}"),
+                theory_id=getattr(theory, "id", None) if theory else None,
+                target_date=date_str,
+                predicted_direction=pred_dir_str,
+                conviction=float(getattr(prediction_probe, "confidence", 0.5)),
+            ),
+            publisher="step_prediction",
+        )
+    except Exception as _evt_exc:
+        pass
+
     # Evaluate Active Principles influence
     principles_consulted = []
     principles_accepted = []

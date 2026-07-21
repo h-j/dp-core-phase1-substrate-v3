@@ -763,6 +763,12 @@ def main():
             "Ensures fully deterministic replay verification."
         ),
     )
+    parser.add_argument(
+        "--llm-mode",
+        choices=["live", "replay", "auto"],
+        default=None,
+        help="LLM I/O Ledger mode: 'live' (live calls & record), 'replay' (deterministic replay only), or 'auto' (record unseen prompts).",
+    )
 
     args = parser.parse_args()
 
@@ -771,12 +777,19 @@ def main():
     log_level = logging.DEBUG if args.debug_log else logging.INFO
     configure_logging(level=log_level)
 
-    # Phase 6: Set offline mode before importing OllamaClient
-    if getattr(args, "offline", False):
-        import os
-        os.environ["REPLAY_OFFLINE"] = "1"
+    # Set LLM ledger mode based on CLI args
+    import os
+    if getattr(args, "llm_mode", None):
+        os.environ["LLM_LEDGER_MODE"] = args.llm_mode
         logging.getLogger("run").info(
-            "[run] Offline mode enabled: LLM cache misses will raise RuntimeError."
+            f"[run] LLM Ledger mode set to: {args.llm_mode.upper()}"
+        )
+
+    if getattr(args, "offline", False):
+        os.environ["REPLAY_OFFLINE"] = "1"
+        os.environ["LLM_LEDGER_MODE"] = "replay"
+        logging.getLogger("run").info(
+            "[run] Offline mode enabled: LLM ledger misses will raise LedgerMissError."
         )
 
     try:

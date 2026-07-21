@@ -266,6 +266,21 @@ class ConfidenceEvolutionEngine:
             - confidence_state.contradiction_pressure * 0.04
         )
 
+        try:
+            from cognition.epistemics.confidence_engine import update_confidence
+            _, report = update_confidence(
+                theory={"id": getattr(confidence_state, "id", "TH_EVOLVE"), "confidence": confidence_state.empirical_confidence},
+                evidence=validation,
+                contradictions=contradiction_result,
+                prediction_results=outcome_validation_result,
+                reflection_feedback=reflection,
+                theory_usefulness=theory_usefulness,
+                regime_matches=regime_matches,
+            )
+            confidence_state.last_report = report
+        except Exception:
+            pass
+
         return confidence_state
 
     def _validation_aligns(self, validation) -> bool:

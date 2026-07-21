@@ -27,6 +27,8 @@ class Settings(BaseSettings):
 
     DUCKDB_PATH: str = "market_memory.duckdb"
     LLM_AUDIT_ENABLED: bool = True
+    LLM_LEDGER_MODE: str = "auto"
+    LLM_LEDGER_PATH: str = "data/llm_ledger.json"
 
     class Config:
         env_file = ".env"

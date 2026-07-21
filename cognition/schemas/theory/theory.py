@@ -101,3 +101,4 @@ class Theory(CognitionBase):
     analog_divergence_claim: str = ""
     regime_description: str = ""
     alternative_group_id: Optional[str] = None
+    reasoning_provenance: Optional[Any] = None

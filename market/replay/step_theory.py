@@ -528,8 +528,30 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                 executor.theory_lineage.record_contradictions(
                     tid=lineage_record.id,
                     descriptions=descriptions,
+                    severity=float(contradiction_result.get("score", 0.0)),
                     step=day_idx,
                 )
+
+        if hasattr(executor, "contradiction_graph") and executor.contradiction_graph and recent_theories:
+            prior_theory = recent_theories[-1]
+            prior_id = getattr(prior_theory, "id", str(prior_theory))
+            curr_id = getattr(theory, "id", str(theory))
+            if prior_id != curr_id:
+                executor.contradiction_graph.add_contradiction(
+                    source_theory_id=curr_id,
+                    target_theory_id=prior_id,
+                    contradiction_type="EMPIRICAL",
+                    supporting_evidence=contradiction_result.get("indicators", []),
+                    confidence=float(contradiction_result.get("score", 0.5)),
+                    step=day_idx,
+                )
+                if hasattr(executor, "contradiction_resolver") and executor.contradiction_resolver:
+                    theory_ctx = {
+                        curr_id: {"confidence": getattr(getattr(theory, "confidence_state", None), "empirical_confidence", 0.5)},
+                        prior_id: {"confidence": getattr(getattr(prior_theory, "confidence_state", None), "empirical_confidence", 0.5)},
+                    }
+                    executor.contradiction_resolver.resolve_conflicts(executor.contradiction_graph, theory_ctx, day_idx)
+
                 executor.experience_engine.record_contradiction(
                     lineage_id_val, signatures=descriptions
                 )
@@ -710,6 +732,77 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
         "theory_id": theory.id,
         "regime_history": regime_history,
     }
+
+    try:
+        from memory.provenance import ReasoningProvenance
+        theory.reasoning_provenance = ReasoningProvenance(
+            observations_used=[f"OBS_{date_str}"],
+            mechanisms_used=[
+                m.description
+                for m in getattr(getattr(theory, "summary_structured", None), "mechanism_components", [])
+                if hasattr(m, "description")
+            ],
+            retrieved_memories=[
+                {"date": getattr(m, "date", "unknown"), "similarity": getattr(m, "similarity", 0.0)}
+                for m in (regime_matches or [])
+            ],
+            reflections_consulted=[getattr(reflection, "summary", "")] if reflection else [],
+            validation_results_incorporated=[getattr(validation, "id", "")] if validation else [],
+        )
+    except Exception:
+        pass
+
+    try:
+        from core.event_bus import get_event_bus
+        from core.events import (
+            MechanismGenerated,
+            ReflectionCompleted,
+            TheoryCreated,
+            TheoryRetired,
+        )
+
+        bus = get_event_bus()
+
+        if audit_created or audit_mutated:
+            if hasattr(executor, "predicate_engine") and executor.predicate_engine:
+                executor.predicate_engine.form_predicate(theory=theory, step=day_idx, evaluation_window=1)
+
+            bus.publish(
+                TheoryCreated(
+                    theory_id=getattr(theory, "id", f"TH_{day_idx}"),
+                    statement=getattr(theory, "summary", "Generated theory"),
+                    confidence=float(getattr(getattr(theory, "confidence_state", None), "empirical_confidence", 0.5)),
+                ),
+                publisher="step_theory",
+            )
+            bus.publish(
+                MechanismGenerated(
+                    mechanism_id=f"MECH_{uuid4().hex[:8]}",
+                    description=getattr(theory, "summary", "Generated mechanism"),
+                    confidence=float(getattr(getattr(theory, "confidence_state", None), "empirical_confidence", 0.5)),
+                ),
+                publisher="step_theory",
+            )
+
+        if audit_retired:
+            bus.publish(
+                TheoryRetired(
+                    theory_id=getattr(theory, "id", f"TH_{day_idx}"),
+                    reason="Theory retired in step_theory",
+                ),
+                publisher="step_theory",
+            )
+
+        if reflection:
+            bus.publish(
+                ReflectionCompleted(
+                    reflection_id=getattr(reflection, "id", f"REFL_{day_idx}"),
+                    insights=[getattr(reflection, "summary", "Reflection cycle completed")],
+                ),
+                publisher="step_theory",
+            )
+    except Exception as _evt_exc:
+        pass
 
     return DailyTheoryResult(
         theory=theory,

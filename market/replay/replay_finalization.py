@@ -120,6 +120,19 @@ def generate_v1_report(executor: Any):
         out_html_path = executor.base_output_dir / "report.html"
         ReplayReportRenderer.render(report_data, out_html_path)
 
+        try:
+            from diagnostics.collectors import EpistemicEventCollector
+            from diagnostics.report_generator import ResearchReportGenerator
+            collector = getattr(executor, "epistemic_collector", None) or EpistemicEventCollector()
+            generator = ResearchReportGenerator()
+            generator.export_json(collector, str(executor.base_output_dir / "research_report.json"))
+            generator.export_markdown(collector, str(executor.base_output_dir / "research_report.md"))
+            if not executor.quiet:
+                print(f"✓ Exported Research Diagnostics JSON: {executor.base_output_dir / 'research_report.json'}")
+                print(f"✓ Exported Research Diagnostics Markdown: {executor.base_output_dir / 'research_report.md'}")
+        except Exception as diag_err:
+            logger.warning(f"Failed to export Research Diagnostics report: {diag_err}")
+
         if not executor.quiet:
             print(f"✓ Saved structured report data to run snapshot: {executor.run_dir / 'report.json' if executor.run_dir else 'N/A'}")
             print(f"✓ Rendered interactive HTML report to run snapshot: {executor.run_dir / 'report.html' if executor.run_dir else 'N/A'}")

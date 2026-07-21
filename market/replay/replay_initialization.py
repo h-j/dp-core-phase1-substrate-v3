@@ -93,6 +93,44 @@ def initialize_flows(executor: Any):
         comp_prop_repo=executor.compiled_proposition_repo,
     )
 
+    from validation.predicate_validation_engine import PredicateValidationEngine
+    executor.predicate_engine = PredicateValidationEngine()
+
+    from cognition.contradiction import ContradictionGraph, ContradictionResolver
+    executor.contradiction_graph = ContradictionGraph()
+    executor.contradiction_resolver = ContradictionResolver()
+
+    try:
+        from core.event_bus import get_event_bus
+        from core.events import (
+            ObservationCreated,
+            PredictionGenerated,
+            TheoryCreated,
+        )
+
+        bus = get_event_bus()
+
+        def _on_obs(evt: ObservationCreated):
+            if not hasattr(executor, "_event_bus_observations"):
+                executor._event_bus_observations = []
+            executor._event_bus_observations.append(evt)
+
+        def _on_pred(evt: PredictionGenerated):
+            if not hasattr(executor, "_event_bus_predictions"):
+                executor._event_bus_predictions = []
+            executor._event_bus_predictions.append(evt)
+
+        def _on_theory_created(evt: TheoryCreated):
+            if not hasattr(executor, "_event_bus_theories_created"):
+                executor._event_bus_theories_created = []
+            executor._event_bus_theories_created.append(evt)
+
+        bus.subscribe(ObservationCreated, _on_obs)
+        bus.subscribe(PredictionGenerated, _on_pred)
+        bus.subscribe(TheoryCreated, _on_theory_created)
+    except Exception as _sub_exc:
+        logger.warning("[initialize_flows] Failed to wire EventBus subscriptions: %s", _sub_exc)
+
     executor.flows_initialized = True
 
 

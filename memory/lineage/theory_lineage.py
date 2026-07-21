@@ -461,7 +461,15 @@ class TheoryLineageEngine:
         rec = self.theories.get(tid)
         if not rec:
             return None
-        rec.status = "retired"
+        from core.theory_state_machine import TheoryStateMachine, TheoryState, TheoryTransition
+        try:
+            curr_state_val = rec.status if rec.status not in {"contradicted", "dormant", "revived"} else "active"
+            curr_state = TheoryState.from_str(curr_state_val if curr_state_val != "retired" else "retired")
+            sm = TheoryStateMachine(initial_state=curr_state, theory_id=tid)
+            new_state = sm.transition(TheoryTransition.RETIRE, reason=f"Retired at step {step}")
+            rec.status = new_state.value
+        except Exception:
+            rec.status = "retired"
         rec.last_seen_step = step
         rec.retired_at_step = step
         rec.last_retired_step = step
@@ -473,6 +481,12 @@ class TheoryLineageEngine:
         rec = self.theories.get(tid)
         if not rec:
             return None
+        from core.theory_state_machine import TheoryStateMachine, TheoryState, TheoryTransition
+        try:
+            sm = TheoryStateMachine(initial_state=TheoryState.RETIRED, theory_id=tid)
+            sm.request_revival(evidence_support=0.60, regime_match=True, reason=f"Revived at step {step}")
+        except Exception:
+            pass
         # lineage_id remains the same during revival
         if rec.last_retired_step is not None:
             rec.revival_latencies.append(step - rec.last_retired_step)

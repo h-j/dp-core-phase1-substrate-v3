@@ -56,6 +56,76 @@ class ReplayAnalysisEngine(ReplayAnalysisReportingMixin):
         self.miss_analysis = []  # v2.1 Miss Audit
         self.theory_metrics_history = []
         self.external_metrics = {}
+        self.retrieval_explanations_history = []
+
+    def record_retrieval_explanation(self, explanation: Any):
+        """Record an explainable retrieval result for replay diagnostics."""
+        if explanation:
+            self.retrieval_explanations_history.append(explanation)
+
+    def get_memory_provenance_diagnostics(self) -> Dict[str, Any]:
+        """
+        Returns structured summary diagnostics of memory retrieval quality and provenance.
+        """
+        total_queries = len(self.retrieval_explanations_history)
+        successful_retrievals = sum(
+            1 for e in self.retrieval_explanations_history if getattr(e, "retrieval_success", False)
+        )
+        total_ignored = sum(
+            len(getattr(e, "ignored_candidates", [])) for e in self.retrieval_explanations_history
+        )
+
+        all_details = [
+            detail
+            for e in self.retrieval_explanations_history
+            for detail in getattr(e, "retrieved_memories", [])
+        ]
+        avg_score = (
+            statistics.mean([getattr(d, "retrieval_score", 0.0) for d in all_details])
+            if all_details
+            else 0.0
+        )
+
+        top_memories = [
+            {
+                "memory_id": getattr(d, "memory_id", ""),
+                "date": getattr(d, "date", ""),
+                "score": getattr(d, "retrieval_score", 0.0),
+                "similarity": getattr(d, "similarity", 0.0),
+                "recency_contribution": getattr(d, "recency_contribution", 0.0),
+            }
+            for d in sorted(all_details, key=lambda x: getattr(x, "retrieval_score", 0.0), reverse=True)[:5]
+        ]
+
+        return {
+            "total_queries": total_queries,
+            "successful_retrievals": successful_retrievals,
+            "retrieval_hit_rate": round(successful_retrievals / total_queries, 4) if total_queries > 0 else 0.0,
+            "average_retrieval_score": round(avg_score, 4),
+            "ignored_candidates_count": total_ignored,
+            "top_retrieved_memories": top_memories,
+            "retrieval_failures": total_queries - successful_retrievals,
+            "provenance_graph_summary": {
+                "nodes_tracked": len(all_details),
+                "edges_tracked": sum(len(getattr(d, "provenance_chain", [])) for d in all_details),
+            },
+        }
+
+    def get_contradiction_graph_diagnostics(self, graph: Any = None) -> Dict[str, Any]:
+        """
+        Returns summary diagnostics for the Contradiction Graph.
+        """
+        if hasattr(graph, "get_graph_statistics"):
+            return graph.get_graph_statistics()
+        return {
+            "total_contradictions": len(self.contradiction_history),
+            "active_conflicts": sum(1 for c in self.contradiction_history if getattr(c, "get", lambda k, d: None)("count", 0) or 0 > 0),
+            "resolved_conflicts": 0,
+            "superseded_conflicts": 0,
+            "pending_investigation_conflicts": 0,
+            "node_count": 0,
+            "edge_count": 0,
+        }
 
     def set_config_snapshot(self, config: dict):
         """Record the configuration used for this replay."""

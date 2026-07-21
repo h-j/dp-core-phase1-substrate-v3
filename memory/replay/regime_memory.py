@@ -108,27 +108,97 @@ class RegimeMemoryStore:
         limit: int = 3,
         min_similarity: float = 0.45,
     ) -> List[RegimeMatch]:
+        matches, _ = self.retrieve_explainable(
+            signature=signature,
+            current_contradictions=current_contradictions,
+            limit=limit,
+            min_similarity=min_similarity,
+        )
+        return matches
+
+    def retrieve_explainable(
+        self,
+        signature: RegimeSignature,
+        current_contradictions: Iterable[str],
+        limit: int = 3,
+        min_similarity: float = 0.45,
+    ) -> Tuple[List[RegimeMatch], Any]:
+        from memory.provenance import (
+            IgnoredCandidate,
+            RetrievalDetail,
+            RetrievalExplanation,
+        )
+
         current_contradictions = list(current_contradictions)
         matches: List[RegimeMatch] = []
+        ignored: List[IgnoredCandidate] = []
+        details: List[RetrievalDetail] = []
+
+        max_step = max([r.step for r in self.records], default=1)
+
         for record in self.records:
             similarity = self._similarity(signature, record.signature)
             if similarity < min_similarity:
+                ignored.append(
+                    IgnoredCandidate(
+                        memory_id=f"MEM_{record.signature.date}",
+                        date=record.signature.date,
+                        similarity=round(similarity, 4),
+                        reason=f"Similarity {similarity:.3f} below minimum threshold {min_similarity:.3f}",
+                    )
+                )
                 continue
+
             recurring = self._recurring_contradiction(
                 current_contradictions,
                 record.contradictions,
             )
-            matches.append(
-                RegimeMatch(
-                    date=record.signature.date,
-                    similarity=similarity,
-                    active_theories=record.active_theories[:3],
-                    contradictions=record.contradictions[:3],
-                    confidence=record.confidence,
-                    recurring_contradiction=recurring,
+            match = RegimeMatch(
+                date=record.signature.date,
+                similarity=similarity,
+                active_theories=record.active_theories[:3],
+                contradictions=record.contradictions[:3],
+                confidence=record.confidence,
+                recurring_contradiction=recurring,
+            )
+            matches.append(match)
+
+        sorted_matches = sorted(matches, key=lambda item: (-item.similarity, item.date))[:limit]
+
+        for rank, match in enumerate(sorted_matches, 1):
+            # Recency factor
+            rec_record = next((r for r in self.records if r.signature.date == match.date), None)
+            rec_step = rec_record.step if rec_record else 0
+            step_diff = max(0, max_step - rec_step)
+            recency_contrib = round(max(0.0, 1.0 - (step_diff * 0.05)), 4)
+            retrieval_score = round(0.8 * match.similarity + 0.2 * recency_contrib, 4)
+
+            details.append(
+                RetrievalDetail(
+                    memory_id=f"MEM_{match.date}",
+                    date=match.date,
+                    retrieval_score=retrieval_score,
+                    ranking=rank,
+                    similarity=round(match.similarity, 4),
+                    recency_contribution=recency_contrib,
+                    usefulness_estimate=round(match.confidence, 4),
+                    provenance_chain=[
+                        f"record_date:{match.date}",
+                        f"record_step:{rec_step}",
+                        f"active_theories:{','.join(match.active_theories[:2])}",
+                    ],
                 )
             )
-        return sorted(matches, key=lambda item: (-item.similarity, item.date))[:limit]
+
+        explanation = RetrievalExplanation(
+            retrieved_memories=details,
+            ignored_candidates=ignored,
+            retrieval_success=len(details) > 0,
+            query_signature={"date": signature.date, "vol_state": signature.volatility_state},
+            top_score=details[0].retrieval_score if details else 0.0,
+        )
+
+        return sorted_matches, explanation
 
     def persist(
         self,

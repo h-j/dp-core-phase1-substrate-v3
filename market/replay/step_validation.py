@@ -50,6 +50,12 @@ def process_daily_validation(
     attribution = None
     newly_retired_count = 0
 
+    if hasattr(executor, "predicate_engine") and executor.predicate_engine:
+        try:
+            executor.predicate_engine.evaluate_pending_predicates(day_idx, obs_data)
+        except Exception:
+            pass
+
     if executor._prior_prediction is not None:
         prior_prediction_result = executor.prediction_generator.score_actual(
             executor._prior_prediction, market_obs
