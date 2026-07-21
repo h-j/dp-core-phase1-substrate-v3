@@ -1,0 +1,14 @@
+{
+  "condition": "Control_C0",
+  "seed": 42,
+  "market_name": "TCS",
+  "candidate_alpha_active": false,
+  "total_steps": 0,
+  "lessons_yield": 0,
+  "novelty_decisions": [
+    "GENERATE",
+    "REINFORCE"
+  ],
+  "lessons": [],
+  "snapshots": []
+}
