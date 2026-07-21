@@ -1,0 +1,17 @@
+{
+  "condition": "Intervention_I1",
+  "seed": 42,
+  "market_name": "TCS",
+  "candidate_alpha_active": true,
+  "total_steps": 0,
+  "lessons_yield": 0,
+  "novelty_decisions": [
+    "GENERATE",
+    "REINFORCE",
+    "REVISE",
+    "REVISE",
+    "REVISE"
+  ],
+  "lessons": [],
+  "snapshots": []
+}

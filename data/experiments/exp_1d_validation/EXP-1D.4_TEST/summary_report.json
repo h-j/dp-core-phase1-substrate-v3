@@ -1,0 +1,34 @@
+{
+  "experiment_id": "EXP-1D.4_TEST",
+  "timestamp": "2026-07-21T02:55:36.290451+00:00",
+  "protocol": "PHASE_1D_REPLICATION_AND_VALIDATION_PROTOCOL.md",
+  "market_name": "TCS",
+  "days": 5,
+  "shock_steps": [
+    15
+  ],
+  "matched_seeds": [
+    42
+  ],
+  "maturity_evaluation": {
+    "Level1_Engineering_Stability": "VERIFIED (0 degraded steps)",
+    "Level2_Lesson_Yield_Y": 0.0,
+    "Level2_Learning_Activation": "INACTIVE",
+    "Level3_Epistemic_Divergence_PostShock": 0.0,
+    "Level3_Cognitive_Adaptation": "INVARIANT (D_epistemic < 0.15)",
+    "Statistical_Rigor": {
+      "Mean_D_epistemic": 0.0,
+      "Std_D_epistemic": 0.01,
+      "Cohens_d": 0.0,
+      "Bootstrap_95_CI": [
+        0.0,
+        0.0
+      ],
+      "Effect_Size_Rating": "MODERATE"
+    },
+    "Generate_Decision_Counts": {
+      "C0_Control_Legacy_Gate": 0,
+      "I1_Candidate_Alpha_Gate": 0
+    }
+  }
+}
