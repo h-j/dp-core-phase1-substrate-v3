@@ -1,6 +1,0 @@
-date,prediction,conviction_score,allocation_pct,entry_price,exit_price,pnl,cumulative_capital,is_correct,calibrated_confidence,contradiction_pressure,empirical_confidence,principle_support,transition_pressure
-2026-06-24,uncertain,0.0,0.0,0.0,0.0,0.0,1000000.0,False,0.0,0.0,0.0,0,0.0
-2026-06-25,higher,0.5265,0.0884,1319.318,1316.7819,-258.33,999741.67,True,0.53,0.0,0.24,0,0.07
-2026-06-26,uncertain,0.3579,0.0,0.0,0.0,0.0,999741.67,False,0.26,0.098,0.0,0,0.135
-2026-06-29,range_bound,0.4222,0.0749,0.0,0.0,0.0,999741.67,False,0.45,0.098,0.0,0,0.1567
-2026-06-30,lower,0.4439,0.0777,1305.5931,1295.1939,541.05,1000282.72,True,0.55,0.0962,0.0,0,0.294

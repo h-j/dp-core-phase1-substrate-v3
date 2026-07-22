@@ -1,9 +1,0 @@
-{
-  "id": "e812491c-13cb-4ac9-b818-008e09f0b5db",
-  "created_at": "2026-07-04T14:34:32.083061+00:00",
-  "open_question_id": "fc2a4e51-ed3f-4743-8de0-1018c7a9c0fd",
-  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'MOMENTUM_DAMPENING'",
-  "candidate_data_source": "FII/DII Flows & Order Book Depth",
-  "expected_explanatory_value": "To resolve structural failure of component 'MOMENTUM_DAMPENING' under neutral regime",
-  "priority": "HIGH"
-}

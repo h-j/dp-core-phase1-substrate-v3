@@ -1,9 +1,0 @@
-{
-  "id": "512059b2-5387-4406-9725-d2da28469743",
-  "created_at": "2026-07-14T21:19:38.024529+00:00",
-  "open_question_id": "57900efa-30f9-45f1-afb4-7d0d485736a0",
-  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'sector_zscore_revised'",
-  "candidate_data_source": "FII/DII Flows & Order Book Depth",
-  "expected_explanatory_value": "To resolve structural failure of component 'sector_zscore_revised' under neutral regime",
-  "priority": "HIGH"
-}

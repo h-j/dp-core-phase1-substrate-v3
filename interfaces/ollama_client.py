@@ -59,17 +59,19 @@ def _write_cache(key: str, response: str) -> None:
 class OllamaClient:
     def __init__(
         self,
+        model: Optional[str] = None,
         temperature: float = 0.0,
         seed: Optional[int] = None,
         mode: Optional[str] = None,
         ledger: Optional[LLMLedger] = None,
     ):
+        self.model = model or getattr(settings, "OLLAMA_MODEL", "llama3.2")
         self.temperature = temperature
         self.seed = seed
         self.ledger = ledger if ledger is not None else LLMLedger(mode=mode)
 
     def generate(self, prompt: str, json_format: bool = False) -> str:
-        model = settings.OLLAMA_MODEL
+        model = self.model or getattr(settings, "OLLAMA_MODEL", "llama3.2")
 
         def _live_provider() -> str:
             options = {

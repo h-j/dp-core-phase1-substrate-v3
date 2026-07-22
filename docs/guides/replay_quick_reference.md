@@ -1,43 +1,32 @@
-# NIFTY Replay System - Quick Reference Guide
+# Market Replay System — Quick Reference & Dataset Guide
+
+## Supported Replay Datasets
+
+The reflective cognition replay engine supports historical daily OHLCV datasets under `data/`:
+
+1. **`data/reliance_daily_3y.csv`** — **Primary Default Replay Dataset** (Reliance Industries 3-Year Daily OHLCV).
+2. **`data/tcs_daily_3y.csv`** — **Secondary Asset Dataset** (Tata Consultancy Services 3-Year Daily OHLCV).
+3. **`data/nifty_daily_3y.csv`** — **Benchmark Index Dataset** (NIFTY 50 Index 3-Year Daily OHLCV).
+
+The replay engine (`market.replay.run` / `market.replay.replay_engine`) defaults to `data/reliance_daily_3y.csv` unless overridden via command line flags (`--csv-path` or `--symbol`).
+
+---
 
 ## Installation & Setup
 
 ### 1. Install Dependencies
 ```bash
-cd dp-core-phase1-substrate-v3
-poetry lock
 poetry install
 ```
 
-### 2. Download Dataset
+### 2. Run Replay Simulation
 ```bash
-poetry run python -m market.data.download_nifty_history
+# Run using default primary dataset (Reliance Industries) in REPLAY mode
+poetry run python -m market.replay.run --llm-mode REPLAY
+
+# Run using explicit CSV dataset path
+poetry run python -m market.replay.run --csv-path data/tcs_daily_3y.csv --llm-mode REPLAY
 ```
-
-Output: `data/nifty_daily_3y.csv` (829 trading days)
-
-### 3. Validate Dataset
-```bash
-poetry run python -m market.data.dataset_validator
-```
-
-Expected output:
-```
-✓ Dataset validation PASSED (829 rows, 2023-01-02 to 2026-05-15)
-```
-
----
-
-## Quick Demo
-
-### Run Demonstration
-```bash
-poetry run python -m bootstrap.replay_demo
-```
-
-Shows:
-- Dataset loading
-- Scenario definitions (30/90/365-day)
 - Observation synthesis samples
 - Determinism verification
 

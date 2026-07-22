@@ -70,9 +70,11 @@ def run_verification() -> bool:
     assert ledger_path.exists(), "Ledger file was not created automatically!"
 
     with open(ledger_path, "r", encoding="utf-8") as f:
-        ledger_data = json.load(f)
-    logger.info("Ledger file automatically created at %s with %d entries.", ledger_path, len(ledger_data))
-    assert len(ledger_data) == 3
+        lines = [line.strip() for line in f if line.strip()]
+    header = json.loads(lines[0])
+    record_count = len(lines) - 1
+    logger.info("Ledger file automatically created at %s with %d records (header: %s).", ledger_path, record_count, header["type"])
+    assert record_count == 3
 
     logger.info("--- Execution 2: Deterministic Replay (Mode: REPLAY) ---")
     ledger_run2 = LLMLedger(mode="replay", path=ledger_path)

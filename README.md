@@ -20,14 +20,21 @@ Production-grade foundational substrate for reflective cognition experimentation
 poetry install
 ```
 
+## Supported Replay Datasets
+
+The reflective cognition replay engine supports three historical daily OHLCV datasets:
+- **`data/reliance_daily_3y.csv`** (Default Primary Asset: Reliance Industries 3-year daily OHLCV)
+- **`data/tcs_daily_3y.csv`** (Secondary Asset: Tata Consultancy Services 3-year daily OHLCV)
+- **`data/nifty_daily_3y.csv`** (Benchmark Index: NIFTY 50 Index 3-year daily OHLCV)
+
 ## Running Deterministic Replay
 
 ```bash
-# Run replay simulation using LLM Ledger REPLAY mode (zero live LLM calls)
+# Run replay simulation using default primary dataset (Reliance) in REPLAY mode
 poetry run python -m market.replay.run --llm-mode REPLAY
 
-# Run replay simulation in LIVE recording mode
-poetry run python -m market.replay.run --llm-mode LIVE
+# Run replay simulation using a custom dataset path
+poetry run python -m market.replay.run --csv-path data/tcs_daily_3y.csv --llm-mode REPLAY
 ```
 
 ## Verification & Testing

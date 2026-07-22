@@ -2,28 +2,48 @@
 __pycache__/
 *.pyc
 .venv/
+*.pytest_cache/
 
 # macOS
 .DS_Store
+**/.DS_Store
 
-# replay outputs
+# Replay outputs & snapshot directories
 data/replay_snapshots/
 memory/replay/logs/
 market/replay/output/
-
-# env
-.env
-
-# editors
-.vscode/
-.idea/
-
-# Phase 9: Runtime output data & cached files
+market/replay/propositions/
+data/experiments/
+data/experiences/
+data/archive/
+data/mechanisms/
+data/patterns/
+data/operational_hypothesis_experiment/
+data/s1_r_results/
+data/synthetic_experiment_results/
+data/market_data/
 data/decision_journal/
 data/llm_cache/
+
+# Data artifacts
+data/llm_ledger.json
+data/*.json
+
+# Database & Parquet
 *.db
+*.sqlite
 *.duckdb
 *.parquet
 dp_cognition.db
 market_memory.db
+
+# Temporary & scratch files
 tmp_lineage.json
+scratch_prompt_*.txt
+*.tmp
+*.log
+
+# Environment & Editors
+.env
+.vscode/
+.idea/

@@ -1,2 +1,0 @@
-# Frozen Hypothesis Report
-

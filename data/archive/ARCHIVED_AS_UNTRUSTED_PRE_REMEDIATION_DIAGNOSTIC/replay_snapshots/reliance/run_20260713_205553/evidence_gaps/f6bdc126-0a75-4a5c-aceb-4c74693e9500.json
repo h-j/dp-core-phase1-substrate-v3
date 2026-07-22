@@ -1,9 +1,0 @@
-{
-  "id": "f6bdc126-0a75-4a5c-aceb-4c74693e9500",
-  "created_at": "2026-07-13T15:34:57.189948+00:00",
-  "open_question_id": "01cc0627-69e4-408c-aaf8-8fdddff13a6c",
-  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'VOLATILITY_EXPANSION_ADJUSTMENT'",
-  "candidate_data_source": "FII/DII Flows & Order Book Depth",
-  "expected_explanatory_value": "To resolve structural failure of component 'VOLATILITY_EXPANSION_ADJUSTMENT' under liquidity_constrained regime",
-  "priority": "MEDIUM"
-}

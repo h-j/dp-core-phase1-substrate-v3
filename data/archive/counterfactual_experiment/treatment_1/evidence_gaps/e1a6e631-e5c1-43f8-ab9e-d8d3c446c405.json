@@ -1,9 +1,0 @@
-{
-  "id": "e1a6e631-e5c1-43f8-ab9e-d8d3c446c405",
-  "created_at": "2026-07-14T23:38:02.735315+00:00",
-  "open_question_id": "d34571e9-8885-4f57-9064-de9b01223604",
-  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'delivery_exhaustion'",
-  "candidate_data_source": "FII/DII Flows & Order Book Depth",
-  "expected_explanatory_value": "To resolve structural failure of component 'delivery_exhaustion' under liquidity_constrained regime",
-  "priority": "HIGH"
-}

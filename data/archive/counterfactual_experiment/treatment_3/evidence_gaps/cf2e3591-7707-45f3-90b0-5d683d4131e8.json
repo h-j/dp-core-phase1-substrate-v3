@@ -1,9 +1,0 @@
-{
-  "id": "cf2e3591-7707-45f3-90b0-5d683d4131e8",
-  "created_at": "2026-07-15T01:18:56.349928+00:00",
-  "open_question_id": "0832355f-7bd0-4251-9582-685a26c60e4c",
-  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'delivery_exhaustion_with_fii_selling'",
-  "candidate_data_source": "FII/DII Flows & Order Book Depth",
-  "expected_explanatory_value": "To resolve structural failure of component 'delivery_exhaustion_with_fii_selling' under neutral regime",
-  "priority": "HIGH"
-}

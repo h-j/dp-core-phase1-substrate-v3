@@ -1,9 +1,0 @@
-{
-  "id": "20e9aefe-b683-4e11-958e-398564cecdbf",
-  "created_at": "2026-07-01T07:15:27.921104+00:00",
-  "open_question_id": "6ae95a40-1360-4062-9238-0e993c6e5e5b",
-  "missing_evidence": "Order book imbalance and detailed participation dynamics for 'liquidity_absorption'",
-  "candidate_data_source": "FII/DII Flows & Order Book Depth",
-  "expected_explanatory_value": "To resolve structural failure of component 'liquidity_absorption' under neutral regime",
-  "priority": "HIGH"
-}
