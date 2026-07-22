@@ -771,6 +771,20 @@ class ReplayExecutor:
                     )
                     self.knowledge_repository.save_principle(validated_p)
 
+                active_principles = (
+                    self.knowledge_repository.list_principles(status="active")
+                    + self.knowledge_repository.list_principles(status="stable")
+                    + self.knowledge_repository.list_principles(status="emerging")
+                    + self.knowledge_repository.list_principles(status="trusted")
+                    + self.knowledge_repository.list_principles(status="canonical")
+                )
+                if active_principles:
+                    wm_update = self.world_model_engine.synthesize(
+                        active_principles=active_principles,
+                        step=day_idx,
+                    )
+                    self.knowledge_repository.save_world_model(wm_update)
+
         if emit_summary:
             self._emit_cognitive_summary()
 
