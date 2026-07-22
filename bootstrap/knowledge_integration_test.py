@@ -29,7 +29,7 @@ def mock_generate(prompt: str, json_format: bool = False) -> str:
                 ],
             }
         )
-    elif "world model engine" in prompt_lower or "active principles" in prompt_lower:
+    elif "world model engine" in prompt_lower or "synthesize active trusted principles" in prompt_lower:
         return json.dumps(
             {
                 "narrative_summary": "System consolidated in range.",

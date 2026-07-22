@@ -528,7 +528,6 @@ Your task is to write a concise scientific hypothesis summarizing the current ma
                 executor.theory_lineage.record_contradictions(
                     tid=lineage_record.id,
                     descriptions=descriptions,
-                    severity=float(contradiction_result.get("score", 0.0)),
                     step=day_idx,
                 )
 
