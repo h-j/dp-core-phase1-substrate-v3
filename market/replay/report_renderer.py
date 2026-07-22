@@ -95,7 +95,7 @@ class ReplayReportModel:
         theory_drift = float(em.get("theory_drift", 0.0))
 
         # 3. Replay Story Narrative
-        experiences_count = len(self.ae.prediction_history) if self.ae else 0
+        experiences_count = len(ae.prediction_history) if ae else 0
         comp_metrics = getattr(self.executor, "compilation_metrics", {})
         if isinstance(comp_metrics, dict) and "theories_generated" in comp_metrics and comp_metrics["theories_generated"] > 0:
             theories_count = comp_metrics["theories_generated"]
@@ -147,7 +147,7 @@ class ReplayReportModel:
         # Lesson reuse rate fallback: calculate from history if not present in lesson_stats
         raw_reuse_rate = em.get("lesson_stats", {}).get("lesson_reuse_rate")
         if raw_reuse_rate is None:
-            pred_hist = self.ae.prediction_history if self.ae else []
+            pred_hist = ae.prediction_history if ae else []
             reused_days = sum(1 for r in pred_hist if r.get("reused_lessons"))
             raw_reuse_rate = (reused_days / len(pred_hist)) if pred_hist else 0.0
 
@@ -412,7 +412,7 @@ class ReplayReportModel:
                 mechanisms_list = [m.__dict__ if hasattr(m, "__dict__") else m for m in getattr(self.executor.mechanism_engine, "registry", {}).values()]
 
             eef_dashboard = evaluator.evaluate_run(
-                predictions_history=self.ae.prediction_history if self.ae else [],
+                predictions_history=ae.prediction_history if ae else [],
                 theories_history=[],
                 mechanisms_history=mechanisms_list,
                 lessons_history=lessons_list,
