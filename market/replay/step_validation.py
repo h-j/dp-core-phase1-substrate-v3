@@ -77,9 +77,11 @@ def process_daily_validation(
                         else getattr(market_obs, "regime_descriptor", "")
                     ),
                     "abstractions": (
-                        getattr(market_obs, "descriptors", market_obs.get("descriptors", []))
-                        if hasattr(market_obs, "descriptors") or (isinstance(market_obs, dict) and "descriptors" in market_obs)
-                        else getattr(market_obs, "abstractions", market_obs.get("abstractions", []) if hasattr(market_obs, "get") else [])
+                        getattr(market_obs, "descriptors", None)
+                        or getattr(market_obs, "abstractions", None)
+                        or (market_obs.get("descriptors") if isinstance(market_obs, dict) else None)
+                        or (market_obs.get("abstractions") if isinstance(market_obs, dict) else None)
+                        or []
                     ),
                     "trend_persistence": {
                         "3d": persistence_3d,
