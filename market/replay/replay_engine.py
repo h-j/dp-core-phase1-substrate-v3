@@ -609,6 +609,8 @@ class ReplayExecutor:
             self.observation_repo.save(obs_event)
             self.abstraction_repo.save(abstraction)
             self.theory_repo.save(theory)
+            if hasattr(self, "mechanism_engine") and self.mechanism_engine:
+                self.mechanism_engine.process_theories([theory], step=day_idx, regime_subtype=regime_subtype)
             self.validation_repo.save(validation)
             self.reflection_repo.save(reflection)
             self.confidence_repo.save(confidence_state)
@@ -668,6 +670,15 @@ class ReplayExecutor:
                         pass
                     return {"raw": str(obj)}
 
+                components_failed = []
+                components_tested = []
+                theory_id_val = ""
+                prior_attr = getattr(self, "_prior_attribution", None)
+                if prior_attr:
+                    components_failed = getattr(prior_attr, "components_failed", [])
+                    components_tested = getattr(prior_attr, "components_tested", [])
+                    theory_id_val = getattr(prior_attr, "theory_id", "")
+
                 self.replay_analysis_engine.record_day(
                     day_index=day_idx,
                     date=date_str,
@@ -682,6 +693,9 @@ class ReplayExecutor:
                     theory_usefulness=theory_usefulness if isinstance(theory_usefulness, dict) else {},
                     transition_pressure=transition_pressure if isinstance(transition_pressure, dict) else {},
                     intelligence_data=intelligence_metadata,
+                    components_failed=components_failed,
+                    components_tested=components_tested,
+                    theory_id=theory_id_val,
                 )
 
             self._print_day_log(
