@@ -441,8 +441,8 @@ class ReplayExecutor:
 
             latest_wm_obj = self.knowledge_repository.get_latest_world_model()
             world_model_narrative = (
-                f"Hard Guidance Rules: {latest_wm_obj.hard_guidance_rules}; "
-                f"Soft Prior Weights: {latest_wm_obj.soft_prior_weights}"
+                f"Narrative: {latest_wm_obj.narrative_summary}; "
+                f"Regime Constraints: {latest_wm_obj.regime_constraints}"
                 if latest_wm_obj
                 else "No consolidated World Model established."
             )

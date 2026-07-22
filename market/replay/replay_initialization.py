@@ -251,6 +251,8 @@ def process_closed_loop_belief_updates(executor: Any, day_idx: int):
         active_principles=executor.knowledge_repository.list_principles(status="active"),
         step=day_idx,
     )
+    if executor.knowledge_repository:
+        executor.knowledge_repository.save_world_model(wm_update)
     if executor.lineage_debug:
         print(
             f"World Model updated at Step {day_idx}: "
