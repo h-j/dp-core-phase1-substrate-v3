@@ -173,6 +173,34 @@ This table outlines the corrections applied to the program state to eliminate cl
 *   **Falsification Verdict**: **FALSIFIED** — The hypothesis that the `REVISE` corridor is "mathematically bypassed" is falsified. When active lessons exist, `REVISE` is not impossible or narrow; it occupies **49.64% of the continuous 6D parameter space volume**.
 *   **Dynamical System Classification**: **Piecewise Continuous Threshold-Based Controller with Half-Space Bifurcation**.
 
+---
+
+## 10. Read-Side Provenance & Counterfactual Ablation Protocol (PROMPTS E0a, E0b, E1)
+
+### 10.1 PROMPT E0a — Read-Side Provenance & Consultation Ledger
+* **Status**: COMPLETED & VERIFIED (`commit c893628`)
+* **Substrate**: Append-only `ConsultationLedger` (`dp/observability/consultation_ledger.py`) recording all cognitive consultations without wall-clock fields. 100% byte-stability verified across duplicate runs.
+* **Analysis Tool**: `dp.observability.influence_trace` computing multi-hop transitive influence taints.
+
+### 10.2 PROMPT E0b — Synthworld Benchmark Port & DPAdapter
+* **Status**: COMPLETED & VERIFIED (`commit 3fbc8ea`)
+* **Substrate**: Market-free configuration with deterministic `TrivialTheoryGenerator` and `DPAdapter` (`bench/synthworld/dp_adapter.py`) implementing 3-method `Learner` protocol (`observe`, `predict`, `beliefs`).
+* **Hypothesis Space Equality**: Verified exact set equality `set(adapter.hypothesis_space) == set(baseline.hypothesis_space)`.
+* **Smoke Run Performance**: 200-step S1 run completed with Brier Score **0.0074**, Discovery Rate **1.0** (100%), and 800 `role="gate"` consultation entries recorded.
+
+### 10.3 PROMPT E1 — General Counterfactual Ablation Replay & Registered Verdict
+* **Status**: COMPLETED & SCIENTIFICALLY CHARACTERIZED (`commit 3fbc8ea` / `ablation_replay.py`)
+* **Substrate**: `market/replay/ablation_replay.py` and `dp/observability/divergence_analyzer.py` executing 35-day counterfactual replay with overlay LLM cache and non-mutation baseline ledger invariant assertion (`assert md5_before == md5_after`).
+* **Selected Lineage**: `"0:theory:0"` (Single highest-confidence established founding lineage created on Day 0 with Beta posterior expectation $E[\text{Beta}] = 0.50$).
+* **Four-Way Divergence Profile (35 Days)**:
+  - **Predicted Influence Set ($P_{\text{trace}}$)**: 28 decision IDs (`['0:reflection:0', '0:theory:0', '9:theory:0', ..., '34:theory:0']`).
+  - **Observed Divergence Set ($D_{\text{obs}}$)**: $\emptyset$ (0 Output, 0 Structural).
+  - **Verified Influence Set ($P_{\text{trace}} \cap D_{\text{obs}}$)**: $\emptyset$.
+  - **Presented-But-Inert Set ($P_{\text{trace}} \setminus D_{\text{obs}}$)**: 28 decision IDs.
+  - **Unpredicted Divergence Set ($D_{\text{obs}} \setminus P_{\text{trace}}$)**: $\emptyset$ (0 unpredicted divergences — zero uninstrumented consultation read sites exist).
+* **Registered Verdict**: **`NULL`** (`NULL: Divergence set D_obs is empty entirely — accumulated knowledge did not causally change reasoning in this bounded run.`).
+
+
 
 
 
