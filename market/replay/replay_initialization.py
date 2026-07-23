@@ -15,7 +15,7 @@ def initialize_flows(executor: Any):
     if executor.flows_initialized:
         return
 
-    from cognition.confidence.confidence_evolution_engine import ConfidenceEvolutionEngine
+    from cognition.confidence.scored_confidence_engine import ScoredConfidenceEngine
     from cognition.contradiction.contradiction_detector import ContradictionDetector
     from flows.observation_flow.abstraction_flow import AbstractionFlow
     from flows.proposition_flow.proposition_compiler import MarketPropositionCompiler
@@ -45,7 +45,8 @@ def initialize_flows(executor: Any):
     executor.attribution_engine.llm = executor.theory_flow.client
     executor.contradiction_detector = ContradictionDetector(verbose=executor.verbose)
     executor.theory_flow.debug = executor.lineage_debug
-    executor.confidence_engine = ConfidenceEvolutionEngine()
+    executor.confidence_engine = ScoredConfidenceEngine()
+
 
     executor.observation_repo = ObservationRepository()
     executor.abstraction_repo = AbstractionRepository()

@@ -27,15 +27,15 @@ def test_replay_engine_no_trade_feedback_loop():
 
 
 def test_confidence_evolution_signature_no_trade_params():
-    from cognition.confidence.confidence_evolution_engine import ConfidenceEvolutionEngine
+    from cognition.confidence.scored_confidence_engine import ScoredConfidenceEngine
     import inspect
 
-    sig = inspect.signature(ConfidenceEvolutionEngine.evolve)
+    sig = inspect.signature(ScoredConfidenceEngine.evolve)
     params = set(sig.parameters.keys())
 
     forbidden_params = {"pnl", "conviction_score", "decision_result", "capital", "last_rec"}
     overlap = params & forbidden_params
-    assert not overlap, f"ConfidenceEvolutionEngine.evolve contains forbidden trade params: {overlap}"
+    assert not overlap, f"ScoredConfidenceEngine.evolve contains forbidden trade params: {overlap}"
 
 
 def test_trade_modules_do_not_import_cognition_mutators():
@@ -50,6 +50,8 @@ def test_trade_modules_do_not_import_cognition_mutators():
         if not tf.exists():
             continue
         code = tf.read_text(encoding="utf-8")
+        assert "ScoredConfidenceEngine" not in code, f"{tf} must not reference ScoredConfidenceEngine"
         assert "ConfidenceEvolutionEngine" not in code, f"{tf} must not reference ConfidenceEvolutionEngine"
         assert "TheoryLineageEngine" not in code, f"{tf} must not reference TheoryLineageEngine"
         assert "ContradictionRegistry" not in code, f"{tf} must not reference ContradictionRegistry"
+

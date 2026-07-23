@@ -1,4 +1,4 @@
-from cognition.confidence.confidence_evolution_engine import \
-    ConfidenceEvolutionEngine
+from cognition.confidence.scored_confidence_engine import ScoredConfidenceEngine
 
-__all__ = ["ConfidenceEvolutionEngine"]
+__all__ = ["ScoredConfidenceEngine"]
+

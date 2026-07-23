@@ -11,6 +11,8 @@ class GateStatus(str, Enum):
     FAIL = "FAIL"
     NOT_APPLICABLE = "NOT_APPLICABLE"
     INDETERMINATE = "INDETERMINATE"
+    INSUFFICIENT_EVIDENCE = "INSUFFICIENT_EVIDENCE"
+
 
 
 class ClaimStatus(str, Enum):

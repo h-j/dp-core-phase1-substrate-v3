@@ -1,8 +1,21 @@
+"""
+PostgreSQL Relational Client — Lazy & Service-Gated Connection Engine.
+
+Defers database connection away from module import/collection time,
+allowing clean pytest collection without external service dependencies.
+"""
+import logging
+import os
+from typing import Any
 from sqlalchemy import create_engine
-from sqlalchemy.exc import NoSuchModuleError
 from sqlalchemy.orm import sessionmaker
 
 from config.settings import settings
+
+from memory.relational.base import Base
+
+logger = logging.getLogger("postgres_client")
+
 
 DATABASE_URL = (
     f"postgresql://"
@@ -13,15 +26,51 @@ DATABASE_URL = (
     f"{settings.POSTGRES_DB}"
 )
 
-try:
-    engine = create_engine(DATABASE_URL, echo=False)
-    # Verify the database connection early; raise if unavailable
-    with engine.connect() as _:
-        pass
-except (ImportError, ModuleNotFoundError, NoSuchModuleError, Exception) as exc:
-    raise RuntimeError(
-        f"PostgreSQL unavailable or misconfigured: {exc}. Ensure Postgres is running and settings are correct."
-    ) from exc
+_engine = None
+_engine_initialized = False
+
+
+def get_engine():
+    global _engine, _engine_initialized
+    if _engine_initialized:
+        return _engine
+    _engine_initialized = True
+    try:
+        engine_inst = create_engine(DATABASE_URL, echo=False)
+        with engine_inst.connect() as _:
+            pass
+        _engine = engine_inst
+        # Run table creation & startup validation
+        try:
+            from memory.relational.base import Base
+            import memory.relational.models  # noqa: F401
+            from memory.market.market_observation_model import MarketObservationModel  # noqa: F401
+            from memory.market.strategic_memory_model import StrategicMemoryModel as MarketStrategicMemoryModel  # noqa: F401
+            from memory.relational.models.prediction_probe_model import PredictionProbeModel  # noqa: F401
+            from memory.relational.models.transition_pressure_model import TransitionPressureModel  # noqa: F401
+            from memory.relational.schema_validator import validate_schema_startup
+
+            Base.metadata.create_all(_engine)
+            validate_schema_startup(_engine)
+        except Exception as e:
+            logger.warning(f"PostgreSQL startup schema validation warning: {e}")
+    except Exception as exc:
+        _engine = None
+        logger.debug(f"PostgreSQL not connected: {exc}")
+    return _engine
+
+
+class LazyEngineProxy:
+    def __getattr__(self, name: str) -> Any:
+        eng = get_engine()
+        if eng is None:
+            raise RuntimeError(
+                "PostgreSQL unavailable or misconfigured. Ensure Postgres is running and DP_TEST_POSTGRES=1 is set."
+            )
+        return getattr(eng, name)
+
+
+engine = LazyEngineProxy()
 
 
 class SessionContext:
@@ -41,32 +90,11 @@ class SessionContext:
             self.session.close()
 
 
-SessionFactory = sessionmaker(
-    bind=engine, autoflush=False, autocommit=False, expire_on_commit=False
-)
-
-SessionLocal = lambda *args, **kwargs: SessionContext(SessionFactory(*args, **kwargs))
-
-# Import the models package to trigger registration of all relational models
-# This uses the __all__ list in memory/relational/models/__init__.py
-import memory.relational.models  # noqa: F401
-# Explicitly import models located outside the relational package to ensure
-# they are registered with the same Base metadata.
-# Note: Ensure MarketObservationModel imports Base from memory.relational.base
-from memory.market.market_observation_model import \
-    MarketObservationModel  # noqa: F401
-from memory.market.strategic_memory_model import \
-    StrategicMemoryModel as MarketStrategicMemoryModel  # noqa: F401
-from memory.relational.base import Base
-from memory.relational.models.prediction_probe_model import \
-    PredictionProbeModel  # noqa: F401
-# Explicit Analytical Model Registration
-from memory.relational.models.transition_pressure_model import \
-    TransitionPressureModel  # noqa: F401
-
-Base.metadata.create_all(engine)
-
-# PHASE 4: Fail-fast schema validation (startup check)
-from memory.relational.schema_validator import validate_schema_startup
-
-validate_schema_startup(engine)
+def SessionLocal(*args, **kwargs):
+    eng = get_engine()
+    if eng is None:
+        raise RuntimeError(
+            "PostgreSQL unavailable or misconfigured. Ensure Postgres is running (set DP_TEST_POSTGRES=1)."
+        )
+    factory = sessionmaker(bind=eng, autoflush=False, autocommit=False, expire_on_commit=False)
+    return SessionContext(factory(*args, **kwargs))

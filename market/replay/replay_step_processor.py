@@ -188,7 +188,8 @@ class ReplayStepProcessor:
             decisions=decisions,
         )
 
-        conf_state = self.engines["confidence_evolution"].evolve(
+        conf_engine = self.engines.get("confidence_evolution") or self.engines.get("confidence_engine")
+        conf_state = conf_engine.evolve(
             confidence_state=theory.confidence_state,
             validation=cog_payload["validation"],
             reflection=reflection,
@@ -199,7 +200,9 @@ class ReplayStepProcessor:
             lineage_event={},  # Optional
             theory_usefulness=theory_usefulness,
             regime_matches=regime_matches,
+            day_idx=day_idx,
         )
+
 
         # 6. Memory Persist
         final_sig = self.regime_memory.build_signature(

@@ -15,15 +15,20 @@ from statistics import mean
 from typing import Any, Dict, List, Optional, Set
 
 
+from cognition.schemas.identity import build_structural_id, compute_content_hash
+
+
 @dataclass
 class TheoryRecord:
     id: str
-    lineage_id: str  # Stable family identity
+    lineage_id: str  # Stable family identity (founding structural ID)
     created_at_step: int
     parent_ids: List[str]
     status: str
     confidence: float
     abstraction: str
+    structural_id: Optional[str] = None
+    content_hash: Optional[str] = None
     confidence_state: Dict[str, float] = field(
         default_factory=lambda: {
             "empirical_confidence": 0.5,
@@ -58,7 +63,8 @@ class TheoryLineageEngine:
             try:
                 raw = json.loads(self.storage_path.read_text())
                 for tid, rec in raw.items():
-                    # Handle potential missing lineage_id for old records
+                    # MIGRATION NOTE: Historical persisted runs may carry 16-hex content hashes as record IDs.
+                    # Current runs use structural IDs day:stage:family_ordinal. Deserialization preserves legacy IDs if loaded.
                     if "lineage_id" not in rec:
                         rec["lineage_id"] = rec["id"]  # Default to self.id for root
                     self.theories[tid] = TheoryRecord(**rec)
@@ -85,7 +91,8 @@ class TheoryLineageEngine:
         return len(a_tokens & b_tokens) / len(a_tokens | b_tokens)
 
     def _record_id(self, seed: str, step: int) -> str:
-        return hashlib.sha256(f"{seed}|{step}".encode()).hexdigest()[:16]
+        ordinal = sum(1 for r in self.theories.values() if r.created_at_step == step)
+        return build_structural_id(step, "theory", ordinal)
 
     def create_theory(
         self,
@@ -106,11 +113,18 @@ class TheoryLineageEngine:
             "theoretical_coherence": 0.5,
             "contradiction_pressure": 0.0,
         }
+        if ":" not in tid:
+            ordinal = sum(1 for r in self.theories.values() if r.created_at_step == step)
+            tid = build_structural_id(step, "theory", ordinal)
+
+        eff_lineage = lineage_id if (lineage_id is not None and ":" in lineage_id) else tid
+        c_hash = compute_content_hash(abstraction)
+
         rec = TheoryRecord(
-            lineage_id=(
-                lineage_id if lineage_id is not None else tid
-            ),  # New: Set lineage_id
+            lineage_id=eff_lineage,
             id=tid,
+            structural_id=tid,
+            content_hash=c_hash,
             created_at_step=step,
             parent_ids=parent_ids,
             status="active",
@@ -146,6 +160,7 @@ class TheoryLineageEngine:
             )
 
         rec.abstraction = new_abstraction
+        rec.content_hash = compute_content_hash(new_abstraction)
         rec.confidence_state = {
             **rec.confidence_state,
             **confidence_state,
@@ -175,12 +190,16 @@ class TheoryLineageEngine:
             )
 
         parent.last_seen_step = step
-        # Allow retire_stale_theories to handle it via superseded logic (stale_age >= 2).
 
-        child_id = self._record_id(tid + new_abstraction, step)
+        ordinal = sum(1 for r in self.theories.values() if r.created_at_step == step)
+        child_id = build_structural_id(step, "theory", ordinal)
+        c_hash = compute_content_hash(new_abstraction)
+
         child = TheoryRecord(
             lineage_id=parent.lineage_id,  # Identity Rules: Mutation -> child.lineage_id = parent.lineage_id
             id=child_id,
+            structural_id=child_id,
+            content_hash=c_hash,
             created_at_step=step,
             parent_ids=[parent.id],
             status="active",
@@ -204,6 +223,7 @@ class TheoryLineageEngine:
         self.theories[child_id] = child
         self._persist()
         return child
+
 
     def merge_theories(
         self,

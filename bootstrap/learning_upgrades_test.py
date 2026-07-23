@@ -4,8 +4,7 @@ Unit tests for structured lesson records, weighted similarity retrieval, and thr
 
 from uuid import uuid4
 
-from cognition.confidence.confidence_evolution_engine import \
-    ConfidenceEvolutionEngine
+from cognition.confidence.scored_confidence_engine import ScoredConfidenceEngine
 from cognition.schemas.confidence.confidence_state import ConfidenceState
 from cognition.schemas.reflection.reflection_event import ReflectionEvent
 from cognition.schemas.validation.validation_event import ValidationEvent

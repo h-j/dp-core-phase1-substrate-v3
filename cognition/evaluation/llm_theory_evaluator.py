@@ -7,7 +7,16 @@ from interfaces.ollama_client import OllamaClient
 
 
 class LLMTheoryEvaluator:
-    """Probabilistic evaluator for mechanistic depth and logic."""
+    """
+    Probabilistic evaluator for mechanistic depth and logic.
+
+    SEVERANCE CONTRACT (PROMPT R1):
+    LLMTheoryEvaluator outputs are strictly diagnostic annotations attached to Theory objects.
+    Under no circumstances may any score (e.g. overall_score, mechanistic_depth) produced by
+    LLMTheoryEvaluator reach ConfidenceState, empirical_confidence, theory_usefulness, or any
+    live belief-update path.
+    """
+
 
     def __init__(self):
         self.client = OllamaClient()

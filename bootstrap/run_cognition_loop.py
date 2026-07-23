@@ -1,5 +1,5 @@
-from cognition.confidence.confidence_evolution_engine import \
-    ConfidenceEvolutionEngine
+from cognition.confidence.scored_confidence_engine import ScoredConfidenceEngine
+
 from cognition.contradiction.contradiction_detector import \
     ContradictionDetector
 from cognition.schemas.observation.observation_event import ObservationEvent
@@ -80,7 +80,8 @@ def main():
 
     contradiction_detector = ContradictionDetector()
 
-    confidence_evolution_engine = ConfidenceEvolutionEngine()
+    confidence_evolution_engine = ScoredConfidenceEngine()
+
 
     outcome_validation_engine = OutcomeValidationEngine()
 

@@ -23,7 +23,8 @@ from memory.lineage.theory_lineage import TheoryLineageEngine, TheoryRecord
 from memory.relational.postgres_client import Base, SessionLocal, engine
 
 # Constants for Candidate F target event
-TARGET_LINEAGE_ID = "5f33fb88966dd952"
+TARGET_LINEAGE_ID = "1:theory:0"
+
 TARGET_STEP = 2
 DATASET_PATH = PROJECT_ROOT / "data" / "reliance_daily_3y.csv"
 

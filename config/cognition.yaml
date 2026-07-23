@@ -1,0 +1,35 @@
+# DP-Core Cognition Scored Confidence Tuning Parameters
+# =======================================================
+# CHANGELOG: see config/CHANGELOG_tuning.md
+# v2.8 (2026-07-23): Constants for ScoredConfidenceEngine (PROMPT R1)
+
+scored_confidence:
+  k_falsify: 3.0       # Weight penalty for CONTRADICTED predicate validation outcomes
+  lambda: 0.01         # Daily staleness decay factor when no resolved evidence is received
+
+preregistered_thresholds:
+  milestone_5:
+    metric: "causal_selection_rate_lift_vs_matched_random"
+    mme_threshold: 0.10
+    min_sample: 50
+    data_source: "data/epistemic_effect_validation_results.json"
+    rationale: "Causal selection engine must outperform MatchedRandom baseline by at least 10 percentage points."
+    date: "2026-07-23"
+  milestone_6:
+    metric: "median_steps_to_weakened"
+    mme_threshold: 20
+    collateral_retired_threshold: 0
+    min_sample: 5
+    data_source: "data/epistemic_effect_validation_results.json"
+    rationale: "Accumulated contradiction must weaken dead rules within 20 days without collateral retirement of valid rules."
+    date: "2026-07-23"
+  milestone_7:
+    metric_family_a_lift: "family_a_stable_lift"
+    mme_threshold_family_a: 0.10
+    metric_family_b_degradation: "family_b_context_shift_degradation"
+    mme_threshold_family_b: -0.10
+    min_sample: 50
+    data_source: "data/epistemic_effect_validation_results.json"
+    rationale: "Pruning loop must improve selection rate by >= 10pp under stability and degrade by no more than 10pp under context-shift."
+    date: "2026-07-23"
+

@@ -11,9 +11,11 @@ from market.replay.replay_finalization import generate_v1_report, save_manifest
 from bootstrap.knowledge_integration_test import mock_generate, mock_validate
 from unittest.mock import patch
 
+@pytest.mark.requires_postgres
 @patch("flows.knowledge_flow.knowledge_compression_engine.KnowledgeCompressionEngine.validate_principle", mock_validate)
 @patch("interfaces.ollama_client.OllamaClient.generate", side_effect=mock_generate)
 def test_metric_reconciliation_integrity(mock_gen, tmp_path):
+
     """
     Asserts cross-sectional harmony across all report artifacts:
     1. Execution hash in report matches replay_manifest.json.

@@ -1,9 +1,26 @@
 """
 Phase 4: Shared Pytest Fixtures for DP-Core tests.
-Zero external service dependencies required.
+Zero external service dependencies required for collection.
+Service-gated tests are marked with @pytest.mark.requires_postgres or @pytest.mark.requires_ollama
+and automatically skip unless DP_TEST_POSTGRES=1 or DP_TEST_OLLAMA=1 is set.
 """
-import pytest
+import os
 from unittest.mock import MagicMock
+import pytest
+
+
+def pytest_runtest_setup(item):
+    """
+    Hook to skip tests marked with requires_postgres or requires_ollama
+    if the corresponding environment variable (DP_TEST_POSTGRES=1 or DP_TEST_OLLAMA=1) is not set.
+    """
+    for marker in item.iter_markers(name="requires_postgres"):
+        if os.environ.get("DP_TEST_POSTGRES") != "1":
+            pytest.skip("PostgreSQL required (set DP_TEST_POSTGRES=1 to run)")
+
+    for marker in item.iter_markers(name="requires_ollama"):
+        if os.environ.get("DP_TEST_OLLAMA") != "1":
+            pytest.skip("Ollama LLM required (set DP_TEST_OLLAMA=1 to run)")
 
 
 @pytest.fixture

@@ -185,12 +185,12 @@ def test_confidence_evolution_with_outcomes():
     print("TEST 4: CONFIDENCE EVOLUTION WITH OUTCOMES")
     print("=" * 50)
 
-    from cognition.confidence.confidence_evolution_engine import \
-        ConfidenceEvolutionEngine
+    from cognition.confidence.scored_confidence_engine import ScoredConfidenceEngine
     from cognition.schemas.reflection.reflection_event import ReflectionEvent
     from cognition.schemas.validation.validation_event import ValidationEvent
 
-    engine = ConfidenceEvolutionEngine()
+    engine = ScoredConfidenceEngine()
+
 
     confidence_state = ConfidenceState(
         empirical_confidence=0.5,

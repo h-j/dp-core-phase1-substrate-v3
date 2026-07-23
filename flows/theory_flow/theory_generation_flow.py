@@ -577,7 +577,10 @@ Example:
             falsifiability_conditions=falsifiability_conditions,
         )
 
+        # SEVERANCE CONTRACT (PROMPT R1): llm_evaluation is attached purely as a diagnostic annotation.
+        # It does NOT feed into ConfidenceState or theory_usefulness or any belief-update path.
         object.__setattr__(theory, "llm_evaluation", self.evaluator.evaluate(theory))
+
 
         branch_stats = {"generated": branches_generated, "retained": branches_retained}
         return theory, branch_stats

@@ -19,6 +19,8 @@ This table outlines the corrections applied to the program state to eliminate cl
 | **MLC (EF-004)** | Historically described as a "complete causal learning loop," masking performance degradation. | Reclassified learning loop behavior as a double-edged sword that degrades performance under context-shift (-76.92% selection rate). | Captures context-dependent risks and prevents false-admission optimism. |
 | **Decision Logging** | Sibling generation decisions (DEC_003, DEC_005) were modified and overwritten over time. | Transitioned to a dedicated, versioned `EKAMNET_DECISION_LEDGER.md` preserving all status changes (ACTIVE, SUPERSEDED, etc.). | Preserves decision history and research path auditability. |
 | **Trade Feedback Loop** | Downstream paper trader sizer/PnL mutated cognition confidence states directly. | Severed trade feedback (Phase 0 remediation). Re-enforced strict observer-only contract in `AGENTS.md` and AST regression tests. | Preserves pure reflective cognition; prediction must remain indirect and non-optimized for. |
+| **Confidence Evolution Engine (PROMPT R1)** | Keyword-based confidence updates allowed LLM prose text to influence belief update path. | Replaced `ConfidenceEvolutionEngine` with `ScoredConfidenceEngine` (Beta posterior on predicate validation outcomes). Downgraded prior confidence-evolution scientific results as superseded. | Eliminates text keyword leakage into live confidence path; belief state is now driven purely by resolved predicate validation states, staleness decay, and contradiction counts. |
+
 
 ---
 
@@ -27,12 +29,13 @@ This table outlines the corrections applied to the program state to eliminate cl
 *   **Milestone 1 (Replay Integrity)**: `100.0% Complete`. Repaired defects 1, 2, and 3. Verified database SQL ↔ JSON lineage propagation.
 *   **Milestone 2 (Candidate F Counterfactual)**: `100.0% Complete`. Matured counterfactual logging and matching mechanisms.
 *   **Milestone 3 (Epistemic Plurality)**: `100.0% Complete`. Prompt-decomposed Calls 1 & 2 sequential structured formation successfully integrated. Unit tested sibling multiplicity.
-*   **Milestone 5 (Selection Engine)**: `100.0% Complete`. Deterministic pairwise competition engine integrated.
-*   **Milestone 6 (Belief State Transitions)**: `100.0% Complete`. Integrated `WEAKENED` and `RETIRED` belief state schema models.
-*   **Milestone 7 (Learning Loop Pruning)**: `100.0% Complete`. Active candidate pruning hooks verified.
+*   **Milestone 5 (Selection Engine)**: `OPEN (Operational 100%, Scientific Closure: INSUFFICIENT EVIDENCE)`. Deterministic pairwise competition engine integrated. Scientific gate status `INSUFFICIENT_EVIDENCE` (sample size 13 < min_sample 50 required for pre-registered MME threshold +10pp).
+*   **Milestone 6 (Belief State Transitions)**: `OPEN (Operational 100%, Scientific Closure: INSUFFICIENT EVIDENCE)`. Integrated `WEAKENED` and `RETIRED` belief state schema models. Scientific gate status `INSUFFICIENT_EVIDENCE` (synthetic planted regime flip artifact pending).
+*   **Milestone 7 (Learning Loop Pruning)**: `OPEN (Operational 100%, Scientific Closure: FAILED)`. Active candidate pruning hooks verified. Scientific gate status `FAIL` (Family B context-shift degradation -76.92pp fails pre-registered MME threshold >= -0.10).
 *   **Milestone 9 (Two-Stage Proposition Compiler)**: `100.0% Complete`. Integrated `SemanticCompiler` flow, `ParameterGrounder` code calculations, and database repository tables.
 *   **Milestone 9 (Validation Engine & Records)**: `100.0% Complete`. Code implementation completed, type-sanitized, and Postgres/JSON persistence verified. Immutability contract verified. Section O scorecard printing integrated.
 *   **Milestone 10 (Closed-Loop Belief Update)**: `100.0% Complete`. Integrated Validation Records with active theory belief states, empirical confidence evolution, and lineage survival/retirement dynamics without trade-sourced feedback.
+
 *   **10-Phase Stabilization Remediation**: `100.0% Complete`.
     - Phase 0: Severed trade feedback & documented observer-only contract (`a61349f`).
     - Phase 1: Pruned 8 orphaned/duplicate files across `flows/theory_flow/` and `market/replay/` (`5559ce0`).

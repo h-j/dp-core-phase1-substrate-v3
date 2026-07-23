@@ -39,13 +39,22 @@ poetry run python -m market.replay.run --csv-path data/tcs_daily_3y.csv --llm-mo
 
 ## Verification & Testing
 
-```bash
-# Run full unit test suite
-poetry run pytest
+[![CI Test Suite](https://img.shields.io/badge/CI%20Tests-83%20PASSED%20%2F%202%20SKIPPED-brightgreen)](#verification--testing)
 
-# Run replay determinism test
-poetry run pytest tests/test_replay_determinism.py
+- **Total Collected Tests**: 85
+- **CI-Covered (Clean / Service-Free)**: 83 PASSED
+- **Service-Gated (PostgreSQL / Ollama)**: 2 SKIPPED (run with `DP_TEST_POSTGRES=1` when live PostgreSQL is running)
+
+*Note: In clean environments without live PostgreSQL or Ollama, 83 tests execute and pass cleanly while 2 service-dependent integration tests are gracefully skipped.*
+
+```bash
+# Run clean unit test suite (service-free collection)
+poetry run pytest tests/ -q
+
+# Run full test suite with live PostgreSQL integration
+DP_TEST_POSTGRES=1 poetry run pytest tests/ -q
 ```
+
 
 ## Documentation
 

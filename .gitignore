@@ -38,10 +38,12 @@ dp_cognition.db
 market_memory.db
 
 # Temporary & scratch files
+all_user_inputs.txt
 tmp_lineage.json
 scratch_prompt_*.txt
 *.tmp
 *.log
+
 
 # Environment & Editors
 .env

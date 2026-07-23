@@ -40,3 +40,10 @@ isort = "^5.13.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+markers = [
+    "requires_postgres: tests requiring a live PostgreSQL database connection",
+    "requires_ollama: tests requiring a live Ollama LLM service",
+]
+
