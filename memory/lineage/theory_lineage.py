@@ -16,6 +16,11 @@ from typing import Any, Dict, List, Optional, Set
 
 
 from cognition.schemas.identity import build_structural_id, compute_content_hash
+from dp.observability.consultation_ledger import (
+    record_consultation,
+    record_decision,
+)
+
 
 
 @dataclass
@@ -556,9 +561,22 @@ class TheoryLineageEngine:
                 )
             )
             if should_retire:
+                gate_decision_id = f"{step}:gate:retire_theory"
+                record_consultation(
+                    decision_id=gate_decision_id,
+                    object_structural_id=rec.id,
+                    object_kind="confidence_state" if (pressure >= 0.52 or empirical <= 0.38) else "theory",
+                    role="gate",
+                )
+                record_decision(
+                    decision_id=gate_decision_id,
+                    output_content=f"retired_{rec.id}",
+                    day=step,
+                )
                 retired_record = self.retire_theory(rec.id, step)
                 if retired_record:
                     retired.append(retired_record)
+
         return retired
 
     def revive_matching_theories(

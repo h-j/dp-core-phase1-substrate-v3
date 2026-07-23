@@ -22,8 +22,13 @@ from typing import Any, Dict, List, Optional
 import pandas as pd
 
 # NOTE(charter): DecisionPolicyEngine and CapitalSimulator are downstream observers only.
+from dp.observability.consultation_ledger import (
+    ConsultationLedger,
+    set_active_consultation_ledger,
+)
 from flows.theory_flow.attribution_engine import AttributionEngine
 from market.data.dataset_validator import DatasetValidator
+
 from market.replay.capital_simulator import CapitalSimulator
 from market.replay.decision_policy import DecisionPolicyEngine
 from market.replay.prediction_probe import PredictionProbeGenerator
@@ -346,7 +351,13 @@ class ReplayExecutor:
 
         self._initialize_run_dir(restart=self.restart)
 
+        self.consultation_ledger = ConsultationLedger(
+            output_path=self.run_dir / "consultation_ledger.jsonl"
+        )
+        set_active_consultation_ledger(self.consultation_ledger)
+
         self.experience_repo = ExperienceRepository(base_path=self.run_dir / "experiences")
+
         self.experience_engine = ExperienceEngine(self.experience_repo)
         self.experience_engine.verbose = self.verbose
 

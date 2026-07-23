@@ -2,8 +2,14 @@ import json
 import re
 from typing import Any, Dict, Set
 
+from cognition.schemas.identity import build_structural_id
 from cognition.schemas.reflection.reflection_event import ReflectionEvent
+from dp.observability.consultation_ledger import (
+    record_consultation,
+    record_decision,
+)
 from interfaces.ollama_client import OllamaClient
+
 
 
 class ReflectionFlow:
@@ -268,11 +274,49 @@ This theory appears insightful and coherent.
                 f"[Reflection Grounding Score] {reflection_summary.get('anchor_score', 0.0):.3f} (Grounded: {reflection_summary.get('grounded', False)})"
             )
 
-        return ReflectionEvent(
+        day = getattr(validation, "step", getattr(theory, "created_at_step", 0))
+        decision_id = build_structural_id(day, "reflection", 0)
+
+        if theory:
+            t_id = getattr(theory, "structural_id", None) or f"{day}:theory:0"
+            record_consultation(
+                decision_id=decision_id,
+                object_structural_id=t_id,
+                object_kind="theory",
+                role="prompt_context",
+            )
+            conf = getattr(theory, "confidence_state", None)
+            if conf:
+                conf_id = getattr(conf, "structural_id", None) or f"{day}:confidence_state:0"
+                record_consultation(
+                    decision_id=decision_id,
+                    object_structural_id=str(conf_id),
+                    object_kind="confidence_state",
+                    role="prompt_context",
+                )
+
+
+
+        if regime_history:
+            record_consultation(
+                decision_id=decision_id,
+                object_structural_id=f"{day}:regime_memory:0",
+                object_kind="regime_memory",
+                role="prompt_context",
+            )
+
+        event = ReflectionEvent(
             related_theory_id=theory.id,
             reflection_summary=reflection_summary.get("summary", ""),
             confidence_impact="moderate",
         )
+        record_decision(
+            decision_id=decision_id,
+            output_content=event.reflection_summary,
+            day=day,
+        )
+        return event
+
 
     def _clean_reflection(
         self,

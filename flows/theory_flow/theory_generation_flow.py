@@ -5,10 +5,16 @@ from uuid import uuid4
 
 from cognition.evaluation.llm_theory_evaluator import LLMTheoryEvaluator
 from cognition.schemas.confidence.confidence_state import ConfidenceState
+from cognition.schemas.identity import build_structural_id
 from cognition.schemas.knowledge.ontology import OntologyRegistry
 from cognition.schemas.theory.theory import Branch  # Import new schemas
 from cognition.schemas.theory.theory import Theory, TheoryStructured
+from dp.observability.consultation_ledger import (
+    record_consultation,
+    record_decision,
+)
 from interfaces.ollama_client import OllamaClient
+
 
 
 class TheoryGenerationFlow:
@@ -577,7 +583,65 @@ Example:
             falsifiability_conditions=falsifiability_conditions,
         )
 
+        decision_id = build_structural_id(step, "theory", 0)
+        object.__setattr__(theory, "structural_id", decision_id)
+
+        # Record Read Consultations (prompt_context, prior, gate)
+        if prior_theory:
+            p_id = getattr(prior_theory, "structural_id", None) or f"{step}:theory:0"
+            record_consultation(
+                decision_id=decision_id,
+                object_structural_id=p_id,
+                object_kind="theory",
+                role="prompt_context",
+            )
+
+        if retrieved_theory:
+            r_id = getattr(retrieved_theory, "structural_id", None) or f"{step}:theory:0"
+            record_consultation(
+                decision_id=decision_id,
+                object_structural_id=r_id,
+                object_kind="theory",
+                role="prior",
+            )
+
+        if relevant_lessons:
+            for idx, l in enumerate(relevant_lessons):
+                l_id = getattr(l, "structural_id", None) or getattr(l, "lesson_id", f"{step}:lesson:{idx}")
+                record_consultation(
+                    decision_id=decision_id,
+                    object_structural_id=str(l_id),
+                    object_kind="lesson",
+                    role="prompt_context",
+                )
+
+        if active_principles:
+            for idx, p in enumerate(active_principles):
+                p_id = getattr(p, "structural_id", None) or getattr(p, "principle_id", f"{step}:principle:{idx}")
+                record_consultation(
+                    decision_id=decision_id,
+                    object_structural_id=str(p_id),
+                    object_kind="principle",
+                    role="prompt_context",
+                )
+
+        if regime_history:
+            record_consultation(
+                decision_id=decision_id,
+                object_structural_id=f"{step}:regime_memory:0",
+                object_kind="regime_memory",
+                role="prompt_context",
+            )
+
+        # Record Decision Output
+        record_decision(
+            decision_id=decision_id,
+            output_content=theory.summary,
+            day=step,
+        )
+
         # SEVERANCE CONTRACT (PROMPT R1): llm_evaluation is attached purely as a diagnostic annotation.
+
         # It does NOT feed into ConfidenceState or theory_usefulness or any belief-update path.
         object.__setattr__(theory, "llm_evaluation", self.evaluator.evaluate(theory))
 
