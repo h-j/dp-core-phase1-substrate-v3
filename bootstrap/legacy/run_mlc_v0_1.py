@@ -143,9 +143,11 @@ def run_smoke_test():
     print(f"Reconstruction Status: SUCCESS (Persisted matches runtime)")
     print(f"MLC Decisions: {[d['decision'] for d in runner.decisions]}")
     print(f"Oracle Decisions: {[w['expected_decision'] for w in worlds]}")
+    fam_seed = f"WORLD_{w['family']}_SEED_{w['seed']}"
     print(
-        f"B2 Retrospective Decisions: {[runner.baseline_results['b2_decisions'][f'WORLD_{w['family']}_SEED_{w['seed']}'] for w in worlds]}"
+        f"B2 Retrospective Decisions: {[runner.baseline_results['b2_decisions'][fam_seed] for w in worlds]}"
     )
+
     print("=" * 60)
 
 

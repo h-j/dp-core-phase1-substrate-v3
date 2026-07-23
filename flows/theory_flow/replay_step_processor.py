@@ -1,4 +1,6 @@
 import hashlib
+from cognition.evaluation.epistemic_quality import evaluate_epistemic_quality
+
 
 from market.replay.runtime.cognition_result import CognitionResult
 

@@ -9,7 +9,8 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from statistics import mean
-from typing import Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Tuple
+
 
 
 @dataclass(frozen=True)

@@ -1,6 +1,7 @@
 import logging
 import math
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
+
 from uuid import uuid4
 
 import pandas as pd

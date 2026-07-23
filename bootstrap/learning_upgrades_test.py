@@ -165,7 +165,8 @@ def test_weighted_similarity_retrieval():
 
 def test_three_window_bayesian_calibration():
     """Verify three-window Bayesian confidence evolution scaling factors."""
-    engine = ConfidenceEvolutionEngine()
+    engine = ScoredConfidenceEngine()
+
 
     # Mock events
     validation = ValidationEvent(

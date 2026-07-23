@@ -15,6 +15,8 @@ import os
 import sys
 from datetime import datetime, timedelta
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+
 
 import pandas as pd
 

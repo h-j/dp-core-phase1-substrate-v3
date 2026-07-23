@@ -1,4 +1,6 @@
 import json
+from typing import Any, Dict, List, Optional
+
 
 from cognition.schemas.confidence.confidence_state import ConfidenceState
 from cognition.schemas.theory.theory import (  # Import Theory Pydantic model

@@ -16,7 +16,8 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 from statistics import mean, median
-from typing import Dict, List, Union
+from typing import Any, Dict, List, Union
+
 
 from market.replay.prediction_probe import PredictionDirection
 from market.replay.replay_analysis_reporting import \
