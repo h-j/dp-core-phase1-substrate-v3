@@ -143,6 +143,13 @@ class ScoredConfidenceEngine:
             if outcome_val in ["confirmed", "partially_confirmed", "supported", "CONFIRMED", "PARTIALLY_CONFIRMED", "SUPPORTED"]:
                 alpha_cur += 1.0
                 resolved_count += 1
+                try:
+                    from telemetry.evidence_funnel import get_active_funnel
+                    funnel = get_active_funnel()
+                    funnel.record_resolution_delivered(day_idx)
+                    funnel.record_beta_update(day_idx)
+                except Exception:
+                    pass
                 rec = EvidenceLedgerRecord(
                     day=day_idx,
                     trigger_event="predicate_supported",
@@ -157,6 +164,13 @@ class ScoredConfidenceEngine:
             elif outcome_val in ["rejected", "contradicted", "failed", "REJECTED", "CONTRADICTED", "FAILED"]:
                 beta_cur += self.k_falsify
                 resolved_count += 1
+                try:
+                    from telemetry.evidence_funnel import get_active_funnel
+                    funnel = get_active_funnel()
+                    funnel.record_resolution_delivered(day_idx)
+                    funnel.record_beta_update(day_idx)
+                except Exception:
+                    pass
                 rec = EvidenceLedgerRecord(
                     day=day_idx,
                     trigger_event="predicate_contradicted",
@@ -168,6 +182,7 @@ class ScoredConfidenceEngine:
                     beta_after=round(beta_cur, 6),
                 )
                 self._ledger.append_record(rec)
+
 
 
         # Staleness decay: if no resolved terminal evidence received this day for this lineage

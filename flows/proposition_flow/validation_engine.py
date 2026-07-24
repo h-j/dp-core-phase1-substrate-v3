@@ -67,9 +67,15 @@ class ValidationEngine:
             )
 
         try:
+            from telemetry.evidence_funnel import get_active_funnel
+            funnel = get_active_funnel()
+            funnel.record_active_theory(current_step)
+            funnel.record_predicate_parsed(current_step, parsed_ok=True)
+
             # 1. Evaluate Trigger
             trigger_def = compiled_prop.trigger_definition
             if not trigger_def:
+                funnel.record_terminal_resolution(current_step, "UNTRIGGERED")
                 return self._create_record(
                     validation_id=validation_id,
                     validation_state="UNTRIGGERED",
@@ -80,8 +86,10 @@ class ValidationEngine:
             trigger_met, trigger_val, trigger_trace = self._evaluate_condition(
                 trigger_def, history_df, current_step
             )
+            funnel.record_activation_evaluated(current_step, activation_true=trigger_met)
 
             if not trigger_met:
+                funnel.record_terminal_resolution(current_step, "UNTRIGGERED")
                 return self._create_record(
                     validation_id=validation_id,
                     validation_state="UNTRIGGERED",
@@ -113,6 +121,7 @@ class ValidationEngine:
                     scope_met = False
 
             if not scope_met:
+                funnel.record_terminal_resolution(current_step, "UNTRIGGERED")
                 return self._create_record(
                     validation_id=validation_id,
                     validation_state="UNTRIGGERED",
@@ -128,6 +137,7 @@ class ValidationEngine:
             # 3. Evaluate Target (Lookahead Step)
             target_def = compiled_prop.target_definition
             if not target_def:
+                funnel.record_terminal_resolution(current_step, "UNTRIGGERED")
                 return self._create_record(
                     validation_id=validation_id,
                     validation_state="TRIGGERED",
@@ -144,6 +154,7 @@ class ValidationEngine:
             target_step = current_step + 1
             if target_step >= len(history_df):
                 # Out of bounds - target has not yet realized in the backtest replay
+                funnel.record_terminal_resolution(current_step, "UNTRIGGERED")
                 return self._create_record(
                     validation_id=validation_id,
                     validation_state="TRIGGERED",
@@ -161,11 +172,13 @@ class ValidationEngine:
             )
 
             state = "SUPPORTED" if target_met else "CONTRADICTED"
+            funnel.record_terminal_resolution(current_step, state)
             evidence_dict = {
                 "evaluated": target_trace,
                 "val": target_val,
                 "step": target_step,
             }
+
 
             return self._create_record(
                 validation_id=validation_id,
@@ -261,10 +274,11 @@ class ValidationEngine:
             )
             return is_met, left_val, desc
 
-        elif "field" in cond:
-            field = cond["field"]
+        elif "field" in cond or "metric" in cond:
+            field = cond.get("field") or cond.get("metric")
             op = cond["operator"]
-            expected_val = cond.get("value")
+            expected_val = cond.get("value") if "value" in cond else cond.get("threshold")
+
 
             if field == "outcome":
                 # Special evaluation of daily outcome close vs close at prev_idx

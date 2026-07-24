@@ -252,10 +252,12 @@ class ReplayStepProcessor:
         # 7. Confidence & Memory Evolution
         confidence_state = self.ex.confidence_engine.evolve(
             theory.confidence_state,
-            None,
-            reflection,
-            contradiction,
-            market_obs,
+            predicate_results=None,
+            contradiction_result=contradiction,
+            day_idx=day_idx,
+            lineage_id=getattr(theory, "lineage_id", None),
+            reflection=reflection,
+            market_observation=market_obs,
             outcome_validation_result=(
                 prior_prediction_result.to_dict() if prior_prediction_result else {}
             ),
@@ -263,6 +265,7 @@ class ReplayStepProcessor:
             regime_matches=regime_matches,
             rolling_accuracy=rolling_accuracy,
         )
+
 
         # Build Result
         result = CognitionResult(

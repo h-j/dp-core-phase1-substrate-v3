@@ -427,7 +427,26 @@ def process_daily_validation(
 
                     executor.validation_record_repo.save(val_rec)
 
+                    if val_rec and val_rec.validation_state in ["SUPPORTED", "CONTRADICTED"]:
+                        if hasattr(executor, "confidence_engine") and executor.confidence_engine:
+                            executor.confidence_engine.buffer_retrospective_resolutions([
+                                {
+                                    "outcome": val_rec.validation_state,
+                                    "lineage_id": val_rec.lineage_id or getattr(theory, "lineage_id", "N/A"),
+                                    "theory_id": val_rec.theory_id or getattr(theory, "id", "N/A"),
+                                }
+                            ])
+                            updated_conf = executor.confidence_engine.evolve(
+                                confidence_state=theory.confidence_state,
+                                day_idx=day_idx,
+                                lineage_id=getattr(theory, "lineage_id", None),
+                            )
+                            if theory and hasattr(theory, "confidence_state"):
+                                theory.confidence_state = updated_conf
+
+
                     run_val_path = executor.run_dir / "validation_records" / f"val_{val_rec.id}.json"
+
                     with open(run_val_path, "w") as f:
                         json.dump(val_rec.model_dump(), f, indent=2, default=str)
 
