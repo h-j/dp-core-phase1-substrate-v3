@@ -1,0 +1,200 @@
+{"decision_id": "0:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "0:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "0:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 0, "decision_id": "0:predict:0", "kind": "decision", "output_hash": "0689e78fbf1fbb55b85e1ed1da66e7694ed1267c2e52a4a0920dc748426d3bc8"}
+{"decision_id": "1:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "1:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "1:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 1, "decision_id": "1:predict:0", "kind": "decision", "output_hash": "0689e78fbf1fbb55b85e1ed1da66e7694ed1267c2e52a4a0920dc748426d3bc8"}
+{"decision_id": "2:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "2:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "2:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 2, "decision_id": "2:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "3:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "3:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "3:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 3, "decision_id": "3:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "4:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "4:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "4:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 4, "decision_id": "4:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "5:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "5:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "5:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 5, "decision_id": "5:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "6:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "6:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "6:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 6, "decision_id": "6:predict:0", "kind": "decision", "output_hash": "0689e78fbf1fbb55b85e1ed1da66e7694ed1267c2e52a4a0920dc748426d3bc8"}
+{"decision_id": "7:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "7:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "7:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 7, "decision_id": "7:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "8:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "8:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "8:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 8, "decision_id": "8:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "9:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "9:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "9:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 9, "decision_id": "9:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "10:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "10:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "10:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 10, "decision_id": "10:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "11:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "11:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "11:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 11, "decision_id": "11:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "12:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "12:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "12:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 12, "decision_id": "12:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "13:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "13:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "13:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 13, "decision_id": "13:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "14:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "14:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "14:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 14, "decision_id": "14:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "15:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "15:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "15:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 15, "decision_id": "15:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "16:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "16:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "16:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 16, "decision_id": "16:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "17:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "17:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "17:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 17, "decision_id": "17:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "18:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "18:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "18:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 18, "decision_id": "18:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "19:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "19:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "19:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 19, "decision_id": "19:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "20:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "20:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "20:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 20, "decision_id": "20:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "21:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "21:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "21:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 21, "decision_id": "21:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "22:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "22:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "22:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 22, "decision_id": "22:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "23:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "23:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "23:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 23, "decision_id": "23:predict:0", "kind": "decision", "output_hash": "70dd4a6e900235c2bfbbf3107d2e9b0743de84385a685984160721029e535701"}
+{"decision_id": "24:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "24:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "24:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 24, "decision_id": "24:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "25:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "25:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "25:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 25, "decision_id": "25:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "26:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "26:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "26:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 26, "decision_id": "26:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "27:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "27:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "27:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 27, "decision_id": "27:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "28:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "28:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "28:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 28, "decision_id": "28:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "29:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "29:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "29:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 29, "decision_id": "29:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "30:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "30:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "30:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 30, "decision_id": "30:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "31:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "31:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "31:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 31, "decision_id": "31:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "32:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "32:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "32:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 32, "decision_id": "32:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "33:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "33:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "33:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 33, "decision_id": "33:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "34:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "34:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "34:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 34, "decision_id": "34:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "35:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "35:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "35:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 35, "decision_id": "35:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "36:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "36:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "36:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 36, "decision_id": "36:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "37:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "37:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "37:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 37, "decision_id": "37:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "38:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "38:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "38:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 38, "decision_id": "38:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "39:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "39:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "39:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 39, "decision_id": "39:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "40:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "40:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "40:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 40, "decision_id": "40:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "41:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "41:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "41:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 41, "decision_id": "41:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "42:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "42:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "42:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 42, "decision_id": "42:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "43:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "43:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "43:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 43, "decision_id": "43:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "44:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "44:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "44:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 44, "decision_id": "44:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "45:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "45:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "45:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 45, "decision_id": "45:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "46:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "46:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "46:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 46, "decision_id": "46:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "47:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "47:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "47:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 47, "decision_id": "47:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "48:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "48:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "48:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 48, "decision_id": "48:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}
+{"decision_id": "49:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 1}
+{"decision_id": "49:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "49:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 3}
+{"day": 49, "decision_id": "49:predict:0", "kind": "decision", "output_hash": "6023061863a632ced74c9dde71f0c1751b7032e624e64642bffaf4c19e6b253d"}

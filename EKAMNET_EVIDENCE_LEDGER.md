@@ -17,6 +17,23 @@ This ledger records empirical evidence artifacts, replication run verifications,
 | **EVD-007** | Level L2 (Component) | PROMPT E0b | Synthworld benchmark port, `TrivialTheoryGenerator`, `DPAdapter`, and 200-step smoke run (Brier 0.0074). | `tests/test_synthworld_benchmark.py` |
 | **EVD-008** | Level L4 (Governance) | PROMPT E1 | Counterfactual ablation replay engine (`ablation_replay.py`) — **UNUSABLE AS EVIDENCE** pending re-run (missing cache counts; target at prior). | `tests/test_ablation_replay.py` |
 | **EVD-009** | Level L4 (Governance) | PROMPT E2 | 20-seed synthetic battery — **VOID** (criteria not pre-registered; non-conformant benchmark). | `tests/test_run_e2.py` |
+| **EVD-010** | Level L4 (Governance) | PROMPT E1_v2 | Counterfactual Ablation Protocol: Positive Control PASSED (verified_influence=17); Market Run REFUSED (precondition evidence_count 1.0 < 5.0). | `tests/test_ablation_protocol.py` |
+
+---
+
+## Detailed Evidence Records
+
+### EVD-010: Counterfactual Ablation Protocol & Registered Preconditions (PROMPT E1_v2)
+
+* **Date**: 2026-07-24
+* **Status**: `ACTIVE`
+* **Target Milestone**: PROMPT E1_v2
+* **Verification Level**: `Level L4 (Governance & Counterfactual Validation)`
+* **Findings**:
+  1. **Positive Control**: `DPAdapter` on scenario S1 promoted `c1 -> e1` to established tier ($E[\text{Beta}]=0.9595$, evidence count $13.34 \ge 5$). Counterfactual ablation produced 17 output divergences out of 50 predictions ($P_{\text{trace}} \cap D_{\text{obs}} = 17$, $D_{\text{obs}} \setminus P_{\text{trace}} = \emptyset$). Positive control **PASSED**.
+  2. **Market Precondition Gate**: 35-day baseline market replay (`run_20260724_120559`) evaluated lineage confidence states. Highest confidence lineage `10:theory:0` reached confidence $0.6667 > 0.65$, but evidence count sat at **1.0 < 5.0**.
+* **Gate Verdict**: **`REFUSED / BLOCKED ✗`** per `gate_a.yaml` pre-registered criteria. Market run refused due to insufficient evidence accumulation in the 35-day window.
+
 
 ---
 

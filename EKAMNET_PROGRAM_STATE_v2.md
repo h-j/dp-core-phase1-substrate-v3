@@ -188,12 +188,18 @@ This table outlines the corrections applied to the program state to eliminate cl
 * **Hypothesis Space Equality**: Verified exact set equality `set(adapter.hypothesis_space) == set(baseline.hypothesis_space)`.
 * **Smoke Run Performance**: 200-step S1 run completed with Brier Score **0.0074**, Discovery Rate **1.0** (100%), and 800 `role="gate"` consultation entries recorded.
 
-### 10.3 PROMPT E1 — General Counterfactual Ablation Replay & Registered Verdict
-* **Status**: `NULL - UNUSABLE AS EVIDENCE pending re-run` (`commit ee59e8d` / `ablation_replay.py`)
-* **Governance Correction (PROMPT C1)**: Marked unusable as scientific evidence due to two technical deficiencies:
-  1. Initial report lacked the mandatory `substitution_count` and `reinvocation_count` statistics.
-  2. Ablation target `"0:theory:0"` sat at prior confidence ($E[\text{Beta}] = 0.50$, `evidence_count = 0`), violating the registered precondition requiring established lineage confidence $> 0.65$ with `evidence_count >= 5` (a lineage at prior contains no accumulated knowledge).
-* **Substrate**: `market/replay/ablation_replay.py` and `dp/observability/divergence_analyzer.py` executing 35-day counterfactual replay with overlay LLM cache and non-mutation baseline ledger invariant assertion (`assert md5_before == md5_after`).
+### 10.3 PROMPT E1_v2 — Counterfactual Ablation Protocol & Precondition Gate Verdict
+* **Status**: **`ACTIVE — POSITIVE CONTROL PASSED / MARKET RUN REFUSED`** (`commit eed6e72` / `experiments/run_e1_full_protocol.py`)
+* **Positive Control Validation**:
+  - `DPAdapter` on scenario S1 promoted `(c1, e1)` belief to established tier ($E[\text{Beta}]=0.9595$, evidence count $13.34 \ge 5$).
+  - Ablating `(c1, e1)` produced 17 output divergences out of 50 predictions ($P_{\text{trace}} \cap D_{\text{obs}} = 17$, $D_{\text{obs}} \setminus P_{\text{trace}} = \emptyset$).
+  - Positive control **PASSED**: verified influence set is non-empty and 100% predicted.
+* **Market Replay Precondition Gate**:
+  - 35-day baseline market replay (`run_20260724_120559`) evaluated lineage confidence states.
+  - Highest confidence lineage `10:theory:0` reached confidence $0.6667 > 0.65$, but evidence count sat at **1.0 < 5.0**.
+  - Market ablation run **`REFUSED / BLOCKED ✗`** per `gate_a.yaml` pre-registered criteria.
+* **Reportable Scientific Unit**: The pairing ("Positive control proves instrument detects causal influence; 35-day market run refused due to evidence rate precondition") is the authoritative reportable scientific unit under repo governance (`DEC-012`).
+
 
 ---
 

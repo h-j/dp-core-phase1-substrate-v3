@@ -19,6 +19,25 @@ This ledger records architectural decisions, governance changes, and state trans
 | **DEC-009** | 2026-07-23 | Pre-Registered Verification Gates & Retirement of SD-006 (PROMPT R3) | ACTIVE | Research Governance & Closure Verification |
 | **DEC-010** | 2026-07-24 | Registration of Gate A Branch Outcome from 20-Seed Synthetic Battery (PROMPT E2) | VOID / REVERTED | Benchmark Governance & Milestone Progression |
 | **DEC-011** | 2026-07-24 | Reversal of Gate A Branch Outcome (PROMPT C1) | ACTIVE | Governance Correction & Record Integrity |
+| **DEC-012** | 2026-07-24 | Counterfactual Ablation Protocol & Precondition Gate Verdict (PROMPT E1_v2) | ACTIVE | Governance & Counterfactual Validation |
+
+---
+
+## Decision Record Details
+
+### DEC-012: Counterfactual Ablation Protocol & Precondition Gate Verdict (PROMPT E1_v2)
+
+* **Date**: 2026-07-24
+* **Status**: `ACTIVE`
+* **Statement**: `"POSITIVE CONTROL: PASS (verified influence non-empty: 17/50 decisions diverged). MARKET RUN: REFUSED (preconditions failed: max evidence count 1.0 < 5.0)."`
+* **Context**: Executed PROMPT E1_v2 full protocol:
+  1. **Positive Control**: Instrument validation on `DPAdapter` (50 steps S1 benchmark) promoted `c1 -> e1` to established tier ($E[\text{Beta}]=0.9595$, evidence count $13.34 \ge 5$). Ablating `c1 -> e1` produced 17 output divergences out of 50 predictions ($P_{\text{trace}} \cap D_{\text{obs}} = 17$, $D_{\text{obs}} \setminus P_{\text{trace}} = \emptyset$). Positive control **PASSED**.
+  2. **Market Replay Precondition Gate**: 35-day baseline market replay (`run_20260724_120559`) evaluated lineage confidence states. Highest confidence lineage `10:theory:0` reached confidence $0.6667 > 0.65$, but evidence count sat at **1.0 < 5.0**.
+* **Decision**: Mechanically enforce `gate_a.yaml` preconditions. Refuse market ablation replay on low-evidence lineages. Pair positive-control success with market precondition refusal as the authoritative reportable scientific unit.
+* **Consequences**:
+  - Validates counterfactual ablation instrument and consultation ledger wiring.
+  - Prevents invalid scientific claims from ablating un-established or low-evidence market lineages.
+
 
 ---
 
