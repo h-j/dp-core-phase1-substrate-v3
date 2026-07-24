@@ -49,25 +49,23 @@ def run_preflight_checks():
     except Exception as exc:
         failures.append(f"[FAIL Check 1] Error importing bench.synthworld.learners: {exc}")
 
-    # Check 2: Scenario Factory Functions in bench/synthworld/world.py or bench/synthworld/
+    # Check 2: Scenario Factory Functions in bench/synthworld/harness.py (re-exported via scenarios.py)
     try:
-        import bench.synthworld.world as world_mod
+        import bench.synthworld.scenarios as scenarios_mod
 
         required_factories = ["s1_clean", "s2_spurious", "s3_regime", "s4_scope"]
         for factory_name in required_factories:
-            factory = getattr(world_mod, factory_name, None)
+            factory = getattr(scenarios_mod, factory_name, None)
             if not factory or not callable(factory):
-                # Check module-level or synthworld package level
-                import bench.synthworld as pkg_mod
-                factory = getattr(pkg_mod, factory_name, None)
+                import bench.synthworld.harness as harness_mod
+                factory = getattr(harness_mod, factory_name, None)
 
             if not factory or not callable(factory):
                 failures.append(
-                    f"[FAIL Check 2] Missing scenario factory function '{factory_name}' in bench/synthworld/world.py."
+                    f"[FAIL Check 2] Missing scenario factory function '{factory_name}' in bench/synthworld/harness.py."
                 )
             else:
                 print(f"✓ Found scenario factory function: {factory_name}")
-                # Check default parameters
                 sig = inspect.signature(factory)
                 if "T" in sig.parameters:
                     default_T = sig.parameters["T"].default
@@ -75,6 +73,7 @@ def run_preflight_checks():
 
     except Exception as exc:
         failures.append(f"[FAIL Check 2] Error inspecting scenario factory functions: {exc}")
+
 
     # Report Results
     print("\n----------------------------------------------------------------------")

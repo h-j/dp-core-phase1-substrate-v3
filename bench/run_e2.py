@@ -23,19 +23,30 @@ PROJECT_ROOT = Path(__file__).parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from bench.synthworld.world import SynthWorldScenario
+from bench.synthworld.world import Scenario as SynthWorldScenario
 from bench.synthworld.learners import (
     Learner,
-    TruModalOracle,
-    ElatraverianLearner,
-    ContextualBayesianLearner,
+    TrueModel as TruModalOracle,
+    FlatBayesian as ElatraverianLearner,
+    ContextualBayesian as ContextualBayesianLearner,
 )
 from bench.synthworld.dp_adapter import DPAdapter
-from bench.synthworld.metrics import compute_brier_score
+
 
 
 def mean(vals: List[float]) -> float:
     return sum(vals) / max(1, len(vals))
+
+
+def compute_brier_score(preds: List[Dict[str, float]], actuals: List[Dict[str, int]]) -> float:
+    if not preds or not actuals:
+        return 0.0
+    errs = []
+    for p_dict, a_dict in zip(preds, actuals):
+        for k in a_dict:
+            errs.append((p_dict.get(k, 0.0) - float(a_dict.get(k, 0))) ** 2)
+    return sum(errs) / max(1, len(errs))
+
 
 
 def std_dev(vals: List[float]) -> float:

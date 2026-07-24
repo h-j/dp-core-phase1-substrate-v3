@@ -1,20 +1,5 @@
-"""
-Synthworld Benchmark Package.
-"""
-from bench.synthworld.world import SynthWorldScenario
-from bench.synthworld.learners import Learner, TruModalOracle, ElatraverianLearner, ContextualBayesianLearner
-from bench.synthworld.dp_adapter import DPAdapter
-from bench.synthworld.harness import BenchmarkHarness
-from bench.synthworld.harness_init import get_learner, LEARNER_REGISTRY
-
-__all__ = [
-    "SynthWorldScenario",
-    "Learner",
-    "TruModalOracle",
-    "ElatraverianLearner",
-    "ContextualBayesianLearner",
-    "DPAdapter",
-    "BenchmarkHarness",
-    "get_learner",
-    "LEARNER_REGISTRY",
-]
+"""SynthWorld reference benchmark package."""
+from .world import World, Scenario, CausalRule, Decoy
+from .learners import Learner, TrueModel, FlatBayesian, WindowedFrequency, ContextualBayesian
+from .harness import s1_clean, s2_spurious, s3_regime, s4_scope, run, ALL
+from .scenarios import s1_clean, s2_spurious, s3_regime, s4_scope

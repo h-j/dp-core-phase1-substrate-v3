@@ -18,7 +18,7 @@ PROJECT_ROOT = Path(__file__).parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from bench.synthworld.world import SynthWorldScenario
+from bench.synthworld.scenarios import s1_clean
 from bench.synthworld.dp_adapter import DPAdapter
 from dp.observability.consultation_ledger import (
     ConsultationLedger,
@@ -44,8 +44,9 @@ def run_positive_control(output_dir: Path = None) -> Dict[str, Any]:
     base_ledger = ConsultationLedger(base_ledger_path)
     set_active_consultation_ledger(base_ledger)
 
-    scenario = SynthWorldScenario(scenario_id="S1", seed=42)
-    adapter = DPAdapter(scenario=scenario, promotion_threshold=0.50)
+    scenario = s1_clean(T=50)
+    adapter = DPAdapter(scenario=scenario)
+
 
     # Run 50 steps baseline
     prior_events = None
@@ -79,9 +80,9 @@ def run_positive_control(output_dir: Path = None) -> Dict[str, Any]:
     cf_ledger = ConsultationLedger(cf_ledger_path)
     set_active_consultation_ledger(cf_ledger)
 
-    # Re-run scenario S1 with target_lineage_id ablated
-    scenario_cf = SynthWorldScenario(scenario_id="S1", seed=42)
-    adapter_cf = DPAdapter(scenario=scenario_cf, promotion_threshold=0.50)
+    scenario_cf = s1_clean(T=50)
+    adapter_cf = DPAdapter(scenario=scenario_cf)
+
 
     prior_events_cf = None
     cf_predictions = {}

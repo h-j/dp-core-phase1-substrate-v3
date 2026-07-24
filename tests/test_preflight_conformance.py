@@ -17,9 +17,18 @@ PROJECT_ROOT = Path(__file__).parent.parent
 
 def test_preflight_failure_mode_on_nonconforming_fixture():
     """Verify that preflight script hard-fails (SystemExit 1) on non-conforming benchmark state."""
-    with pytest.raises(SystemExit) as exc_info:
-        run_preflight_checks()
-    assert exc_info.value.code == 1
+    import bench.synthworld.learners as learners_mod
+    orig_attr = getattr(learners_mod, "TrueModel", None)
+    try:
+        delattr(learners_mod, "TrueModel")
+        with pytest.raises(SystemExit) as exc_info:
+            run_preflight_checks()
+        assert exc_info.value.code == 1
+    finally:
+        if orig_attr is not None:
+            setattr(learners_mod, "TrueModel", orig_attr)
+
+
 
 
 def test_gate_a_yaml_branch_mapping():

@@ -1,56 +1,86 @@
-"""
-Synthworld Metrics Engine.
-
-Calculates:
-- Brier Score (predictive accuracy)
-- Discovery Rate (true causal pair detection confidence >= 0.5)
-- Recovery Rate (steps to weaken/retire dead rule on S3 flip)
-- Collateral Rate (unaffected true rule false weakening)
-"""
-import math
-from typing import Dict, List, Tuple, Any
-from bench.synthworld.world import SynthWorldScenario
+from __future__ import annotations
+from .world import Scenario
 
 
-def compute_brier_score(predictions: List[Dict[str, float]], actuals: List[Dict[str, int]]) -> float:
-    """Computes mean squared error between predictions and actual outcomes."""
-    if not predictions or not actuals or len(predictions) != len(actuals):
-        return 0.0
-    total_sq_err = 0.0
-    count = 0
-    for pred, act in zip(predictions, actuals):
-        for e, p in pred.items():
-            a = float(act.get(e, 0))
-            total_sq_err += (p - a) ** 2
-            count += 1
-    return total_sq_err / max(1, count)
+def brier(pred: float, outcome: int) -> float:
+    return (pred - outcome) ** 2
 
 
-def compute_discovery_rate(beliefs: Dict[Tuple[str, str], float], true_causes: List[str], effects: List[str]) -> float:
-    """Fraction of true cause-effect pairs with belief confidence >= 0.50."""
-    if not true_causes:
-        return 1.0
-    found = 0
-    total = len(true_causes) * len(effects)
-    for c in true_causes:
-        for e in effects:
-            if beliefs.get((c, e), 0.0) >= 0.50:
-                found += 1
-    return found / max(1, total)
+def mean(xs):
+    xs = list(xs)
+    return sum(xs) / len(xs) if xs else float("nan")
 
 
-def evaluate_learner_performance(
-    scenario: SynthWorldScenario,
-    predictions: List[Dict[str, float]],
-    actuals: List[Dict[str, int]],
-    final_beliefs: Dict[Tuple[str, str], float],
-    final_t: int,
-) -> Dict[str, float]:
-    brier = compute_brier_score(predictions, actuals)
-    true_causes = scenario.ground_truth_causes(final_t)
-    discovery = compute_discovery_rate(final_beliefs, true_causes, scenario.effects())
+def phase_brier(
+    scores: list[dict[str, float]], start: int, end: int, effects: list[str] | None = None
+) -> float:
+    vals = []
+    """Mean Brier over timesteps [start, end), optionally restricted to effects."""
+    for t in range(start, min(end, len(scores))):
+        for e, v in scores[t].items():
+            if effects is None or e in effects:
+                vals.append(v)
+    return mean(vals)
 
+
+def discovery(beliefs: dict[tuple[str, str], float], scenario: Scenario) -> dict:
+    """Score claimed persistent rules against ground truth in the FINAL regime, truth = scenario.true_pairs(scenario.T - 1) and count decoy pairs claimed (promotion-gate noise resistance)."""
+    claimed = set(beliefs)
+    truth = scenario.true_pairs(scenario.T - 1)
+    decoy_names = {d.name for d in scenario.decoys}
+    decoy_claims = {p for p in claimed if p[0] in decoy_names}
+    tr = len(claimed & truth)
     return {
-        "brier_score": brier,
-        "discovery_rate": discovery,
+        "claimed": len(claimed),
+        "precision": tr / len(claimed) if claimed else float("nan"),
+        "recall": tr / len(truth) if truth else float("nan"),
+        "decoy_claims": len(decoy_claims),
+        "missed": sorted(truth - claimed),
+        "false": sorted(claimed - truth),
     }
+
+
+def recovery(
+    scores: list[dict[str, float]],
+    flip_t: int,
+    affected: list[str],
+    window: int = 100,
+    tol: float = 0.02,
+) -> dict:
+    """After a regime flip at flip_t: how many steps until the rolling Brier on AFFECTED effects returns to (pre-flip level + tol)?"""
+
+    def rolling(t0):
+        return phase_brier(scores, t0, t0 + window, affected)
+
+    pre = phase_brier(scores, max(0, flip_t - 3 * window), flip_t, affected)
+    steps = None
+    t = flip_t
+    while t + window <= len(scores):
+        if rolling(t) <= pre + tol:
+            steps = t - flip_t
+            break
+        t += window // 4
+    return {
+        "pre_flip_brier": pre,
+        "recovery_steps": steps,
+        "post_flip_peak": max(
+            (
+                rolling(x)
+                for x in range(
+                    flip_t, min(flip_t + 5 * window, len(scores) - window), window // 4
+                )
+            ),
+            default=float("nan"),
+        ),
+    }
+
+
+def collateral(
+    scores: list[dict[str, float]], flip_t: int, unaffected: list[str], window: int = 300
+) -> float:
+    """Brier degradation on unaffected effects around the flip:
+    (post - pre). Near zero = revision was surgical; positive = collateral.
+    """
+    pre = phase_brier(scores, max(0, flip_t - window), flip_t, unaffected)
+    post = phase_brier(scores, flip_t, flip_t + window, unaffected)
+    return post - pre
