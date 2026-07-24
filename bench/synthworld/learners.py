@@ -138,7 +138,7 @@ class WindowedFrequency:
     The 'reactive' end of the stability-plasticity trade-off.
     """
 
-    name = "Windowed Frequency(w=200)"
+    name = "WindowedFrequency(w=200)"
 
     def __init__(self, scenario: Scenario, window: int = 200):
         self.causes = scenario.candidate_causes()

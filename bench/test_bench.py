@@ -35,7 +35,8 @@ def test_s2_decoy_trap_catches_lifetime_learner():
 def test_s3_windowed_recovers_faster_than_lifetime():
     sc = s3_regime()
     r = run(sc, make_learners(sc))
-    w = metrics.recovery(r["scores"]["Windowed Frequency(w=200)"], 2000, ["E1", "E3"])
+    w = metrics.recovery(r["scores"]["WindowedFrequency(w=200)"], 2000, ["E1", "E3"])
+
     rf = metrics.recovery(r["scores"]["FlatBayesian"], 2000, ["E1", "E3"])
     assert (w["recovery_steps"] or 10**9) < (rf["recovery_steps"] or 10**9)
 
