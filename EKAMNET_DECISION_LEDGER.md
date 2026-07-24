@@ -17,6 +17,26 @@ This ledger records architectural decisions, governance changes, and state trans
 | **DEC-007** | 2026-07-23 | Replacement of Keyword Confidence Engine with Scored Confidence Engine (PROMPT R1) | ACTIVE | Cognition Confidence Substrate |
 | **DEC-008** | 2026-07-23 | Transition to Structural Identity for Cognitive Objects & Retirement of SD-001 (PROMPT R2) | ACTIVE | Identity Substrate & Lineage Engine |
 | **DEC-009** | 2026-07-23 | Pre-Registered Verification Gates & Retirement of SD-006 (PROMPT R3) | ACTIVE | Research Governance & Closure Verification |
+| **DEC-010** | 2026-07-24 | Registration of Gate A Branch Outcome from 20-Seed Synthetic Battery (PROMPT E2) | ACTIVE | Benchmark Governance & Milestone Progression |
+
+---
+
+## Decision Record Details
+
+### DEC-010: Gate A Branch Outcome Registration (PROMPT E2)
+
+* **Date**: 2026-07-24
+* **Status**: `ACTIVE`
+* **Context**: PROMPT E2 executed a 20-seed synthetic battery (4 scenarios $\times$ 20 seeds $\times$ 4 learners) evaluating `DPAdapter` against `TruModalOracle`, `ElatraverianLearner`, and `ContextualBayesianLearner`. Frozen constants ($k_{\text{falsify}}=3.0$, $\lambda=0.01$) were enforced.
+* **Decision**: Mechanically evaluate Gate A branch criteria against `bench/results/e2_results.md` metrics:
+  - **Criterion 1 (PASS)**: DPAdapter S2 Decoy Sensitivity (`0.9943`) is lower than Elatraverian baseline (`1.0000`).
+  - **Criterion 2 (PASS)**: DPAdapter S3 Recovery Steps (`33.8 steps`) is $\le 100$ steps (outperforming Elatraverian's `99.3 steps`).
+  - **Criterion 3 (PASS)**: DPAdapter S2 Brier Regret (`0.0046`) is $\le$ Elatraverian (`0.0424`).
+  - **Overall Verdict**: **`GATE A: PASS`**.
+* **Consequences**:
+  - Registers `GATE A: PASS` as the formal governance branch.
+  - Characterization and parameter freeze becomes the target for the next research milestone per registered interpretation rules.
+
 
 ---
 

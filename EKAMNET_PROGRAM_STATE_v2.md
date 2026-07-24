@@ -200,6 +200,27 @@ This table outlines the corrections applied to the program state to eliminate cl
   - **Unpredicted Divergence Set ($D_{\text{obs}} \setminus P_{\text{trace}}$)**: $\emptyset$ (0 unpredicted divergences — zero uninstrumented consultation read sites exist).
 * **Registered Verdict**: **`NULL`** (`NULL: Divergence set D_obs is empty entirely — accumulated knowledge did not causally change reasoning in this bounded run.`).
 
+---
+
+## 11. Synthetic Benchmark Battery & Gate A Evaluation (PROMPT E2)
+
+### 11.1 PROMPT E2 — 20-Seed Synthetic Battery & ECE Calibration
+* **Status**: COMPLETED & SCIENTIFICALLY CHARACTERIZED (`commit ee59e8d` / `bench/run_e2.py`)
+* **Scale**: 4 Scenarios (S1 Clean, S2 Decoy, S3 Regime Flip, S4 Scoped Rule) $\times$ 20 Seeds (0..19) $\times$ 4 Learners (`TruModalOracle`, `ElatraverianLearner`, `ContextualBayesianLearner`, `DPAdapter`) over 200 steps per run (320 runs total).
+* **Expected Calibration Error (ECE)**: **`0.0656`** across all predictions (reliability curve exported to `bench/results/reliability_curve.csv`).
+* **Metric Summary**:
+  - **S1 Brier Regret**: `DPAdapter` = **`0.0087 ± 0.0018`** vs `Elatraverian` = `0.0651 ± 0.0213` vs `ContextualBayesian` = `0.0659 ± 0.0155`.
+  - **S2 Decoy Sensitivity**: `DPAdapter` = **`0.9943`** vs `Elatraverian` = `1.0000`.
+  - **S3 Recovery Steps**: `DPAdapter` = **`33.8 steps`** vs `Elatraverian` = `99.3 steps`.
+* **Gate A Branch Outcome**: **`GATE A: PASS`**
+  ```text
+  - Criterion 1 (PASS): DPAdapter S2 Decoy Sensitivity (0.9943) is strictly lower than Elatraverian baseline (1.0000).
+  - Criterion 2 (PASS): DPAdapter S3 Recovery Steps (33.8 steps) is <= 100 steps.
+  - Criterion 3 (PASS): DPAdapter S2 Brier Regret (0.0046) is <= Elatraverian (0.0424).
+  ```
+* **Governance Consequence**: Characterization and parameter freeze becomes the target milestone for subsequent research.
+
+
 
 
 
