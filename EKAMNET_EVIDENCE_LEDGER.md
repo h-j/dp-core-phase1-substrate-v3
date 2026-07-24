@@ -18,6 +18,25 @@ This ledger records empirical evidence artifacts, replication run verifications,
 | **EVD-008** | Level L4 (Governance) | PROMPT E1 | Counterfactual ablation replay engine (`ablation_replay.py`) — **UNUSABLE AS EVIDENCE** pending re-run (missing cache counts; target at prior). | `tests/test_ablation_replay.py` |
 | **EVD-009** | Level L4 (Governance) | PROMPT E2 | 20-seed synthetic battery — **VOID** (criteria not pre-registered; non-conformant benchmark). | `tests/test_run_e2.py` |
 | **EVD-010** | Level L4 (Governance) | PROMPT E1_v2 | Counterfactual Ablation Protocol: Positive Control PASSED (verified_influence=17); Market Run REFUSED (precondition evidence_count 1.0 < 5.0). | `tests/test_ablation_protocol.py` |
+| **EVD-011** | Level L4 (Governance) | PROMPT C3 / E2_v2 | 20-Seed Reference Synthetic Battery: Gate A Branch [AMBIGUOUS] (DP 0 decoy claims vs Flat 1.05; S3 recovery 292.5 vs 1873.8 steps; ECE 0.1630). | `bench/results/e2_v2_results.md` |
+
+---
+
+## Detailed Evidence Records
+
+### EVD-011: 20-Seed Reference Synthetic Battery & Gate A Evaluation (PROMPT C3 / E2_v2)
+
+* **Date**: 2026-07-24
+* **Status**: `ACTIVE`
+* **Target Milestone**: PROMPT C3 / E2_v2
+* **Verification Level**: `Level L4 (Governance & Benchmark Battery Verification)`
+* **Findings**:
+  1. Executed 20-seed battery (4 scenarios $\times$ 20 seeds $\times$ 5 learners) at default scenario horizons on verified reference benchmark (`commit dc5502d`).
+  2. **S2 Decoy Resistance**: DP/EkamNet achieved **0.0000 decoy claims** and **100% precision** vs FlatBayesian's 1.05 decoy claims and 65.8% precision.
+  3. **S3 Recovery Speed**: DP/EkamNet recovered from regime flip in **292.5 steps** vs FlatBayesian's **1873.8 steps** (6.4x faster unlearning).
+  4. **Calibration**: DP/EkamNet Expected Calibration Error across all 20 seeds = `0.1630`.
+* **Gate Verdict**: **`AMBIGUOUS`** per `gate_a.yaml` three-branch table (outperformed baselines on decoy resistance and recovery speed, but paid static stream regret penalty on S1).
+
 
 ---
 

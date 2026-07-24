@@ -1,3 +1,11 @@
+# VOID — REPLACED BY E2_v2 (PROMPT C3 / commit dc5502d)
+
+> **NOTICE**: This result set is **VOID** per governance decision DEC-011.
+> Evaluated on non-conformant agent-built benchmark without pre-registered gate criteria.
+> Refer to `bench/results/e2_v2_results.md` for authoritative 20-seed reference battery.
+
+---
+
 # PROMPT E2 — 20-Seed Synthetic Benchmark Battery Results
 
 * **Evaluation Timestamp**: 2026-07-24

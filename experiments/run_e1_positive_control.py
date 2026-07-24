@@ -18,8 +18,10 @@ PROJECT_ROOT = Path(__file__).parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+from bench.synthworld.world import World
 from bench.synthworld.scenarios import s1_clean
 from bench.synthworld.dp_adapter import DPAdapter
+
 from dp.observability.consultation_ledger import (
     ConsultationLedger,
     set_active_consultation_ledger,
@@ -47,28 +49,29 @@ def run_positive_control(output_dir: Path = None) -> Dict[str, Any]:
     scenario = s1_clean(T=50)
     adapter = DPAdapter(scenario=scenario)
 
+    world = World(scenario)
+    timeline = world.generate()
 
     # Run 50 steps baseline
-    prior_events = None
     baseline_predictions = {}
     for t in range(50):
-        events = scenario.generate_step(t, prior_events=prior_events)
+        events = timeline[t]
         adapter.observe(t, events)
         preds = adapter.predict(t, events)
         baseline_predictions[t] = preds
-        prior_events = events
 
-    # Verify target belief (c1, e1) promoted to established tier
-    c1_e1_state = adapter.confidence_states.get(("c1", "e1"))
-    assert c1_e1_state is not None, "Target belief (c1, e1) missing from DPAdapter!"
-    conf = c1_e1_state.confidence
-    ev_count = (c1_e1_state.alpha - 1.0) + (c1_e1_state.beta - 1.0) / 3.0
-    print(f"✓ Target (c1, e1) belief confidence: {conf:.4f} | Evidence Count: {ev_count}")
+    # Verify target belief (D1, E1) promoted to established tier
+    target_belief_key = ("D1", "E1")
+    target_state = adapter.confidence_states.get(target_belief_key)
+    assert target_state is not None, "Target belief (D1, E1) missing from DPAdapter!"
+    conf = target_state.confidence
+    ev_count = (target_state.alpha - 1.0) + (target_state.beta - 1.0) / 3.0
+    print(f"✓ Target (D1, E1) belief confidence: {conf:.4f} | Evidence Count: {ev_count}")
 
-    target_lineage_id = "c1_e1"
+    target_lineage_id = "D1_E1"
     # Find matching hypothesis structural_id
     for h in adapter.hypotheses:
-        if h.cause == "c1" and h.effect == "e1":
+        if h.cause == "D1" and h.effect == "E1":
             target_lineage_id = h.structural_id
 
     print(f"✓ Ablation Target Structural ID: {target_lineage_id}")
@@ -82,16 +85,16 @@ def run_positive_control(output_dir: Path = None) -> Dict[str, Any]:
 
     scenario_cf = s1_clean(T=50)
     adapter_cf = DPAdapter(scenario=scenario_cf)
+    timeline_cf = World(scenario_cf).generate()
 
-
-    prior_events_cf = None
     cf_predictions = {}
     for t in range(50):
-        events = scenario_cf.generate_step(t, prior_events=prior_events_cf)
+        events = timeline_cf[t]
         adapter_cf.observe(t, events)
 
         # Counterfactual predict with target_lineage_id ablated
         decision_id = f"{t}:predict:0"
+
 
         preds = {}
         for e in adapter_cf.effects:

@@ -20,6 +20,30 @@ This ledger records architectural decisions, governance changes, and state trans
 | **DEC-010** | 2026-07-24 | Registration of Gate A Branch Outcome from 20-Seed Synthetic Battery (PROMPT E2) | VOID / REVERTED | Benchmark Governance & Milestone Progression |
 | **DEC-011** | 2026-07-24 | Reversal of Gate A Branch Outcome (PROMPT C1) | ACTIVE | Governance Correction & Record Integrity |
 | **DEC-012** | 2026-07-24 | Counterfactual Ablation Protocol & Precondition Gate Verdict (PROMPT E1_v2) | ACTIVE | Governance & Counterfactual Validation |
+| **DEC-013** | 2026-07-24 | Registration of Gate A Branch Verdict [AMBIGUOUS] from 20-Seed Reference Battery (PROMPT C3 / E2_v2) | ACTIVE | Benchmark Governance & Research Extension |
+
+---
+
+## Decision Record Details
+
+### DEC-013: Registration of Gate A Branch Verdict [AMBIGUOUS] from 20-Seed Reference Battery (PROMPT C3 / E2_v2)
+
+* **Date**: 2026-07-24
+* **Status**: `ACTIVE`
+* **Statement**: `"GATE A VERDICT: AMBIGUOUS — DP/EkamNet demonstrates superior S2 decoy resistance (0.00 vs 1.05 claims, 100% vs 65.8% precision) and S3 recovery speed (292.5 vs 1873.8 steps), but higher S1 static regret (0.0679 vs 0.0005) and S3 collateral rate (0.0093 vs 0.0079). Registered extension required per gate_a.yaml without touching frozen parameters."`
+* **Context**: Executed PROMPT C3 / E2_v2 20-seed synthetic battery (4 scenarios $\times$ 20 seeds $\times$ 5 learners) on the verified external reference benchmark (`commit dc5502d`). Evaluated `gate_a.yaml` criteria mechanically:
+  - **S2 Decoy Resistance (PASS)**: DP/EkamNet = `0.0000` decoy claims vs FlatBayesian = `1.0500` (100% precision vs 65.8%).
+  - **S3 Recovery Speed (PASS)**: DP/EkamNet = `292.5 steps` vs FlatBayesian = `1873.8 steps` (unlearning died rules 6.4x faster).
+  - **S3 Collateral Degradation (FAIL)**: DP/EkamNet = `0.0093` vs WindowedFrequency = `0.0079`.
+  - **S1 Brier Regret (FAIL)**: DP/EkamNet = `0.0679` vs FlatBayesian = `0.0005` (static stream penalty due to promotion thresholding).
+* **Decision**: Mechanically evaluate the pre-registered `gate_a.yaml` three-branch interpretation table:
+  - **Branch**: **`AMBIGUOUS`**
+  - **Consequence**: Mixed performance profile across scenarios.
+  - **Action**: Register extension (longer horizons or higher seed counts) without modifying frozen parameters ($k_{\text{falsify}}=3.0, \lambda=0.01$, promotion tiers).
+* **Consequences**:
+  - Registers `GATE A: AMBIGUOUS` as the formal governance state.
+  - Constants remain frozen. Parameter tuning or prompt tweaking in response to these results is strictly prohibited.
+
 
 ---
 

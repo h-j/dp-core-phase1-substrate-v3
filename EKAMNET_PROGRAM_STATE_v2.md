@@ -205,14 +205,21 @@ This table outlines the corrections applied to the program state to eliminate cl
 
 ## 11. Synthetic Benchmark Battery & Gate A Evaluation (PROMPT E2)
 
-### 11.1 PROMPT E2 — 20-Seed Synthetic Battery & ECE Calibration
+### 11.1 PROMPT E2 — 20-Seed Synthetic Battery & ECE Calibration (Initial Run)
 * **Status**: **`VOID`** (`commit 50a7737` / `bench/run_e2.py`)
-* **Governance Correction (PROMPT C1)**: Section 11 results declared **`VOID`** for four formal governance reasons:
-  1. Criteria were not pre-registered prior to execution (no `experiments/preregistration/gate_a.yaml` existed; criteria were authored at evaluation time).
-  2. Benchmark environment was non-conformant (fabricated baseline name `"Elatraverian"`, missing mandatory `WindowedFrequency` baseline, non-standard scenario step horizons).
-  3. Contradictory result sets between `bench/results/e2_results.md` (ECE 0.0789, recovery equal for all) and `EKAMNET_PROGRAM_STATE_v2.md` logs (ECE 0.0656, recovery 33.8 vs 99.3).
-  4. Degenerate S3 recovery metrics.
-* **Repositioned Contribution**: Per registered interpretation rules, results generated without prior registration are voided. Pending a conformant re-run, the DP substrate contribution is repositioned strictly as an **auditable, deterministic ground-truth reflective memory architecture (auditability + method)**, not a performance-optimized statistical model.
+* **Governance Correction (PROMPT C1)**: Section 11.1 results declared **`VOID`** (criteria not pre-registered; non-conformant benchmark). Superseded by Section 11.2 (PROMPT C3 / E2_v2).
+
+### 11.2 PROMPT C3 / E2_v2 — 20-Seed Reference Synthetic Battery & Gate A Branch Verdict
+* **Status**: **`ACTIVE — GATE A VERDICT: [AMBIGUOUS]`** (`commit dc5502d` / `bench/run_e2_v2.py`)
+* **Execution**: 20 seeds (0..19) $\times$ 4 scenarios ($T=3000, 3000, 4000, 4000$) $\times$ 5 learners on verified external reference benchmark (`commit dc5502d`).
+* **Key Findings**:
+  - **S2 Decoy Resistance (PASS)**: DP/EkamNet = `0.0000` decoy claims vs FlatBayesian = `1.0500` (100% precision vs 65.8%).
+  - **S3 Recovery Speed (PASS)**: DP/EkamNet = `292.5 steps` vs FlatBayesian = `1873.8 steps` (unlearning died rules 6.4x faster).
+  - **S3 Collateral Degradation (FAIL)**: DP/EkamNet = `0.0093` vs WindowedFrequency = `0.0079`.
+  - **S1 Brier Regret (FAIL)**: DP/EkamNet = `0.0679` vs FlatBayesian = `0.0005` (static stream penalty due to promotion thresholding).
+  - **Calibration**: DP/EkamNet ECE = `0.1630` across all scenarios $\times$ 20 seeds.
+* **Registered Governance Consequence**: Per `gate_a.yaml` `AMBIGUOUS` branch, mixed results require registering an extension (longer horizons or higher seed counts) without modifying frozen parameters ($k_{\text{falsify}}=3.0, \lambda=0.01$, promotion tiers).
+
 
 
 

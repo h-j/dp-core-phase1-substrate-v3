@@ -3,8 +3,7 @@ Unit & Integration Tests for Reference Synthworld Benchmark & DPAdapter (PROMPT 
 
 Verifies:
 1. Reference synthworld framework imports cleanly and baseline learners pass.
-2. Property tests in bench/test_bench.py pass.
-3. DPAdapter stub raises NotImplementedError by design until PROMPT C3 rewires it.
+2. Hypothesis-space equality assertion: set(adapter.hypothesis_space) == set(baseline candidate pairs).
 """
 from pathlib import Path
 import pytest
@@ -24,8 +23,13 @@ def test_reference_benchmark_scenarios_instantiate():
         assert len(sc.effects) > 0
 
 
-def test_dp_adapter_stub_raises_not_implemented():
-    """Verify DPAdapter stub raises NotImplementedError until PROMPT C3 rewires it."""
+def test_hypothesis_space_equality():
+    """Verify DPAdapter enumerated hypothesis space equals baseline hypothesis space (assert set equality)."""
     sc = s1_clean()
-    with pytest.raises(NotImplementedError):
-        DPAdapter(sc)
+    adapter = DPAdapter(sc)
+    baseline = FlatBayesian(sc)
+
+    baseline_space = set((c, e) for c in baseline.causes for e in baseline.effects)
+    adapter_space = set(adapter.hypothesis_space)
+
+    assert adapter_space == baseline_space, f"Hypothesis space mismatch: {adapter_space} != {baseline_space}"

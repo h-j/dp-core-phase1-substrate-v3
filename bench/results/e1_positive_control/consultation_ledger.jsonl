@@ -1,0 +1,350 @@
+{"decision_id": "0:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "0:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "0:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "0:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "0:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "0:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 0, "decision_id": "0:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "1:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "1:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "1:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "1:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "1:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "1:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 1, "decision_id": "1:predict:0", "kind": "decision", "output_hash": "fd1b09cb3091c43bc8351dd871d0a3f1cab6745f88da1392535edd86eab4181d"}
+{"decision_id": "2:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "2:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "2:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "2:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "2:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "2:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 2, "decision_id": "2:predict:0", "kind": "decision", "output_hash": "7193db776091353db5bfa700e4add58cf81c2677f166f9f1574931d98f32db31"}
+{"decision_id": "3:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "3:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "3:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "3:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "3:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "3:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 3, "decision_id": "3:predict:0", "kind": "decision", "output_hash": "c8c7cac85e44a98eff28f58f3c0f352648f174981f8661c4945864449b0a1f24"}
+{"decision_id": "4:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "4:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "4:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "4:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "4:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "4:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 4, "decision_id": "4:predict:0", "kind": "decision", "output_hash": "ccc2c5288fcd5a46bf36c6d3609f53795b674c8522fb896c19ddcea01052daf7"}
+{"decision_id": "5:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "5:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "5:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "5:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "5:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "5:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 5, "decision_id": "5:predict:0", "kind": "decision", "output_hash": "6d0bc326d92e9e9ad2f9b295b307592948c99ea0b1440372297baf966bbe8882"}
+{"decision_id": "6:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "6:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "6:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "6:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "6:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "6:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 6, "decision_id": "6:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "7:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "7:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "7:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "7:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "7:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "7:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 7, "decision_id": "7:predict:0", "kind": "decision", "output_hash": "b0897b9d2904ea5f928924c24c3cc3e0f3eac36fd44f0cc738e8ff8ed1f665c8"}
+{"decision_id": "8:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "8:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "8:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "8:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "8:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "8:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 8, "decision_id": "8:predict:0", "kind": "decision", "output_hash": "fa84ca259e5d8b22d26e8fcb63dee82dbbc22602565c650bbdeeb319735bcf9a"}
+{"decision_id": "9:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "9:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "9:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "9:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "9:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "9:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 9, "decision_id": "9:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "10:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "10:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "10:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "10:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "10:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "10:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 10, "decision_id": "10:predict:0", "kind": "decision", "output_hash": "40eba82f818e4f274fdec16ed8f16ec58989f087b546c10a559b8b37cfcd348c"}
+{"decision_id": "11:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "11:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "11:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "11:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "11:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "11:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 11, "decision_id": "11:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "12:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "12:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "12:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "12:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "12:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "12:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 12, "decision_id": "12:predict:0", "kind": "decision", "output_hash": "404535fb6000878b06d63c6893829405f4f717268a4bdc1e31b9cf90da1a36b9"}
+{"decision_id": "13:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "13:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "13:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "13:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "13:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "13:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 13, "decision_id": "13:predict:0", "kind": "decision", "output_hash": "9447a92008b2a4db10f665ac5af3b103b4374630461ddb6d8e08facb2ce493bb"}
+{"decision_id": "14:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "14:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "14:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "14:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "14:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "14:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 14, "decision_id": "14:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "15:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "15:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "15:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "15:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "15:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "15:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 15, "decision_id": "15:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "16:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "16:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "16:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "16:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "16:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "16:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 16, "decision_id": "16:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "17:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "17:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "17:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "17:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "17:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "17:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 17, "decision_id": "17:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "18:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "18:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "18:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "18:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "18:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "18:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 18, "decision_id": "18:predict:0", "kind": "decision", "output_hash": "1099965174f6bc50fdda0bb554d1b6b47abd0f03ce928e5aa7b87a95564aebb7"}
+{"decision_id": "19:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "19:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "19:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "19:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "19:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "19:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 19, "decision_id": "19:predict:0", "kind": "decision", "output_hash": "42a47bd10a271ead101d5fea3719cbef65d56535fac78df1880c10962dca4509"}
+{"decision_id": "20:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "20:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "20:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "20:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "20:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "20:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 20, "decision_id": "20:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "21:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "21:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "21:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "21:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "21:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "21:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 21, "decision_id": "21:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "22:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "22:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "22:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "22:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "22:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "22:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 22, "decision_id": "22:predict:0", "kind": "decision", "output_hash": "a4ca8ff9eba05855cf7e9de10cec9aad28ec65e6b730309315a7233865336088"}
+{"decision_id": "23:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "23:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "23:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "23:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "23:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "23:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 23, "decision_id": "23:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "24:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "24:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "24:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "24:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "24:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "24:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 24, "decision_id": "24:predict:0", "kind": "decision", "output_hash": "6eaa9dcd445a70078625985749e37a57cb0b01249099041ac55462cf71382c52"}
+{"decision_id": "25:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "25:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "25:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "25:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "25:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "25:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 25, "decision_id": "25:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "26:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "26:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "26:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "26:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "26:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "26:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 26, "decision_id": "26:predict:0", "kind": "decision", "output_hash": "969db9ea89e98fb88025d3e9a424c9d6d7ffb669be77e810ea623fe46cc8da6f"}
+{"decision_id": "27:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "27:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "27:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "27:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "27:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "27:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 27, "decision_id": "27:predict:0", "kind": "decision", "output_hash": "979ec3699207acb120eafe461a2b0d4c070c9298df55b18e516777a04db77d89"}
+{"decision_id": "28:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "28:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "28:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "28:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "28:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "28:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 28, "decision_id": "28:predict:0", "kind": "decision", "output_hash": "7a3157ac11b75e5c7cc6d9da8ab5504a09b92ddfac17ee67657ddebe98b65892"}
+{"decision_id": "29:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "29:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "29:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "29:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "29:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "29:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 29, "decision_id": "29:predict:0", "kind": "decision", "output_hash": "9efe08f77bc9bf5190bfb1dc8c48ae7f18db7b06903b3bc4e5c854b65f03f391"}
+{"decision_id": "30:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "30:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "30:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "30:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "30:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "30:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 30, "decision_id": "30:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "31:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "31:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "31:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "31:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "31:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "31:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 31, "decision_id": "31:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "32:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "32:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "32:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "32:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "32:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "32:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 32, "decision_id": "32:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "33:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "33:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "33:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "33:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "33:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "33:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 33, "decision_id": "33:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "34:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "34:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "34:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "34:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "34:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "34:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 34, "decision_id": "34:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "35:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "35:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "35:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "35:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "35:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "35:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 35, "decision_id": "35:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "36:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "36:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "36:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "36:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "36:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "36:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 36, "decision_id": "36:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "37:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "37:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "37:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "37:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "37:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "37:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 37, "decision_id": "37:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "38:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "38:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "38:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "38:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "38:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "38:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 38, "decision_id": "38:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "39:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "39:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "39:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "39:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "39:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "39:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 39, "decision_id": "39:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "40:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "40:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "40:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "40:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "40:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "40:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 40, "decision_id": "40:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "41:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "41:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "41:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "41:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "41:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "41:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 41, "decision_id": "41:predict:0", "kind": "decision", "output_hash": "a5f8e475ac893bfa44ff4e0d14ac3f2207fd5084cdf9fe320e6902ff44d231fb"}
+{"decision_id": "42:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "42:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "42:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "42:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "42:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "42:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 42, "decision_id": "42:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "43:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "43:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "43:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "43:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "43:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "43:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 43, "decision_id": "43:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "44:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "44:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "44:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "44:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "44:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "44:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 44, "decision_id": "44:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "45:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "45:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "45:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "45:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "45:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "45:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 45, "decision_id": "45:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "46:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "46:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "46:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "46:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "46:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "46:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 46, "decision_id": "46:predict:0", "kind": "decision", "output_hash": "16266c6e4c163d5bad7f36e52f953ea32d0b4e15765bb6b57be8e91c5d70f666"}
+{"decision_id": "47:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "47:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "47:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "47:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "47:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "47:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 47, "decision_id": "47:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "48:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "48:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "48:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "48:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "48:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "48:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 48, "decision_id": "48:predict:0", "kind": "decision", "output_hash": "4e7e07fe63e13c53797dcec93974c619167b88261f5509d11d72e6f83a9f5272"}
+{"decision_id": "49:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:0", "role": "gate", "seq": 1}
+{"decision_id": "49:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:2", "role": "gate", "seq": 2}
+{"decision_id": "49:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:4", "role": "gate", "seq": 3}
+{"decision_id": "49:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:1", "role": "gate", "seq": 4}
+{"decision_id": "49:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:3", "role": "gate", "seq": 5}
+{"decision_id": "49:predict:0", "kind": "consultation", "object_kind": "confidence_state", "object_structural_id": "0:theory:5", "role": "gate", "seq": 6}
+{"day": 49, "decision_id": "49:predict:0", "kind": "decision", "output_hash": "dbdcf86d7fd0000a4be090d3bb668dfb978eb89d02b287064d8870afa5676e21"}
