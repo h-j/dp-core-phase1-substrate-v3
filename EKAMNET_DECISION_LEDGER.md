@@ -17,7 +17,24 @@ This ledger records architectural decisions, governance changes, and state trans
 | **DEC-007** | 2026-07-23 | Replacement of Keyword Confidence Engine with Scored Confidence Engine (PROMPT R1) | ACTIVE | Cognition Confidence Substrate |
 | **DEC-008** | 2026-07-23 | Transition to Structural Identity for Cognitive Objects & Retirement of SD-001 (PROMPT R2) | ACTIVE | Identity Substrate & Lineage Engine |
 | **DEC-009** | 2026-07-23 | Pre-Registered Verification Gates & Retirement of SD-006 (PROMPT R3) | ACTIVE | Research Governance & Closure Verification |
-| **DEC-010** | 2026-07-24 | Registration of Gate A Branch Outcome from 20-Seed Synthetic Battery (PROMPT E2) | ACTIVE | Benchmark Governance & Milestone Progression |
+| **DEC-010** | 2026-07-24 | Registration of Gate A Branch Outcome from 20-Seed Synthetic Battery (PROMPT E2) | VOID / REVERTED | Benchmark Governance & Milestone Progression |
+| **DEC-011** | 2026-07-24 | Reversal of Gate A Branch Outcome (PROMPT C1) | ACTIVE | Governance Correction & Record Integrity |
+
+---
+
+## Decision Record Details
+
+### DEC-011: Reversal of Gate A Branch Outcome (PROMPT C1)
+
+* **Date**: 2026-07-24
+* **Status**: `ACTIVE`
+* **Statement**: `"GATE A: PASS (DEC-010) REVERTED: criteria were not pre-registered; benchmark non-conformant; result void."`
+* **Context**: External verification found that the E2 experiment ran without pre-registered gate criteria (no `gate_a.yaml` existed prior to execution), on a benchmark environment containing non-conformant baseline implementations, with contradictory result sets.
+* **Decision**: Revert `DEC-010` in full per append-only ledger governance rules. Declare the un-preregistered `GATE A: PASS` claim void pending registered re-run under pre-registered `experiments/preregistration/gate_a.yaml`.
+* **Consequences**:
+  - Reverts `DEC-010` status to `VOID / REVERTED`.
+  - Mandates complete pre-registration of `experiments/preregistration/gate_a.yaml` before any subsequent benchmark evaluation.
+
 
 ---
 

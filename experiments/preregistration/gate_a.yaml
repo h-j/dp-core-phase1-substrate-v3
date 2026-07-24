@@ -1,0 +1,71 @@
+# Pre-Registered Verification Gate Criteria: Gate A (PROMPTS E1 & E2)
+# Registered: 2026-07-24
+
+gate_a:
+  version: "1.0.0"
+  registered_date: "2026-07-24"
+
+  experiments:
+    e1_counterfactual_influence:
+      preconditions:
+        min_ablation_target_confidence: 0.65
+        min_ablation_target_evidence_count: 5
+        require_llm_cache_counts: true # substitution_count and reinvocation_count must be reported
+      outcomes:
+        PASS:
+          unpredicted_divergence_empty: true
+          verified_influence_non_empty: true
+          description: "Every observed divergence was predicted by the consultation graph AND at least one predicted decision diverged."
+        INSTRUMENTATION_FAIL:
+          unpredicted_divergence_empty: false
+          description: "Unpredicted divergence non-empty — fix read sites under E0a boundary rule and re-run."
+        NULL:
+          observed_divergence_empty: true
+          description: "Divergence sets empty entirely — accumulated knowledge did not causally change reasoning in this run."
+
+    e2_synthetic_battery:
+      scenarios: ["S1", "S2", "S3", "S4"]
+      num_seeds: 20
+      steps_per_run: 200
+      baselines:
+        flat_bayesian: "FlatBayesian"
+        windowed_frequency: "WindowedFrequency"
+        oracle: "TruModalOracle"
+      criteria:
+        pass_conditions_simultaneous:
+          - scenario: "S2"
+            metric: "decoy_claims_rate"
+            operator: "<"
+            target_baseline: "FlatBayesian"
+          - scenario: "S2"
+            metric: "discovery_precision"
+            operator: ">="
+            target_baseline: "FlatBayesian"
+          - scenario: "S3"
+            metric: "recovery_steps"
+            operator: "<"
+            target_baseline: "FlatBayesian"
+          - scenario: "S3"
+            metric: "collateral_rate"
+            operator: "<="
+            target_baseline: "WindowedFrequency"
+          - scenario: "S1"
+            metric: "brier_regret"
+            operator: "<="
+            target_baseline: "FlatBayesian"
+        non_gating_reporting:
+          - scenario: "S4"
+            description: "S4 scoped vs unconditioned regret is reported for characterization, not gating."
+      winner_determination:
+        rule: "Non-overlapping IQRs across 20 seeds, else rank test (Wilcoxon) p < 0.05."
+
+  three_branch_interpretation_table:
+    PASS:
+      consequence: "DP cognitive machinery demonstrated causal learning and adaptation superior to baselines on ground-truth causal synthworld benchmarks."
+      next_milestone: "Characterization and parameter freeze."
+    FAIL:
+      consequence: "DP substrate failed pre-registered performance gates against baselines."
+      repositioning: "Reposition DP substrate contribution as an auditable, deterministic ground-truth reflective memory architecture (auditability + method), not a performance-optimized statistical model."
+    AMBIGUOUS:
+      consequence: "Mixed results across scenarios or statistical tie across seed distributions."
+      action: "Register extension (more seeds / longer horizons) WITHOUT touching frozen parameters."

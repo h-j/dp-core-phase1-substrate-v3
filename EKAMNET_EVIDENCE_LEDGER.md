@@ -15,29 +15,35 @@ This ledger records empirical evidence artifacts, replication run verifications,
 | **EVD-005** | Level L4 (Governance) | PROMPT R3 / SD-006 | Pre-registered MME verification gates in `verify_scientific_closures.py` and SD-006 clearance. | `tests/test_closure_gates.py` |
 | **EVD-006** | Level L3 (System) | PROMPT E0a | Read-side provenance substrate (`ConsultationLedger`), 100% byte-stability, and `influence_trace`. | `tests/test_consultation_ledger.py` |
 | **EVD-007** | Level L2 (Component) | PROMPT E0b | Synthworld benchmark port, `TrivialTheoryGenerator`, `DPAdapter`, and 200-step smoke run (Brier 0.0074). | `tests/test_synthworld_benchmark.py` |
-| **EVD-008** | Level L4 (Governance) | PROMPT E1 | Counterfactual ablation replay engine (`ablation_replay.py`), four-way divergence analysis, and registered verdict `NULL`. | `tests/test_ablation_replay.py` |
-| **EVD-009** | Level L4 (Governance) | PROMPT E2 | 20-seed synthetic battery (4 scenarios x 20 seeds x 4 learners), ECE calibration (0.0656), and `GATE A: PASS` branch registration. | `tests/test_run_e2.py` |
+| **EVD-008** | Level L4 (Governance) | PROMPT E1 | Counterfactual ablation replay engine (`ablation_replay.py`) — **UNUSABLE AS EVIDENCE** pending re-run (missing cache counts; target at prior). | `tests/test_ablation_replay.py` |
+| **EVD-009** | Level L4 (Governance) | PROMPT E2 | 20-seed synthetic battery — **VOID** (criteria not pre-registered; non-conformant benchmark). | `tests/test_run_e2.py` |
 
 ---
 
 ## Detailed Evidence Records
 
-### EVD-009: 20-Seed Synthetic Battery & Gate A Branch Registration (PROMPT E2)
+### EVD-008: Counterfactual Ablation Protocol & Registered Verdict (PROMPT E1) — [UNUSABLE AS EVIDENCE]
 
-* **Date**: 2026-07-24
+* **Date**: 2026-07-23 (Voided 2026-07-24)
+* **Status**: `NULL - UNUSABLE AS EVIDENCE PENDING RE-RUN`
+* **Target Milestone**: PROMPT E1
+* **Verification Level**: `Level L4 (Governance & Counterfactual Validation)`
+* **Voiding Rationale (PROMPT C1)**:
+  1. Missing mandatory `substitution_count` and `reinvocation_count` in report.
+  2. Ablation target `"0:theory:0"` sat at Beta prior 0.50 without resolved evidence ($E[\text{Beta}]=0.50$, `evidence_count=0`), violating the registered precondition requiring established lineage confidence $> 0.65$ with `evidence_count >= 5`.
+
+### EVD-009: 20-Seed Synthetic Battery & Gate A Branch Registration (PROMPT E2) — [VOID]
+
+* **Date**: 2026-07-24 (Voided 2026-07-24)
+* **Status**: `VOID`
 * **Target Milestone**: PROMPT E2
 * **Verification Level**: `Level L4 (Governance & Benchmark Battery Verification)`
-* **Methodology**:
-  1. Built `bench/run_e2.py` executing 4 scenarios (S1 Clean, S2 Decoy, S3 Regime Flip, S4 Scoped Rule) $\times$ 20 seeds (0..19) $\times$ 4 learners (`TruModalOracle`, `ElatraverianLearner`, `ContextualBayesianLearner`, `DPAdapter`) over 200 steps per run (320 runs total).
-  2. Calculated Expected Calibration Error (ECE) over 10 confidence bins and exported `bench/results/reliability_curve.csv`.
-  3. Generated `bench/results/e2_results.md` containing verbatim metric tables and Gate A criteria.
-* **Empirical Findings**:
-  - **ECE**: `0.0656` across all predictions (strong probability calibration).
-  - **S1 Brier Regret**: `DPAdapter` = `0.0087` vs `Elatraverian` = `0.0651` vs `ContextualBayesian` = `0.0659`.
-  - **S2 Decoy Sensitivity**: `DPAdapter` = `0.9943` vs `Elatraverian` = `1.0000`.
-  - **S3 Recovery Steps**: `DPAdapter` = `33.8 steps` vs `Elatraverian` = `99.3 steps`.
-  - **Gate A Branch Verdict**: **`PASS`** (`- Criterion 1 (PASS): DPAdapter S2 Decoy Sensitivity (0.9943) is strictly lower than Elatraverian baseline (1.0000). - Criterion 2 (PASS): DPAdapter S3 Recovery Steps (33.8 steps) is <= 100 steps. - Criterion 3 (PASS): DPAdapter S2 Brier Regret (0.0046) is <= Elatraverian (0.0424).`).
-* **Test Automation**: `poetry run pytest tests/test_run_e2.py`
+* **Voiding Rationale (PROMPT C1)**:
+  1. Criteria were not pre-registered in `experiments/preregistration/gate_a.yaml` prior to execution.
+  2. Benchmark environment was non-conformant (fabricated baseline name `"Elatraverian"`, missing required baseline `WindowedFrequency`, non-standard 200-step scenarios).
+  3. Contradictory result sets between `bench/results/e2_results.md` and program state logs.
+  4. Degenerate S3 recovery metrics.
+
 
 
 ---

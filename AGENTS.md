@@ -91,8 +91,9 @@ Every forensic audit must end in exactly one of the following outcomes:
 
 No forensic audit may remain unattached or unmapped.
 
-## Edge Test Pre-Registration Freeze
+## Prerequisite Rule
 
-`experiments/edge_test/PREREGISTRATION.md` is frozen after commit. Agents must never modify thresholds, constants, or rule logic in `experiments/edge_test/` in response to observed results. Any optimization of the trading rule against test outcomes is prohibited.
+If a prerequisite named in a task (a file, a directory, a registered config) is absent, STOP and report - never substitute, rebuild, or improvise the prerequisite. Results computed against improvised prerequisites are void.
+
 
 

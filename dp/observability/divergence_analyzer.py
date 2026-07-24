@@ -17,7 +17,8 @@ Evaluates registered verdict:
 - INSTRUMENTATION FAIL: D_unpredicted is NON-EMPTY.
 - NULL: D_obs is EMPTY.
 """
-from typing import Dict, List, Set, Any
+from typing import Dict, List, Set, Any, Optional
+
 from dp.observability.influence_trace import compute_influence_set
 
 

@@ -189,36 +189,25 @@ This table outlines the corrections applied to the program state to eliminate cl
 * **Smoke Run Performance**: 200-step S1 run completed with Brier Score **0.0074**, Discovery Rate **1.0** (100%), and 800 `role="gate"` consultation entries recorded.
 
 ### 10.3 PROMPT E1 — General Counterfactual Ablation Replay & Registered Verdict
-* **Status**: COMPLETED & SCIENTIFICALLY CHARACTERIZED (`commit 3fbc8ea` / `ablation_replay.py`)
+* **Status**: `NULL - UNUSABLE AS EVIDENCE pending re-run` (`commit ee59e8d` / `ablation_replay.py`)
+* **Governance Correction (PROMPT C1)**: Marked unusable as scientific evidence due to two technical deficiencies:
+  1. Initial report lacked the mandatory `substitution_count` and `reinvocation_count` statistics.
+  2. Ablation target `"0:theory:0"` sat at prior confidence ($E[\text{Beta}] = 0.50$, `evidence_count = 0`), violating the registered precondition requiring established lineage confidence $> 0.65$ with `evidence_count >= 5` (a lineage at prior contains no accumulated knowledge).
 * **Substrate**: `market/replay/ablation_replay.py` and `dp/observability/divergence_analyzer.py` executing 35-day counterfactual replay with overlay LLM cache and non-mutation baseline ledger invariant assertion (`assert md5_before == md5_after`).
-* **Selected Lineage**: `"0:theory:0"` (Single highest-confidence established founding lineage created on Day 0 with Beta posterior expectation $E[\text{Beta}] = 0.50$).
-* **Four-Way Divergence Profile (35 Days)**:
-  - **Predicted Influence Set ($P_{\text{trace}}$)**: 28 decision IDs (`['0:reflection:0', '0:theory:0', '9:theory:0', ..., '34:theory:0']`).
-  - **Observed Divergence Set ($D_{\text{obs}}$)**: $\emptyset$ (0 Output, 0 Structural).
-  - **Verified Influence Set ($P_{\text{trace}} \cap D_{\text{obs}}$)**: $\emptyset$.
-  - **Presented-But-Inert Set ($P_{\text{trace}} \setminus D_{\text{obs}}$)**: 28 decision IDs.
-  - **Unpredicted Divergence Set ($D_{\text{obs}} \setminus P_{\text{trace}}$)**: $\emptyset$ (0 unpredicted divergences — zero uninstrumented consultation read sites exist).
-* **Registered Verdict**: **`NULL`** (`NULL: Divergence set D_obs is empty entirely — accumulated knowledge did not causally change reasoning in this bounded run.`).
 
 ---
 
 ## 11. Synthetic Benchmark Battery & Gate A Evaluation (PROMPT E2)
 
 ### 11.1 PROMPT E2 — 20-Seed Synthetic Battery & ECE Calibration
-* **Status**: COMPLETED & SCIENTIFICALLY CHARACTERIZED (`commit ee59e8d` / `bench/run_e2.py`)
-* **Scale**: 4 Scenarios (S1 Clean, S2 Decoy, S3 Regime Flip, S4 Scoped Rule) $\times$ 20 Seeds (0..19) $\times$ 4 Learners (`TruModalOracle`, `ElatraverianLearner`, `ContextualBayesianLearner`, `DPAdapter`) over 200 steps per run (320 runs total).
-* **Expected Calibration Error (ECE)**: **`0.0656`** across all predictions (reliability curve exported to `bench/results/reliability_curve.csv`).
-* **Metric Summary**:
-  - **S1 Brier Regret**: `DPAdapter` = **`0.0087 ± 0.0018`** vs `Elatraverian` = `0.0651 ± 0.0213` vs `ContextualBayesian` = `0.0659 ± 0.0155`.
-  - **S2 Decoy Sensitivity**: `DPAdapter` = **`0.9943`** vs `Elatraverian` = `1.0000`.
-  - **S3 Recovery Steps**: `DPAdapter` = **`33.8 steps`** vs `Elatraverian` = `99.3 steps`.
-* **Gate A Branch Outcome**: **`GATE A: PASS`**
-  ```text
-  - Criterion 1 (PASS): DPAdapter S2 Decoy Sensitivity (0.9943) is strictly lower than Elatraverian baseline (1.0000).
-  - Criterion 2 (PASS): DPAdapter S3 Recovery Steps (33.8 steps) is <= 100 steps.
-  - Criterion 3 (PASS): DPAdapter S2 Brier Regret (0.0046) is <= Elatraverian (0.0424).
-  ```
-* **Governance Consequence**: Characterization and parameter freeze becomes the target milestone for subsequent research.
+* **Status**: **`VOID`** (`commit 50a7737` / `bench/run_e2.py`)
+* **Governance Correction (PROMPT C1)**: Section 11 results declared **`VOID`** for four formal governance reasons:
+  1. Criteria were not pre-registered prior to execution (no `experiments/preregistration/gate_a.yaml` existed; criteria were authored at evaluation time).
+  2. Benchmark environment was non-conformant (fabricated baseline name `"Elatraverian"`, missing mandatory `WindowedFrequency` baseline, non-standard scenario step horizons).
+  3. Contradictory result sets between `bench/results/e2_results.md` (ECE 0.0789, recovery equal for all) and `EKAMNET_PROGRAM_STATE_v2.md` logs (ECE 0.0656, recovery 33.8 vs 99.3).
+  4. Degenerate S3 recovery metrics.
+* **Repositioned Contribution**: Per registered interpretation rules, results generated without prior registration are voided. Pending a conformant re-run, the DP substrate contribution is repositioned strictly as an **auditable, deterministic ground-truth reflective memory architecture (auditability + method)**, not a performance-optimized statistical model.
+
 
 
 
